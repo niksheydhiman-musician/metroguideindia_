@@ -1,46 +1,33 @@
-/**
- * seoGenerator.js
- * Generates dynamic SEO meta tags and route page content.
- */
 const SEOGenerator = (() => {
+  const slugify = s => s.toLowerCase().trim().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  const routeSlug = (a,b) => `${slugify(a)}-to-${slugify(b)}`;
 
-  function slugify(str) {
-    return str.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  function setMeta(k,v,isProp=false){
+    const a=isProp?'property':'name';
+    let t=document.querySelector(`meta[${a}="${k}"]`);
+    if(!t){t=document.createElement('meta');t.setAttribute(a,k);document.head.appendChild(t);}
+    t.setAttribute('content',v);
   }
 
-  function routeSlug(from, to) {
-    return `${slugify(from)}-to-${slugify(to)}`;
+  function apply(from,to,dist,fare,time){
+    const title=`${from} to ${to} — RRTS Route, ₹${fare} Fare | MetroGuideIndia`;
+    const desc=`${from} to ${to}: ${dist} km, ~${time} min, est. ₹${fare}. Complete station list, interchange guide for Namo Bharat RRTS & Meerut Metro.`;
+    document.title=title;
+    setMeta('description',desc);setMeta('og:title',title,true);setMeta('og:description',desc,true);
+    setMeta('twitter:title',title);setMeta('twitter:description',desc);
   }
 
-  function setMeta(nameOrProp, content, isProp = false) {
-    const attr = isProp ? 'property' : 'name';
-    let tag = document.querySelector(`meta[${attr}="${nameOrProp}"]`);
-    if (!tag) { tag = document.createElement('meta'); tag.setAttribute(attr, nameOrProp); document.head.appendChild(tag); }
-    tag.setAttribute('content', content);
+  function seoBlock(from,to,names,dist,fare,time){
+    return `<div class="seo-block">
+      <p>Travelling from <strong>${from}</strong> to <strong>${to}</strong>?
+      This route covers <strong>${dist} km</strong> across <strong>${names.length} stations</strong>,
+      with an estimated travel time of <strong>~${time} minutes</strong>
+      and a standard fare of <strong>₹${fare}</strong>.</p>
+      <p>Namo Bharat RRTS and Meerut Metro are operated by NCRTC.
+      The RRTS runs at up to 180 km/h between Delhi and Meerut,
+      while the Meerut Metro provides affordable city-level connectivity within Meerut.</p>
+    </div>`;
   }
 
-  function applyRouteSEO(fromName, toName, distance, fare, time) {
-    const title = `${fromName} to ${toName} — RRTS & Metro Route, Fare ₹${fare} | MetroGuideIndia`;
-    const desc  = `${fromName} to ${toName} route: ${distance} km, ~${time} min, est. fare ₹${fare}. Station list, interchange guide and travel tips for Namo Bharat RRTS & Meerut Metro.`;
-    document.title = title;
-    setMeta('description', desc);
-    setMeta('og:title',       title, true);
-    setMeta('og:description', desc,  true);
-    setMeta('twitter:title',       title);
-    setMeta('twitter:description', desc);
-  }
-
-  function routeSEOBlock(fromName, toName, stationNames, distance, fare, time) {
-    return `
-      <div class="seo-block">
-        <p>Travelling from <strong>${fromName}</strong> to <strong>${toName}</strong>?
-        This route covers <strong>${distance} km</strong> across <strong>${stationNames.length} stations</strong>
-        on the Namo Bharat RRTS and/or Meerut Metro network, with an estimated travel time of
-        <strong>~${time} minutes</strong> and fare of approximately <strong>₹${fare}</strong>.</p>
-        <p>Both services are operated by NCRTC. The Namo Bharat (Namo Bharat) RRTS connects Delhi to Meerut
-        at speeds up to 180 km/h, while the Meerut Metro provides city-level connectivity within Meerut.</p>
-      </div>`;
-  }
-
-  return { slugify, routeSlug, applyRouteSEO, routeSEOBlock };
+  return { slugify, routeSlug, apply, seoBlock };
 })();
