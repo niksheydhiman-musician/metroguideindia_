@@ -1,0 +1,18 @@
+[
+  {
+    "line_id": "rrts_main",
+    "system_id": "rrts",
+    "line_name": "Delhi–Meerut Corridor",
+    "color": "red",
+    "start_station": "Sarai Kale Khan",
+    "end_station": "Modipuram"
+  },
+  {
+    "line_id": "meerut_metro_main",
+    "system_id": "meerut_metro",
+    "line_name": "Meerut Metro Line",
+    "color": "fluorescent green",
+    "start_station": "Meerut South",
+    "end_station": "Modipuram"
+  }
+]

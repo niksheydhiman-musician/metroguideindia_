@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MetroGuideIndia — Delhi Meerut RRTS &amp; Meerut Metro Route Planner</title>
+  <meta name="description" content="Find routes, fares, and station info for the Delhi–Meerut Namo Bharat RRTS and Meerut Metro. Free route planner with interchange instructions powered by live data."/>
+  <meta name="keywords" content="RRTS route planner, Namo Bharat RRTS stations, Delhi Meerut RRTS fare, Meerut Metro route, NCRTC metro guide, metro route India, Sarai Kale Khan to Meerut"/>
+  <meta property="og:title" content="MetroGuideIndia — Delhi Meerut RRTS & Meerut Metro Route Planner"/>
+  <meta property="og:description" content="Find metro and RRTS routes, fares, and station info instantly."/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary"/>
+  <link rel="canonical" href="https://metroguideindia.github.io/"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<!-- ░░ NAV ░░ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🚄</div>
+      MetroGuideIndia
+    </a>
+    <span class="nav-chip">Beta</span>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <!-- ░░ HERO ░░ -->
+  <section class="hero">
+    <div class="live-pill"><div class="live-dot"></div>Operational</div>
+    <h1 class="hero-title">India's Fastest<br><span class="r">Transit</span> <span class="g">Planner</span></h1>
+    <p class="hero-sub">Find routes, fare and interchange instructions for Delhi–Meerut RRTS and Meerut Metro instantly.</p>
+  </section>
+
+  <!-- ░░ SEARCH CARD ░░ -->
+  <section id="search-section">
+    <div class="search-card">
+
+      <div class="field">
+        <label class="field-label" for="src">From</label>
+        <select id="src" class="sel" aria-label="Source station">
+          <option value="">Select source station</option>
+        </select>
+      </div>
+
+      <div class="swap-row">
+        <button class="swap" id="swap-btn" title="Swap stations" aria-label="Swap stations">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="dst">To</label>
+        <select id="dst" class="sel" aria-label="Destination station">
+          <option value="">Select destination station</option>
+        </select>
+      </div>
+
+      <button class="btn-find" id="find-btn" onclick="onFindRoute()">
+        <span class="btn-label">Find Route</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ░░ ROUTE RESULT ░░ -->
+  <section id="route-result" aria-live="polite"></section>
+
+  <!-- ░░ TRANSIT SYSTEMS ░░ -->
+  <section id="systems-section">
+    <div class="section-eyebrow">Coverage</div>
+    <h2 class="section-heading">Transit Systems</h2>
+    <div class="sys-grid" id="sys-grid">
+      <!-- filled by JS -->
+    </div>
+  </section>
+
+  <!-- ░░ STATIONS BROWSER ░░ -->
+  <section class="section-info">
+    <div class="section-eyebrow">Network</div>
+    <h2 class="section-heading">All Stations</h2>
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-sys="all">All</button>
+      <button class="tab" data-sys="rrts">Namo Bharat RRTS</button>
+      <button class="tab" data-sys="meerut_metro">Meerut Metro</button>
+    </div>
+    <div id="stations-list">
+      <!-- filled by JS -->
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <p class="foot-desc">Your guide to the Delhi–Meerut Namo Bharat RRTS and Meerut Metro — routes, fare, and stations.</p>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <span>·</span>
+      <span>Data by NCRTC</span>
+    </div>
+    <div class="foot-copy">© 2025 MetroGuideIndia. For informational purposes only.</div>
+  </div>
+</footer>
+
+<button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
+
+<!-- ░░ SCRIPTS ░░ -->
+<script src="js/dataLoader.js"></script>
+<script src="js/graphBuilder.js"></script>
+<script src="js/routeFinder.js"></script>
+<script src="js/routeUI.js"></script>
+<script src="js/seoGenerator.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   App — index.html
+   All data loaded dynamically from /data/*.json
+   ═══════════════════════════════════════════════════════════ */
+
+let DATA  = null;   // { systems, lines, stations, connections, interchanges }
+let GRAPH = null;   // adjacency map from GraphBuilder
+
+/* ── Bootstrap ──────────────────────────────────────────── */
+(async () => {
+  try {
+    DATA  = await DataLoader.loadAll();
+    GRAPH = GraphBuilder.build(DATA.connections);
+    buildDropdowns();
+    buildSystemCards();
+    buildStationsList('all');
+    initTabs();
+    restoreRouteFromURL();
+  } catch (err) {
+    console.error(err);
+    showLoadError(err.message);
+  }
+})();
+
+/* ── Show critical load error ───────────────────────────── */
+function showLoadError(msg) {
+  const banner = document.createElement('div');
+  banner.style.cssText =
+    'background:#2a0a0e;border-bottom:2px solid #E8384F;padding:12px 18px;text-align:center;' +
+    'font-size:.85rem;color:#E8384F;font-weight:600;position:sticky;top:56px;z-index:199;';
+  banner.textContent = '⚠ Data load failed — make sure the /data folder is in the same directory as index.html. (' + msg + ')';
+  document.body.insertBefore(banner, document.body.children[1]);
+}
+
+/* ── Build station dropdowns ────────────────────────────── */
+function buildDropdowns() {
+  const unique = uniqueStations(DATA.stations);
+  const groups = groupBySystem(unique);
+  const labels = { rrts: 'Namo Bharat RRTS', meerut_metro: 'Meerut Metro' };
+
+  ['src', 'dst'].forEach(id => {
+    const sel = document.getElementById(id);
+    // keep placeholder
+    const placeholder = sel.options[0];
+    sel.innerHTML = '';
+    sel.appendChild(placeholder);
+
+    // RRTS first, then Metro
+    ['rrts', 'meerut_metro'].forEach(sysId => {
+      if (!groups[sysId]) return;
+      const og = document.createElement('optgroup');
+      og.label = labels[sysId];
+      groups[sysId].forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.station_id;
+        opt.textContent = s.station_name;
+        og.appendChild(opt);
+      });
+      sel.appendChild(og);
+    });
+  });
+}
+
+/* ── Build system info cards ────────────────────────────── */
+function buildSystemCards() {
+  const grid = document.getElementById('sys-grid');
+  if (!grid) return;
+
+  const cardData = [
+    {
+      cls: 'rrts', icon: '🚅',
+      name: 'Namo Bharat RRTS',
+      op: 'Delhi–Meerut Corridor · NCRTC',
+      stats: [
+        { v: '82.15', l: 'km total' },
+        { v: DATA.stations.filter(s=>s.system_id==='rrts' && !s.station_id.endsWith('_meerut_metro')).length + '', l: 'stations' },
+        { v: '180', l: 'km/h max' },
+      ]
+    },
+    {
+      cls: 'metro', icon: '🚇',
+      name: 'Meerut Metro',
+      op: 'Meerut Urban Transit · NCRTC',
+      stats: [
+        { v: '22.8', l: 'km total' },
+        { v: DATA.stations.filter(s=>s.system_id==='meerut_metro').length + '', l: 'stations' },
+        { v: '4', l: 'interchanges' },
+      ]
+    }
+  ];
+
+  grid.innerHTML = cardData.map(c => `
+    <div class="sys-card ${c.cls}">
+      <div class="sys-icon">${c.icon}</div>
+      <div class="sys-name">${c.name}</div>
+      <div class="sys-op">${c.op}</div>
+      <div class="sys-stats">
+        ${c.stats.map(s => `
+          <div>
+            <div class="stat-v">${s.v}</div>
+            <div class="stat-l">${s.l}</div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+/* ── Build stations list ────────────────────────────────── */
+function buildStationsList(filter) {
+  const list = document.getElementById('stations-list');
+  if (!list) return;
+
+  const unique = uniqueStations(DATA.stations)
+    .filter(s => filter === 'all' || s.system_id === filter);
+
+  const isRRTS = s => s.system_id === 'rrts';
+  const color  = s => isRRTS(s) ? '#E8384F' : '#2DDE4A';
+  const badge  = s => isRRTS(s) ? 'RRTS' : 'Metro';
+  const bgC    = s => isRRTS(s) ? 'rgba(232,56,79,.13)' : 'rgba(45,222,74,.11)';
+  const bdC    = s => isRRTS(s) ? 'rgba(232,56,79,.38)' : 'rgba(45,222,74,.35)';
+
+  list.innerHTML = unique.map(s => `
+    <div class="st-row" onclick="quickFill('${s.station_id}')">
+      <div class="st-dot" style="background:${color(s)}22;border-color:${color(s)}"></div>
+      <span class="st-name">${s.station_name}</span>
+      <span class="st-city">${s.city}</span>
+      <span class="st-badge" style="background:${bgC(s)};color:${color(s)};border-color:${bdC(s)}">${badge(s)}</span>
+    </div>`).join('');
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+function initTabs() {
+  document.querySelectorAll('#tabs .tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#tabs .tab').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      buildStationsList(btn.dataset.sys);
+    });
+  });
+}
+
+/* ── Quick-fill from station row click ──────────────────── */
+function quickFill(stationId) {
+  const src = document.getElementById('src');
+  if (!src.value) { src.value = stationId; }
+  else { document.getElementById('dst').value = stationId; }
+  document.getElementById('search-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ── Find route handler ─────────────────────────────────── */
+function onFindRoute() {
+  const src  = document.getElementById('src').value;
+  const dst  = document.getElementById('dst').value;
+  const btn  = document.getElementById('find-btn');
+
+  if (!src || !dst) {
+    alert('Please select both a source and a destination station.');
+    return;
+  }
+  if (src === dst) {
+    alert('Source and destination cannot be the same station.');
+    return;
+  }
+
+  btn.classList.add('busy');
+  setTimeout(() => {
+    btn.classList.remove('busy');
+    computeAndRender(src, dst);
+  }, 350);
+}
+
+/* ── Core: compute route and render ─────────────────────── */
+function computeAndRender(src, dst) {
+  const path = RouteFinder.findRoute(GRAPH, src, dst);
+
+  if (!path || path.length === 0) {
+    RouteUI.renderError('route-result', 'No route found between these stations. Please try a different combination.');
+    scrollToResult();
+    return;
+  }
+
+  const dist = RouteFinder.calcDistance(path, GRAPH);
+  const fare = RouteFinder.calcFare(dist);
+  const time = RouteFinder.calcTime(dist);
+
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
+
+  // Append SEO block
+  const srcSt  = DATA.stations.find(s => s.station_id === src);
+  const dstSt  = DATA.stations.find(s => s.station_id === dst);
+  if (srcSt && dstSt) {
+    const names = path.map(p => DATA.stations.find(s => s.station_id === p.station_id)?.station_name || p.station_id);
+    const seoHTML = SEOGenerator.routeSEOBlock(srcSt.station_name, dstSt.station_name, names, dist, fare, time);
+    const card = document.querySelector('.result-card');
+    if (card) {
+      const div = document.createElement('div');
+      div.innerHTML = seoHTML;
+      card.appendChild(div.firstElementChild);
+    }
+    SEOGenerator.applyRouteSEO(srcSt.station_name, dstSt.station_name, dist, fare, time);
+    const slug = SEOGenerator.routeSlug(srcSt.station_name, dstSt.station_name);
+    history.pushState({}, '', `?route=${slug}&from=${src}&to=${dst}`);
+  }
+
+  scrollToResult();
+}
+
+function scrollToResult() {
+  setTimeout(() => {
+    document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+/* ── Restore route from URL on page load ────────────────── */
+function restoreRouteFromURL() {
+  const p    = new URLSearchParams(window.location.search);
+  const from = p.get('from');
+  const to   = p.get('to');
+  if (from && to) {
+    document.getElementById('src').value = from;
+    document.getElementById('dst').value = to;
+    setTimeout(() => computeAndRender(from, to), 200);
+  }
+}
+
+/* ── Swap stations ──────────────────────────────────────── */
+document.getElementById('swap-btn').addEventListener('click', () => {
+  const s = document.getElementById('src');
+  const d = document.getElementById('dst');
+  [s.value, d.value] = [d.value, s.value];
+});
+
+/* ── Scroll-to-top ──────────────────────────────────────── */
+const upBtn = document.getElementById('up-btn');
+window.addEventListener('scroll', () => {
+  upBtn.classList.toggle('show', window.scrollY > 380);
+}, { passive: true });
+upBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ═══════════════════════════════════════════════════════════
+   Helpers
+   ═══════════════════════════════════════════════════════════ */
+
+/** Remove duplicate display entries (same name + system) */
+function uniqueStations(stations) {
+  const seen = new Set();
+  return stations
+    .filter(s => {
+      const key = `${s.station_name}||${s.system_id}`;
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    })
+    .sort((a, b) => {
+      if (a.system_id !== b.system_id) return a.system_id === 'rrts' ? -1 : 1;
+      return Number(a.order) - Number(b.order);
+    });
+}
+
+/** Group station array by system_id */
+function groupBySystem(stations) {
+  return stations.reduce((acc, s) => {
+    (acc[s.system_id] = acc[s.system_id] || []).push(s);
+    return acc;
+  }, {});
+}
+</script>
+
+</body>
+</html>

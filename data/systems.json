@@ -1,0 +1,16 @@
+[
+  {
+    "system_id": "rrts",
+    "system_name": "Delhi Meerut RRTS",
+    "operator": "NCRTC",
+    "region": "Delhi–Meerut",
+    "status": "operational"
+  },
+  {
+    "system_id": "meerut_metro",
+    "system_name": "Meerut Metro",
+    "operator": "NCRTC",
+    "region": "Meerut",
+    "status": "operational"
+  }
+]

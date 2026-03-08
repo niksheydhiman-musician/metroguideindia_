@@ -1,0 +1,42 @@
+[
+  {
+    "interchange_id": "int1",
+    "station_id": "meerut_south_rrts",
+    "from_system": "rrts",
+    "from_line": "rrts_main",
+    "to_system": "meerut_metro",
+    "to_line": "meerut_metro_main",
+    "change_platform": "Platform 2",
+    "instructions": "Change to Meerut Metro"
+  },
+  {
+    "interchange_id": "int2",
+    "station_id": "shatabdi_nagar_rrts",
+    "from_system": "rrts",
+    "from_line": "rrts_main",
+    "to_system": "meerut_metro",
+    "to_line": "meerut_metro_main",
+    "change_platform": "Platform 1",
+    "instructions": "Change to Meerut Metro"
+  },
+  {
+    "interchange_id": "int3",
+    "station_id": "begampul_rrts",
+    "from_system": "rrts",
+    "from_line": "rrts_main",
+    "to_system": "meerut_metro",
+    "to_line": "meerut_metro_main",
+    "change_platform": "Platform 3",
+    "instructions": "Change to Meerut Metro"
+  },
+  {
+    "interchange_id": "int4",
+    "station_id": "modipuram_rrts",
+    "from_system": "rrts",
+    "from_line": "rrts_main",
+    "to_system": "meerut_metro",
+    "to_line": "meerut_metro_main",
+    "change_platform": "Platform 1, Platform 2",
+    "instructions": "Change to Meerut Metro"
+  }
+]
