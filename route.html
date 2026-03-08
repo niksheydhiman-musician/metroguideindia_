@@ -1,195 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Route Planner | MetroGuideIndia</title>
   <meta name="description" content="RRTS and Meerut Metro route planner — step-by-step station list, interchange guide, distance, fare and travel time."/>
   <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">🚄</div>
-      MetroGuideIndia
-    </a>
-    <span class="nav-chip">Beta</span>
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right"><span class="nav-chip">Beta</span></div>
   </div>
 </nav>
-
 <main>
 <div class="wrap">
-
-  <!-- Back + Title -->
-  <div style="padding:36px 0 0">
+  <div style="padding:32px 0 0">
     <a href="index.html" class="back-link">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Back to Home
     </a>
-    <h1 class="route-pg-title" id="pg-title">Route Planner</h1>
-    <p class="route-pg-sub" id="pg-sub">Select stations below to plan your journey.</p>
+    <h1 class="rp-title" id="pg-title">Route Planner</h1>
+    <p class="rp-sub" id="pg-sub">Select stations below to plan your journey.</p>
   </div>
 
-  <!-- Route Result -->
   <section id="route-result" aria-live="polite"></section>
 
-  <!-- Search again -->
-  <section style="margin:28px 0 48px">
-    <div class="search-card">
-      <div class="section-eyebrow" style="margin-bottom:14px">Plan Another Route</div>
-
-      <div class="field">
-        <label class="field-label" for="src">From</label>
-        <select id="src" class="sel"><option value="">Select source station</option></select>
-      </div>
+  <section style="margin:24px 0 48px">
+    <div class="sc">
+      <div class="fd"><label class="fl" for="src">From</label>
+        <select id="src" class="sel"><option value="">Select source station</option></select></div>
       <div class="swap-row">
-        <button class="swap" id="swap-btn" aria-label="Swap stations">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/>
-          </svg>
+        <button class="swap" id="swap-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
         </button>
       </div>
-      <div class="field">
-        <label class="field-label" for="dst">To</label>
-        <select id="dst" class="sel"><option value="">Select destination station</option></select>
-      </div>
-      <button class="btn-find" id="find-btn" onclick="onFindRoute()">
-        <span class="btn-label">Find Route</span>
-      </button>
+      <div class="fd"><label class="fl" for="dst">To</label>
+        <select id="dst" class="sel"><option value="">Select destination station</option></select></div>
+      <button class="btn-find" id="find-btn" onclick="onFind()"><span class="btn-label">Find Route</span></button>
     </div>
   </section>
-
 </div>
 </main>
-
 <footer>
   <div class="wrap">
     <div class="foot-logo">🚄 MetroGuideIndia</div>
     <p class="foot-desc">Delhi–Meerut Namo Bharat RRTS and Meerut Metro route planner.</p>
-    <div class="foot-links"><a href="index.html">Home</a><span>·</span><span>Data by NCRTC</span></div>
+    <div class="foot-links"><a href="index.html">Home</a><span>·</span><span>Data: NCRTC</span></div>
     <div class="foot-copy">© 2025 MetroGuideIndia. For informational purposes only.</div>
   </div>
 </footer>
-
 <button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
-
 <script src="js/dataLoader.js"></script>
 <script src="js/graphBuilder.js"></script>
 <script src="js/routeFinder.js"></script>
 <script src="js/routeUI.js"></script>
 <script src="js/seoGenerator.js"></script>
 <script>
-let DATA = null, GRAPH = null;
-
-(async () => {
-  try {
-    DATA  = await DataLoader.loadAll();
-    GRAPH = GraphBuilder.build(DATA.connections);
-    buildDropdowns();
-    loadFromURL();
-  } catch (err) {
-    RouteUI.renderError('route-result', 'Failed to load transit data. Ensure the /data folder is present. (' + err.message + ')');
-    document.getElementById('route-result').style.display = 'block';
+let DATA=null,GRAPH=null;
+(async()=>{
+  try{
+    DATA=await DataLoader.loadAll();
+    GRAPH=GraphBuilder.build(DATA.connections);
+    buildDropdowns();loadFromURL();
+  }catch(e){
+    document.getElementById('route-result').innerHTML=`<div class="rc-error"><span>⚠️</span><p>${e.message}</p></div>`;
+    document.getElementById('route-result').style.display='block';
   }
 })();
-
-function buildDropdowns() {
-  const unique = uniqueStations(DATA.stations);
-  const labels = { rrts: 'Namo Bharat RRTS', meerut_metro: 'Meerut Metro' };
-  const groups = unique.reduce((a, s) => { (a[s.system_id] = a[s.system_id]||[]).push(s); return a; }, {});
-
-  ['src','dst'].forEach(id => {
-    const sel = document.getElementById(id);
-    const ph  = sel.options[0];
-    sel.innerHTML = ''; sel.appendChild(ph);
-    ['rrts','meerut_metro'].forEach(sysId => {
-      if (!groups[sysId]) return;
-      const og = document.createElement('optgroup');
-      og.label = labels[sysId];
-      groups[sysId].forEach(s => {
-        const o = document.createElement('option');
-        o.value = s.station_id; o.textContent = s.station_name;
-        og.appendChild(o);
-      });
+function buildDropdowns(){
+  const uniq=uniqueStations(DATA.stations);
+  const grps={rrts:[],meerut_metro:[]};
+  uniq.forEach(s=>grps[s.system_id]?.push(s));
+  ['src','dst'].forEach(id=>{
+    const sel=document.getElementById(id),ph=sel.options[0];
+    sel.innerHTML='';sel.appendChild(ph);
+    [{k:'rrts',lab:'Namo Bharat RRTS'},{k:'meerut_metro',lab:'Meerut Metro'}].forEach(({k,lab})=>{
+      if(!grps[k]?.length)return;
+      const og=document.createElement('optgroup');og.label=lab;
+      grps[k].forEach(s=>{const o=document.createElement('option');o.value=s.station_id;o.textContent=s.station_name;og.appendChild(o);});
       sel.appendChild(og);
     });
   });
 }
-
-function loadFromURL() {
-  const p = new URLSearchParams(window.location.search);
-  const from = p.get('from'), to = p.get('to');
-  if (from && to) {
-    document.getElementById('src').value = from;
-    document.getElementById('dst').value = to;
-    setTimeout(() => computeAndRender(from, to), 150);
-  }
+function loadFromURL(){
+  const p=new URLSearchParams(window.location.search);
+  const from=p.get('from'),to=p.get('to');
+  if(from&&to){document.getElementById('src').value=from;document.getElementById('dst').value=to;setTimeout(()=>go(from,to),150);}
 }
-
-function onFindRoute() {
-  const src = document.getElementById('src').value;
-  const dst = document.getElementById('dst').value;
-  const btn = document.getElementById('find-btn');
-  if (!src || !dst) { alert('Please select both stations.'); return; }
+function onFind(){
+  const src=document.getElementById('src').value,dst=document.getElementById('dst').value,btn=document.getElementById('find-btn');
+  if(!src||!dst){alert('Please select both stations.');return;}
   btn.classList.add('busy');
-  setTimeout(() => { btn.classList.remove('busy'); computeAndRender(src, dst); }, 350);
+  setTimeout(()=>{btn.classList.remove('busy');go(src,dst);},340);
 }
-
-function computeAndRender(src, dst) {
-  const path = RouteFinder.findRoute(GRAPH, src, dst);
-  const srcSt = DATA.stations.find(s => s.station_id === src);
-  const dstSt = DATA.stations.find(s => s.station_id === dst);
-
-  if (srcSt && dstSt) {
-    document.getElementById('pg-title').textContent = `${srcSt.station_name} → ${dstSt.station_name}`;
-    document.getElementById('pg-sub').textContent   = 'Namo Bharat RRTS / Meerut Metro';
+function go(src,dst){
+  const path=RouteFinder.findRoute(GRAPH,src,dst);
+  const srcSt=DATA.stations.find(s=>s.station_id===src);
+  const dstSt=DATA.stations.find(s=>s.station_id===dst);
+  if(srcSt&&dstSt){
+    document.getElementById('pg-title').textContent=`${srcSt.station_name} → ${dstSt.station_name}`;
+    document.getElementById('pg-sub').textContent='Namo Bharat RRTS / Meerut Metro';
   }
-
-  if (!path || !path.length) {
-    RouteUI.renderError('route-result', 'No route found. Please try a different station pair.');
-    return;
+  if(!path?.length){RouteUI.renderError('route-result','No route found. Please try different stations.');return;}
+  const dist=RouteFinder.calcDistance(path,GRAPH);
+  const fare=RouteFinder.calcFare(path);
+  const nX=path.filter(p=>p.line_id==='interchange').length;
+  const time=RouteFinder.calcTime(dist,nX);
+  RouteUI.renderRoute('route-result',path,DATA.stations,DATA.interchanges,dist,fare,time);
+  if(srcSt&&dstSt){
+    const names=path.map(p=>DATA.stations.find(s=>s.station_id===p.station_id)?.station_name||p.station_id);
+    const seoHTML=SEOGenerator.seoBlock(srcSt.station_name,dstSt.station_name,names,dist,fare,time);
+    const card=document.querySelector('.rc');
+    if(card){const d=document.createElement('div');d.innerHTML=seoHTML;card.appendChild(d.firstElementChild);}
+    SEOGenerator.apply(srcSt.station_name,dstSt.station_name,dist,fare,time);
+    history.pushState({},'',`?route=${SEOGenerator.routeSlug(srcSt.station_name,dstSt.station_name)}&from=${src}&to=${dst}`);
   }
-
-  const dist = RouteFinder.calcDistance(path, GRAPH);
-  const fare = RouteFinder.calcFare(dist);
-  const time = RouteFinder.calcTime(dist);
-
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
-
-  if (srcSt && dstSt) {
-    const names = path.map(p => DATA.stations.find(s=>s.station_id===p.station_id)?.station_name||p.station_id);
-    const seoHTML = SEOGenerator.routeSEOBlock(srcSt.station_name, dstSt.station_name, names, dist, fare, time);
-    const card = document.querySelector('.result-card');
-    if (card) { const d=document.createElement('div'); d.innerHTML=seoHTML; card.appendChild(d.firstElementChild); }
-    SEOGenerator.applyRouteSEO(srcSt.station_name, dstSt.station_name, dist, fare, time);
-    const slug = SEOGenerator.routeSlug(srcSt.station_name, dstSt.station_name);
-    history.pushState({}, '', `?route=${slug}&from=${src}&to=${dst}`);
-  }
-
-  document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('route-result').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
-document.getElementById('swap-btn').addEventListener('click', () => {
-  const s=document.getElementById('src'), d=document.getElementById('dst');
-  [s.value,d.value]=[d.value,s.value];
+document.getElementById('swap-btn').addEventListener('click',()=>{
+  const s=document.getElementById('src'),d=document.getElementById('dst');[s.value,d.value]=[d.value,s.value];
 });
-
-function uniqueStations(stations) {
-  const seen = new Set();
-  return stations.filter(s => {
-    const k=`${s.station_name}||${s.system_id}`;
-    if(seen.has(k))return false; seen.add(k); return true;
-  }).sort((a,b)=>{
-    if(a.system_id!==b.system_id)return a.system_id==='rrts'?-1:1;
-    return Number(a.order)-Number(b.order);
-  });
+function uniqueStations(stations){
+  const seen=new Set();
+  return stations.filter(s=>{const k=`${s.station_name}||${s.system_id}`;if(seen.has(k))return false;seen.add(k);return true;})
+    .sort((a,b)=>{if(a.system_id!==b.system_id)return a.system_id==='rrts'?-1:1;return Number(a.order)-Number(b.order);});
 }
-
-const upBtn = document.getElementById('up-btn');
+const upBtn=document.getElementById('up-btn');
 window.addEventListener('scroll',()=>upBtn.classList.toggle('show',scrollY>380),{passive:true});
 upBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 </script>
