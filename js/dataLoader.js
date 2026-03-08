@@ -1,33 +1,17 @@
 /**
- * dataLoader.js
- * Fetches all JSON data files from /data/ and returns them as a single object.
- * This is the ONLY place data is loaded — nothing is hardcoded.
+ * dataLoader.js — fetches all JSON data from /data/
+ * Nothing is hardcoded. Pure dynamic loading.
  */
 const DataLoader = (() => {
-
   async function loadAll() {
-    const files = ['systems', 'lines', 'stations', 'connections', 'interchanges'];
-    try {
-      const results = await Promise.all(
-        files.map(name =>
-          fetch(`data/${name}.json`)
-            .then(res => {
-              if (!res.ok) throw new Error(`Failed to fetch data/${name}.json (${res.status})`);
-              return res.json();
-            })
-        )
-      );
-      return {
-        systems:      results[0],
-        lines:        results[1],
-        stations:     results[2],
-        connections:  results[3],
-        interchanges: results[4],
-      };
-    } catch (err) {
-      throw new Error('DataLoader: ' + err.message);
-    }
+    const names = ['systems','lines','stations','connections','interchanges'];
+    const results = await Promise.all(names.map(n =>
+      fetch(`data/${n}.json`).then(r => {
+        if (!r.ok) throw new Error(`Cannot load data/${n}.json — HTTP ${r.status}. Make sure the /data folder sits next to index.html.`);
+        return r.json();
+      })
+    ));
+    return { systems: results[0], lines: results[1], stations: results[2], connections: results[3], interchanges: results[4] };
   }
-
   return { loadAll };
 })();
