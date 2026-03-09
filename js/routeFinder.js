@@ -1,34 +1,32 @@
 /**
- * routeFinder.js
- * Dijkstra's algorithm for shortest-DISTANCE path.
+ * routeFinder.js — Dijkstra + clean interchange detection
  *
- * WHY DIJKSTRA INSTEAD OF BFS:
- *   BFS finds fewest hops. For "New Ashok Nagar → Bhaisali Bus Adda",
- *   BFS incorrectly picks interchange at Begumpul (fewer hops going 1 stop
- *   backwards on Metro) over Shatabdi Nagar (correct, shorter total distance).
- *   Dijkstra uses real km weights, always finding the shortest real-world path.
+ * THREE BUGS FIXED:
  *
- * PATH RECONSTRUCTION:
- *   After Dijkstra, we reconstruct the explicit step list including interchange
- *   nodes so the UI can render "Change Train" cards correctly.
+ * BUG 1 — Double interchange card:
+ *   Old code inserted interchange nodes via post-processing AND the raw Dijkstra
+ *   path already contained them → duplicate. Fix: never post-process. Instead,
+ *   after path reconstruction, make one clean scan to find the single crossing
+ *   point and normalise it.
  *
- * INTERCHANGE DISPLAY:
- *   After finding the shortest path, we scan for system transitions and
- *   INSERT interchange steps at every point where the line changes system.
- *   This ensures all 4 interchange stations show the card when crossed.
+ * BUG 2 — No interchange shown for destinations like Meerut North:
+ *   The interchange node in the raw path had station_id = modipuram_meerut_metro
+ *   (the metro twin) but routeUI was looking up the RRTS id. Fix: always
+ *   normalise interchange steps to use the RRTS station_id so ixMap lookup works.
+ *
+ * BUG 3 — Wrong routing (e.g. Modipuram→New Ashok Nagar via Metro):
+ *   Interchange penalty was only 0.01 km, cheaper than staying on RRTS for short
+ *   hops. Fix: penalty is now 100 km in graphBuilder — Dijkstra never crosses
+ *   systems unless the destination is genuinely on the other system.
  */
 const RouteFinder = (() => {
 
-  /* ── Min-heap (priority queue) ───────────────────────────────────────────── */
+  /* ── MinHeap (priority queue for Dijkstra) ─────────────────────────────── */
   class MinHeap {
     constructor() { this.h = []; }
-    push(item) {
-      this.h.push(item);
-      this._up(this.h.length - 1);
-    }
+    push(item) { this.h.push(item); this._up(this.h.length - 1); }
     pop() {
-      const top = this.h[0];
-      const last = this.h.pop();
+      const top = this.h[0], last = this.h.pop();
       if (this.h.length) { this.h[0] = last; this._down(0); }
       return top;
     }
@@ -36,120 +34,155 @@ const RouteFinder = (() => {
     _up(i) {
       while (i > 0) {
         const p = (i - 1) >> 1;
-        if (this.h[p].dist <= this.h[i].dist) break;
-        [this.h[p], this.h[i]] = [this.h[i], this.h[p]];
-        i = p;
+        if (this.h[p].w <= this.h[i].w) break;
+        [this.h[p], this.h[i]] = [this.h[i], this.h[p]]; i = p;
       }
     }
     _down(i) {
       const n = this.h.length;
       while (true) {
         let s = i, l = 2*i+1, r = 2*i+2;
-        if (l < n && this.h[l].dist < this.h[s].dist) s = l;
-        if (r < n && this.h[r].dist < this.h[s].dist) s = r;
+        if (l < n && this.h[l].w < this.h[s].w) s = l;
+        if (r < n && this.h[r].w < this.h[s].w) s = r;
         if (s === i) break;
-        [this.h[s], this.h[i]] = [this.h[i], this.h[s]];
-        i = s;
+        [this.h[s], this.h[i]] = [this.h[i], this.h[s]]; i = s;
       }
     }
   }
 
+  /* ── Helpers ─────────────────────────────────────────────────────────────── */
+  const isMetro = id => id.includes('_meerut_metro');
+  const isRRTS  = id => !isMetro(id);
+  // Get the RRTS-side station_id for any interchange node
+  const rrtsId  = id => isMetro(id) ? id.replace('_meerut_metro', '_rrts') : id;
+
   /* ── Dijkstra ─────────────────────────────────────────────────────────────
-     Returns array of { station_id, line_id } representing the optimal path.
-     line_id is the edge used to ARRIVE at that station.
+     Returns raw path: array of { station_id, line_id } where line_id is the
+     edge used to ARRIVE at that node (null for origin).
   ────────────────────────────────────────────────────────────────────────── */
-  function findRoute(graph, src, dst) {
+  function dijkstra(graph, src, dst) {
     if (!graph[src] || !graph[dst]) return null;
     if (src === dst) return [{ station_id: src, line_id: null }];
 
-    const dist = {};   // best distance to each node
-    const prev = {};   // { station_id, line_id } of predecessor
-    const heap = new MinHeap();
-
+    const dist = {}, prev = {};
     dist[src] = 0;
-    heap.push({ dist: 0, id: src });
+    const heap = new MinHeap();
+    heap.push({ w: 0, id: src });
 
     while (heap.size) {
-      const { dist: d, id } = heap.pop();
-      if (d > dist[id]) continue;  // stale entry
+      const { w, id } = heap.pop();
+      if (w > dist[id]) continue;
       if (id === dst) break;
-
       for (const edge of (graph[id] || [])) {
-        const nd = d + edge.weight;
+        const nd = w + edge.weight;
         if (dist[edge.neighbor] === undefined || nd < dist[edge.neighbor]) {
           dist[edge.neighbor] = nd;
           prev[edge.neighbor] = { from: id, line_id: edge.line_id };
-          heap.push({ dist: nd, id: edge.neighbor });
+          heap.push({ w: nd, id: edge.neighbor });
         }
       }
     }
 
     if (dist[dst] === undefined) return null;
 
-    // Reconstruct path backwards
-    const raw = [];
+    // Reconstruct
+    const path = [];
     let cur = dst;
     while (cur !== undefined) {
       const p = prev[cur];
-      raw.unshift({ station_id: cur, line_id: p ? p.line_id : null });
+      path.unshift({ station_id: cur, line_id: p ? p.line_id : null });
       cur = p ? p.from : undefined;
     }
-
-    // Insert interchange steps where system changes
-    return insertInterchangeSteps(raw, graph);
+    return path;
   }
 
-  /**
-   * Walk the raw Dijkstra path and insert explicit interchange nodes
-   * wherever the line transitions through an interchange edge.
-   * This gives the UI the 'interchange' line_id entries it needs to render
-   * "Change Train" cards — at ALL 4 interchange stations, not just Modipuram.
-   */
-  function insertInterchangeSteps(raw, graph) {
-    const result = [];
-    for (let i = 0; i < raw.length; i++) {
-      const step = raw[i];
-      result.push(step);
+  /* ── Path cleaning ───────────────────────────────────────────────────────
+     Takes the raw Dijkstra path and produces a clean display path:
+     1. Collapse any duplicate consecutive stations (can happen with skip-edges)
+     2. Find the single system-crossing point (if any)
+     3. Replace it with ONE clean interchange step using the RRTS station_id
+        so routeUI can look it up in interchanges.json
+     4. Strip out any redundant _rrts / _meerut_metro twin nodes that appear
+        consecutively (Dijkstra may route through both sides of an interchange)
+  ────────────────────────────────────────────────────────────────────────── */
+  function cleanPath(raw) {
+    if (!raw || raw.length === 0) return raw;
 
-      if (i < raw.length - 1) {
-        const next = raw[i + 1];
-        // If the edge between step and next is an interchange edge,
-        // insert it explicitly (it may have been collapsed by Dijkstra skip-edges)
-        if (step.line_id !== 'interchange' && next.line_id === 'interchange') {
-          // already have it
-        }
-        // If next step uses a different system but we skipped the interchange node,
-        // check if there's an interchange edge between them in the graph
-        const stepSystem  = step.station_id.includes('_meerut_metro') ? 'metro' : 'rrts';
-        const nextSystem  = next.station_id.includes('_meerut_metro') ? 'metro' : 'rrts';
-
-        if (stepSystem !== nextSystem && next.line_id !== 'interchange') {
-          // Find the interchange twin of current step
-          const twin = step.station_id.endsWith('_rrts')
-            ? step.station_id.replace('_rrts', '_meerut_metro')
-            : step.station_id.replace('_meerut_metro', '_rrts');
-          if (graph[twin]) {
-            result.push({ station_id: twin, line_id: 'interchange' });
-          }
-        }
+    // Step 1: Remove duplicate consecutive stations
+    const deduped = [raw[0]];
+    for (let i = 1; i < raw.length; i++) {
+      if (raw[i].station_id !== deduped[deduped.length - 1].station_id) {
+        deduped.push(raw[i]);
       }
     }
+
+    // Step 2: Find and collapse interchange crossings
+    // An interchange crossing is: a node with line_id='interchange'
+    // OR two consecutive nodes that are twins of each other (both sides of interchange)
+    const result = [];
+    let i = 0;
+    while (i < deduped.length) {
+      const step = deduped[i];
+
+      // Detect: current step is an interchange edge node
+      if (step.line_id === 'interchange') {
+        // Use the RRTS-side id for lookup, keep line_id='interchange'
+        const rid = rrtsId(step.station_id);
+        // Avoid duplicate interchange steps
+        if (result.length === 0 || result[result.length - 1].line_id !== 'interchange') {
+          result.push({ station_id: rid, line_id: 'interchange' });
+        }
+        i++; continue;
+      }
+
+      // Detect: two consecutive nodes are RRTS+Metro twins of the same station
+      // e.g. shatabdi_nagar_rrts → shatabdi_nagar_meerut_metro
+      if (i + 1 < deduped.length) {
+        const next = deduped[i + 1];
+        const curBase  = step.station_id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
+        const nextBase = next.station_id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
+        if (curBase === nextBase && curBase !== step.station_id) {
+          // This is an implicit interchange crossing — emit one interchange step
+          const rid = isRRTS(step.station_id) ? step.station_id : rrtsId(step.station_id);
+          if (result.length === 0 || result[result.length - 1].line_id !== 'interchange') {
+            result.push({ station_id: rid, line_id: 'interchange' });
+          }
+          i += 2; continue;
+        }
+      }
+
+      result.push(step);
+      i++;
+    }
+
     return result;
   }
 
-  /* ── Distance (real km, excluding interchange 0-distance hops) ─────────── */
+  /* ── Public findRoute ────────────────────────────────────────────────────── */
+  function findRoute(graph, src, dst) {
+    const raw = dijkstra(graph, src, dst);
+    if (!raw) return null;
+    return cleanPath(raw);
+  }
+
+  /* ── Distance (km, ignoring interchange edges) ──────────────────────────── */
   function calcDistance(path, graph) {
     let total = 0;
     for (let i = 0; i < path.length - 1; i++) {
-      const from = path[i].station_id;
-      const to   = path[i + 1].station_id;
-      const edge = (graph[from] || []).find(e => e.neighbor === to);
+      const from = path[i].station_id, to = path[i + 1].station_id;
+      // For interchange steps, the station_id is RRTS-side; look for both twins
+      const fromEdges = graph[from] || graph[from.replace(/_rrts$/, '_meerut_metro')] || [];
+      const edge = fromEdges.find(e =>
+        e.neighbor === to ||
+        e.neighbor === to.replace(/_rrts$/, '_meerut_metro') ||
+        e.neighbor === to.replace(/_meerut_metro$/, '_rrts')
+      );
       if (edge && edge.line_id !== 'interchange') total += edge.distance_km;
     }
     return Math.round(total * 10) / 10;
   }
 
-  /* ── Real NCRTC fare table (Standard Coach, Feb 2026) ───────────────────── */
+  /* ── Fare table (NCRTC official, Standard Coach, Feb 2026) ─────────────── */
   const FARE = {
     'sarai_kale_khan__new_ashok_nagar':    30,
     'sarai_kale_khan__anand_vihar':        50,
@@ -236,13 +269,13 @@ const RouteFinder = (() => {
     'modi_nagar_north__shatabdi_nagar_rrts':50,
     'modi_nagar_north__begumpul_rrts':     70,
     'modi_nagar_north__modipuram_rrts':    80,
-    'meerut_south_rrts__shatabdi_nagar_rrts':30,
+    'meerut_south_rrts__shatabdi_nagar_rrts': 30,
     'meerut_south_rrts__begumpul_rrts':    50,
     'meerut_south_rrts__modipuram_rrts':   60,
     'shatabdi_nagar_rrts__begumpul_rrts':  30,
     'shatabdi_nagar_rrts__modipuram_rrts': 40,
     'begumpul_rrts__modipuram_rrts':       30,
-    // Meerut Metro fares
+    // Meerut Metro fares (₹10–₹60)
     'meerut_south_meerut_metro__partapur':    10,
     'meerut_south_meerut_metro__rithani':     20,
     'meerut_south_meerut_metro__shatabdi_nagar_meerut_metro':30,
@@ -311,13 +344,17 @@ const RouteFinder = (() => {
     'meerut_north__modipuram_meerut_metro':   10,
   };
 
+  function normId(id) {
+    return id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
+  }
+
   function lookupFare(a, b) {
+    // Direct lookup (both normalised and raw)
     const key = [a, b].sort().join('__');
     if (FARE[key] !== undefined) return FARE[key];
-    // Try normalising interchange twins
-    const norm = id => id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
-    const k2 = [norm(a), norm(b)].sort().join('__');
-    return FARE[k2] ?? null;
+    const k2 = [normId(a), normId(b)].sort().join('__');
+    if (FARE[k2] !== undefined) return FARE[k2];
+    return null;
   }
 
   function calcFare(path) {
@@ -325,14 +362,13 @@ const RouteFinder = (() => {
     const dst = path[path.length - 1].station_id;
     const direct = lookupFare(src, dst);
     if (direct !== null) return direct;
-    // Fallback: sum consecutive segment fares
+    // Fallback: sum consecutive non-interchange segments
     let total = 0;
     for (let i = 0; i < path.length - 1; i++) {
-      if (path[i].line_id !== 'interchange' && path[i+1].line_id !== 'interchange') {
-        total += lookupFare(path[i].station_id, path[i+1].station_id) || 0;
-      }
+      if (path[i].line_id === 'interchange' || path[i+1].line_id === 'interchange') continue;
+      total += lookupFare(path[i].station_id, path[i+1].station_id) || 0;
     }
-    return total || 30;
+    return total || 20;
   }
 
   function calcTime(distance, nInterchanges) {
