@@ -4,6 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Route - MetroGuideIndia</title>
+  <meta name="description" content="Route details for MetroGuideIndia — Delhi Meerut RRTS and Meerut Metro route planner"/>
+  <link rel="canonical" href="https://metroguideindia.com/route/"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
     [data-hi]{display:none}
@@ -99,19 +101,13 @@ let currentLang = 'en';
     if (slug) {
       findAndDisplayRoute(slug);
     } else {
-      showError('No route specified. <a href="index.html">Go back home</a>');
+      showError('No route specified. <a href="/">Go back home</a>');
     }
   } catch (err) {
     console.error(err);
     showError(`Error: ${err.message}`);
   }
 })();
-
-function slugToStationId(slug, systemId) {
-  // Convert slug back to station_id format
-  // e.g., "sarai-kale-khan" → "sarai_kale_khan_rrts"
-  return slug.toLowerCase().replace(/-/g, '_') + '_' + systemId;
-}
 
 function findAndDisplayRoute(slug) {
   // Split the slug to get from and to stations
@@ -145,7 +141,7 @@ function findAndDisplayRoute(slug) {
   }
 
   if (!fromStation || !toStation) {
-    showError(`Could not find stations for route "${slug}". Please try again from <a href="index.html">home</a>.`);
+    showError(`Could not find stations for route "${slug}". Please try again from <a href="/">home</a>.`);
     return;
   }
 
@@ -156,7 +152,7 @@ function displayRoute(src, dst) {
   const path = RouteFinder.findRoute(GRAPH, src, dst);
   
   if (!path?.length) {
-    showError(`No route found between these stations. <a href="index.html">Try another route</a>`);
+    showError(`No route found between these stations. <a href="/">Try another route</a>`);
     return;
   }
 
@@ -170,8 +166,8 @@ function displayRoute(src, dst) {
   const dstSt = DATA.stations.find(s => s.station_id === dst);
 
   if (srcSt && dstSt) {
-    document.getElementById('route-info').innerHTML = `<span data-en>${srcSt.station_name} → ${dstSt.station_name}</span>`;
-    document.getElementById('route-info-hi').innerHTML = `<span data-hi>${srcSt.station_name} → ${dstSt.station_name}</span>`;
+    document.getElementById('route-info').innerHTML = `${srcSt.station_name} → ${dstSt.station_name}`;
+    document.getElementById('route-info-hi').innerHTML = `${srcSt.station_name} → ${dstSt.station_name}`;
   }
 
   RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
@@ -184,7 +180,7 @@ function showError(message) {
 }
 
 function goBack() {
-  window.location.href = 'index.html';
+  window.location.href = '/';
 }
 
 // Language toggle
@@ -203,6 +199,12 @@ document.getElementById('lang-btn')?.addEventListener('click', () => {
 // Menu toggle
 document.getElementById('menu-btn')?.addEventListener('click', () => {
   document.getElementById('nav-menu').classList.toggle('open');
+});
+
+document.addEventListener('click', e => {
+  if (!document.getElementById('nav').contains(e.target)) {
+    document.getElementById('nav-menu').classList.remove('open');
+  }
 });
 </script>
 
