@@ -1,59 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>MetroGuideIndia</title>
-  <!--
-    GitHub Pages 404 redirect trick for clean URL routing.
-
-    When GitHub Pages gets a request for /route/guldhar-to-mes-colony,
-    it serves this 404.html. We detect the /route/ prefix, save the slug
-    in sessionStorage, then redirect to /route.html which reads it back.
-
-    This gives us SEO-friendly path-based URLs on a fully static host.
-
-    For ALL other 404s we show a proper not-found page.
-  -->
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirecting...</title>
+  <script>
+    // Capture the original requested path
+    const path = window.location.pathname;
+    
+    // If it's a /route/ path, redirect to route.html with the path as a query parameter
+    if (path.includes('/route/')) {
+      // Extract the route slug from the path (e.g., /route/station1-to-station2)
+      const routeMatch = path.match(/\/route\/(.+?)(?:\/|$)/);
+      if (routeMatch) {
+        const slug = routeMatch[1];
+        // Redirect to route.html with the slug preserved
+        window.location.replace('/metroguideindia_/route.html?slug=' + encodeURIComponent(slug));
+      } else {
+        // Fallback to route.html
+        window.location.replace('/metroguideindia_/route.html');
+      }
+    } else {
+      // For any other 404, redirect to home
+      window.location.replace('/metroguideindia_/');
+    }
+  </script>
 </head>
 <body>
-<script>
-(function() {
-  var path = window.location.pathname;         // e.g. /route/guldhar-to-mes-colony
-  var base = window.location.origin;           // e.g. https://metroguideindia.com
-
-  // If it's a /route/ URL — intercept and redirect to route.html
-  if (/^\/route\/[a-z0-9-]+-to-[a-z0-9-]+\/?$/.test(path)) {
-    // Store the slug so route.html can read it without another redirect
-    var slug = path.replace(/^\/route\//, '').replace(/\/$/, '');
-    try { sessionStorage.setItem('mgi_route_slug', slug); } catch(e) {}
-    // Redirect to route.html, passing the slug as a query param fallback too
-    // Build path to route.html relative to the repo root (handles subdirectory hosting)
-    var repoRoot = base + window.location.pathname.replace(/\/route\/.*$/, '');
-    repoRoot = repoRoot.replace(/\/$/, '');
-    window.location.replace(repoRoot + '/route.html?r=' + encodeURIComponent(slug));
-    return;
-  }
-
-  // All other 404s — render a proper not-found page
-  document.addEventListener('DOMContentLoaded', function() {
-    document.body.innerHTML = '\
-      <nav class="nav"><div class="nav-inner">\
-        <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>\
-      </div></nav>\
-      <main><div class="wrap" style="padding:80px 18px;text-align:center">\
-        <div style="font-size:3rem;margin-bottom:16px">🚉</div>\
-        <h1 style="font-family:Syne,sans-serif;font-size:1.6rem;margin-bottom:10px">Page Not Found</h1>\
-        <p style="color:var(--muted);margin-bottom:28px">The page you were looking for doesn\'t exist.</p>\
-        <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>\
-      </div></main>';
-  });
-})();
-</script>
-<!-- Fallback for browsers with JS disabled -->
-<noscript>
-  <meta http-equiv="refresh" content="0;url=/"/>
-</noscript>
+  <p>Redirecting you to the correct page...</p>
 </body>
 </html>
