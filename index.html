@@ -511,7 +511,9 @@ function onFind() {
   const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
   setTimeout(() => {
     btn.classList.remove('busy');
-    window.location.href = window.location.origin + '/route/' + slug;
+    // Detect base path for subdirectory GitHub Pages hosting
+  var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
+  window.location.href = window.location.origin + basePath + '/route/' + slug;
   }, 260);
 }
 
