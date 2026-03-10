@@ -9,19 +9,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right"><span class="nav-chip">Beta</span></div>
   </div>
 </nav>
 <main>
 <div class="wrap">
   <div style="padding:32px 0 0">
-    <a href="/" class="back-link">
+    <a href="index.html" class="back-link">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Back to Home
     </a>
@@ -59,25 +59,40 @@
     <div class="foot-logo">🚄 MetroGuideIndia</div>
     <p class="foot-desc">Delhi–Meerut Namo Bharat RRTS and Meerut Metro route planner.</p>
     <div class="foot-links">
-      <a href="/">Home</a><span>·</span>
-      <a href="/blog.html">Blog</a><span>·</span>
-      <a href="/stations.html">Stations</a><span>·</span>
-      <a href="/timings.html">Timings</a><span>·</span>
-      <a href="/fares.html">Fares</a>
+      <a href="index.html">Home</a><span>·</span>
+      <a href="blog.html">Blog</a><span>·</span>
+      <a href="stations.html">Stations</a><span>·</span>
+      <a href="timings.html">Timings</a><span>·</span>
+      <a href="fares.html">Fares</a>
     </div>
     <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
 </footer>
 <button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
 
-<script src="/js/dataLoader.js"></script>
-<script src="/js/graphBuilder.js"></script>
-<script src="/js/routeFinder.js"></script>
-<script src="/js/routeUI.js"></script>
-<script src="/js/seoGenerator.js"></script>
+<script src="js/dataLoader.js"></script>
+<script src="js/graphBuilder.js"></script>
+<script src="js/routeFinder.js"></script>
+<script src="js/routeUI.js"></script>
+<script src="js/seoGenerator.js"></script>
 <script>
 /* ─────────────────────────────────────────────────────────────────────────────
    route.html — SEO-friendly route result page
+   
+   BASE_PATH: detects the subdirectory the site is hosted under.
+   e.g. on GitHub Pages at /metroguideindia_/ this is '/metroguideindia_'
+   On a custom domain at root this is ''
+───────────────────────────────────────────────────────────────────────────── */
+const BASE_PATH = (function() {
+  // Strip the filename and any trailing /route/slug portion
+  var path = window.location.pathname;
+  // If we're on route.html directly, strip the filename
+  path = path.replace(/\/route\.html.*$/, '');
+  // If we're on a /route/slug path, strip that
+  path = path.replace(/\/route\/.*$/, '');
+  // Remove trailing slash
+  return path.replace(/\/$/, '');
+})();
    Reads the route slug from:
      1. sessionStorage (set by 404.html redirect from /route/slug)
      2. ?r=slug query param  (fallback, also set by 404.html)
@@ -154,7 +169,7 @@ DataLoader.load().then(data => {
     const parsed = parseSlug(slug, data.stations);
     if (parsed) {
       // Set canonical URL in address bar (clean path, no ?r= param)
-      const canonicalPath = '/route/' + slug;
+      const canonicalPath = BASE_PATH + '/route/' + slug;
       if (window.location.pathname !== canonicalPath) {
         history.replaceState({}, '', canonicalPath);
       }
@@ -212,7 +227,7 @@ function go(src, dst) {
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
     const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
-    canon.href = window.location.origin + '/route/' + slug;
+    canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
 
     // Update page heading
     document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
@@ -242,7 +257,7 @@ function onFind() {
   }
   const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
   // Navigate to the clean URL — 404.html will handle the redirect back here
-  window.location.href = window.location.origin + '/route/' + slug;
+  window.location.href = window.location.origin + BASE_PATH + '/route/' + slug;
 }
 
 /* ── Populate dropdowns ──────────────────────────────────────────────────── */
