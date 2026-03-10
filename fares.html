@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Fare Guide — Namo Bharat RRTS & Meerut Metro | MetroGuideIndia</title>
+  <meta name="description" content="Complete fare chart for Namo Bharat RRTS (Standard & Premium) and Meerut Metro. All station-to-station prices in one place."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .fare-section{margin-bottom:36px}
+    .fare-section-header{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--r);margin-bottom:16px}
+    .fare-section-header.rrts{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
+    .fare-section-header.metro{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
+
+    .fare-table-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border2);margin-bottom:14px}
+    .fare-table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
+    .fare-table th{background:var(--surface2);color:var(--text);font-weight:600;padding:11px 14px;text-align:left;border-bottom:2px solid var(--border2);white-space:nowrap}
+    .fare-table th:not(:first-child){text-align:center}
+    .fare-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
+    .fare-table td:not(:first-child){text-align:center;font-family:'Syne',sans-serif;font-weight:600;color:var(--text);font-size:.88rem}
+    .fare-table tr:last-child td{border-bottom:none}
+    .fare-table tr:hover td{background:var(--surface2)}
+    .fare-table td:first-child{font-weight:500}
+
+    .premium-note{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:11px 14px;font-size:.81rem;color:var(--text2);margin-bottom:20px;display:flex;gap:8px;align-items:flex-start}
+    .concession-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+    @media(max-width:420px){.concession-grid{grid-template-columns:1fr}}
+    .concession-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px}
+    .concession-card-icon{font-size:1.4rem;margin-bottom:6px}
+    .concession-card-title{font-weight:600;font-size:.85rem;color:var(--text);margin-bottom:3px}
+    .concession-card-desc{font-size:.78rem;color:var(--muted)}
+
+    .from-selector{
+      width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border2);
+      border-radius:var(--r-sm);font-size:.9rem;color:var(--text);font-family:'DM Sans',sans-serif;
+      margin-bottom:16px;cursor:pointer;appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A8775' stroke-width='2.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 12px center;
+    }
+    .from-selector:focus{outline:none;border-color:rgba(192,57,43,.4);box-shadow:0 0 0 3px rgba(192,57,43,.08)}
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="index.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Home</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="wrap" style="padding-top:32px;padding-bottom:48px">
+  <div class="sec-eye">Pricing</div>
+  <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:6px">Fare Guide</h1>
+  <p style="font-size:.9rem;color:var(--text2);margin-bottom:22px">Official NCRTC fares as of February 2026. Standard Coach one-way prices.</p>
+
+  <!-- Namo Bharat RRTS fares -->
+  <div class="fare-section">
+    <div class="fare-section-header rrts">
+      <span style="font-size:1.8rem">🚅</span>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--red)">Namo Bharat RRTS Fares</div>
+        <div style="font-size:.76rem;color:var(--muted)">Standard Coach · One-way · Source: NCRTC</div>
+      </div>
+    </div>
+
+    <div class="premium-note">
+      <span>💺</span>
+      <span><strong>Premium Coach</strong> fares are approximately <strong>20% higher</strong> than Standard. E.g. Sarai Kale Khan → Modipuram: ₹210 Standard / ~₹252 Premium.</span>
+    </div>
+
+    <label style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:6px">Filter by origin station</label>
+    <select class="from-selector" id="from-selector">
+      <option value="all">All stations</option>
+    </select>
+
+    <div class="fare-table-wrap">
+      <table class="fare-table" id="fare-table">
+        <thead><tr><th>From</th><th>To</th><th>Standard Fare</th></tr></thead>
+        <tbody id="fare-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Meerut Metro fares -->
+  <div class="fare-section">
+    <div class="fare-section-header metro">
+      <span style="font-size:1.8rem">🚇</span>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green)">Meerut Metro Fares</div>
+        <div style="font-size:.76rem;color:var(--muted)">Affordable city fares · One-way</div>
+      </div>
+    </div>
+    <div class="fare-table-wrap">
+      <table class="fare-table">
+        <thead><tr><th>Distance</th><th>Fare</th></tr></thead>
+        <tbody>
+          <tr><td>Meerut South ↔ Partapur / Rithani</td><td>₹20</td></tr>
+          <tr><td>Meerut South ↔ Shatabdi Nagar / Brahampuri / Meerut Central</td><td>₹30</td></tr>
+          <tr><td>Meerut South ↔ Bhaisali / Begumpul</td><td>₹40</td></tr>
+          <tr><td>Meerut South ↔ MES Colony / Daurli</td><td>₹50</td></tr>
+          <tr><td>Meerut South ↔ Meerut North / Modipuram</td><td>₹60</td></tr>
+          <tr><td>Modipuram ↔ Meerut North / Daurli</td><td>₹20</td></tr>
+          <tr><td>Modipuram ↔ MES Colony / Begumpul</td><td>₹30</td></tr>
+          <tr><td>Modipuram ↔ Bhaisali</td><td>₹40</td></tr>
+          <tr><td>Modipuram ↔ Meerut Central / Brahampuri / Shatabdi Nagar / Rithani</td><td>₹50</td></tr>
+          <tr><td>Modipuram ↔ Partapur / Meerut South</td><td>₹60</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Concessions -->
+  <div>
+    <h2 class="sec-head" style="font-size:1.1rem;margin-bottom:12px">Concessions & Free Travel</h2>
+    <div class="concession-grid">
+      <div class="concession-card"><div class="concession-card-icon">👶</div><div class="concession-card-title">Children under 90 cm</div><div class="concession-card-desc">Travel free on both RRTS and Meerut Metro</div></div>
+      <div class="concession-card"><div class="concession-card-icon">💳</div><div class="concession-card-title">Smart Card / NCMC</div><div class="concession-card-desc">Accepted at all stations. Seamless tap-in tap-out.</div></div>
+      <div class="concession-card"><div class="concession-card-icon">📱</div><div class="concession-card-title">Namo Bharat Connect App</div><div class="concession-card-desc">Mobile ticketing and real-time train info</div></div>
+      <div class="concession-card"><div class="concession-card-icon">♿</div><div class="concession-card-title">Differently-abled</div><div class="concession-card-desc">Concessions available — check NCRTC website</div></div>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <div class="foot-links">
+      <a href="index.html">Home</a><span>·</span>
+      <a href="blog.html">Blog</a><span>·</span>
+      <a href="stations.html">Stations</a><span>·</span>
+      <a href="timings.html">Timings</a><span>·</span>
+      <a href="fares.html">Fares</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+<script>
+const FARES = [
+  // Verified from meerutmetro.in (NCRTC official data, Feb 2026)
+  ['Sarai Kale Khan','New Ashok Nagar',30],['Sarai Kale Khan','Anand Vihar',50],
+  ['Sarai Kale Khan','Sahibabad',60],['Sarai Kale Khan','Ghaziabad',80],
+  ['Sarai Kale Khan','Guldhar',90],['Sarai Kale Khan','Duhai',100],
+  ['Sarai Kale Khan','Murad Nagar',120],['Sarai Kale Khan','Modi Nagar South',140],
+  ['Sarai Kale Khan','Modi Nagar North',140],['Sarai Kale Khan','Meerut South',160],
+  ['Sarai Kale Khan','Shatabdi Nagar',180],['Sarai Kale Khan','Begumpul',200],
+  ['Sarai Kale Khan','Modipuram',210],
+  ['New Ashok Nagar','Anand Vihar',20],['New Ashok Nagar','Sahibabad',50],
+  ['New Ashok Nagar','Ghaziabad',60],['New Ashok Nagar','Guldhar',70],
+  ['New Ashok Nagar','Duhai',80],['New Ashok Nagar','Murad Nagar',100],
+  ['New Ashok Nagar','Modi Nagar South',120],['New Ashok Nagar','Modi Nagar North',130],
+  ['New Ashok Nagar','Meerut South',150],['New Ashok Nagar','Shatabdi Nagar',160],
+  ['New Ashok Nagar','Begumpul',180],['New Ashok Nagar','Modipuram',200],
+  ['Anand Vihar','Sahibabad',20],['Anand Vihar','Ghaziabad',30],
+  ['Anand Vihar','Guldhar',40],['Anand Vihar','Duhai',50],
+  ['Anand Vihar','Murad Nagar',70],['Anand Vihar','Modi Nagar South',90],
+  ['Anand Vihar','Modi Nagar North',90],['Anand Vihar','Meerut South',110],
+  ['Anand Vihar','Shatabdi Nagar',130],['Anand Vihar','Begumpul',150],
+  ['Anand Vihar','Modipuram',160],
+  ['Sahibabad','Ghaziabad',20],['Sahibabad','Guldhar',30],
+  ['Sahibabad','Duhai',40],['Sahibabad','Murad Nagar',60],
+  ['Sahibabad','Modi Nagar South',80],['Sahibabad','Modi Nagar North',80],
+  ['Sahibabad','Meerut South',100],['Sahibabad','Shatabdi Nagar',120],
+  ['Sahibabad','Begumpul',140],['Sahibabad','Modipuram',150],
+  ['Ghaziabad','Guldhar',20],['Ghaziabad','Duhai',20],
+  ['Ghaziabad','Murad Nagar',40],['Ghaziabad','Modi Nagar South',60],
+  ['Ghaziabad','Modi Nagar North',60],['Ghaziabad','Meerut South',80],
+  ['Ghaziabad','Shatabdi Nagar',100],['Ghaziabad','Begumpul',120],
+  ['Ghaziabad','Modipuram',130],
+  ['Guldhar','Duhai',20],['Guldhar','Murad Nagar',30],
+  ['Guldhar','Modi Nagar South',50],['Guldhar','Modi Nagar North',50],
+  ['Guldhar','Meerut South',70],['Guldhar','Shatabdi Nagar',90],
+  ['Guldhar','Begumpul',110],['Guldhar','Modipuram',120],
+  ['Duhai','Murad Nagar',20],['Duhai','Modi Nagar South',40],
+  ['Duhai','Modi Nagar North',40],['Duhai','Meerut South',60],
+  ['Duhai','Shatabdi Nagar',80],['Duhai','Begumpul',100],['Duhai','Modipuram',110],
+  ['Murad Nagar','Modi Nagar South',20],['Murad Nagar','Modi Nagar North',20],
+  ['Murad Nagar','Meerut South',40],['Murad Nagar','Shatabdi Nagar',60],
+  ['Murad Nagar','Begumpul',80],['Murad Nagar','Modipuram',90],
+  ['Modi Nagar South','Modi Nagar North',20],['Modi Nagar South','Meerut South',20],
+  ['Modi Nagar South','Shatabdi Nagar',40],['Modi Nagar South','Begumpul',60],
+  ['Modi Nagar South','Modipuram',70],
+  ['Modi Nagar North','Meerut South',20],['Modi Nagar North','Shatabdi Nagar',40],
+  ['Modi Nagar North','Begumpul',60],['Modi Nagar North','Modipuram',70],
+  ['Meerut South','Shatabdi Nagar',20],['Meerut South','Begumpul',40],
+  ['Meerut South','Modipuram',50],['Shatabdi Nagar','Begumpul',20],
+  ['Shatabdi Nagar','Modipuram',30],['Begumpul','Modipuram',20],
+];
+
+const origins = [...new Set(FARES.map(f=>f[0]))];
+const sel = document.getElementById('from-selector');
+origins.forEach(o => { const opt=document.createElement('option'); opt.value=o; opt.textContent=o; sel.appendChild(opt); });
+
+function renderTable(filter) {
+  const rows = filter === 'all' ? FARES : FARES.filter(f => f[0] === filter);
+  document.getElementById('fare-tbody').innerHTML = rows.map(([from,to,fare]) =>
+    `<tr><td>${from}</td><td>${to}</td><td>₹${fare}</td></tr>`
+  ).join('');
+}
+renderTable('all');
+sel.addEventListener('change', e => renderTable(e.target.value));
+</script>
+</body>
+</html>
