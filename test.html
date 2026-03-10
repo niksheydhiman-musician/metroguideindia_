@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MGI Diagnostic</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body style="padding:20px;font-family:monospace">
+<h2>MetroGuideIndia — Live Diagnostic</h2>
+<div id="out"></div>
+<script>
+const log = (msg, ok) => {
+  document.getElementById('out').innerHTML += 
+    `<div style="color:${ok===false?'red':ok===true?'green':'orange'};margin:4px 0">${msg}</div>`;
+};
+
+log('1. HTML loaded ✅');
+log('2. CSS loading... (check if page has styling)', null);
+
+// Test 1: Can we reach data files?
+fetch('data/systems.json')
+  .then(r => { log(`3. fetch data/systems.json → HTTP ${r.status} ${r.ok?'✅':'❌'}`, r.ok); return r.ok ? r.json() : null; })
+  .then(d => { if(d) log(`4. systems.json parsed OK: ${JSON.stringify(d).slice(0,80)} ✅`, true); })
+  .catch(e => log(`3. fetch data/systems.json FAILED: ${e.message} ❌`, false));
+
+fetch('data/stations.json')
+  .then(r => { log(`5. fetch data/stations.json → HTTP ${r.status} ${r.ok?'✅':'❌'}`, r.ok); })
+  .catch(e => log(`5. fetch data/stations.json FAILED: ${e.message} ❌`, false));
+
+// Test 2: Are JS files loaded?
+setTimeout(() => {
+  log(`6. DataLoader defined: ${'DataLoader' in window ? '✅' : '❌ NOT LOADED'}`, 'DataLoader' in window);
+  log(`7. GraphBuilder defined: ${'GraphBuilder' in window ? '✅' : '❌ NOT LOADED'}`, 'GraphBuilder' in window);
+  log(`8. RouteFinder defined: ${'RouteFinder' in window ? '✅' : '❌ NOT LOADED'}`, 'RouteFinder' in window);
+  log(`9. RouteUI defined: ${'RouteUI' in window ? '✅' : '❌ NOT LOADED'}`, 'RouteUI' in window);
+}, 1000);
+
+// Test 3: Try running DataLoader
+setTimeout(() => {
+  if (typeof DataLoader !== 'undefined') {
+    DataLoader.loadAll()
+      .then(d => log(`10. DataLoader.loadAll() SUCCESS — ${d.stations.length} stations ✅`, true))
+      .catch(e => log(`10. DataLoader.loadAll() FAILED: ${e.message} ❌`, false));
+  } else {
+    log('10. Skipped — DataLoader not defined ❌', false);
+  }
+}, 1500);
+</script>
+<script src="js/dataLoader.js"></script>
+<script src="js/graphBuilder.js"></script>
+<script src="js/routeFinder.js"></script>
+<script src="js/routeUI.js"></script>
+<script src="js/seoGenerator.js"></script>
+</body>
+</html>
