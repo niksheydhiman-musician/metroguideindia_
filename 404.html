@@ -15,7 +15,7 @@
     For ALL other 404s we show a proper not-found page.
   -->
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 <script>
@@ -29,7 +29,10 @@
     var slug = path.replace(/^\/route\//, '').replace(/\/$/, '');
     try { sessionStorage.setItem('mgi_route_slug', slug); } catch(e) {}
     // Redirect to route.html, passing the slug as a query param fallback too
-    window.location.replace(base + '/route.html?r=' + encodeURIComponent(slug));
+    // Build path to route.html relative to the repo root (handles subdirectory hosting)
+    var repoRoot = base + window.location.pathname.replace(/\/route\/.*$/, '');
+    repoRoot = repoRoot.replace(/\/$/, '');
+    window.location.replace(repoRoot + '/route.html?r=' + encodeURIComponent(slug));
     return;
   }
 
@@ -37,13 +40,13 @@
   document.addEventListener('DOMContentLoaded', function() {
     document.body.innerHTML = '\
       <nav class="nav"><div class="nav-inner">\
-        <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>\
+        <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>\
       </div></nav>\
       <main><div class="wrap" style="padding:80px 18px;text-align:center">\
         <div style="font-size:3rem;margin-bottom:16px">🚉</div>\
         <h1 style="font-family:Syne,sans-serif;font-size:1.6rem;margin-bottom:10px">Page Not Found</h1>\
         <p style="color:var(--muted);margin-bottom:28px">The page you were looking for doesn\'t exist.</p>\
-        <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>\
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>\
       </div></main>';
   });
 })();
