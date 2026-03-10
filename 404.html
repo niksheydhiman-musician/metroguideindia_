@@ -15,14 +15,14 @@
       if (routeMatch) {
         const slug = routeMatch[1];
         // Redirect to route.html with the slug preserved
-        window.location.replace('/metroguideindia_/route.html?slug=' + encodeURIComponent(slug));
+        // Works with custom domain: metroguideindia.com
+        window.location.replace('/route.html?slug=' + encodeURIComponent(slug));
       } else {
-        // Fallback to route.html
-        window.location.replace('/metroguideindia_/route.html');
+        window.location.replace('/route.html');
       }
     } else {
       // For any other 404, redirect to home
-      window.location.replace('/metroguideindia_/');
+      window.location.replace('/');
     }
   </script>
 </head>
