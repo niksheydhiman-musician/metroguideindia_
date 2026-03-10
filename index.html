@@ -10,7 +10,7 @@
   <meta property="og:description" content="Find metro and RRTS routes, fares, and station info instantly."/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary"/>
-  <link rel="canonical" href="https://metroguideindia.github.io/"/>
+<link rel="canonical" href="https://metroguideindia.com/"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <!-- Hindi font preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -529,9 +529,8 @@ function onFind() {
   const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
   setTimeout(() => {
     btn.classList.remove('busy');
-    // Detect base path for subdirectory GitHub Pages hosting
-    var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
-    window.location.href = window.location.origin + basePath + '/route/' + slug;
+    // Works with custom domain metroguideindia.com
+    window.location.href = '/route/' + slug;
   }, 260);
 }
 
