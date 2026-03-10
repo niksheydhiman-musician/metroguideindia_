@@ -1,0 +1,444 @@
+[
+  {
+    "id": "complete-rrts-fare-guide-2026",
+    "title": "Complete Namo Bharat RRTS Fare Guide 2026",
+    "date": "2026-03-09",
+    "author": "MetroGuideIndia",
+    "summary": "Everything you need to know about Namo Bharat RRTS fares — standard, premium, and Meerut Metro pricing explained.",
+    "tags": [
+      "fare",
+      "RRTS",
+      "guide"
+    ],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Complete Namo Bharat RRTS Fare Guide 2026"
+      },
+      {
+        "type": "p",
+        "text": "The Delhi–Meerut Namo Bharat RRTS became fully operational on 22 February 2026. Here are the **official verified fares** sourced from NCRTC as of February 2026. All prices are for Standard Coach, one-way."
+      },
+      {
+        "type": "note",
+        "text": "Premium Coach fares are approximately 20% higher than Standard. E.g. Sarai Kale Khan → Modipuram: ₹210 Standard / ₹250 Premium."
+      },
+      {
+        "type": "h2",
+        "text": "RRTS Fares from Sarai Kale Khan"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Destination",
+          "Standard",
+          "Premium"
+        ],
+        "rows": [
+          [
+            "New Ashok Nagar",
+            "₹30",
+            "₹35"
+          ],
+          [
+            "Anand Vihar",
+            "₹50",
+            "₹60"
+          ],
+          [
+            "Sahibabad",
+            "₹60",
+            "₹70"
+          ],
+          [
+            "Ghaziabad",
+            "₹80",
+            "₹95"
+          ],
+          [
+            "Guldhar",
+            "₹90",
+            "₹110"
+          ],
+          [
+            "Duhai",
+            "₹100",
+            "₹120"
+          ],
+          [
+            "Murad Nagar",
+            "₹120",
+            "₹145"
+          ],
+          [
+            "Modi Nagar South",
+            "₹140",
+            "₹170"
+          ],
+          [
+            "Modi Nagar North",
+            "₹140",
+            "₹170"
+          ],
+          [
+            "Meerut South",
+            "₹160",
+            "₹190"
+          ],
+          [
+            "Shatabdi Nagar",
+            "₹180",
+            "₹215"
+          ],
+          [
+            "Begumpul",
+            "₹200",
+            "₹240"
+          ],
+          [
+            "Modipuram",
+            "₹210",
+            "₹250"
+          ]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "RRTS Fares from New Ashok Nagar"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Destination",
+          "Standard",
+          "Premium"
+        ],
+        "rows": [
+          [
+            "Anand Vihar",
+            "₹20",
+            "₹35"
+          ],
+          [
+            "Sahibabad",
+            "₹50",
+            "₹60"
+          ],
+          [
+            "Ghaziabad",
+            "₹60",
+            "₹70"
+          ],
+          [
+            "Guldhar",
+            "₹70",
+            "₹85"
+          ],
+          [
+            "Duhai",
+            "₹80",
+            "₹95"
+          ],
+          [
+            "Murad Nagar",
+            "₹100",
+            "₹120"
+          ],
+          [
+            "Modi Nagar South",
+            "₹120",
+            "₹145"
+          ],
+          [
+            "Modi Nagar North",
+            "₹130",
+            "₹155"
+          ],
+          [
+            "Meerut South",
+            "₹150",
+            "₹180"
+          ],
+          [
+            "Shatabdi Nagar",
+            "₹160",
+            "₹190"
+          ],
+          [
+            "Begumpul",
+            "₹180",
+            "₹215"
+          ],
+          [
+            "Modipuram",
+            "₹200",
+            "₹240"
+          ]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Meerut Metro Fares from Meerut South"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Destination",
+          "Fare"
+        ],
+        "rows": [
+          [
+            "Partapur",
+            "₹20"
+          ],
+          [
+            "Rithani",
+            "₹20"
+          ],
+          [
+            "Shatabdi Nagar",
+            "₹30"
+          ],
+          [
+            "Brahampuri",
+            "₹30"
+          ],
+          [
+            "Meerut Central",
+            "₹30"
+          ],
+          [
+            "Bhaisali Bus Adda",
+            "₹40"
+          ],
+          [
+            "Begumpul",
+            "₹40"
+          ],
+          [
+            "MES Colony",
+            "₹50"
+          ],
+          [
+            "Daurli",
+            "₹50"
+          ],
+          [
+            "Meerut North",
+            "₹60"
+          ],
+          [
+            "Modipuram",
+            "₹60"
+          ]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Meerut Metro Fares from Modipuram"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Destination",
+          "Fare"
+        ],
+        "rows": [
+          [
+            "Meerut North",
+            "₹20"
+          ],
+          [
+            "Daurli",
+            "₹20"
+          ],
+          [
+            "MES Colony",
+            "₹30"
+          ],
+          [
+            "Begumpul",
+            "₹30"
+          ],
+          [
+            "Bhaisali Bus Adda",
+            "₹40"
+          ],
+          [
+            "Meerut Central",
+            "₹50"
+          ],
+          [
+            "Brahampuri",
+            "₹50"
+          ],
+          [
+            "Shatabdi Nagar",
+            "₹50"
+          ],
+          [
+            "Rithani",
+            "₹50"
+          ],
+          [
+            "Partapur",
+            "₹60"
+          ],
+          [
+            "Meerut South",
+            "₹60"
+          ]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "How to Pay"
+      },
+      {
+        "type": "p",
+        "text": "Tickets can be bought at station counters, Ticket Vending Machines (TVMs), or via the **Namo Bharat Connect** app. NCMC/RuPay Smart Cards enable tap-in tap-out across all stations."
+      },
+      {
+        "type": "h2",
+        "text": "Concessions"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Children under 90 cm travel **free** on both RRTS and Meerut Metro",
+          "Minimum fare: ₹20 (Standard), ₹30 (Premium)",
+          "NCMC Smart Card accepted at all stations"
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Source: NCRTC official data via meerutmetro.in, February 2026. Always verify current fares at the station or on the Namo Bharat Connect app before travel."
+      }
+    ]
+  },
+  {
+    "id": "delhi-to-meerut-rrts-travel-guide",
+    "title": "Delhi to Meerut by Namo Bharat RRTS — Complete Travel Guide",
+    "date": "2026-03-05",
+    "author": "MetroGuideIndia",
+    "summary": "Planning your first trip on the Namo Bharat RRTS? This complete guide covers boarding, timing, fares, and tips.",
+    "tags": [
+      "travel",
+      "RRTS",
+      "Delhi",
+      "Meerut"
+    ],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Delhi to Meerut by Namo Bharat RRTS — Complete Travel Guide"
+      },
+      {
+        "type": "p",
+        "text": "The Namo Bharat RRTS has transformed the Delhi–Meerut commute. What once took 2–3 hours by road now takes under 60 minutes by RRTS. Here is everything you need to know before your first trip."
+      },
+      {
+        "type": "h2",
+        "text": "Boarding in Delhi"
+      },
+      {
+        "type": "p",
+        "text": "There are three stations in Delhi — Sarai Kale Khan, New Ashok Nagar, and Anand Vihar. Sarai Kale Khan is the southernmost terminus and connects to Delhi Metro's Pink Line. Anand Vihar connects to multiple Delhi Metro lines and the Anand Vihar railway terminus."
+      },
+      {
+        "type": "h2",
+        "text": "Journey Time"
+      },
+      {
+        "type": "p",
+        "text": "The full journey from Sarai Kale Khan to Modipuram takes approximately 55–60 minutes. The RRTS runs at speeds up to 180 km/h, making it the fastest surface transit system in India."
+      },
+      {
+        "type": "h2",
+        "text": "Stations En Route"
+      },
+      {
+        "type": "p",
+        "text": "The corridor has 15 stations: Sarai Kale Khan, New Ashok Nagar, Anand Vihar, Sahibabad, Ghaziabad, Guldhar, Duhai, Murad Nagar, Modi Nagar South, Modi Nagar North, Meerut South, Shatabdi Nagar, Begumpul, and Modipuram."
+      },
+      {
+        "type": "h2",
+        "text": "Connecting to Meerut Metro"
+      },
+      {
+        "type": "p",
+        "text": "Once in Meerut, you can interchange to the Meerut Metro at four stations: Meerut South, Shatabdi Nagar, Begumpul, and Modipuram. The Meerut Metro covers the city from Meerut South to Modipuram with 13 stations."
+      },
+      {
+        "type": "h2",
+        "text": "Tips for First-Time Travellers"
+      },
+      {
+        "type": "p",
+        "text": "Arrive 10 minutes before your train. Security checks are mandatory at all RRTS stations. Keep your ticket or Smart Card ready for exit gates. Premium Coach passengers have a separate waiting area on the platform."
+      }
+    ]
+  },
+  {
+    "id": "meerut-metro-interchange-guide",
+    "title": "Meerut Metro Interchange Guide — All 4 Stations Explained",
+    "date": "2026-02-28",
+    "author": "MetroGuideIndia",
+    "summary": "How to interchange between Namo Bharat RRTS and Meerut Metro at all four interchange stations.",
+    "tags": [
+      "Meerut Metro",
+      "interchange",
+      "guide"
+    ],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Meerut Metro Interchange Guide — All 4 Stations Explained"
+      },
+      {
+        "type": "p",
+        "text": "The Namo Bharat RRTS and Meerut Metro share four interchange stations, allowing passengers to switch between the two systems seamlessly. Here is a detailed guide for each."
+      },
+      {
+        "type": "h2",
+        "text": "Meerut South — Platform 2"
+      },
+      {
+        "type": "p",
+        "text": "Meerut South is the first interchange point as you arrive from Delhi. It is also the southernmost station of the Meerut Metro. Exit the RRTS platform and follow signs to Platform 2 for the Meerut Metro towards Partapur and beyond."
+      },
+      {
+        "type": "h2",
+        "text": "Shatabdi Nagar — Platform 1"
+      },
+      {
+        "type": "p",
+        "text": "Shatabdi Nagar is the most centrally located interchange and recommended for passengers heading to Meerut Central, Brahampuri, or Bhaisali Bus Adda. Follow signs to Platform 1 for the Meerut Metro."
+      },
+      {
+        "type": "h2",
+        "text": "Begumpul — Platform 3"
+      },
+      {
+        "type": "p",
+        "text": "Begumpul interchange connects to the Meerut Metro's mid-section, providing access to MES Colony and surrounding areas. Meerut Metro Platform 3 is signposted from the RRTS concourse."
+      },
+      {
+        "type": "h2",
+        "text": "Modipuram — Platform 1 & 2"
+      },
+      {
+        "type": "p",
+        "text": "Modipuram is both the northern terminus of the RRTS and a Meerut Metro station. Passengers can board the Meerut Metro from Platform 1 or Platform 2 at this station."
+      },
+      {
+        "type": "h2",
+        "text": "Using MetroGuideIndia for Interchange Routes"
+      },
+      {
+        "type": "p",
+        "text": "Use the route planner on our homepage to automatically find the best interchange point for your journey. The algorithm picks the optimal station based on total travel distance."
+      }
+    ]
+  }
+]
