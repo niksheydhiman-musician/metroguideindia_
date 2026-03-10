@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Blog & Updates | MetroGuideIndia</title>
+  <meta name="description" content="Latest news, guides and updates about Delhi–Meerut Namo Bharat RRTS and Meerut Metro."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .blog-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+    .blog-card-link{text-decoration:none;color:inherit;display:block}
+    .blog-card{
+      background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
+      padding:20px 18px;border-left:3px solid var(--red);
+      transition:transform .18s var(--ease),box-shadow .18s var(--ease);cursor:pointer;
+    }
+    .blog-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+    .blog-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+    .blog-date{font-size:.71rem;color:var(--muted)}
+    .blog-tag{font-size:.64rem;font-weight:600;padding:2px 8px;border-radius:10px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}
+    .blog-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:6px;line-height:1.3}
+    .blog-summary{font-size:.84rem;color:var(--text2);line-height:1.65}
+    .blog-read{font-size:.78rem;font-weight:600;color:var(--red);margin-top:10px;display:inline-flex;align-items:center;gap:4px}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .filter-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .15s}
+    .filter-btn.on{background:var(--red-bg);color:var(--red);border-color:rgba(192,57,43,.35)}
+    .no-posts{text-align:center;padding:40px 0;color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="index.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Home</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="wrap" style="padding-top:32px">
+  <div class="sec-eye">Knowledge Base</div>
+  <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:6px">Blog & Updates</h1>
+  <p style="font-size:.9rem;color:var(--text2);margin-bottom:24px">Guides, news and updates about Namo Bharat RRTS and Meerut Metro.</p>
+
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn on" data-tag="all">All</button>
+  </div>
+
+  <div class="blog-grid" id="blog-grid">
+    <div class="no-posts">Loading posts…</div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <p class="foot-desc">Delhi–Meerut Namo Bharat RRTS and Meerut Metro route planner.</p>
+    <div class="foot-links">
+      <a href="index.html">Home</a><span>·</span>
+      <a href="blog.html">Blog</a><span>·</span>
+      <a href="stations.html">Stations</a><span>·</span>
+      <a href="timings.html">Timings</a><span>·</span>
+      <a href="fares.html">Fares</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+<script>
+let allBlogs = [];
+let activeTag = 'all';
+
+(async () => {
+  try {
+    const res = await fetch('data/blogs.json');
+    allBlogs = await res.json();
+    allBlogs.sort((a,b) => new Date(b.date) - new Date(a.date));
+    buildFilters();
+    renderGrid(allBlogs);
+  } catch(e) {
+    document.getElementById('blog-grid').innerHTML = '<div class="no-posts">Could not load blog posts.</div>';
+  }
+})();
+
+function buildFilters() {
+  const tags = new Set();
+  allBlogs.forEach(b => (b.tags||[]).forEach(t => tags.add(t)));
+  const row = document.getElementById('filter-row');
+  tags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.tag = tag;
+    btn.textContent = tag;
+    btn.addEventListener('click', () => {
+      activeTag = tag;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('on', b.dataset.tag === tag));
+      renderGrid(allBlogs.filter(b => b.tags?.includes(tag)));
+    });
+    row.appendChild(btn);
+  });
+  row.querySelector('[data-tag="all"]').addEventListener('click', () => {
+    activeTag = 'all';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('on', b.dataset.tag === 'all'));
+    renderGrid(allBlogs);
+  });
+}
+
+function renderGrid(blogs) {
+  const grid = document.getElementById('blog-grid');
+  if (!blogs.length) { grid.innerHTML = '<div class="no-posts">No posts found.</div>'; return; }
+  grid.innerHTML = blogs.map(b => `
+    <a href="post.html?id=${b.id}" class="blog-card-link">
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span class="blog-date">${formatDate(b.date)}</span>
+          ${(b.tags||[]).map(t=>`<span class="blog-tag">${t}</span>`).join('')}
+        </div>
+        <div class="blog-title">${b.title}</div>
+        <div class="blog-summary">${b.summary}</div>
+        <div class="blog-read">Read article →</div>
+      </div>
+    </a>`).join('');
+}
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+}
+</script>
+</body>
+</html>

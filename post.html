@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Blog | MetroGuideIndia</title>
+  <meta name="description" content=""/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .post-wrap{max-width:680px;margin:0 auto;padding:32px 18px 56px;position:relative;z-index:1}
+    .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:24px;cursor:pointer;transition:color .15s}
+    .post-back:hover{color:var(--text)}
+    .post-header{margin-bottom:28px}
+    .post-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+    .post-tag{font-size:.65rem;font-weight:600;padding:3px 9px;border-radius:11px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}
+    .post-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,4vw,2rem);color:var(--text);line-height:1.2;margin-bottom:10px}
+    .post-meta{font-size:.78rem;color:var(--muted);display:flex;gap:14px;align-items:center}
+    .post-divider{height:1px;background:var(--border2);margin:20px 0 28px}
+
+    /* Blog content typography */
+    .blog-body{font-size:.95rem;line-height:1.8;color:var(--text2)}
+    .blog-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}
+    .blog-h1:first-child{display:none} /* Already shown as post-title */
+    .blog-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:var(--text);margin:28px 0 10px;padding-left:12px;border-left:3px solid var(--red)}
+    .blog-h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1rem;color:var(--text);margin:20px 0 8px}
+    .blog-p{margin:0 0 16px;color:var(--text2)}
+    .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:12px 16px;margin:18px 0;font-size:.88rem;color:var(--text2)}
+    .blog-ul{margin:0 0 16px;padding-left:20px}
+    .blog-ul li{margin-bottom:6px;color:var(--text2)}
+    .blog-table-wrap{overflow-x:auto;margin:18px 0}
+    .blog-table{width:100%;border-collapse:collapse;font-size:.88rem}
+    .blog-table th{background:var(--surface2);color:var(--text);font-weight:600;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border2)}
+    .blog-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
+    .blog-table tr:last-child td{border-bottom:none}
+    .blog-table tr:hover td{background:var(--surface2)}
+
+    /* Related posts */
+    .related{margin-top:40px;padding-top:28px;border-top:1px solid var(--border2)}
+    .related-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:14px;color:var(--text)}
+    .related-grid{display:flex;flex-direction:column;gap:10px}
+    .related-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px 16px;cursor:pointer;transition:all .15s;text-decoration:none;display:block;color:inherit}
+    .related-card:hover{transform:translateX(4px);border-color:rgba(192,57,43,.3)}
+    .related-card-title{font-weight:600;font-size:.88rem;color:var(--text);margin-bottom:3px}
+    .related-card-date{font-size:.72rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="blog.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="post-wrap">
+  <a href="blog.html" class="post-back">← Back to all posts</a>
+  <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <div class="foot-links">
+      <a href="index.html">Home</a><span>·</span>
+      <a href="blog.html">Blog</a><span>·</span>
+      <a href="stations.html">Stations</a><span>·</span>
+      <a href="timings.html">Timings</a><span>·</span>
+      <a href="fares.html">Fares</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+<script src="js/blogRenderer.js"></script>
+<script>
+(async () => {
+  const id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { window.location = 'blog.html'; return; }
+
+  try {
+    const blogs = await fetch('data/blogs.json').then(r => r.json());
+    const post  = blogs.find(b => b.id === id);
+    if (!post) { window.location = 'blog.html'; return; }
+
+    // SEO
+    document.title = `${post.title} | MetroGuideIndia`;
+    document.querySelector('meta[name="description"]').content = post.summary;
+
+    // Related (same tags, exclude current)
+    const related = blogs
+      .filter(b => b.id !== id && b.tags?.some(t => post.tags?.includes(t)))
+      .slice(0, 3);
+
+    document.getElementById('post-content').innerHTML = `
+      <div class="post-header">
+        <div class="post-tags">${(post.tags||[]).map(t=>`<span class="post-tag">${t}</span>`).join('')}</div>
+        <h1 class="post-title">${post.title}</h1>
+        <div class="post-meta">
+          <span>📅 ${formatDate(post.date)}</span>
+          <span>✍️ ${post.author}</span>
+        </div>
+      </div>
+      <div class="post-divider"></div>
+      <div class="blog-body">${BlogRenderer.render(post.content)}</div>
+      ${related.length ? `
+        <div class="related">
+          <div class="related-title">Related Articles</div>
+          <div class="related-grid">
+            ${related.map(r => `
+              <a href="post.html?id=${r.id}" class="related-card">
+                <div class="related-card-title">${r.title}</div>
+                <div class="related-card-date">${formatDate(r.date)}</div>
+              </a>`).join('')}
+          </div>
+        </div>` : ''}`;
+
+  } catch(e) {
+    document.getElementById('post-content').innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0">Could not load post.</p>';
+  }
+})();
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+}
+</script>
+</body>
+</html>

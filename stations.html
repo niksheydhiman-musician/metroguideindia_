@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>All Stations — Namo Bharat RRTS & Meerut Metro | MetroGuideIndia</title>
+  <meta name="description" content="Complete list of all stations on the Delhi–Meerut Namo Bharat RRTS and Meerut Metro network with city and interchange information."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .station-full-card{
+      background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
+      margin-bottom:8px;overflow:hidden;
+      transition:box-shadow .15s;
+    }
+    .station-full-card:hover{box-shadow:var(--shadow-md)}
+    .station-row-main{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer}
+    .station-num{font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);width:24px;flex-shrink:0;text-align:right}
+    .station-dot-lg{width:12px;height:12px;border-radius:50%;border:2.5px solid;flex-shrink:0}
+    .station-info{flex:1}
+    .station-name-lg{font-weight:600;font-size:.95rem;color:var(--text)}
+    .station-sub{font-size:.74rem;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .ix-badge{font-size:.63rem;font-weight:700;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);padding:2px 7px;border-radius:8px}
+    .line-badge{font-size:.63rem;font-weight:600;padding:2px 8px;border-radius:9px;border:1px solid}
+    .station-expand{display:none;padding:0 16px 14px 52px;border-top:1px solid var(--border);font-size:.82rem;color:var(--text2);line-height:1.7}
+    .station-expand.open{display:block}
+    .expand-row{display:flex;gap:6px;margin-bottom:4px;align-items:flex-start}
+    .expand-label{color:var(--muted);min-width:80px;font-size:.75rem}
+
+    .system-section{margin-bottom:32px}
+    .system-header{
+      display:flex;align-items:center;gap:12px;padding:14px 16px;
+      border-radius:var(--r);margin-bottom:10px;
+    }
+    .system-header.rrts{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
+    .system-header.metro{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
+    .system-header-icon{font-size:1.8rem}
+    .system-header-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem}
+    .system-header-name.rrts{color:var(--red)}
+    .system-header-name.metro{color:var(--green)}
+    .system-header-meta{font-size:.76rem;color:var(--muted)}
+
+    .search-bar{
+      width:100%;padding:12px 16px;background:var(--surface);border:1px solid var(--border2);
+      border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text);
+      margin-bottom:18px;outline:none;transition:border-color .2s,box-shadow .2s;
+    }
+    .search-bar:focus{border-color:rgba(192,57,43,.5);box-shadow:0 0 0 3px rgba(192,57,43,.08)}
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="index.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Home</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="wrap" style="padding-top:32px;padding-bottom:48px">
+  <div class="sec-eye">Network</div>
+  <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:6px">All Stations</h1>
+  <p style="font-size:.9rem;color:var(--text2);margin-bottom:22px">Complete station list for Namo Bharat RRTS and Meerut Metro.</p>
+
+  <input type="text" class="search-bar" id="search-bar" placeholder="🔍  Search station name or city…"/>
+
+  <div id="stations-container"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <div class="foot-links">
+      <a href="index.html">Home</a><span>·</span>
+      <a href="blog.html">Blog</a><span>·</span>
+      <a href="stations.html">Stations</a><span>·</span>
+      <a href="timings.html">Timings</a><span>·</span>
+      <a href="fares.html">Fares</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+<script>
+let ALL_STATIONS = [], INTERCHANGES = [];
+
+(async () => {
+  try {
+    const [stations, interchanges] = await Promise.all([
+      fetch('data/stations.json').then(r=>r.json()),
+      fetch('data/interchanges.json').then(r=>r.json()),
+    ]);
+    // Deduplicate
+    const seen = new Set();
+    ALL_STATIONS = stations.filter(s => {
+      const k = `${s.station_name}||${s.system_id}`;
+      if (seen.has(k)) return false; seen.add(k); return true;
+    }).sort((a,b) => Number(a.order)-Number(b.order));
+    INTERCHANGES = interchanges;
+    render(ALL_STATIONS);
+    document.getElementById('search-bar').addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      render(ALL_STATIONS.filter(s =>
+        s.station_name.toLowerCase().includes(q) || s.city.toLowerCase().includes(q)
+      ));
+    });
+  } catch(e) {
+    document.getElementById('stations-container').innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0">Could not load stations.</p>';
+  }
+})();
+
+function render(stations) {
+  const rrts  = stations.filter(s => s.system_id === 'rrts');
+  const metro = stations.filter(s => s.system_id === 'meerut_metro');
+  const con   = document.getElementById('stations-container');
+  con.innerHTML = '';
+  if (rrts.length)  con.appendChild(buildSection(rrts,  'rrts'));
+  if (metro.length) con.appendChild(buildSection(metro, 'meerut_metro'));
+  if (!rrts.length && !metro.length) con.innerHTML = '<p style="color:var(--muted);text-align:center;padding:30px 0">No stations match your search.</p>';
+}
+
+function buildSection(stations, sys) {
+  const isRRTS = sys === 'rrts';
+  const color  = isRRTS ? 'var(--red)' : 'var(--green)';
+  const cls    = isRRTS ? 'rrts' : 'metro';
+  const name   = isRRTS ? 'Namo Bharat RRTS' : 'Meerut Metro';
+  const icon   = isRRTS ? '🚅' : '🚇';
+
+  const div = document.createElement('div');
+  div.className = 'system-section';
+  div.innerHTML = `
+    <div class="system-header ${cls}">
+      <span class="system-header-icon">${icon}</span>
+      <div>
+        <div class="system-header-name ${cls}">${name}</div>
+        <div class="system-header-meta">${stations.length} stations</div>
+      </div>
+    </div>
+    ${stations.map((s, i) => stationCard(s, i+1, color)).join('')}`;
+  return div;
+}
+
+function stationCard(s, num, color) {
+  const ix = INTERCHANGES.find(x => x.station_id === s.station_id || x.station_id === s.station_id.replace(/_meerut_metro$/,'_rrts'));
+  const hasIx = !!ix;
+  return `
+    <div class="station-full-card">
+      <div class="station-row-main" onclick="this.nextElementSibling.classList.toggle('open')">
+        <span class="station-num">${num}</span>
+        <div class="station-dot-lg" style="border-color:${color};background:${color}18"></div>
+        <div class="station-info">
+          <div class="station-name-lg">${s.station_name}</div>
+          <div class="station-sub">
+            <span>${s.city}</span>
+            ${hasIx ? `<span class="ix-badge">🔄 Interchange</span>` : ''}
+          </div>
+        </div>
+        <span style="color:var(--muted);font-size:.8rem">▾</span>
+      </div>
+      <div class="station-expand">
+        <div class="expand-row"><span class="expand-label">City</span><span>${s.city}</span></div>
+        <div class="expand-row"><span class="expand-label">System</span><span>${s.system_id === 'rrts' ? 'Namo Bharat RRTS' : 'Meerut Metro'}</span></div>
+        ${hasIx ? `<div class="expand-row"><span class="expand-label">Interchange</span><span>${ix.instructions} — ${ix.change_platform}</span></div>` : ''}
+        <div class="expand-row" style="margin-top:10px">
+          <a href="index.html?to=${s.station_id}" style="font-size:.78rem;font-weight:600;color:var(--red)">Plan route to this station →</a>
+        </div>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
