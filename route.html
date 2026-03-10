@@ -158,7 +158,7 @@ function getRouteSlug() {
 }
 
 /* ── Main ────────────────────────────────────────────────────────────────── */
-DataLoader.load().then(data => {
+DataLoader.loadAll().then(data => {
   DATA  = data;
   GRAPH = GraphBuilder.build(data.connections);
   populateSelects(data.stations);
