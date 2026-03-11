@@ -6,7 +6,7 @@ const DataLoader = (() => {
   async function loadAll() {
     const names = ['systems','lines','stations','connections','interchanges'];
     const results = await Promise.all(names.map(n =>
-      fetch(`data/${n}.json`).then(r => {
+      fetch(`/data/${n}.json`).then(r => {
         if (!r.ok) throw new Error(`Cannot load data/${n}.json — HTTP ${r.status}. Make sure the /data folder sits next to index.html.`);
         return r.json();
       })
