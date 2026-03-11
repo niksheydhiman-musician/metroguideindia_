@@ -1,0 +1,19 @@
+# MetroGuideIndia — Netlify configuration
+# No build step needed — pure static HTML/CSS/JS site
+
+[build]
+  publish = "."
+  command = ""
+
+# Clean URL routing for /route/ paths
+# This replaces the GitHub Pages 404.html trick with proper Netlify redirects
+[[redirects]]
+  from = "/route/*"
+  to = "/route.html"
+  status = 200
+
+# Serve all pages cleanly
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
