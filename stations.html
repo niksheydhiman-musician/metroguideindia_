@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>All Stations — Namo Bharat RRTS & Meerut Metro | MetroGuideIndia</title>
   <meta name="description" content="Complete list of all stations on the Delhi–Meerut Namo Bharat RRTS and Meerut Metro network with city and interchange information."/>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
   <style>
     .station-full-card{
       background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
@@ -49,10 +49,10 @@
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right">
       <span class="nav-chip">Beta</span>
-      <a href="index.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Home</a>
+      <a href="/" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Home</a>
     </div>
   </div>
 </nav>
@@ -71,11 +71,11 @@
   <div class="wrap">
     <div class="foot-logo">🚄 MetroGuideIndia</div>
     <div class="foot-links">
-      <a href="index.html">Home</a><span>·</span>
-      <a href="blog.html">Blog</a><span>·</span>
-      <a href="stations.html">Stations</a><span>·</span>
-      <a href="timings.html">Timings</a><span>·</span>
-      <a href="fares.html">Fares</a>
+      <a href="/">Home</a><span>·</span>
+      <a href="/blog/">Blog</a><span>·</span>
+      <a href="/stations/">Stations</a><span>·</span>
+      <a href="/timings/">Timings</a><span>·</span>
+      <a href="/fares/">Fares</a>
     </div>
     <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
@@ -161,7 +161,7 @@ function stationCard(s, num, color) {
         <div class="expand-row"><span class="expand-label">System</span><span>${s.system_id === 'rrts' ? 'Namo Bharat RRTS' : 'Meerut Metro'}</span></div>
         ${hasIx ? `<div class="expand-row"><span class="expand-label">Interchange</span><span>${ix.instructions} — ${ix.change_platform}</span></div>` : ''}
         <div class="expand-row" style="margin-top:10px">
-          <a href="index.html?to=${s.station_id}" style="font-size:.78rem;font-weight:600;color:var(--red)">Plan route to this station →</a>
+          <a href="/?to=${s.station_id}" style="font-size:.78rem;font-weight:600;color:var(--red)">Plan route to this station →</a>
         </div>
       </div>
     </div>`;
