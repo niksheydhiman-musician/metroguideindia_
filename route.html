@@ -1,212 +1,320 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root">
+<html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Route - MetroGuideIndia</title>
-  <meta name="description" content="Route details for MetroGuideIndia — Delhi Meerut RRTS and Meerut Metro route planner"/>
-  <link rel="canonical" href="https://metroguideindia.com/route/"/>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <style>
-    [data-hi]{display:none}
-    .lang-hi [data-en]{display:none}
-    .lang-hi [data-hi]{display:initial}
-  </style>
+  <!-- Title and description are set dynamically by JS after route resolves -->
+  <title>Route Planner | MetroGuideIndia</title>
+  <meta name="description" content="RRTS and Meerut Metro route planner — step-by-step station list, interchange guide, distance, fare and travel time."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
-
-<nav class="nav" id="nav">
+<nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">🚄</div>
-      <span data-en>MetroGuideIndia</span>
-      <span data-hi>मेट्रोगाइड इंडिया</span>
-    </a>
-    <div class="nav-right">
-      <span class="nav-chip">Beta</span>
-      <button class="swap" id="lang-btn" title="हिन्दी / English" style="width:auto;padding:0 10px;border-radius:20px;font-size:.7rem;font-weight:700;gap:4px">
-        <span data-en>हिं</span><span data-hi>EN</span>
-      </button>
-      <button class="menu-btn" id="menu-btn" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-
-  <div class="nav-menu" id="nav-menu">
-    <div class="nav-menu-inner">
-      <a class="nav-menu-item" href="blog.html">
-        <span class="ni">📰</span>
-        <div>
-          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>Blogs &amp; Updates</div>
-          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>ब्लॉग और अपडेट</div>
-        </div>
-      </a>
-      <div class="nav-menu-divider"></div>
-      <a class="nav-menu-item" href="index.html">
-        <span class="ni">🏠</span>
-        <div>
-          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>Home</div>
-          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>होम</div>
-        </div>
-      </a>
-    </div>
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right"><span class="nav-chip">Beta</span></div>
   </div>
 </nav>
-
 <main>
 <div class="wrap">
-  <section style="padding: 44px 0 28px; text-align: center;">
-    <div class="back-link" onclick="goBack()" style="text-align: left; margin-bottom: 24px; cursor: pointer;">← <span data-en>Back to Home</span><span data-hi>होम पर वापस जाएं</span></div>
-    
-    <h1 class="rp-title" data-en>Route Details</h1>
-    <h1 class="rp-title" data-hi>रूट विवरण</h1>
-    <p class="rp-sub" id="route-info" data-en>Loading route information...</p>
-    <p class="rp-sub" id="route-info-hi" data-hi>रूट जानकारी लोड हो रही है...</p>
+  <div style="padding:32px 0 0">
+    <a href="/" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Home
+    </a>
+    <h1 class="rp-title" id="pg-title">Route Planner</h1>
+    <p class="rp-sub" id="pg-sub">Loading your route…</p>
+  </div>
+
+  <section id="route-result" aria-live="polite" style="display:none"></section>
+
+  <!-- Always show the search card so user can plan another route -->
+  <section style="margin:24px 0 48px">
+    <div class="sc">
+      <div class="fd">
+        <label class="fl" for="src">From</label>
+        <select id="src" class="sel"><option value="">Select source station</option></select>
+      </div>
+      <div class="swap-row">
+        <button class="swap" id="swap-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+        </button>
+      </div>
+      <div class="fd">
+        <label class="fl" for="dst">To</label>
+        <select id="dst" class="sel"><option value="">Select destination station</option></select>
+      </div>
+      <button class="btn-find" id="find-btn" onclick="onFind()">
+        <span class="btn-label">Find Route</span>
+      </button>
+    </div>
   </section>
-
-  <!-- Route Result Container -->
-  <section id="route-result" aria-live="polite"></section>
-
 </div>
 </main>
-
 <footer>
   <div class="wrap">
     <div class="foot-logo">🚄 MetroGuideIndia</div>
-    <p class="foot-desc" data-en>Your guide to Delhi–Meerut Namo Bharat RRTS and Meerut Metro.</p>
-    <p class="foot-desc" data-hi>दिल्ली–मेरठ नमो भारत RRTS और मेरठ मेट्रो के लिए आपका गाइड।</p>
+    <p class="foot-desc">Delhi–Meerut Namo Bharat RRTS and Meerut Metro route planner.</p>
+    <div class="foot-links">
+      <a href="/">Home</a><span>·</span>
+      <a href="/blog/">Blog</a><span>·</span>
+      <a href="/stations/">Stations</a><span>·</span>
+      <a href="/timings/">Timings</a><span>·</span>
+      <a href="/fares/">Fares</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
 </footer>
+<button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
 
-<script src="js/dataLoader.js"></script>
-<script src="js/graphBuilder.js"></script>
-<script src="js/routeFinder.js"></script>
-<script src="js/routeUI.js"></script>
-<script src="js/seoGenerator.js"></script>
-
+<script src="/js/dataLoader.js"></script>
+<script src="/js/graphBuilder.js"></script>
+<script src="/js/routeFinder.js"></script>
+<script src="/js/routeUI.js"></script>
+<script src="/js/seoGenerator.js"></script>
 <script>
-let DATA = null, GRAPH = null;
-let currentLang = 'en';
-
-(async () => {
-  try {
-    DATA = await DataLoader.loadAll();
-    GRAPH = GraphBuilder.build(DATA.connections);
-    
-    // Parse the route slug from URL parameters
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
-    
-    if (slug) {
-      findAndDisplayRoute(slug);
-    } else {
-      showError('No route specified. <a href="/">Go back home</a>');
-    }
-  } catch (err) {
-    console.error(err);
-    showError(`Error: ${err.message}`);
-  }
+/* ─────────────────────────────────────────────────────────────────────────────
+   route.html — SEO-friendly route result page
+   
+   BASE_PATH: detects the subdirectory the site is hosted under.
+   e.g. on GitHub Pages at /metroguideindia_/ this is '/metroguideindia_'
+   On a custom domain at root this is ''
+───────────────────────────────────────────────────────────────────────────── */
+const BASE_PATH = (function() {
+  // Strip the filename and any trailing /route/slug portion
+  var path = window.location.pathname;
+  // If we're on route.html directly, strip the filename
+  path = path.replace(/\/route\.html.*$/, '');
+  // If we're on a /route/slug path, strip that
+  path = path.replace(/\/route\/.*$/, '');
+  // Remove trailing slash
+  return path.replace(/\/$/, '');
 })();
+   Reads the route slug from:
+     1. sessionStorage (set by 404.html redirect from /route/slug)
+     2. ?r=slug query param  (fallback, also set by 404.html)
+   Resolves station IDs, runs the routing engine, renders the result.
+───────────────────────────────────────────────────────────────────────────── */
 
-function findAndDisplayRoute(slug) {
-  // Split the slug to get from and to stations
-  // Format: "from-to" where each part is like "sarai-kale-khan"
-  const parts = slug.split('-to-');
-  
-  if (parts.length !== 2) {
-    showError('Invalid route format. Please use format: station1-to-station2');
-    return;
-  }
+let DATA = null, GRAPH = null;
 
-  const fromSlug = parts[0];
-  const toSlug = parts[1];
-
-  // Find station IDs by matching against station names
-  const stations = DATA.stations;
-  
-  let fromStation = null;
-  let toStation = null;
-
-  // Try to find exact matches by slug matching with station_id
-  for (let station of stations) {
-    const stationSlug = station.station_id
-      .replace(/_rrts$/, '')
-      .replace(/_meerut_metro$/, '')
-      .replace(/_/g, '-')
-      .toLowerCase();
-    
-    if (stationSlug === fromSlug) fromStation = station;
-    if (stationSlug === toSlug) toStation = station;
-  }
-
-  if (!fromStation || !toStation) {
-    showError(`Could not find stations for route "${slug}". Please try again from <a href="/">home</a>.`);
-    return;
-  }
-
-  displayRoute(fromStation.station_id, toStation.station_id);
+/* ── Slug ↔ station_id resolution ──────────────────────────────────────────
+   Rules:
+   - Strip _rrts / _meerut_metro suffix to build slug
+   - For ambiguous stations (both systems share a name), RRTS is canonical in URLs
+   - station_id → slug: replace underscores with hyphens, strip system suffixes
+   - slug → station_id: match against all station_ids, prefer RRTS for ambiguous
+───────────────────────────────────────────────────────────────────────────── */
+function stationToSlug(station_id) {
+  return station_id
+    .replace(/_rrts$/, '')
+    .replace(/_meerut_metro$/, '')
+    .replace(/_/g, '-');
 }
 
-function displayRoute(src, dst) {
+function slugToStationId(slug, stations) {
+  // Direct match after normalising underscores→hyphens and stripping suffixes
+  const candidates = stations.filter(s => stationToSlug(s.station_id) === slug);
+  if (!candidates.length) return null;
+  // If multiple (ambiguous interchange station), prefer RRTS
+  const rrts = candidates.find(s => s.system_id === 'rrts');
+  return (rrts || candidates[0]).station_id;
+}
+
+/* ── Parse the route slug ────────────────────────────────────────────────────
+   Slug format: "{from-slug}-to-{to-slug}"
+   We find the "-to-" separator by trying all split points and seeing which
+   produces valid station matches, to avoid issues with station names
+   containing the word "to" (none currently, but future-proofed).
+───────────────────────────────────────────────────────────────────────────── */
+function parseSlug(slug, stations) {
+  // Try splitting on "-to-" — try all occurrences (some slugs might match)
+  const parts = slug.split('-to-');
+  // parts[0] = from, parts.slice(1).join('-to-') = to  (handles e.g. "a-to-b-to-c" edge)
+  for (let i = 1; i < parts.length; i++) {
+    const fromSlug = parts.slice(0, i).join('-to-');
+    const toSlug   = parts.slice(i).join('-to-');
+    const fromId   = slugToStationId(fromSlug, stations);
+    const toId     = slugToStationId(toSlug, stations);
+    if (fromId && toId && fromId !== toId) return { fromId, toId, fromSlug, toSlug };
+  }
+  return null;
+}
+
+/* ── Get the slug from sessionStorage or ?r= param ──────────────────────── */
+function getRouteSlug() {
+  // 1. sessionStorage (set by 404.html)
+  try {
+    const stored = sessionStorage.getItem('mgi_route_slug');
+    if (stored) { sessionStorage.removeItem('mgi_route_slug'); return stored; }
+  } catch(e) {}
+  // 2. ?r= query param (also set by 404.html as fallback)
+  const r = new URLSearchParams(window.location.search).get('r');
+  if (r) return decodeURIComponent(r);
+  return null;
+}
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
+DataLoader.loadAll().then(data => {
+  DATA  = data;
+  GRAPH = GraphBuilder.build(data.connections);
+  populateSelects(data.stations);
+  attachSwap();
+
+  const slug = getRouteSlug();
+  if (slug) {
+    const parsed = parseSlug(slug, data.stations);
+    if (parsed) {
+      // Set canonical URL in address bar (clean path, no ?r= param)
+      const canonicalPath = BASE_PATH + '/route/' + slug;
+      if (window.location.pathname !== canonicalPath) {
+        history.replaceState({}, '', canonicalPath);
+      }
+      // Pre-select dropdowns
+      document.getElementById('src').value = parsed.fromId;
+      document.getElementById('dst').value = parsed.toId;
+      // Run the route
+      go(parsed.fromId, parsed.toId);
+    } else {
+      showError('Could not resolve stations from URL. Please use the search below.');
+    }
+  } else {
+    // No slug — just show the blank search UI
+    document.getElementById('pg-sub').textContent = 'Select stations below to plan your journey.';
+  }
+}).catch(err => {
+  console.error('DataLoader error:', err);
+  showError('Could not load station data. Please refresh and try again.');
+});
+
+/* ── Route execution ─────────────────────────────────────────────────────── */
+function go(src, dst) {
   const path = RouteFinder.findRoute(GRAPH, src, dst);
-  
   if (!path?.length) {
-    showError(`No route found between these stations. <a href="/">Try another route</a>`);
+    showError('No route found between these stations. Please try a different combination.');
     return;
   }
 
   const dist = RouteFinder.calcDistance(path, GRAPH);
   const fare = RouteFinder.calcFare(path);
-  const nX = path.filter(p => p.line_id === 'interchange').length;
+  const nX   = path.filter(p => p.line_id === 'interchange').length;
   const time = RouteFinder.calcTime(dist, nX);
 
-  // Get station names for display
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
+  document.getElementById('route-result').style.display = 'block';
+
   const srcSt = DATA.stations.find(s => s.station_id === src);
   const dstSt = DATA.stations.find(s => s.station_id === dst);
 
   if (srcSt && dstSt) {
-    document.getElementById('route-info').innerHTML = `${srcSt.station_name} → ${dstSt.station_name}`;
-    document.getElementById('route-info-hi').innerHTML = `${srcSt.station_name} → ${dstSt.station_name}`;
+    // SEO — dynamic title, description, canonical
+    const fromName = srcSt.station_name;
+    const toName   = dstSt.station_name;
+    const title    = `${fromName} to ${toName} Route | Distance, Fare and Stations | MetroGuideIndia`;
+    const desc     = `${fromName} to ${toName}: ${dist} km, ~${time} min, ₹${fare} standard fare. Step-by-step station list with interchange guide for Namo Bharat RRTS & Meerut Metro.`;
+
+    document.title = title;
+    setMeta('description', desc);
+    setMeta('og:title', title, true);
+    setMeta('og:description', desc, true);
+    setMeta('twitter:title', title);
+    setMeta('twitter:description', desc);
+
+    // Set canonical link tag
+    let canon = document.querySelector('link[rel="canonical"]');
+    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+    const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+    canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
+
+    // Update page heading
+    document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
+    document.getElementById('pg-sub').textContent   = `${dist} km · ₹${fare} · ~${time} min`;
+
+    // Append SEO block inside result card
+    const names  = path.map(p => DATA.stations.find(s => s.station_id === p.station_id)?.station_name || p.station_id);
+    const seoHTML = SEOGenerator.seoBlock(fromName, toName, names, dist, fare, time);
+    const card    = document.querySelector('.rc');
+    if (card) { const d = document.createElement('div'); d.innerHTML = seoHTML; card.appendChild(d.firstElementChild); }
   }
 
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
+  setTimeout(() => document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
 }
 
-function showError(message) {
-  document.getElementById('route-result').innerHTML = 
-    `<div class="rc-error"><span>⚠️</span><p>${message}</p></div>`;
+/* ── onFind — navigate to clean /route/ URL ──────────────────────────────── */
+function onFind() {
+  const src = document.getElementById('src').value;
+  const dst = document.getElementById('dst').value;
+  if (!src || !dst) {
+    alert('Please select both a source and destination station.');
+    return;
+  }
+  if (src === dst) {
+    alert('Source and destination cannot be the same.');
+    return;
+  }
+  const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+  // Navigate to the clean URL — 404.html will handle the redirect back here
+  window.location.href = window.location.origin + BASE_PATH + '/route/' + slug;
+}
+
+/* ── Populate dropdowns ──────────────────────────────────────────────────── */
+function populateSelects(stations) {
+  const src = document.getElementById('src');
+  const dst = document.getElementById('dst');
+
+  // Deduplicate by station_name — prefer RRTS entry for interchange stations
+  const seen = new Set();
+  const unique = stations.filter(s => {
+    const k = s.station_name;
+    if (seen.has(k)) return false;
+    seen.add(k); return true;
+  });
+
+  // Group by system for optgroup
+  const rrts  = unique.filter(s => s.system_id === 'rrts');
+  const metro = unique.filter(s => s.system_id !== 'rrts');
+
+  function buildOptions(list) {
+    return list.map(s => `<option value="${s.station_id}">${s.station_name} — ${s.city}</option>`).join('');
+  }
+
+  const html = `
+    <optgroup label="Namo Bharat RRTS">${buildOptions(rrts)}</optgroup>
+    <optgroup label="Meerut Metro">${buildOptions(metro)}</optgroup>`;
+
+  src.innerHTML = '<option value="">Select source station</option>' + html;
+  dst.innerHTML = '<option value="">Select destination station</option>' + html;
+}
+
+/* ── Swap button ─────────────────────────────────────────────────────────── */
+function attachSwap() {
+  document.getElementById('swap-btn').addEventListener('click', () => {
+    const s = document.getElementById('src'), d = document.getElementById('dst');
+    [s.value, d.value] = [d.value, s.value];
+  });
+}
+
+/* ── Helpers ─────────────────────────────────────────────────────────────── */
+function showError(msg) {
+  RouteUI.renderError('route-result', msg);
   document.getElementById('route-result').style.display = 'block';
+  document.getElementById('pg-sub').textContent = 'Route not found';
 }
 
-function goBack() {
-  window.location.href = '/';
+function setMeta(k, v, isProp = false) {
+  const attr = isProp ? 'property' : 'name';
+  let el = document.querySelector(`meta[${attr}="${k}"]`);
+  if (!el) { el = document.createElement('meta'); el.setAttribute(attr, k); document.head.appendChild(el); }
+  el.setAttribute('content', v);
 }
 
-// Language toggle
-document.getElementById('lang-btn')?.addEventListener('click', () => {
-  currentLang = currentLang === 'en' ? 'hi' : 'en';
-  document.documentElement.classList.toggle('lang-hi', currentLang === 'hi');
-  if (currentLang === 'hi' && !document.getElementById('hindi-font')) {
-    const l = document.createElement('link');
-    l.id = 'hindi-font';
-    l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap';
-    document.head.appendChild(l);
-  }
-});
-
-// Menu toggle
-document.getElementById('menu-btn')?.addEventListener('click', () => {
-  document.getElementById('nav-menu').classList.toggle('open');
-});
-
-document.addEventListener('click', e => {
-  if (!document.getElementById('nav').contains(e.target)) {
-    document.getElementById('nav-menu').classList.remove('open');
-  }
-});
+/* ── Scroll-to-top ───────────────────────────────────────────────────────── */
+const upBtn = document.getElementById('up-btn');
+window.addEventListener('scroll', () => upBtn.classList.toggle('up-btn-show', window.scrollY > 300), { passive: true });
+upBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
-
 </body>
 </html>
