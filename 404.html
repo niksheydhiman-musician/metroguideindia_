@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting...</title>
-  <script>
-    // Capture the original requested path
-    const path = window.location.pathname;
-    
-    // If it's a /route/ path, redirect to route.html with the path as a query parameter
-    if (path.includes('/route/')) {
-      // Extract the route slug from the path (e.g., /route/station1-to-station2)
-      const routeMatch = path.match(/\/route\/(.+?)(?:\/|$)/);
-      if (routeMatch) {
-        const slug = routeMatch[1];
-        // Redirect to route.html with the slug preserved
-        // Works with custom domain: metroguideindia.com
-        window.location.replace('/route.html?slug=' + encodeURIComponent(slug));
-      } else {
-        window.location.replace('/route.html');
-      }
-    } else {
-      // For any other 404, redirect to home
-      window.location.replace('/');
-    }
-  </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Page Not Found | MetroGuideIndia</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
-  <p>Redirecting you to the correct page...</p>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+  </div>
+</nav>
+<main>
+  <div class="wrap" style="padding:80px 18px;text-align:center">
+    <div style="font-size:3rem;margin-bottom:16px">🚉</div>
+    <h1 style="font-family:Syne,sans-serif;font-size:1.6rem;margin-bottom:10px">Page Not Found</h1>
+    <p style="color:var(--muted);margin-bottom:28px">The page you were looking for doesn't exist.</p>
+    <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>
+  </div>
+</main>
 </body>
 </html>
