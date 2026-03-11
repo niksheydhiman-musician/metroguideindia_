@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Blog | MetroGuideIndia</title>
   <meta name="description" content=""/>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
   <style>
     .post-wrap{max-width:680px;margin:0 auto;padding:32px 18px 56px;position:relative;z-index:1}
     .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:24px;cursor:pointer;transition:color .15s}
@@ -46,16 +46,16 @@
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right">
       <span class="nav-chip">Beta</span>
-      <a href="blog.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
+      <a href="/blog/" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
     </div>
   </div>
 </nav>
 <main>
 <div class="post-wrap">
-  <a href="blog.html" class="post-back">← Back to all posts</a>
+  <a href="/blog/" class="post-back">← Back to all posts</a>
   <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
 </div>
 </main>
@@ -63,16 +63,16 @@
   <div class="wrap">
     <div class="foot-logo">🚄 MetroGuideIndia</div>
     <div class="foot-links">
-      <a href="index.html">Home</a><span>·</span>
-      <a href="blog.html">Blog</a><span>·</span>
-      <a href="stations.html">Stations</a><span>·</span>
-      <a href="timings.html">Timings</a><span>·</span>
-      <a href="fares.html">Fares</a>
+      <a href="/">Home</a><span>·</span>
+      <a href="/blog/">Blog</a><span>·</span>
+      <a href="/stations/">Stations</a><span>·</span>
+      <a href="/timings/">Timings</a><span>·</span>
+      <a href="/fares/">Fares</a>
     </div>
     <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
 </footer>
-<script src="js/blogRenderer.js"></script>
+<script src="/js/blogRenderer.js"></script>
 <script>
 (async () => {
   const id = new URLSearchParams(window.location.search).get('id');
@@ -108,7 +108,7 @@
           <div class="related-title">Related Articles</div>
           <div class="related-grid">
             ${related.map(r => `
-              <a href="post.html?id=${r.id}" class="related-card">
+              <a href="/blog/?id=${r.id}" class="related-card">
                 <div class="related-card-title">${r.title}</div>
                 <div class="related-card-date">${formatDate(r.date)}</div>
               </a>`).join('')}
