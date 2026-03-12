@@ -414,8 +414,8 @@ function buildStations(filter) {
 
   list.innerHTML = uniq.map(s => `
     <div class="st-row" onclick="quickFill('${s.station_id}')">
-      <div class="st-dot" style="background:${col(s)}20;border-color:${col(s)}">
-      <span class="st-name">${s.station_name}</span>
+<div class="st-dot" style="background:${col(s)}20;border-color:${col(s)}"></div>
+<span class="st-name">${s.station_name}</span>
       <span class="st-city">${s.city}</span>
       <span class="st-badge" style="background:${bg(s)};color:${col(s)};border-color:${bd(s)}">${badge(s)}</span>
     </div>`).join('');
