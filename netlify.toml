@@ -1,0 +1,37 @@
+# MetroGuideIndia — Netlify configuration
+# No build step needed — pure static HTML/CSS/JS site
+
+[build]
+  publish = "."
+  command = ""
+
+# Clean URL rewrites — transparent 200 rewrites so /stations serves stations.html etc.
+[[redirects]]
+  from = "/stations"
+  to = "/stations.html"
+  status = 200
+
+[[redirects]]
+  from = "/timings"
+  to = "/timings.html"
+  status = 200
+
+[[redirects]]
+  from = "/fares"
+  to = "/fares.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/route"
+  to = "/route.html"
+  status = 200
+
+[[redirects]]
+  from = "/route/*"
+  to = "/route.html"
+  status = 200
