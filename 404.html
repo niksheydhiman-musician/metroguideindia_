@@ -12,13 +12,45 @@
     <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
   </div>
 </nav>
+
 <main>
   <div class="wrap" style="padding:80px 18px;text-align:center">
     <div style="font-size:3rem;margin-bottom:16px">🚉</div>
     <h1 style="font-family:Syne,sans-serif;font-size:1.6rem;margin-bottom:10px">Page Not Found</h1>
-    <p style="color:var(--muted);margin-bottom:28px">The page you were looking for doesn't exist.</p>
+    <p style="color:var(--muted);margin-bottom:28px">Redirecting…</p>
     <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>
   </div>
 </main>
+
+<script>
+(function () {
+  // Detect base path (custom domain => "", project pages => "/<repo>")
+  var path = window.location.pathname || "/";
+  var parts = path.split("/").filter(Boolean);
+
+  // If first segment is not "route", treat it as base path segment.
+  // Examples:
+  //   /route/slug                     => basePath ""
+  //   /metroguideindia_/route/slug     => basePath "/metroguideindia_"
+  var basePath = "";
+  if (parts.length && parts[0] !== "route") {
+    basePath = "/" + parts[0];
+  }
+
+  // Handle /route/<slug>
+  var routeIndex = parts.indexOf("route");
+  if (routeIndex !== -1 && parts.length > routeIndex + 1) {
+    var slug = parts.slice(routeIndex + 1).join("/"); // normally one segment, but safe
+    try { sessionStorage.setItem("mgi_route_slug", slug); } catch (e) {}
+
+    var target = basePath + "/route.html?r=" + encodeURIComponent(slug);
+    window.location.replace(target);
+    return;
+  }
+
+  // Default fallback: go home
+  window.location.replace(basePath + "/");
+})();
+</script>
 </body>
 </html>
