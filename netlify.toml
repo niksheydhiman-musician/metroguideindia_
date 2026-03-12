@@ -72,3 +72,9 @@
   to   = "/route.html"
   status = 200
   force  = true
+
+[[redirects]]
+  from = "/stations.html"
+  to   = "/stations"
+  status = 301
+  force  = true
