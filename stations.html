@@ -86,8 +86,8 @@ let ALL_STATIONS = [], INTERCHANGES = [];
 (async () => {
   try {
     const [stations, interchanges] = await Promise.all([
-      fetch('/data/stations.json').then(r=>r.json()),
-      fetch('/data/interchanges.json').then(r=>r.json()),
+     fetch('/data/stations.json').then(r=>r.json()),
+fetch('/data/interchanges.json').then(r=>r.json()),
     ]);
     // Deduplicate
     const seen = new Set();
