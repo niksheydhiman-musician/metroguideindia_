@@ -72,10 +72,10 @@
     <div class="foot-logo">🚄 MetroGuideIndia</div>
     <div class="foot-links">
       <a href="/">Home</a><span>·</span>
-      <a href="/blog/">Blog</a><span>·</span>
-      <a href="/stations/">Stations</a><span>·</span>
-      <a href="/timings/">Timings</a><span>·</span>
-      <a href="/fares/">Fares</a>
+      <a href="/blog">Blog</a><span>·</span>
+      <a href="/stations">Stations</a><span>·</span>
+      <a href="/timings">Timings</a><span>·</span>
+      <a href="/fares">Fares</a>
     </div>
     <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
@@ -86,8 +86,8 @@ let ALL_STATIONS = [], INTERCHANGES = [];
 (async () => {
   try {
     const [stations, interchanges] = await Promise.all([
-      fetch('data/stations.json').then(r=>r.json()),
-      fetch('data/interchanges.json').then(r=>r.json()),
+      fetch('/data/stations.json').then(r=>r.json()),
+      fetch('/data/interchanges.json').then(r=>r.json()),
     ]);
     // Deduplicate
     const seen = new Set();
@@ -135,7 +135,7 @@ function buildSection(stations, sys) {
         <div class="system-header-meta">${stations.length} stations</div>
       </div>
     </div>
-    ${stations.map((s, i) => stationCard(s, i+1, color)).join('')}`;
+    ${stations.map((s, i) => stationCard(s, i+1, color)).join('')} `;
   return div;
 }
 
@@ -165,7 +165,4 @@ function stationCard(s, num, color) {
         </div>
       </div>
     </div>`;
-}
-</script>
-</body>
-</html>
+} 
