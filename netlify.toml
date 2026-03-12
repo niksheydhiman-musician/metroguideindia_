@@ -5,15 +5,33 @@
   publish = "."
   command = ""
 
-# Clean URL routing for /route/ paths
-# This replaces the GitHub Pages 404.html trick with proper Netlify redirects
+# Clean URL rewrites — serve .html files at clean paths (status 200 = transparent rewrite)
+[[redirects]]
+  from = "/stations"
+  to = "/stations.html"
+  status = 200
+
+[[redirects]]
+  from = "/timings"
+  to = "/timings.html"
+  status = 200
+
+[[redirects]]
+  from = "/fares"
+  to = "/fares.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/route"
+  to = "/route.html"
+  status = 200
+
 [[redirects]]
   from = "/route/*"
   to = "/route.html"
   status = 200
-
-# Serve all pages cleanly
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
