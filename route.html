@@ -205,6 +205,16 @@ DataLoader.loadAll().then(data => {
   showError('Could not load station data. Please refresh and try again.');
 });
 
+/* ── Helper: resolve a display name from a station_id ───────────────────── */
+function stationDisplayName(station_id, stationsArr) {
+  const st = stationsArr.find(s => s.station_id === station_id);
+  if (st) return st.station_name;
+  return station_id
+    .replace(/_rrts$/, '')
+    .replace(/_meerut_metro$/, '')
+    .replace(/_/g, ' ');
+}
+
 /* ── Route execution (existing behavior preserved) ───────────────────────── */
 function go(src, dst) {
   const path = RouteFinder.findRoute(GRAPH, src, dst);
@@ -224,14 +234,9 @@ function go(src, dst) {
   // Always update the subtitle — this clears "Loading your route…"
   document.getElementById('pg-sub').textContent = `${dist} km · ₹${fare} · ~${time} min`;
 
-  const srcSt = DATA.stations.find(s => s.station_id === src);
-  const dstSt = DATA.stations.find(s => s.station_id === dst);
-
   // Station names for heading & SEO (should always be found, but be defensive)
-  const fromName = srcSt ? srcSt.station_name
-    : src.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, ' ');
-  const toName = dstSt ? dstSt.station_name
-    : dst.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, ' ');
+  const fromName = stationDisplayName(src, DATA.stations);
+  const toName   = stationDisplayName(dst, DATA.stations);
 
   document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
 
@@ -360,7 +365,17 @@ function showError(msg) {
   if (typeof RouteUI !== 'undefined' && RouteUI.renderError) {
     RouteUI.renderError('route-result', msg);
   } else if (el) {
-    el.innerHTML = `<div class="rc-error"><span>⚠️</span><p>${msg}</p></div>`;
+    // Safe DOM construction — avoids innerHTML with unsanitised content
+    const wrapper = document.createElement('div');
+    wrapper.className = 'rc-error';
+    const icon = document.createElement('span');
+    icon.textContent = '⚠️';
+    const text = document.createElement('p');
+    text.textContent = msg;
+    wrapper.appendChild(icon);
+    wrapper.appendChild(text);
+    el.innerHTML = '';
+    el.appendChild(wrapper);
   }
   if (el) el.style.display = 'block';
   document.getElementById('pg-sub').textContent = 'Route not found';
