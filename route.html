@@ -228,15 +228,19 @@ function go(src, dst) {
     // SEO — dynamic title, description, canonical
     const fromName = srcSt.station_name;
     const toName   = dstSt.station_name;
-    const title    = `${fromName} to ${toName} Route | Distance, Fare and Stations | MetroGuideIndia`;
-    const desc     = `${fromName} to ${toName}: ${dist} km, ~${time} min, ₹${fare} standard fare. Step-by-step station list with interchange guide for Namo Bharat RRTS & Meerut Metro.`;
+   const hasR = path.some(p => p.line_id === 'rrts_main');
+const hasM = path.some(p => p.line_id === 'meerut_metro_main');
+const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
 
-    document.title = title;
-    setMeta('description', desc);
-    setMeta('og:title', title, true);
-    setMeta('og:description', desc, true);
-    setMeta('twitter:title', title);
-    setMeta('twitter:description', desc);
+const title = `From ${fromName} to ${toName} ${systemLabel} Route, Fare & Timings`;
+const desc  = `From ${fromName} to ${toName}: ${dist} km, approx. ${time} min, ₹${fare} standard fare, ${nX} interchange(s).`;
+
+document.title = title;
+setMeta('description', desc);
+setMeta('og:title', title, true);
+setMeta('og:description', desc, true);
+setMeta('twitter:title', title);
+setMeta('twitter:description', desc);
 
     // canonical link tag
     let canon = document.querySelector('link[rel="canonical"]');
