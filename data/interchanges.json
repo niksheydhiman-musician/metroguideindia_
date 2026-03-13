@@ -21,7 +21,7 @@
   },
   {
     "interchange_id": "int3",
-    "station_id": "begampul_rrts",
+    "station_id": "begumpul_rrts",
     "from_system": "rrts",
     "from_line": "rrts_main",
     "to_system": "meerut_metro",

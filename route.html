@@ -208,7 +208,7 @@ DataLoader.loadAll().then(data => {
 /* ── Route execution (existing behavior preserved) ───────────────────────── */
 function go(src, dst) {
   const path = RouteFinder.findRoute(GRAPH, src, dst);
-  if (!path?.length) {
+  if (!path || !path.length) {
     showError('No route found between these stations. Please try a different combination.');
     return;
   }
@@ -221,37 +221,40 @@ function go(src, dst) {
   RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
   document.getElementById('route-result').style.display = 'block';
 
+  // Always update the subtitle — this clears "Loading your route…"
+  document.getElementById('pg-sub').textContent = `${dist} km · ₹${fare} · ~${time} min`;
+
   const srcSt = DATA.stations.find(s => s.station_id === src);
   const dstSt = DATA.stations.find(s => s.station_id === dst);
 
-  if (srcSt && dstSt) {
-    // SEO — dynamic title, description, canonical
-    const fromName = srcSt.station_name;
-    const toName   = dstSt.station_name;
-   const hasR = path.some(p => p.line_id === 'rrts_main');
-const hasM = path.some(p => p.line_id === 'meerut_metro_main');
-const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
+  // Station names for heading & SEO (should always be found, but be defensive)
+  const fromName = srcSt ? srcSt.station_name
+    : src.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, ' ');
+  const toName = dstSt ? dstSt.station_name
+    : dst.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, ' ');
 
-const title = `From ${fromName} to ${toName} ${systemLabel} Route, Fare & Timings`;
-const desc  = `From ${fromName} to ${toName}: ${dist} km, approx. ${time} min, ₹${fare} standard fare, ${nX} interchange(s).`;
+  document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
 
-document.title = title;
-setMeta('description', desc);
-setMeta('og:title', title, true);
-setMeta('og:description', desc, true);
-setMeta('twitter:title', title);
-setMeta('twitter:description', desc);
+  // SEO — dynamic title, description, canonical
+  const hasR = path.some(p => p.line_id === 'rrts_main');
+  const hasM = path.some(p => p.line_id === 'meerut_metro_main');
+  const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
 
-    // canonical link tag
-    let canon = document.querySelector('link[rel="canonical"]');
-    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
-    const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
-    canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
+  const title = `From ${fromName} to ${toName} ${systemLabel} Route, Fare & Timings`;
+  const desc  = `From ${fromName} to ${toName}: ${dist} km, approx. ${time} min, ₹${fare} standard fare, ${nX} interchange(s).`;
 
-    // Update page heading
-    document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
-    document.getElementById('pg-sub').textContent   = `${dist} km · ₹${fare} · ~${time} min`;
-  }
+  document.title = title;
+  setMeta('description', desc);
+  setMeta('og:title', title, true);
+  setMeta('og:description', desc, true);
+  setMeta('twitter:title', title);
+  setMeta('twitter:description', desc);
+
+  // canonical link tag
+  let canon = document.querySelector('link[rel="canonical"]');
+  if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+  const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+  canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
 
   setTimeout(() =>
     document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }),
@@ -352,8 +355,14 @@ function attachSwap() {
 
 /* ── Helpers (existing behavior preserved) ───────────────────────────────── */
 function showError(msg) {
-  RouteUI.renderError('route-result', msg);
-  document.getElementById('route-result').style.display = 'block';
+  // Guard: RouteUI might not be defined if routeUI.js failed to load
+  const el = document.getElementById('route-result');
+  if (typeof RouteUI !== 'undefined' && RouteUI.renderError) {
+    RouteUI.renderError('route-result', msg);
+  } else if (el) {
+    el.innerHTML = `<div class="rc-error"><span>⚠️</span><p>${msg}</p></div>`;
+  }
+  if (el) el.style.display = 'block';
   document.getElementById('pg-sub').textContent = 'Route not found';
 }
 
