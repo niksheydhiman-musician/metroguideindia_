@@ -350,26 +350,44 @@ const RouteFinder = (() => {
   }
 
   function lookupFare(a, b) {
-    // Direct lookup (both normalised and raw)
-    const key = [a, b].sort().join('__');
-    if (FARE[key] !== undefined) return FARE[key];
-    const k2 = [normId(a), normId(b)].sort().join('__');
-    if (FARE[k2] !== undefined) return FARE[k2];
+    // FARE table keys use "earlier station first" ordering along the physical line,
+    // which is NOT alphabetical. Try both orderings (a__b and b__a) and both
+    // normalised forms (stripping _rrts / _meerut_metro suffixes).
+    const na = normId(a), nb = normId(b);
+    if (FARE[a + '__' + b]   !== undefined) return FARE[a + '__' + b];
+    if (FARE[b + '__' + a]   !== undefined) return FARE[b + '__' + a];
+    if (FARE[na + '__' + nb] !== undefined) return FARE[na + '__' + nb];
+    if (FARE[nb + '__' + na] !== undefined) return FARE[nb + '__' + na];
     return null;
   }
 
   function calcFare(path) {
     const src = path[0].station_id;
     const dst = path[path.length - 1].station_id;
+
+    // Same-system routes: direct point-to-point lookup covers everything
     const direct = lookupFare(src, dst);
     if (direct !== null) return direct;
-    // Fallback: sum consecutive non-interchange segments
-    let total = 0;
-    for (let i = 0; i < path.length - 1; i++) {
-      if (path[i].line_id === 'interchange' || path[i+1].line_id === 'interchange') continue;
-      total += lookupFare(path[i].station_id, path[i+1].station_id) || 0;
+
+    // Cross-system route: find the interchange and sum each system's fare.
+    // cleanPath() guarantees at most one interchange step per route (RRTS-side ID).
+    const ixIdx = path.findIndex(p => p.line_id === 'interchange');
+    if (ixIdx !== -1) {
+      const ixRrts  = path[ixIdx].station_id;                          // RRTS-side ID
+      const ixMetro = ixRrts.replace(/_rrts$/, '_meerut_metro');       // Metro-side ID
+
+      // Fare from src to the interchange station (try both side IDs)
+      let f1 = lookupFare(src, ixRrts);
+      if (f1 === null) f1 = lookupFare(src, ixMetro);
+
+      // Fare from the interchange station to dst (try both side IDs)
+      let f2 = lookupFare(ixRrts, dst);
+      if (f2 === null) f2 = lookupFare(ixMetro, dst);
+
+      if (f1 !== null && f2 !== null) return f1 + f2;
     }
-    return total || 20;
+
+    return 20; // absolute fallback
   }
 
   function calcTime(distance, nInterchanges) {
