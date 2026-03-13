@@ -15,6 +15,12 @@ const RouteUI = (() => {
     interchange:       { color: '#A0620A', label: 'Interchange'       },
   };
   const getLine = lid => LINE[lid] || LINE.rrts_main;
+  const esc = (s) => String(s ?? '')
+  .replaceAll('&','&amp;')
+  .replaceAll('<','&lt;')
+  .replaceAll('>','&gt;')
+  .replaceAll('"','&quot;')
+  .replaceAll("'","&#39;");
 
   /* ── Main render ─────────────────────────────────────────────────────────── */
   function renderRoute(cid, path, stations, interchanges, distance, fare, time) {
@@ -75,6 +81,53 @@ const RouteUI = (() => {
           ${path.map((step, i) => renderStep(step, i, path, stName, stCity, ixMap)).join('')}
         </div>
       </div>`;
+    ${(() => {
+  const fromId = path[0]?.station_id;
+  const toId   = path[path.length - 1]?.station_id;
+  const fromName = stName(fromId);
+  const toName   = stName(toId);
+
+  const hasR = path.some(p => p.line_id === 'rrts_main');
+  const hasM = path.some(p => p.line_id === 'meerut_metro_main');
+  const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
+
+  const premium = Math.round((Number(fare || 0) * 1.2) / 10) * 10;
+  const t = Number(time || 0);
+  const tMin = Math.max(5, Math.round(t - 10));
+  const tMax = Math.max(tMin, Math.round(t + 10));
+
+  // Top stations: pick up to 4 intermediate non-interchange stations
+  const mids = path.slice(1, -1)
+    .filter(p => p.line_id !== 'interchange')
+    .map(p => stName(p.station_id));
+
+  const seen = new Set();
+  const topStations = mids.filter(n => (seen.has(n) ? false : (seen.add(n), true))).slice(0, 4);
+
+  // Major hubs (simple rules you requested)
+  const hubs = [];
+  const fn = (fromName + ' ' + toName).toLowerCase();
+  if (fn.includes('sarai kale khan')) hubs.push('Delhi Metro Pink Line & ISBT at Sarai Kale Khan');
+  if (fn.includes('anand vihar')) hubs.push('Delhi Metro Blue Line & Anand Vihar ISBT');
+
+  return `
+    <div class="route-seo-box" data-system="${esc(systemLabel)}">
+      <div class="route-seo-title">Route Summary</div>
+      <p class="route-seo-lead">
+        Looking for ${esc(fromName)} to ${esc(toName)} ${esc(systemLabel)} route?
+        This ${esc(distance)} km trip takes about ${esc(time)} minutes on average.
+      </p>
+
+      <div class="route-seo-lines">
+        <div><strong>Fare:</strong> ~₹${esc(fare)} (Standard) | ~₹${esc(premium)} (Premium).</div>
+        <div><strong>Time:</strong> Approx. ${esc(tMin)}–${esc(tMax)} mins.</div>
+        <div><strong>Interchanges:</strong> ${esc(nX)} (${esc(nX === 0 ? 'Direct Route' : 'With Interchanges')}).</div>
+        <div><strong>Major Hubs:</strong> ${esc(hubs.length ? hubs.join('; ') : '—')}.</div>
+        <div><strong>Top Stations:</strong> ${esc(topStations.length ? topStations.join(', ') : '—')}.</div>
+        <div><strong>Ticketing:</strong> Use NCMC Card or Namo Bharat App for a hassle-free travel.</div>
+      </div>
+    </div>`;
+})()}
 
     el.style.display = 'block';
     requestAnimationFrame(() => requestAnimationFrame(() => {
