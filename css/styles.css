@@ -307,7 +307,39 @@ a{color:inherit;text-decoration:none}
 .seo-block{padding:13px 16px 16px;border-top:1px solid var(--border);font-size:.82rem;color:var(--text2);line-height:1.75}
 .seo-block p{margin-bottom:8px}.seo-block p:last-child{margin-bottom:0}
 .seo-block strong{color:var(--text)}
-
+/* Route SEO summary box */
+.route-seo-box{
+  margin: 0 16px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--red);
+}
+.route-seo-box[data-system*="Meerut Metro"]{ border-left-color: var(--green); }
+.route-seo-box[data-system*="RRTS + Metro"]{
+  border-left-color: color-mix(in srgb, var(--red) 50%, var(--green) 50%);
+}
+.route-seo-title{
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: .9rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.route-seo-lead{
+  font-size: .84rem;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.route-seo-lines{
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.route-seo-lines strong{ color: var(--text); }
 /* ── Section headers ─────────────────────────────────────── */
 .sec-eye{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:5px}
 .sec-head{font-size:1.3rem;font-weight:700;margin-bottom:16px;color:var(--text)}
