@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <base href="/"/>
   <title>Blog | MetroGuideIndia</title>
   <meta name="description" content=""/>
   <link rel="stylesheet" href="/css/styles.css"/>
@@ -81,12 +82,12 @@
 <script>
 (async () => {
   const id = new URLSearchParams(window.location.search).get('id');
-  if (!id) { window.location = 'blog.html'; return; }
+  if (!id) { window.location.replace('/blog.html'); return; }
 
   try {
-    const blogs = await fetch('data/blogs.json').then(r => r.json());
+    const blogs = await fetch('/data/blogs.json').then(r => r.json());
     const post  = blogs.find(b => b.id === id);
-    if (!post) { window.location = 'blog.html'; return; }
+    if (!post) { window.location.replace('/blog.html'); return; }
 
     // SEO
     document.title = `${post.title} | MetroGuideIndia`;
