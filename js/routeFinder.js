@@ -315,8 +315,11 @@ const RouteFinder = (() => {
   };
 
   function normId(id) {
-    return id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
-  }
+  // Keep RRTS ids as-is (modipuram_rrts must remain modipuram_rrts)
+  // Only normalize metro ids to their twin rrts id (for interchange matching).
+  if (id.endsWith('_meerut_metro')) return id.replace(/_meerut_metro$/, '_rrts');
+  return id;
+}
 
   function lookupFare(a, b) {
     // Direct lookup (both normalised and raw)
