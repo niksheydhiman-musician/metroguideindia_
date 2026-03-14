@@ -322,13 +322,22 @@ const RouteFinder = (() => {
 }
 
   function lookupFare(a, b) {
-    // Direct lookup (both normalised and raw)
-    const key = [a, b].sort().join('__');
-    if (FARE[key] !== undefined) return FARE[key];
-    const k2 = [normId(a), normId(b)].sort().join('__');
-    if (FARE[k2] !== undefined) return FARE[k2];
-    return null;
-  }
+  // Direct lookup (both directions)
+  const key1 = `${a}__${b}`;
+  const key2 = `${b}__${a}`;
+  if (FARE[key1] !== undefined) return FARE[key1];
+  if (FARE[key2] !== undefined) return FARE[key2];
+
+  // Normalized lookup (both directions)
+  const a2 = normId(a);
+  const b2 = normId(b);
+  const k3 = `${a2}__${b2}`;
+  const k4 = `${b2}__${a2}`;
+  if (FARE[k3] !== undefined) return FARE[k3];
+  if (FARE[k4] !== undefined) return FARE[k4];
+
+  return null;
+}
 
  function calcFare(path) {
   if (!path || path.length < 2) return 20;
