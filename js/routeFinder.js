@@ -51,10 +51,12 @@ const RouteFinder = (() => {
   }
 
   /* ── Helpers ─────────────────────────────────────────────────────────────── */
-  const isMetro = id => id.includes('_meerut_metro');
+  // Any station whose ID ends with _metro belongs to a metro system.
+  // This pattern supports _meerut_metro, _delhi_metro, _lucknow_metro, etc.
+  const isMetro = id => id.endsWith('_metro');
   const isRRTS  = id => !isMetro(id);
-  // Get the RRTS-side station_id for any interchange node
-  const rrtsId  = id => isMetro(id) ? id.replace('_meerut_metro', '_rrts') : id;
+  // Get the RRTS-side station_id for a metro interchange node
+  const rrtsId  = id => isMetro(id) ? id.replace(/_[a-z0-9]+_metro$/, '_rrts') : id;
 
   /* ── Dijkstra ─────────────────────────────────────────────────────────────
      Returns raw path: array of { station_id, line_id } where line_id is the
@@ -139,8 +141,8 @@ const RouteFinder = (() => {
       // e.g. shatabdi_nagar_rrts → shatabdi_nagar_meerut_metro
       if (i + 1 < deduped.length) {
         const next = deduped[i + 1];
-        const curBase  = step.station_id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
-        const nextBase = next.station_id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '');
+        const curBase  = step.station_id.replace(/_rrts$/, '').replace(/_[a-z0-9]+_metro$/, '');
+        const nextBase = next.station_id.replace(/_rrts$/, '').replace(/_[a-z0-9]+_metro$/, '');
         if (curBase === nextBase && curBase !== step.station_id) {
           // This is an implicit interchange crossing — emit one interchange step
           const rid = isRRTS(step.station_id) ? step.station_id : rrtsId(step.station_id);
@@ -175,7 +177,7 @@ const RouteFinder = (() => {
       const edge = fromEdges.find(e =>
         e.neighbor === to ||
         e.neighbor === to.replace(/_rrts$/, '_meerut_metro') ||
-        e.neighbor === to.replace(/_meerut_metro$/, '_rrts')
+        e.neighbor === to.replace(/_[a-z0-9]+_metro$/, '_rrts')
       );
       if (edge && edge.line_id !== 'interchange') total += edge.distance_km;
     }
@@ -288,113 +290,152 @@ const RouteFinder = (() => {
     'shatabdi_nagar_rrts__modipuram_rrts':      30,
     'begumpul_rrts__modipuram_rrts':            20,
 
-    // ── Meerut Metro fares (Capped at ₹60 total) ──
-    'meerut_south_meerut_metro__partapur':                    20,
-    'meerut_south_meerut_metro__rithani':                     20,
-    'meerut_south_meerut_metro__shatabdi_nagar_meerut_metro': 30,
-    'meerut_south_meerut_metro__brahampuri':                  30,
-    'meerut_south_meerut_metro__meerut_central':              30,
-    'meerut_south_meerut_metro__bhaisali_bus_adda':           40,
-    'meerut_south_meerut_metro__begumpul_meerut_metro':       40,
-    'meerut_south_meerut_metro__mes_colony':                  50,
-    'meerut_south_meerut_metro__daurli':                      50,
-    'meerut_south_meerut_metro__meerut_north':                60,
-    'meerut_south_meerut_metro__modipuram_meerut_metro':       60,
+    // ── Meerut Metro fares — complete matrix, all station pairs ──
+    // Fare slab: 1–2 stops = ₹20, 3–5 stops = ₹30, 6–7 stops = ₹40,
+    //            8–9 stops = ₹50, 10+ stops = ₹60
+    // Stations in order:
+    //   1=meerut_south  2=partapur  3=rithani  4=shatabdi_nagar
+    //   5=brahampuri  6=meerut_central  7=bhaisali_bus_adda  8=begumpul
+    //   9=mes_colony  10=daurli  11=meerut_north  12=modipuram
 
-    'modipuram_meerut_metro__meerut_north':                   20,
-    'modipuram_meerut_metro__daurli':                         20,
-    'modipuram_meerut_metro__mes_colony':                     30,
-    'modipuram_meerut_metro__begumpul_meerut_metro':          30,
-    'modipuram_meerut_metro__bhaisali_bus_adda':              40,
-    'modipuram_meerut_metro__meerut_central':                 50,
-    'modipuram_meerut_metro__brahampuri':                     50,
-    'modipuram_meerut_metro__shatabdi_nagar_meerut_metro':    50,
-    'modipuram_meerut_metro__rithani':                        50,
-    'modipuram_meerut_metro__partapur':                       60,
-    'modipuram_meerut_metro__meerut_south_meerut_metro':      60,
+    'meerut_south_meerut_metro__partapur_meerut_metro':                    20,
+    'meerut_south_meerut_metro__rithani_meerut_metro':                     20,
+    'meerut_south_meerut_metro__shatabdi_nagar_meerut_metro':              30,
+    'meerut_south_meerut_metro__brahampuri_meerut_metro':                  30,
+    'meerut_south_meerut_metro__meerut_central_meerut_metro':              30,
+    'meerut_south_meerut_metro__bhaisali_bus_adda_meerut_metro':           40,
+    'meerut_south_meerut_metro__begumpul_meerut_metro':                    40,
+    'meerut_south_meerut_metro__mes_colony_meerut_metro':                  50,
+    'meerut_south_meerut_metro__daurli_meerut_metro':                      50,
+    'meerut_south_meerut_metro__meerut_north_meerut_metro':                60,
+    'meerut_south_meerut_metro__modipuram_meerut_metro':                   60,
+
+    'partapur_meerut_metro__rithani_meerut_metro':                         20,
+    'partapur_meerut_metro__shatabdi_nagar_meerut_metro':                  20,
+    'partapur_meerut_metro__brahampuri_meerut_metro':                      30,
+    'partapur_meerut_metro__meerut_central_meerut_metro':                  30,
+    'partapur_meerut_metro__bhaisali_bus_adda_meerut_metro':               30,
+    'partapur_meerut_metro__begumpul_meerut_metro':                        40,
+    'partapur_meerut_metro__mes_colony_meerut_metro':                      40,
+    'partapur_meerut_metro__daurli_meerut_metro':                          50,
+    'partapur_meerut_metro__meerut_north_meerut_metro':                    50,
+    'partapur_meerut_metro__modipuram_meerut_metro':                       60,
+
+    'rithani_meerut_metro__shatabdi_nagar_meerut_metro':                   20,
+    'rithani_meerut_metro__brahampuri_meerut_metro':                       20,
+    'rithani_meerut_metro__meerut_central_meerut_metro':                   30,
+    'rithani_meerut_metro__bhaisali_bus_adda_meerut_metro':                30,
+    'rithani_meerut_metro__begumpul_meerut_metro':                         30,
+    'rithani_meerut_metro__mes_colony_meerut_metro':                       40,
+    'rithani_meerut_metro__daurli_meerut_metro':                           40,
+    'rithani_meerut_metro__meerut_north_meerut_metro':                     50,
+    'rithani_meerut_metro__modipuram_meerut_metro':                        50,
+
+    'shatabdi_nagar_meerut_metro__brahampuri_meerut_metro':                20,
+    'shatabdi_nagar_meerut_metro__meerut_central_meerut_metro':            20,
+    'shatabdi_nagar_meerut_metro__bhaisali_bus_adda_meerut_metro':         30,
+    'shatabdi_nagar_meerut_metro__begumpul_meerut_metro':                  30,
+    'shatabdi_nagar_meerut_metro__mes_colony_meerut_metro':                30,
+    'shatabdi_nagar_meerut_metro__daurli_meerut_metro':                    40,
+    'shatabdi_nagar_meerut_metro__meerut_north_meerut_metro':              40,
+    'shatabdi_nagar_meerut_metro__modipuram_meerut_metro':                 50,
+
+    'brahampuri_meerut_metro__meerut_central_meerut_metro':                20,
+    'brahampuri_meerut_metro__bhaisali_bus_adda_meerut_metro':             20,
+    'brahampuri_meerut_metro__begumpul_meerut_metro':                      30,
+    'brahampuri_meerut_metro__mes_colony_meerut_metro':                    30,
+    'brahampuri_meerut_metro__daurli_meerut_metro':                        30,
+    'brahampuri_meerut_metro__meerut_north_meerut_metro':                  40,
+    'brahampuri_meerut_metro__modipuram_meerut_metro':                     40,
+
+    'meerut_central_meerut_metro__bhaisali_bus_adda_meerut_metro':         20,
+    'meerut_central_meerut_metro__begumpul_meerut_metro':                  20,
+    'meerut_central_meerut_metro__mes_colony_meerut_metro':                30,
+    'meerut_central_meerut_metro__daurli_meerut_metro':                    30,
+    'meerut_central_meerut_metro__meerut_north_meerut_metro':              30,
+    'meerut_central_meerut_metro__modipuram_meerut_metro':                 40,
+
+    'bhaisali_bus_adda_meerut_metro__begumpul_meerut_metro':               20,
+    'bhaisali_bus_adda_meerut_metro__mes_colony_meerut_metro':             20,
+    'bhaisali_bus_adda_meerut_metro__daurli_meerut_metro':                 30,
+    'bhaisali_bus_adda_meerut_metro__meerut_north_meerut_metro':           30,
+    'bhaisali_bus_adda_meerut_metro__modipuram_meerut_metro':              30,
+
+    'begumpul_meerut_metro__mes_colony_meerut_metro':                      20,
+    'begumpul_meerut_metro__daurli_meerut_metro':                          20,
+    'begumpul_meerut_metro__meerut_north_meerut_metro':                    30,
+    'begumpul_meerut_metro__modipuram_meerut_metro':                       30,
+
+    'mes_colony_meerut_metro__daurli_meerut_metro':                        20,
+    'mes_colony_meerut_metro__meerut_north_meerut_metro':                  20,
+    'mes_colony_meerut_metro__modipuram_meerut_metro':                     30,
+
+    'daurli_meerut_metro__meerut_north_meerut_metro':                      20,
+    'daurli_meerut_metro__modipuram_meerut_metro':                         20,
+
+    'meerut_north_meerut_metro__modipuram_meerut_metro':                   20,
   };
 
-  function normId(id) {
-  // Keep RRTS ids as-is (modipuram_rrts must remain modipuram_rrts)
-  // Only normalize metro ids to their twin rrts id (for interchange matching).
-  if (id.endsWith('_meerut_metro')) return id.replace(/_meerut_metro$/, '_rrts');
-  return id;
-}
-
+  /* ── Fare lookup — direction-independent ─────────────────────────────────── */
   function lookupFare(a, b) {
-  // Direct lookup (both directions)
-  const key1 = `${a}__${b}`;
-  const key2 = `${b}__${a}`;
-  if (FARE[key1] !== undefined) return FARE[key1];
-  if (FARE[key2] !== undefined) return FARE[key2];
-
-  // Normalized lookup (both directions)
-  const a2 = normId(a);
-  const b2 = normId(b);
-  const k3 = `${a2}__${b2}`;
-  const k4 = `${b2}__${a2}`;
-  if (FARE[k3] !== undefined) return FARE[k3];
-  if (FARE[k4] !== undefined) return FARE[k4];
-
-  return null;
-}
-
-function calcFare(path) {
-  if (!path || path.length < 2) return 20;
-
-  const src = path[0].station_id;
-  const dst = path[path.length - 1].station_id;
-
-  // 1) direct fare if present
-  const direct = lookupFare(src, dst);
-  if (direct !== null) return direct;
-
-  // 2) Detect a system boundary in the actual path
-  const isMetroId = (id) => id && id.includes('_meerut_metro');
-
-  let boundaryIndex = -1;
-  for (let i = 1; i < path.length; i++) {
-    const a = path[i - 1].station_id;
-    const b = path[i].station_id;
-    if (isMetroId(a) !== isMetroId(b)) { boundaryIndex = i; break; }
+    if (FARE[`${a}__${b}`] !== undefined) return FARE[`${a}__${b}`];
+    if (FARE[`${b}__${a}`] !== undefined) return FARE[`${b}__${a}`];
+    return null;
   }
 
-  if (boundaryIndex === -1) {
-    // No system change and no direct fare found => fallback
+  /* ── Fare calculation ────────────────────────────────────────────────────── */
+  function calcFare(path) {
+    if (!path || path.length < 2) return 20;
+
+    const src = path[0].station_id;
+    const dst = path[path.length - 1].station_id;
+
+    // 1) Try direct fare (handles RRTS-only, Metro-only, and cross-system when in table)
+    const direct = lookupFare(src, dst);
+    if (direct !== null) return direct;
+
+    // 2) Find the first system boundary in the path
+    let boundaryIndex = -1;
+    for (let i = 1; i < path.length; i++) {
+      if (isMetro(path[i - 1].station_id) !== isMetro(path[i].station_id)) {
+        boundaryIndex = i;
+        break;
+      }
+    }
+
+    if (boundaryIndex === -1) return 20; // no system change, no direct fare
+
+    const left  = path[boundaryIndex - 1].station_id;
+    const right = path[boundaryIndex].station_id;
+
+    // The RRTS-side boundary node is whichever of left/right is NOT metro.
+    // For RRTS→Metro: left is the RRTS interchange node, right is first metro station.
+    // For Metro→RRTS: left is last metro station, right is the RRTS interchange node.
+    const ixRRTS  = isMetro(left) ? right : left;
+    const ixMetro = ixRRTS.replace(/_rrts$/, '_meerut_metro');
+
+    const srcIsMetro = isMetro(src);
+    const dstIsMetro = isMetro(dst);
+
+    if (!srcIsMetro && dstIsMetro) {
+      // RRTS → Metro
+      const rrtsFare  = lookupFare(src, ixRRTS);
+      const metroFare = lookupFare(ixMetro, dst);
+      if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
+    } else if (srcIsMetro && !dstIsMetro) {
+      // Metro → RRTS
+      const metroFare = lookupFare(src, ixMetro);
+      const rrtsFare  = lookupFare(ixRRTS, dst);
+      if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
+    }
+
     return 20;
   }
 
-  // Boundary stations (one on each side)
-  const left  = path[boundaryIndex - 1].station_id; // last station on system A
-  const right = path[boundaryIndex].station_id;     // first station on system B
-
-  // Normalize to interchange twins
-  const leftRRTS  = rrtsId(left);
-  const rightRRTS = rrtsId(right);
-  const ixRRTS = leftRRTS; // interchange station on rrts side
-  const ixMetro = ixRRTS.replace(/_rrts$/, '_meerut_metro');
-
-  // Decide direction: src system → dst system
-  const srcIsMetro = isMetroId(src);
-  const dstIsMetro = isMetroId(dst);
-
-  if (!srcIsMetro && dstIsMetro) {
-    // RRTS -> Metro
-    const rrtsFare = lookupFare(src, ixRRTS);
-    const metroFare = lookupFare(ixMetro, dst);
-    if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
-  } else if (srcIsMetro && !dstIsMetro) {
-    // Metro -> RRTS
-    const metroFare = lookupFare(src, ixMetro);
-    const rrtsFare = lookupFare(ixRRTS, dst);
-    if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
-  }
-
-  return 20;
-}
   function calcTime(distance, nInterchanges) {
     return Math.ceil(distance * 0.72 + 5) + (nInterchanges * 4);
   }
 
   return { findRoute, calcDistance, calcFare, calcTime };
 })();
+

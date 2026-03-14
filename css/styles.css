@@ -191,6 +191,32 @@ a{color:inherit;text-decoration:none}
 .sel option{background:var(--surface);color:var(--text)}
 .sel optgroup{color:var(--muted)}
 
+/* ── Autocomplete ────────────────────────────────────────── */
+.ac-wrap{position:relative}
+.ac-input{width:100%;padding:12px 15px;
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:var(--r-sm);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:.94rem;font-weight:500;
+  transition:border-color .2s,box-shadow .2s;cursor:text}
+.ac-input:focus{outline:none;border-color:rgba(192,57,43,.5);box-shadow:0 0 0 3px rgba(192,57,43,.08)}
+.ac-input::placeholder{color:var(--muted)}
+.ac-list{position:absolute;top:calc(100% + 4px);left:0;right:0;
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--r-sm);box-shadow:var(--shadow-md);
+  max-height:260px;overflow-y:auto;z-index:200;
+  list-style:none;padding:4px;margin:0}
+.ac-list[hidden]{display:none}
+.ac-list li{display:flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:6px;cursor:pointer;
+  font-size:.87rem;transition:background .12s}
+.ac-list li:hover,.ac-list li.ac-active{background:var(--surface2)}
+.ac-sys-badge{font-size:.62rem;font-weight:700;padding:2px 5px;
+  border-radius:4px;flex-shrink:0;letter-spacing:.03em}
+.ac-sys-rrts{background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.25)}
+.ac-sys-metro{background:var(--green-bg);color:var(--green);border:1px solid rgba(39,118,74,.22)}
+.ac-name{font-weight:500;flex:1;color:var(--text)}
+.ac-city{color:var(--muted);font-size:.75rem;flex-shrink:0}
+
 .swap-row{display:flex;justify-content:center;margin:-2px 0 8px}
 .swap{
   width:32px;height:32px;border-radius:50%;

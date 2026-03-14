@@ -119,9 +119,13 @@
   <section id="search-section">
     <div class="sc">
       <div class="fd">
-        <label class="fl" for="src" data-en>From</label>
-        <label class="fl" for="src" data-hi>से (From)</label>
-        <select id="src" class="sel"><option value="" data-en>Select source station</option></select>
+        <label class="fl" for="src-search" data-en>From</label>
+        <label class="fl" for="src-search" data-hi>से (From)</label>
+        <div class="ac-wrap">
+          <input type="text" id="src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
+          <input type="hidden" id="src">
+          <ul class="ac-list" id="src-list" hidden></ul>
+        </div>
       </div>
       <div class="swap-row">
         <button class="swap" id="swap-btn" title="Swap stations" aria-label="Swap stations">
@@ -131,9 +135,13 @@
         </button>
       </div>
       <div class="fd">
-        <label class="fl" for="dst" data-en>To</label>
-        <label class="fl" for="dst" data-hi>तक (To)</label>
-        <select id="dst" class="sel"><option value="" data-en>Select destination station</option></select>
+        <label class="fl" for="dst-search" data-en>To</label>
+        <label class="fl" for="dst-search" data-hi>तक (To)</label>
+        <div class="ac-wrap">
+          <input type="text" id="dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
+          <input type="hidden" id="dst">
+          <ul class="ac-list" id="dst-list" hidden></ul>
+        </div>
       </div>
       <button class="btn-find" id="find-btn" onclick="onFind()">
         <span class="btn-label">
@@ -294,11 +302,11 @@
 <button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
 
 <!-- Scripts -->
-<script src="/js/dataLoader.js"></script>
-<script src="/js/graphBuilder.js"></script>
-<script src="/js/routeFinder.js"></script>
-<script src="/js/routeUI.js"></script>
-<script src="/js/seoGenerator.js"></script>
+<script src="/js/dataLoader.js?v=20260314"></script>
+<script src="/js/graphBuilder.js?v=20260314"></script>
+<script src="/js/routeFinder.js?v=20260314"></script>
+<script src="/js/routeUI.js?v=20260314"></script>
+<script src="/js/seoGenerator.js?v=20260314"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    App — index.html  v3
@@ -349,33 +357,93 @@ function initTicker() {
   ti.innerHTML = html;
 }
 
+/* ── Autocomplete setup ─────────────────────────────────── */
+function setupAutocomplete(searchId, hiddenId, listId, stationList) {
+  const searchEl = document.getElementById(searchId);
+  const hiddenEl = document.getElementById(hiddenId);
+  const listEl   = document.getElementById(listId);
+  let activeIdx  = -1;
+
+  function renderList(q) {
+    const lower = (q || '').toLowerCase().trim();
+    const filtered = lower
+      ? stationList.filter(s =>
+          s.name.toLowerCase().includes(lower) ||
+          s.city.toLowerCase().includes(lower) ||
+          s.system.toLowerCase().includes(lower)
+        )
+      : stationList;
+    activeIdx = -1;
+    if (!filtered.length) { listEl.hidden = true; return; }
+    listEl.innerHTML = filtered.map(s => {
+      const isR = s.system === 'rrts';
+      return `<li data-id="${s.id}" data-name="${s.name}">` +
+        `<span class="ac-sys-badge ${isR ? 'ac-sys-rrts' : 'ac-sys-metro'}">${isR ? 'RRTS' : 'Metro'}</span>` +
+        `<span class="ac-name">${s.name}</span>` +
+        `<span class="ac-city">${s.city}</span></li>`;
+    }).join('');
+    listEl.hidden = false;
+  }
+
+  function selectItem(li) {
+    hiddenEl.value = li.dataset.id;
+    searchEl.value = li.dataset.name;
+    listEl.hidden  = true;
+    activeIdx = -1;
+  }
+
+  searchEl.addEventListener('input', () => renderList(searchEl.value));
+  searchEl.addEventListener('focus', () => renderList(searchEl.value));
+  searchEl.addEventListener('keydown', e => {
+    const items = listEl.querySelectorAll('li');
+    if (!items.length || listEl.hidden) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIdx = Math.min(activeIdx + 1, items.length - 1);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = Math.max(activeIdx - 1, 0);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter' && activeIdx >= 0) {
+      e.preventDefault();
+      selectItem(items[activeIdx]);
+    } else if (e.key === 'Escape') {
+      listEl.hidden = true;
+    }
+  });
+  searchEl.addEventListener('blur', () => {
+    setTimeout(() => { listEl.hidden = true; }, 180);
+  });
+  listEl.addEventListener('mousedown', e => {
+    const li = e.target.closest('li[data-id]');
+    if (li) selectItem(li);
+  });
+}
+
+/* ── Set station programmatically (updates both hidden + display) ────────── */
+function setStation(which, stationId) {
+  const hidden = document.getElementById(which);
+  const search = document.getElementById(which + '-search');
+  if (hidden) hidden.value = stationId || '';
+  if (search && DATA) {
+    const st = DATA.stations.find(s => s.station_id === stationId);
+    search.value = st ? st.station_name : '';
+  } else if (search) {
+    search.value = '';
+  }
+}
+
 /* ── Dropdowns ──────────────────────────────────────────── */
 function buildDropdowns() {
   const uniq = uniqueStations(DATA.stations);
-  const grps = { rrts: [], meerut_metro: [] };
-  uniq.forEach(s => grps[s.system_id]?.push(s));
-
-  ['src','dst'].forEach(id => {
-    const sel = document.getElementById(id);
-    const ph  = sel.options[0];
-    sel.innerHTML = '';
-    sel.appendChild(ph);
-    [
-      { k: 'rrts',         lab: 'Namo Bharat RRTS' },
-      { k: 'meerut_metro', lab: 'Meerut Metro' },
-    ].forEach(({ k, lab }) => {
-      if (!grps[k]?.length) return;
-      const og = document.createElement('optgroup');
-      og.label = lab;
-      grps[k].forEach(s => {
-        const o = document.createElement('option');
-        o.value = s.station_id;
-o.textContent = `${s.station_name} (${s.system_id === 'rrts' ? 'RRTS' : 'Metro'})`;
-        og.appendChild(o);
-      });
-      sel.appendChild(og);
-    });
-  });
+  const stationList = uniq.map(s => ({
+    id: s.station_id, name: s.station_name, city: s.city, system: s.system_id
+  }));
+  setupAutocomplete('src-search', 'src', 'src-list', stationList);
+  setupAutocomplete('dst-search', 'dst', 'dst-list', stationList);
 }
 
 /* ── System Cards ───────────────────────────────────────── */
@@ -486,10 +554,8 @@ function initTabListeners() {
 
 /* ── Quick fill from station row ────────────────────────── */
 function quickFill(id) {
-  const src = document.getElementById('src');
-  const dst = document.getElementById('dst');
-  if (!src.value) src.value = id;
-  else dst.value = id;
+  if (!document.getElementById('src').value) setStation('src', id);
+  else setStation('dst', id);
   document.getElementById('search-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -575,16 +641,21 @@ function restoreFromURL() {
   const p = new URLSearchParams(window.location.search);
   const from = p.get('from'), to = p.get('to');
   if (from && to) {
-    document.getElementById('src').value = from;
-    document.getElementById('dst').value = to;
+    setStation('src', from);
+    setStation('dst', to);
     setTimeout(() => go(from, to), 200);
   }
 }
 
 /* ── Swap ───────────────────────────────────────────────── */
 document.getElementById('swap-btn').addEventListener('click', () => {
-  const s = document.getElementById('src'), d = document.getElementById('dst');
-  [s.value, d.value] = [d.value, s.value];
+  const srcH = document.getElementById('src');
+  const dstH = document.getElementById('dst');
+  const srcS = document.getElementById('src-search');
+  const dstS = document.getElementById('dst-search');
+  const tmpId   = srcH.value, tmpName = srcS.value;
+  srcH.value = dstH.value; srcS.value = dstS.value;
+  dstH.value = tmpId;      dstS.value = tmpName;
 });
 
 /* ── Nav menu ───────────────────────────────────────────── */
