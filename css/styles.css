@@ -305,7 +305,7 @@ a{color:inherit;text-decoration:none}
 
 /* SEO block */
 .seo-block{padding:13px 16px 16px;border-top:1px solid var(--border);font-size:.82rem;color:var(--text2);line-height:1.75}
-.seo-block p{margin-bottom:8px}.seo-block p:last-child{margin-bottom:0}
+.seo-block p{margin-bottom:10px}.seo-block p:last-child{margin-bottom:0}
 .seo-block strong{color:var(--text)}
 /* Route SEO summary box */
 .route-seo-box{
