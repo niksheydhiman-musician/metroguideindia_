@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Contact Us | MetroGuideIndia</title>
-  <meta name="description" content="Contact MetroGuideIndia for feedback, corrections, or suggestions."/>
+  <meta name="description" content="Get in touch with MetroGuideIndia for support, data corrections, or partnership inquiries regarding Namo Bharat RRTS and Meerut Metro."/>
   <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
@@ -19,73 +19,68 @@
 
 <main>
   <div class="wrap" style="padding:32px 0 56px;max-width:820px">
-    <div class="sec-eye">Support</div>
-    <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:10px">Contact Us</h1>
+    <div class="sec-eye">Help & Support</div>
+    <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:10px">Get in Touch</h1>
 
     <p style="color:var(--text2);line-height:1.75;font-size:.95rem">
-      Use the contact details below for feedback, corrections, or feature requests.
-      If you notice incorrect fare/timing/station information, please mention the station names and what needs correction.
+      At MetroGuideIndia, we strive for 100% accuracy in our transit data. Whether you have a suggestion for a new feature, found a discrepancy in fares, or simply want to share your experience, we are here to listen.
     </p>
 
     <div style="margin-top:18px;padding:16px 18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface)">
-      <div style="font-weight:700;font-family:'Syne',sans-serif;margin-bottom:8px">Email</div>
-      <div style="color:var(--text2)">metroguideindiasupport@gmail.com</div>
+      <div style="font-weight:700;font-family:'Syne',sans-serif;margin-bottom:8px">Direct Email Support</div>
+      <div style="color:var(--text2); font-weight: 500;">metroguideindiasupport@gmail.com</div>
 
 <section style="margin-top:28px">
-  <h2 style="font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:10px">Share your feedback</h2>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:10px">Submit a Transit Report</h2>
   <p style="color:var(--text2);line-height:1.75;font-size:.95rem;margin-bottom:14px">
-    Found an issue in stations, fares, timings, or route results? Have a suggestion?
-    Send it here and we’ll improve MetroGuideIndia.
+    Notice a change in station timings or a wrong fare calculation? Use the form below to help us keep the community updated. Please include specific station names for faster verification.
   </p>
 
   <form action="https://formspree.io/f/xkoqzylp" method="POST" id="feedback-form"
         style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:16px">
 
-    <!-- Optional: helps you identify which page the feedback came from -->
     <input type="hidden" name="page" id="feedback-page" value="">
 
     <div style="display:grid;gap:12px">
       <div>
         <label for="fb-email" style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:600">
-          Your email (optional)
+          Your Email Address (Optional)
         </label>
         <input id="fb-email" type="email" name="email" autocomplete="email"
-               placeholder="you@example.com"
+               placeholder="name@example.com"
                style="width:100%;padding:12px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;color:var(--text);outline:none">
       </div>
 
       <div>
         <label for="fb-message" style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:600">
-          Your message
+          Describe the issue or suggestion
         </label>
         <textarea id="fb-message" name="message" required rows="6"
-                  placeholder="Example: Route from Meerut South to Begumpul shows wrong interchange…"
+                  placeholder="Example: The fare from Ghaziabad to Modinagar North has been updated to..."
                   style="width:100%;padding:12px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;color:var(--text);outline:none;resize:vertical"></textarea>
       </div>
 
       <button type="submit" id="fb-submit"
               style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:12px 16px;border:none;border-radius:var(--r-sm);font-weight:700;cursor:pointer">
-        Send Feedback
+        Submit Information
       </button>
 
       <p id="fb-status" style="margin:0;color:var(--muted);font-size:.85rem;line-height:1.6"></p>
 
       <p style="margin:0;color:var(--muted);font-size:.82rem;line-height:1.6">
-        Please don’t share sensitive personal information. If possible, include station names and what looks wrong.
+        <strong>Privacy Note:</strong> Please avoid sharing sensitive personal data like phone numbers or home addresses.
       </p>
     </div>
   </form>
 </section>
 
 <script>
-  // Attach current page URL so you know where the feedback came from
   (function () {
     var page = window.location.href;
     var el = document.getElementById('feedback-page');
     if (el) el.value = page;
   })();
 
-  // Optional: AJAX submit to avoid full-page navigation
   (function () {
     var form = document.getElementById('feedback-form');
     if (!form) return;
@@ -96,7 +91,7 @@
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (btn) btn.disabled = true;
-      if (status) status.textContent = 'Sending…';
+      if (status) status.textContent = 'Sending message...';
 
       try {
         var res = await fetch(form.action, {
@@ -107,16 +102,14 @@
 
         if (res.ok) {
           form.reset();
-          // re-add page value after reset
           var pageEl = document.getElementById('feedback-page');
           if (pageEl) pageEl.value = window.location.href;
-
-          if (status) status.textContent = 'Thanks! Your feedback has been sent.';
+          if (status) status.textContent = 'Thank you! We have received your feedback.';
         } else {
-          if (status) status.textContent = 'Could not send right now. Please try again in a moment.';
+          if (status) status.textContent = 'Unable to send. Please try again later.';
         }
       } catch (err) {
-        if (status) status.textContent = 'Network error. Please try again.';
+        if (status) status.textContent = 'Connection error. Please check your internet.';
       } finally {
         if (btn) btn.disabled = false;
       }
@@ -126,13 +119,9 @@
 
       <div style="height:1px;background:var(--border);margin:14px 0"></div>
 
-      <div style="font-weight:700;font-family:'Syne',sans-serif;margin-bottom:8px">Response time</div>
-      <div style="color:var(--text2)">Usually within 48–72 hours.</div>
+      <div style="font-weight:700;font-family:'Syne',sans-serif;margin-bottom:8px">Estimated Response Time</div>
+      <div style="color:var(--text2)">Our small team reviews all submissions. You can expect a response within 48–72 hours.</div>
     </div>
-
-    <p style="margin-top:14px;color:var(--muted);font-size:.85rem;line-height:1.7">
-      Note: Please do not share sensitive personal information.
-    </p>
   </div>
 </main>
 
@@ -147,7 +136,7 @@
       <a href="/terms.html">Terms</a><span>·</span>
       <a href="/disclaimer.html">Disclaimer</a>
     </div>
-    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Independent Transit Resource. Not affiliated with NCRTC.</div>
   </div>
 </footer>
 </body>
