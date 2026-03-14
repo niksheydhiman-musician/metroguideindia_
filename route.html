@@ -36,8 +36,12 @@
     <section style="margin:24px 0 48px">
       <div class="sc">
         <div class="fd">
-          <label class="fl" for="src">From</label>
-          <select id="src" class="sel"><option value="">Select source station</option></select>
+          <label class="fl" for="src-search">From</label>
+          <div class="ac-wrap">
+            <input type="text" id="src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
+            <input type="hidden" id="src">
+            <ul class="ac-list" id="src-list" hidden></ul>
+          </div>
         </div>
 
         <div class="swap-row">
@@ -47,8 +51,12 @@
         </div>
 
         <div class="fd">
-          <label class="fl" for="dst">To</label>
-          <select id="dst" class="sel"><option value="">Select destination station</option></select>
+          <label class="fl" for="dst-search">To</label>
+          <div class="ac-wrap">
+            <input type="text" id="dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
+            <input type="hidden" id="dst">
+            <ul class="ac-list" id="dst-list" hidden></ul>
+          </div>
         </div>
 
         <button class="btn-find" id="find-btn" type="button">
@@ -81,11 +89,11 @@
 
 <button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
 
-<script src="/js/dataLoader.js"></script>
-<script src="/js/graphBuilder.js"></script>
-<script src="/js/routeFinder.js"></script>
-<script src="/js/routeUI.js"></script>
-<script src="/js/seoGenerator.js"></script>
+<script src="/js/dataLoader.js?v=20260314"></script>
+<script src="/js/graphBuilder.js?v=20260314"></script>
+<script src="/js/routeFinder.js?v=20260314"></script>
+<script src="/js/routeUI.js?v=20260314"></script>
+<script src="/js/seoGenerator.js?v=20260314"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -175,9 +183,9 @@ function renderSlug(slug) {
     return false;
   }
 
-  // Pre-select dropdowns
-  document.getElementById('src').value = parsed.fromId;
-  document.getElementById('dst').value = parsed.toId;
+  // Pre-fill autocomplete inputs
+  setStation('src', parsed.fromId);
+  setStation('dst', parsed.toId);
 
   // Render route
   go(parsed.fromId, parsed.toId);
@@ -189,7 +197,7 @@ DataLoader.loadAll().then(data => {
   DATA  = data;
   GRAPH = GraphBuilder.build(data.connections);
 
-  populateSelects(data.stations);
+  populateAutocomplete(data.stations);
   attachSwap();
   attachFind();
 
@@ -294,13 +302,12 @@ function attachFind() {
   if (!btn) return;
   btn.addEventListener('click', onFind);
 
-  // Optional: allow Enter to trigger route search when focusing selects
-  const src = document.getElementById('src');
-  const dst = document.getElementById('dst');
-  [src, dst].forEach(el => {
+  // Allow Enter to trigger route search from search inputs
+  ['src-search', 'dst-search'].forEach(id => {
+    const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') onFind();
+      if (e.key === 'Enter') { e.preventDefault(); onFind(); }
     });
   });
 }
@@ -319,40 +326,113 @@ window.addEventListener('popstate', () => {
   renderSlug(slug);
 });
 
-/* ── Populate dropdowns (existing behavior preserved) ────────────────────── */
-function populateSelects(stations) {
-  const src = document.getElementById('src');
-  const dst = document.getElementById('dst');
+/* ── Autocomplete setup ───────────────────────────────────────────────────── */
+function setupAutocomplete(searchId, hiddenId, listId, stationList) {
+  const searchEl = document.getElementById(searchId);
+  const hiddenEl = document.getElementById(hiddenId);
+  const listEl   = document.getElementById(listId);
+  let activeIdx  = -1;
 
-  // Deduplicate by station_name — prefer RRTS entry for interchange stations
-  const seen = new Set();
-  const unique = stations.filter(s => {
-    const k = s.station_name;
-    if (seen.has(k)) return false;
-    seen.add(k); return true;
-  });
-
-  // Group by system for optgroup
-  const rrts  = unique.filter(s => s.system_id === 'rrts');
-  const metro = unique.filter(s => s.system_id !== 'rrts');
-
-  function buildOptions(list) {
-    return list.map(s => `<option value="${s.station_id}">${s.station_name} — ${s.city}</option>`).join('');
+  function renderList(q) {
+    const lower = (q || '').toLowerCase().trim();
+    const filtered = lower
+      ? stationList.filter(s =>
+          s.name.toLowerCase().includes(lower) ||
+          s.city.toLowerCase().includes(lower) ||
+          s.system.toLowerCase().includes(lower)
+        )
+      : stationList;
+    activeIdx = -1;
+    if (!filtered.length) { listEl.hidden = true; return; }
+    listEl.innerHTML = filtered.map(s => {
+      const isR = s.system === 'rrts';
+      return `<li data-id="${s.id}" data-name="${s.name}">` +
+        `<span class="ac-sys-badge ${isR ? 'ac-sys-rrts' : 'ac-sys-metro'}">${isR ? 'RRTS' : 'Metro'}</span>` +
+        `<span class="ac-name">${s.name}</span>` +
+        `<span class="ac-city">${s.city}</span></li>`;
+    }).join('');
+    listEl.hidden = false;
   }
 
-  const html = `
-    <optgroup label="Namo Bharat RRTS">${buildOptions(rrts)}</optgroup>
-    <optgroup label="Meerut Metro">${buildOptions(metro)}</optgroup>`;
+  function selectItem(li) {
+    hiddenEl.value = li.dataset.id;
+    searchEl.value = li.dataset.name;
+    listEl.hidden  = true;
+    activeIdx = -1;
+  }
 
-  src.innerHTML = '<option value="">Select source station</option>' + html;
-  dst.innerHTML = '<option value="">Select destination station</option>' + html;
+  searchEl.addEventListener('input', () => renderList(searchEl.value));
+  searchEl.addEventListener('focus', () => renderList(searchEl.value));
+  searchEl.addEventListener('keydown', e => {
+    const items = listEl.querySelectorAll('li');
+    if (!items.length || listEl.hidden) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIdx = Math.min(activeIdx + 1, items.length - 1);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = Math.max(activeIdx - 1, 0);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter' && activeIdx >= 0) {
+      e.preventDefault();
+      selectItem(items[activeIdx]);
+    } else if (e.key === 'Escape') {
+      listEl.hidden = true;
+    }
+  });
+  searchEl.addEventListener('blur', () => {
+    setTimeout(() => { listEl.hidden = true; }, 180);
+  });
+  listEl.addEventListener('mousedown', e => {
+    const li = e.target.closest('li[data-id]');
+    if (li) selectItem(li);
+  });
 }
 
-/* ── Swap button (existing behavior preserved) ───────────────────────────── */
+/* ── Set station programmatically (updates both hidden + display) ─────────── */
+function setStation(which, stationId) {
+  const hidden = document.getElementById(which);
+  const search = document.getElementById(which + '-search');
+  if (hidden) hidden.value = stationId || '';
+  if (search && DATA) {
+    const st = DATA.stations.find(s => s.station_id === stationId);
+    search.value = st ? st.station_name : '';
+  } else if (search) {
+    search.value = '';
+  }
+}
+
+/* ── Populate autocomplete (replaces populateSelects) ────────────────────── */
+function populateAutocomplete(stations) {
+  const seen = new Set();
+  const unique = stations.filter(s => {
+    const k = `${s.station_name}||${s.system_id}`;
+    if (seen.has(k)) return false;
+    seen.add(k); return true;
+  }).sort((a, b) => {
+    if (a.system_id !== b.system_id) return a.system_id === 'rrts' ? -1 : 1;
+    return Number(a.order) - Number(b.order);
+  });
+  const stationList = unique.map(s => ({
+    id: s.station_id, name: s.station_name, city: s.city, system: s.system_id
+  }));
+  setupAutocomplete('src-search', 'src', 'src-list', stationList);
+  setupAutocomplete('dst-search', 'dst', 'dst-list', stationList);
+}
+
+/* ── Swap button ─────────────────────────────────────────────────────────── */
 function attachSwap() {
   document.getElementById('swap-btn').addEventListener('click', () => {
-    const s = document.getElementById('src'), d = document.getElementById('dst');
-    [s.value, d.value] = [d.value, s.value];
+    const srcH = document.getElementById('src');
+    const dstH = document.getElementById('dst');
+    const srcS = document.getElementById('src-search');
+    const dstS = document.getElementById('dst-search');
+    const tmpId = srcH.value, tmpName = srcS.value;
+    srcH.value = dstH.value; srcS.value = dstS.value;
+    dstH.value = tmpId;      dstS.value = tmpName;
   });
 }
 
