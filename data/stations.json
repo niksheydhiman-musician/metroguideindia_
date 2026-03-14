@@ -132,7 +132,7 @@
     "longitude": "77.63238217"
   },
   {
-    "station_id": "partapur",
+    "station_id": "partapur_meerut_metro",
     "station_name": "Partapur",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -143,7 +143,7 @@
     "longitude": "77.65028625"
   },
   {
-    "station_id": "rithani",
+    "station_id": "rithani_meerut_metro",
     "station_name": "Rithani",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -176,7 +176,7 @@
     "longitude": "77.6735839"
   },
   {
-    "station_id": "brahampuri",
+    "station_id": "brahampuri_meerut_metro",
     "station_name": "Brahampuri",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -187,7 +187,7 @@
     "longitude": "77.68608896"
   },
   {
-    "station_id": "meerut_central",
+    "station_id": "meerut_central_meerut_metro",
     "station_name": "Meerut Central",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -198,7 +198,7 @@
     "longitude": "77.69059562"
   },
   {
-    "station_id": "bhaisali_bus_adda",
+    "station_id": "bhaisali_bus_adda_meerut_metro",
     "station_name": "Bhaisali Bus Adda",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -231,7 +231,7 @@
     "longitude": "77.70571674"
   },
   {
-    "station_id": "mes_colony",
+    "station_id": "mes_colony_meerut_metro",
     "station_name": "MES Colony",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -242,7 +242,7 @@
     "longitude": "77.7044356"
   },
   {
-    "station_id": "daurli",
+    "station_id": "daurli_meerut_metro",
     "station_name": "Daurli",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
@@ -253,7 +253,7 @@
     "longitude": "77.70695927"
   },
   {
-    "station_id": "meerut_north",
+    "station_id": "meerut_north_meerut_metro",
     "station_name": "Meerut North",
     "system_id": "meerut_metro",
     "line_id": "meerut_metro_main",
