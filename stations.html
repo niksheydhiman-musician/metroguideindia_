@@ -83,28 +83,52 @@
 <script>
 let ALL_STATIONS = [], INTERCHANGES = [];
 
+/* Detect base path (custom domain => '', project pages => '/metroguideindia_') */
+const BASE_PATH = (function () {
+  var path = window.location.pathname || '';
+  // If we are on /stations.html directly
+  path = path.replace(/\/stations\.html.*$/, '');
+  // If we are on /stations or /stations/ (in case you add redirects later)
+  path = path.replace(/\/stations\/?$/, '');
+  return path.replace(/\/$/, '');
+})();
+
 (async () => {
   try {
     const [stations, interchanges] = await Promise.all([
-     fetch('/data/stations.json').then(r=>r.json()),
-fetch('/data/interchanges.json').then(r=>r.json()),
+      fetch(BASE_PATH + '/data/stations.json', { cache: 'no-store' }).then(r => {
+        if (!r.ok) throw new Error('stations.json HTTP ' + r.status);
+        return r.json();
+      }),
+      fetch(BASE_PATH + '/data/interchanges.json', { cache: 'no-store' }).then(r => {
+        if (!r.ok) throw new Error('interchanges.json HTTP ' + r.status);
+        return r.json();
+      }),
     ]);
+
     // Deduplicate
     const seen = new Set();
     ALL_STATIONS = stations.filter(s => {
       const k = `${s.station_name}||${s.system_id}`;
-      if (seen.has(k)) return false; seen.add(k); return true;
-    }).sort((a,b) => Number(a.order)-Number(b.order));
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    }).sort((a, b) => Number(a.order) - Number(b.order));
+
     INTERCHANGES = interchanges;
     render(ALL_STATIONS);
+
     document.getElementById('search-bar').addEventListener('input', e => {
-      const q = e.target.value.toLowerCase();
+      const q = e.target.value.toLowerCase().trim();
       render(ALL_STATIONS.filter(s =>
-        s.station_name.toLowerCase().includes(q) || s.city.toLowerCase().includes(q)
+        (s.station_name || '').toLowerCase().includes(q) ||
+        (s.city || '').toLowerCase().includes(q)
       ));
     });
-  } catch(e) {
-    document.getElementById('stations-container').innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0">Could not load stations.</p>';
+  } catch (e) {
+    console.error('Stations load error:', e);
+    document.getElementById('stations-container').innerHTML =
+      '<p style="color:var(--muted);text-align:center;padding:40px 0">Could not load stations.</p>';
   }
 })();
 
@@ -115,7 +139,9 @@ function render(stations) {
   con.innerHTML = '';
   if (rrts.length)  con.appendChild(buildSection(rrts,  'rrts'));
   if (metro.length) con.appendChild(buildSection(metro, 'meerut_metro'));
-  if (!rrts.length && !metro.length) con.innerHTML = '<p style="color:var(--muted);text-align:center;padding:30px 0">No stations match your search.</p>';
+  if (!rrts.length && !metro.length) {
+    con.innerHTML = '<p style="color:var(--muted);text-align:center;padding:30px 0">No stations match your search.</p>';
+  }
 }
 
 function buildSection(stations, sys) {
@@ -135,13 +161,20 @@ function buildSection(stations, sys) {
         <div class="system-header-meta">${stations.length} stations</div>
       </div>
     </div>
-    ${stations.map((s, i) => stationCard(s, i+1, color)).join('')} `;
+    ${stations.map((s, i) => stationCard(s, i + 1, color)).join('')} `;
   return div;
 }
 
 function stationCard(s, num, color) {
-  const ix = INTERCHANGES.find(x => x.station_id === s.station_id || x.station_id === s.station_id.replace(/_meerut_metro$/,'_rrts'));
+  const ix = INTERCHANGES.find(x =>
+    x.station_id === s.station_id ||
+    x.station_id === (s.station_id || '').replace(/_meerut_metro$/, '_rrts')
+  );
   const hasIx = !!ix;
+
+  // Route planner link should work in both root and project pages
+  const planHref = (BASE_PATH || '') + `/?to=${encodeURIComponent(s.station_id)}`;
+
   return `
     <div class="station-full-card">
       <div class="station-row-main" onclick="this.nextElementSibling.classList.toggle('open')">
@@ -161,9 +194,9 @@ function stationCard(s, num, color) {
         <div class="expand-row"><span class="expand-label">System</span><span>${s.system_id === 'rrts' ? 'Namo Bharat RRTS' : 'Meerut Metro'}</span></div>
         ${hasIx ? `<div class="expand-row"><span class="expand-label">Interchange</span><span>${ix.instructions} — ${ix.change_platform}</span></div>` : ''}
         <div class="expand-row" style="margin-top:10px">
-          <a href="/?to=${s.station_id}" style="font-size:.78rem;font-weight:600;color:var(--red)">Plan route to this station →</a>
+          <a href="${planHref}" style="font-size:.78rem;font-weight:600;color:var(--red)">Plan route to this station →</a>
         </div>
       </div>
     </div>`;
-} 
-  
+}
+</script>
