@@ -264,6 +264,11 @@
     <div id="stations-list"></div>
   </section>
 
+  <!-- ░░ POPULAR ROUTES ░░ -->
+  <section id="popular-routes-section" style="margin-bottom:48px">
+    <div id="popular-routes"></div>
+  </section>
+
   <!-- ░░ BLOG / UPDATES ░░ -->
   <section id="blog-section" style="margin-bottom:48px">
     <div class="sec-eye" data-en>Latest</div>
@@ -307,6 +312,8 @@
 <script src="/js/routeFinder.js?v=20260314"></script>
 <script src="/js/routeUI.js?v=20260314"></script>
 <script src="/js/seoGenerator.js?v=20260314"></script>
+<script src="/js/routeMetadata.js?v=20260314"></script>
+<script src="/js/popularRoutes.js?v=20260314"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    App — index.html  v3
@@ -328,6 +335,7 @@ let currentLang = 'en';
     buildBlog();
     initTabListeners();
     restoreFromURL();
+    PopularRoutes.render('popular-routes');
   } catch (err) {
     console.error(err);
     document.getElementById('route-result').innerHTML =

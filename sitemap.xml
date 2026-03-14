@@ -30,6 +30,77 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Top 15 popular route pages -->
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=meerut_south_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=shatabdi_nagar_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=anand_vihar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=ghaziabad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=murad_nagar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=meerut_south_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=meerut_south_rrts&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=brahampuri_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=meerut_north_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=meerut_south_meerut_metro&amp;to=modipuram_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://metroguideindia.com/about.html</loc>
     <changefreq>monthly</changefreq>

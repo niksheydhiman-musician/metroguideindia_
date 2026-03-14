@@ -118,6 +118,8 @@
       <div class="concession-card"><div class="concession-card-icon">♿</div><div class="concession-card-title">Accessibility</div><div class="concession-card-desc">Stations are fully wheelchair accessible with dedicated help desks.</div></div>
     </div>
   </div>
+
+  <div id="popular-routes" style="margin-top:32px"></div>
 </div>
 </main>
 <footer>
@@ -170,5 +172,8 @@ function renderTable(filter) {
 renderTable('all');
 sel.addEventListener('change', e => renderTable(e.target.value));
 </script>
+<script src="/js/routeMetadata.js?v=20260314"></script>
+<script src="/js/popularRoutes.js?v=20260314"></script>
+<script>PopularRoutes.render('popular-routes');</script>
 </body>
 </html>
