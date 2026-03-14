@@ -29,7 +29,100 @@
 
     <div style="margin-top:18px;padding:16px 18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface)">
       <div style="font-weight:700;font-family:'Syne',sans-serif;margin-bottom:8px">Email</div>
-      <div style="color:var(--text2)">YOUR_EMAIL_HERE</div>
+      <div style="color:var(--text2)">metroguideindiasupport@gmail.com</div>
+
+<section style="margin-top:28px">
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:10px">Share your feedback</h2>
+  <p style="color:var(--text2);line-height:1.75;font-size:.95rem;margin-bottom:14px">
+    Found an issue in stations, fares, timings, or route results? Have a suggestion?
+    Send it here and we’ll improve MetroGuideIndia.
+  </p>
+
+  <form action="https://formspree.io/f/xkoqzylp" method="POST" id="feedback-form"
+        style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:16px">
+
+    <!-- Optional: helps you identify which page the feedback came from -->
+    <input type="hidden" name="page" id="feedback-page" value="">
+
+    <div style="display:grid;gap:12px">
+      <div>
+        <label for="fb-email" style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:600">
+          Your email (optional)
+        </label>
+        <input id="fb-email" type="email" name="email" autocomplete="email"
+               placeholder="you@example.com"
+               style="width:100%;padding:12px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;color:var(--text);outline:none">
+      </div>
+
+      <div>
+        <label for="fb-message" style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:600">
+          Your message
+        </label>
+        <textarea id="fb-message" name="message" required rows="6"
+                  placeholder="Example: Route from Meerut South to Begumpul shows wrong interchange…"
+                  style="width:100%;padding:12px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;color:var(--text);outline:none;resize:vertical"></textarea>
+      </div>
+
+      <button type="submit" id="fb-submit"
+              style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:12px 16px;border:none;border-radius:var(--r-sm);font-weight:700;cursor:pointer">
+        Send Feedback
+      </button>
+
+      <p id="fb-status" style="margin:0;color:var(--muted);font-size:.85rem;line-height:1.6"></p>
+
+      <p style="margin:0;color:var(--muted);font-size:.82rem;line-height:1.6">
+        Please don’t share sensitive personal information. If possible, include station names and what looks wrong.
+      </p>
+    </div>
+  </form>
+</section>
+
+<script>
+  // Attach current page URL so you know where the feedback came from
+  (function () {
+    var page = window.location.href;
+    var el = document.getElementById('feedback-page');
+    if (el) el.value = page;
+  })();
+
+  // Optional: AJAX submit to avoid full-page navigation
+  (function () {
+    var form = document.getElementById('feedback-form');
+    if (!form) return;
+
+    var status = document.getElementById('fb-status');
+    var btn = document.getElementById('fb-submit');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (btn) btn.disabled = true;
+      if (status) status.textContent = 'Sending…';
+
+      try {
+        var res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          // re-add page value after reset
+          var pageEl = document.getElementById('feedback-page');
+          if (pageEl) pageEl.value = window.location.href;
+
+          if (status) status.textContent = 'Thanks! Your feedback has been sent.';
+        } else {
+          if (status) status.textContent = 'Could not send right now. Please try again in a moment.';
+        }
+      } catch (err) {
+        if (status) status.textContent = 'Network error. Please try again.';
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+  })();
+</script>      
 
       <div style="height:1px;background:var(--border);margin:14px 0"></div>
 
