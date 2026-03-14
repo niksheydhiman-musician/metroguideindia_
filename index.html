@@ -508,14 +508,19 @@ function onFind() {
     alert(currentLang === 'hi' ? 'स्रोत और गंतव्य एक नहीं हो सकते।' : 'Source and destination cannot be the same.');
     return;
   }
+
   btn.classList.add('busy');
-  // Navigate to clean SEO URL — 404.html will redirect to route.html
+
   const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+
   setTimeout(() => {
     btn.classList.remove('busy');
+
     // Detect base path for subdirectory GitHub Pages hosting
-  var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
-  window.location.href = window.location.origin + basePath + '/route/' + slug;
+    var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
+
+    // Go directly to route.html (NO 404 flash), route.html will clean URL to /route/<slug>
+    window.location.href = window.location.origin + basePath + '/route.html?r=' + encodeURIComponent(slug);
   }, 260);
 }
 
