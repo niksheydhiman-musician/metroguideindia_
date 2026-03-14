@@ -7,6 +7,7 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
 
 :root{
   /* Warm light backgrounds */
@@ -450,7 +451,7 @@ a{color:inherit;text-decoration:none}
 footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center;background:var(--surface2)}
 .foot-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:6px;color:var(--text)}
 .foot-desc{font-size:.78rem;color:var(--muted);max-width:340px;margin:0 auto 12px}
-.foot-links{display:flex;gap:16px;justify-content:center;font-size:.76rem;color:var(--muted);margin-bottom:10px}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;font-size:.76rem;color:var(--muted);margin-bottom:10px;max-width:100%}
 .foot-links a:hover{color:var(--text)}
 .foot-copy{font-size:.7rem;color:rgba(154,135,117,.6)}
 
@@ -528,6 +529,10 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
 .quick-facts ul li::before{content:'•';position:absolute;left:0;color:var(--gc,#C0392B)}
 
 /* ── Responsive ──────────────────────────────────────────── */
+@media(max-width:600px){
+  .foot-links{gap:6px 12px;justify-content:center;padding:0 8px}
+  .foot-links span{display:none}
+}
 @media(max-width:420px){
   .hero{padding:32px 0 22px}
   .sc{padding:18px 14px}
