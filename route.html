@@ -31,6 +31,8 @@
     </div>
 
     <section id="route-result" aria-live="polite" style="display:none"></section>
+    <div id="quick-facts-card" style="display:none"></div>
+    <div id="popular-routes" style="margin-top:40px"></div>
 
     <!-- Always show the search card so user can plan another route -->
     <section style="margin:24px 0 48px">
@@ -94,6 +96,8 @@
 <script src="/js/routeFinder.js?v=20260314"></script>
 <script src="/js/routeUI.js?v=20260314"></script>
 <script src="/js/seoGenerator.js?v=20260314"></script>
+<script src="/js/routeMetadata.js?v=20260314"></script>
+<script src="/js/popularRoutes.js?v=20260314"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -201,6 +205,9 @@ DataLoader.loadAll().then(data => {
   attachSwap();
   attachFind();
 
+  // Render popular routes grid
+  PopularRoutes.render('popular-routes');
+
   // If route is opened via 404 redirect (?r= or sessionStorage) or directly via /route/<slug>
   const slug = getRouteSlug() || getSlugFromPathname();
   if (slug) {
@@ -211,7 +218,21 @@ DataLoader.loadAll().then(data => {
     }
     renderSlug(slug);
   } else {
-    document.getElementById('pg-sub').textContent = 'Select stations below to plan your journey.';
+    // Check for ?from= and ?to= params (used by Popular Routes links)
+    const qp = new URLSearchParams(window.location.search);
+    const fromId = qp.get('from');
+    const toId   = qp.get('to');
+    if (fromId && toId && fromId !== toId) {
+      setStation('src', fromId);
+      setStation('dst', toId);
+      go(fromId, toId);
+      // Replace the ?from=&to= URL with a clean /route/<slug>
+      const newSlug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
+      const newPath = BASE_PATH + '/route/' + newSlug;
+      try { history.replaceState({ route: newSlug }, '', newPath); } catch(e) {}
+    } else {
+      document.getElementById('pg-sub').textContent = 'Select stations below to plan your journey.';
+    }
   }
 }).catch(err => {
   console.error('DataLoader error:', err);
@@ -245,9 +266,9 @@ function go(src, dst) {
 const hasM = path.some(p => p.line_id === 'meerut_metro_main');
 const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
 
-const title = `${fromName} to ${toName} Route: Distance, Fare, Time & Stations | MetroGuideIndia`;
+const title = `${fromName} to ${toName} RRTS Fare, Distance & Train Timings`;
 
-const desc = `Check the ${fromName} to ${toName} metro / RRTS route with station list, distance (${dist} km), travel time (~${time} min), fare (₹${fare}), and interchange information on MetroGuideIndia.`;
+const desc = `Find the official train distance from ${fromName} to ${toName}. Includes latest ticket prices (Feb 2026), travel time, and interchange instructions for Namo Bharat and Meerut Metro.`;
 
 document.title = title;
 setMeta('description', desc);
@@ -263,8 +284,68 @@ setMeta('twitter:description', desc);
     canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
 
     // Update page heading
-    document.getElementById('pg-title').textContent = `${fromName} → ${toName}`;
+    document.getElementById('pg-title').textContent = `Travel from ${fromName} to ${toName}: Distance & Fare Guide`;
     document.getElementById('pg-sub').textContent   = `${dist} km · ₹${fare} · ~${time} min`;
+
+    // Quick Facts card
+    const meta = (typeof RouteMetadata !== 'undefined') ? RouteMetadata.get(src, dst) : null;
+    const qfDist = meta ? meta.distance_km : dist;
+    const qfTime = meta ? meta.travel_time_mins : time;
+    const qfEl = document.getElementById('quick-facts-card');
+    if (qfEl) {
+      qfEl.innerHTML = `<div class="quick-facts" style="--gc:#C0392B">
+        <div class="quick-facts-title">Quick Facts</div>
+        <ul>
+          <li>The train distance between ${fromName} and ${toName} is approximately ${qfDist} km.</li>
+          <li>The Meerut distance for this specific leg of the journey takes ${qfTime} minutes.</li>
+          <li>Standard and Premium ticket prices are calculated based on this distance.</li>
+        </ul>
+      </div>`;
+      qfEl.style.display = 'block';
+    }
+
+    // JSON-LD schema — BreadcrumbList + Trip
+    const routeUrl = window.location.origin + BASE_PATH + '/route/' + slug;
+    const schemaId = 'route-jsonld';
+    let schemaEl = document.getElementById(schemaId);
+    if (!schemaEl) {
+      schemaEl = document.createElement('script');
+      schemaEl.type = 'application/ld+json';
+      schemaEl.id = schemaId;
+      document.head.appendChild(schemaEl);
+    }
+    schemaEl.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': window.location.origin + BASE_PATH + '/' },
+            { '@type': 'ListItem', 'position': 2, 'name': 'Route', 'item': window.location.origin + BASE_PATH + '/route' },
+            { '@type': 'ListItem', 'position': 3, 'name': `${fromName} to ${toName}`, 'item': routeUrl }
+          ]
+        },
+        {
+          '@type': 'Trip',
+          'name': `${fromName} to ${toName} via Namo Bharat RRTS`,
+          'description': desc,
+          'provider': {
+            '@type': 'Organization',
+            'name': 'NCRTC — National Capital Region Transport Corporation',
+            'url': 'https://ncrtc.in'
+          },
+          'itinerary': [
+            { '@type': 'Place', 'name': fromName },
+            { '@type': 'Place', 'name': toName }
+          ],
+          'offers': {
+            '@type': 'Offer',
+            'price': String(fare),
+            'priceCurrency': 'INR'
+          }
+        }
+      ]
+    });
   }
 
   setTimeout(() =>
