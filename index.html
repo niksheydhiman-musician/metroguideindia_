@@ -370,7 +370,7 @@ function buildDropdowns() {
       grps[k].forEach(s => {
         const o = document.createElement('option');
         o.value = s.station_id;
-        o.textContent = s.station_name;
+o.textContent = `${s.station_name} (${s.system_id === 'rrts' ? 'RRTS' : 'Metro'})`;
         og.appendChild(o);
       });
       sel.appendChild(og);
