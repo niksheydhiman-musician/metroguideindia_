@@ -330,49 +330,47 @@ const RouteFinder = (() => {
     return null;
   }
 
-  function calcFare(path) {
+ function calcFare(path) {
   if (!path || path.length < 2) return 20;
 
-  // 1) Try direct fare first (works for RRTS↔RRTS and Metro↔Metro pairs in your table)
   const src = path[0].station_id;
   const dst = path[path.length - 1].station_id;
+
+  // 1) Direct lookup first (this is the correct behavior for RRTS-only trips)
   const direct = lookupFare(src, dst);
   if (direct !== null) return direct;
 
-  // 2) Combined fare (RRTS + Metro):
-  // Walk through the path, but ONLY count fares between "real" stations.
-  // Interchange steps are markers, not a paid segment.
-  let total = 0;
-
-  // Find the first non-interchange station as starting point
-  let lastReal = null;
-  for (let i = 0; i < path.length; i++) {
-    if (path[i].line_id !== 'interchange') {
-      lastReal = path[i].station_id;
-      break;
-    }
-  }
-  if (!lastReal) return 20;
-
-  for (let i = 0; i < path.length; i++) {
-    const step = path[i];
-
-    // Skip interchange marker steps
-    if (step.line_id === 'interchange') continue;
-
-    const curReal = step.station_id;
-
-    // First real station sets baseline
-    if (curReal === lastReal) continue;
-
-    // Add fare between consecutive real stations (this counts across system boundaries correctly)
-    const seg = lookupFare(lastReal, curReal);
-    if (seg !== null) total += seg;
-
-    lastReal = curReal;
+  // 2) Combined journey: detect interchange marker
+  const ix = path.find(p => p.line_id === 'interchange');
+  if (!ix) {
+    // No direct entry and no interchange marker; fallback minimal
+    return 20;
   }
 
-  return total || 20;
+  const ixRRTS  = rrtsId(ix.station_id); // should be *_rrts already, but safe
+  const ixMetro = ixRRTS.replace(/_rrts$/, '_meerut_metro');
+
+  // Determine which system the destination belongs to
+  const dstIsMetro = isMetro(dst);
+  const srcIsMetro = isMetro(src);
+
+  // We expect one side is RRTS and other is Metro; handle both directions
+  if (!srcIsMetro && dstIsMetro) {
+    // RRTS -> Metro
+    const rrtsFare  = lookupFare(src, ixRRTS);
+    const metroFare = lookupFare(ixMetro, dst);
+    if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
+  } else if (srcIsMetro && !dstIsMetro) {
+    // Metro -> RRTS
+    const metroFare = lookupFare(src, ixMetro);
+    const rrtsFare  = lookupFare(ixRRTS, dst);
+    if (rrtsFare !== null && metroFare !== null) return rrtsFare + metroFare;
+  } else {
+    // Edge-case: both metro or both rrts but direct missing
+    // (You can decide policy; returning 20 is safe fallback)
+  }
+
+  return 20;
 }
 
   function calcTime(distance, nInterchanges) {
