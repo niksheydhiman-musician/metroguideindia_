@@ -309,7 +309,7 @@ a{color:inherit;text-decoration:none}
 .seo-block strong{color:var(--text)}
 /* Route SEO summary box */
 .route-seo-box{
-  margin: 0 16px 16px;
+  margin: 5px 16px 16px;
   background: var(--surface);
   border: 1px solid var(--border2);
   border-radius: var(--r);
