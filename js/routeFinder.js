@@ -328,18 +328,49 @@ const RouteFinder = (() => {
   }
 
   function calcFare(path) {
-    const src = path[0].station_id;
-    const dst = path[path.length - 1].station_id;
-    const direct = lookupFare(src, dst);
-    if (direct !== null) return direct;
-    // Fallback: sum consecutive non-interchange segments
-    let total = 0;
-    for (let i = 0; i < path.length - 1; i++) {
-      if (path[i].line_id === 'interchange' || path[i+1].line_id === 'interchange') continue;
-      total += lookupFare(path[i].station_id, path[i+1].station_id) || 0;
+  if (!path || path.length < 2) return 20;
+
+  // 1) Try direct fare first (works for RRTS↔RRTS and Metro↔Metro pairs in your table)
+  const src = path[0].station_id;
+  const dst = path[path.length - 1].station_id;
+  const direct = lookupFare(src, dst);
+  if (direct !== null) return direct;
+
+  // 2) Combined fare (RRTS + Metro):
+  // Walk through the path, but ONLY count fares between "real" stations.
+  // Interchange steps are markers, not a paid segment.
+  let total = 0;
+
+  // Find the first non-interchange station as starting point
+  let lastReal = null;
+  for (let i = 0; i < path.length; i++) {
+    if (path[i].line_id !== 'interchange') {
+      lastReal = path[i].station_id;
+      break;
     }
-    return total || 20;
   }
+  if (!lastReal) return 20;
+
+  for (let i = 0; i < path.length; i++) {
+    const step = path[i];
+
+    // Skip interchange marker steps
+    if (step.line_id === 'interchange') continue;
+
+    const curReal = step.station_id;
+
+    // First real station sets baseline
+    if (curReal === lastReal) continue;
+
+    // Add fare between consecutive real stations (this counts across system boundaries correctly)
+    const seg = lookupFare(lastReal, curReal);
+    if (seg !== null) total += seg;
+
+    lastReal = curReal;
+  }
+
+  return total || 20;
+}
 
   function calcTime(distance, nInterchanges) {
     return Math.ceil(distance * 0.72 + 5) + (nInterchanges * 4);
