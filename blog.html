@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <base href="/"/>
   <title>Blog & Updates | MetroGuideIndia</title>
   <meta name="description" content="Latest news, guides and updates about Delhi–Meerut Namo Bharat RRTS and Meerut Metro."/>
   <link rel="stylesheet" href="/css/styles.css"/>
@@ -76,7 +77,7 @@ let activeTag = 'all';
 
 (async () => {
   try {
-    const res = await fetch('data/blogs.json');
+    const res = await fetch('/data/blogs.json');
     allBlogs = await res.json();
     allBlogs.sort((a,b) => new Date(b.date) - new Date(a.date));
     buildFilters();

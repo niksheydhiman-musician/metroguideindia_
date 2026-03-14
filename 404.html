@@ -24,17 +24,34 @@
 
 <script>
 (function () {
+  // Known first-level page segments (not repo base-path segments)
+  var knownPages = ["blog", "post", "stations", "timings", "fares", "route",
+                    "about", "contact", "privacy", "terms", "disclaimer"];
+
   // Detect base path (custom domain => "", project pages => "/<repo>")
   var path = window.location.pathname || "/";
   var parts = path.split("/").filter(Boolean);
 
-  // If first segment is not "route", treat it as base path segment.
+  // If first segment is not a known page name, treat it as a base path segment.
   // Examples:
   //   /route/slug                     => basePath ""
-  //   /metroguideindia_/route/slug     => basePath "/metroguideindia_"
+  //   /blog/                          => basePath ""
+  //   /metroguideindia_/route/slug    => basePath "/metroguideindia_"
   var basePath = "";
-  if (parts.length && parts[0] !== "route") {
+  if (parts.length && knownPages.indexOf(parts[0]) === -1) {
     basePath = "/" + parts[0];
+  }
+
+  // Handle /blog/* paths — redirect to blog.html or post.html
+  var blogIndex = parts.indexOf("blog");
+  if (blogIndex !== -1) {
+    var id = new URLSearchParams(window.location.search).get("id");
+    if (id) {
+      window.location.replace(basePath + "/post.html?id=" + encodeURIComponent(id));
+    } else {
+      window.location.replace(basePath + "/blog.html");
+    }
+    return;
   }
 
   // Handle /route/<slug>
