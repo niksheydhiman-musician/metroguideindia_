@@ -16,61 +16,47 @@
     <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
   </div>
 </nav>
-
 <main>
   <div class="wrap" style="padding:80px 18px;text-align:center">
     <div style="font-size:3rem;margin-bottom:16px">🚉</div>
     <h1 style="font-family:Syne,sans-serif;font-size:1.6rem;margin-bottom:10px">Page Not Found</h1>
-    <p style="color:var(--muted);margin-bottom:28px">Redirecting…</p>
+    <p style="color:var(--muted);margin-bottom:28px">The page you're looking for doesn't exist.</p>
     <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:var(--r-sm);font-weight:600;text-decoration:none">← Back to Home</a>
   </div>
 </main>
-
 <script>
 (function () {
-  // Known first-level page segments (not repo base-path segments)
-  var knownPages = ["blog", "post", "stations", "timings", "fares", "route",
-                    "about", "contact", "privacy", "terms", "disclaimer"];
+  // Handle legacy dynamic URLs — redirect to new static pages
+  var path = window.location.pathname || '/';
+  var search = window.location.search || '';
 
-  // Detect base path (custom domain => "", project pages => "/<repo>")
-  var path = window.location.pathname || "/";
-  var parts = path.split("/").filter(Boolean);
-
-  // If first segment is not a known page name, treat it as a base path segment.
-  // Examples:
-  //   /route/slug                     => basePath ""
-  //   /blog/                          => basePath ""
-  //   /metroguideindia_/route/slug    => basePath "/metroguideindia_"
-  var basePath = "";
-  if (parts.length && knownPages.indexOf(parts[0]) === -1) {
-    basePath = "/" + parts[0];
+  // /blog/?id=X  →  /blog/X.html
+  if (path.indexOf('/blog') !== -1 && search.indexOf('id=') !== -1) {
+    var id = new URLSearchParams(search).get('id');
+    if (id) { window.location.replace('/blog/' + encodeURIComponent(id) + '.html'); return; }
+    window.location.replace('/blog'); return;
   }
 
-  // Handle /blog/* paths — redirect to blog.html or post.html
-  var blogIndex = parts.indexOf("blog");
-  if (blogIndex !== -1) {
-    var id = new URLSearchParams(window.location.search).get("id");
-    if (id) {
-      window.location.replace(basePath + "/post.html?id=" + encodeURIComponent(id));
-    } else {
-      window.location.replace(basePath + "/blog.html");
+  // /route?from=A&to=B  →  /routes/A-to-B.html
+  if (path.indexOf('/route') !== -1 && search.indexOf('from=') !== -1) {
+    var params = new URLSearchParams(search);
+    var from = params.get('from'), to = params.get('to');
+    if (from && to) {
+      var slug = stationToSlug(from) + '-to-' + stationToSlug(to);
+      window.location.replace('/routes/' + encodeURIComponent(slug) + '.html'); return;
     }
-    return;
+    window.location.replace('/'); return;
   }
 
-  // Handle /route/<slug>
-  var routeIndex = parts.indexOf("route");
-  if (routeIndex !== -1 && parts.length > routeIndex + 1) {
-    var slug = parts.slice(routeIndex + 1).join("/"); // normally one segment, but safe
-    try { sessionStorage.setItem("mgi_route_slug", slug); } catch (e) {}
-
-    var target = basePath + "/route.html?r=" + encodeURIComponent(slug);
-    window.location.replace(target);
-    return;
+  // /post.html?id=X  →  /blog/X.html
+  if (path.indexOf('/post') !== -1 && search.indexOf('id=') !== -1) {
+    var id2 = new URLSearchParams(search).get('id');
+    if (id2) { window.location.replace('/blog/' + encodeURIComponent(id2) + '.html'); return; }
   }
 
-  // Default fallback: go home
-  window.location.replace(basePath + "/");
+  function stationToSlug(id) {
+    return id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, '-');
+  }
 })();
 </script>
 </body>

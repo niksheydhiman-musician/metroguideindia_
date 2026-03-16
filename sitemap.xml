@@ -4,173 +4,221 @@
   <!-- ── Static Pages ─────────────────────────────────────── -->
   <url>
     <loc>https://metroguideindia.com/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/stations</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/timings</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/fares</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/blog</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/route</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/about.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/contact.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/privacy.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/terms.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/disclaimer.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- ── Blog Posts ──────────────────────────────────────── -->
   <url>
-    <loc>https://metroguideindia.com/blog/connectivity-guide/</loc>
+    <loc>https://metroguideindia.com/blog/delhi-meerut-rrts-stations-parking-connectivity.html</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/blog/fare-guide/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/blog/complete-rrts-fare-guide-2026.html</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/blog/delhi-to-meerut-rrts-travel-guide.html</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/blog/meerut-metro-interchange-guide.html</loc>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- ── Top 15 High-Volume Route Pages ──────────────────── -->
+  <!-- ── Static Route Pages ─────────────────────────────── -->
   <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/sarai-kale-khan-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/anand-vihar-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/new-ashok-nagar-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/sahibabad-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=meerut_south_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/anand-vihar-to-meerut-south.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=shatabdi_nagar_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/ghaziabad-to-shatabdi-nagar.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=anand_vihar</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/sarai-kale-khan-to-anand-vihar.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=ghaziabad</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/anand-vihar-to-ghaziabad.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=murad_nagar</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/ghaziabad-to-murad-nagar.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=meerut_south_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/modi-nagar-north-to-meerut-south.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=meerut_south_rrts&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/meerut-south-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=ghaziabad</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/anand-vihar-to-brahampuri.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=meerut_south_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/ghaziabad-to-meerut-north.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=meerut_south_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/new-ashok-nagar-to-bhaisali-bus-adda.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=modipuram_rrts</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://metroguideindia.com/routes/sarai-kale-khan-to-meerut-central.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/meerut-south-to-begumpul.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/shatabdi-nagar-to-meerut-north.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/sarai-kale-khan-to-ghaziabad.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/new-ashok-nagar-to-meerut-south.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/sahibabad-to-meerut-south.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/routes/ghaziabad-to-modipuram.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

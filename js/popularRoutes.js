@@ -10,6 +10,10 @@
  *   <script src="js/popularRoutes.js"></script>
  *   <script>PopularRoutes.render('popular-routes');</script>
  */
+
+function stationToSlug(id) {
+  return id.replace(/_rrts$/, '').replace(/_meerut_metro$/, '').replace(/_/g, '-');
+}
 const PopularRoutes = (() => {
 
   // Groups: RRTS, Interchange, Meerut Metro
@@ -72,7 +76,7 @@ const PopularRoutes = (() => {
             </div>
             <div class="pr-grid">
               ${g.routes.map(r => {
-                const href = `/route?from=${encodeURIComponent(r.from)}&to=${encodeURIComponent(r.to)}`;
+                const href = `/routes/${stationToSlug(r.from)}-to-${stationToSlug(r.to)}.html`;
                 return `<a href="${href}" class="pr-card" style="--gc:${g.color}">
                   <div class="pr-card-route">
                     <span class="pr-card-from">${r.fromName}</span>
