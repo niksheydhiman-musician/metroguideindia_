@@ -9,12 +9,29 @@ const SEOGenerator = (() => {
     t.setAttribute('content',v);
   }
 
-  function apply(from,to,dist,fare,time){
-    const title=`${from} to ${to} — RRTS Route, ₹${fare} Fare | MetroGuideIndia`;
-    const desc=`${from} to ${to}: ${dist} km, ~${time} min, est. ₹${fare}. Complete station list, interchange guide for Namo Bharat RRTS & Meerut Metro.`;
+  /**
+   * apply() — sets all SEO meta tags for a route result page.
+   * @param {string} from       Origin station display name
+   * @param {string} to         Destination station display name
+   * @param {number} dist       Distance in km
+   * @param {number} fare       Estimated fare in INR
+   * @param {number} time       Estimated travel time in minutes
+   * @param {string} [system]   Route system label: 'RRTS', 'Meerut Metro', or 'RRTS + Metro'
+   * @param {string} [canonicalUrl] Full canonical URL for this route page
+   */
+  function apply(from,to,dist,fare,time,system,canonicalUrl){
+    const sys = system || 'RRTS';
+    const title=`${from} to ${to} ${sys} Fare ₹${fare}, Distance ${dist} km | MetroGuideIndia`;
+    const desc=`${from} to ${to} via Namo Bharat ${sys}: ${dist} km, ~${time} min travel time, fare ₹${fare}. Step-by-step station list, interchange guide and latest ticket prices.`;
     document.title=title;
-    setMeta('description',desc);setMeta('og:title',title,true);setMeta('og:description',desc,true);
-    setMeta('twitter:title',title);setMeta('twitter:description',desc);
+    setMeta('description',desc);
+    setMeta('og:title',title,true);
+    setMeta('og:description',desc,true);
+    setMeta('og:type','website',true);
+    if(canonicalUrl) setMeta('og:url',canonicalUrl,true);
+    setMeta('twitter:card','summary');
+    setMeta('twitter:title',title);
+    setMeta('twitter:description',desc);
   }
 
   function seoBlock(from,to,names,dist,fare,time){

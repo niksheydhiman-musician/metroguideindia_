@@ -266,29 +266,23 @@ function go(src, dst) {
     // SEO — dynamic title, description, canonical
     const fromName = srcSt.station_name;
     const toName   = dstSt.station_name;
-   const hasR = path.some(p => p.line_id === 'rrts_main');
-const hasM = path.some(p => p.line_id === 'meerut_metro_main');
-const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
-
-const title = `${fromName} to ${toName} RRTS Fare, Distance & Train Timings`;
-
-const desc = `Find the official train distance from ${fromName} to ${toName}. Includes latest ticket prices (Feb 2026), travel time, and interchange instructions for Namo Bharat and Meerut Metro.`;
-
-document.title = title;
-setMeta('description', desc);
-setMeta('og:title', title, true);
-setMeta('og:description', desc, true);
-setMeta('twitter:title', title);
-setMeta('twitter:description', desc);
+    const hasR = path.some(p => p.line_id === 'rrts_main');
+    const hasM = path.some(p => p.line_id === 'meerut_metro_main');
+    const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
+    const hasInterchange = path.some(p => p.line_id === 'interchange');
 
     // canonical link tag
+    const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+    const routeUrl = window.location.origin + BASE_PATH + '/route/' + slug;
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
-    const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
-    canon.href = window.location.origin + BASE_PATH + '/route/' + slug;
+    canon.href = routeUrl;
+
+    // Unique title and description per route (includes specific metrics)
+    SEOGenerator.apply(fromName, toName, dist, fare, time, systemLabel, routeUrl);
 
     // Update page heading
-    document.getElementById('pg-title').textContent = `Travel from ${fromName} to ${toName}: Distance & Fare Guide`;
+    document.getElementById('pg-title').textContent = `${fromName} to ${toName}: Distance, Fare & ${systemLabel} Timings`;
     document.getElementById('pg-sub').textContent   = `${dist} km · ₹${fare} · ~${time} min`;
 
     // Quick Facts card
@@ -297,19 +291,22 @@ setMeta('twitter:description', desc);
     const qfTime = meta ? meta.travel_time_mins : time;
     const qfEl = document.getElementById('quick-facts-card');
     if (qfEl) {
+      const interchangeNote = hasInterchange
+        ? `<li>This journey requires an interchange between Namo Bharat RRTS and Meerut Metro lines.</li>`
+        : '';
       qfEl.innerHTML = `<div class="quick-facts" style="--gc:#C0392B">
         <div class="quick-facts-title">Quick Facts</div>
         <ul>
           <li>The train distance between ${fromName} and ${toName} is approximately ${qfDist} km.</li>
-          <li>The Meerut distance for this specific leg of the journey takes ${qfTime} minutes.</li>
-          <li>Standard and Premium ticket prices are calculated based on this distance.</li>
+          <li>The estimated travel time for this journey is ${qfTime} minutes.</li>
+          <li>Ticket fare is ₹${fare}. Standard and Premium prices vary based on distance slab.</li>
+          ${interchangeNote}
         </ul>
       </div>`;
       qfEl.style.display = 'block';
     }
 
     // JSON-LD schema — BreadcrumbList + Trip
-    const routeUrl = window.location.origin + BASE_PATH + '/route/' + slug;
     const schemaId = 'route-jsonld';
     let schemaEl = document.getElementById(schemaId);
     if (!schemaEl) {
@@ -331,8 +328,8 @@ setMeta('twitter:description', desc);
         },
         {
           '@type': 'Trip',
-          'name': `${fromName} to ${toName} via Namo Bharat RRTS`,
-          'description': desc,
+          'name': `${fromName} to ${toName} via Namo Bharat ${systemLabel}`,
+          'description': `${fromName} to ${toName} via Namo Bharat ${systemLabel}: ${dist} km, ~${time} min travel time, fare ₹${fare}. Step-by-step station list, interchange guide and latest ticket prices.`,
           'provider': {
             '@type': 'Organization',
             'name': 'NCRTC — National Capital Region Transport Corporation',
