@@ -87,6 +87,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=ghaziabad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=meerut_south_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=meerut_south_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=modipuram_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=duhai&amp;to=meerut_south_rrts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=brahampuri_meerut_metro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -97,7 +127,27 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=bhaisali_bus_adda_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=meerut_central_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://metroguideindia.com/route?from=meerut_south_meerut_metro&amp;to=modipuram_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=meerut_south_meerut_metro&amp;to=begumpul_meerut_metro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=shatabdi_nagar_meerut_metro&amp;to=meerut_north_meerut_metro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
