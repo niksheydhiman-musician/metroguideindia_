@@ -1,179 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ── Static Pages ─────────────────────────────────────── -->
   <url>
     <loc>https://metroguideindia.com/</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/stations</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/timings</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/fares</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/blog</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/route</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  <!-- Top 15 popular route pages -->
-  <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=meerut_south_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=shatabdi_nagar_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=anand_vihar</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=ghaziabad</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=murad_nagar</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=meerut_south_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=meerut_south_rrts&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=ghaziabad</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=meerut_south_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=meerut_south_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=modipuram_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=duhai&amp;to=meerut_south_rrts</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=brahampuri_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=meerut_north_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=bhaisali_bus_adda_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=meerut_central_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=meerut_south_meerut_metro&amp;to=modipuram_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=meerut_south_meerut_metro&amp;to=begumpul_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://metroguideindia.com/route?from=shatabdi_nagar_meerut_metro&amp;to=meerut_north_meerut_metro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
   <url>
     <loc>https://metroguideindia.com/about.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/contact.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/privacy.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/terms.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://metroguideindia.com/disclaimer.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+  <!-- ── Blog Posts ──────────────────────────────────────── -->
+  <url>
+    <loc>https://metroguideindia.com/blog/connectivity-guide/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/blog/fare-guide/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ── Top 15 High-Volume Route Pages ──────────────────── -->
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=meerut_south_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=shatabdi_nagar_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=anand_vihar</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=anand_vihar&amp;to=ghaziabad</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=murad_nagar</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=modi_nagar_north&amp;to=meerut_south_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=meerut_south_rrts&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sarai_kale_khan&amp;to=ghaziabad</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=new_ashok_nagar&amp;to=meerut_south_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=sahibabad&amp;to=meerut_south_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://metroguideindia.com/route?from=ghaziabad&amp;to=modipuram_rrts</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
