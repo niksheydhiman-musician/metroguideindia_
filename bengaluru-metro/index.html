@@ -129,7 +129,24 @@ const JOURNEYS = [
   { group: 'Interchange Trips', color: '#1b8f3b', icon: '🔄', routes: [
     { from: 'kengeri_purple_line', to: 'nagawara_green_line', fromName: 'Kengeri', toName: 'Nagawara' },
     { from: 'silk_institute_green_line', to: 'indiranagar_purple_line', fromName: 'Silk Institute', toName: 'Indiranagar' }
-  ]}
+  ]},
+  { group: 'Popular Journeys', color: '#6c2e9d', icon: '📍', routes: [
+    { fromName: 'Challaghatta', toName: 'Whitefield', href: '/bengaluru-metro/routes/challaghatta-to-whitefield.html', meta: '37.2 km · ₹50' },
+    { fromName: 'Nagasandra', toName: 'Silk Institute', href: '/bengaluru-metro/routes/nagasandra-to-silk-institute.html', meta: '42.0 km · ₹50' },
+    { fromName: 'R.V. Road', toName: 'Bommasandra', href: '/bengaluru-metro/routes/rv-road-to-bommasandra.html', meta: '6.0 km · ₹20' },
+    { fromName: 'Majestic', toName: 'Whitefield', href: '/bengaluru-metro/routes/majestic-to-whitefield.html', meta: '21.6 km · ₹35' },
+    { fromName: 'Majestic', toName: 'Silk Institute', href: '/bengaluru-metro/routes/majestic-to-silk-institute.html', meta: '19.2 km · ₹35' },
+    { fromName: 'Majestic', toName: 'R.V. Road', href: '/bengaluru-metro/routes/majestic-to-rv-road.html', meta: '22.8 km · ₹35' },
+    { fromName: 'Whitefield', toName: 'Indiranagar', href: '/bengaluru-metro/routes/whitefield-to-indiranagar.html', meta: '16.8 km · ₹30' },
+    { fromName: 'Whitefield', toName: 'Majestic', href: '/bengaluru-metro/routes/whitefield-to-majestic.html', meta: '21.6 km · ₹35' },
+    { fromName: 'Silk Institute', toName: 'Majestic', href: '/bengaluru-metro/routes/silk-institute-to-majestic.html', meta: '19.2 km · ₹35' },
+    { fromName: 'Silk Institute', toName: 'Nagasandra', href: '/bengaluru-metro/routes/silk-institute-to-nagasandra.html', meta: '42.0 km · ₹50' },
+    { fromName: 'Bommasandra', toName: 'R.V. Road', href: '/bengaluru-metro/routes/bommasandra-to-rv-road.html', meta: '6.0 km · ₹20' },
+    { fromName: 'Bommasandra', toName: 'Majestic', href: '/bengaluru-metro/routes/bommasandra-to-majestic.html', meta: '25.2 km · ₹40' },
+    { fromName: 'Yeshwanthpur', toName: 'Majestic', href: '/bengaluru-metro/routes/yeshwanthpur-to-majestic.html', meta: '8.4 km · ₹25' },
+    { fromName: 'Majestic', toName: 'M.G. Road', href: '/bengaluru-metro/routes/majestic-to-mg-road.html', meta: '2.4 km · ₹10' },
+    { fromName: 'Sandal Soap Factory', toName: 'Majestic', href: '/bengaluru-metro/routes/sandal-soap-factory-to-majestic.html', meta: '4.8 km · ₹20' },
+  ]},
 ];
 
 (async () => {
@@ -245,16 +262,23 @@ function buildTopJourneys() {
     <div class="pr-group">
       <div class="pr-group-header" style="--gc:${group.color}"><span class="pr-group-icon">${group.icon}</span><span class="pr-group-label">${group.group}</span></div>
       <div class="pr-grid">
-        ${group.routes.map(r => `<a href="#" class="pr-card" style="--gc:${group.color}" data-from="${r.from}" data-to="${r.to}">
-          <div class="pr-card-route"><span class="pr-card-from">${r.fromName}</span><span class="pr-card-arrow">→</span><span class="pr-card-to">${r.toName}</span></div>
-          <div class="pr-card-meta"><span>Auto-fill</span><span>Find route</span></div>
-        </a>`).join('')}
+        ${group.routes.map(r => {
+          const href = r.href || '#';
+          const metaLeft = r.href ? (r.meta || 'View Route') : 'Auto-fill';
+          const metaRight = r.href ? 'Full Guide' : 'Find route';
+          const dataAttrs = r.from ? `data-from="${r.from}" data-to="${r.to}"` : '';
+          return `<a href="${href}" class="pr-card" style="--gc:${group.color}" ${dataAttrs}>
+            <div class="pr-card-route"><span class="pr-card-from">${r.fromName}</span><span class="pr-card-arrow">→</span><span class="pr-card-to">${r.toName}</span></div>
+            <div class="pr-card-meta"><span>${metaLeft}</span><span>${metaRight}</span></div>
+          </a>`;
+        }).join('')}
       </div>
     </div>
   `).join('');
 
   container.querySelectorAll('a[data-from][data-to]').forEach(link => {
     link.addEventListener('click', e => {
+      if (link.getAttribute('href') !== '#') return;
       e.preventDefault();
       setStation('src', link.dataset.from);
       setStation('dst', link.dataset.to);

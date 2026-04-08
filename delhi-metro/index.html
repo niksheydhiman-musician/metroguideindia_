@@ -129,7 +129,24 @@ const JOURNEYS = [
   { group: 'Interchange Trips', color: '#1f4fa3', icon: '🔄', routes: [
     { from: 'dwarka_sector_21_blue_line', to: 'new_delhi_yellow_line', fromName: 'Dwarka Sector 21', toName: 'New Delhi' },
     { from: 'botanical_garden_blue_line', to: 'hauz_khas_yellow_line', fromName: 'Botanical Garden', toName: 'Hauz Khas' }
-  ]}
+  ]},
+  { group: 'Popular Journeys', color: '#1f4fa3', icon: '📍', routes: [
+    { fromName: 'Millennium City Centre', toName: 'Samaypur Badli', href: '/delhi-metro/routes/millennium-city-centre-to-samaypur-badli.html', meta: '50.4 km · ₹60' },
+    { fromName: 'Dwarka Sector 21', toName: 'Noida Electronic City', href: '/delhi-metro/routes/dwarka-sector-21-to-noida-electronic-city.html', meta: '68.6 km · ₹60' },
+    { fromName: 'Dwarka Sector 21', toName: 'Vaishali', href: '/delhi-metro/routes/dwarka-sector-21-to-vaishali.html', meta: '56.0 km · ₹60' },
+    { fromName: 'Jahangirpuri', toName: 'Central Secretariat', href: '/delhi-metro/routes/jahangirpuri-to-central-secretariat.html', meta: '19.6 km · ₹40' },
+    { fromName: 'Rajiv Chowk', toName: 'New Delhi', href: '/delhi-metro/routes/rajiv-chowk-to-new-delhi.html', meta: '1.4 km · ₹10' },
+    { fromName: 'Rajiv Chowk', toName: 'Kashmere Gate', href: '/delhi-metro/routes/rajiv-chowk-to-kashmere-gate.html', meta: '5.6 km · ₹30' },
+    { fromName: 'Central Secretariat', toName: 'Kashmere Gate', href: '/delhi-metro/routes/central-secretariat-to-kashmere-gate.html', meta: '8.4 km · ₹30' },
+    { fromName: 'Chandni Chowk', toName: 'New Delhi', href: '/delhi-metro/routes/chandni-chowk-to-new-delhi.html', meta: '2.8 km · ₹20' },
+    { fromName: 'Rajiv Chowk', toName: 'Millennium City Centre', href: '/delhi-metro/routes/rajiv-chowk-to-millennium-city-centre.html', meta: '29.4 km · ₹50' },
+    { fromName: 'Dwarka Sector 21', toName: 'Rajiv Chowk', href: '/delhi-metro/routes/dwarka-sector-21-to-rajiv-chowk.html', meta: '39.2 km · ₹60' },
+    { fromName: 'Noida Electronic City', toName: 'Rajiv Chowk', href: '/delhi-metro/routes/noida-electronic-city-to-rajiv-chowk.html', meta: '29.4 km · ₹50' },
+    { fromName: 'Botanical Garden', toName: 'Rajiv Chowk', href: '/delhi-metro/routes/botanical-garden-to-rajiv-chowk.html', meta: '18.2 km · ₹40' },
+    { fromName: 'Kashmere Gate', toName: 'Rajiv Chowk', href: '/delhi-metro/routes/kashmere-gate-to-rajiv-chowk.html', meta: '5.6 km · ₹30' },
+    { fromName: 'New Delhi', toName: 'Millennium City Centre', href: '/delhi-metro/routes/new-delhi-to-millennium-city-centre.html', meta: '30.8 km · ₹50' },
+    { fromName: 'Noida Sector 18', toName: 'Rajiv Chowk', href: '/delhi-metro/routes/noida-sector-18-to-rajiv-chowk.html', meta: '16.8 km · ₹40' },
+  ]},
 ];
 
 (async () => {
@@ -245,16 +262,23 @@ function buildTopJourneys() {
     <div class="pr-group">
       <div class="pr-group-header" style="--gc:${group.color}"><span class="pr-group-icon">${group.icon}</span><span class="pr-group-label">${group.group}</span></div>
       <div class="pr-grid">
-        ${group.routes.map(r => `<a href="#" class="pr-card" style="--gc:${group.color}" data-from="${r.from}" data-to="${r.to}">
-          <div class="pr-card-route"><span class="pr-card-from">${r.fromName}</span><span class="pr-card-arrow">→</span><span class="pr-card-to">${r.toName}</span></div>
-          <div class="pr-card-meta"><span>Auto-fill</span><span>Find route</span></div>
-        </a>`).join('')}
+        ${group.routes.map(r => {
+          const href = r.href || '#';
+          const metaLeft = r.href ? (r.meta || 'View Route') : 'Auto-fill';
+          const metaRight = r.href ? 'Full Guide' : 'Find route';
+          const dataAttrs = r.from ? `data-from="${r.from}" data-to="${r.to}"` : '';
+          return `<a href="${href}" class="pr-card" style="--gc:${group.color}" ${dataAttrs}>
+            <div class="pr-card-route"><span class="pr-card-from">${r.fromName}</span><span class="pr-card-arrow">→</span><span class="pr-card-to">${r.toName}</span></div>
+            <div class="pr-card-meta"><span>${metaLeft}</span><span>${metaRight}</span></div>
+          </a>`;
+        }).join('')}
       </div>
     </div>
   `).join('');
 
   container.querySelectorAll('a[data-from][data-to]').forEach(link => {
     link.addEventListener('click', e => {
+      if (link.getAttribute('href') !== '#') return;
       e.preventDefault();
       setStation('src', link.dataset.from);
       setStation('dst', link.dataset.to);
