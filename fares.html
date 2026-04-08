@@ -6,16 +6,24 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Namo Bharat RRTS & Meerut Metro Fare Chart 2026 | Ticket Prices</title>
-  <meta name="description" content="Check the latest Namo Bharat RRTS and Meerut Metro ticket prices. View the complete fare matrix for Standard and Premium coaches from Delhi to Meerut."/>
+  <title>Metro Fares 2026 — Namo Bharat, Delhi & Bengaluru | MetroGuideIndia</title>
+  <meta name="description" content="Fare guide for Namo Bharat RRTS, Delhi Metro, and Bengaluru Metro with city tabs and fare slabs."/>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="canonical" href="https://metroguideindia.com/fares"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
-    .fare-section{margin-bottom:36px}
+    .city-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .city-tab{padding:7px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer}
+    .city-tab.active{background:var(--surface);color:var(--text);border-color:var(--border2);box-shadow:var(--shadow)}
+
+    .city-panel{display:none}
+    .city-panel.active{display:block}
+
+    .fare-section{margin-bottom:30px}
     .fare-section-header{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--r);margin-bottom:16px}
-    .fare-section-header.rrts{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
-    .fare-section-header.metro{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
+    .fare-section-header.namo{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
+    .fare-section-header.delhi{background:linear-gradient(135deg,#eef3ff,#fafcff);border:1px solid rgba(26,42,108,.18)}
+    .fare-section-header.bengaluru{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
 
     .fare-table-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border2);margin-bottom:14px}
     .fare-table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
@@ -24,31 +32,21 @@
     .fare-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
     .fare-table td:not(:first-child){text-align:center;font-family:'Syne',sans-serif;font-weight:600;color:var(--text);font-size:.88rem}
     .fare-table tr:last-child td{border-bottom:none}
-    .fare-table tr:hover td{background:var(--surface2)}
-    .fare-table td:first-child{font-weight:500}
 
-    .premium-note{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:11px 14px;font-size:.81rem;color:var(--text2);margin-bottom:20px;display:flex;gap:8px;align-items:flex-start}
-    .concession-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
-    @media(max-width:420px){.concession-grid{grid-template-columns:1fr}}
-    .concession-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px}
-    .concession-card-icon{font-size:1.4rem;margin-bottom:6px}
-    .concession-card-title{font-weight:600;font-size:.85rem;color:var(--text);margin-bottom:3px}
-    .concession-card-desc{font-size:.78rem;color:var(--muted)}
+    .premium-note{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:11px 14px;font-size:.81rem;color:var(--text2);margin-bottom:16px}
 
-    .from-selector{
-      width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border2);
-      border-radius:var(--r-sm);font-size:.9rem;color:var(--text);font-family:'DM Sans',sans-serif;
-      margin-bottom:16px;cursor:pointer;appearance:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A8775' stroke-width='2.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat:no-repeat;background-position:right 12px center;
-    }
-    .from-selector:focus{outline:none;border-color:rgba(192,57,43,.4);box-shadow:0 0 0 3px rgba(192,57,43,.08)}
+    .from-selector{width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);font-size:.9rem;color:var(--text);font-family:'DM Sans',sans-serif;margin-bottom:16px;cursor:pointer;appearance:none}
+
+    .calculator{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-bottom:14px}
+    .calculator input{padding:10px 12px;border:1px solid var(--border2);border-radius:10px;background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif}
+    .calculator button{padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);font-weight:600;cursor:pointer}
+    .calc-result{font-size:.85rem;color:var(--text2);margin-bottom:12px}
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);} 
   gtag('js', new Date());
   gtag('config', 'G-SV6378N2ZW');
 </script>
@@ -67,73 +65,102 @@
 <div class="wrap" style="padding-top:32px;padding-bottom:48px">
   <div class="sec-eye">Pricing</div>
   <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:6px">Fare Guide & Ticket Prices</h1>
-  <p style="font-size:.9rem;color:var(--text2);margin-bottom:22px">Official NCRTC fare list updated for 2026. Prices shown are for Standard Coach travel.</p>
+  <p style="font-size:.9rem;color:var(--text2);margin-bottom:16px">City-wise fare references for 2026 operations.</p>
 
-  <div class="fare-section">
-    <div class="fare-section-header rrts">
-      <span style="font-size:1.8rem">🚅</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--red)">Namo Bharat RRTS Fare List</div>
-        <div style="font-size:.76rem;color:var(--muted)">Inter-city Standard Coach · One-way</div>
+  <div class="city-tabs" id="city-tabs">
+    <button class="city-tab active" data-city="namo">Namo Bharat</button>
+    <button class="city-tab" data-city="delhi">Delhi</button>
+    <button class="city-tab" data-city="bengaluru">Bengaluru</button>
+  </div>
+
+  <div class="city-panel active" data-city="namo">
+    <div class="fare-section">
+      <div class="fare-section-header namo">
+        <span style="font-size:1.8rem">🚅</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--red)">Namo Bharat RRTS Fare List</div>
+          <div style="font-size:.76rem;color:var(--muted)">Inter-city Standard Coach · One-way</div>
+        </div>
+      </div>
+
+      <div class="premium-note"><strong>Premium Coach:</strong> Fares are ~20% higher than Standard.</div>
+
+      <label style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:6px">Select your starting station</label>
+      <select class="from-selector" id="from-selector">
+        <option value="all">View all routes</option>
+      </select>
+
+      <div class="fare-table-wrap">
+        <table class="fare-table" id="fare-table">
+          <thead><tr><th>From Station</th><th>To Station</th><th>Standard Fare</th></tr></thead>
+          <tbody id="fare-tbody"></tbody>
+        </table>
       </div>
     </div>
 
-    <div class="premium-note">
-      <span>💺</span>
-      <span><strong>Premium Coach:</strong> Fares are <strong>20% higher</strong> than Standard. Example: Sarai Kale Khan to Modipuram is ₹210 (Standard) and ~₹252 (Premium).</span>
-    </div>
-
-    <label style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:6px">Select your starting station</label>
-    <select class="from-selector" id="from-selector">
-      <option value="all">View all routes</option>
-    </select>
-
-    <div class="fare-table-wrap">
-      <table class="fare-table" id="fare-table">
-        <thead><tr><th>From Station</th><th>To Station</th><th>Standard Fare</th></tr></thead>
-        <tbody id="fare-tbody"></tbody>
-      </table>
-    </div>
+    <div id="popular-routes" style="margin-top:24px"></div>
   </div>
 
-  <div class="fare-section">
-    <div class="fare-section-header metro">
-      <span style="font-size:1.8rem">🚇</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green)">Meerut Metro Fare Chart</div>
-        <div style="font-size:.76rem;color:var(--muted)">Local Meerut transit · Flat rates based on distance</div>
+  <div class="city-panel" data-city="delhi">
+    <div class="fare-section">
+      <div class="fare-section-header delhi">
+        <span style="font-size:1.8rem">🚇</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:#1a2a6c">Delhi Metro Fare Slabs (DMRC)</div>
+          <div style="font-size:.76rem;color:var(--muted)">Standard fare slab table</div>
+        </div>
+      </div>
+
+      <div class="fare-table-wrap">
+        <table class="fare-table">
+          <thead><tr><th>Distance Slab</th><th>Fare</th></tr></thead>
+          <tbody>
+            <tr><td>Up to 2 km</td><td>₹11</td></tr>
+            <tr><td>2 – 5 km</td><td>₹21</td></tr>
+            <tr><td>5 – 12 km</td><td>₹32</td></tr>
+            <tr><td>12 – 21 km</td><td>₹43</td></tr>
+            <tr><td>21 – 32 km</td><td>₹54</td></tr>
+            <tr><td>Above 32 km</td><td>₹64</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="fare-table-wrap">
-      <table class="fare-table">
-        <thead><tr><th>Journey Distance</th><th>Fare</th></tr></thead>
-        <tbody>
-          <tr><td>Meerut South ↔ Partapur / Rithani</td><td>₹20</td></tr>
-          <tr><td>Meerut South ↔ Shatabdi Nagar / Brahampuri / Meerut Central</td><td>₹30</td></tr>
-          <tr><td>Meerut South ↔ Bhaisali / Begumpul</td><td>₹40</td></tr>
-          <tr><td>Meerut South ↔ MES Colony / Daurli</td><td>₹50</td></tr>
-          <tr><td>Meerut South ↔ Meerut North / Modipuram</td><td>₹60</td></tr>
-          <tr><td>Modipuram ↔ Meerut North / Daurli</td><td>₹20</td></tr>
-          <tr><td>Modipuram ↔ MES Colony / Begumpul</td><td>₹30</td></tr>
-          <tr><td>Modipuram ↔ Bhaisali</td><td>₹40</td></tr>
-          <tr><td>Modipuram ↔ Meerut Central / Brahampuri / Shatabdi Nagar / Rithani</td><td>₹50</td></tr>
-          <tr><td>Modipuram ↔ Partapur / Meerut South</td><td>₹60</td></tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 
-  <div>
-    <h2 class="sec-head" style="font-size:1.1rem;margin-bottom:12px">Ticketing & Discounts</h2>
-    <div class="concession-grid">
-      <div class="concession-card"><div class="concession-card-icon">👶</div><div class="concession-card-title">Children under 90 cm</div><div class="concession-card-desc">Travel free of charge when accompanied by an adult.</div></div>
-      <div class="concession-card"><div class="concession-card-icon">💳</div><div class="concession-card-title">NCMC & Smart Cards</div><div class="concession-card-desc">Accepted for seamless tap-and-go travel across the network.</div></div>
-      <div class="concession-card"><div class="concession-card-icon">📱</div><div class="concession-card-title">Digital Tickets</div><div class="concession-card-desc">QR tickets available via the Namo Bharat Connect app.</div></div>
-      <div class="concession-card"><div class="concession-card-icon">♿</div><div class="concession-card-title">Accessibility</div><div class="concession-card-desc">Stations are fully wheelchair accessible with dedicated help desks.</div></div>
+  <div class="city-panel" data-city="bengaluru">
+    <div class="fare-section">
+      <div class="fare-section-header bengaluru">
+        <span style="font-size:1.8rem">🚇</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green)">Bengaluru Metro Fare Slabs (BMRCL)</div>
+          <div style="font-size:.76rem;color:var(--muted)">Fare range ₹10 to ₹60 (maximum)</div>
+        </div>
+      </div>
+
+      <div class="calculator">
+        <div>
+          <label for="blr-distance" style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:4px">Enter distance (km) for estimate</label>
+          <input id="blr-distance" type="number" min="0" step="0.1" placeholder="e.g. 14.5"/>
+        </div>
+        <button type="button" id="blr-calc-btn">Estimate</button>
+      </div>
+      <div class="calc-result" id="blr-calc-result">Enter distance to calculate estimated fare slab.</div>
+
+      <div class="fare-table-wrap">
+        <table class="fare-table">
+          <thead><tr><th>Distance Slab</th><th>Fare</th></tr></thead>
+          <tbody>
+            <tr><td>Up to 2 km</td><td>₹10</td></tr>
+            <tr><td>2 – 5 km</td><td>₹20</td></tr>
+            <tr><td>5 – 10 km</td><td>₹30</td></tr>
+            <tr><td>10 – 15 km</td><td>₹40</td></tr>
+            <tr><td>15 – 25 km</td><td>₹50</td></tr>
+            <tr><td>Above 25 km</td><td>₹60</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  <div id="popular-routes" style="margin-top:32px"></div>
 </div>
 </main>
 <footer>
@@ -151,12 +178,11 @@
 <a href="/terms.html">Terms</a><span>·</span>
 <a href="/disclaimer.html">Disclaimer</a>
     </div>
-    <div class="foot-copy">© 2026 MetroGuideIndia. Independent Guide. Not affiliated with NCRTC.</div>
+    <div class="foot-copy">© 2026 MetroGuideIndia.</div>
   </div>
 </footer>
 <script>
 const FARES = [
-  // Corrected and updated based on Official 2026 Matrix
   ['Jangpura','Sarai Kale Khan',20],['Jangpura','New Ashok Nagar',30],['Jangpura','Anand Vihar',50],['Jangpura','Ghaziabad',80],['Jangpura','Meerut South',170],['Jangpura','Modipuram',210],
   ['Sarai Kale Khan','New Ashok Nagar',30],['Sarai Kale Khan','Anand Vihar',50],['Sarai Kale Khan','Sahibabad',60],['Sarai Kale Khan','Ghaziabad',80],['Sarai Kale Khan','Guldhar',90],['Sarai Kale Khan','Duhai',100],['Sarai Kale Khan','Murad Nagar',120],['Sarai Kale Khan','Modi Nagar South',140],['Sarai Kale Khan','Modi Nagar North',140],['Sarai Kale Khan','Meerut South',160],['Sarai Kale Khan','Shatabdi Nagar',180],['Sarai Kale Khan','Begumpul',200],['Sarai Kale Khan','Modipuram',210],
   ['New Ashok Nagar','Anand Vihar',30],['New Ashok Nagar','Sahibabad',50],['New Ashok Nagar','Ghaziabad',60],['New Ashok Nagar','Guldhar',70],['New Ashok Nagar','Duhai',80],['New Ashok Nagar','Murad Nagar',100],['New Ashok Nagar','Modi Nagar South',120],['New Ashok Nagar','Modi Nagar North',130],['New Ashok Nagar','Meerut South',150],['New Ashok Nagar','Shatabdi Nagar',160],['New Ashok Nagar','Begumpul',180],['New Ashok Nagar','Modipuram',200],
@@ -179,12 +205,37 @@ origins.forEach(o => { const opt=document.createElement('option'); opt.value=o; 
 
 function renderTable(filter) {
   const rows = filter === 'all' ? FARES : FARES.filter(f => f[0] === filter);
-  document.getElementById('fare-tbody').innerHTML = rows.map(([from,to,fare]) =>
-    `<tr><td>${from}</td><td>${to}</td><td>₹${fare}</td></tr>`
-  ).join('');
+  document.getElementById('fare-tbody').innerHTML = rows.map(([from,to,fare]) => `<tr><td>${from}</td><td>${to}</td><td>₹${fare}</td></tr>`).join('');
 }
 renderTable('all');
 sel.addEventListener('change', e => renderTable(e.target.value));
+
+document.getElementById('city-tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.city-tab');
+  if (!btn) return;
+  const city = btn.dataset.city;
+  document.querySelectorAll('.city-tab').forEach(tab => tab.classList.toggle('active', tab === btn));
+  document.querySelectorAll('.city-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.city === city));
+});
+
+function calcBengaluruFare(distanceKm) {
+  if (distanceKm <= 2) return 10;
+  if (distanceKm <= 5) return 20;
+  if (distanceKm <= 10) return 30;
+  if (distanceKm <= 15) return 40;
+  if (distanceKm <= 25) return 50;
+  return 60;
+}
+
+document.getElementById('blr-calc-btn').addEventListener('click', () => {
+  const distance = Number(document.getElementById('blr-distance').value);
+  const out = document.getElementById('blr-calc-result');
+  if (!Number.isFinite(distance) || distance < 0) {
+    out.textContent = 'Please enter a valid distance in kilometers.';
+    return;
+  }
+  out.textContent = `Estimated Bengaluru Metro fare: ₹${calcBengaluruFare(distance)} for ${distance.toFixed(1)} km.`;
+});
 </script>
 <script src="/js/routeMetadata.js?v=20260314"></script>
 <script src="/js/popularRoutes.js?v=20260314"></script>
