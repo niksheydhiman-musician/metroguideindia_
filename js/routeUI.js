@@ -136,13 +136,14 @@ const RouteUI = (() => {
         if (fn.includes('anand vihar')) hubs.push('Delhi Metro Blue Line & Anand Vihar ISBT');
 
         // Determine fare display and ticketing based on system
-        const isMeerut  = !hasR && hasM;  // Meerut Metro only (single-class)
+        const isMeerutMetroOnly = !hasR && hasM;  // Meerut Metro only (single-class, no Premium coach)
         const isRRTSMix = hasR && hasM;   // RRTS + Meerut Metro interchange
 
-        const fareDisplay = isMeerut
+        const fareDisplay = isMeerutMetroOnly
           ? `₹${esc(fare)} (Standard).`
           : `~₹${esc(fare)} (Standard) | ~₹${esc(premium)} (Premium).`;
 
+        // Static disclaimer string — no user input involved, escaping not required
         const interchangeDisclaimer = isRRTSMix
           ? `<div class="route-seo-note">⚠️ <strong>Note:</strong> Premium ticket holders must transfer to the Standard/General coach at the Meerut Metro interchange station.</div>`
           : '';
