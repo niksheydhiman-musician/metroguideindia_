@@ -136,7 +136,78 @@
     .about p + p {
       margin-top: 12px;
     }
-    .site-footer {
+    .sec-eye {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .sec-head {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      color: var(--text);
+    }
+    .sys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+    .sys-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent, var(--rrts));
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+    .sys-card .sys-name { margin: 0 0 4px; font-size: 1rem; }
+    .sys-op { color: var(--muted); font-size: .84rem; margin-bottom: 8px; }
+    .sys-stats { display: flex; gap: 18px; }
+    .sys-stats .sv { font-weight: 700; color: var(--text); }
+    .sys-stats .sl { color: var(--muted); font-size: .72rem; text-transform: uppercase; }
+    .timings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .timing-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+    .timing-card-title { font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .timing-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .timing-row:last-child { border-bottom: 0; }
+    .timing-label { color: var(--muted); font-size: .84rem; }
+    .timing-val { font-weight: 700; font-size: .9rem; }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+    .news-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .news-card:hover { transform: translateY(-2px); box-shadow: 0 14px 24px rgba(15, 23, 42, 0.14); }
+    .news-date { font-size: .78rem; color: var(--muted); margin-bottom: 6px; }
+    .news-title { margin: 0 0 8px; font-size: 1rem; }
+    .news-summary { margin: 0; color: var(--muted); font-size: .88rem; }
+    footer {
       background: #fff;
       border-top: 1px solid var(--border);
       margin-top: 16px;
@@ -148,24 +219,34 @@
       display: grid;
       gap: 10px;
     }
-    .footer-links {
+    .foot-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .foot-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+    .foot-links {
       display: flex;
       flex-wrap: wrap;
       gap: 8px 14px;
-      font-size: 0.95rem;
+      font-size: 0.86rem;
     }
-    .footer-links a {
+    .foot-links a {
       color: #1a2a6c;
       text-decoration: none;
       font-weight: 600;
     }
-    .footer-links a:hover {
+    .foot-links a:hover {
       text-decoration: underline;
     }
-    .footer-disclaimer {
+    .foot-copy {
       margin: 0;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: 0.78rem;
     }
   </style>
 </head>
@@ -197,6 +278,84 @@
       </a>
     </section>
 
+    <section>
+      <div class="sec-eye">Coverage</div>
+      <h2 class="sec-head">Transit Systems</h2>
+      <div class="sys-grid" aria-label="Transit systems coverage cards">
+        <div class="sys-card" style="--accent:#0b63ce">
+          <h3 class="sys-name">Namo Bharat RRTS</h3>
+          <div class="sys-op">Delhi–Meerut Corridor · NCRTC</div>
+          <div class="sys-stats">
+            <div><div class="sv">82.15</div><div class="sl">km</div></div>
+            <div><div class="sv">25</div><div class="sl">Stations</div></div>
+          </div>
+        </div>
+        <div class="sys-card" style="--accent:#cf1f2f">
+          <h3 class="sys-name">Delhi Metro</h3>
+          <div class="sys-op">Blue, Yellow, Red, Magenta &amp; more · DMRC</div>
+          <div class="sys-stats">
+            <div><div class="sv">10+</div><div class="sl">Lines</div></div>
+            <div><div class="sv">250+</div><div class="sl">Stations</div></div>
+          </div>
+        </div>
+        <div class="sys-card" style="--accent:#6f2dbd">
+          <h3 class="sys-name">Bengaluru Metro</h3>
+          <div class="sys-op">Purple &amp; Green Lines · BMRCL</div>
+          <div class="sys-stats">
+            <div><div class="sv">2+</div><div class="sl">Lines</div></div>
+            <div><div class="sv">60+</div><div class="sl">Stations</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-eye">Schedule</div>
+      <h2 class="sec-head">First &amp; Last Train Timings</h2>
+      <div class="timings-grid" aria-label="First and last train timings">
+        <div class="timing-card">
+          <div class="timing-card-title"><span>🚄</span><span>Namo Bharat RRTS</span></div>
+          <div class="timing-row"><span class="timing-label">First Train</span><span class="timing-val">06:00 AM</span></div>
+          <div class="timing-row"><span class="timing-label">Last Train</span><span class="timing-val">10:30 PM</span></div>
+          <div class="timing-row"><span class="timing-label">Frequency</span><span class="timing-val">~10 min</span></div>
+        </div>
+        <div class="timing-card">
+          <div class="timing-card-title"><span>🚇</span><span>Delhi Metro</span></div>
+          <div class="timing-row"><span class="timing-label">First Train</span><span class="timing-val">05:45 AM</span></div>
+          <div class="timing-row"><span class="timing-label">Last Train</span><span class="timing-val">11:00 PM</span></div>
+          <div class="timing-row"><span class="timing-label">Frequency</span><span class="timing-val">~4–8 min</span></div>
+        </div>
+        <div class="timing-card">
+          <div class="timing-card-title"><span>🚈</span><span>Bengaluru Metro</span></div>
+          <div class="timing-row"><span class="timing-label">First Train</span><span class="timing-val">05:00 AM</span></div>
+          <div class="timing-row"><span class="timing-label">Last Train</span><span class="timing-val">11:00 PM</span></div>
+          <div class="timing-row"><span class="timing-label">Frequency</span><span class="timing-val">~5–10 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-eye">Latest</div>
+      <h2 class="sec-head">Latest News</h2>
+      <div class="news-grid" aria-label="Latest metro blog updates">
+        <a href="/blog/delhi-metro-smart-card-vs-qr-ticket.html" class="news-card">
+          <div class="news-date">8 April 2026</div>
+          <h3 class="news-title">Delhi Metro Smart Card vs QR Ticket</h3>
+          <p class="news-summary">A practical comparison for daily riders and occasional commuters.</p>
+        </a>
+        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" class="news-card">
+          <div class="news-date">19 March 2026</div>
+          <h3 class="news-title">RRTS Parking Charges &amp; Monthly Passes</h3>
+          <p class="news-summary">Station-wise parking rates and planning tips across the NCR corridor.</p>
+        </a>
+        <a href="/blog/delhi-meerut-rrts-stations-parking-connectivity.html" class="news-card">
+          <div class="news-date">15 March 2026</div>
+          <h3 class="news-title">Delhi–Meerut RRTS Connectivity Guide</h3>
+          <p class="news-summary">Stations, parking, and last-mile options in one commuter-focused guide.</p>
+        </a>
+      </div>
+    </section>
+
     <section class="about" aria-label="About MetroGuideIndia">
       <h2>About MetroGuideIndia</h2>
       <p>MetroGuideIndia is built for daily commuters, students, office travelers, and tourists who need a reliable India Metro Route Planner with city-specific guidance. Instead of switching across multiple sources, you can start from one place and quickly move to the network you use most.</p>
@@ -204,14 +363,23 @@
       <p>We are expanding coverage city by city with a simple goal: make metro travel decisions easier before you leave home. Whether you commute every day or travel occasionally, MetroGuideIndia helps you compare routes, prepare budgets, and reach destinations with fewer surprises.</p>
     </section>
   </main>
-  <footer class="site-footer">
+  <footer>
     <div class="site-footer-inner">
-      <nav class="footer-links" aria-label="Metro systems">
-        <a href="/namo-bharat/">Namo Bharat</a>
-        <a href="/delhi-metro/">Delhi Metro</a>
-        <a href="/bengaluru-metro/">Bengaluru Metro</a>
+      <div class="foot-logo">🚄 MetroGuideIndia</div>
+      <p class="foot-desc">MetroGuideIndia route planner for Namo Bharat, Delhi Metro, and Bengaluru Metro.</p>
+      <nav class="foot-links" aria-label="Footer links">
+        <a href="/">Home</a><span>·</span>
+        <a href="/blog">Blog</a><span>·</span>
+        <a href="/stations">Stations</a><span>·</span>
+        <a href="/timings">Timings</a><span>·</span>
+        <a href="/fares">Fares</a><span>·</span>
+        <a href="/about.html">About</a><span>·</span>
+        <a href="/contact.html">Contact</a><span>·</span>
+        <a href="/privacy.html">Privacy Policy</a><span>·</span>
+        <a href="/terms.html">Terms</a><span>·</span>
+        <a href="/disclaimer.html">Disclaimer</a>
       </nav>
-      <p class="footer-disclaimer">MetroGuideIndia is an unofficial commuter guide and is not affiliated with NCRTC, DMRC, BMRCL, or any government authority.</p>
+      <p class="foot-copy">© 2026 MetroGuideIndia. Independent Transit Resource. Not affiliated with NCRTC, DMRC, or BMRCL.</p>
     </div>
   </footer>
 </body>
