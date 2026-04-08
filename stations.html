@@ -93,7 +93,7 @@
 <script>
 const BASE_PATH = (() => {
   let path = window.location.pathname || '';
-  path = path.replace(/\/stations(\.html)?\/?$/, '');
+  path = path.replace(/\/stations(?:\.html)?\/?$/, '');
   return path.replace(/\/$/, '');
 })();
 
@@ -215,6 +215,8 @@ function render() {
 }
 
 function stationCard(station, lineName, color) {
+  const LINE_BORDER_ALPHA = '66';
+  const LINE_BG_ALPHA = '14';
   const hasIx = station.interchange === 'yes' || station.is_interchange === true;
   return `
     <article class="station-card">
@@ -223,7 +225,7 @@ function stationCard(station, lineName, color) {
         <div class="station-name">${station.station_name}</div>
         <div class="station-sub">
           <span>${station.city || 'Urban network'}</span>
-          <span class="line-pill" style="color:${color};border-color:${color}66;background:${color}14">${lineName}</span>
+          <span class="line-pill" style="color:${color};border-color:${color}${LINE_BORDER_ALPHA};background:${color}${LINE_BG_ALPHA}">${lineName}</span>
           ${hasIx ? '<span class="ix-badge">🔄 Interchange</span>' : ''}
         </div>
       </div>

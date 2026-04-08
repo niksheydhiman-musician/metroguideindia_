@@ -230,7 +230,7 @@ function calcBengaluruFare(distanceKm) {
 document.getElementById('blr-calc-btn').addEventListener('click', () => {
   const distance = Number(document.getElementById('blr-distance').value);
   const out = document.getElementById('blr-calc-result');
-  if (!Number.isFinite(distance) || distance < 0) {
+  if (!Number.isFinite(distance) || distance <= 0) {
     out.textContent = 'Please enter a valid distance in kilometers.';
     return;
   }
