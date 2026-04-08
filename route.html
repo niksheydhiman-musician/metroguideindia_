@@ -260,11 +260,11 @@ function go(src, dst) {
   }
 
   const dist = RouteFinder.calcDistance(path, GRAPH);
-  const fare = RouteFinder.calcFare(path);
+  const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: dist });
   const nX   = path.filter(p => p.line_id === 'interchange').length;
   const time = RouteFinder.calcTime(dist, nX);
 
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines);
   document.getElementById('route-result').style.display = 'block';
 
   const srcSt = DATA.stations.find(s => s.station_id === src);

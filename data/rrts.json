@@ -1,0 +1,545 @@
+{
+  "city_key": "rrts",
+  "systems": [
+    {
+      "system_id": "rrts",
+      "system_name": "Delhi Meerut RRTS",
+      "operator": "NCRTC",
+      "region": "Delhi–Meerut",
+      "status": "operational"
+    },
+    {
+      "system_id": "meerut_metro",
+      "system_name": "Meerut Metro",
+      "operator": "NCRTC",
+      "region": "Meerut",
+      "status": "operational"
+    }
+  ],
+  "lines": [
+    {
+      "line_id": "rrts_main",
+      "system_id": "rrts",
+      "line_name": "Delhi–Meerut Corridor",
+      "color": "red",
+      "start_station": "Sarai Kale Khan",
+      "end_station": "Modipuram"
+    },
+    {
+      "line_id": "meerut_metro_main",
+      "system_id": "meerut_metro",
+      "line_name": "Meerut Metro Line",
+      "color": "fluorescent green",
+      "start_station": "Meerut South",
+      "end_station": "Modipuram"
+    }
+  ],
+  "stations": [
+    {
+      "station_id": "sarai_kale_khan",
+      "station_name": "Sarai Kale Khan",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "1",
+      "city": "Delhi",
+      "interchange": "no",
+      "latitude": "28.58842225",
+      "longitude": "77.25836668"
+    },
+    {
+      "station_id": "new_ashok_nagar",
+      "station_name": "New Ashok Nagar",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "2",
+      "city": "Delhi",
+      "interchange": "no",
+      "latitude": "28.59072331",
+      "longitude": "77.30195209"
+    },
+    {
+      "station_id": "anand_vihar",
+      "station_name": "Anand Vihar",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "3",
+      "city": "Delhi",
+      "interchange": "yes",
+      "latitude": "28.64782077",
+      "longitude": "77.31670832"
+    },
+    {
+      "station_id": "sahibabad",
+      "station_name": "Sahibabad",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "4",
+      "city": "Sahibabad",
+      "interchange": "no",
+      "latitude": "28.66778433",
+      "longitude": "77.36804644"
+    },
+    {
+      "station_id": "ghaziabad",
+      "station_name": "Ghaziabad",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "5",
+      "city": "Ghaziabad",
+      "interchange": "no",
+      "latitude": "28.67260992",
+      "longitude": "77.41386261"
+    },
+    {
+      "station_id": "guldhar",
+      "station_name": "Guldhar",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "6",
+      "city": "Guldhar",
+      "interchange": "no",
+      "latitude": "28.6992957",
+      "longitude": "77.44503428"
+    },
+    {
+      "station_id": "duhai",
+      "station_name": "Duhai",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "7",
+      "city": "Duhai",
+      "interchange": "no",
+      "latitude": "28.72662107",
+      "longitude": "77.47089273"
+    },
+    {
+      "station_id": "murad_nagar",
+      "station_name": "Murad Nagar",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "8",
+      "city": "Murad Nagar",
+      "interchange": "no",
+      "latitude": "28.77069393",
+      "longitude": "77.51090573"
+    },
+    {
+      "station_id": "modi_nagar_south",
+      "station_name": "Modi Nagar South",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "9",
+      "city": "Modi Nagar",
+      "interchange": "no",
+      "latitude": "28.81723252",
+      "longitude": "77.55582778"
+    },
+    {
+      "station_id": "modi_nagar_north",
+      "station_name": "Modi Nagar North",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "10",
+      "city": "Modi Nagar",
+      "interchange": "no",
+      "latitude": "28.84438087",
+      "longitude": "77.58432594"
+    },
+    {
+      "station_id": "meerut_south_rrts",
+      "station_name": "Meerut South",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "11",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.90468662",
+      "longitude": "77.63238217"
+    },
+    {
+      "station_id": "meerut_south_meerut_metro",
+      "station_name": "Meerut South",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "12",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.90468662",
+      "longitude": "77.63238217"
+    },
+    {
+      "station_id": "partapur_meerut_metro",
+      "station_name": "Partapur",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "13",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "28.92199723",
+      "longitude": "77.65028625"
+    },
+    {
+      "station_id": "rithani_meerut_metro",
+      "station_name": "Rithani",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "14",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "28.93278127",
+      "longitude": "77.66139091"
+    },
+    {
+      "station_id": "shatabdi_nagar_rrts",
+      "station_name": "Shatabdi Nagar",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "15",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.94770606",
+      "longitude": "77.6735839"
+    },
+    {
+      "station_id": "shatabdi_nagar_meerut_metro",
+      "station_name": "Shatabdi Nagar",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "16",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.94770606",
+      "longitude": "77.6735839"
+    },
+    {
+      "station_id": "brahampuri_meerut_metro",
+      "station_name": "Brahampuri",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "17",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "28.96550263",
+      "longitude": "77.68608896"
+    },
+    {
+      "station_id": "meerut_central_meerut_metro",
+      "station_name": "Meerut Central",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "18",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "28.97329199",
+      "longitude": "77.69059562"
+    },
+    {
+      "station_id": "bhaisali_bus_adda_meerut_metro",
+      "station_name": "Bhaisali Bus Adda",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "19",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "28.9877311",
+      "longitude": "77.69945647"
+    },
+    {
+      "station_id": "begumpul_rrts",
+      "station_name": "Begumpul",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "20",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.99677611",
+      "longitude": "77.70571674"
+    },
+    {
+      "station_id": "begumpul_meerut_metro",
+      "station_name": "Begumpul",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "21",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "28.99677611",
+      "longitude": "77.70571674"
+    },
+    {
+      "station_id": "mes_colony_meerut_metro",
+      "station_name": "MES Colony",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "22",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "29.01445572",
+      "longitude": "77.7044356"
+    },
+    {
+      "station_id": "daurli_meerut_metro",
+      "station_name": "Daurli",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "23",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "29.04101509",
+      "longitude": "77.70695927"
+    },
+    {
+      "station_id": "meerut_north_meerut_metro",
+      "station_name": "Meerut North",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "24",
+      "city": "Meerut",
+      "interchange": "no",
+      "latitude": "29.05359485",
+      "longitude": "77.70811067"
+    },
+    {
+      "station_id": "modipuram_rrts",
+      "station_name": "Modipuram",
+      "system_id": "rrts",
+      "line_id": "rrts_main",
+      "order": "25",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "29.11726393",
+      "longitude": "77.70526117"
+    },
+    {
+      "station_id": "modipuram_meerut_metro",
+      "station_name": "Modipuram",
+      "system_id": "meerut_metro",
+      "line_id": "meerut_metro_main",
+      "order": "26",
+      "city": "Meerut",
+      "interchange": "yes",
+      "latitude": "29.11726393",
+      "longitude": "77.70526117"
+    }
+  ],
+  "connections": [
+    {
+      "connection_id": "c1",
+      "from_station": "sarai_kale_khan",
+      "to_station": "new_ashok_nagar",
+      "line_id": "rrts_main",
+      "distance_km": 5.29
+    },
+    {
+      "connection_id": "c2",
+      "from_station": "new_ashok_nagar",
+      "to_station": "anand_vihar",
+      "line_id": "rrts_main",
+      "distance_km": 7.124
+    },
+    {
+      "connection_id": "c3",
+      "from_station": "anand_vihar",
+      "to_station": "sahibabad",
+      "line_id": "rrts_main",
+      "distance_km": 6.131
+    },
+    {
+      "connection_id": "c4",
+      "from_station": "sahibabad",
+      "to_station": "ghaziabad",
+      "line_id": "rrts_main",
+      "distance_km": 5.052
+    },
+    {
+      "connection_id": "c5",
+      "from_station": "ghaziabad",
+      "to_station": "guldhar",
+      "line_id": "rrts_main",
+      "distance_km": 4.34
+    },
+    {
+      "connection_id": "c6",
+      "from_station": "guldhar",
+      "to_station": "duhai",
+      "line_id": "rrts_main",
+      "distance_km": 3.97
+    },
+    {
+      "connection_id": "c7",
+      "from_station": "duhai",
+      "to_station": "murad_nagar",
+      "line_id": "rrts_main",
+      "distance_km": 4.028
+    },
+    {
+      "connection_id": "c8",
+      "from_station": "murad_nagar",
+      "to_station": "modi_nagar_south",
+      "line_id": "rrts_main",
+      "distance_km": 6.818
+    },
+    {
+      "connection_id": "c9",
+      "from_station": "modi_nagar_south",
+      "to_station": "modi_nagar_north",
+      "line_id": "rrts_main",
+      "distance_km": 3.998
+    },
+    {
+      "connection_id": "c10",
+      "from_station": "modi_nagar_north",
+      "to_station": "meerut_south_rrts",
+      "line_id": "rrts_main",
+      "distance_km": 8.313
+    },
+    {
+      "connection_id": "c11",
+      "from_station": "meerut_south_meerut_metro",
+      "to_station": "partapur_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.637
+    },
+    {
+      "connection_id": "c12",
+      "from_station": "partapur_meerut_metro",
+      "to_station": "rithani_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 1.478
+    },
+    {
+      "connection_id": "c13",
+      "from_station": "rithani_meerut_metro",
+      "to_station": "shatabdi_nagar_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.125
+    },
+    {
+      "connection_id": "c14",
+      "from_station": "shatabdi_nagar_meerut_metro",
+      "to_station": "brahampuri_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 1.835
+    },
+    {
+      "connection_id": "c15",
+      "from_station": "brahampuri_meerut_metro",
+      "to_station": "meerut_central_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 1.343
+    },
+    {
+      "connection_id": "c16",
+      "from_station": "meerut_central_meerut_metro",
+      "to_station": "bhaisali_bus_adda_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.097
+    },
+    {
+      "connection_id": "c17",
+      "from_station": "bhaisali_bus_adda_meerut_metro",
+      "to_station": "begumpul_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 1.223
+    },
+    {
+      "connection_id": "c18",
+      "from_station": "begumpul_meerut_metro",
+      "to_station": "mes_colony_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.081
+    },
+    {
+      "connection_id": "c19",
+      "from_station": "mes_colony_meerut_metro",
+      "to_station": "daurli_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.816
+    },
+    {
+      "connection_id": "c20",
+      "from_station": "daurli_meerut_metro",
+      "to_station": "meerut_north_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 1.406
+    },
+    {
+      "connection_id": "c21",
+      "from_station": "meerut_north_meerut_metro",
+      "to_station": "modipuram_meerut_metro",
+      "line_id": "meerut_metro_main",
+      "distance_km": 2.098
+    },
+    {
+      "connection_id": "c22",
+      "from_station": "meerut_south_rrts",
+      "to_station": "meerut_south_meerut_metro",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "c23",
+      "from_station": "shatabdi_nagar_rrts",
+      "to_station": "shatabdi_nagar_meerut_metro",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "c24",
+      "from_station": "begumpul_rrts",
+      "to_station": "begumpul_meerut_metro",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "c25",
+      "from_station": "modipuram_rrts",
+      "to_station": "modipuram_meerut_metro",
+      "line_id": "interchange",
+      "distance_km": 0
+    }
+  ],
+  "interchanges": [
+    {
+      "interchange_id": "int1",
+      "station_id": "meerut_south_rrts",
+      "from_system": "rrts",
+      "from_line": "rrts_main",
+      "to_system": "meerut_metro",
+      "to_line": "meerut_metro_main",
+      "change_platform": "Platform 2",
+      "instructions": "Change to Meerut Metro"
+    },
+    {
+      "interchange_id": "int2",
+      "station_id": "shatabdi_nagar_rrts",
+      "from_system": "rrts",
+      "from_line": "rrts_main",
+      "to_system": "meerut_metro",
+      "to_line": "meerut_metro_main",
+      "change_platform": "Platform 1",
+      "instructions": "Change to Meerut Metro"
+    },
+    {
+      "interchange_id": "int3",
+      "station_id": "begumpul_rrts",
+      "from_system": "rrts",
+      "from_line": "rrts_main",
+      "to_system": "meerut_metro",
+      "to_line": "meerut_metro_main",
+      "change_platform": "Platform 3",
+      "instructions": "Change to Meerut Metro"
+    },
+    {
+      "interchange_id": "int4",
+      "station_id": "modipuram_rrts",
+      "from_system": "rrts",
+      "from_line": "rrts_main",
+      "to_system": "meerut_metro",
+      "to_line": "meerut_metro_main",
+      "change_platform": "Platform 1, Platform 2",
+      "instructions": "Change to Meerut Metro"
+    }
+  ],
+  "landmarks": []
+}

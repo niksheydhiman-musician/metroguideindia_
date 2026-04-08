@@ -9,12 +9,13 @@
  */
 const RouteUI = (() => {
 
-  const LINE = {
+  const DEFAULT_LINE = {
     rrts_main:         { color: '#C0392B', label: 'Namo Bharat RRTS' },
     meerut_metro_main: { color: '#27764A', label: 'Meerut Metro'     },
     interchange:       { color: '#A0620A', label: 'Interchange'       },
   };
-  const getLine = lid => LINE[lid] || LINE.rrts_main;
+  let activeLineMap = { ...DEFAULT_LINE };
+  const getLine = lid => activeLineMap[lid] || DEFAULT_LINE.rrts_main;
   const esc = (s) => String(s ?? '')
   .replaceAll('&','&amp;')
   .replaceAll('<','&lt;')
@@ -22,10 +23,23 @@ const RouteUI = (() => {
   .replaceAll('"','&quot;')
   .replaceAll("'","&#39;");
 
+  function buildLineMap(lines = []) {
+    const map = { ...DEFAULT_LINE };
+    lines.forEach(line => {
+      if (!line?.line_id) return;
+      map[line.line_id] = {
+        color: line.color || map[line.line_id]?.color || '#C0392B',
+        label: line.line_name || line.line_id,
+      };
+    });
+    return map;
+  }
+
   /* ── Main render ─────────────────────────────────────────────────────────── */
-  function renderRoute(cid, path, stations, interchanges, distance, fare, time) {
+  function renderRoute(cid, path, stations, interchanges, distance, fare, time, lines = []) {
     const el = document.getElementById(cid);
     if (!el) return;
+    activeLineMap = buildLineMap(lines);
 
     // Build lookup maps
     const stMap = {};
@@ -38,6 +52,17 @@ const RouteUI = (() => {
       // Also accept metro twin in case of any edge case
       const metroTwin = ix.station_id.replace(/_rrts$/, '_meerut_metro');
       ixMap[metroTwin] = ix;
+    });
+    // Use station-level interchange flags as additional lookup fallback.
+    stations.forEach(s => {
+      if (String(s.interchange || '').toLowerCase() !== 'yes') return;
+      if (!ixMap[s.station_id]) {
+        ixMap[s.station_id] = {
+          station_id: s.station_id,
+          change_platform: 'Follow interchange signs',
+          instructions: `Change trains at ${s.station_name}`,
+        };
+      }
     });
 
     // Resolve station name: try stMap directly, then try RRTS/metro twin
@@ -164,6 +189,7 @@ const RouteUI = (() => {
       const toColor  = nextStep ? getLine(nextStep.line_id).color : getLine('meerut_metro_main').color;
       const toLabel  = nextStep ? getLine(nextStep.line_id).label : 'Meerut Metro';
       const platform = ix ? ix.change_platform : 'Follow interchange signs';
+      const instruction = `Change trains at ${name}`;
 
       return `
         <div class="step step-xchange">
@@ -177,7 +203,7 @@ const RouteUI = (() => {
             <div class="rail-line" style="background:${toColor}"></div>
           </div>
           <div class="xchange-card">
-            <div class="xchange-label">🔄 Change Train</div>
+            <div class="xchange-label">🔄 ${instruction}</div>
             <div class="xchange-name">${name}</div>
             <div class="xchange-meta">
               <span class="platform-tag">${platform}</span>

@@ -1,0 +1,157 @@
+{
+  "city_key": "bengaluru",
+  "systems": [
+    {
+      "system_id": "bengaluru_metro",
+      "system_name": "Namma Metro",
+      "operator": "BMRCL",
+      "region": "Bengaluru",
+      "status": "operational"
+    }
+  ],
+  "lines": [
+    {
+      "line_id": "purple_line",
+      "system_id": "bengaluru_metro",
+      "line_name": "Purple Line",
+      "color": "#6c2e9d",
+      "start_station": "Whitefield (Kadugodi)",
+      "end_station": "Challaghatta"
+    },
+    {
+      "line_id": "green_line",
+      "system_id": "bengaluru_metro",
+      "line_name": "Green Line",
+      "color": "#1b8f3b",
+      "start_station": "Nagasandra",
+      "end_station": "Silk Institute"
+    }
+  ],
+  "stations": [
+    {
+      "station_id": "sir_m_visvesvaraya_purple",
+      "station_name": "Sir M. Visvesvaraya",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "1",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "latitude": "12.974100",
+      "longitude": "77.605800"
+    },
+    {
+      "station_id": "majestic_purple",
+      "station_name": "Majestic",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "2",
+      "city": "Bengaluru",
+      "interchange": "yes",
+      "latitude": "12.978300",
+      "longitude": "77.572700"
+    },
+    {
+      "station_id": "magadi_road_purple",
+      "station_name": "Magadi Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "3",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "latitude": "12.975800",
+      "longitude": "77.555400"
+    },
+    {
+      "station_id": "chickpete_green",
+      "station_name": "Chickpete",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "4",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "latitude": "12.962700",
+      "longitude": "77.574600"
+    },
+    {
+      "station_id": "majestic_green",
+      "station_name": "Majestic",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "5",
+      "city": "Bengaluru",
+      "interchange": "yes",
+      "latitude": "12.978300",
+      "longitude": "77.572700"
+    },
+    {
+      "station_id": "sampige_road_green",
+      "station_name": "Sampige Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "6",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "latitude": "12.991100",
+      "longitude": "77.570000"
+    }
+  ],
+  "connections": [
+    {
+      "connection_id": "b1",
+      "from_station": "sir_m_visvesvaraya_purple",
+      "to_station": "majestic_purple",
+      "line_id": "purple_line",
+      "distance_km": 2.3
+    },
+    {
+      "connection_id": "b2",
+      "from_station": "majestic_purple",
+      "to_station": "magadi_road_purple",
+      "line_id": "purple_line",
+      "distance_km": 1.9
+    },
+    {
+      "connection_id": "b3",
+      "from_station": "chickpete_green",
+      "to_station": "majestic_green",
+      "line_id": "green_line",
+      "distance_km": 1.1
+    },
+    {
+      "connection_id": "b4",
+      "from_station": "majestic_green",
+      "to_station": "sampige_road_green",
+      "line_id": "green_line",
+      "distance_km": 1.7
+    },
+    {
+      "connection_id": "b5",
+      "from_station": "majestic_purple",
+      "to_station": "majestic_green",
+      "line_id": "interchange",
+      "distance_km": 0
+    }
+  ],
+  "interchanges": [
+    {
+      "interchange_id": "bi1",
+      "station_id": "majestic_purple",
+      "from_system": "bengaluru_metro",
+      "from_line": "purple_line",
+      "to_system": "bengaluru_metro",
+      "to_line": "green_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Majestic"
+    }
+  ],
+  "landmarks": [
+    {
+      "station_id": "majestic_purple",
+      "name": "Kempegowda Bus Station"
+    },
+    {
+      "station_id": "sir_m_visvesvaraya_purple",
+      "name": "Cubbon Park"
+    }
+  ]
+}

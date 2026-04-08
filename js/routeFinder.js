@@ -383,9 +383,40 @@ const RouteFinder = (() => {
     return null;
   }
 
+  // 2026 metro distance slabs (standard fare)
+  const METRO_2026_SLABS = {
+    delhi: [
+      { maxKm: 2,  fare: 11 },
+      { maxKm: 5,  fare: 21 },
+      { maxKm: 12, fare: 32 },
+      { maxKm: 21, fare: 42 },
+      { maxKm: 32, fare: 52 },
+      { maxKm: Infinity, fare: 64 },
+    ],
+    bengaluru: [
+      { maxKm: 2,  fare: 11 },
+      { maxKm: 5,  fare: 21 },
+      { maxKm: 12, fare: 32 },
+      { maxKm: 21, fare: 42 },
+      { maxKm: 32, fare: 52 },
+      { maxKm: Infinity, fare: 64 },
+    ],
+  };
+
+  function fareFromDistanceSlab(distance, cityKey) {
+    const slabs = METRO_2026_SLABS[cityKey];
+    if (!slabs || !Number.isFinite(distance)) return null;
+    const safeDistance = Math.max(0, Number(distance));
+    const slab = slabs.find(s => safeDistance <= s.maxKm);
+    return slab ? slab.fare : null;
+  }
+
   /* ── Fare calculation ────────────────────────────────────────────────────── */
-  function calcFare(path) {
+  function calcFare(path, options = {}) {
     if (!path || path.length < 2) return 20;
+    const cityKey = String(options.cityKey || 'rrts').toLowerCase();
+    const slabFare = fareFromDistanceSlab(options.distance, cityKey);
+    if (slabFare !== null) return slabFare;
 
     const src = path[0].station_id;
     const dst = path[path.length - 1].station_id;
@@ -438,4 +469,3 @@ const RouteFinder = (() => {
 
   return { findRoute, calcDistance, calcFare, calcTime };
 })();
-
