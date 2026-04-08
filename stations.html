@@ -106,6 +106,7 @@ const CITY_META = {
 let ACTIVE_CITY = 'namo_bharat';
 let SEARCH_QUERY = '';
 let DATA = { namo_bharat: { stations: [], lines: {} }, delhi: { stations: [], lines: {} }, bengaluru: { stations: [], lines: {} } };
+const COLOR_SOFT_BG_ALPHA = '1A';
 
 (async function init(){
   try {
@@ -203,7 +204,7 @@ function render() {
     return `
       <section class="section">
         <div class="section-head">
-          <div class="station-dot" style="border-color:${color};background:${color}1A"></div>
+          <div class="station-dot" style="border-color:${color};background:${color}${COLOR_SOFT_BG_ALPHA}"></div>
           <div>
             <div class="section-title">${lineName}</div>
             <div class="section-meta">${stations.length} stations</div>
@@ -220,7 +221,7 @@ function stationCard(station, lineName, color) {
   const hasIx = station.interchange === 'yes' || station.is_interchange === true;
   return `
     <article class="station-card">
-      <div class="station-dot" style="border-color:${color};background:${color}1A"></div>
+      <div class="station-dot" style="border-color:${color};background:${color}${COLOR_SOFT_BG_ALPHA}"></div>
       <div class="station-main">
         <div class="station-name">${station.station_name}</div>
         <div class="station-sub">
