@@ -1,16 +1,127 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SV6378N2ZW');
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting…</title>
-  <meta http-equiv="refresh" content="0;url=/namo-bharat/" />
-  <link rel="canonical" href="https://metroguideindia.com/namo-bharat/" />
-  <script>
-    window.location.replace('/namo-bharat/');
-  </script>
+  <title>MetroGuideIndia City Selection | India Metro Route Planner</title>
+  <meta name="description" content="Choose your metro network on MetroGuideIndia and access fast route planning, fare details, and station information for Namo Bharat, Delhi Metro, and Bengaluru Metro." />
+  <link rel="canonical" href="https://metroguideindia.com/" />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --rrts: #0b63ce;
+      --dmrc: #cf1f2f;
+      --bmrcl: #6f2dbd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 2.2vw, 2.5rem);
+      text-align: center;
+    }
+    .sub {
+      margin: 0 auto 28px;
+      max-width: 760px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+    .card {
+      display: block;
+      background: var(--card);
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--border);
+      border-top-width: 6px;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover, .card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 24px rgba(15, 23, 42, 0.14);
+      outline: none;
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .rrts { border-top-color: var(--rrts); }
+    .dmrc { border-top-color: var(--dmrc); }
+    .bmrcl { border-top-color: var(--bmrcl); }
+    .about {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .about h2 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+    }
+    .about p {
+      margin: 0;
+      color: #374151;
+    }
+  </style>
 </head>
 <body>
-  <p>If you are not redirected, <a href="/namo-bharat/">click here</a>.</p>
+  <main class="wrap">
+    <h1>Select Your Metro City</h1>
+    <p class="sub">Welcome to MetroGuideIndia. Choose a transit network below to check routes, station details, and fare information in one place.</p>
+
+    <section class="grid" aria-label="Metro network selection cards">
+      <a class="card rrts" href="/namo-bharat/">
+        <h2>Namo Bharat (RRTS)</h2>
+        <p>Open Delhi–Meerut corridor tools, station guides, and fast fare lookups.</p>
+      </a>
+      <a class="card dmrc" href="/delhi-metro/">
+        <h2>Delhi Metro (DMRC)</h2>
+        <p>Check route combinations, platform interchanges, and latest metro updates.</p>
+      </a>
+      <a class="card bmrcl" href="/bengaluru-metro/">
+        <h2>Namma Metro (BMRCL)</h2>
+        <p>Explore Bengaluru line coverage, station maps, and commuter planning details.</p>
+      </a>
+    </section>
+
+    <section class="about" aria-label="About MetroGuideIndia">
+      <h2>About MetroGuideIndia</h2>
+      <p>MetroGuideIndia is built for daily commuters, students, office travelers, and tourists who need a reliable India Metro Route Planner with city-specific guidance. Instead of switching across multiple sources, you can start from one place and quickly move to the network you use most. For NCR users, our Namo Bharat section supports route and fare understanding for the high-speed corridor and related last-mile planning, including practical travel context for Meerut Metro connectivity. The Delhi section is focused on clear, frequently updated passenger information so users can estimate trip time, identify interchange stations, and review current fare expectations such as Delhi Metro Fare 2026 trends. We are expanding coverage city by city with a simple goal: make metro travel decisions easier before you leave home. Whether you commute every day or travel occasionally, MetroGuideIndia helps you compare routes, prepare budgets, and reach destinations with fewer surprises.</p>
+    </section>
+  </main>
 </body>
 </html>
