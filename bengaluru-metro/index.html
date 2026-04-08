@@ -37,6 +37,12 @@
     <p class="hero-sub">Find route, fare and interchange instructions for BMRCL Namma Metro with fast station search and top commuter journeys.</p>
   </section>
 
+  <section>
+    <div class="sec-eye">Planner</div>
+    <h2 class="sec-head" style="margin-bottom:10px">Transit Planner</h2>
+    <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Search any two stations to get route path, fare estimate, and interchange guidance.</p>
+  </section>
+
   <section id="search-section">
     <div class="sc">
       <div class="fd">
@@ -87,7 +93,7 @@
 
   <section id="stations-section" style="margin-bottom:48px">
     <div class="sec-eye">Network</div>
-    <h2 class="sec-head">Station List</h2>
+    <h2 class="sec-head">All Stations</h2>
     <div class="tabs" id="tabs"></div>
     <div id="stations-list"></div>
     <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/bengaluru.json" style="text-decoration:underline">/data/bengaluru.json</a></p>
@@ -117,12 +123,12 @@ const TIMINGS = [
 ];
 const JOURNEYS = [
   { group: 'Daily Commutes', color: '#6c2e9d', icon: '🚇', routes: [
-    { from: 'sir_m_visvesvaraya_purple', to: 'magadi_road_purple', fromName: 'Sir M. Visvesvaraya', toName: 'Magadi Road' },
-    { from: 'chickpete_green', to: 'sampige_road_green', fromName: 'Chickpete', toName: 'Sampige Road' }
+    { from: 'nadaprabhu_kempegowda_station_majestic_purple_line', to: 'whitefield_purple_line', fromName: 'Majestic', toName: 'Whitefield' },
+    { from: 'indiranagar_purple_line', to: 'jayanagar_green_line', fromName: 'Indiranagar', toName: 'Jayanagar' }
   ]},
   { group: 'Interchange Trips', color: '#1b8f3b', icon: '🔄', routes: [
-    { from: 'sir_m_visvesvaraya_purple', to: 'sampige_road_green', fromName: 'Sir M. Visvesvaraya', toName: 'Sampige Road' },
-    { from: 'magadi_road_purple', to: 'chickpete_green', fromName: 'Magadi Road', toName: 'Chickpete' }
+    { from: 'kengeri_purple_line', to: 'nagawara_green_line', fromName: 'Kengeri', toName: 'Nagawara' },
+    { from: 'silk_institute_green_line', to: 'indiranagar_purple_line', fromName: 'Silk Institute', toName: 'Indiranagar' }
   ]}
 ];
 

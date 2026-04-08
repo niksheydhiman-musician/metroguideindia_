@@ -14,120 +14,1308 @@
       "line_id": "purple_line",
       "system_id": "bengaluru_metro",
       "line_name": "Purple Line",
-      "color": "#6c2e9d",
-      "start_station": "Whitefield (Kadugodi)",
-      "end_station": "Challaghatta"
+      "color": "#9b59b6",
+      "start_station": "Challaghatta",
+      "end_station": "Hopefarm Channasandra"
     },
     {
       "line_id": "green_line",
       "system_id": "bengaluru_metro",
       "line_name": "Green Line",
-      "color": "#1b8f3b",
-      "start_station": "Nagasandra",
-      "end_station": "Silk Institute"
+      "color": "#27ae60",
+      "start_station": "Silk Institute",
+      "end_station": "Soladevanahalli"
     }
   ],
   "stations": [
     {
-      "station_id": "sir_m_visvesvaraya_purple",
-      "station_name": "Sir M. Visvesvaraya",
+      "station_id": "challaghatta_purple_line",
+      "station_name": "Challaghatta",
       "system_id": "bengaluru_metro",
       "line_id": "purple_line",
       "order": "1",
       "city": "Bengaluru",
       "interchange": "no",
-      "latitude": "12.974100",
-      "longitude": "77.605800"
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "majestic_purple",
-      "station_name": "Majestic",
+      "station_id": "kengeri_purple_line",
+      "station_name": "Kengeri",
       "system_id": "bengaluru_metro",
       "line_id": "purple_line",
       "order": "2",
       "city": "Bengaluru",
-      "interchange": "yes",
-      "latitude": "12.978300",
-      "longitude": "77.572700"
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "magadi_road_purple",
-      "station_name": "Magadi Road",
+      "station_id": "kengeri_bus_terminal_purple_line",
+      "station_name": "Kengeri Bus Terminal",
       "system_id": "bengaluru_metro",
       "line_id": "purple_line",
       "order": "3",
       "city": "Bengaluru",
       "interchange": "no",
-      "latitude": "12.975800",
-      "longitude": "77.555400"
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "chickpete_green",
-      "station_name": "Chickpete",
+      "station_id": "pattanagere_purple_line",
+      "station_name": "Pattanagere",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "4",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jnanabharathi_purple_line",
+      "station_name": "Jnanabharathi",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "5",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajarajeshwari_nagar_purple_line",
+      "station_name": "Rajarajeshwari Nagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "6",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pantharapalya_nayandahalli_purple_line",
+      "station_name": "Pantharapalya - Nayandahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "7",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mysuru_road_purple_line",
+      "station_name": "Mysuru Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "8",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "deepanjali_nagar_purple_line",
+      "station_name": "Deepanjali Nagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "9",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "attiguppe_purple_line",
+      "station_name": "Attiguppe",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "10",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vijayanagar_purple_line",
+      "station_name": "Vijayanagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "11",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "balagangadaranatha_swamiji_station_hosahalli_purple_line",
+      "station_name": "Balagangadaranatha Swamiji Station, Hosahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "12",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "magadi_road_purple_line",
+      "station_name": "Magadi Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "13",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nadaprabhu_kempegowda_station_majestic_purple_line",
+      "station_name": "Nadaprabhu Kempegowda Station, Majestic",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "14",
+      "city": "Bengaluru",
+      "interchange": "yes",
+      "line_color": "#9b59b6",
+      "is_interchange": true,
+      "interchange_with": [
+        "Green Line"
+      ]
+    },
+    {
+      "station_id": "cubbon_park_purple_line",
+      "station_name": "Cubbon Park",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "15",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "trinity_purple_line",
+      "station_name": "Trinity",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "16",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "halasuru_purple_line",
+      "station_name": "Halasuru",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "17",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "indiranagar_purple_line",
+      "station_name": "Indiranagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "18",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "swami_vivekananda_road_purple_line",
+      "station_name": "Swami Vivekananda Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "19",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "baiyappanahalli_purple_line",
+      "station_name": "Baiyappanahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "20",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "benniganahalli_purple_line",
+      "station_name": "Benniganahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "21",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "k_r_pura_purple_line",
+      "station_name": "K.R. Pura",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "22",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sarayyapalya_purple_line",
+      "station_name": "Sarayyapalya",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "23",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "garudacharpalya_purple_line",
+      "station_name": "Garudacharpalya",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "24",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "hoodi_purple_line",
+      "station_name": "Hoodi",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "25",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "seetharampalya_purple_line",
+      "station_name": "Seetharampalya",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "26",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kundanahalli_purple_line",
+      "station_name": "Kundanahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "27",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nallurhalli_purple_line",
+      "station_name": "Nallurhalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "28",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "singayya_sahitya_hospital_purple_line",
+      "station_name": "Singayya Sahitya Hospital",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "29",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pattandur_agrahara_purple_line",
+      "station_name": "Pattandur Agrahara",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "30",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kadugodi_twp_park_purple_line",
+      "station_name": "Kadugodi Twp Park",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "31",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "whitefield_purple_line",
+      "station_name": "Whitefield (Kadugodi)",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "32",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "hopefarm_channasandra_purple_line",
+      "station_name": "Hopefarm Channasandra",
+      "system_id": "bengaluru_metro",
+      "line_id": "purple_line",
+      "order": "33",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#9b59b6",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "silk_institute_green_line",
+      "station_name": "Silk Institute",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "1",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "thalaghattapura_green_line",
+      "station_name": "Thalaghattapura",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "2",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vajarahalli_green_line",
+      "station_name": "Vajarahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "3",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "doddakallasandra_green_line",
+      "station_name": "Doddakallasandra",
       "system_id": "bengaluru_metro",
       "line_id": "green_line",
       "order": "4",
       "city": "Bengaluru",
       "interchange": "no",
-      "latitude": "12.962700",
-      "longitude": "77.574600"
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "majestic_green",
-      "station_name": "Majestic",
+      "station_id": "konanakunte_cross_green_line",
+      "station_name": "Konanakunte Cross",
       "system_id": "bengaluru_metro",
       "line_id": "green_line",
       "order": "5",
       "city": "Bengaluru",
-      "interchange": "yes",
-      "latitude": "12.978300",
-      "longitude": "77.572700"
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "sampige_road_green",
-      "station_name": "Sampige Road",
+      "station_id": "yelachenahalli_green_line",
+      "station_name": "Yelachenahalli",
       "system_id": "bengaluru_metro",
       "line_id": "green_line",
       "order": "6",
       "city": "Bengaluru",
       "interchange": "no",
-      "latitude": "12.991100",
-      "longitude": "77.570000"
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jaya_prakash_nagar_green_line",
+      "station_name": "Jaya Prakash Nagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "7",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "banashankari_green_line",
+      "station_name": "Banashankari",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "8",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vidyalaya_road_green_line",
+      "station_name": "Vidyalaya Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "9",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rashtriya_vidyalaya_road_green_line",
+      "station_name": "Rashtriya Vidyalaya Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "10",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jayanagar_green_line",
+      "station_name": "Jayanagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "11",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "south_end_circle_green_line",
+      "station_name": "South End Circle",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "12",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "lalbagh_green_line",
+      "station_name": "Lalbagh",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "13",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "national_college_green_line",
+      "station_name": "National College",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "14",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "krishna_rajendra_market_green_line",
+      "station_name": "Krishna Rajendra Market",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "15",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "chickpete_green_line",
+      "station_name": "Chickpete",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "16",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nadaprabhu_kempegowda_station_majestic_green_line",
+      "station_name": "Nadaprabhu Kempegowda Station, Majestic",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "17",
+      "city": "Bengaluru",
+      "interchange": "yes",
+      "line_color": "#27ae60",
+      "is_interchange": true,
+      "interchange_with": [
+        "Purple Line"
+      ]
+    },
+    {
+      "station_id": "mantri_square_sampige_road_green_line",
+      "station_name": "Mantri Square Sampige Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "18",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mahalakshmi_green_line",
+      "station_name": "Mahalakshmi",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "19",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajajinagar_green_line",
+      "station_name": "Rajajinagar",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "20",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sandal_soap_factory_green_line",
+      "station_name": "Sandal Soap Factory",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "21",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mahakavi_kuvempu_road_green_line",
+      "station_name": "Mahakavi Kuvempu Road",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "22",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "srirampura_green_line",
+      "station_name": "Srirampura",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "23",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "yeshwantpur_green_line",
+      "station_name": "Yeshwantpur",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "24",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "peenya_industry_green_line",
+      "station_name": "Peenya Industry",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "25",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jalahalli_green_line",
+      "station_name": "Jalahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "26",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dasarahalli_green_line",
+      "station_name": "Dasarahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "27",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nagawara_green_line",
+      "station_name": "Nagawara",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "28",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "hebbal_green_line",
+      "station_name": "Hebbal",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "29",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "lottegollahalli_green_line",
+      "station_name": "Lottegollahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "30",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "thanisandra_green_line",
+      "station_name": "Thanisandra",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "31",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "yelahanka_green_line",
+      "station_name": "Yelahanka",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "32",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jakkur_green_line",
+      "station_name": "Jakkur",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "33",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "chikkabanavara_green_line",
+      "station_name": "Chikkabanavara",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "34",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "soladevanahalli_green_line",
+      "station_name": "Soladevanahalli",
+      "system_id": "bengaluru_metro",
+      "line_id": "green_line",
+      "order": "35",
+      "city": "Bengaluru",
+      "interchange": "no",
+      "line_color": "#27ae60",
+      "is_interchange": false,
+      "interchange_with": []
     }
   ],
   "connections": [
     {
       "connection_id": "b1",
-      "from_station": "sir_m_visvesvaraya_purple",
-      "to_station": "majestic_purple",
+      "from_station": "challaghatta_purple_line",
+      "to_station": "kengeri_purple_line",
       "line_id": "purple_line",
-      "distance_km": 2.3
+      "distance_km": 1.2
     },
     {
       "connection_id": "b2",
-      "from_station": "majestic_purple",
-      "to_station": "magadi_road_purple",
+      "from_station": "kengeri_purple_line",
+      "to_station": "kengeri_bus_terminal_purple_line",
       "line_id": "purple_line",
-      "distance_km": 1.9
+      "distance_km": 1.2
     },
     {
       "connection_id": "b3",
-      "from_station": "chickpete_green",
-      "to_station": "majestic_green",
-      "line_id": "green_line",
-      "distance_km": 1.1
+      "from_station": "kengeri_bus_terminal_purple_line",
+      "to_station": "pattanagere_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
     },
     {
       "connection_id": "b4",
-      "from_station": "majestic_green",
-      "to_station": "sampige_road_green",
-      "line_id": "green_line",
-      "distance_km": 1.7
+      "from_station": "pattanagere_purple_line",
+      "to_station": "jnanabharathi_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
     },
     {
       "connection_id": "b5",
-      "from_station": "majestic_purple",
-      "to_station": "majestic_green",
+      "from_station": "jnanabharathi_purple_line",
+      "to_station": "rajarajeshwari_nagar_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b6",
+      "from_station": "rajarajeshwari_nagar_purple_line",
+      "to_station": "pantharapalya_nayandahalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b7",
+      "from_station": "pantharapalya_nayandahalli_purple_line",
+      "to_station": "mysuru_road_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b8",
+      "from_station": "mysuru_road_purple_line",
+      "to_station": "deepanjali_nagar_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b9",
+      "from_station": "deepanjali_nagar_purple_line",
+      "to_station": "attiguppe_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b10",
+      "from_station": "attiguppe_purple_line",
+      "to_station": "vijayanagar_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b11",
+      "from_station": "vijayanagar_purple_line",
+      "to_station": "balagangadaranatha_swamiji_station_hosahalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b12",
+      "from_station": "balagangadaranatha_swamiji_station_hosahalli_purple_line",
+      "to_station": "magadi_road_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b13",
+      "from_station": "magadi_road_purple_line",
+      "to_station": "nadaprabhu_kempegowda_station_majestic_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b14",
+      "from_station": "nadaprabhu_kempegowda_station_majestic_purple_line",
+      "to_station": "cubbon_park_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b15",
+      "from_station": "cubbon_park_purple_line",
+      "to_station": "trinity_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b16",
+      "from_station": "trinity_purple_line",
+      "to_station": "halasuru_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b17",
+      "from_station": "halasuru_purple_line",
+      "to_station": "indiranagar_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b18",
+      "from_station": "indiranagar_purple_line",
+      "to_station": "swami_vivekananda_road_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b19",
+      "from_station": "swami_vivekananda_road_purple_line",
+      "to_station": "baiyappanahalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b20",
+      "from_station": "baiyappanahalli_purple_line",
+      "to_station": "benniganahalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b21",
+      "from_station": "benniganahalli_purple_line",
+      "to_station": "k_r_pura_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b22",
+      "from_station": "k_r_pura_purple_line",
+      "to_station": "sarayyapalya_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b23",
+      "from_station": "sarayyapalya_purple_line",
+      "to_station": "garudacharpalya_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b24",
+      "from_station": "garudacharpalya_purple_line",
+      "to_station": "hoodi_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b25",
+      "from_station": "hoodi_purple_line",
+      "to_station": "seetharampalya_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b26",
+      "from_station": "seetharampalya_purple_line",
+      "to_station": "kundanahalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b27",
+      "from_station": "kundanahalli_purple_line",
+      "to_station": "nallurhalli_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b28",
+      "from_station": "nallurhalli_purple_line",
+      "to_station": "singayya_sahitya_hospital_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b29",
+      "from_station": "singayya_sahitya_hospital_purple_line",
+      "to_station": "pattandur_agrahara_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b30",
+      "from_station": "pattandur_agrahara_purple_line",
+      "to_station": "kadugodi_twp_park_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b31",
+      "from_station": "kadugodi_twp_park_purple_line",
+      "to_station": "whitefield_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b32",
+      "from_station": "whitefield_purple_line",
+      "to_station": "hopefarm_channasandra_purple_line",
+      "line_id": "purple_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b33",
+      "from_station": "silk_institute_green_line",
+      "to_station": "thalaghattapura_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b34",
+      "from_station": "thalaghattapura_green_line",
+      "to_station": "vajarahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b35",
+      "from_station": "vajarahalli_green_line",
+      "to_station": "doddakallasandra_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b36",
+      "from_station": "doddakallasandra_green_line",
+      "to_station": "konanakunte_cross_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b37",
+      "from_station": "konanakunte_cross_green_line",
+      "to_station": "yelachenahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b38",
+      "from_station": "yelachenahalli_green_line",
+      "to_station": "jaya_prakash_nagar_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b39",
+      "from_station": "jaya_prakash_nagar_green_line",
+      "to_station": "banashankari_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b40",
+      "from_station": "banashankari_green_line",
+      "to_station": "vidyalaya_road_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b41",
+      "from_station": "vidyalaya_road_green_line",
+      "to_station": "rashtriya_vidyalaya_road_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b42",
+      "from_station": "rashtriya_vidyalaya_road_green_line",
+      "to_station": "jayanagar_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b43",
+      "from_station": "jayanagar_green_line",
+      "to_station": "south_end_circle_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b44",
+      "from_station": "south_end_circle_green_line",
+      "to_station": "lalbagh_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b45",
+      "from_station": "lalbagh_green_line",
+      "to_station": "national_college_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b46",
+      "from_station": "national_college_green_line",
+      "to_station": "krishna_rajendra_market_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b47",
+      "from_station": "krishna_rajendra_market_green_line",
+      "to_station": "chickpete_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b48",
+      "from_station": "chickpete_green_line",
+      "to_station": "nadaprabhu_kempegowda_station_majestic_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b49",
+      "from_station": "nadaprabhu_kempegowda_station_majestic_green_line",
+      "to_station": "mantri_square_sampige_road_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b50",
+      "from_station": "mantri_square_sampige_road_green_line",
+      "to_station": "mahalakshmi_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b51",
+      "from_station": "mahalakshmi_green_line",
+      "to_station": "rajajinagar_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b52",
+      "from_station": "rajajinagar_green_line",
+      "to_station": "sandal_soap_factory_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b53",
+      "from_station": "sandal_soap_factory_green_line",
+      "to_station": "mahakavi_kuvempu_road_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b54",
+      "from_station": "mahakavi_kuvempu_road_green_line",
+      "to_station": "srirampura_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b55",
+      "from_station": "srirampura_green_line",
+      "to_station": "yeshwantpur_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b56",
+      "from_station": "yeshwantpur_green_line",
+      "to_station": "peenya_industry_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b57",
+      "from_station": "peenya_industry_green_line",
+      "to_station": "jalahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b58",
+      "from_station": "jalahalli_green_line",
+      "to_station": "dasarahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b59",
+      "from_station": "dasarahalli_green_line",
+      "to_station": "nagawara_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b60",
+      "from_station": "nagawara_green_line",
+      "to_station": "hebbal_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b61",
+      "from_station": "hebbal_green_line",
+      "to_station": "lottegollahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b62",
+      "from_station": "lottegollahalli_green_line",
+      "to_station": "thanisandra_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b63",
+      "from_station": "thanisandra_green_line",
+      "to_station": "yelahanka_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b64",
+      "from_station": "yelahanka_green_line",
+      "to_station": "jakkur_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b65",
+      "from_station": "jakkur_green_line",
+      "to_station": "chikkabanavara_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b66",
+      "from_station": "chikkabanavara_green_line",
+      "to_station": "soladevanahalli_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.2
+    },
+    {
+      "connection_id": "b67",
+      "from_station": "nadaprabhu_kempegowda_station_majestic_purple_line",
+      "to_station": "nadaprabhu_kempegowda_station_majestic_green_line",
       "line_id": "interchange",
       "distance_km": 0
     }
@@ -135,23 +1323,23 @@
   "interchanges": [
     {
       "interchange_id": "bi1",
-      "station_id": "majestic_purple",
+      "station_id": "nadaprabhu_kempegowda_station_majestic_purple_line",
       "from_system": "bengaluru_metro",
       "from_line": "purple_line",
       "to_system": "bengaluru_metro",
       "to_line": "green_line",
       "change_platform": "Follow station signage",
-      "instructions": "Change trains at Majestic"
+      "instructions": "Change trains at Nadaprabhu Kempegowda Station, Majestic"
     }
   ],
   "landmarks": [
     {
-      "station_id": "majestic_purple",
+      "station_id": "nadaprabhu_kempegowda_station_majestic_purple_line",
       "name": "Kempegowda Bus Station"
     },
     {
-      "station_id": "sir_m_visvesvaraya_purple",
-      "name": "Cubbon Park"
+      "station_id": "indiranagar_purple_line",
+      "name": "Indiranagar"
     }
   ]
 }
