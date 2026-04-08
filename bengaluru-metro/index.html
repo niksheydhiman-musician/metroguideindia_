@@ -86,14 +86,14 @@
 
   <section id="popular-routes-section" style="margin-bottom:36px">
     <div class="sec-eye">Popular Routes</div>
-    <h2 class="sec-head" style="margin-bottom:6px">Top Bengaluru Journeys</h2>
+    <h2 class="sec-head" style="margin-bottom:6px">Popular Journeys</h2>
     <p style="color:var(--muted);font-size:.88rem;margin:0 0 16px">Tap any journey card to auto-fill and run route search.</p>
     <div class="pr-groups" id="top-journeys"></div>
   </section>
 
   <section id="stations-section" style="margin-bottom:48px">
     <div class="sec-eye">Network</div>
-    <h2 class="sec-head">All Stations</h2>
+    <h2 class="sec-head">All Stations (Interactive)</h2>
     <div class="tabs" id="tabs"></div>
     <div id="stations-list"></div>
     <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/bengaluru.json" style="text-decoration:underline">/data/bengaluru.json</a></p>
@@ -103,9 +103,21 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo">🚇 MetroGuideIndia</div>
-    <p class="foot-desc">Bengaluru Metro (BMRCL) commuter guide with route planning, timings and station insights.</p>
-    <div class="foot-copy">© 2026 MetroGuideIndia</div>
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <p class="foot-desc">MetroGuideIndia route planner for Namo Bharat, Delhi Metro, and Bengaluru Metro.</p>
+    <div class="foot-links">
+      <a href="/">Home</a><span>·</span>
+      <a href="/blog">Blog</a><span>·</span>
+      <a href="/stations">Stations</a><span>·</span>
+      <a href="/timings">Timings</a><span>·</span>
+      <a href="/fares">Fares</a><span>·</span>
+      <a href="/about.html">About</a><span>·</span>
+      <a href="/contact.html">Contact</a><span>·</span>
+      <a href="/privacy.html">Privacy Policy</a><span>·</span>
+      <a href="/terms.html">Terms</a><span>·</span>
+      <a href="/disclaimer.html">Disclaimer</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Independent Transit Resource. Not affiliated with NCRTC, DMRC, or BMRCL.</div>
   </div>
 </footer>
 
@@ -228,13 +240,23 @@ function buildDropdowns() {
 }
 
 function buildSystemCards() {
+  const lineTheme = (lineName, index) => {
+    const name = (lineName || '').toLowerCase();
+    if (name.includes('purple')) return { color: '#6c2e9d', icon: '🟣' };
+    if (name.includes('green')) return { color: '#1b8f3b', icon: '🟢' };
+    if (name.includes('yellow')) return { color: '#c59b12', icon: '🟡' };
+    if (name.includes('pink')) return { color: '#d65f8f', icon: '🩷' };
+    if (name.includes('blue')) return { color: '#1e5ad8', icon: '🔵' };
+    return { color: index % 2 === 0 ? '#6c2e9d' : '#1b8f3b', icon: '🚇' };
+  };
+
   const html = DATA.lines.map((line, i) => {
-    const cls = i % 2 === 0 ? 'rrts' : 'metro';
+    const theme = lineTheme(line.line_name, i);
     const stations = DATA.stations.filter(s => s.line_id === line.line_id).length;
     const distance = DATA.connections.filter(c => c.line_id === line.line_id).reduce((sum, c) => sum + Number(c.distance_km || 0), 0).toFixed(1);
     const interchanges = DATA.interchanges.filter(x => x.from_line === line.line_id || x.to_line === line.line_id).length;
-    return `<div class="sys-card ${cls}">
-      <div class="sys-icon">${i % 2 === 0 ? '🚇' : '🚈'}</div>
+    return `<div class="sys-card" style="--sys-accent:${theme.color}">
+      <div class="sys-icon">${theme.icon}</div>
       <div class="sys-name">${line.line_name}</div>
       <div class="sys-op">Namma Metro · BMRCL</div>
       <div class="sys-stats">
