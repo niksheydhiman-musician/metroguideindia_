@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Allow: /namo-bharat/
 
 Sitemap: https://metroguideindia.com/sitemap.xml
