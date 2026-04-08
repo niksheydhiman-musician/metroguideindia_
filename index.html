@@ -31,11 +31,48 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+    .site-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #eef2ff;
+      color: #1a2a6c;
+      font-size: 1.05rem;
     }
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
       padding: 40px 20px 56px;
+      width: 100%;
+      flex: 1;
     }
     h1 {
       margin: 0 0 10px;
@@ -99,9 +136,48 @@
     .about p + p {
       margin-top: 12px;
     }
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .site-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 26px;
+      display: grid;
+      gap: 10px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 0.95rem;
+    }
+    .footer-links a {
+      color: #1a2a6c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-disclaimer {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="/" class="logo" aria-label="MetroGuideIndia Home">
+        <span class="logo-icon" aria-hidden="true">🚇</span>
+        <span>MetroGuideIndia</span>
+      </a>
+    </div>
+  </header>
   <main class="wrap">
     <h1>Select Your Metro City</h1>
     <p class="sub">Welcome to MetroGuideIndia. Choose a transit network below to check routes, station details, and fare information in one place.</p>
@@ -128,5 +204,15 @@
       <p>We are expanding coverage city by city with a simple goal: make metro travel decisions easier before you leave home. Whether you commute every day or travel occasionally, MetroGuideIndia helps you compare routes, prepare budgets, and reach destinations with fewer surprises.</p>
     </section>
   </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav class="footer-links" aria-label="Metro systems">
+        <a href="/namo-bharat/">Namo Bharat</a>
+        <a href="/delhi-metro/">Delhi Metro</a>
+        <a href="/bengaluru-metro/">Bengaluru Metro</a>
+      </nav>
+      <p class="footer-disclaimer">MetroGuideIndia is an unofficial commuter guide and is not affiliated with NCRTC, DMRC, BMRCL, or any government authority.</p>
+    </div>
+  </footer>
 </body>
 </html>
