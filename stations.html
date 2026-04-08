@@ -109,10 +109,16 @@ let DATA = { namo_bharat: { stations: [], lines: {} }, delhi: { stations: [], li
 
 (async function init(){
   try {
+    const fetchJson = async (url, label) => {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(label + ' (HTTP ' + response.status + ')');
+      return response.json();
+    };
+
     const [namoStations, delhi, bengaluru] = await Promise.all([
-      fetch(BASE_PATH + '/data/stations.json', { cache: 'no-store' }).then(r => r.json()),
-      fetch(BASE_PATH + '/data/delhi.json', { cache: 'no-store' }).then(r => r.json()),
-      fetch(BASE_PATH + '/data/bengaluru.json', { cache: 'no-store' }).then(r => r.json())
+      fetchJson(BASE_PATH + '/data/stations.json', 'Namo Bharat stations'),
+      fetchJson(BASE_PATH + '/data/delhi.json', 'Delhi Metro data'),
+      fetchJson(BASE_PATH + '/data/bengaluru.json', 'Bengaluru Metro data')
     ]);
 
     DATA.namo_bharat = {
@@ -145,7 +151,7 @@ let DATA = { namo_bharat: { stations: [], lines: {} }, delhi: { stations: [], li
     render();
   } catch (err) {
     console.error('Station data load failed', err);
-    document.getElementById('stations-container').innerHTML = '<p style="color:var(--muted);text-align:center;padding:30px 0">Could not load station data.</p>';
+    document.getElementById('stations-container').innerHTML = `<p style="color:var(--muted);text-align:center;padding:30px 0">Could not load station data: ${err.message}</p>`;
   }
 })();
 
