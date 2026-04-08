@@ -41,6 +41,9 @@ const GraphBuilder = (() => {
 
   function build(connections) {
     const graph = {};
+    const hasRrtsMeerutNodes = (connections || []).some(c =>
+      /_rrts$/.test(c.from_station || '') || /_rrts$/.test(c.to_station || '')
+    );
 
     const addEdge = (from, to, line_id, distance_km) => {
       if (!graph[from]) graph[from] = [];
@@ -51,7 +54,11 @@ const GraphBuilder = (() => {
       graph[to].push({   neighbor: from, line_id, distance_km: +distance_km, weight });
     };
 
-    [...connections, ...RRTS_MEERUT].forEach(c =>
+    const allConnections = hasRrtsMeerutNodes
+      ? [...connections, ...RRTS_MEERUT]
+      : [...connections];
+
+    allConnections.forEach(c =>
       addEdge(c.from_station, c.to_station, c.line_id, c.distance_km)
     );
 

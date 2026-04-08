@@ -1,0 +1,157 @@
+{
+  "city_key": "delhi",
+  "systems": [
+    {
+      "system_id": "delhi_metro",
+      "system_name": "Delhi Metro",
+      "operator": "DMRC",
+      "region": "Delhi NCR",
+      "status": "operational"
+    }
+  ],
+  "lines": [
+    {
+      "line_id": "blue_line",
+      "system_id": "delhi_metro",
+      "line_name": "Blue Line",
+      "color": "#1f4fa3",
+      "start_station": "Dwarka Sector 21",
+      "end_station": "Noida Electronic City"
+    },
+    {
+      "line_id": "yellow_line",
+      "system_id": "delhi_metro",
+      "line_name": "Yellow Line",
+      "color": "#f2c300",
+      "start_station": "Samaypur Badli",
+      "end_station": "Millennium City Centre Gurugram"
+    }
+  ],
+  "stations": [
+    {
+      "station_id": "barakhamba_road_blue",
+      "station_name": "Barakhamba Road",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "1",
+      "city": "Delhi",
+      "interchange": "no",
+      "latitude": "28.629900",
+      "longitude": "77.225500"
+    },
+    {
+      "station_id": "rajiv_chowk_blue",
+      "station_name": "Rajiv Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "2",
+      "city": "Delhi",
+      "interchange": "yes",
+      "latitude": "28.632820",
+      "longitude": "77.219700"
+    },
+    {
+      "station_id": "ramakrishna_ashram_marg_blue",
+      "station_name": "Ramakrishna Ashram Marg",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "3",
+      "city": "Delhi",
+      "interchange": "no",
+      "latitude": "28.639200",
+      "longitude": "77.208900"
+    },
+    {
+      "station_id": "patel_chowk_yellow",
+      "station_name": "Patel Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "4",
+      "city": "Delhi",
+      "interchange": "no",
+      "latitude": "28.622800",
+      "longitude": "77.213500"
+    },
+    {
+      "station_id": "rajiv_chowk_yellow",
+      "station_name": "Rajiv Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "5",
+      "city": "Delhi",
+      "interchange": "yes",
+      "latitude": "28.632820",
+      "longitude": "77.219700"
+    },
+    {
+      "station_id": "new_delhi_yellow",
+      "station_name": "New Delhi",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "6",
+      "city": "Delhi",
+      "interchange": "yes",
+      "latitude": "28.643000",
+      "longitude": "77.221400"
+    }
+  ],
+  "connections": [
+    {
+      "connection_id": "d1",
+      "from_station": "barakhamba_road_blue",
+      "to_station": "rajiv_chowk_blue",
+      "line_id": "blue_line",
+      "distance_km": 2.0
+    },
+    {
+      "connection_id": "d2",
+      "from_station": "rajiv_chowk_blue",
+      "to_station": "ramakrishna_ashram_marg_blue",
+      "line_id": "blue_line",
+      "distance_km": 2.6
+    },
+    {
+      "connection_id": "d3",
+      "from_station": "patel_chowk_yellow",
+      "to_station": "rajiv_chowk_yellow",
+      "line_id": "yellow_line",
+      "distance_km": 1.8
+    },
+    {
+      "connection_id": "d4",
+      "from_station": "rajiv_chowk_yellow",
+      "to_station": "new_delhi_yellow",
+      "line_id": "yellow_line",
+      "distance_km": 1.3
+    },
+    {
+      "connection_id": "d5",
+      "from_station": "rajiv_chowk_blue",
+      "to_station": "rajiv_chowk_yellow",
+      "line_id": "interchange",
+      "distance_km": 0
+    }
+  ],
+  "interchanges": [
+    {
+      "interchange_id": "di1",
+      "station_id": "rajiv_chowk_blue",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "yellow_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Rajiv Chowk"
+    }
+  ],
+  "landmarks": [
+    {
+      "station_id": "new_delhi_yellow",
+      "name": "New Delhi Railway Station"
+    },
+    {
+      "station_id": "rajiv_chowk_blue",
+      "name": "Connaught Place"
+    }
+  ]
+}
