@@ -135,6 +135,20 @@ const RouteUI = (() => {
         if (fn.includes('sarai kale khan')) hubs.push('Delhi Metro Pink Line & ISBT at Sarai Kale Khan');
         if (fn.includes('anand vihar')) hubs.push('Delhi Metro Blue Line & Anand Vihar ISBT');
 
+        // Determine fare display and ticketing based on system
+        const isMeerut  = !hasR && hasM;  // Meerut Metro only (single-class)
+        const isRRTSMix = hasR && hasM;   // RRTS + Meerut Metro interchange
+
+        const fareDisplay = isMeerut
+          ? `₹${esc(fare)} (Standard).`
+          : `~₹${esc(fare)} (Standard) | ~₹${esc(premium)} (Premium).`;
+
+        const interchangeDisclaimer = isRRTSMix
+          ? `<div class="route-seo-note">⚠️ <strong>Note:</strong> Premium ticket holders must transfer to the Standard/General coach at the Meerut Metro interchange station.</div>`
+          : '';
+
+        const ticketingText = `Use Namo Bharat App or NCMC. <a href="https://rrts.co.in" rel="nofollow noopener" target="_blank" style="color:#C0392B;font-weight:600">Official Website</a>`;
+
         return `
           <div class="route-seo-box" data-system="${esc(systemLabel)}">
             <div class="route-seo-title">Route Summary</div>
@@ -143,12 +157,13 @@ const RouteUI = (() => {
               This ${esc(distance)} km trip takes about ${esc(time)} minutes on average.
             </p>
             <div class="route-seo-lines">
-              <div><strong>Fare:</strong> ~₹${esc(fare)} (Standard) | ~₹${esc(premium)} (Premium).</div>
+              <div><strong>Fare:</strong> ${fareDisplay}</div>
+              ${interchangeDisclaimer}
               <div><strong>Time:</strong> Approx. ${esc(tMin)}–${esc(tMax)} mins.</div>
               <div><strong>Interchanges:</strong> ${esc(nX)} (${esc(nX === 0 ? 'Direct Route' : 'With Interchanges')}).</div>
               <div><strong>Major Hubs:</strong> ${esc(hubs.length ? hubs.join('; ') : '—')}.</div>
               <div><strong>Top Stations:</strong> ${esc(topStations.length ? topStations.join(', ') : '—')}.</div>
-              <div><strong>Ticketing:</strong> Use NCMC Card or Namo Bharat App for a hassle-free travel.</div>
+              <div><strong>Ticketing:</strong> ${ticketingText}</div>
             </div>
           </div>`;
       })()}`;
