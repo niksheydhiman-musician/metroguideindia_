@@ -389,16 +389,16 @@ const RouteFinder = (() => {
       { maxKm: 2,  fare: 11 },
       { maxKm: 5,  fare: 21 },
       { maxKm: 12, fare: 32 },
-      { maxKm: 21, fare: 42 },
-      { maxKm: 32, fare: 52 },
+      { maxKm: 21, fare: 43 },
+      { maxKm: 32, fare: 54 },
       { maxKm: Infinity, fare: 64 },
     ],
     bengaluru: [
       { maxKm: 2,  fare: 10 },
       { maxKm: 5,  fare: 20 },
       { maxKm: 12, fare: 30 },
-      { maxKm: 21, fare: 40 },
-      { maxKm: 32, fare: 50 },
+      { maxKm: 21, fare: 43 },
+      { maxKm: 32, fare: 54 },
       { maxKm: Infinity, fare: 60 },
     ],
   };
@@ -406,7 +406,7 @@ const RouteFinder = (() => {
   function fareFromDistanceSlab(distance, cityKey) {
     const slabs = METRO_2026_SLABS[cityKey];
     if (!slabs || !Number.isFinite(distance)) return null;
-    const safeDistance = Math.max(0, Number(distance));
+    const safeDistance = Math.ceil(Math.max(0, Number(distance)));
     const slab = slabs.find(s => safeDistance <= s.maxKm);
     return slab ? slab.fare : null;
   }
