@@ -22,7 +22,7 @@
       "line_id": "yellow_line",
       "system_id": "delhi_metro",
       "line_name": "Yellow Line",
-      "color": "#f6d71a",
+      "color": "#1a2a6c",
       "start_station": "Samaypur Badli",
       "end_station": "Millennium City Centre Gurugram"
     },
@@ -457,7 +457,7 @@
       "order": "1",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -469,7 +469,7 @@
       "order": "2",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -481,7 +481,7 @@
       "order": "3",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -493,7 +493,7 @@
       "order": "4",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -505,7 +505,7 @@
       "order": "5",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -517,7 +517,7 @@
       "order": "6",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Pink Line"
@@ -531,7 +531,7 @@
       "order": "7",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -543,7 +543,7 @@
       "order": "8",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -555,7 +555,7 @@
       "order": "9",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -567,7 +567,7 @@
       "order": "10",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -579,7 +579,7 @@
       "order": "11",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -591,7 +591,7 @@
       "order": "12",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Red Line",
@@ -606,7 +606,7 @@
       "order": "13",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -618,7 +618,7 @@
       "order": "14",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -630,7 +630,7 @@
       "order": "15",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Airport Express"
@@ -644,7 +644,7 @@
       "order": "16",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Blue Line"
@@ -658,7 +658,7 @@
       "order": "17",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -670,7 +670,7 @@
       "order": "18",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Violet Line"
@@ -684,7 +684,7 @@
       "order": "19",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -696,7 +696,7 @@
       "order": "20",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -708,7 +708,7 @@
       "order": "21",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -720,7 +720,7 @@
       "order": "22",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Pink Line"
@@ -734,7 +734,7 @@
       "order": "23",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -746,7 +746,7 @@
       "order": "24",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -758,7 +758,7 @@
       "order": "25",
       "city": "Delhi NCR",
       "interchange": "yes",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": true,
       "interchange_with": [
         "Magenta Line"
@@ -772,7 +772,7 @@
       "order": "26",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -784,7 +784,7 @@
       "order": "27",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -796,7 +796,7 @@
       "order": "28",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -808,7 +808,7 @@
       "order": "29",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -820,7 +820,7 @@
       "order": "30",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -832,7 +832,7 @@
       "order": "31",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -844,7 +844,7 @@
       "order": "32",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -856,7 +856,7 @@
       "order": "33",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -868,7 +868,7 @@
       "order": "34",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -880,7 +880,7 @@
       "order": "35",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -892,7 +892,7 @@
       "order": "36",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
@@ -904,7 +904,7 @@
       "order": "37",
       "city": "Delhi NCR",
       "interchange": "no",
-      "line_color": "#f6d71a",
+      "line_color": "#1a2a6c",
       "is_interchange": false,
       "interchange_with": []
     },
