@@ -11,123 +11,5163 @@
   ],
   "lines": [
     {
-      "line_id": "blue_line",
+      "line_id": "red_line",
       "system_id": "delhi_metro",
-      "line_name": "Blue Line",
-      "color": "#1f4fa3",
-      "start_station": "Dwarka Sector 21",
-      "end_station": "Noida Electronic City"
+      "line_name": "Red Line",
+      "color": "#c0282c",
+      "start_station": "Shaheed Sthal",
+      "end_station": "Rithala"
     },
     {
       "line_id": "yellow_line",
       "system_id": "delhi_metro",
       "line_name": "Yellow Line",
-      "color": "#f2c300",
+      "color": "#f6d71a",
       "start_station": "Samaypur Badli",
       "end_station": "Millennium City Centre Gurugram"
+    },
+    {
+      "line_id": "blue_line",
+      "system_id": "delhi_metro",
+      "line_name": "Blue Line",
+      "color": "#3b76c0",
+      "start_station": "Dwarka Sector 21",
+      "end_station": "Noida Electronic City"
+    },
+    {
+      "line_id": "blue_branch_line",
+      "system_id": "delhi_metro",
+      "line_name": "Blue Line Branch",
+      "color": "#3b76c0",
+      "start_station": "Yamuna Bank",
+      "end_station": "Vaishali"
+    },
+    {
+      "line_id": "green_line",
+      "system_id": "delhi_metro",
+      "line_name": "Green Line",
+      "color": "#54ab55",
+      "start_station": "Kirti Nagar",
+      "end_station": "Brig Hoshiar Singh"
+    },
+    {
+      "line_id": "violet_line",
+      "system_id": "delhi_metro",
+      "line_name": "Violet Line",
+      "color": "#8115ff",
+      "start_station": "Kashmere Gate",
+      "end_station": "Raja Nahar Singh"
+    },
+    {
+      "line_id": "pink_line",
+      "system_id": "delhi_metro",
+      "line_name": "Pink Line",
+      "color": "#ed91c9",
+      "start_station": "Majlis Park",
+      "end_station": "Shiv Vihar"
+    },
+    {
+      "line_id": "magenta_line",
+      "system_id": "delhi_metro",
+      "line_name": "Magenta Line",
+      "color": "#f300f3",
+      "start_station": "Janakpuri West",
+      "end_station": "Botanical Garden"
+    },
+    {
+      "line_id": "grey_line",
+      "system_id": "delhi_metro",
+      "line_name": "Grey Line",
+      "color": "#808080",
+      "start_station": "Dwarka",
+      "end_station": "Dhansa Bus Stand"
+    },
+    {
+      "line_id": "airport_express",
+      "system_id": "delhi_metro",
+      "line_name": "Airport Express",
+      "color": "#f46808",
+      "start_station": "New Delhi",
+      "end_station": "Yashobhoomi Dwarka Sector 25"
     }
   ],
   "stations": [
     {
-      "station_id": "barakhamba_road_blue",
-      "station_name": "Barakhamba Road",
+      "station_id": "shaheed_sthal_red_line",
+      "station_name": "Shaheed Sthal",
       "system_id": "delhi_metro",
-      "line_id": "blue_line",
+      "line_id": "red_line",
       "order": "1",
-      "city": "Delhi",
+      "city": "Delhi NCR",
       "interchange": "no",
-      "latitude": "28.629900",
-      "longitude": "77.225500"
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "rajiv_chowk_blue",
-      "station_name": "Rajiv Chowk",
+      "station_id": "hindon_river_red_line",
+      "station_name": "Hindon River",
       "system_id": "delhi_metro",
-      "line_id": "blue_line",
+      "line_id": "red_line",
       "order": "2",
-      "city": "Delhi",
-      "interchange": "yes",
-      "latitude": "28.632820",
-      "longitude": "77.219700"
-    },
-    {
-      "station_id": "ramakrishna_ashram_marg_blue",
-      "station_name": "Ramakrishna Ashram Marg",
-      "system_id": "delhi_metro",
-      "line_id": "blue_line",
-      "order": "3",
-      "city": "Delhi",
+      "city": "Delhi NCR",
       "interchange": "no",
-      "latitude": "28.639200",
-      "longitude": "77.208900"
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "patel_chowk_yellow",
-      "station_name": "Patel Chowk",
+      "station_id": "arthala_red_line",
+      "station_name": "Arthala",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mohan_nagar_red_line",
+      "station_name": "Mohan Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shyam_park_red_line",
+      "station_name": "Shyam Park",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "major_mohit_sharma_rajendra_nagar_red_line",
+      "station_name": "Major Mohit Sharma Rajendra Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "raj_bagh_red_line",
+      "station_name": "Raj Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shaheed_nagar_red_line",
+      "station_name": "Shaheed Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dilshad_garden_red_line",
+      "station_name": "Dilshad Garden",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jhilmil_red_line",
+      "station_name": "Jhilmil",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mansarovar_park_red_line",
+      "station_name": "Mansarovar Park",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shahdara_red_line",
+      "station_name": "Shahdara",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "welcome_red_line",
+      "station_name": "Welcome",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#c0282c",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "seelampur_red_line",
+      "station_name": "Seelampur",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shastri_park_red_line",
+      "station_name": "Shastri Park",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kashmere_gate_red_line",
+      "station_name": "Kashmere Gate",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#c0282c",
+      "is_interchange": true,
+      "interchange_with": [
+        "Violet Line",
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "tis_hazari_red_line",
+      "station_name": "Tis Hazari",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pulbangash_red_line",
+      "station_name": "Pulbangash",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pratap_nagar_red_line",
+      "station_name": "Pratap Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shastri_nagar_red_line",
+      "station_name": "Shastri Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "inderlok_red_line",
+      "station_name": "Inderlok",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#c0282c",
+      "is_interchange": true,
+      "interchange_with": [
+        "Green Line"
+      ]
+    },
+    {
+      "station_id": "kanhaiya_nagar_red_line",
+      "station_name": "Kanhaiya Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "keshav_puram_red_line",
+      "station_name": "Keshav Puram",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "netaji_subhash_place_red_line",
+      "station_name": "Netaji Subhash Place",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#c0282c",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "kohat_enclave_red_line",
+      "station_name": "Kohat Enclave",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pitampura_red_line",
+      "station_name": "Pitampura",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "26",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rohini_east_red_line",
+      "station_name": "Rohini East",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "27",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rohini_west_red_line",
+      "station_name": "Rohini West",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "28",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rithala_red_line",
+      "station_name": "Rithala",
+      "system_id": "delhi_metro",
+      "line_id": "red_line",
+      "order": "29",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#c0282c",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "samaypur_badli_yellow_line",
+      "station_name": "Samaypur Badli",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rohini_sector_18_19_yellow_line",
+      "station_name": "Rohini Sector 18 19",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "haiderpur_badli_mor_yellow_line",
+      "station_name": "Haiderpur Badli Mor",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jahangirpuri_yellow_line",
+      "station_name": "Jahangirpuri",
       "system_id": "delhi_metro",
       "line_id": "yellow_line",
       "order": "4",
-      "city": "Delhi",
+      "city": "Delhi NCR",
       "interchange": "no",
-      "latitude": "28.622800",
-      "longitude": "77.213500"
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "rajiv_chowk_yellow",
-      "station_name": "Rajiv Chowk",
+      "station_id": "adarsh_nagar_yellow_line",
+      "station_name": "Adarsh Nagar",
       "system_id": "delhi_metro",
       "line_id": "yellow_line",
       "order": "5",
-      "city": "Delhi",
-      "interchange": "yes",
-      "latitude": "28.632820",
-      "longitude": "77.219700"
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
     },
     {
-      "station_id": "new_delhi_yellow",
-      "station_name": "New Delhi",
+      "station_id": "azadpur_yellow_line",
+      "station_name": "Azadpur",
       "system_id": "delhi_metro",
       "line_id": "yellow_line",
       "order": "6",
-      "city": "Delhi",
+      "city": "Delhi NCR",
       "interchange": "yes",
-      "latitude": "28.643000",
-      "longitude": "77.221400"
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "model_town_yellow_line",
+      "station_name": "Model Town",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "guru_teg_bahadur_nagar_yellow_line",
+      "station_name": "Guru Teg Bahadur Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vishwavidyalaya_yellow_line",
+      "station_name": "Vishwavidyalaya",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vidhan_sabha_yellow_line",
+      "station_name": "Vidhan Sabha",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "civil_lines_yellow_line",
+      "station_name": "Civil Lines",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kashmere_gate_yellow_line",
+      "station_name": "Kashmere Gate",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Red Line",
+        "Violet Line"
+      ]
+    },
+    {
+      "station_id": "chandni_chowk_yellow_line",
+      "station_name": "Chandni Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "chawri_bazar_yellow_line",
+      "station_name": "Chawri Bazar",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "new_delhi_yellow_line",
+      "station_name": "New Delhi",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Airport Express"
+      ]
+    },
+    {
+      "station_id": "rajiv_chowk_yellow_line",
+      "station_name": "Rajiv Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "patel_chowk_yellow_line",
+      "station_name": "Patel Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "central_secretariat_yellow_line",
+      "station_name": "Central Secretariat",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Violet Line"
+      ]
+    },
+    {
+      "station_id": "udyog_bhawan_yellow_line",
+      "station_name": "Udyog Bhawan",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "lok_kalyan_marg_yellow_line",
+      "station_name": "Lok Kalyan Marg",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jor_bagh_yellow_line",
+      "station_name": "Jor Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dilli_haat_ina_yellow_line",
+      "station_name": "Dilli Haat Ina",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "aiims_yellow_line",
+      "station_name": "Aiims",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "green_park_yellow_line",
+      "station_name": "Green Park",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "hauz_khas_yellow_line",
+      "station_name": "Hauz Khas",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f6d71a",
+      "is_interchange": true,
+      "interchange_with": [
+        "Magenta Line"
+      ]
+    },
+    {
+      "station_id": "malviya_nagar_yellow_line",
+      "station_name": "Malviya Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "26",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "saket_yellow_line",
+      "station_name": "Saket",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "27",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "qutab_minar_yellow_line",
+      "station_name": "Qutab Minar",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "28",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "chhatarpur_yellow_line",
+      "station_name": "Chhatarpur",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "29",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sultanpur_yellow_line",
+      "station_name": "Sultanpur",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "30",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "ghitorni_yellow_line",
+      "station_name": "Ghitorni",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "31",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "arjan_garh_yellow_line",
+      "station_name": "Arjan Garh",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "32",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "guru_dronacharya_yellow_line",
+      "station_name": "Guru Dronacharya",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "33",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sikanderpur_yellow_line",
+      "station_name": "Sikanderpur",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "34",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "m_g_road_yellow_line",
+      "station_name": "M G Road",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "35",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "iffco_chowk_yellow_line",
+      "station_name": "Iffco Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "36",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "millennium_city_centre_gurugram_yellow_line",
+      "station_name": "Millennium City Centre Gurugram",
+      "system_id": "delhi_metro",
+      "line_id": "yellow_line",
+      "order": "37",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f6d71a",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_21_blue_line",
+      "station_name": "Dwarka Sector 21",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Airport Express"
+      ]
+    },
+    {
+      "station_id": "dwarka_sector_8_blue_line",
+      "station_name": "Dwarka Sector 8",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_9_blue_line",
+      "station_name": "Dwarka Sector 9",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_10_blue_line",
+      "station_name": "Dwarka Sector 10",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_11_blue_line",
+      "station_name": "Dwarka Sector 11",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_12_blue_line",
+      "station_name": "Dwarka Sector 12",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_13_blue_line",
+      "station_name": "Dwarka Sector 13",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_14_blue_line",
+      "station_name": "Dwarka Sector 14",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_blue_line",
+      "station_name": "Dwarka",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Grey Line"
+      ]
+    },
+    {
+      "station_id": "dwarka_mor_blue_line",
+      "station_name": "Dwarka Mor",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nawada_blue_line",
+      "station_name": "Nawada",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "uttam_nagar_west_blue_line",
+      "station_name": "Uttam Nagar West",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "uttam_nagar_east_blue_line",
+      "station_name": "Uttam Nagar East",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "janakpuri_west_blue_line",
+      "station_name": "Janakpuri West",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Magenta Line"
+      ]
+    },
+    {
+      "station_id": "janakpuri_east_blue_line",
+      "station_name": "Janakpuri East",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "tilak_nagar_blue_line",
+      "station_name": "Tilak Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "subhash_nagar_blue_line",
+      "station_name": "Subhash Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "tagore_garden_blue_line",
+      "station_name": "Tagore Garden",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajouri_garden_blue_line",
+      "station_name": "Rajouri Garden",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "ramesh_nagar_blue_line",
+      "station_name": "Ramesh Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "moti_nagar_blue_line",
+      "station_name": "Moti Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kirti_nagar_blue_line",
+      "station_name": "Kirti Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Green Line"
+      ]
+    },
+    {
+      "station_id": "shadipur_blue_line",
+      "station_name": "Shadipur",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "patel_nagar_blue_line",
+      "station_name": "Patel Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajendra_place_blue_line",
+      "station_name": "Rajendra Place",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "karol_bagh_blue_line",
+      "station_name": "Karol Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "26",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jhandewalan_blue_line",
+      "station_name": "Jhandewalan",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "27",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "ramakrishna_ashram_marg_blue_line",
+      "station_name": "Ramakrishna Ashram Marg",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "28",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajiv_chowk_blue_line",
+      "station_name": "Rajiv Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "29",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "barakhamba_road_blue_line",
+      "station_name": "Barakhamba Road",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "30",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mandi_house_blue_line",
+      "station_name": "Mandi House",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "31",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Violet Line"
+      ]
+    },
+    {
+      "station_id": "supreme_court_blue_line",
+      "station_name": "Supreme Court",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "32",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "indraprastha_blue_line",
+      "station_name": "Indraprastha",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "33",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "yamuna_bank_blue_line",
+      "station_name": "Yamuna Bank",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "34",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line Branch"
+      ]
+    },
+    {
+      "station_id": "akshardham_blue_line",
+      "station_name": "Akshardham",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "35",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mayur_vihar_i_blue_line",
+      "station_name": "Mayur Vihar I",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "36",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "mayur_vihar_extension_blue_line",
+      "station_name": "Mayur Vihar Extension",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "37",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "new_ashok_nagar_blue_line",
+      "station_name": "New Ashok Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "38",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "noida_sector_15_blue_line",
+      "station_name": "Noida Sector 15",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "39",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "noida_sector_16_blue_line",
+      "station_name": "Noida Sector 16",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "40",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "noida_sector_18_blue_line",
+      "station_name": "Noida Sector 18",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "41",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "botanical_garden_blue_line",
+      "station_name": "Botanical Garden",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "42",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Magenta Line"
+      ]
+    },
+    {
+      "station_id": "golf_course_blue_line",
+      "station_name": "Golf Course",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "43",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "noida_city_centre_blue_line",
+      "station_name": "Noida City Centre",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "44",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_34_noida_blue_line",
+      "station_name": "Sector 34 Noida",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "45",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_52_noida_blue_line",
+      "station_name": "Sector 52 Noida",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "46",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_61_noida_blue_line",
+      "station_name": "Sector 61 Noida",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "47",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_59_noida_blue_line",
+      "station_name": "Sector 59 Noida",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "48",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_62_noida_blue_line",
+      "station_name": "Sector 62 Noida",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "49",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "noida_electronic_city_blue_line",
+      "station_name": "Noida Electronic City",
+      "system_id": "delhi_metro",
+      "line_id": "blue_line",
+      "order": "50",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "yamuna_bank_blue_branch_line",
+      "station_name": "Yamuna Bank",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "laxmi_nagar_blue_branch_line",
+      "station_name": "Laxmi Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nirman_vihar_blue_branch_line",
+      "station_name": "Nirman Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "preet_vihar_blue_branch_line",
+      "station_name": "Preet Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "karkarduma_blue_branch_line",
+      "station_name": "Karkarduma",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "anand_vihar_blue_branch_line",
+      "station_name": "Anand Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#3b76c0",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "kaushambi_blue_branch_line",
+      "station_name": "Kaushambi",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vaishali_blue_branch_line",
+      "station_name": "Vaishali",
+      "system_id": "delhi_metro",
+      "line_id": "blue_branch_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#3b76c0",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kirti_nagar_green_line",
+      "station_name": "Kirti Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#54ab55",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "satguru_ram_singh_marg_green_line",
+      "station_name": "Satguru Ram Singh Marg",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "inderlok_green_line",
+      "station_name": "Inderlok",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#54ab55",
+      "is_interchange": true,
+      "interchange_with": [
+        "Red Line"
+      ]
+    },
+    {
+      "station_id": "ashok_park_main_green_line",
+      "station_name": "Ashok Park Main",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "punjabi_bagh_green_line",
+      "station_name": "Punjabi Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "punjabi_bagh_west_green_line",
+      "station_name": "Punjabi Bagh West",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#54ab55",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "shivaji_park_green_line",
+      "station_name": "Shivaji Park",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "madipur_green_line",
+      "station_name": "Madipur",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "paschim_vihar_east_green_line",
+      "station_name": "Paschim Vihar East",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "paschim_vihar_west_green_line",
+      "station_name": "Paschim Vihar West",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "peeragarhi_green_line",
+      "station_name": "Peeragarhi",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "udyog_nagar_green_line",
+      "station_name": "Udyog Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "maharaja_surajmal_stadium_green_line",
+      "station_name": "Maharaja Surajmal Stadium",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nangloi_green_line",
+      "station_name": "Nangloi",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nangloi_railway_station_green_line",
+      "station_name": "Nangloi Railway Station",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajdhani_park_green_line",
+      "station_name": "Rajdhani Park",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mundka_green_line",
+      "station_name": "Mundka",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mundka_industrial_area_green_line",
+      "station_name": "Mundka Industrial Area",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "ghevra_green_line",
+      "station_name": "Ghevra",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "tikri_kalan_green_line",
+      "station_name": "Tikri Kalan",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "tikri_border_green_line",
+      "station_name": "Tikri Border",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "pandit_shree_ram_sharma_green_line",
+      "station_name": "Pandit Shree Ram Sharma",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "bahadurgarh_city_green_line",
+      "station_name": "Bahadurgarh City",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "brig_hoshiar_singh_green_line",
+      "station_name": "Brig Hoshiar Singh",
+      "system_id": "delhi_metro",
+      "line_id": "green_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#54ab55",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kashmere_gate_violet_line",
+      "station_name": "Kashmere Gate",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#8115ff",
+      "is_interchange": true,
+      "interchange_with": [
+        "Red Line",
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "lal_quila_violet_line",
+      "station_name": "Lal Quila",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jama_masjid_violet_line",
+      "station_name": "Jama Masjid",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "delhi_gate_violet_line",
+      "station_name": "Delhi Gate",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "ito_violet_line",
+      "station_name": "Ito",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mandi_house_violet_line",
+      "station_name": "Mandi House",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#8115ff",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "janpath_violet_line",
+      "station_name": "Janpath",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "central_secretariat_violet_line",
+      "station_name": "Central Secretariat",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#8115ff",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "khan_market_violet_line",
+      "station_name": "Khan Market",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jln_stadium_violet_line",
+      "station_name": "Jln Stadium",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jangpura_violet_line",
+      "station_name": "Jangpura",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "lajpat_nagar_violet_line",
+      "station_name": "Lajpat Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#8115ff",
+      "is_interchange": true,
+      "interchange_with": [
+        "Pink Line"
+      ]
+    },
+    {
+      "station_id": "moolchand_violet_line",
+      "station_name": "Moolchand",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kailash_colony_violet_line",
+      "station_name": "Kailash Colony",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nehru_place_violet_line",
+      "station_name": "Nehru Place",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kalkaji_mandir_violet_line",
+      "station_name": "Kalkaji Mandir",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#8115ff",
+      "is_interchange": true,
+      "interchange_with": [
+        "Magenta Line"
+      ]
+    },
+    {
+      "station_id": "govind_puri_violet_line",
+      "station_name": "Govind Puri",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "harkesh_nagar_okhla_violet_line",
+      "station_name": "Harkesh Nagar Okhla",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jasola_apollo_violet_line",
+      "station_name": "Jasola Apollo",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sarita_vihar_violet_line",
+      "station_name": "Sarita Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mohan_estate_violet_line",
+      "station_name": "Mohan Estate",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "tughlakabad_station_violet_line",
+      "station_name": "Tughlakabad Station",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "badarpur_border_violet_line",
+      "station_name": "Badarpur Border",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sarai_violet_line",
+      "station_name": "Sarai",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nhpc_chowk_violet_line",
+      "station_name": "Nhpc Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mewala_maharajpur_violet_line",
+      "station_name": "Mewala Maharajpur",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "26",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sector_28_violet_line",
+      "station_name": "Sector 28",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "27",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "badkal_mor_violet_line",
+      "station_name": "Badkal Mor",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "28",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "old_faridabad_violet_line",
+      "station_name": "Old Faridabad",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "29",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "neelam_chowk_ajronda_violet_line",
+      "station_name": "Neelam Chowk Ajronda",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "30",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "bata_chowk_violet_line",
+      "station_name": "Bata Chowk",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "31",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "escorts_mujesar_violet_line",
+      "station_name": "Escorts Mujesar",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "32",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sant_surdas_violet_line",
+      "station_name": "Sant Surdas",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "33",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "raja_nahar_singh_violet_line",
+      "station_name": "Raja Nahar Singh",
+      "system_id": "delhi_metro",
+      "line_id": "violet_line",
+      "order": "34",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#8115ff",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "majlis_park_pink_line",
+      "station_name": "Majlis Park",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "azadpur_pink_line",
+      "station_name": "Azadpur",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "shalimar_bagh_pink_line",
+      "station_name": "Shalimar Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "netaji_subhash_place_pink_line",
+      "station_name": "Netaji Subhash Place",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Red Line"
+      ]
+    },
+    {
+      "station_id": "shakurpur_pink_line",
+      "station_name": "Shakurpur",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "punjabi_bagh_west_pink_line",
+      "station_name": "Punjabi Bagh West",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Green Line"
+      ]
+    },
+    {
+      "station_id": "esi_basaidarapur_pink_line",
+      "station_name": "Esi Basaidarapur",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "rajouri_garden_pink_line",
+      "station_name": "Rajouri Garden",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "mayapuri_pink_line",
+      "station_name": "Mayapuri",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "naraina_vihar_pink_line",
+      "station_name": "Naraina Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "delhi_cantt_pink_line",
+      "station_name": "Delhi Cantt",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "durgabai_deshmukh_south_campus_pink_line",
+      "station_name": "Durgabai Deshmukh South Campus",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sir_m_vishweshwaraiah_moti_bagh_pink_line",
+      "station_name": "Sir M Vishweshwaraiah Moti Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "bhikaji_cama_place_pink_line",
+      "station_name": "Bhikaji Cama Place",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sarojini_nagar_pink_line",
+      "station_name": "Sarojini Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dilli_haat_ina_pink_line",
+      "station_name": "Dilli Haat Ina",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "south_extension_pink_line",
+      "station_name": "South Extension",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "lajpat_nagar_pink_line",
+      "station_name": "Lajpat Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Violet Line"
+      ]
+    },
+    {
+      "station_id": "vinobapuri_pink_line",
+      "station_name": "Vinobapuri",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "ashram_pink_line",
+      "station_name": "Ashram",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sarai_kale_khan_nizamuddin_pink_line",
+      "station_name": "Sarai Kale Khan Nizamuddin",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mayur_vihar_i_pink_line",
+      "station_name": "Mayur Vihar I",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "mayur_vihar_pocket_1_pink_line",
+      "station_name": "Mayur Vihar Pocket 1",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "trilokpuri_sanjay_lake_pink_line",
+      "station_name": "Trilokpuri Sanjay Lake",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "east_vinod_nagar_mayur_vihar_ii_pink_line",
+      "station_name": "East Vinod Nagar Mayur Vihar Ii",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "mandawali_west_vinod_nagar_pink_line",
+      "station_name": "Mandawali West Vinod Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "26",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "i_p_extension_pink_line",
+      "station_name": "I P Extension",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "27",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "anand_vihar_pink_line",
+      "station_name": "Anand Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "28",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line Branch"
+      ]
+    },
+    {
+      "station_id": "karkarduma_pink_line",
+      "station_name": "Karkarduma",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "29",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line Branch"
+      ]
+    },
+    {
+      "station_id": "karkarduma_court_pink_line",
+      "station_name": "Karkarduma Court",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "30",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "krishna_nagar_pink_line",
+      "station_name": "Krishna Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "31",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "east_azad_nagar_pink_line",
+      "station_name": "East Azad Nagar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "32",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "welcome_pink_line",
+      "station_name": "Welcome",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "33",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#ed91c9",
+      "is_interchange": true,
+      "interchange_with": [
+        "Red Line"
+      ]
+    },
+    {
+      "station_id": "jafrabad_pink_line",
+      "station_name": "Jafrabad",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "34",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "maujpur_babarpur_pink_line",
+      "station_name": "Maujpur Babarpur",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "35",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "gokulpuri_pink_line",
+      "station_name": "Gokulpuri",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "36",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "johri_enclave_pink_line",
+      "station_name": "Johri Enclave",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "37",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shiv_vihar_pink_line",
+      "station_name": "Shiv Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "pink_line",
+      "order": "38",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#ed91c9",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "janakpuri_west_magenta_line",
+      "station_name": "Janakpuri West",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f300f3",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "dabri_mor_janakpuri_south_magenta_line",
+      "station_name": "Dabri Mor Janakpuri South",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dashrathpuri_magenta_line",
+      "station_name": "Dashrathpuri",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "palam_magenta_line",
+      "station_name": "Palam",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sadar_bazar_cantonment_magenta_line",
+      "station_name": "Sadar Bazar Cantonment",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "terminal_1_igi_airport_magenta_line",
+      "station_name": "Terminal 1 Igi Airport",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "shankar_vihar_magenta_line",
+      "station_name": "Shankar Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "vasant_vihar_magenta_line",
+      "station_name": "Vasant Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "8",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "munirka_magenta_line",
+      "station_name": "Munirka",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "9",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "r_k_puram_magenta_line",
+      "station_name": "R K Puram",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "10",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "iit_magenta_line",
+      "station_name": "Iit",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "11",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "hauz_khas_magenta_line",
+      "station_name": "Hauz Khas",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "12",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f300f3",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "panchsheel_park_magenta_line",
+      "station_name": "Panchsheel Park",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "13",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "chirag_delhi_magenta_line",
+      "station_name": "Chirag Delhi",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "14",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "greater_kailash_magenta_line",
+      "station_name": "Greater Kailash",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "15",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "nehru_enclave_magenta_line",
+      "station_name": "Nehru Enclave",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "16",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kalkaji_mandir_magenta_line",
+      "station_name": "Kalkaji Mandir",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "17",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f300f3",
+      "is_interchange": true,
+      "interchange_with": [
+        "Violet Line"
+      ]
+    },
+    {
+      "station_id": "okhla_nsic_magenta_line",
+      "station_name": "Okhla Nsic",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "18",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "sukhdev_vihar_magenta_line",
+      "station_name": "Sukhdev Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "19",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jamia_millia_islamia_magenta_line",
+      "station_name": "Jamia Millia Islamia",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "20",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "okhla_vihar_magenta_line",
+      "station_name": "Okhla Vihar",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "21",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "jasola_vihar_shaheen_bagh_magenta_line",
+      "station_name": "Jasola Vihar Shaheen Bagh",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "22",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "kalindi_kunj_magenta_line",
+      "station_name": "Kalindi Kunj",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "23",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "okhla_bird_sanctuary_magenta_line",
+      "station_name": "Okhla Bird Sanctuary",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "24",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f300f3",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "botanical_garden_magenta_line",
+      "station_name": "Botanical Garden",
+      "system_id": "delhi_metro",
+      "line_id": "magenta_line",
+      "order": "25",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f300f3",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "dwarka_grey_line",
+      "station_name": "Dwarka",
+      "system_id": "delhi_metro",
+      "line_id": "grey_line",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#808080",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "nangli_grey_line",
+      "station_name": "Nangli",
+      "system_id": "delhi_metro",
+      "line_id": "grey_line",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#808080",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "najafgarh_grey_line",
+      "station_name": "Najafgarh",
+      "system_id": "delhi_metro",
+      "line_id": "grey_line",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#808080",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dhansa_bus_stand_grey_line",
+      "station_name": "Dhansa Bus Stand",
+      "system_id": "delhi_metro",
+      "line_id": "grey_line",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#808080",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "new_delhi_airport_express",
+      "station_name": "New Delhi",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "1",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f46808",
+      "is_interchange": true,
+      "interchange_with": [
+        "Yellow Line"
+      ]
+    },
+    {
+      "station_id": "shivaji_stadium_airport_express",
+      "station_name": "Shivaji Stadium",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "2",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f46808",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dhaula_kuan_airport_express",
+      "station_name": "Dhaula Kuan",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "3",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f46808",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "delhi_aerocity_airport_express",
+      "station_name": "Delhi Aerocity",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "4",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f46808",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "airport_airport_express",
+      "station_name": "Airport",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "5",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f46808",
+      "is_interchange": false,
+      "interchange_with": []
+    },
+    {
+      "station_id": "dwarka_sector_21_airport_express",
+      "station_name": "Dwarka Sector 21",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "6",
+      "city": "Delhi NCR",
+      "interchange": "yes",
+      "line_color": "#f46808",
+      "is_interchange": true,
+      "interchange_with": [
+        "Blue Line"
+      ]
+    },
+    {
+      "station_id": "yashobhoomi_dwarka_sector_25_airport_express",
+      "station_name": "Yashobhoomi Dwarka Sector 25",
+      "system_id": "delhi_metro",
+      "line_id": "airport_express",
+      "order": "7",
+      "city": "Delhi NCR",
+      "interchange": "no",
+      "line_color": "#f46808",
+      "is_interchange": false,
+      "interchange_with": []
     }
   ],
   "connections": [
     {
       "connection_id": "d1",
-      "from_station": "barakhamba_road_blue",
-      "to_station": "rajiv_chowk_blue",
-      "line_id": "blue_line",
-      "distance_km": 2.0
+      "from_station": "shaheed_sthal_red_line",
+      "to_station": "hindon_river_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
     },
     {
       "connection_id": "d2",
-      "from_station": "rajiv_chowk_blue",
-      "to_station": "ramakrishna_ashram_marg_blue",
-      "line_id": "blue_line",
-      "distance_km": 2.6
+      "from_station": "hindon_river_red_line",
+      "to_station": "arthala_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
     },
     {
       "connection_id": "d3",
-      "from_station": "patel_chowk_yellow",
-      "to_station": "rajiv_chowk_yellow",
-      "line_id": "yellow_line",
-      "distance_km": 1.8
+      "from_station": "arthala_red_line",
+      "to_station": "mohan_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
     },
     {
       "connection_id": "d4",
-      "from_station": "rajiv_chowk_yellow",
-      "to_station": "new_delhi_yellow",
-      "line_id": "yellow_line",
-      "distance_km": 1.3
+      "from_station": "mohan_nagar_red_line",
+      "to_station": "shyam_park_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
     },
     {
       "connection_id": "d5",
-      "from_station": "rajiv_chowk_blue",
-      "to_station": "rajiv_chowk_yellow",
+      "from_station": "shyam_park_red_line",
+      "to_station": "major_mohit_sharma_rajendra_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d6",
+      "from_station": "major_mohit_sharma_rajendra_nagar_red_line",
+      "to_station": "raj_bagh_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d7",
+      "from_station": "raj_bagh_red_line",
+      "to_station": "shaheed_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d8",
+      "from_station": "shaheed_nagar_red_line",
+      "to_station": "dilshad_garden_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d9",
+      "from_station": "dilshad_garden_red_line",
+      "to_station": "jhilmil_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d10",
+      "from_station": "jhilmil_red_line",
+      "to_station": "mansarovar_park_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d11",
+      "from_station": "mansarovar_park_red_line",
+      "to_station": "shahdara_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d12",
+      "from_station": "shahdara_red_line",
+      "to_station": "welcome_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d13",
+      "from_station": "welcome_red_line",
+      "to_station": "seelampur_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d14",
+      "from_station": "seelampur_red_line",
+      "to_station": "shastri_park_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d15",
+      "from_station": "shastri_park_red_line",
+      "to_station": "kashmere_gate_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d16",
+      "from_station": "kashmere_gate_red_line",
+      "to_station": "tis_hazari_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d17",
+      "from_station": "tis_hazari_red_line",
+      "to_station": "pulbangash_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d18",
+      "from_station": "pulbangash_red_line",
+      "to_station": "pratap_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d19",
+      "from_station": "pratap_nagar_red_line",
+      "to_station": "shastri_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d20",
+      "from_station": "shastri_nagar_red_line",
+      "to_station": "inderlok_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d21",
+      "from_station": "inderlok_red_line",
+      "to_station": "kanhaiya_nagar_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d22",
+      "from_station": "kanhaiya_nagar_red_line",
+      "to_station": "keshav_puram_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d23",
+      "from_station": "keshav_puram_red_line",
+      "to_station": "netaji_subhash_place_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d24",
+      "from_station": "netaji_subhash_place_red_line",
+      "to_station": "kohat_enclave_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d25",
+      "from_station": "kohat_enclave_red_line",
+      "to_station": "pitampura_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d26",
+      "from_station": "pitampura_red_line",
+      "to_station": "rohini_east_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d27",
+      "from_station": "rohini_east_red_line",
+      "to_station": "rohini_west_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d28",
+      "from_station": "rohini_west_red_line",
+      "to_station": "rithala_red_line",
+      "line_id": "red_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d29",
+      "from_station": "samaypur_badli_yellow_line",
+      "to_station": "rohini_sector_18_19_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d30",
+      "from_station": "rohini_sector_18_19_yellow_line",
+      "to_station": "haiderpur_badli_mor_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d31",
+      "from_station": "haiderpur_badli_mor_yellow_line",
+      "to_station": "jahangirpuri_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d32",
+      "from_station": "jahangirpuri_yellow_line",
+      "to_station": "adarsh_nagar_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d33",
+      "from_station": "adarsh_nagar_yellow_line",
+      "to_station": "azadpur_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d34",
+      "from_station": "azadpur_yellow_line",
+      "to_station": "model_town_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d35",
+      "from_station": "model_town_yellow_line",
+      "to_station": "guru_teg_bahadur_nagar_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d36",
+      "from_station": "guru_teg_bahadur_nagar_yellow_line",
+      "to_station": "vishwavidyalaya_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d37",
+      "from_station": "vishwavidyalaya_yellow_line",
+      "to_station": "vidhan_sabha_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d38",
+      "from_station": "vidhan_sabha_yellow_line",
+      "to_station": "civil_lines_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d39",
+      "from_station": "civil_lines_yellow_line",
+      "to_station": "kashmere_gate_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d40",
+      "from_station": "kashmere_gate_yellow_line",
+      "to_station": "chandni_chowk_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d41",
+      "from_station": "chandni_chowk_yellow_line",
+      "to_station": "chawri_bazar_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d42",
+      "from_station": "chawri_bazar_yellow_line",
+      "to_station": "new_delhi_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d43",
+      "from_station": "new_delhi_yellow_line",
+      "to_station": "rajiv_chowk_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d44",
+      "from_station": "rajiv_chowk_yellow_line",
+      "to_station": "patel_chowk_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d45",
+      "from_station": "patel_chowk_yellow_line",
+      "to_station": "central_secretariat_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d46",
+      "from_station": "central_secretariat_yellow_line",
+      "to_station": "udyog_bhawan_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d47",
+      "from_station": "udyog_bhawan_yellow_line",
+      "to_station": "lok_kalyan_marg_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d48",
+      "from_station": "lok_kalyan_marg_yellow_line",
+      "to_station": "jor_bagh_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d49",
+      "from_station": "jor_bagh_yellow_line",
+      "to_station": "dilli_haat_ina_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d50",
+      "from_station": "dilli_haat_ina_yellow_line",
+      "to_station": "aiims_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d51",
+      "from_station": "aiims_yellow_line",
+      "to_station": "green_park_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d52",
+      "from_station": "green_park_yellow_line",
+      "to_station": "hauz_khas_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d53",
+      "from_station": "hauz_khas_yellow_line",
+      "to_station": "malviya_nagar_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d54",
+      "from_station": "malviya_nagar_yellow_line",
+      "to_station": "saket_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d55",
+      "from_station": "saket_yellow_line",
+      "to_station": "qutab_minar_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d56",
+      "from_station": "qutab_minar_yellow_line",
+      "to_station": "chhatarpur_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d57",
+      "from_station": "chhatarpur_yellow_line",
+      "to_station": "sultanpur_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d58",
+      "from_station": "sultanpur_yellow_line",
+      "to_station": "ghitorni_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d59",
+      "from_station": "ghitorni_yellow_line",
+      "to_station": "arjan_garh_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d60",
+      "from_station": "arjan_garh_yellow_line",
+      "to_station": "guru_dronacharya_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d61",
+      "from_station": "guru_dronacharya_yellow_line",
+      "to_station": "sikanderpur_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d62",
+      "from_station": "sikanderpur_yellow_line",
+      "to_station": "m_g_road_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d63",
+      "from_station": "m_g_road_yellow_line",
+      "to_station": "iffco_chowk_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d64",
+      "from_station": "iffco_chowk_yellow_line",
+      "to_station": "millennium_city_centre_gurugram_yellow_line",
+      "line_id": "yellow_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d65",
+      "from_station": "dwarka_sector_21_blue_line",
+      "to_station": "dwarka_sector_8_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d66",
+      "from_station": "dwarka_sector_8_blue_line",
+      "to_station": "dwarka_sector_9_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d67",
+      "from_station": "dwarka_sector_9_blue_line",
+      "to_station": "dwarka_sector_10_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d68",
+      "from_station": "dwarka_sector_10_blue_line",
+      "to_station": "dwarka_sector_11_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d69",
+      "from_station": "dwarka_sector_11_blue_line",
+      "to_station": "dwarka_sector_12_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d70",
+      "from_station": "dwarka_sector_12_blue_line",
+      "to_station": "dwarka_sector_13_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d71",
+      "from_station": "dwarka_sector_13_blue_line",
+      "to_station": "dwarka_sector_14_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d72",
+      "from_station": "dwarka_sector_14_blue_line",
+      "to_station": "dwarka_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d73",
+      "from_station": "dwarka_blue_line",
+      "to_station": "dwarka_mor_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d74",
+      "from_station": "dwarka_mor_blue_line",
+      "to_station": "nawada_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d75",
+      "from_station": "nawada_blue_line",
+      "to_station": "uttam_nagar_west_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d76",
+      "from_station": "uttam_nagar_west_blue_line",
+      "to_station": "uttam_nagar_east_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d77",
+      "from_station": "uttam_nagar_east_blue_line",
+      "to_station": "janakpuri_west_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d78",
+      "from_station": "janakpuri_west_blue_line",
+      "to_station": "janakpuri_east_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d79",
+      "from_station": "janakpuri_east_blue_line",
+      "to_station": "tilak_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d80",
+      "from_station": "tilak_nagar_blue_line",
+      "to_station": "subhash_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d81",
+      "from_station": "subhash_nagar_blue_line",
+      "to_station": "tagore_garden_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d82",
+      "from_station": "tagore_garden_blue_line",
+      "to_station": "rajouri_garden_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d83",
+      "from_station": "rajouri_garden_blue_line",
+      "to_station": "ramesh_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d84",
+      "from_station": "ramesh_nagar_blue_line",
+      "to_station": "moti_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d85",
+      "from_station": "moti_nagar_blue_line",
+      "to_station": "kirti_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d86",
+      "from_station": "kirti_nagar_blue_line",
+      "to_station": "shadipur_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d87",
+      "from_station": "shadipur_blue_line",
+      "to_station": "patel_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d88",
+      "from_station": "patel_nagar_blue_line",
+      "to_station": "rajendra_place_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d89",
+      "from_station": "rajendra_place_blue_line",
+      "to_station": "karol_bagh_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d90",
+      "from_station": "karol_bagh_blue_line",
+      "to_station": "jhandewalan_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d91",
+      "from_station": "jhandewalan_blue_line",
+      "to_station": "ramakrishna_ashram_marg_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d92",
+      "from_station": "ramakrishna_ashram_marg_blue_line",
+      "to_station": "rajiv_chowk_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d93",
+      "from_station": "rajiv_chowk_blue_line",
+      "to_station": "barakhamba_road_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d94",
+      "from_station": "barakhamba_road_blue_line",
+      "to_station": "mandi_house_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d95",
+      "from_station": "mandi_house_blue_line",
+      "to_station": "supreme_court_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d96",
+      "from_station": "supreme_court_blue_line",
+      "to_station": "indraprastha_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d97",
+      "from_station": "indraprastha_blue_line",
+      "to_station": "yamuna_bank_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d98",
+      "from_station": "yamuna_bank_blue_line",
+      "to_station": "akshardham_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d99",
+      "from_station": "akshardham_blue_line",
+      "to_station": "mayur_vihar_i_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d100",
+      "from_station": "mayur_vihar_i_blue_line",
+      "to_station": "mayur_vihar_extension_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d101",
+      "from_station": "mayur_vihar_extension_blue_line",
+      "to_station": "new_ashok_nagar_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d102",
+      "from_station": "new_ashok_nagar_blue_line",
+      "to_station": "noida_sector_15_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d103",
+      "from_station": "noida_sector_15_blue_line",
+      "to_station": "noida_sector_16_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d104",
+      "from_station": "noida_sector_16_blue_line",
+      "to_station": "noida_sector_18_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d105",
+      "from_station": "noida_sector_18_blue_line",
+      "to_station": "botanical_garden_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d106",
+      "from_station": "botanical_garden_blue_line",
+      "to_station": "golf_course_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d107",
+      "from_station": "golf_course_blue_line",
+      "to_station": "noida_city_centre_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d108",
+      "from_station": "noida_city_centre_blue_line",
+      "to_station": "sector_34_noida_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d109",
+      "from_station": "sector_34_noida_blue_line",
+      "to_station": "sector_52_noida_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d110",
+      "from_station": "sector_52_noida_blue_line",
+      "to_station": "sector_61_noida_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d111",
+      "from_station": "sector_61_noida_blue_line",
+      "to_station": "sector_59_noida_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d112",
+      "from_station": "sector_59_noida_blue_line",
+      "to_station": "sector_62_noida_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d113",
+      "from_station": "sector_62_noida_blue_line",
+      "to_station": "noida_electronic_city_blue_line",
+      "line_id": "blue_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d114",
+      "from_station": "yamuna_bank_blue_branch_line",
+      "to_station": "laxmi_nagar_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d115",
+      "from_station": "laxmi_nagar_blue_branch_line",
+      "to_station": "nirman_vihar_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d116",
+      "from_station": "nirman_vihar_blue_branch_line",
+      "to_station": "preet_vihar_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d117",
+      "from_station": "preet_vihar_blue_branch_line",
+      "to_station": "karkarduma_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d118",
+      "from_station": "karkarduma_blue_branch_line",
+      "to_station": "anand_vihar_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d119",
+      "from_station": "anand_vihar_blue_branch_line",
+      "to_station": "kaushambi_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d120",
+      "from_station": "kaushambi_blue_branch_line",
+      "to_station": "vaishali_blue_branch_line",
+      "line_id": "blue_branch_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d121",
+      "from_station": "kirti_nagar_green_line",
+      "to_station": "satguru_ram_singh_marg_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d122",
+      "from_station": "satguru_ram_singh_marg_green_line",
+      "to_station": "inderlok_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d123",
+      "from_station": "inderlok_green_line",
+      "to_station": "ashok_park_main_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d124",
+      "from_station": "ashok_park_main_green_line",
+      "to_station": "punjabi_bagh_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d125",
+      "from_station": "punjabi_bagh_green_line",
+      "to_station": "punjabi_bagh_west_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d126",
+      "from_station": "punjabi_bagh_west_green_line",
+      "to_station": "shivaji_park_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d127",
+      "from_station": "shivaji_park_green_line",
+      "to_station": "madipur_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d128",
+      "from_station": "madipur_green_line",
+      "to_station": "paschim_vihar_east_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d129",
+      "from_station": "paschim_vihar_east_green_line",
+      "to_station": "paschim_vihar_west_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d130",
+      "from_station": "paschim_vihar_west_green_line",
+      "to_station": "peeragarhi_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d131",
+      "from_station": "peeragarhi_green_line",
+      "to_station": "udyog_nagar_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d132",
+      "from_station": "udyog_nagar_green_line",
+      "to_station": "maharaja_surajmal_stadium_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d133",
+      "from_station": "maharaja_surajmal_stadium_green_line",
+      "to_station": "nangloi_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d134",
+      "from_station": "nangloi_green_line",
+      "to_station": "nangloi_railway_station_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d135",
+      "from_station": "nangloi_railway_station_green_line",
+      "to_station": "rajdhani_park_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d136",
+      "from_station": "rajdhani_park_green_line",
+      "to_station": "mundka_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d137",
+      "from_station": "mundka_green_line",
+      "to_station": "mundka_industrial_area_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d138",
+      "from_station": "mundka_industrial_area_green_line",
+      "to_station": "ghevra_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d139",
+      "from_station": "ghevra_green_line",
+      "to_station": "tikri_kalan_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d140",
+      "from_station": "tikri_kalan_green_line",
+      "to_station": "tikri_border_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d141",
+      "from_station": "tikri_border_green_line",
+      "to_station": "pandit_shree_ram_sharma_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d142",
+      "from_station": "pandit_shree_ram_sharma_green_line",
+      "to_station": "bahadurgarh_city_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d143",
+      "from_station": "bahadurgarh_city_green_line",
+      "to_station": "brig_hoshiar_singh_green_line",
+      "line_id": "green_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d144",
+      "from_station": "kashmere_gate_violet_line",
+      "to_station": "lal_quila_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d145",
+      "from_station": "lal_quila_violet_line",
+      "to_station": "jama_masjid_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d146",
+      "from_station": "jama_masjid_violet_line",
+      "to_station": "delhi_gate_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d147",
+      "from_station": "delhi_gate_violet_line",
+      "to_station": "ito_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d148",
+      "from_station": "ito_violet_line",
+      "to_station": "mandi_house_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d149",
+      "from_station": "mandi_house_violet_line",
+      "to_station": "janpath_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d150",
+      "from_station": "janpath_violet_line",
+      "to_station": "central_secretariat_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d151",
+      "from_station": "central_secretariat_violet_line",
+      "to_station": "khan_market_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d152",
+      "from_station": "khan_market_violet_line",
+      "to_station": "jln_stadium_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d153",
+      "from_station": "jln_stadium_violet_line",
+      "to_station": "jangpura_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d154",
+      "from_station": "jangpura_violet_line",
+      "to_station": "lajpat_nagar_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d155",
+      "from_station": "lajpat_nagar_violet_line",
+      "to_station": "moolchand_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d156",
+      "from_station": "moolchand_violet_line",
+      "to_station": "kailash_colony_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d157",
+      "from_station": "kailash_colony_violet_line",
+      "to_station": "nehru_place_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d158",
+      "from_station": "nehru_place_violet_line",
+      "to_station": "kalkaji_mandir_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d159",
+      "from_station": "kalkaji_mandir_violet_line",
+      "to_station": "govind_puri_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d160",
+      "from_station": "govind_puri_violet_line",
+      "to_station": "harkesh_nagar_okhla_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d161",
+      "from_station": "harkesh_nagar_okhla_violet_line",
+      "to_station": "jasola_apollo_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d162",
+      "from_station": "jasola_apollo_violet_line",
+      "to_station": "sarita_vihar_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d163",
+      "from_station": "sarita_vihar_violet_line",
+      "to_station": "mohan_estate_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d164",
+      "from_station": "mohan_estate_violet_line",
+      "to_station": "tughlakabad_station_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d165",
+      "from_station": "tughlakabad_station_violet_line",
+      "to_station": "badarpur_border_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d166",
+      "from_station": "badarpur_border_violet_line",
+      "to_station": "sarai_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d167",
+      "from_station": "sarai_violet_line",
+      "to_station": "nhpc_chowk_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d168",
+      "from_station": "nhpc_chowk_violet_line",
+      "to_station": "mewala_maharajpur_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d169",
+      "from_station": "mewala_maharajpur_violet_line",
+      "to_station": "sector_28_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d170",
+      "from_station": "sector_28_violet_line",
+      "to_station": "badkal_mor_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d171",
+      "from_station": "badkal_mor_violet_line",
+      "to_station": "old_faridabad_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d172",
+      "from_station": "old_faridabad_violet_line",
+      "to_station": "neelam_chowk_ajronda_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d173",
+      "from_station": "neelam_chowk_ajronda_violet_line",
+      "to_station": "bata_chowk_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d174",
+      "from_station": "bata_chowk_violet_line",
+      "to_station": "escorts_mujesar_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d175",
+      "from_station": "escorts_mujesar_violet_line",
+      "to_station": "sant_surdas_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d176",
+      "from_station": "sant_surdas_violet_line",
+      "to_station": "raja_nahar_singh_violet_line",
+      "line_id": "violet_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d177",
+      "from_station": "majlis_park_pink_line",
+      "to_station": "azadpur_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d178",
+      "from_station": "azadpur_pink_line",
+      "to_station": "shalimar_bagh_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d179",
+      "from_station": "shalimar_bagh_pink_line",
+      "to_station": "netaji_subhash_place_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d180",
+      "from_station": "netaji_subhash_place_pink_line",
+      "to_station": "shakurpur_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d181",
+      "from_station": "shakurpur_pink_line",
+      "to_station": "punjabi_bagh_west_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d182",
+      "from_station": "punjabi_bagh_west_pink_line",
+      "to_station": "esi_basaidarapur_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d183",
+      "from_station": "esi_basaidarapur_pink_line",
+      "to_station": "rajouri_garden_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d184",
+      "from_station": "rajouri_garden_pink_line",
+      "to_station": "mayapuri_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d185",
+      "from_station": "mayapuri_pink_line",
+      "to_station": "naraina_vihar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d186",
+      "from_station": "naraina_vihar_pink_line",
+      "to_station": "delhi_cantt_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d187",
+      "from_station": "delhi_cantt_pink_line",
+      "to_station": "durgabai_deshmukh_south_campus_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d188",
+      "from_station": "durgabai_deshmukh_south_campus_pink_line",
+      "to_station": "sir_m_vishweshwaraiah_moti_bagh_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d189",
+      "from_station": "sir_m_vishweshwaraiah_moti_bagh_pink_line",
+      "to_station": "bhikaji_cama_place_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d190",
+      "from_station": "bhikaji_cama_place_pink_line",
+      "to_station": "sarojini_nagar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d191",
+      "from_station": "sarojini_nagar_pink_line",
+      "to_station": "dilli_haat_ina_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d192",
+      "from_station": "dilli_haat_ina_pink_line",
+      "to_station": "south_extension_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d193",
+      "from_station": "south_extension_pink_line",
+      "to_station": "lajpat_nagar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d194",
+      "from_station": "lajpat_nagar_pink_line",
+      "to_station": "vinobapuri_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d195",
+      "from_station": "vinobapuri_pink_line",
+      "to_station": "ashram_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d196",
+      "from_station": "ashram_pink_line",
+      "to_station": "sarai_kale_khan_nizamuddin_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d197",
+      "from_station": "sarai_kale_khan_nizamuddin_pink_line",
+      "to_station": "mayur_vihar_i_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d198",
+      "from_station": "mayur_vihar_i_pink_line",
+      "to_station": "mayur_vihar_pocket_1_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d199",
+      "from_station": "mayur_vihar_pocket_1_pink_line",
+      "to_station": "trilokpuri_sanjay_lake_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d200",
+      "from_station": "trilokpuri_sanjay_lake_pink_line",
+      "to_station": "east_vinod_nagar_mayur_vihar_ii_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d201",
+      "from_station": "east_vinod_nagar_mayur_vihar_ii_pink_line",
+      "to_station": "mandawali_west_vinod_nagar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d202",
+      "from_station": "mandawali_west_vinod_nagar_pink_line",
+      "to_station": "i_p_extension_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d203",
+      "from_station": "i_p_extension_pink_line",
+      "to_station": "anand_vihar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d204",
+      "from_station": "anand_vihar_pink_line",
+      "to_station": "karkarduma_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d205",
+      "from_station": "karkarduma_pink_line",
+      "to_station": "karkarduma_court_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d206",
+      "from_station": "karkarduma_court_pink_line",
+      "to_station": "krishna_nagar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d207",
+      "from_station": "krishna_nagar_pink_line",
+      "to_station": "east_azad_nagar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d208",
+      "from_station": "east_azad_nagar_pink_line",
+      "to_station": "welcome_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d209",
+      "from_station": "welcome_pink_line",
+      "to_station": "jafrabad_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d210",
+      "from_station": "jafrabad_pink_line",
+      "to_station": "maujpur_babarpur_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d211",
+      "from_station": "maujpur_babarpur_pink_line",
+      "to_station": "gokulpuri_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d212",
+      "from_station": "gokulpuri_pink_line",
+      "to_station": "johri_enclave_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d213",
+      "from_station": "johri_enclave_pink_line",
+      "to_station": "shiv_vihar_pink_line",
+      "line_id": "pink_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d214",
+      "from_station": "janakpuri_west_magenta_line",
+      "to_station": "dabri_mor_janakpuri_south_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d215",
+      "from_station": "dabri_mor_janakpuri_south_magenta_line",
+      "to_station": "dashrathpuri_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d216",
+      "from_station": "dashrathpuri_magenta_line",
+      "to_station": "palam_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d217",
+      "from_station": "palam_magenta_line",
+      "to_station": "sadar_bazar_cantonment_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d218",
+      "from_station": "sadar_bazar_cantonment_magenta_line",
+      "to_station": "terminal_1_igi_airport_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d219",
+      "from_station": "terminal_1_igi_airport_magenta_line",
+      "to_station": "shankar_vihar_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d220",
+      "from_station": "shankar_vihar_magenta_line",
+      "to_station": "vasant_vihar_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d221",
+      "from_station": "vasant_vihar_magenta_line",
+      "to_station": "munirka_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d222",
+      "from_station": "munirka_magenta_line",
+      "to_station": "r_k_puram_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d223",
+      "from_station": "r_k_puram_magenta_line",
+      "to_station": "iit_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d224",
+      "from_station": "iit_magenta_line",
+      "to_station": "hauz_khas_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d225",
+      "from_station": "hauz_khas_magenta_line",
+      "to_station": "panchsheel_park_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d226",
+      "from_station": "panchsheel_park_magenta_line",
+      "to_station": "chirag_delhi_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d227",
+      "from_station": "chirag_delhi_magenta_line",
+      "to_station": "greater_kailash_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d228",
+      "from_station": "greater_kailash_magenta_line",
+      "to_station": "nehru_enclave_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d229",
+      "from_station": "nehru_enclave_magenta_line",
+      "to_station": "kalkaji_mandir_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d230",
+      "from_station": "kalkaji_mandir_magenta_line",
+      "to_station": "okhla_nsic_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d231",
+      "from_station": "okhla_nsic_magenta_line",
+      "to_station": "sukhdev_vihar_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d232",
+      "from_station": "sukhdev_vihar_magenta_line",
+      "to_station": "jamia_millia_islamia_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d233",
+      "from_station": "jamia_millia_islamia_magenta_line",
+      "to_station": "okhla_vihar_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d234",
+      "from_station": "okhla_vihar_magenta_line",
+      "to_station": "jasola_vihar_shaheen_bagh_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d235",
+      "from_station": "jasola_vihar_shaheen_bagh_magenta_line",
+      "to_station": "kalindi_kunj_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d236",
+      "from_station": "kalindi_kunj_magenta_line",
+      "to_station": "okhla_bird_sanctuary_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d237",
+      "from_station": "okhla_bird_sanctuary_magenta_line",
+      "to_station": "botanical_garden_magenta_line",
+      "line_id": "magenta_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d238",
+      "from_station": "dwarka_grey_line",
+      "to_station": "nangli_grey_line",
+      "line_id": "grey_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d239",
+      "from_station": "nangli_grey_line",
+      "to_station": "najafgarh_grey_line",
+      "line_id": "grey_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d240",
+      "from_station": "najafgarh_grey_line",
+      "to_station": "dhansa_bus_stand_grey_line",
+      "line_id": "grey_line",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d241",
+      "from_station": "new_delhi_airport_express",
+      "to_station": "shivaji_stadium_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d242",
+      "from_station": "shivaji_stadium_airport_express",
+      "to_station": "dhaula_kuan_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d243",
+      "from_station": "dhaula_kuan_airport_express",
+      "to_station": "delhi_aerocity_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d244",
+      "from_station": "delhi_aerocity_airport_express",
+      "to_station": "airport_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d245",
+      "from_station": "airport_airport_express",
+      "to_station": "dwarka_sector_21_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d246",
+      "from_station": "dwarka_sector_21_airport_express",
+      "to_station": "yashobhoomi_dwarka_sector_25_airport_express",
+      "line_id": "airport_express",
+      "distance_km": 1.4
+    },
+    {
+      "connection_id": "d247",
+      "from_station": "welcome_red_line",
+      "to_station": "welcome_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d248",
+      "from_station": "kashmere_gate_red_line",
+      "to_station": "kashmere_gate_yellow_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d249",
+      "from_station": "kashmere_gate_red_line",
+      "to_station": "kashmere_gate_violet_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d250",
+      "from_station": "kashmere_gate_yellow_line",
+      "to_station": "kashmere_gate_violet_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d251",
+      "from_station": "inderlok_red_line",
+      "to_station": "inderlok_green_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d252",
+      "from_station": "netaji_subhash_place_red_line",
+      "to_station": "netaji_subhash_place_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d253",
+      "from_station": "azadpur_yellow_line",
+      "to_station": "azadpur_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d254",
+      "from_station": "new_delhi_yellow_line",
+      "to_station": "new_delhi_airport_express",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d255",
+      "from_station": "rajiv_chowk_yellow_line",
+      "to_station": "rajiv_chowk_blue_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d256",
+      "from_station": "central_secretariat_yellow_line",
+      "to_station": "central_secretariat_violet_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d257",
+      "from_station": "dilli_haat_ina_yellow_line",
+      "to_station": "dilli_haat_ina_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d258",
+      "from_station": "hauz_khas_yellow_line",
+      "to_station": "hauz_khas_magenta_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d259",
+      "from_station": "dwarka_sector_21_blue_line",
+      "to_station": "dwarka_sector_21_airport_express",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d260",
+      "from_station": "dwarka_blue_line",
+      "to_station": "dwarka_grey_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d261",
+      "from_station": "janakpuri_west_blue_line",
+      "to_station": "janakpuri_west_magenta_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d262",
+      "from_station": "rajouri_garden_blue_line",
+      "to_station": "rajouri_garden_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d263",
+      "from_station": "kirti_nagar_blue_line",
+      "to_station": "kirti_nagar_green_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d264",
+      "from_station": "mandi_house_blue_line",
+      "to_station": "mandi_house_violet_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d265",
+      "from_station": "yamuna_bank_blue_line",
+      "to_station": "yamuna_bank_blue_branch_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d266",
+      "from_station": "mayur_vihar_i_blue_line",
+      "to_station": "mayur_vihar_i_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d267",
+      "from_station": "botanical_garden_blue_line",
+      "to_station": "botanical_garden_magenta_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d268",
+      "from_station": "karkarduma_blue_branch_line",
+      "to_station": "karkarduma_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d269",
+      "from_station": "anand_vihar_blue_branch_line",
+      "to_station": "anand_vihar_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d270",
+      "from_station": "punjabi_bagh_west_green_line",
+      "to_station": "punjabi_bagh_west_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d271",
+      "from_station": "lajpat_nagar_violet_line",
+      "to_station": "lajpat_nagar_pink_line",
+      "line_id": "interchange",
+      "distance_km": 0
+    },
+    {
+      "connection_id": "d272",
+      "from_station": "kalkaji_mandir_violet_line",
+      "to_station": "kalkaji_mandir_magenta_line",
       "line_id": "interchange",
       "distance_km": 0
     }
@@ -135,23 +5175,277 @@
   "interchanges": [
     {
       "interchange_id": "di1",
-      "station_id": "rajiv_chowk_blue",
+      "station_id": "welcome_red_line",
       "from_system": "delhi_metro",
-      "from_line": "blue_line",
+      "from_line": "red_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Welcome"
+    },
+    {
+      "interchange_id": "di2",
+      "station_id": "kashmere_gate_red_line",
+      "from_system": "delhi_metro",
+      "from_line": "red_line",
       "to_system": "delhi_metro",
       "to_line": "yellow_line",
       "change_platform": "Follow station signage",
+      "instructions": "Change trains at Kashmere Gate"
+    },
+    {
+      "interchange_id": "di3",
+      "station_id": "kashmere_gate_red_line",
+      "from_system": "delhi_metro",
+      "from_line": "red_line",
+      "to_system": "delhi_metro",
+      "to_line": "violet_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Kashmere Gate"
+    },
+    {
+      "interchange_id": "di4",
+      "station_id": "kashmere_gate_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "violet_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Kashmere Gate"
+    },
+    {
+      "interchange_id": "di5",
+      "station_id": "inderlok_red_line",
+      "from_system": "delhi_metro",
+      "from_line": "red_line",
+      "to_system": "delhi_metro",
+      "to_line": "green_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Inderlok"
+    },
+    {
+      "interchange_id": "di6",
+      "station_id": "netaji_subhash_place_red_line",
+      "from_system": "delhi_metro",
+      "from_line": "red_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Netaji Subhash Place"
+    },
+    {
+      "interchange_id": "di7",
+      "station_id": "azadpur_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Azadpur"
+    },
+    {
+      "interchange_id": "di8",
+      "station_id": "new_delhi_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "airport_express",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at New Delhi"
+    },
+    {
+      "interchange_id": "di9",
+      "station_id": "rajiv_chowk_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "blue_line",
+      "change_platform": "Follow station signage",
       "instructions": "Change trains at Rajiv Chowk"
+    },
+    {
+      "interchange_id": "di10",
+      "station_id": "central_secretariat_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "violet_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Central Secretariat"
+    },
+    {
+      "interchange_id": "di11",
+      "station_id": "dilli_haat_ina_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Dilli Haat Ina"
+    },
+    {
+      "interchange_id": "di12",
+      "station_id": "hauz_khas_yellow_line",
+      "from_system": "delhi_metro",
+      "from_line": "yellow_line",
+      "to_system": "delhi_metro",
+      "to_line": "magenta_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Hauz Khas"
+    },
+    {
+      "interchange_id": "di13",
+      "station_id": "dwarka_sector_21_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "airport_express",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Dwarka Sector 21"
+    },
+    {
+      "interchange_id": "di14",
+      "station_id": "dwarka_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "grey_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Dwarka"
+    },
+    {
+      "interchange_id": "di15",
+      "station_id": "janakpuri_west_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "magenta_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Janakpuri West"
+    },
+    {
+      "interchange_id": "di16",
+      "station_id": "rajouri_garden_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Rajouri Garden"
+    },
+    {
+      "interchange_id": "di17",
+      "station_id": "kirti_nagar_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "green_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Kirti Nagar"
+    },
+    {
+      "interchange_id": "di18",
+      "station_id": "mandi_house_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "violet_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Mandi House"
+    },
+    {
+      "interchange_id": "di19",
+      "station_id": "yamuna_bank_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "blue_branch_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Yamuna Bank"
+    },
+    {
+      "interchange_id": "di20",
+      "station_id": "mayur_vihar_i_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Mayur Vihar I"
+    },
+    {
+      "interchange_id": "di21",
+      "station_id": "botanical_garden_blue_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_line",
+      "to_system": "delhi_metro",
+      "to_line": "magenta_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Botanical Garden"
+    },
+    {
+      "interchange_id": "di22",
+      "station_id": "karkarduma_blue_branch_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_branch_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Karkarduma"
+    },
+    {
+      "interchange_id": "di23",
+      "station_id": "anand_vihar_blue_branch_line",
+      "from_system": "delhi_metro",
+      "from_line": "blue_branch_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Anand Vihar"
+    },
+    {
+      "interchange_id": "di24",
+      "station_id": "punjabi_bagh_west_green_line",
+      "from_system": "delhi_metro",
+      "from_line": "green_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Punjabi Bagh West"
+    },
+    {
+      "interchange_id": "di25",
+      "station_id": "lajpat_nagar_violet_line",
+      "from_system": "delhi_metro",
+      "from_line": "violet_line",
+      "to_system": "delhi_metro",
+      "to_line": "pink_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Lajpat Nagar"
+    },
+    {
+      "interchange_id": "di26",
+      "station_id": "kalkaji_mandir_violet_line",
+      "from_system": "delhi_metro",
+      "from_line": "violet_line",
+      "to_system": "delhi_metro",
+      "to_line": "magenta_line",
+      "change_platform": "Follow station signage",
+      "instructions": "Change trains at Kalkaji Mandir"
     }
   ],
   "landmarks": [
     {
-      "station_id": "new_delhi_yellow",
+      "station_id": "rajiv_chowk_yellow_line",
+      "name": "Connaught Place"
+    },
+    {
+      "station_id": "new_delhi_yellow_line",
       "name": "New Delhi Railway Station"
     },
     {
-      "station_id": "rajiv_chowk_blue",
-      "name": "Connaught Place"
+      "station_id": "kashmere_gate_red_line",
+      "name": "ISBT Kashmere Gate"
     }
   ]
 }

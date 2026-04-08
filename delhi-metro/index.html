@@ -37,6 +37,12 @@
     <p class="hero-sub">Find route, fare and interchange instructions for DMRC with fast station search and top commuter journeys.</p>
   </section>
 
+  <section>
+    <div class="sec-eye">Planner</div>
+    <h2 class="sec-head" style="margin-bottom:10px">Transit Planner</h2>
+    <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Search any two stations to get route path, fare estimate, and interchange guidance.</p>
+  </section>
+
   <section id="search-section">
     <div class="sc">
       <div class="fd">
@@ -87,7 +93,7 @@
 
   <section id="stations-section" style="margin-bottom:48px">
     <div class="sec-eye">Network</div>
-    <h2 class="sec-head">Station List</h2>
+    <h2 class="sec-head">All Stations</h2>
     <div class="tabs" id="tabs"></div>
     <div id="stations-list"></div>
     <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/delhi.json" style="text-decoration:underline">/data/delhi.json</a></p>
@@ -117,12 +123,12 @@ const TIMINGS = [
 ];
 const JOURNEYS = [
   { group: 'Daily Commutes', color: '#cf1f2f', icon: '🚇', routes: [
-    { from: 'barakhamba_road_blue', to: 'new_delhi_yellow', fromName: 'Barakhamba Road', toName: 'New Delhi' },
-    { from: 'patel_chowk_yellow', to: 'ramakrishna_ashram_marg_blue', fromName: 'Patel Chowk', toName: 'Ramakrishna Ashram Marg' }
+    { from: 'rajiv_chowk_blue_line', to: 'millennium_city_centre_gurugram_yellow_line', fromName: 'Rajiv Chowk', toName: 'Huda City Centre' },
+    { from: 'kashmere_gate_red_line', to: 'm_g_road_yellow_line', fromName: 'Kashmere Gate', toName: 'M G Road' }
   ]},
   { group: 'Interchange Trips', color: '#1f4fa3', icon: '🔄', routes: [
-    { from: 'barakhamba_road_blue', to: 'patel_chowk_yellow', fromName: 'Barakhamba Road', toName: 'Patel Chowk' },
-    { from: 'rajiv_chowk_blue', to: 'new_delhi_yellow', fromName: 'Rajiv Chowk', toName: 'New Delhi' }
+    { from: 'dwarka_sector_21_blue_line', to: 'new_delhi_yellow_line', fromName: 'Dwarka Sector 21', toName: 'New Delhi' },
+    { from: 'botanical_garden_blue_line', to: 'hauz_khas_yellow_line', fromName: 'Botanical Garden', toName: 'Hauz Khas' }
   ]}
 ];
 
