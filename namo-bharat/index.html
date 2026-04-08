@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MetroGuideIndia — Delhi Meerut RRTS &amp; Meerut Metro Route Planner</title>
+  <meta name="description" content="Find routes, fares, and station info for the Delhi–Meerut Namo Bharat RRTS and Meerut Metro instantly. Free route planner with interchange instructions."/>
+  <meta name="keywords" content="RRTS route planner, Namo Bharat RRTS stations, Delhi Meerut fare, Meerut Metro route, NCRTC metro guide, metro route India"/>
+  <meta property="og:title" content="MetroGuideIndia — Delhi Meerut RRTS & Meerut Metro Route Planner"/>
+  <meta property="og:description" content="Find metro and RRTS routes, fares, and station info instantly."/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary"/>
+  <link rel="canonical" href="https://metroguideindia.com/namo-bharat/"/>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <!-- Hindi font preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <style>
+    /* Hindi strings hidden by default */
+    [data-hi]{display:none}
+    .lang-hi [data-en]{display:none}
+    .lang-hi [data-hi]{display:initial}
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SV6378N2ZW');
+</script>
+</head>
+<body>
+<div class="st-dot" style="background:${col(s)}20;border-color:${col(s)}"></div>
+
+<!-- ░░ NAV ░░ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🚄</div>
+      <span data-en>MetroGuideIndia</span>
+      <span data-hi>मेट्रोगाइड इंडिया</span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <!-- Language toggle -->
+      <button class="swap" id="lang-btn" title="हिन्दी / English" style="width:auto;padding:0 10px;border-radius:20px;font-size:.7rem;font-weight:700;gap:4px">
+        <span data-en>हिं</span><span data-hi>EN</span>
+      </button>
+      <!-- Menu button -->
+      <button class="menu-btn" id="menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Dropdown nav menu -->
+  <div class="nav-menu" id="nav-menu">
+    <div class="nav-menu-inner">
+      <a class="nav-menu-item" href="/blog">
+        <span class="ni">📰</span>
+        <div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>Blogs &amp; Updates</div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>ब्लॉग और अपडेट</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-en>Latest news about RRTS &amp; Metro</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-hi>RRTS और मेट्रो की ताज़ा खबर</div>
+        </div>
+      </a>
+      <div class="nav-menu-divider"></div>
+      <a class="nav-menu-item" href="/timings">
+        <span class="ni">🕐</span>
+        <div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>First &amp; Last Train</div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>पहली और अंतिम ट्रेन</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-en>Daily service timings</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-hi>दैनिक सेवा समय</div>
+        </div>
+      </a>
+      <div class="nav-menu-divider"></div>
+      <a class="nav-menu-item" href="/stations">
+        <span class="ni">📍</span>
+        <div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>All Stations</div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>सभी स्टेशन</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-en>Browse the network</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-hi>नेटवर्क देखें</div>
+        </div>
+      </a>
+      <div class="nav-menu-divider"></div>
+      <a class="nav-menu-item" href="/fares">
+        <span class="ni">₹</span>
+        <div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-en>Fare Guide</div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600" data-hi>किराया गाइड</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-en>Standard &amp; Premium fares</div>
+          <div style="font-size:.72rem;color:var(--muted)" data-hi>सामान्य और प्रीमियम किराया</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ░░ ANNOUNCEMENT TICKER ░░ -->
+<div class="ticker-bar" id="ticker-bar">
+  <div class="ticker-inner" id="ticker-inner">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+
+<main>
+<div class="wrap">
+
+  <!-- ░░ HERO ░░ -->
+  <section class="hero">
+    <div class="live-pill"><div class="live-dot"></div><span data-en>Live &amp; Operational</span><span data-hi>लाइव और संचालित</span></div>
+    <h1 class="hero-title">
+      <span data-en>India's Fastest<br><span class="r">Transit</span> <span class="g">Planner</span></span>
+      <span data-hi>भारत का सबसे तेज़<br><span class="r">ट्रांज़िट</span> <span class="g">प्लानर</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-en>Find routes, fare and interchange instructions for Delhi–Meerut Namo Bharat RRTS and Meerut Metro instantly.</span>
+      <span data-hi>दिल्ली–मेरठ नमो भारत RRTS और मेरठ मेट्रो के लिए रूट, किराया और इंटरचेंज जानकारी तुरंत पाएं।</span>
+    </p>
+  </section>
+
+  <!-- ░░ SEARCH CARD ░░ -->
+  <section id="search-section">
+    <div class="sc">
+      <div class="fd">
+        <label class="fl" for="src-search" data-en>From</label>
+        <label class="fl" for="src-search" data-hi>से (From)</label>
+        <div class="ac-wrap">
+          <input type="text" id="src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
+          <input type="hidden" id="src">
+          <ul class="ac-list" id="src-list" hidden></ul>
+        </div>
+      </div>
+      <div class="swap-row">
+        <button class="swap" id="swap-btn" title="Swap stations" aria-label="Swap stations">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="fd">
+        <label class="fl" for="dst-search" data-en>To</label>
+        <label class="fl" for="dst-search" data-hi>तक (To)</label>
+        <div class="ac-wrap">
+          <input type="text" id="dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
+          <input type="hidden" id="dst">
+          <ul class="ac-list" id="dst-list" hidden></ul>
+        </div>
+      </div>
+      <button class="btn-find" id="find-btn" onclick="onFind()">
+        <span class="btn-label">
+          <span data-en>Find Route</span>
+          <span data-hi>रूट खोजें</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ░░ ROUTE RESULT ░░ -->
+  <section id="route-result" aria-live="polite"></section>
+
+  <!-- ░░ FARE NOTE ░░ -->
+  <div class="fare-note" id="fare-section">
+    <div class="fare-note-icon">ℹ️</div>
+    <div>
+      <span data-en><strong>Fare Information:</strong> Fares shown are Standard Coach one-way tickets (NCRTC official rates, Feb 2026). Premium Coach is ~20% higher. Meerut Metro fares range ₹10–₹60. Children under 90 cm travel free. Smart Card / NCMC accepted at all stations.</span>
+      <span data-hi><strong>किराया जानकारी:</strong> दिखाए गए किराए मानक श्रेणी के एकतरफा टिकट हैं (NCRTC आधिकारिक दरें, फ़रवरी 2026)। प्रीमियम कोच ~20% अधिक है। मेरठ मेट्रो किराया ₹10–₹60। 90 सेमी से कम ऊंचाई वाले बच्चों की यात्रा मुफ़्त।</span>
+    </div>
+  </div>
+
+  <!-- ░░ TRANSIT SYSTEMS ░░ -->
+  <section>
+    <div class="sec-eye" data-en>Coverage</div>
+    <div class="sec-eye" data-hi>कवरेज</div>
+    <h2 class="sec-head" data-en>Transit Systems</h2>
+    <h2 class="sec-head" data-hi>ट्रांज़िट सिस्टम</h2>
+    <div class="sys-grid" id="sys-grid"></div>
+  </section>
+
+  <!-- ░░ FIRST & LAST TRAIN TIMINGS ░░ -->
+  <section id="timings-section">
+    <div class="sec-eye" data-en>Schedule</div>
+    <div class="sec-eye" data-hi>समय-सारिणी</div>
+    <h2 class="sec-head" data-en>First &amp; Last Train Timings</h2>
+    <h2 class="sec-head" data-hi>पहली और अंतिम ट्रेन का समय</h2>
+    <div class="timings-grid">
+      <div class="timing-card">
+        <div class="timing-card-title">
+          <span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;flex-shrink:0"></span>
+          <span data-en>Namo Bharat RRTS</span>
+          <span data-hi>नमो भारत RRTS</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>First Train (Delhi→Meerut)</span>
+          <span class="timing-label" data-hi>पहली ट्रेन (दिल्ली→मेरठ)</span>
+          <span class="timing-val">06:00 AM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Last Train (Delhi→Meerut)</span>
+          <span class="timing-label" data-hi>अंतिम ट्रेन (दिल्ली→मेरठ)</span>
+          <span class="timing-val">10:30 PM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>First Train (Meerut→Delhi)</span>
+          <span class="timing-label" data-hi>पहली ट्रेन (मेरठ→दिल्ली)</span>
+          <span class="timing-val">05:30 AM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Last Train (Meerut→Delhi)</span>
+          <span class="timing-label" data-hi>अंतिम ट्रेन (मेरठ→दिल्ली)</span>
+          <span class="timing-val">10:00 PM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Frequency</span>
+          <span class="timing-label" data-hi>आवृत्ति</span>
+          <span class="timing-val">~10 <span class="dir">min</span></span>
+        </div>
+      </div>
+      <div class="timing-card">
+        <div class="timing-card-title">
+          <span style="width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0"></span>
+          <span data-en>Meerut Metro</span>
+          <span data-hi>मेरठ मेट्रो</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>First Train (South→North)</span>
+          <span class="timing-label" data-hi>पहली ट्रेन (दक्षिण→उत्तर)</span>
+          <span class="timing-val">06:00 AM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Last Train (South→North)</span>
+          <span class="timing-label" data-hi>अंतिम ट्रेन (दक्षिण→उत्तर)</span>
+          <span class="timing-val">10:00 PM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>First Train (North→South)</span>
+          <span class="timing-label" data-hi>पहली ट्रेन (उत्तर→दक्षिण)</span>
+          <span class="timing-val">05:45 AM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Last Train (North→South)</span>
+          <span class="timing-label" data-hi>अंतिम ट्रेन (उत्तर→दक्षिण)</span>
+          <span class="timing-val">09:45 PM</span>
+        </div>
+        <div class="timing-row">
+          <span class="timing-label" data-en>Frequency</span>
+          <span class="timing-label" data-hi>आवृत्ति</span>
+          <span class="timing-val">~10–15 <span class="dir">min</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ALL STATIONS ░░ -->
+  <section id="stations-section" style="margin-bottom:36px">
+    <div class="sec-eye" data-en>Network</div>
+    <div class="sec-eye" data-hi>नेटवर्क</div>
+    <h2 class="sec-head" data-en>All Stations</h2>
+    <h2 class="sec-head" data-hi>सभी स्टेशन</h2>
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-sys="all" data-en>All</button>
+      <button class="tab on" data-sys="all" data-hi>सभी</button>
+      <button class="tab" data-sys="rrts" data-en>Namo Bharat RRTS</button>
+      <button class="tab" data-sys="rrts" data-hi>नमो भारत RRTS</button>
+      <button class="tab" data-sys="meerut_metro" data-en>Meerut Metro</button>
+      <button class="tab" data-sys="meerut_metro" data-hi>मेरठ मेट्रो</button>
+    </div>
+    <div id="stations-list"></div>
+  </section>
+
+  <!-- ░░ POPULAR ROUTES ░░ -->
+  <section id="popular-routes-section" style="margin-bottom:48px">
+    <div id="popular-routes"></div>
+  </section>
+
+  <!-- ░░ BLOG / UPDATES ░░ -->
+  <section id="blog-section" style="margin-bottom:48px">
+    <div class="sec-eye" data-en>Latest</div>
+    <div class="sec-eye" data-hi>ताज़ा</div>
+    <h2 class="sec-head" data-en>News &amp; Updates</h2>
+    <h2 class="sec-head" data-hi>समाचार और अपडेट</h2>
+    <div id="blog-list"></div>
+  </section>
+
+</div>
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <p class="foot-desc" data-en>Your guide to Delhi–Meerut Namo Bharat RRTS and Meerut Metro — routes, fare, and stations.</p>
+    <p class="foot-desc" data-hi>दिल्ली–मेरठ नमो भारत RRTS और मेरठ मेट्रो के लिए आपका गाइड।</p>
+    <div class="foot-links">
+      <a href="/">Home</a><span>·</span>
+<a href="/blog">Blog</a><span>·</span>
+<a href="/stations">Stations</a><span>·</span>
+<a href="/timings">Timings</a><span>·</span>
+<a href="/fares">Fares</a><span>·</span>
+<a href="/about.html">About</a><span>·</span>
+<a href="/contact.html">Contact</a><span>·</span>
+<a href="/privacy.html">Privacy Policy</a><span>·</span>
+<a href="/terms.html">Terms</a><span>·</span>
+<a href="/disclaimer.html">Disclaimer</a>
+    </div>
+    <div class="foot-copy" data-en>© 2026 MetroGuideIndia. For informational purposes only. Not affiliated with NCRTC.</div>
+    <div class="foot-copy" data-hi>© 2026 MetroGuideIndia। केवल सूचना के उद्देश्य से। NCRTC से संबद्ध नहीं।</div>
+  </div>
+</footer>
+
+<button class="up-btn" id="up-btn" aria-label="Back to top">↑</button>
+
+<!-- Scripts -->
+<script src="../js/dataLoader.js?v=20260314"></script>
+<script src="../js/graphBuilder.js?v=20260314"></script>
+<script src="../js/routeFinder.js?v=20260314"></script>
+<script src="../js/routeUI.js?v=20260314"></script>
+<script src="../js/seoGenerator.js?v=20260314"></script>
+<script src="../js/routeMetadata.js?v=20260314"></script>
+<script src="../js/popularRoutes.js?v=20260314"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   App — index.html  v3
+   Dynamic data loading, BFS routing, full Hindi support
+═══════════════════════════════════════════════════════════ */
+
+let DATA = null, GRAPH = null;
+let currentLang = 'en';
+
+/* ── Boot ───────────────────────────────────────────────── */
+(async () => {
+  initTicker(); // show ticker immediately with static items
+  try {
+    DATA  = await DataLoader.loadAll();
+    GRAPH = GraphBuilder.build(DATA.connections);
+    buildDropdowns();
+    buildSysCards();
+    buildStations('all');
+    buildBlog();
+    initTabListeners();
+    restoreFromURL();
+    PopularRoutes.render('popular-routes');
+  } catch (err) {
+    console.error(err);
+    document.getElementById('route-result').innerHTML =
+      `<div class="rc-error"><span>⚠️</span><p>${err.message}</p></div>`;
+    document.getElementById('route-result').style.display = 'block';
+  }
+})();
+
+/* ── Ticker announcements ───────────────────────────────── */
+function initTicker() {
+  const items = [
+    { en: '🚄 Namo Bharat fully operational from Sarai Kale Khan to Modipuram — 22 Feb 2026', hi: '🚄 नमो भारत अब सराय काले खां से मोदीपुरम तक पूरी तरह चालू — 22 फ़रवरी 2026' },
+    { en: '🟢 Meerut Metro inaugurated alongside Namo Bharat on 22 Feb 2026', hi: '🟢 मेरठ मेट्रो का उद्घाटन 22 फ़रवरी 2026 को नमो भारत के साथ हुआ' },
+    { en: '⏱ Trains run every 10 minutes — Standard & Premium coaches available', hi: '⏱ ट्रेनें हर 10 मिनट में — मानक और प्रीमियम कोच उपलब्ध' },
+    { en: '💳 Smart Card / NCMC accepted at all RRTS & Meerut Metro stations', hi: '💳 सभी RRTS और मेरठ मेट्रो स्टेशनों पर स्मार्ट कार्ड / NCMC स्वीकार' },
+    { en: '🔄 Interchange available at Meerut South, Shatabdi Nagar, Begumpul, Modipuram', hi: '🔄 मेरठ साउथ, शताब्दी नगर, बेगमपुल और मोदीपुरम पर इंटरचेंज उपलब्ध' },
+    { en: '✅ Children under 90 cm travel free on Namo Bharat RRTS', hi: '✅ 90 सेमी से कम ऊंचाई वाले बच्चे नमो भारत पर मुफ़्त यात्रा करें' },
+  ];
+  const ti = document.getElementById('ticker-inner');
+  // Duplicate for seamless loop
+  const html = [...items, ...items].map(item => `
+    <span class="ticker-item">
+      <span class="ticker-dot"></span>
+      <span data-en>${item.en}</span>
+      <span data-hi>${item.hi}</span>
+    </span>`).join('');
+  ti.innerHTML = html;
+}
+
+/* ── Autocomplete setup ─────────────────────────────────── */
+function setupAutocomplete(searchId, hiddenId, listId, stationList) {
+  const searchEl = document.getElementById(searchId);
+  const hiddenEl = document.getElementById(hiddenId);
+  const listEl   = document.getElementById(listId);
+  let activeIdx  = -1;
+
+  function renderList(q) {
+    const lower = (q || '').toLowerCase().trim();
+    const filtered = lower
+      ? stationList.filter(s =>
+          s.name.toLowerCase().includes(lower) ||
+          s.city.toLowerCase().includes(lower) ||
+          s.system.toLowerCase().includes(lower)
+        )
+      : stationList;
+    activeIdx = -1;
+    if (!filtered.length) { listEl.hidden = true; return; }
+    listEl.innerHTML = filtered.map(s => {
+      const isR = s.system === 'rrts';
+      return `<li data-id="${s.id}" data-name="${s.name}">` +
+        `<span class="ac-sys-badge ${isR ? 'ac-sys-rrts' : 'ac-sys-metro'}">${isR ? 'RRTS' : 'Metro'}</span>` +
+        `<span class="ac-name">${s.name}</span>` +
+        `<span class="ac-city">${s.city}</span></li>`;
+    }).join('');
+    listEl.hidden = false;
+  }
+
+  function selectItem(li) {
+    hiddenEl.value = li.dataset.id;
+    searchEl.value = li.dataset.name;
+    listEl.hidden  = true;
+    activeIdx = -1;
+  }
+
+  searchEl.addEventListener('input', () => renderList(searchEl.value));
+  searchEl.addEventListener('focus', () => renderList(searchEl.value));
+  searchEl.addEventListener('keydown', e => {
+    const items = listEl.querySelectorAll('li');
+    if (!items.length || listEl.hidden) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIdx = Math.min(activeIdx + 1, items.length - 1);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = Math.max(activeIdx - 1, 0);
+      items.forEach((el, i) => el.classList.toggle('ac-active', i === activeIdx));
+      items[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter' && activeIdx >= 0) {
+      e.preventDefault();
+      selectItem(items[activeIdx]);
+    } else if (e.key === 'Escape') {
+      listEl.hidden = true;
+    }
+  });
+  searchEl.addEventListener('blur', () => {
+    setTimeout(() => { listEl.hidden = true; }, 180);
+  });
+  listEl.addEventListener('mousedown', e => {
+    const li = e.target.closest('li[data-id]');
+    if (li) selectItem(li);
+  });
+}
+
+/* ── Set station programmatically (updates both hidden + display) ────────── */
+function setStation(which, stationId) {
+  const hidden = document.getElementById(which);
+  const search = document.getElementById(which + '-search');
+  if (hidden) hidden.value = stationId || '';
+  if (search && DATA) {
+    const st = DATA.stations.find(s => s.station_id === stationId);
+    search.value = st ? st.station_name : '';
+  } else if (search) {
+    search.value = '';
+  }
+}
+
+/* ── Dropdowns ──────────────────────────────────────────── */
+function buildDropdowns() {
+  const uniq = uniqueStations(DATA.stations);
+  const stationList = uniq.map(s => ({
+    id: s.station_id, name: s.station_name, city: s.city, system: s.system_id
+  }));
+  setupAutocomplete('src-search', 'src', 'src-list', stationList);
+  setupAutocomplete('dst-search', 'dst', 'dst-list', stationList);
+}
+
+/* ── System Cards ───────────────────────────────────────── */
+function buildSysCards() {
+  const rrtsCount  = uniqueStations(DATA.stations.filter(s => s.system_id === 'rrts')).length;
+  const metroCount = uniqueStations(DATA.stations.filter(s => s.system_id === 'meerut_metro')).length;
+  document.getElementById('sys-grid').innerHTML = `
+    <div class="sys-card rrts">
+      <div class="sys-icon">🚅
+      <div class="sys-name" data-en>Namo Bharat RRTS
+      <div class="sys-name" data-hi>नमो भारत RRTS
+      <div class="sys-op">Delhi–Meerut · NCRTC
+      <div class="sys-stats">
+        <div><div class="sv">82.15</div><div class="sl" data-en>km</div><div class="sl" data-hi>किमी</div>
+        <div><div class="sv">${rrtsCount}</div><div class="sl" data-en>Stations</div><div class="sl" data-hi>स्टेशन</div>
+        <div><div class="sv">180</div><div class="sl" data-en>km/h max</div><div class="sl" data-hi>किमी/घंटा</div>
+      
+    
+    <div class="sys-card metro">
+      <div class="sys-icon">🚇
+      <div class="sys-name" data-en>Meerut Metro
+      <div class="sys-name" data-hi>मेरठ मेट्रो
+      <div class="sys-op">Meerut City · NCRTC
+      <div class="sys-stats">
+        <div><div class="sv">22.8</div><div class="sl" data-en>km</div><div class="sl" data-hi>किमी</div>
+        <div><div class="sv">${metroCount}</div><div class="sl" data-en>Stations</div><div class="sl" data-hi>स्टेशन</div>
+        <div><div class="sv">4</div><div class="sl" data-en>Interchanges</div><div class="sl" data-hi>इंटरचेंज</div>
+      
+    </div>`;
+}
+
+/* ── Stations List ──────────────────────────────────────── */
+function buildStations(filter) {
+  const list = document.getElementById('stations-list');
+  const uniq = uniqueStations(DATA.stations).filter(s => filter === 'all' || s.system_id === filter);
+  const isR  = s => s.system_id === 'rrts';
+  const col  = s => isR(s) ? '#D94F3A' : '#2E9E52';
+  const bg   = s => isR(s) ? 'rgba(217,79,58,.12)' : 'rgba(46,158,82,.1)';
+  const bd   = s => isR(s) ? 'rgba(217,79,58,.35)' : 'rgba(46,158,82,.32)';
+  const badge= s => isR(s) ? 'RRTS' : 'Metro';
+
+  list.innerHTML = uniq.map(s => `
+    <div class="st-row" onclick="quickFill('${s.station_id}')">
+<div class="st-dot" style="background:${col(s)}20;border-color:${col(s)}"></div>
+<span class="st-name">${s.station_name}</span>
+      <span class="st-city">${s.city}</span>
+      <span class="st-badge" style="background:${bg(s)};color:${col(s)};border-color:${bd(s)}">${badge(s)}</span>
+    </div>`).join('');
+}
+
+/* ── Blog / Updates ─────────────────────────────────────── */
+function buildBlog() {
+  const posts = [
+    {
+      date: '22 Feb 2026',
+      icon: '🎉',
+      titleEn: 'Namo Bharat &amp; Meerut Metro fully inaugurated',
+      titleHi: 'नमो भारत और मेरठ मेट्रो का पूर्ण उद्घाटन',
+      descEn:  'PM Modi inaugurated the complete 82.15 km Delhi–Meerut RRTS corridor and Meerut Metro on 22 February 2026, marking a historic milestone for Indian transit.',
+      descHi:  'PM मोदी ने 22 फ़रवरी 2026 को पूर्ण 82.15 किमी दिल्ली–मेरठ RRTS कॉरिडोर और मेरठ मेट्रो का उद्घाटन किया।',
+    },
+    {
+      date: '5 Jan 2025',
+      icon: '🚄',
+      titleEn: 'Delhi section opens: Sarai Kale Khan to New Ashok Nagar',
+      titleHi: 'दिल्ली खंड खुला: सराय काले खां से न्यू अशोक नगर',
+      descEn:  'The final Delhi section, including the underground Anand Vihar station and Yamuna crossing, became operational on 5 January 2025.',
+      descHi:  'अंतिम दिल्ली खंड, जिसमें भूमिगत आनंद विहार स्टेशन और यमुना क्रॉसिंग शामिल है, 5 जनवरी 2025 को चालू हुआ।',
+    },
+    {
+      date: '18 Aug 2024',
+      icon: '📍',
+      titleEn: 'Meerut South station becomes operational',
+      titleHi: 'मेरठ साउथ स्टेशन चालू हुआ',
+      descEn:  'The section extended to Meerut South, bringing the corridor to 42 km and enabling interchange with the upcoming Meerut Metro.',
+      descHi:  'सेक्शन मेरठ साउथ तक विस्तारित हुआ, कॉरिडोर 42 किमी हुई और आगामी मेरठ मेट्रो से इंटरचेंज की शुरुआत हुई।',
+    },
+  ];
+
+  document.getElementById('blog-list').innerHTML = posts.map(p => `
+    <div class="sys-card" style="margin-bottom:12px;border-left:3px solid var(--red)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:1.4rem">${p.icon}</span>
+        <div>
+          <div class="sys-name" data-en>${p.titleEn}
+          <div class="sys-name" data-hi>${p.titleHi}
+          <div class="sys-op">${p.date}
+        
+      
+      <p style="font-size:.82rem;color:var(--text2);line-height:1.65" data-en>${p.descEn}</p>
+      <p style="font-size:.82rem;color:var(--text2);line-height:1.65" data-hi>${p.descHi}</p>
+    </div>`).join('');
+}
+
+/* ── Tab listeners ──────────────────────────────────────── */
+function initTabListeners() {
+  document.querySelectorAll('#tabs .tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Activate all tabs sharing the same data-sys
+      const sys = btn.dataset.sys;
+      document.querySelectorAll('#tabs .tab').forEach(b => {
+        b.classList.toggle('on', b.dataset.sys === sys);
+      });
+      buildStations(sys);
+    });
+  });
+}
+
+/* ── Quick fill from station row ────────────────────────── */
+function quickFill(id) {
+  if (!document.getElementById('src').value) setStation('src', id);
+  else setStation('dst', id);
+  document.getElementById('search-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ── Find route — navigate to SEO-friendly /route/ URL ────── */
+function stationToSlug(station_id) {
+  return station_id
+    .replace(/_rrts$/, '')
+    .replace(/_meerut_metro$/, '')
+    .replace(/_/g, '-');
+}
+
+function onFind() {
+  const src = document.getElementById('src').value;
+  const dst = document.getElementById('dst').value;
+  const btn = document.getElementById('find-btn');
+  if (!src || !dst) {
+    alert(currentLang === 'hi' ? 'कृपया दोनों स्टेशन चुनें।' : 'Please select both a source and destination station.');
+    return;
+  }
+  if (src === dst) {
+    alert(currentLang === 'hi' ? 'स्रोत और गंतव्य एक नहीं हो सकते।' : 'Source and destination cannot be the same.');
+    return;
+  }
+
+  btn.classList.add('busy');
+
+  const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+
+  setTimeout(() => {
+    btn.classList.remove('busy');
+
+    // Detect base path for subdirectory GitHub Pages hosting
+    var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
+
+    // Go directly to route.html (NO 404 flash), route.html will clean URL to /route/<slug>
+    window.location.href = window.location.origin + basePath + '/route.html?r=' + encodeURIComponent(slug);
+  }, 260);
+}
+
+function go(src, dst) {
+  const path = RouteFinder.findRoute(GRAPH, src, dst);
+  if (!path?.length) {
+    RouteUI.renderError('route-result', currentLang === 'hi'
+      ? 'इन स्टेशनों के बीच कोई रूट नहीं मिला।'
+      : 'No route found between these stations. Please try a different combination.');
+    scrollToResult(); return;
+  }
+
+  const dist = RouteFinder.calcDistance(path, GRAPH);
+  const fare = RouteFinder.calcFare(path);
+  console.log('DEBUG src:', src);
+console.log('DEBUG dst:', dst);
+console.log('DEBUG path last station_id:', path[path.length-1]?.station_id);
+console.log('DEBUG direct lookup:', (function(){
+  const a = src, b = dst;
+  const key = [a,b].sort().join('__');
+  return { key };
+})());
+  const nX   = path.filter(p => p.line_id === 'interchange').length;
+  const time = RouteFinder.calcTime(dist, nX);
+
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time);
+
+  const srcSt = DATA.stations.find(s => s.station_id === src);
+  const dstSt = DATA.stations.find(s => s.station_id === dst);
+  if (srcSt && dstSt) {
+    const names = path.map(p => DATA.stations.find(s => s.station_id === p.station_id)?.station_name || p.station_id);
+    const seoHTML = SEOGenerator.seoBlock(srcSt.station_name, dstSt.station_name, names, dist, fare, time);
+    const card = document.querySelector('.rc');
+    if (card) { const d = document.createElement('div'); d.innerHTML = seoHTML; card.appendChild(d.firstElementChild); }
+    SEOGenerator.apply(srcSt.station_name, dstSt.station_name, dist, fare, time);
+    // Navigation now handled by onFind() → /route/ URL
+  }
+  scrollToResult();
+}
+
+function scrollToResult() {
+  setTimeout(() => document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+/* ── URL restore ────────────────────────────────────────── */
+function restoreFromURL() {
+  const p = new URLSearchParams(window.location.search);
+  const from = p.get('from'), to = p.get('to');
+  if (from && to) {
+    setStation('src', from);
+    setStation('dst', to);
+    setTimeout(() => go(from, to), 200);
+  }
+}
+
+/* ── Swap ───────────────────────────────────────────────── */
+document.getElementById('swap-btn').addEventListener('click', () => {
+  const srcH = document.getElementById('src');
+  const dstH = document.getElementById('dst');
+  const srcS = document.getElementById('src-search');
+  const dstS = document.getElementById('dst-search');
+  const tmpId   = srcH.value, tmpName = srcS.value;
+  srcH.value = dstH.value; srcS.value = dstS.value;
+  dstH.value = tmpId;      dstS.value = tmpName;
+});
+
+/* ── Nav menu ───────────────────────────────────────────── */
+document.getElementById('menu-btn').addEventListener('click', () => {
+  document.getElementById('nav-menu').classList.toggle('open');
+});
+document.addEventListener('click', e => {
+  if (!document.getElementById('nav').contains(e.target)) {
+    document.getElementById('nav-menu').classList.remove('open');
+  }
+});
+
+/* ── Smooth scroll helper ───────────────────────────────── */
+function scrollTo(sel) {
+  document.querySelector(sel)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('nav-menu').classList.remove('open');
+}
+
+/* ── Language toggle ────────────────────────────────────── */
+document.getElementById('lang-btn').addEventListener('click', () => {
+  currentLang = currentLang === 'en' ? 'hi' : 'en';
+  document.documentElement.classList.toggle('lang-hi', currentLang === 'hi');
+  // Add Hindi font if needed
+  if (currentLang === 'hi' && !document.getElementById('hindi-font')) {
+    const l = document.createElement('link');
+    l.id = 'hindi-font';
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap';
+    document.head.appendChild(l);
+  }
+});
+
+/* ── Scroll-to-top ──────────────────────────────────────── */
+const upBtn = document.getElementById('up-btn');
+window.addEventListener('scroll', () => upBtn.classList.toggle('show', scrollY > 380), { passive: true });
+upBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── Helpers ────────────────────────────────────────────── */
+function uniqueStations(stations) {
+  const seen = new Set();
+  return stations.filter(s => {
+    const k = `${s.station_name}||${s.system_id}`;
+    if (seen.has(k)) return false; seen.add(k); return true;
+  }).sort((a, b) => {
+    if (a.system_id !== b.system_id) return a.system_id === 'rrts' ? -1 : 1;
+    return Number(a.order) - Number(b.order);
+  });
+}
+</script>
+
+</body>
+</html>
+<!-- Ensure proper closure of the outer st-row div -->
