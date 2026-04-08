@@ -6,36 +6,40 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>First & Last Train Timings — RRTS & Meerut Metro | MetroGuideIndia</title>
-  <meta name="description" content="First and last train timings for Namo Bharat RRTS and Meerut Metro. Daily service schedule, frequency and operating hours."/>
+  <title>Metro Timings 2026 — Namo Bharat, Delhi & Bengaluru | MetroGuideIndia</title>
+  <meta name="description" content="2026 metro operating hours and first/last train schedule for Namo Bharat, Delhi Metro, and Bengaluru Namma Metro."/>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="canonical" href="https://metroguideindia.com/timings"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
-    .timing-section{margin-bottom:36px}
-    .timing-section-header{
-      display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--r);margin-bottom:14px;
-    }
-    .timing-section-header.rrts{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
-    .timing-section-header.metro{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
+    .city-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .city-tab{padding:7px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer}
+    .city-tab.active{background:var(--surface);color:var(--text);border-color:var(--border2);box-shadow:var(--shadow)}
+
+    .city-panel{display:none}
+    .city-panel.active{display:block}
+
+    .timing-section{margin-bottom:28px}
+    .timing-section-header{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--r);margin-bottom:14px}
+    .timing-section-header.namo{background:linear-gradient(135deg,var(--red-bg),#fff8f7);border:1px solid rgba(192,57,43,.18)}
+    .timing-section-header.delhi{background:linear-gradient(135deg,#eef3ff,#fafcff);border:1px solid rgba(26,42,108,.18)}
+    .timing-section-header.bengaluru{background:linear-gradient(135deg,var(--green-bg),#f5fdf8);border:1px solid rgba(39,118,74,.18)}
+
     .timing-table-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
     .timing-table-title{padding:12px 16px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--text);border-bottom:1px solid var(--border);background:var(--surface2)}
     .timing-table-row{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--border)}
     .timing-table-row:last-child{border-bottom:none}
-    .timing-table-row:hover{background:var(--surface2)}
     .t-label{font-size:.82rem;color:var(--text2)}
     .t-val{font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;color:var(--text)}
-    .t-note{font-size:.68rem;color:var(--muted);margin-left:4px;font-weight:400}
-    .info-card{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 16px;font-size:.83rem;color:var(--text2);line-height:1.65;margin-bottom:24px}
+
+    .info-card{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 16px;font-size:.83rem;color:var(--text2);line-height:1.65;margin-bottom:20px}
     .info-card strong{color:var(--text)}
-    .freq-pill{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--text)}
-    .freq-dot{width:8px;height:8px;border-radius:50%}
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);} 
   gtag('js', new Date());
   gtag('config', 'G-SV6378N2ZW');
 </script>
@@ -54,76 +58,85 @@
 <div class="wrap" style="padding-top:32px;padding-bottom:48px">
   <div class="sec-eye">Schedule</div>
   <h1 class="sec-head" style="font-size:1.7rem;margin-bottom:6px">First & Last Train Timings</h1>
-  <p style="font-size:.9rem;color:var(--text2);margin-bottom:22px">Operating hours and frequency for Namo Bharat RRTS and Meerut Metro.</p>
+  <p style="font-size:.9rem;color:var(--text2);margin-bottom:16px">2026 schedules for Namo Bharat, Delhi Metro, and Bengaluru Metro.</p>
 
-  <div class="info-card">
-    <strong>Note:</strong> Timings are indicative based on NCRTC guidelines as of February 2026. Actual departure times may vary slightly. Always check the official Namo Bharat Connect app or station displays for real-time information.
+  <div class="city-tabs" id="city-tabs">
+    <button class="city-tab active" data-city="namo">Namo Bharat</button>
+    <button class="city-tab" data-city="delhi">Delhi</button>
+    <button class="city-tab" data-city="bengaluru">Bengaluru</button>
   </div>
 
-  <!-- RRTS -->
-  <div class="timing-section">
-    <div class="timing-section-header rrts">
-      <span style="font-size:1.8rem">🚅</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--red)">Namo Bharat RRTS</div>
-        <div style="font-size:.76rem;color:var(--muted)">Sarai Kale Khan ↔ Modipuram · 82.15 km</div>
+  <div class="city-panel active" data-city="namo">
+    <div class="info-card">
+      <strong>Note:</strong> Timings are indicative for 2026 operations. For live first/last departures, verify using official app displays.
+    </div>
+
+    <div class="timing-section">
+      <div class="timing-section-header namo">
+        <span style="font-size:1.8rem">🚅</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--red)">Namo Bharat RRTS</div>
+          <div style="font-size:.76rem;color:var(--muted)">Sarai Kale Khan ↔ Modipuram</div>
+        </div>
+      </div>
+
+      <div class="timing-table-card">
+        <div class="timing-table-title">Delhi → Meerut</div>
+        <div class="timing-table-row"><span class="t-label">First train (Sarai Kale Khan)</span><span class="t-val">06:00 AM</span></div>
+        <div class="timing-table-row"><span class="t-label">Last train (Sarai Kale Khan)</span><span class="t-val">10:30 PM</span></div>
+      </div>
+
+      <div class="timing-table-card">
+        <div class="timing-table-title">Meerut → Delhi</div>
+        <div class="timing-table-row"><span class="t-label">First train (Modipuram)</span><span class="t-val">05:30 AM</span></div>
+        <div class="timing-table-row"><span class="t-label">Last train (Modipuram)</span><span class="t-val">10:00 PM</span></div>
       </div>
     </div>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
-      <div class="freq-pill"><span class="freq-dot" style="background:var(--red)"></span>Every ~10 minutes (Peak)</div>
-      <div class="freq-pill"><span class="freq-dot" style="background:var(--muted)"></span>Every ~15 minutes (Off-peak)</div>
-    </div>
-
-    <div class="timing-table-card">
-      <div class="timing-table-title">🏙️ Delhi → Meerut Direction</div>
-      <div class="timing-table-row"><span class="t-label">First Train from Sarai Kale Khan</span><span class="t-val">06:00 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Last Train from Sarai Kale Khan</span><span class="t-val">10:30 PM</span></div>
-      <div class="timing-table-row"><span class="t-label">First Train from New Ashok Nagar</span><span class="t-val">06:08 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">First Train from Anand Vihar</span><span class="t-val">06:15 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Arrives Modipuram (first)</span><span class="t-val">~07:00 AM <span class="t-note">approx</span></span></div>
-    </div>
-
-    <div class="timing-table-card">
-      <div class="timing-table-title">🏘️ Meerut → Delhi Direction</div>
-      <div class="timing-table-row"><span class="t-label">First Train from Modipuram</span><span class="t-val">05:30 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Last Train from Modipuram</span><span class="t-val">10:00 PM</span></div>
-      <div class="timing-table-row"><span class="t-label">First Train from Meerut South</span><span class="t-val">05:45 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Arrives Sarai Kale Khan (first)</span><span class="t-val">~06:30 AM <span class="t-note">approx</span></span></div>
-    </div>
   </div>
 
-  <!-- Meerut Metro -->
-  <div class="timing-section">
-    <div class="timing-section-header metro">
-      <span style="font-size:1.8rem">🚇</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green)">Meerut Metro</div>
-        <div style="font-size:.76rem;color:var(--muted)">Meerut South ↔ Modipuram · 22.8 km · 13 stations</div>
+  <div class="city-panel" data-city="delhi">
+    <div class="info-card" style="border-left-color:#1a2a6c;background:#f4f7ff;border-color:#d6deff">
+      <strong>Delhi Metro (2026):</strong> Regular service starts at <strong>5:30 AM</strong> and runs till <strong>11:00 PM</strong> from Monday to Saturday. On Sundays and select holidays, some originating stations begin around <strong>8:00 AM</strong>.
+    </div>
+
+    <div class="timing-section">
+      <div class="timing-section-header delhi">
+        <span style="font-size:1.8rem">🚇</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:#1a2a6c">Delhi Metro (DMRC)</div>
+          <div style="font-size:.76rem;color:var(--muted)">Network-wide service window</div>
+        </div>
+      </div>
+
+      <div class="timing-table-card">
+        <div class="timing-table-title">Operating Hours</div>
+        <div class="timing-table-row"><span class="t-label">Monday – Saturday (start)</span><span class="t-val">05:30 AM</span></div>
+        <div class="timing-table-row"><span class="t-label">Monday – Saturday (last services)</span><span class="t-val">11:00 PM</span></div>
+        <div class="timing-table-row"><span class="t-label">Sunday first services (some stations)</span><span class="t-val">08:00 AM</span></div>
       </div>
     </div>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
-      <div class="freq-pill"><span class="freq-dot" style="background:var(--green)"></span>Every ~10–15 minutes</div>
-    </div>
-
-    <div class="timing-table-card">
-      <div class="timing-table-title">⬆️ Meerut South → Modipuram Direction</div>
-      <div class="timing-table-row"><span class="t-label">First Train from Meerut South</span><span class="t-val">06:00 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Last Train from Meerut South</span><span class="t-val">10:00 PM</span></div>
-      <div class="timing-table-row"><span class="t-label">Journey time (full line)</span><span class="t-val">~35 min</span></div>
-    </div>
-
-    <div class="timing-table-card">
-      <div class="timing-table-title">⬇️ Modipuram → Meerut South Direction</div>
-      <div class="timing-table-row"><span class="t-label">First Train from Modipuram</span><span class="t-val">05:45 AM</span></div>
-      <div class="timing-table-row"><span class="t-label">Last Train from Modipuram</span><span class="t-val">09:45 PM</span></div>
-      <div class="timing-table-row"><span class="t-label">Journey time (full line)</span><span class="t-val">~35 min</span></div>
-    </div>
   </div>
 
-  <div class="info-card" style="border-left-color:var(--green)">
-    <strong>Holiday & Sunday service:</strong> Trains run on all 7 days of the week including public holidays. Frequency may be slightly reduced on Sundays and major holidays. Check the Namo Bharat Connect app for live updates.
+  <div class="city-panel" data-city="bengaluru">
+    <div class="info-card" style="border-left-color:var(--green)">
+      <strong>Bengaluru Metro (2026):</strong> Daily operations run from <strong>5:00 AM</strong> to <strong>11:00 PM</strong> on all days.
+    </div>
+
+    <div class="timing-section">
+      <div class="timing-section-header bengaluru">
+        <span style="font-size:1.8rem">🚇</span>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green)">Namma Metro (BMRCL)</div>
+          <div style="font-size:.76rem;color:var(--muted)">Purple + Green line service window</div>
+        </div>
+      </div>
+
+      <div class="timing-table-card">
+        <div class="timing-table-title">Operating Hours</div>
+        <div class="timing-table-row"><span class="t-label">Daily first services</span><span class="t-val">05:00 AM</span></div>
+        <div class="timing-table-row"><span class="t-label">Daily last services</span><span class="t-val">11:00 PM</span></div>
+      </div>
+    </div>
   </div>
 </div>
 </main>
@@ -142,8 +155,18 @@
 <a href="/terms.html">Terms</a><span>·</span>
 <a href="/disclaimer.html">Disclaimer</a>
     </div>
-    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+    <div class="foot-copy">© 2026 MetroGuideIndia.</div>
   </div>
 </footer>
+<script>
+document.getElementById('city-tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.city-tab');
+  if (!btn) return;
+  const city = btn.dataset.city;
+
+  document.querySelectorAll('.city-tab').forEach(tab => tab.classList.toggle('active', tab === btn));
+  document.querySelectorAll('.city-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.city === city));
+});
+</script>
 </body>
 </html>
