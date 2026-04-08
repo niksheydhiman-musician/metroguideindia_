@@ -368,6 +368,7 @@ a{color:inherit;text-decoration:none}
   line-height: 1.75;
 }
 .route-seo-lines strong{ color: var(--text); }
+.route-seo-note{font-size:.81rem;color:#7a5200;background:#fff8e6;border:1px solid #f5c842;border-radius:6px;padding:6px 10px;margin:4px 0;line-height:1.6}
 /* ── Section headers ─────────────────────────────────────── */
 .sec-eye{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:5px}
 .sec-head{font-size:1.3rem;font-weight:700;margin-bottom:16px;color:var(--text)}
