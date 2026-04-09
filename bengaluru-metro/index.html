@@ -153,7 +153,7 @@
     <h2 class="sec-head">All Stations (Interactive)</h2>
     <div class="tabs" id="tabs"></div>
     <div id="stations-list"></div>
-    <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/bengaluru.json" style="text-decoration:underline">/data/bengaluru.json</a></p>
+    <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/bengaluru.json" style="text-decoration:underline">/data/bengaluru.json</a> · <a href="/bengaluru-metro/stations/" style="text-decoration:underline">Browse all station pages</a></p>
   </section>
 </div>
 </main>
@@ -342,7 +342,7 @@ function buildTopJourneys() {
       <div class="pr-group-header" style="--gc:${group.color}"><span class="pr-group-icon">${group.icon}</span><span class="pr-group-label">${group.group}</span></div>
       <div class="pr-grid">
         ${group.routes.map(r => {
-          const href = r.href || '#';
+          const href = r.href ? (r.href.startsWith('/') ? r.href : `/${r.href.replace(/^\/+/, '')}`) : '#';
           const metaLeft = r.href ? (r.meta || 'View Route') : 'Auto-fill';
           const metaRight = r.href ? 'Full Guide' : 'Find route';
           const dataAttrs = r.from ? `data-from="${r.from}" data-to="${r.to}"` : '';
@@ -447,7 +447,7 @@ function onFind() {
   const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: dist });
   const nX = path.filter(p => p.line_id === 'interchange').length;
   const time = RouteFinder.calcTime(dist, nX);
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines);
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
   document.getElementById('route-result').style.display = 'block';
   setTimeout(() => document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
 }

@@ -36,7 +36,7 @@ const RouteUI = (() => {
   }
 
   /* ── Main render ─────────────────────────────────────────────────────────── */
-  function renderRoute(cid, path, stations, interchanges, distance, fare, time, lines = []) {
+  function renderRoute(cid, path, stations, interchanges, distance, fare, time, lines = [], cityKey = '') {
     const el = document.getElementById(cid);
     if (!el) return;
     activeLineMap = buildLineMap(lines);
@@ -114,7 +114,14 @@ const RouteUI = (() => {
 
         const hasR = path.some(p => p.line_id === 'rrts_main');
         const hasM = path.some(p => p.line_id === 'meerut_metro_main');
-        const systemLabel = (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
+        const city = String(cityKey || '').toLowerCase();
+        const isDelhi = city === 'delhi';
+        const isBengaluru = city === 'bengaluru';
+        const systemLabel = isDelhi
+          ? 'Delhi Metro'
+          : isBengaluru
+            ? 'Bengaluru Metro'
+            : (hasR && hasM) ? 'RRTS + Metro' : hasM ? 'Meerut Metro' : 'RRTS';
 
         const premium = Math.round((Number(fare || 0) * 1.2) / 10) * 10;
         const t    = Number(time || 0);
@@ -138,17 +145,23 @@ const RouteUI = (() => {
         // Determine fare display and ticketing based on system
         const isMeerutMetroOnly = !hasR && hasM;  // Meerut Metro only (single-class, no Premium coach)
         const isRRTSMix = hasR && hasM;   // RRTS + Meerut Metro interchange
+        const showPremium = hasR && !isMeerutMetroOnly && !isDelhi && !isBengaluru;
 
-        const fareDisplay = isMeerutMetroOnly
+        const fareDisplay = !showPremium
           ? `₹${esc(fare)} (Standard).`
           : `~₹${esc(fare)} (Standard) | ~₹${esc(premium)} (Premium).`;
 
         // Static disclaimer string — no user input involved, escaping not required
         const interchangeDisclaimer = isRRTSMix
-          ? `<div class="route-seo-note">⚠️ <strong>Note:</strong> Premium ticket holders must transfer to the Standard/General coach at the Meerut Metro interchange station.</div>`
+          ? `<div class="route-seo-note">⚠️ <strong>Note:</strong> Premium ticket holders must move to the Standard/General coach when transferring to Meerut Metro trains.</div>`
           : '';
 
-        const ticketingText = `Use Namo Bharat App or NCMC. <a href="https://rrts.co.in" rel="nofollow noopener" target="_blank" style="color:#C0392B;font-weight:600">Official Website</a>`;
+        const ticketingConfig = isDelhi
+          ? { pre: 'Use DMRC channels for QR and smart card travel.', url: 'https://www.delhimetrorail.com/', color: '#1a2a6c' }
+          : isBengaluru
+            ? { pre: 'Use BMRCL channels for QR and smart card travel.', url: 'https://www.bmrc.co.in/', color: '#6c2e9d' }
+            : { pre: 'Use Namo Bharat App or NCMC.', url: 'https://www.rrts.co.in/', color: '#C0392B' };
+        const ticketingText = `${ticketingConfig.pre} <a href="${ticketingConfig.url}" rel="nofollow noopener" target="_blank" style="color:${ticketingConfig.color};font-weight:600">Official Website</a>`;
 
         return `
           <div class="route-seo-box" data-system="${esc(systemLabel)}">
