@@ -635,7 +635,7 @@ console.log('DEBUG direct lookup:', (function(){
   const nX   = path.filter(p => p.line_id === 'interchange').length;
   const time = RouteFinder.calcTime(dist, nX);
 
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines);
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
 
   const srcSt = DATA.stations.find(s => s.station_id === src);
   const dstSt = DATA.stations.find(s => s.station_id === dst);

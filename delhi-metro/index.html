@@ -347,7 +347,7 @@ function buildTopJourneys() {
       <div class="pr-group-header" style="--gc:${group.color}"><span class="pr-group-icon">${group.icon}</span><span class="pr-group-label">${group.group}</span></div>
       <div class="pr-grid">
         ${group.routes.map(r => {
-          const href = r.href || '#';
+          const href = r.href ? (r.href.startsWith('/') ? r.href : `/${r.href.replace(/^\/+/, '')}`) : '#';
           const metaLeft = r.href ? (r.meta || 'View Route') : 'Auto-fill';
           const metaRight = r.href ? 'Full Guide' : 'Find route';
           const dataAttrs = r.from ? `data-from="${r.from}" data-to="${r.to}"` : '';
@@ -452,7 +452,7 @@ function onFind() {
   const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: dist });
   const nX = path.filter(p => p.line_id === 'interchange').length;
   const time = RouteFinder.calcTime(dist, nX);
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines);
+  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
   document.getElementById('route-result').style.display = 'block';
   setTimeout(() => document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
 }
