@@ -521,6 +521,7 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
 
 /* ── Station explore gateway ─────────────────────────────── */
 .station-explore-section{margin:0 0 24px}
+.station-explore-heading{margin-bottom:10px}
 .station-explore-card{
   display:flex;align-items:center;gap:14px;
   background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
