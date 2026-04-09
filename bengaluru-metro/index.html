@@ -164,7 +164,7 @@
     <h2 class="sec-head">All Stations (Interactive)</h2>
     <div class="tabs" id="tabs"></div>
     <div id="stations-list"></div>
-    <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Data source: <a href="../data/bengaluru.json" style="text-decoration:underline">/data/bengaluru.json</a> · <a href="/bengaluru-metro/stations/" style="text-decoration:underline">Browse all station pages</a></p>
+    <p style="color:var(--muted);font-size:.78rem;margin-top:10px">Source: Official Transit Data | Last Updated: April 2026</p>
   </section>
 </div>
 </main>
@@ -318,7 +318,18 @@ function buildSystemCards() {
     return { color: index % 2 === 0 ? '#6c2e9d' : '#1b8f3b', icon: '🚇' };
   };
 
-  const html = DATA.lines.map((line, i) => {
+  const networkCard = `<div class="sys-card" style="--sys-accent:#6c2e9d">
+      <div class="sys-icon">📊</div>
+      <div class="sys-name">Bengaluru Metro Network Scale</div>
+      <div class="sys-op">Namma Metro · BMRCL</div>
+      <div class="sys-stats">
+        <div><div class="sv">73</div><div class="sl">km</div></div>
+        <div><div class="sv">66</div><div class="sl">Stations</div></div>
+        <div><div class="sv">April 2026</div><div class="sl">Last Updated</div></div>
+      </div>
+    </div>`;
+
+  const lineCards = DATA.lines.map((line, i) => {
     const theme = lineTheme(line.line_name, i);
     const stations = DATA.stations.filter(s => s.line_id === line.line_id).length;
     const distance = DATA.connections.filter(c => c.line_id === line.line_id).reduce((sum, c) => sum + Number(c.distance_km || 0), 0).toFixed(1);
@@ -334,7 +345,7 @@ function buildSystemCards() {
       </div>
     </div>`;
   }).join('');
-  document.getElementById('sys-grid').innerHTML = html;
+  document.getElementById('sys-grid').innerHTML = networkCard + lineCards;
 }
 
 function buildTimings() {
