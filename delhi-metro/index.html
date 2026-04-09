@@ -323,7 +323,18 @@ function buildSystemCards() {
     return { color: index % 2 === 0 ? '#cf1f2f' : '#1f4fa3', icon: '🚇' };
   };
 
-  const html = DATA.lines.map((line, i) => {
+  const networkCard = `<div class="sys-card" style="--sys-accent:#cf1f2f">
+      <div class="sys-icon">📊</div>
+      <div class="sys-name">Delhi Metro Network Scale</div>
+      <div class="sys-op">Delhi Metro · DMRC</div>
+      <div class="sys-stats">
+        <div><div class="sv">392</div><div class="sl">km</div></div>
+        <div><div class="sv">286</div><div class="sl">Stations</div></div>
+        <div><div class="sv">April 2026</div><div class="sl">Last Updated</div></div>
+      </div>
+    </div>`;
+
+  const lineCards = DATA.lines.map((line, i) => {
     const theme = lineTheme(line.line_name, i);
     const stations = DATA.stations.filter(s => s.line_id === line.line_id).length;
     const distance = DATA.connections.filter(c => c.line_id === line.line_id).reduce((sum, c) => sum + Number(c.distance_km || 0), 0).toFixed(1);
@@ -333,13 +344,13 @@ function buildSystemCards() {
       <div class="sys-name">${line.line_name}</div>
       <div class="sys-op">Delhi Metro · DMRC</div>
       <div class="sys-stats">
-        <div><div class="sv">392</div><div class="sl">km</div></div>
-        <div><div class="sv">286</div><div class="sl">Stations</div></div>
+        <div><div class="sv">${distance}</div><div class="sl">km</div></div>
+        <div><div class="sv">${stations}</div><div class="sl">Stations</div></div>
         <div><div class="sv">${interchanges}</div><div class="sl">Interchanges</div></div>
       </div>
     </div>`;
   }).join('');
-  document.getElementById('sys-grid').innerHTML = html;
+  document.getElementById('sys-grid').innerHTML = networkCard + lineCards;
 }
 
 function buildTimings() {
