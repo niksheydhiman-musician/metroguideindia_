@@ -36,6 +36,7 @@ body{overflow-x:hidden}
   --green-soft:#2E9E52;
   --green-bg:  #EDF7F1;
   --green-glow:rgba(39,118,74,0.15);
+  --green-border-hover:rgba(39,118,74,.4);
 
   /* Interchange — warm amber */
   --amber:     #A0620A;
@@ -531,7 +532,7 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
 }
 .station-explore-card:hover{
   transform:translateY(-2px);
-  border-color:rgba(39,118,74,.4);
+  border-color:var(--green-border-hover);
   box-shadow:0 6px 24px var(--green-glow);
   text-decoration:none;
 }
