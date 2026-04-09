@@ -36,6 +36,8 @@ body{overflow-x:hidden}
   --green-soft:#2E9E52;
   --green-bg:  #EDF7F1;
   --green-glow:rgba(39,118,74,0.15);
+  --green-border:rgba(39,118,74,.22);
+  --green-border-hover:rgba(39,118,74,.4);
 
   /* Interchange — warm amber */
   --amber:     #A0620A;
@@ -518,6 +520,34 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
   display:flex;gap:10px;
   font-size:.76rem;color:var(--muted);font-weight:500;
 }
+
+/* ── Station explore gateway ─────────────────────────────── */
+.station-explore-section{margin:0 0 24px}
+.station-explore-heading{margin-bottom:10px}
+.station-explore-card{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
+  padding:18px 16px;text-decoration:none;color:var(--text);
+  box-shadow:var(--shadow);
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),border-color .18s var(--ease);
+}
+.station-explore-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--green-border-hover);
+  box-shadow:0 6px 24px var(--green-glow);
+  text-decoration:none;
+}
+.station-explore-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  font-size:1.2rem;
+}
+.station-explore-copy{display:flex;flex-direction:column;gap:4px}
+.station-explore-title{
+  font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:700;color:var(--text);
+}
+.station-explore-desc{font-size:.84rem;color:var(--text2);line-height:1.55}
 
 /* ── Quick Facts card (route page) ──────────────────────── */
 .quick-facts{
