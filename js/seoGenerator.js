@@ -25,7 +25,9 @@ const SEOGenerator = (() => {
     const sys = String(system || '');
     const isRRTSBySystem = /rrts|meerut/i.test(sys);
     const isRRTSByPath = pathname.indexOf('/namo-bharat/') === 0 || pathname.indexOf('/meerut-metro/') === 0;
-    const isRRTS = opts.isRRTS === true || isRRTSBySystem || isRRTSByPath;
+    const isRRTS = typeof opts.isRRTS === 'boolean'
+      ? opts.isRRTS
+      : (isRRTSBySystem || isRRTSByPath);
     const title = isRRTS
       ? `${from} to ${to}: Distance, Fare & RRTS Timings | MetroGuideIndia`
       : `${from} to ${to} Metro Route: Fare, Time & Stations | MetroGuideIndia`;

@@ -169,21 +169,11 @@ function parseSlug(slug, stations) {
 }
 
 const RRTS_STATION_NAMES = new Set([
-  'sarai kale khan',
-  'new ashok nagar',
-  'anand vihar',
   'sahibabad',
-  'ghaziabad',
-  'guldhar',
-  'duhai',
-  'modinagar',
-  'meerut'
+  'ghaziabad'
 ]);
 
 function detectJourneyBranding(path, stationMap, cityKey) {
-  const city = String(cityKey || '').toLowerCase();
-  if (city === 'delhi' || city === 'bengaluru') return { isRRTS: false, systemLabel: 'Metro' };
-
   const hasRRTSStation = path.some(step => {
     const st = stationMap[step.station_id] || {};
     const lineId = String(step.line_id || '').toLowerCase();
