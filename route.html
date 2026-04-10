@@ -139,6 +139,7 @@ const BASE_PATH = (function() {
 ───────────────────────────────────────────────────────────────────────────── */
 
 let DATA = null, GRAPH = null;
+let STATION_MAP = null;
 
 /* ── Slug ↔ station_id resolution ────────────────────────────────────────── */
 function stationToSlug(station_id) {
@@ -168,17 +169,18 @@ function parseSlug(slug, stations) {
   return null;
 }
 
+const normalizeStationName = value => String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
 const RRTS_STATION_NAMES = new Set([
   'sahibabad',
   'ghaziabad'
-]);
+].map(normalizeStationName));
 
 function detectJourneyBranding(path, stationMap, cityKey) {
   const hasRRTSStation = path.some(step => {
     const st = stationMap[step.station_id] || {};
     const lineId = String(step.line_id || '').toLowerCase();
     const systemId = String(st.system_id || '').toLowerCase();
-    const stationName = String(st.station_name || '').toLowerCase().replace(/\s+/g, ' ').trim();
+    const stationName = normalizeStationName(st.station_name);
     const matchesKnownRRTSName = RRTS_STATION_NAMES.has(stationName);
     return (
       systemId === 'rrts' ||
@@ -237,6 +239,7 @@ function renderSlug(slug) {
 DataLoader.loadAll().then(data => {
   DATA  = data;
   GRAPH = GraphBuilder.build(data.connections);
+  STATION_MAP = Object.fromEntries(data.stations.map(st => [st.station_id, st]));
 
   populateAutocomplete(data.stations);
   attachSwap();
@@ -299,8 +302,7 @@ function go(src, dst) {
     // SEO — dynamic title, description, canonical
     const fromName = srcSt.station_name;
     const toName   = dstSt.station_name;
-    const stationMap = Object.fromEntries(DATA.stations.map(st => [st.station_id, st]));
-    const branding = detectJourneyBranding(path, stationMap, DATA?.cityKey);
+    const branding = detectJourneyBranding(path, STATION_MAP || {}, DATA?.cityKey);
     const isRRTSJourney = branding.isRRTS;
     const systemLabel = branding.systemLabel;
     const hasInterchange = path.some(p => p.line_id === 'interchange');

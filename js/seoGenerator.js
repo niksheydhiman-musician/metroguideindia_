@@ -18,6 +18,7 @@ const SEOGenerator = (() => {
    * @param {number} time       Estimated travel time in minutes
    * @param {string} [system]   Route system label: 'RRTS', 'Meerut Metro', or 'RRTS + Metro'
    * @param {string} [canonicalUrl] Full canonical URL for this route page
+   * @param {{isRRTS?: boolean}} [options] Optional journey flags
    */
   function apply(from,to,dist,fare,time,system,canonicalUrl,options){
     const opts = options || {};
@@ -45,6 +46,9 @@ const SEOGenerator = (() => {
     setMeta('twitter:description',desc);
   }
 
+  /**
+   * @param {{isRRTS?: boolean}} [options] Optional journey flags
+   */
   function seoBlock(from,to,names,dist,fare,time,options){
     const isRRTS = options && options.isRRTS === true;
     return `<div class="seo-block">
