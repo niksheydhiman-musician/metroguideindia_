@@ -738,8 +738,17 @@ function buildDropdowns() {
   const stationList = uniq.map(s => ({
     id: s.station_id, name: s.station_name, city: s.city, system: s.system_id
   }));
-  setupAutocomplete('src-search', 'src', 'src-list', stationList);
-  setupAutocomplete('dst-search', 'dst', 'dst-list', stationList);
+  const configs = [
+    ['src-search', 'src', 'src-list'],
+    ['dst-search', 'dst', 'dst-list'],
+    ['origin-search-main', 'origin-main', 'origin-list-main'],
+    ['destination-search-main', 'destination-main', 'destination-list-main']
+  ];
+  configs.forEach(([searchId, hiddenId, listId]) => {
+    if (document.getElementById(searchId) && document.getElementById(hiddenId) && document.getElementById(listId)) {
+      setupAutocomplete(searchId, hiddenId, listId, stationList);
+    }
+  });
 }
 
 /* ── System Cards ───────────────────────────────────────── */
@@ -863,10 +872,26 @@ function stationToSlug(station_id) {
     .replace(/_/g, '-');
 }
 
-function onFind() {
-  const src = document.getElementById('src').value;
-  const dst = document.getElementById('dst').value;
-  const btn = document.getElementById('find-btn');
+function getFirstById(ids) {
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (el) return el;
+  }
+  return null;
+}
+
+function getBasePathPrefix() {
+  const path = window.location.pathname || '';
+  const match = path.match(/^(.*?)(?:\/(?:delhi-metro|bengaluru-metro|namo-bharat|meerut-metro)(?:\/|$))/i);
+  return match ? match[1] : '';
+}
+
+function onFind(triggerBtn) {
+  const srcEl = getFirstById(['src', 'origin-main']);
+  const dstEl = getFirstById(['dst', 'destination-main']);
+  const src = srcEl ? srcEl.value : '';
+  const dst = dstEl ? dstEl.value : '';
+  const btn = triggerBtn || getFirstById(['find-route-main', 'find-btn', 'find-route-station']);
   if (!src || !dst) {
     alert(currentLang === 'hi' ? 'कृपया दोनों स्टेशन चुनें।' : 'Please select both a source and destination station.');
     return;
@@ -881,13 +906,8 @@ function onFind() {
   const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
 
   setTimeout(() => {
-    btn.classList.remove('busy');
-
-    // Detect base path for subdirectory GitHub Pages hosting
-    var basePath = window.location.pathname.replace(/\/[^\/]*$/, '').replace(/\/route\/.*$/, '');
-
-    // Go directly to route.html (NO 404 flash), route.html will clean URL to /route/<slug>
-    window.location.href = window.location.origin + basePath + '/route.html?r=' + encodeURIComponent(slug);
+    if (btn) btn.classList.remove('busy');
+    window.location.href = window.location.origin + getBasePathPrefix() + '/route.html?city=rrts&r=' + encodeURIComponent(slug);
   }, 260);
 }
 
@@ -952,6 +972,13 @@ document.getElementById('swap-btn').addEventListener('click', () => {
   const tmpId   = srcH.value, tmpName = srcS.value;
   srcH.value = dstH.value; srcS.value = dstS.value;
   dstH.value = tmpId;      dstS.value = tmpName;
+});
+
+document.addEventListener('click', (event) => {
+  const trigger = event.target.closest('#find-btn, #find-route-main, #find-route-station');
+  if (!trigger) return;
+  event.preventDefault();
+  onFind(trigger);
 });
 
 /* ── Nav menu ───────────────────────────────────────────── */
