@@ -168,7 +168,17 @@ function parseSlug(slug, stations) {
   return null;
 }
 
-const RRTS_STATION_KEYWORDS = ['sahibabad', 'ghaziabad'];
+const RRTS_STATION_KEYWORDS = [
+  'sarai kale khan',
+  'new ashok nagar',
+  'anand vihar',
+  'sahibabad',
+  'ghaziabad',
+  'guldhar',
+  'duhai',
+  'modinagar',
+  'meerut'
+];
 
 function detectJourneyBranding(path, stationMap, cityKey) {
   const city = String(cityKey || '').toLowerCase();
@@ -180,7 +190,7 @@ function detectJourneyBranding(path, stationMap, cityKey) {
     const lineId = String(step.line_id || '').toLowerCase();
     const systemId = String(st.system_id || '').toLowerCase();
     const stationName = String(st.station_name || '').toLowerCase();
-    const matchesKeyword = RRTS_STATION_KEYWORDS.some(keyword => stationName.indexOf(keyword) >= 0);
+    const matchesKeyword = RRTS_STATION_KEYWORDS.some(keyword => stationName.includes(keyword));
     return (
       systemId === 'rrts' ||
       systemId === 'meerut_metro' ||

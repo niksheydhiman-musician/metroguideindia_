@@ -21,7 +21,7 @@ const SEOGenerator = (() => {
    */
   function apply(from,to,dist,fare,time,system,canonicalUrl,options){
     const opts = options || {};
-    const pathname = String((window.location && window.location.pathname) || '').toLowerCase();
+    const pathname = String(window.location?.pathname || '').toLowerCase();
     const sys = String(system || '');
     const isRRTSBySystem = /rrts|meerut/i.test(sys);
     const isRRTSByPath = pathname.indexOf('/namo-bharat/') === 0 || pathname.indexOf('/meerut-metro/') === 0;
