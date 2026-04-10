@@ -51,19 +51,117 @@
       .replace(/_rrts$/, '')
       .replace(/_meerut_metro$/, '')
       .replace(/_/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
       .toLowerCase();
   }
 
-  function getCityPathSegment(cityKey) {
-    if (cityKey === 'delhi') return '/delhi-metro';
-    if (cityKey === 'bengaluru') return '/bengaluru-metro';
-    return '/namo-bharat';
+  function normalizePath(path) {
+    return ('/' + String(path || '').replace(/^\/+/, '')).replace(/\/{2,}/g, '/');
+  }
+
+  function getCityRouteDirectory(cityKey) {
+    if (cityKey === 'delhi') return '/delhi-metro/routes';
+    if (cityKey === 'bengaluru') return '/bengaluru-metro/routes';
+    return '/routes';
   }
 
   function getBasePathPrefix() {
     const path = window.location.pathname || '';
     const match = path.match(/^(.*?)(?:\/(?:delhi-metro|bengaluru-metro|namo-bharat)(?:\/|$))/i);
     return match ? match[1] : '';
+  }
+
+  function withBasePath(path) {
+    const base = getBasePathPrefix();
+    return normalizePath((base ? base.replace(/\/+$/, '') : '') + '/' + String(path || '').replace(/^\/+/, ''));
+  }
+
+  function buildStaticRouteURL(cityKey, routeSlug) {
+    const routeDir = getCityRouteDirectory(cityKey);
+    return withBasePath(routeDir + '/' + routeSlug + '.html');
+  }
+
+  async function routeFileExists(url) {
+    try {
+      const headResponse = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+      if (headResponse.ok) return true;
+      if (headResponse.status !== 405 && headResponse.status !== 501) return false;
+    } catch (err) {
+      return false;
+    }
+    try {
+      const getResponse = await fetch(url, { method: 'GET', cache: 'no-store', headers: { Range: 'bytes=0-0' } });
+      return getResponse.ok;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function loadScriptOnce(src) {
+    const url = withBasePath(src);
+    const normalizedUrl = url.replace(/\/+$/, '');
+    const existing = Array.from(document.querySelectorAll('script[src]')).find((scriptTag) => {
+      const scriptSrc = new URL(scriptTag.getAttribute('src') || '', window.location.origin).pathname.replace(/\/+$/, '');
+      return scriptSrc === normalizedUrl;
+    });
+    if (existing) {
+      return Promise.resolve();
+    }
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = false;
+      script.onload = () => {
+        script.dataset.loaded = 'true';
+        resolve();
+      };
+      script.onerror = () => reject(new Error('Failed to load ' + url));
+      document.head.appendChild(script);
+    });
+  }
+
+  function ensureInlineResultContainer(anchorEl) {
+    const main = anchorEl.closest('main') || document.querySelector('main') || document.body;
+    let result = main.querySelector('#route-result');
+    if (!result) {
+      result = document.createElement('section');
+      result.id = 'route-result';
+      result.setAttribute('aria-live', 'polite');
+      result.style.display = 'none';
+      result.style.marginTop = '24px';
+      result.style.marginBottom = '24px';
+      anchorEl.insertAdjacentElement('afterend', result);
+    }
+    return result;
+  }
+
+  async function renderInlineFallback(anchorEl, context, fromStation, toStation) {
+    const payload = await loadData();
+    if (!payload) return false;
+
+    await loadScriptOnce('/js/graphBuilder.js');
+    await loadScriptOnce('/js/routeFinder.js');
+    await loadScriptOnce('/js/routeUI.js');
+
+    const graphBuilder = (typeof GraphBuilder !== 'undefined') ? GraphBuilder : window.GraphBuilder;
+    const routeFinder = (typeof RouteFinder !== 'undefined') ? RouteFinder : window.RouteFinder;
+    const routeUI = (typeof RouteUI !== 'undefined') ? RouteUI : window.RouteUI;
+    if (!graphBuilder || !routeFinder || !routeUI) return false;
+
+    const graph = graphBuilder.build(payload.connections || []);
+    const path = routeFinder.findRoute(graph, fromStation.station_id, toStation.station_id);
+    if (!path || !path.length) return false;
+
+    const distance = routeFinder.calcDistance(path, graph);
+    const fare = routeFinder.calcFare(path, { cityKey: context.cityKey, distance });
+    const interchanges = path.filter((step) => step.line_id === 'interchange').length;
+    const time = routeFinder.calcTime(distance, interchanges);
+    const resultEl = ensureInlineResultContainer(anchorEl);
+
+    routeUI.renderRoute('route-result', path, payload.stations || [], payload.interchanges || [], distance, fare, time, payload.lines || [], context.cityKey);
+    setTimeout(() => resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    return true;
   }
 
   function trackInteraction(action, meta) {
@@ -219,7 +317,7 @@
       }
     });
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       if (event && typeof event.preventDefault === 'function') {
         event.preventDefault();
       }
@@ -248,8 +346,22 @@
       });
 
       const routeSlug = stationToSlug(fromStation) + '-to-' + stationToSlug(toStation);
-      const targetURL = getBasePathPrefix() + getCityPathSegment(context.cityKey) + '/routes/' + routeSlug + '.html';
-      window.location.assign(targetURL);
+      const targetURL = buildStaticRouteURL(context.cityKey, routeSlug);
+
+      btn.disabled = true;
+      try {
+        const canRedirect = await routeFileExists(targetURL);
+        if (canRedirect) {
+          window.location.assign(targetURL);
+          return;
+        }
+        const renderedInline = await renderInlineFallback(container, context, fromStation, toStation);
+        if (!renderedInline) {
+          alert('Detailed route page is not available yet for this pair. Please use the main route planner.');
+        }
+      } finally {
+        btn.disabled = false;
+      }
     };
 
     btn.addEventListener('click', handleSubmit);
