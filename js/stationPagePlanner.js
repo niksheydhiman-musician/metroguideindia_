@@ -21,6 +21,17 @@
       .trim();
   }
 
+  const AUTOCOMPLETE_BLUR_DELAY = 180;
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function stationToSlug(stationId) {
     return String(stationId || '')
       .replace(/_rrts$/, '')
@@ -53,9 +64,10 @@
       '    <label class="fl">From (Origin)</label>',
       '    <input type="text" class="ac-input station-planner-from" readonly aria-label="Origin station">',
       '  </div>',
-      '  <div class="fd">',
+      '  <div class="fd ac-wrap">',
       '    <label class="fl">To (Destination)</label>',
       '    <input type="text" class="ac-input station-planner-to" list="station-planner-options" placeholder="Search destination station…" autocomplete="off" spellcheck="false" aria-label="Destination station">',
+      '    <ul class="ac-list station-planner-list" hidden></ul>',
       '  </div>',
       '  <button class="btn-find station-planner-btn" type="button"><span class="btn-label">Plan Journey</span></button>',
       '</div>'
@@ -87,6 +99,7 @@
   function bindPlanner(container, context) {
     const fromInput = container.querySelector('.station-planner-from');
     const toInput = container.querySelector('.station-planner-to');
+    const listEl = container.querySelector('.station-planner-list');
     const btn = container.querySelector('.station-planner-btn');
     const placement = container.getAttribute('data-planner-placement') || 'unknown';
 
@@ -112,9 +125,83 @@
     toInput.addEventListener('focus', markTouched, { passive: true });
     toInput.addEventListener('input', markTouched, { passive: true });
 
+    let activeIdx = -1;
+
+    const hideList = () => {
+      if (!listEl) return;
+      listEl.hidden = true;
+      listEl.innerHTML = '';
+      activeIdx = -1;
+    };
+
+    const pickDestination = (station) => {
+      if (!station) return;
+      toInput.value = station.station_name;
+      toInput.dataset.stationId = station.station_id;
+      hideList();
+    };
+
+    const renderList = (query) => {
+      if (!listEl) return;
+      const text = normalizeName(query);
+      const filtered = text
+        ? context.stationList.filter((station) => normalizeName(station.station_name).includes(text))
+        : context.stationList;
+      const limited = filtered.slice(0, 20);
+      if (!limited.length) {
+        hideList();
+        return;
+      }
+      listEl.innerHTML = limited
+        .map((station) => `<li data-id="${escapeHtml(station.station_id)}"><span class="ac-name">${escapeHtml(station.station_name)}</span><span class="ac-city">${escapeHtml(station.city || station.system_id || '')}</span></li>`)
+        .join('');
+      listEl.hidden = false;
+      activeIdx = -1;
+    };
+
+    toInput.addEventListener('input', () => {
+      toInput.dataset.stationId = '';
+      renderList(toInput.value);
+    });
+    toInput.addEventListener('focus', () => renderList(toInput.value));
+    toInput.addEventListener('blur', () => setTimeout(hideList, AUTOCOMPLETE_BLUR_DELAY));
+
+    if (listEl) {
+      listEl.addEventListener('mousedown', (event) => {
+        const item = event.target.closest('li[data-id]');
+        if (!item) return;
+        const station = context.stationById.get(item.getAttribute('data-id'));
+        pickDestination(station || null);
+      });
+    }
+
+    toInput.addEventListener('keydown', (event) => {
+      if (!listEl || listEl.hidden) return;
+      const items = Array.from(listEl.querySelectorAll('li[data-id]'));
+      if (!items.length) return;
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, items.length - 1);
+        items.forEach((el, idx) => el.classList.toggle('ac-active', idx === activeIdx));
+        return;
+      }
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        activeIdx = activeIdx < 0 ? -1 : Math.max(activeIdx - 1, 0);
+        items.forEach((el, idx) => el.classList.toggle('ac-active', idx === activeIdx));
+        return;
+      }
+      if (event.key === 'Enter' && activeIdx >= 0) {
+        event.preventDefault();
+        const station = context.stationById.get(items[activeIdx].getAttribute('data-id'));
+        pickDestination(station || null);
+      }
+    });
+
     const handleSubmit = () => {
       const fromStation = context.currentStation || resolveStationByName(context.stationMap, fromInput.value);
-      const toStation = resolveStationByName(context.stationMap, toInput.value);
+      const selectedTo = context.stationById.get(toInput.dataset.stationId || '');
+      const toStation = selectedTo || resolveStationByName(context.stationMap, toInput.value);
 
       if (!fromStation) {
         alert('Could not detect the origin station on this page. Please use the main route planner.');
@@ -159,26 +246,34 @@
       }
     });
 
-    const h1 = document.querySelector('h1.rp-title');
-    const currentStationName = (h1 ? h1.textContent : '').trim();
+    const helper = window.MetroGuidePlanner || {};
+    const currentStationName = typeof helper.resolveCurrentOrigin === 'function'
+      ? helper.resolveCurrentOrigin(document)
+      : ((document.querySelector('h1.rp-title, h1') || {}).textContent || '').trim();
     if (!currentStationName) return;
+
+    if (typeof helper.ensureCurrentOrigin === 'function') {
+      helper.ensureCurrentOrigin(document, currentStationName);
+    }
 
     const payload = await loadData();
     const stations = Array.isArray(payload && payload.stations) ? payload.stations : [];
     const stationMap = new Map();
-    const optionNames = [];
+    const stationById = new Map();
 
     stations.forEach((station) => {
+      if (!station || !station.station_id || !station.station_name) return;
+      stationById.set(station.station_id, station);
       const key = normalizeName(station.station_name);
       if (!key || stationMap.has(key)) return;
       stationMap.set(key, station);
-      optionNames.push(station.station_name);
     });
 
+    const stationList = Array.from(stationById.values()).sort((a, b) => a.station_name.localeCompare(b.station_name));
+
     const datalist = ensureDatalist(document);
-    datalist.innerHTML = optionNames
-      .sort((a, b) => a.localeCompare(b))
-      .map((name) => '<option value="' + name.replace(/"/g, '&quot;') + '"></option>')
+    datalist.innerHTML = stationList
+      .map((station) => '<option value="' + station.station_name.replace(/"/g, '&quot;') + '"></option>')
       .join('');
 
     const cityKey = detectCityKey();
@@ -188,7 +283,9 @@
       cityKey,
       currentStationName,
       currentStation,
-      stationMap
+      stationMap,
+      stationById,
+      stationList
     };
 
     plannerRoots.forEach((root) => bindPlanner(root, context));
