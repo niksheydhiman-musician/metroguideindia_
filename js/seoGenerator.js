@@ -19,10 +19,19 @@ const SEOGenerator = (() => {
    * @param {string} [system]   Route system label: 'RRTS', 'Meerut Metro', or 'RRTS + Metro'
    * @param {string} [canonicalUrl] Full canonical URL for this route page
    */
-  function apply(from,to,dist,fare,time,system,canonicalUrl){
-    const sys = system || 'RRTS';
-    const title=`${from} to ${to} ${sys} Fare ₹${fare}, Distance ${dist} km | MetroGuideIndia`;
-    const desc=`${from} to ${to} via Namo Bharat ${sys}: ${dist} km, ~${time} min travel time, fare ₹${fare}. Step-by-step station list, interchange guide and latest ticket prices.`;
+  function apply(from,to,dist,fare,time,system,canonicalUrl,options){
+    const opts = options || {};
+    const pathname = String((window.location && window.location.pathname) || '').toLowerCase();
+    const sys = String(system || '');
+    const isRRTSBySystem = /rrts|meerut/i.test(sys);
+    const isRRTSByPath = pathname.indexOf('/namo-bharat/') === 0 || pathname.indexOf('/meerut-metro/') === 0;
+    const isRRTS = opts.isRRTS === true || isRRTSBySystem || isRRTSByPath;
+    const title = isRRTS
+      ? `${from} to ${to}: Distance, Fare & RRTS Timings | MetroGuideIndia`
+      : `${from} to ${to} Metro Route: Fare, Time & Stations | MetroGuideIndia`;
+    const desc = isRRTS
+      ? `${from} to ${to} RRTS route with distance ${dist} km, fare ₹${fare}, and estimated travel time ~${time} min. Includes station-by-station route and interchange details.`
+      : `${from} to ${to} Metro Route with fare ₹${fare}, travel time ~${time} min, and distance ${dist} km. Includes station-by-station route and interchange details.`;
     document.title=title;
     setMeta('description',desc);
     setMeta('og:title',title,true);
@@ -34,15 +43,16 @@ const SEOGenerator = (() => {
     setMeta('twitter:description',desc);
   }
 
-  function seoBlock(from,to,names,dist,fare,time){
+  function seoBlock(from,to,names,dist,fare,time,options){
+    const isRRTS = options && options.isRRTS === true;
     return `<div class="seo-block">
       <p>Travelling from <strong>${from}</strong> to <strong>${to}</strong>?
       This route covers <strong>${dist} km</strong> across <strong>${names.length} stations</strong>,
       with an estimated travel time of <strong>~${time} minutes</strong>
       and a standard fare of <strong>₹${fare}</strong>.</p>
-      <p>Namo Bharat RRTS and Meerut Metro are operated by NCRTC.
-      The RRTS runs at up to 180 km/h between Delhi and Meerut,
-      while the Meerut Metro provides affordable city-level connectivity within Meerut.</p>
+      <p>${isRRTS
+        ? 'Namo Bharat RRTS and Meerut Metro are operated by NCRTC. The RRTS runs at up to 180 km/h between Delhi and Meerut, while Meerut Metro provides city-level connectivity within Meerut.'
+        : 'Get the latest metro route details including fare, estimated travel time, key interchanges, and station sequence for easier journey planning.'}</p>
     </div>`;
   }
 
