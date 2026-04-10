@@ -1,0 +1,27 @@
+/* Global externalized styles for metro system pages */
+
+:root[data-system="delhi-metro"]{
+  --red:#cf1f2f;
+  --red-soft:#e14351;
+  --red-bg:#fff0f2;
+  --red-glow:rgba(207,31,47,.18);
+  --green:#1f4fa3;
+  --green-soft:#3467c0;
+  --green-bg:#edf3ff;
+  --green-glow:rgba(31,79,163,.17);
+}
+
+:root[data-system="bengaluru-metro"]{
+  --red:#6c2e9d;
+  --red-soft:#8541b8;
+  --red-bg:#f4ecfc;
+  --red-glow:rgba(108,46,157,.2);
+  --green:#1b8f3b;
+  --green-soft:#2ea954;
+  --green-bg:#edf9f0;
+  --green-glow:rgba(27,143,59,.16);
+}
+
+:root[data-system="namo-bharat"] [data-hi]{display:none}
+:root[data-system="namo-bharat"].lang-hi [data-en]{display:none}
+:root[data-system="namo-bharat"].lang-hi [data-hi]{display:initial}
