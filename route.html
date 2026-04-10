@@ -168,7 +168,7 @@ function parseSlug(slug, stations) {
   return null;
 }
 
-const RRTS_STATION_KEYWORDS = [
+const RRTS_STATION_NAMES = new Set([
   'sarai kale khan',
   'new ashok nagar',
   'anand vihar',
@@ -178,7 +178,7 @@ const RRTS_STATION_KEYWORDS = [
   'duhai',
   'modinagar',
   'meerut'
-];
+]);
 
 function detectJourneyBranding(path, stationMap, cityKey) {
   const city = String(cityKey || '').toLowerCase();
@@ -186,18 +186,16 @@ function detectJourneyBranding(path, stationMap, cityKey) {
 
   const hasRRTSStation = path.some(step => {
     const st = stationMap[step.station_id] || {};
-    const stationId = String(step.station_id || '').toLowerCase();
     const lineId = String(step.line_id || '').toLowerCase();
     const systemId = String(st.system_id || '').toLowerCase();
-    const stationName = String(st.station_name || '').toLowerCase();
-    const matchesKeyword = RRTS_STATION_KEYWORDS.some(keyword => stationName.includes(keyword));
+    const stationName = String(st.station_name || '').toLowerCase().replace(/\s+/g, ' ').trim();
+    const matchesKnownRRTSName = RRTS_STATION_NAMES.has(stationName);
     return (
       systemId === 'rrts' ||
       systemId === 'meerut_metro' ||
-      lineId.indexOf('rrts') >= 0 ||
-      lineId.indexOf('meerut') >= 0 ||
-      /_(rrts|meerut_metro)$/.test(stationId) ||
-      matchesKeyword
+      lineId === 'rrts_main' ||
+      lineId === 'meerut_metro_main' ||
+      matchesKnownRRTSName
     );
   });
 
