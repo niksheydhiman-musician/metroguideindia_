@@ -65,3 +65,7 @@ const DataLoader = (() => {
 
   return { loadAll };
 })();
+
+if (typeof window !== 'undefined') {
+  window.DataLoader = DataLoader;
+}

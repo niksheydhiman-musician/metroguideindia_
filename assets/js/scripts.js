@@ -1002,3 +1002,61 @@ function uniqueStations(stations) {
 }
   }, { once: true });
 })();
+
+
+(function () {
+  var ns = window.MetroGuidePlanner = window.MetroGuidePlanner || {};
+
+  function cleanText(value) {
+    return String(value || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function readOriginFromElement(el) {
+    if (!el) return '';
+    if (typeof el.value === 'string' && el.value.trim()) return cleanText(el.value);
+    var dataValue = el.getAttribute && (el.getAttribute('data-current-origin') || el.getAttribute('data-station-name') || el.getAttribute('content'));
+    if (dataValue && String(dataValue).trim()) return cleanText(dataValue);
+    return cleanText(el.textContent || '');
+  }
+
+  ns.resolveCurrentOrigin = function resolveCurrentOrigin(doc) {
+    var d = doc || document;
+    var byId = d.getElementById('current-origin');
+    var value = readOriginFromElement(byId);
+    if (value) return value;
+
+    var byData = d.querySelector('[data-current-origin]');
+    value = readOriginFromElement(byData);
+    if (value) return value;
+
+    var meta = d.querySelector('meta[name="current-origin"], meta[name="station-name"], meta[property="metro:station"], meta[property="og:station"]');
+    value = readOriginFromElement(meta);
+    if (value) return value;
+
+    var title = d.querySelector('h1.rp-title, h1');
+    value = readOriginFromElement(title);
+    return value || '';
+  };
+
+  ns.ensureCurrentOrigin = function ensureCurrentOrigin(doc, originName) {
+    var d = doc || document;
+    var value = cleanText(originName);
+    if (!value) return null;
+    var input = d.getElementById('current-origin');
+    if (!input) {
+      input = d.createElement('input');
+      input.type = 'hidden';
+      input.id = 'current-origin';
+      if (d.body) {
+        d.body.appendChild(input);
+      }
+    }
+    if (input) input.value = value;
+    if (d.body && !d.body.getAttribute('data-current-origin')) {
+      d.body.setAttribute('data-current-origin', value);
+    }
+    return input;
+  };
+})();
