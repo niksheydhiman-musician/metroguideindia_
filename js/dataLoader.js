@@ -22,6 +22,11 @@ const DataLoader = (() => {
 
   function detectCity() {
     const pathname = (window.location.pathname || '/').toLowerCase();
+    const cityParam = new URLSearchParams(window.location.search).get('city');
+    if (cityParam) {
+      const byParam = CITY_DATASETS.find(c => c.cityKey === String(cityParam).toLowerCase());
+      if (byParam) return byParam;
+    }
     const exact = CITY_DATASETS.find(c => c.pathRegex.test(pathname));
     return exact || CITY_DATASETS[CITY_DATASETS.length - 1];
   }
