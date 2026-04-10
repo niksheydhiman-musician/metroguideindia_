@@ -153,7 +153,7 @@
         return;
       }
       listEl.innerHTML = limited
-        .map((station) => '<li data-id="' + escapeHtml(station.station_id) + '"><span class="ac-name">' + escapeHtml(station.station_name) + '</span><span class="ac-city">' + escapeHtml(station.city || station.system_id || '') + '</span></li>')
+        .map((station) => `<li data-id="${escapeHtml(station.station_id)}"><span class="ac-name">${escapeHtml(station.station_name)}</span><span class="ac-city">${escapeHtml(station.city || station.system_id || '')}</span></li>`)
         .join('');
       listEl.hidden = false;
       activeIdx = -1;
@@ -187,7 +187,7 @@
       }
       if (event.key === 'ArrowUp') {
         event.preventDefault();
-        activeIdx = Math.max(activeIdx - 1, 0);
+        activeIdx = activeIdx < 0 ? -1 : Math.max(activeIdx - 1, 0);
         items.forEach((el, idx) => el.classList.toggle('ac-active', idx === activeIdx));
         return;
       }
