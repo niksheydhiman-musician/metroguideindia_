@@ -43,14 +43,15 @@
   }
 
   function stationToSlug(station) {
-    const stationId = station && station.station_id ? String(station.station_id) : String(station || '');
-    const idSlug = stationId
+    const isStationObject = station && typeof station === 'object';
+    const nameSlug = stationNameToSlug(isStationObject ? station.station_name : '');
+    if (nameSlug) return nameSlug;
+    const stationId = isStationObject ? station.station_id : station;
+    return String(stationId || '')
       .replace(/_rrts$/, '')
       .replace(/_meerut_metro$/, '')
       .replace(/_/g, '-')
       .toLowerCase();
-    const nameSlug = stationNameToSlug(station && station.station_name);
-    return nameSlug || idSlug;
   }
 
   function getCityPathSegment(cityKey) {
