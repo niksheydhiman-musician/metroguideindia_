@@ -32,11 +32,32 @@
       .replace(/'/g, '&#39;');
   }
 
-  function stationToSlug(stationId) {
+  function stationNameToSlug(stationName) {
+    return String(stationName || '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function stationToSlug(station) {
+    const isStationObject = station && typeof station === 'object';
+    const nameSlug = stationNameToSlug(isStationObject ? station.station_name : '');
+    if (nameSlug) return nameSlug;
+    const stationId = isStationObject ? station.station_id : station;
     return String(stationId || '')
       .replace(/_rrts$/, '')
       .replace(/_meerut_metro$/, '')
-      .replace(/_/g, '-');
+      .replace(/_/g, '-')
+      .toLowerCase();
+  }
+
+  function getCityPathSegment(cityKey) {
+    if (cityKey === 'delhi') return '/delhi-metro';
+    if (cityKey === 'bengaluru') return '/bengaluru-metro';
+    return '/namo-bharat';
   }
 
   function getBasePathPrefix() {
@@ -198,7 +219,11 @@
       }
     });
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+      if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+      }
+
       const fromStation = context.currentStation || resolveStationByName(context.stationMap, fromInput.value);
       const selectedTo = context.stationById.get(toInput.dataset.stationId || '');
       const toStation = selectedTo || resolveStationByName(context.stationMap, toInput.value);
@@ -222,16 +247,19 @@
         cityKey: context.cityKey
       });
 
-      const slug = stationToSlug(fromStation.station_id) + '-to-' + stationToSlug(toStation.station_id);
-      const target = window.location.origin + getBasePathPrefix() + '/route.html?city=' + encodeURIComponent(context.cityKey) + '&r=' + encodeURIComponent(slug);
-      window.location.href = target;
+      const routeSlug = stationToSlug(fromStation) + '-to-' + stationToSlug(toStation);
+      const targetURL = getBasePathPrefix() + getCityPathSegment(context.cityKey) + '/routes/' + routeSlug + '.html';
+      window.location.assign(targetURL);
     };
 
     btn.addEventListener('click', handleSubmit);
+    const parentForm = btn.closest('form');
+    if (parentForm) {
+      parentForm.addEventListener('submit', handleSubmit);
+    }
     toInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        event.preventDefault();
-        handleSubmit();
+        handleSubmit(event);
       }
     });
   }
