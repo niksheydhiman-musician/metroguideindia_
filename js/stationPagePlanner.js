@@ -77,9 +77,6 @@
     if (window.DataLoader && typeof window.DataLoader.loadAll === 'function') {
       return window.DataLoader.loadAll();
     }
-    if (typeof DataLoader !== 'undefined' && DataLoader && typeof DataLoader.loadAll === 'function') {
-      return DataLoader.loadAll();
-    }
     return null;
   }
 

@@ -1016,7 +1016,10 @@ function uniqueStations(stations) {
   function readOriginFromElement(el) {
     if (!el) return '';
     if (typeof el.value === 'string' && el.value.trim()) return cleanText(el.value);
-    var dataValue = el.getAttribute && (el.getAttribute('data-current-origin') || el.getAttribute('data-station-name') || el.getAttribute('content'));
+    var dataValue = '';
+    if (typeof el.getAttribute === 'function') {
+      dataValue = el.getAttribute('data-current-origin') || el.getAttribute('data-station-name') || el.getAttribute('content') || '';
+    }
     if (dataValue && String(dataValue).trim()) return cleanText(dataValue);
     return cleanText(el.textContent || '');
   }
@@ -1031,7 +1034,7 @@ function uniqueStations(stations) {
     value = readOriginFromElement(byData);
     if (value) return value;
 
-    var meta = d.querySelector('meta[name="current-origin"], meta[name="station-name"], meta[property="metro:station"], meta[property="og:station"]');
+    var meta = d.querySelector('meta[name="current-origin"], meta[name="station-name"], meta[property="og:title"]');
     value = readOriginFromElement(meta);
     if (value) return value;
 
