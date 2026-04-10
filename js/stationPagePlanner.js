@@ -21,6 +21,17 @@
       .trim();
   }
 
+  const AUTOCOMPLETE_BLUR_DELAY = 180;
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function stationToSlug(stationId) {
     return String(stationId || '')
       .replace(/_rrts$/, '')
@@ -142,7 +153,7 @@
         return;
       }
       listEl.innerHTML = limited
-        .map((station) => '<li data-id="' + station.station_id + '"><span class="ac-name">' + station.station_name + '</span><span class="ac-city">' + (station.city || station.system_id || '') + '</span></li>')
+        .map((station) => '<li data-id="' + escapeHtml(station.station_id) + '"><span class="ac-name">' + escapeHtml(station.station_name) + '</span><span class="ac-city">' + escapeHtml(station.city || station.system_id || '') + '</span></li>')
         .join('');
       listEl.hidden = false;
       activeIdx = -1;
@@ -153,7 +164,7 @@
       renderList(toInput.value);
     });
     toInput.addEventListener('focus', () => renderList(toInput.value));
-    toInput.addEventListener('blur', () => setTimeout(hideList, 180));
+    toInput.addEventListener('blur', () => setTimeout(hideList, AUTOCOMPLETE_BLUR_DELAY));
 
     if (listEl) {
       listEl.addEventListener('mousedown', (event) => {

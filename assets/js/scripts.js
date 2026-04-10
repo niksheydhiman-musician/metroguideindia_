@@ -1049,12 +1049,11 @@ function uniqueStations(stations) {
     if (!value) return null;
     var input = d.getElementById('current-origin');
     if (!input) {
+      if (!d.body) return null;
       input = d.createElement('input');
       input.type = 'hidden';
       input.id = 'current-origin';
-      if (d.body) {
-        d.body.appendChild(input);
-      }
+      d.body.appendChild(input);
     }
     if (input) input.value = value;
     if (d.body && !d.body.getAttribute('data-current-origin')) {
