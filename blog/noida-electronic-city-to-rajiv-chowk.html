@@ -10,6 +10,14 @@
 </head>
 <body class="blog-nec-rc">
 
+<nav class="blog-top-breadcrumbs" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  <span>›</span>
+  <a href="/blog">Blog</a>
+  <span>›</span>
+  <span>Noida Electronic City to Rajiv Chowk</span>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-stripe"></div>
@@ -27,10 +35,10 @@
 </section>
 
 <div class="container">
-  <section id="global-search-section" data-global-planner="native-delhi" data-city="delhi" style="margin:28px 0 10px">
+  <section id="global-search-section" class="planner-section" data-global-planner="native-delhi" data-city="delhi">
     <div class="sec-eye">Planner</div>
-    <h2 class="sec-head" style="margin-bottom:10px">Delhi Metro Transit Planner</h2>
-    <p style="color:var(--text-muted);font-size:.88rem;margin:0 0 14px">Search any two Delhi Metro stations to open internal route results for the selected journey.</p>
+    <h2 class="sec-head planner-head">Delhi Metro Transit Planner</h2>
+    <p class="planner-copy">Search any two Delhi Metro stations to calculate your route here with live internal results.</p>
     <div class="sc">
       <div class="fd">
         <label class="fl" for="global-src-search">From</label>
@@ -60,6 +68,8 @@
     </div>
   </section>
 
+  <div class="blog-layout">
+  <main class="blog-main">
   <div id="route-results" aria-live="polite">
     <article class="route-result-card">
       <div class="route-result-badge">Live Route Snapshot</div>
@@ -69,8 +79,11 @@
         <span>Time: ~50 mins</span>
         <span>Stops: 22 stations</span>
       </div>
-      <p class="route-result-list">Station List: Noida Electronic City → Sector 62 Noida → Sector 59 Noida → Sector 61 Noida → Sector 52 Noida → Sector 34 Noida → Noida City Centre → Golf Course → Botanical Garden → Noida Sector 18 → Noida Sector 16 → Noida Sector 15 → New Ashok Nagar → Mayur Vihar Extension → Mayur Vihar I → Akshardham → Yamuna Bank → Indraprastha → Supreme Court → Mandi House → Barakhamba Road → Rajiv Chowk.</p>
-      <a class="route-result-link" href="/route.html?city=delhi&r=noida-electronic-city-blue-line-to-rajiv-chowk-blue-line&from=noida_electronic_city_blue_line&to=rajiv_chowk_blue_line">Open Internal Delhi Route Results</a>
+      <p class="route-result-list route-result-list-heading">Station List</p>
+      <div class="route-snapshot-stations">
+        <span>Noida Electronic City</span><span>Sector 62 Noida</span><span>Sector 59 Noida</span><span>Sector 61 Noida</span><span>Sector 52 Noida</span><span>Sector 34 Noida</span><span>Noida City Centre</span><span>Golf Course</span><span>Botanical Garden</span><span>Noida Sector 18</span><span>Noida Sector 16</span><span>Noida Sector 15</span><span>New Ashok Nagar</span><span>Mayur Vihar Extension</span><span>Mayur Vihar I</span><span>Akshardham</span><span>Yamuna Bank</span><span>Indraprastha</span><span>Supreme Court</span><span>Mandi House</span><span>Barakhamba Road</span><span>Rajiv Chowk</span>
+      </div>
+      <a class="route-result-link" href="/route.html?city=delhi&r=noida-electronic-city-blue-line-to-rajiv-chowk-blue-line&from=noida_electronic_city_blue_line&to=rajiv_chowk_blue_line">View Full Delhi Route Page</a>
     </article>
   </div>
 
@@ -117,15 +130,15 @@
   </div>
 
   <div class="metro-stripe">
-    <s style="background:var(--blue-mid);flex:3;"></s>
-    <s style="background:var(--yellow);flex:1;"></s>
-    <s style="background:#1B7F4A;flex:1;"></s>
-    <s style="background:#D62B2B;flex:1;"></s>
-    <s style="background:#A855F7;flex:1;"></s>
+    <s class="stripe-main"></s>
+    <s class="stripe-yellow"></s>
+    <s class="stripe-green"></s>
+    <s class="stripe-red"></s>
+    <s class="stripe-violet"></s>
   </div>
 
   <!-- INTRO -->
-  <div style="margin-top:36px;">
+  <div class="intro-block">
     <p>If you work in Noida's Sector 62 or 63 IT belt and commute to Connaught Place — or if you're simply planning a day out in central Delhi from Electronic City — this route is your daily lifeline. The Noida Electronic City to Rajiv Chowk metro route on the <strong>Delhi Metro Blue Line</strong> is one of the most-used corridors in the entire DMRC network, connecting Noida's eastern IT hub directly to the nerve centre of Delhi without a single interchange.</p>
     <p>This guide gives you verified data on distance, travel time, fares, every intermediate station, platform specifics at both ends, gate-by-gate exit information at Rajiv Chowk, and the kind of insider tips that help you board the right carriage and save real minutes on your daily commute.</p>
   </div>
@@ -171,7 +184,7 @@
       </div>
     </div>
 
-    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">PLATFORMS</span> Which Platform Do You Board From?</h2>
+    <h2 class="sub-section-title"><span class="sub-label">PLATFORMS</span> Which Platform Do You Board From?</h2>
 
     <div class="platform-row">
       <div class="plat-card p1">
@@ -186,7 +199,7 @@
       </div>
     </div>
 
-    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">GATES</span> Noida Electronic City — Entry Gate Guide</h2>
+    <h2 class="sub-section-title"><span class="sub-label">GATES</span> Noida Electronic City — Entry Gate Guide</h2>
 
     <table class="gate-table">
       <thead>
@@ -372,12 +385,12 @@
           <div class="sl-tag"></div>
           <div class="sl-time">~46 min</div>
         </li>
-        <li class="terminus interchange-s" style="background:#EFF5FF;">
-          <div class="sl-num" style="font-weight:800;color:var(--blue);">END</div>
-          <div class="sl-dot"><span style="background:var(--blue);width:14px;height:14px;"></span></div>
-          <div class="sl-name" style="font-weight:700;color:var(--blue);">Rajiv Chowk</div>
+        <li class="terminus interchange-s route-end-station">
+          <div class="sl-num route-end-label">END</div>
+          <div class="sl-dot"><span class="route-end-dot"></span></div>
+          <div class="sl-name route-end-name">Rajiv Chowk</div>
           <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
-          <div class="sl-time" style="font-weight:700;color:var(--blue);">~50 min</div>
+          <div class="sl-time route-end-time">~50 min</div>
         </li>
       </ul>
     </div>
@@ -425,7 +438,7 @@
       </div>
     </div>
 
-    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">PLATFORMS</span> Blue Line Platforms at Rajiv Chowk</h2>
+    <h2 class="sub-section-title"><span class="sub-label">PLATFORMS</span> Blue Line Platforms at Rajiv Chowk</h2>
 
     <div class="platform-row">
       <div class="plat-card p1">
@@ -442,7 +455,7 @@
 
     <p><strong>Yellow Line interchange:</strong> From the Blue Line concourse, descend one level (Level 3) to reach the Yellow Line platforms. Follow yellow-coloured overhead signs reading <em>Samaypur Badli</em> (north) or <em>Millennium City Centre / Gurugram</em> (south). No additional fare is charged for this interchange — it is within the paid zone.</p>
 
-    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">EXITS</span> The 8-Gate Exit Guide — Rajiv Chowk</h2>
+    <h2 class="sub-section-title"><span class="sub-label">EXITS</span> The 8-Gate Exit Guide — Rajiv Chowk</h2>
 
     <table class="gate-table">
       <thead>
@@ -542,7 +555,7 @@
 
     <p>Even on the best traffic days, private cabs rarely beat the metro on this route. The DND Flyway can shorten cab times, but peak-hour gridlock between Noida border and Connaught Place routinely pushes cab trips past 90 minutes. The metro completes the same journey in roughly half that time, <em>every day</em>.</p>
 
-    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--green);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">FARE CHART</span> Pre-Calculated Weekly & Monthly Savings</h2>
+    <h2 class="sub-section-title"><span class="sub-label sub-label-green">FARE CHART</span> Pre-Calculated Weekly & Monthly Savings</h2>
 
     <div class="fare-grid">
       <div class="fare-card">
@@ -702,15 +715,40 @@
     </div>
   </div>
 
-  <div class="reminder" style="margin-top:48px;">
+  <div class="reminder reminder-spaced">
     <span>Direct. No interchange. 22 stops. ~₹54.</span> The Noida Electronic City to Rajiv Chowk Blue Line route is one of the cleanest commutes in Delhi NCR — use it right.
   </div>
 
+  </main>
+  <aside class="blog-sidebar" aria-label="Related Guides">
+    <div class="sidebar-card">
+      <h2 class="sidebar-title">Related Guides</h2>
+      <div class="sidebar-list">
+        <a class="related-guide" href="/blog/delhi-metro-smart-card-vs-qr-ticket.html">
+          <div class="related-guide-title">Delhi Metro Smart Card vs QR Ticket: Which One Should You Use?</div>
+          <div class="related-guide-date">8 April 2026</div>
+        </a>
+        <a class="related-guide" href="/blog/navigating-rajiv-chowk-interchange-guide.html">
+          <div class="related-guide-title">Navigating Rajiv Chowk Interchange: A Stress-Free Guide</div>
+          <div class="related-guide-date">8 April 2026</div>
+        </a>
+        <a class="related-guide" href="/blog/delhi-to-meerut-rrts-travel-guide.html">
+          <div class="related-guide-title">Delhi to Meerut by Namo Bharat RRTS — Complete Travel Guide</div>
+          <div class="related-guide-date">5 March 2026</div>
+        </a>
+        <a class="related-guide" href="/blog/complete-rrts-fare-guide-2026.html">
+          <div class="related-guide-title">Complete Namo Bharat RRTS Fare Guide 2026</div>
+          <div class="related-guide-date">9 March 2026</div>
+        </a>
+      </div>
+    </div>
+  </aside>
+  </div>
 </div>
 
 <footer>
   <p>Route data based on DMRC Blue Line operational schedule and verified station information. Fares and timings subject to revision — verify on the official DMRC Momentum 2.0 app or dmrc.co.in before travel.</p>
-  <p style="margin-top:10px;">Noida Electronic City to Rajiv Chowk Metro Route Guide · April 2026</p>
+  <p class="footer-note">Noida Electronic City to Rajiv Chowk Metro Route Guide · April 2026</p>
 </footer>
 
 </body>

@@ -1223,6 +1223,194 @@ function uniqueStations(stations) {
         fillDefaultName(srcHidden, srcSearch);
         fillDefaultName(dstHidden, dstSearch);
 
+        var stationById = {};
+        stationList.forEach(function (station) {
+          stationById[station.id] = station;
+        });
+        var DEFAULT_EDGE_DISTANCE_KM = 0.2;
+        var INTERCHANGE_PENALTY_KM = 0.7;
+        var MINUTES_PER_KM = 2.2;
+        var MINUTES_PER_STOP = 0.9;
+        var MINUTES_PER_INTERCHANGE = 4;
+        var MIN_TRAVEL_TIME_MINUTES = 2;
+        var SMART_CARD_DISCOUNT_MULTIPLIER = 0.9;
+        var MIN_SMART_CARD_FARE = 10;
+        var DELHI_FARE_BRACKETS = [
+          { maxDistance: 2, fare: 10 },
+          { maxDistance: 5, fare: 20 },
+          { maxDistance: 12, fare: 30 },
+          { maxDistance: 21, fare: 40 },
+          { maxDistance: 32, fare: 50 },
+          { maxDistance: Infinity, fare: 60 }
+        ];
+
+        function buildGraph(connections) {
+          var graph = {};
+          (connections || []).forEach(function (connection) {
+            if (!connection || !connection.from_station || !connection.to_station) return;
+            var edge = {
+              to: connection.to_station,
+              lineId: connection.line_id || '',
+              distance: Number(connection.distance_km) || 0
+            };
+            var reverseEdge = {
+              to: connection.from_station,
+              lineId: connection.line_id || '',
+              distance: Number(connection.distance_km) || 0
+            };
+            if (!graph[connection.from_station]) graph[connection.from_station] = [];
+            if (!graph[connection.to_station]) graph[connection.to_station] = [];
+            graph[connection.from_station].push(edge);
+            graph[connection.to_station].push(reverseEdge);
+          });
+          return graph;
+        }
+
+        function findShortestPath(graph, fromId, toId) {
+          if (!graph[fromId] || !graph[toId]) return null;
+          var queue = Object.keys(graph);
+          var distanceMap = {};
+          var previousNode = {};
+          var previousEdge = {};
+          queue.forEach(function (nodeId) {
+            distanceMap[nodeId] = Infinity;
+            previousNode[nodeId] = null;
+            previousEdge[nodeId] = null;
+          });
+          distanceMap[fromId] = 0;
+
+          while (queue.length) {
+            var currentIndex = 0;
+            for (var i = 1; i < queue.length; i += 1) {
+              if (distanceMap[queue[i]] < distanceMap[queue[currentIndex]]) currentIndex = i;
+            }
+            var current = queue.splice(currentIndex, 1)[0];
+            if (distanceMap[current] === Infinity) break;
+            if (current === toId) break;
+
+            (graph[current] || []).forEach(function (edge) {
+              if (queue.indexOf(edge.to) === -1) return;
+              var baseDistance = edge.distance > 0 ? edge.distance : DEFAULT_EDGE_DISTANCE_KM;
+              var penalty = edge.lineId === 'interchange' ? INTERCHANGE_PENALTY_KM : 0;
+              var altDistance = distanceMap[current] + baseDistance + penalty;
+              if (altDistance < distanceMap[edge.to]) {
+                distanceMap[edge.to] = altDistance;
+                previousNode[edge.to] = current;
+                previousEdge[edge.to] = edge;
+              }
+            });
+          }
+
+          if (fromId !== toId && !previousNode[toId]) return null;
+
+          var pathIds = [];
+          var pathEdges = [];
+          var cursor = toId;
+          while (cursor) {
+            pathIds.unshift(cursor);
+            var edgeInfo = previousEdge[cursor];
+            if (edgeInfo) pathEdges.unshift(edgeInfo);
+            cursor = previousNode[cursor];
+          }
+          if (!pathIds.length || pathIds[0] !== fromId) return null;
+          return { ids: pathIds, edges: pathEdges };
+        }
+
+        function tokenFareForDistance(distanceKm) {
+          var bracket = DELHI_FARE_BRACKETS.find(function (item) {
+            return distanceKm <= item.maxDistance;
+          });
+          return bracket ? bracket.fare : DELHI_FARE_BRACKETS[DELHI_FARE_BRACKETS.length - 1].fare;
+        }
+
+        function calculateRoute(fromId, toId) {
+          var graph = buildGraph(payload.connections);
+          var shortest = findShortestPath(graph, fromId, toId);
+          if (!shortest) return null;
+
+          var totalDistance = shortest.edges.reduce(function (sum, edge) {
+            return sum + (edge.distance || 0);
+          }, 0);
+          var interchanges = shortest.edges.filter(function (edge) {
+            return edge.lineId === 'interchange';
+          }).length;
+          var stops = shortest.ids.length;
+          var travelMinutes = Math.max(
+            MIN_TRAVEL_TIME_MINUTES,
+            Math.round((totalDistance * MINUTES_PER_KM) + ((stops - 1) * MINUTES_PER_STOP) + (interchanges * MINUTES_PER_INTERCHANGE))
+          );
+          var tokenFare = tokenFareForDistance(totalDistance);
+          var smartFare = Math.max(MIN_SMART_CARD_FARE, Math.round(tokenFare * SMART_CARD_DISCOUNT_MULTIPLIER));
+
+          return {
+            ids: shortest.ids,
+            distanceKm: totalDistance,
+            interchanges: interchanges,
+            stops: stops,
+            travelMinutes: travelMinutes,
+            tokenFare: tokenFare,
+            smartFare: smartFare
+          };
+        }
+
+        function buildRouteHref(fromId, toId) {
+          var cityKey = container.getAttribute('data-city') || 'delhi';
+          var slug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
+          return '/route.html?city=' + encodeURIComponent(cityKey) + '&r=' + encodeURIComponent(slug) + '&from=' + encodeURIComponent(fromId) + '&to=' + encodeURIComponent(toId);
+        }
+
+        function renderRouteSnapshot(fromId, toId, routeData) {
+          var routeResults = document.getElementById('route-results');
+          if (!routeResults) return false;
+
+          var card = routeResults.querySelector('.route-result-card');
+          if (!card) return false;
+
+          var titleEl = card.querySelector('.route-result-title');
+          var metaEl = card.querySelector('.route-result-meta');
+          var listHeadingEl = card.querySelector('.route-result-list-heading') || card.querySelector('.route-result-list');
+          var listWrap = card.querySelector('.route-snapshot-stations');
+          var linkEl = card.querySelector('.route-result-link');
+
+          if (!listWrap) {
+            listWrap = document.createElement('div');
+            listWrap.className = 'route-snapshot-stations';
+            if (linkEl) card.insertBefore(listWrap, linkEl);
+            else card.appendChild(listWrap);
+          }
+          if (listHeadingEl) {
+            listHeadingEl.classList.add('route-result-list-heading');
+            listHeadingEl.textContent = 'Station List';
+          }
+
+          var sourceName = stationById[fromId] ? stationById[fromId].name : fromId;
+          var destinationName = stationById[toId] ? stationById[toId].name : toId;
+          var stationNames = routeData.ids.map(function (stationId) {
+            return stationById[stationId] ? stationById[stationId].name : stationId;
+          });
+
+          if (titleEl) titleEl.textContent = sourceName + ' → ' + destinationName;
+          if (metaEl) {
+            metaEl.innerHTML = [
+              '<span>Fare: ₹' + routeData.smartFare + ' (Smart Card)</span>',
+              '<span>Token: ₹' + routeData.tokenFare + '</span>',
+              '<span>Time: ~' + routeData.travelMinutes + ' mins</span>',
+              '<span>Stops: ' + routeData.stops + ' stations</span>',
+              '<span>Interchanges: ' + routeData.interchanges + '</span>'
+            ].join('');
+          }
+
+          listWrap.innerHTML = stationNames.map(function (name) {
+            return '<span>' + name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+          }).join('');
+
+          if (linkEl) {
+            linkEl.href = buildRouteHref(fromId, toId);
+            linkEl.textContent = 'View Full Delhi Route Page';
+          }
+          return true;
+        }
+
         swapBtn.addEventListener('click', function () {
           var srcId = srcHidden.value;
           var srcName = srcSearch.value;
@@ -1243,10 +1431,15 @@ function uniqueStations(stations) {
             window.alert('Source and destination cannot be the same station.');
             return;
           }
-          var cityKey = container.getAttribute('data-city') || 'delhi';
-          var slug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
-          var target = '/route.html?city=' + encodeURIComponent(cityKey) + '&r=' + encodeURIComponent(slug) + '&from=' + encodeURIComponent(fromId) + '&to=' + encodeURIComponent(toId);
-          window.location.assign(target);
+
+          var routeData = calculateRoute(fromId, toId);
+          if (!routeData) {
+            window.alert('No route found between the selected stations.');
+            return;
+          }
+
+          var renderedInline = renderRouteSnapshot(fromId, toId, routeData);
+          if (!renderedInline) window.location.assign(buildRouteHref(fromId, toId));
         }
 
         findBtn.addEventListener('click', function (event) {
