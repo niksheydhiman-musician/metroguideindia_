@@ -1089,3 +1089,188 @@ function uniqueStations(stations) {
     return input;
   };
 })();
+
+(function () {
+  'use strict';
+
+  function stationToSlug(stationId) {
+    return String(stationId || '')
+      .replace(/_rrts$/, '')
+      .replace(/_meerut_metro$/, '')
+      .replace(/_/g, '-');
+  }
+
+  function setupAutocomplete(searchEl, hiddenEl, listEl, stationList) {
+    if (!searchEl || !hiddenEl || !listEl) return;
+    var activeIndex = -1;
+
+    function hideList() {
+      listEl.hidden = true;
+      listEl.innerHTML = '';
+      activeIndex = -1;
+    }
+
+    function renderList(query) {
+      var q = String(query || '').toLowerCase().trim();
+      var filtered = q
+        ? stationList.filter(function (station) {
+            return station.name.toLowerCase().indexOf(q) !== -1 || station.line.toLowerCase().indexOf(q) !== -1;
+          })
+        : stationList;
+      var limited = filtered.slice(0, 20);
+      if (!limited.length) {
+        hideList();
+        return;
+      }
+      listEl.innerHTML = limited.map(function (station) {
+        return '<li data-id="' + station.id + '" data-name="' + station.name + '">' +
+          '<span class="ac-name">' + station.name + '</span>' +
+          '<span class="ac-city">' + station.line + '</span>' +
+          '</li>';
+      }).join('');
+      listEl.hidden = false;
+      activeIndex = -1;
+    }
+
+    function selectItem(item) {
+      if (!item) return;
+      hiddenEl.value = item.getAttribute('data-id') || '';
+      searchEl.value = item.getAttribute('data-name') || '';
+      hideList();
+    }
+
+    searchEl.addEventListener('input', function () {
+      hiddenEl.value = '';
+      renderList(searchEl.value);
+    });
+    searchEl.addEventListener('focus', function () {
+      renderList(searchEl.value);
+    });
+    searchEl.addEventListener('blur', function () {
+      window.setTimeout(hideList, 180);
+    });
+    searchEl.addEventListener('keydown', function (event) {
+      var items = Array.prototype.slice.call(listEl.querySelectorAll('li[data-id]'));
+      if (listEl.hidden || !items.length) return;
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        activeIndex = Math.min(activeIndex + 1, items.length - 1);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        activeIndex = Math.max(activeIndex - 1, 0);
+      } else if (event.key === 'Enter' && activeIndex >= 0) {
+        event.preventDefault();
+        selectItem(items[activeIndex]);
+        return;
+      } else {
+        return;
+      }
+      items.forEach(function (el, idx) {
+        el.classList.toggle('ac-active', idx === activeIndex);
+      });
+    });
+    listEl.addEventListener('mousedown', function (event) {
+      var item = event.target.closest('li[data-id]');
+      if (item) selectItem(item);
+    });
+  }
+
+  function initNativeGlobalPlanner() {
+    var container = document.getElementById('global-search-section');
+    if (!container || container.getAttribute('data-global-planner') !== 'native-delhi') return;
+
+    var srcSearch = container.querySelector('#global-src-search');
+    var srcHidden = container.querySelector('#global-src');
+    var srcList = container.querySelector('#global-src-list');
+    var dstSearch = container.querySelector('#global-dst-search');
+    var dstHidden = container.querySelector('#global-dst');
+    var dstList = container.querySelector('#global-dst-list');
+    var findBtn = container.querySelector('#global-find-btn');
+    var swapBtn = container.querySelector('#global-swap-btn');
+
+    if (!srcSearch || !srcHidden || !srcList || !dstSearch || !dstHidden || !dstList || !findBtn || !swapBtn) {
+      return;
+    }
+
+    fetch('/data/delhi.json', { cache: 'force-cache' })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (payload) {
+        if (!payload || !Array.isArray(payload.stations)) return;
+
+        var linesById = {};
+        (payload.lines || []).forEach(function (line) {
+          linesById[line.line_id] = line.line_name || 'Delhi Metro';
+        });
+
+        var stationList = payload.stations
+          .filter(function (station) { return station && station.station_id && station.station_name; })
+          .map(function (station) {
+            return {
+              id: station.station_id,
+              name: String(station.station_name || ''),
+              line: String(linesById[station.line_id] || 'Delhi Metro')
+            };
+          });
+
+        setupAutocomplete(srcSearch, srcHidden, srcList, stationList);
+        setupAutocomplete(dstSearch, dstHidden, dstList, stationList);
+
+        function fillDefaultName(hiddenEl, searchEl) {
+          if (!hiddenEl.value || searchEl.value) return;
+          var match = stationList.find(function (station) { return station.id === hiddenEl.value; });
+          if (match) searchEl.value = match.name;
+        }
+        fillDefaultName(srcHidden, srcSearch);
+        fillDefaultName(dstHidden, dstSearch);
+
+        swapBtn.addEventListener('click', function () {
+          var srcId = srcHidden.value;
+          var srcName = srcSearch.value;
+          srcHidden.value = dstHidden.value;
+          srcSearch.value = dstSearch.value;
+          dstHidden.value = srcId;
+          dstSearch.value = srcName;
+        });
+
+        function submitRoute() {
+          var fromId = srcHidden.value;
+          var toId = dstHidden.value;
+          if (!fromId || !toId) {
+            window.alert('Please select both a source and destination station.');
+            return;
+          }
+          if (fromId === toId) {
+            window.alert('Source and destination cannot be the same station.');
+            return;
+          }
+          var cityKey = container.getAttribute('data-city') || 'delhi';
+          var slug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
+          var target = '/route.html?city=' + encodeURIComponent(cityKey) + '&r=' + encodeURIComponent(slug) + '&from=' + encodeURIComponent(fromId) + '&to=' + encodeURIComponent(toId);
+          window.location.assign(target);
+        }
+
+        findBtn.addEventListener('click', function (event) {
+          event.preventDefault();
+          submitRoute();
+        });
+
+        [srcSearch, dstSearch].forEach(function (inputEl) {
+          inputEl.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              submitRoute();
+            }
+          });
+        });
+      })
+      .catch(function () {
+        // Keep static prefilled planner visible as fallback.
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNativeGlobalPlanner, { once: true });
+  } else {
+    initNativeGlobalPlanner();
+  }
+})();
