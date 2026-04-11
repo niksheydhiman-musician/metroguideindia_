@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noida Electronic City to Rajiv Chowk Metro Route: Distance, Time & Fare (2026)</title>
+  <meta name="description" content="Complete guide to the Noida Electronic City to Rajiv Chowk metro route on the Blue Line. Distance ~24 km, travel time ~50 mins, fare ₹54 (Smart Card). All 22 stations, exit gates, tips & fare chart."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue: #1A3A6B;
+      --blue-mid: #2E5FA3;
+      --blue-light: #4A80CC;
+      --yellow: #F5C842;
+      --yellow-dark: #C89E10;
+      --red: #D62B2B;
+      --green: #1B7F4A;
+      --orange: #F47B20;
+      --bg: #F4F1EB;
+      --surface: #FFFFFF;
+      --text-main: #1C1C1E;
+      --text-muted: #5C5C6E;
+      --border: #E0DBCF;
+      --tag-bg: #EAE5D8;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-main);font-size:17px;line-height:1.75;}
+
+    /* HERO */
+    .hero{background:#0B1E40;color:#fff;padding:68px 24px 52px;text-align:center;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,rgba(74,128,204,0.06) 0,rgba(74,128,204,0.06) 1px,transparent 1px,transparent 32px);}
+    .hero-stripe{position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--blue-light) 50%,var(--yellow) 50%);}
+    .hero-tag{display:inline-block;background:var(--blue-light);color:#fff;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:20px;}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(23px,4.5vw,46px);font-weight:800;line-height:1.15;max-width:820px;margin:0 auto 18px;}
+    .hero h1 .hl{color:var(--yellow);}
+    .hero-sub{max-width:580px;margin:0 auto 32px;color:rgba(255,255,255,0.65);font-size:16px;font-weight:300;}
+    .hero-meta{display:flex;gap:22px;justify-content:center;font-size:13px;color:rgba(255,255,255,0.48);flex-wrap:wrap;}
+
+    /* QUICK STATS BOX */
+    .stats-box{background:var(--blue);color:#fff;border-radius:8px;margin:44px 0 0;overflow:hidden;box-shadow:0 4px 20px rgba(26,58,107,0.25);}
+    .stats-header{background:var(--yellow);color:#1C1C1E;padding:12px 24px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+    @media(max-width:580px){.stats-grid{grid-template-columns:1fr 1fr;}}
+    .stat-cell{padding:20px 22px;border-right:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);}
+    .stat-cell:last-child{border-right:none;}
+    .stat-label{font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+    .stat-value{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1.2;}
+    .stat-value .sub{font-size:12px;font-weight:400;color:rgba(255,255,255,0.55);display:block;margin-top:3px;}
+    .stat-cell.featured{background:rgba(245,200,66,0.12);}
+    .stat-cell.featured .stat-value{color:var(--yellow);}
+
+    /* LAYOUT */
+    .container{max-width:820px;margin:0 auto;padding:0 20px;}
+
+    /* SECTIONS */
+    .section{padding:52px 0 0;}
+    h2{font-family:'Syne',sans-serif;font-size:clamp(19px,3vw,26px);font-weight:700;color:var(--blue);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .h2-num{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:800;padding:3px 9px;border-radius:2px;letter-spacing:1px;flex-shrink:0;}
+    p{margin-bottom:18px;}
+    p:last-child{margin-bottom:0;}
+
+    /* STATION BADGE */
+    .station-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:24px 0;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
+    .sc-header{padding:16px 22px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;gap:12px;letter-spacing:0.3px;}
+    .sc-header.start{background:var(--blue);color:#fff;}
+    .sc-header.end{background:#0B1E40;color:#fff;}
+    .sc-header .station-tag{background:rgba(255,255,255,0.15);font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;}
+    .sc-body{padding:20px 22px;}
+    .sc-body .info-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;align-items:flex-start;}
+    .sc-body .info-row:last-child{border-bottom:none;}
+    .sc-body .ir-label{flex-shrink:0;width:130px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;padding-top:2px;}
+    .sc-body .ir-val{color:var(--text-main);font-size:15px;line-height:1.55;}
+
+    /* PLATFORM INDICATOR */
+    .platform-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;}
+    @media(max-width:500px){.platform-row{grid-template-columns:1fr;}}
+    .plat-card{border-radius:6px;padding:14px 16px;border:1px solid var(--border);}
+    .plat-card.p1{border-left:4px solid var(--text-muted);background:#FAFAF7;}
+    .plat-card.p2{border-left:4px solid var(--blue-light);background:#EFF5FF;}
+    .plat-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;color:var(--text-muted);}
+    .plat-card.p2 .plat-label{color:var(--blue-mid);}
+    .plat-dest{font-size:14px;font-weight:500;color:var(--text-main);line-height:1.4;}
+    .plat-note{font-size:12px;color:var(--text-muted);margin-top:4px;}
+
+    /* GATE TABLE */
+    .gate-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px;border-radius:6px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.07);}
+    .gate-table thead tr{background:var(--blue);color:#fff;font-family:'Syne',sans-serif;font-size:12px;letter-spacing:0.5px;}
+    .gate-table th,.gate-table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);}
+    .gate-table tbody tr:nth-child(even){background:#FAFAF7;}
+    .gate-table tbody tr:last-child td{border-bottom:none;}
+    .gate-num{display:inline-block;background:var(--blue);color:#fff;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;padding:2px 8px;border-radius:2px;min-width:56px;text-align:center;}
+    .gate-num.y{background:var(--yellow-dark);}
+
+    /* STATIONS LIST */
+    .stations-wrapper{margin:24px 0;}
+    .stations-wrapper .sw-header{background:var(--blue-mid);color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:12px 18px;border-radius:6px 6px 0 0;letter-spacing:0.5px;}
+    .station-list{list-style:none;padding:0;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;overflow:hidden;}
+    .station-list li{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--border);}
+    .station-list li:last-child{border-bottom:none;}
+    .sl-num{flex-shrink:0;width:42px;text-align:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text-muted);padding:12px 0;background:var(--tag-bg);}
+    .sl-dot{flex-shrink:0;width:20px;display:flex;align-items:center;justify-content:center;}
+    .sl-dot span{width:8px;height:8px;border-radius:50%;background:var(--blue-light);display:block;}
+    .station-list li.terminus .sl-dot span{background:var(--yellow-dark);width:12px;height:12px;}
+    .station-list li.major .sl-dot span{background:var(--blue);width:10px;height:10px;}
+    .station-list li.interchange-s .sl-dot span{background:var(--red);width:12px;height:12px;border:2px solid #fff;box-shadow:0 0 0 2px var(--red);}
+    .sl-name{flex:1;padding:12px 14px;font-size:15px;color:var(--text-main);}
+    .station-list li.terminus .sl-name{font-weight:700;color:var(--blue);}
+    .station-list li.interchange-s .sl-name{font-weight:600;}
+    .sl-tag{flex-shrink:0;padding:0 12px;}
+    .badge{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px;letter-spacing:0.5px;}
+    .badge-term{background:var(--yellow);color:#1C1C1E;}
+    .badge-int{background:var(--red);color:#fff;}
+    .sl-time{flex-shrink:0;padding:0 14px 0 0;font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:600;min-width:60px;text-align:right;}
+    .connector{flex-shrink:0;width:20px;display:flex;flex-direction:column;align-items:center;}
+
+    /* COMPARISON TABLE */
+    .compare-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;border-radius:6px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.07);}
+    .compare-table thead tr{background:var(--blue);color:#fff;font-family:'Syne',sans-serif;font-size:12px;letter-spacing:0.5px;}
+    .compare-table th,.compare-table td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--border);}
+    .compare-table tbody tr:nth-child(even){background:#FAFAF7;}
+    .compare-table tbody tr:last-child td{border-bottom:none;}
+    .best-val{color:var(--green);font-weight:600;}
+    .worst-val{color:var(--red);}
+    .mode-name{font-weight:600;}
+
+    /* FARE CHART */
+    .fare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+    @media(max-width:540px){.fare-grid{grid-template-columns:1fr;}}
+    .fare-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px;text-align:center;}
+    .fare-card .fc-period{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+    .fare-card .fc-token{font-family:'Syne',sans-serif;font-size:13px;color:var(--text-muted);margin-bottom:4px;}
+    .fare-card .fc-smart{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--blue);margin-bottom:4px;}
+    .fare-card .fc-note{font-size:12px;color:var(--text-muted);}
+
+    /* HIGHLIGHT BOX */
+    .highlight-box{background:var(--surface);border-left:4px solid var(--orange);border-radius:4px;padding:18px 22px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+    .highlight-box .hb-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+    .highlight-box p{font-size:15px;margin-bottom:0;}
+
+    /* GOLDEN TIPS */
+    .tips-list{list-style:none;padding:0;margin:20px 0;}
+    .tips-list li{display:flex;gap:16px;padding:16px 0;border-bottom:1px dashed var(--border);align-items:flex-start;}
+    .tips-list li:last-child{border-bottom:none;}
+    .tip-icon{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:17px;border:2px solid var(--yellow-dark);}
+    .tip-body strong{display:block;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:0.3px;}
+    .tip-body span{font-size:15px;color:var(--text-main);line-height:1.6;}
+
+    /* REAL ESTATE */
+    .lifestyle-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+    @media(max-width:540px){.lifestyle-grid{grid-template-columns:1fr;}}
+    .ls-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;border-top:4px solid var(--blue-light);}
+    .ls-card .ls-type{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue-mid);margin-bottom:8px;}
+    .ls-card .ls-head{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--blue);margin-bottom:8px;}
+    .ls-card p{font-size:14px;color:var(--text-muted);line-height:1.55;margin:0;}
+
+    /* FAQ */
+    .faq-item{border:1px solid var(--border);border-radius:6px;margin-bottom:12px;background:var(--surface);overflow:hidden;}
+    .faq-q{padding:16px 20px;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:var(--blue);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+    .faq-q::after{content:'→';font-size:16px;color:var(--yellow-dark);flex-shrink:0;margin-top:2px;}
+    .faq-a{padding:0 20px 16px;font-size:15px;color:var(--text-muted);line-height:1.65;}
+
+    /* REMINDER STRIP */
+    .reminder{background:var(--blue);color:#fff;padding:18px 24px;border-radius:6px;margin:24px 0;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;text-align:center;border-left:5px solid var(--yellow);}
+    .reminder span{color:var(--yellow);}
+
+    /* METRO STRIPE */
+    .metro-stripe{display:flex;gap:5px;margin:36px 0 0;}
+    .metro-stripe s{height:5px;flex:1;border-radius:3px;text-decoration:none;}
+
+    /* FOOTER */
+    footer{text-align:center;padding:40px 20px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:64px;}
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-tag">Blue Line Route Guide · 2026</div>
+  <h1>Noida Electronic City to Rajiv Chowk Metro Route: <span class="hl">Distance, Time & Fare</span></h1>
+  <p class="hero-sub">Everything you need to know about one of Delhi Metro's most-travelled Blue Line corridors — from platform info to the best gate at Rajiv Chowk.</p>
+  <div class="hero-meta">
+    <span>📅 Updated April 2026</span>
+    <span>🔵 Blue Line Direct</span>
+    <span>📍 23.6 km · 22 Stations</span>
+    <span>⏱ 8 min read</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="metro-stripe">
+    <s style="background:#2E5FA3;flex:3;"></s>
+    <s style="background:#F5C842;flex:1;"></s>
+    <s style="background:#1B7F4A;flex:1;"></s>
+    <s style="background:#D62B2B;flex:1;"></s>
+    <s style="background:#A855F7;flex:1;"></s>
+  </div>
+
+  <!-- INTRO -->
+  <div style="margin-top:36px;">
+    <p>If you work in Noida's Sector 62 or 63 IT belt and commute to Connaught Place — or if you're simply planning a day out in central Delhi from Electronic City — this route is your daily lifeline. The Noida Electronic City to Rajiv Chowk metro route on the <strong>Delhi Metro Blue Line</strong> is one of the most-used corridors in the entire DMRC network, connecting Noida's eastern IT hub directly to the nerve centre of Delhi without a single interchange.</p>
+    <p>This guide gives you verified data on distance, travel time, fares, every intermediate station, platform specifics at both ends, gate-by-gate exit information at Rajiv Chowk, and the kind of insider tips that help you board the right carriage and save real minutes on your daily commute.</p>
+  </div>
+
+  <!-- QUICK STATS -->
+  <div class="stats-box">
+    <div class="stats-header">⚡ Quick Route Stats at a Glance</div>
+    <div class="stats-grid">
+      <div class="stat-cell featured">
+        <div class="stat-label">Metro Line</div>
+        <div class="stat-value">Blue Line<span class="sub">Direct — No Interchange</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Distance</div>
+        <div class="stat-value">~23.6 km<span class="sub">Noida to Connaught Place</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Total Stops</div>
+        <div class="stat-value">22 Stations<span class="sub">Intermediate stops</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Token Fare</div>
+        <div class="stat-value">₹60<span class="sub">Standard token price</span></div>
+      </div>
+      <div class="stat-cell featured">
+        <div class="stat-label">Smart Card / App Fare</div>
+        <div class="stat-value">₹54<span class="sub">10% discount applied</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Est. Travel Time</div>
+        <div class="stat-value">~50 min<span class="sub">Incl. dwell time at stops</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Peak Frequency</div>
+        <div class="stat-value">~3–5 min<span class="sub">Weekday peak hours</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">First Train (from NEC)</div>
+        <div class="stat-value">06:00 AM<span class="sub">Mon–Sat</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Last Train</div>
+        <div class="stat-value">10:23 PM<span class="sub">From Noida Electronic City</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: ORIGIN STATION -->
+  <div class="section">
+    <h2><span class="h2-num">01</span> Noida Electronic City Station — Your Starting Point</h2>
+    <p>Noida Electronic City metro station is the <strong>eastern terminus</strong> of Delhi Metro's Blue Line (Line 3). Inaugurated on 9 March 2019 by Prime Minister Narendra Modi, it was built to serve the dense belt of IT companies, BPO campuses, and software parks concentrated in Sectors 62 and 63 of Noida. The station sits at the edge of National Highway 24 and connects the Indirapuram residential zone on one side to the heart of Noida's tech corridor on the other.</p>
+
+    <div class="station-card">
+      <div class="sc-header start">
+        <span>🔵</span> Noida Electronic City <span class="station-tag">Origin / Terminus</span>
+      </div>
+      <div class="sc-body">
+        <div class="info-row">
+          <div class="ir-label">Station Type</div>
+          <div class="ir-val"><strong>Elevated</strong> — built on a steel viaduct above road level. Good visibility from the highway, easy to spot.</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Line</div>
+          <div class="ir-val">Blue Line (Line 3) — Eastern Terminus toward Dwarka Sector 21</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Platforms</div>
+          <div class="ir-val">Two side platforms (Platform 1 and Platform 2 — see below)</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">First Train</div>
+          <div class="ir-val">06:00 AM (Monday–Saturday) toward Dwarka Sector 21 / Rajiv Chowk</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Last Train</div>
+          <div class="ir-val">10:23 PM from this station (check DMRC app for live updates)</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Nearby Landmarks</div>
+          <div class="ir-val">Fortis Hospital Sector 62 (~5 min walk from Gate 2), Logix Cyber Park, Jaypee Institute of Information Technology, Ginger Hotel, Haldiram's (Gate 2 side)</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Facilities</div>
+          <div class="ir-val">DMRC-authorised parking (Gate 1 side, large capacity), lifts for Divyangjan/senior citizens on both sides, feeder e-rickshaws, auto stand outside Gate 2</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">PLATFORMS</span> Which Platform Do You Board From?</h2>
+
+    <div class="platform-row">
+      <div class="plat-card p1">
+        <div class="plat-label">Platform 1</div>
+        <div class="plat-dest">Train terminates here</div>
+        <div class="plat-note">Arriving trains from Dwarka Sector 21 end their journey on Platform 1. Do not board from here.</div>
+      </div>
+      <div class="plat-card p2">
+        <div class="plat-label">Platform 2 ← Board Here</div>
+        <div class="plat-dest">Toward Dwarka Sector 21</div>
+        <div class="plat-note">All trains heading toward Rajiv Chowk, Mandi House, and beyond depart from Platform 2. This is where you board.</div>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">GATES</span> Noida Electronic City — Entry Gate Guide</h2>
+
+    <table class="gate-table">
+      <thead>
+        <tr><th>Gate</th><th>Leads To</th><th>Best For</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="gate-num">Gate 1</span></td>
+          <td>Indirapuram / Ghaziabad side, NH-24 east</td>
+          <td>Commuters from Indirapuram, Vaibhav Khand, Abhay Khand areas. Large DMRC parking on this side.</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num">Gate 2</span></td>
+          <td>Sector 63, H Block Noida — SBI, PNB, HDFC Bank, Haldiram, Ginger Hotel, Domino's nearby</td>
+          <td>IT park employees from Sector 63, Logix Cyber Park, HSBC and other corporate campuses</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num">Gate 3</span></td>
+          <td>Highway Tower, I-Thumb Tower, Graphics Tower, Gol Chakkar Sector 62</td>
+          <td>Workers in Sector 62 IT cluster — Infosys, Wipro, Tech Mahindra zone offices</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <div class="hb-title">📍 Feeder Connectivity</div>
+      <p>UPSRTC buses (Route 323, 392, 392B, 492) stop adjacent to the station, serving Dhaula Kuan, Maya Puri Chowk, Indirapuram, and Nehru Place. Shared e-rickshaws and autos connect to sectors 58, 60, 62, and 63 for the last mile.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: STATION LIST -->
+  <div class="section">
+    <h2><span class="h2-num">02</span> All 22 Stations — Noida Electronic City to Rajiv Chowk</h2>
+    <p>This is a <strong>direct, no-interchange journey</strong> from start to finish on the Blue Line. Board at Noida Electronic City and stay on the same train until Rajiv Chowk — 22 stations later. Below is the complete sequence with approximate elapsed travel times from the starting station.</p>
+
+    <div class="stations-wrapper">
+      <div class="sw-header">🔵 Blue Line — Toward Dwarka Sector 21 (22 Intermediate Stops)</div>
+      <ul class="station-list">
+        <li class="terminus">
+          <div class="sl-num">START</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Electronic City</div>
+          <div class="sl-tag"><span class="badge badge-term">TERMINUS</span></div>
+          <div class="sl-time">0 min</div>
+        </li>
+        <li>
+          <div class="sl-num">1</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 62</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~3 min</div>
+        </li>
+        <li>
+          <div class="sl-num">2</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 59</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~5 min</div>
+        </li>
+        <li>
+          <div class="sl-num">3</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 61</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~7 min</div>
+        </li>
+        <li>
+          <div class="sl-num">4</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 52</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~10 min</div>
+        </li>
+        <li>
+          <div class="sl-num">5</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 34</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~12 min</div>
+        </li>
+        <li class="major">
+          <div class="sl-num">6</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida City Centre</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~14 min</div>
+        </li>
+        <li>
+          <div class="sl-num">7</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Golf Course</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~17 min</div>
+        </li>
+        <li class="major">
+          <div class="sl-num">8</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Botanical Garden</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~19 min</div>
+        </li>
+        <li class="major">
+          <div class="sl-num">9</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 18</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~22 min</div>
+        </li>
+        <li>
+          <div class="sl-num">10</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 16</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~24 min</div>
+        </li>
+        <li>
+          <div class="sl-num">11</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Noida Sector 15</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~26 min</div>
+        </li>
+        <li>
+          <div class="sl-num">12</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">New Ashok Nagar</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~28 min</div>
+        </li>
+        <li>
+          <div class="sl-num">13</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Mayur Vihar Extension</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~30 min</div>
+        </li>
+        <li>
+          <div class="sl-num">14</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Mayur Vihar Phase 1</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~32 min</div>
+        </li>
+        <li class="interchange-s">
+          <div class="sl-num">15</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Yamuna Bank</div>
+          <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
+          <div class="sl-time">~35 min</div>
+        </li>
+        <li>
+          <div class="sl-num">16</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Indraprastha</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~38 min</div>
+        </li>
+        <li>
+          <div class="sl-num">17</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Supreme Court</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~40 min</div>
+        </li>
+        <li class="interchange-s">
+          <div class="sl-num">18</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Mandi House</div>
+          <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
+          <div class="sl-time">~42 min</div>
+        </li>
+        <li class="major">
+          <div class="sl-num">19</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Barakhamba Road</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~44 min</div>
+        </li>
+        <li class="major">
+          <div class="sl-num">20</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Shivaji Stadium</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~46 min</div>
+        </li>
+        <li>
+          <div class="sl-num">21</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Patel Chowk</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~48 min</div>
+        </li>
+        <li class="terminus interchange-s" style="background:#EFF5FF;">
+          <div class="sl-num" style="font-weight:800;color:var(--blue);">END</div>
+          <div class="sl-dot"><span style="background:var(--blue);width:14px;height:14px;"></span></div>
+          <div class="sl-name" style="font-weight:700;color:var(--blue);">Rajiv Chowk</div>
+          <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
+          <div class="sl-time" style="font-weight:700;color:var(--blue);">~50 min</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">🚨 Note — Yamuna Bank Signal Drop</div>
+      <p>Expect your mobile signal to weaken noticeably around <strong>Yamuna Bank station</strong> as the train transitions from the elevated Noida section into the underground Delhi stretch. This is normal. WhatsApp messages and calls may not go through for 2–3 minutes. Download anything you need before leaving Botanical Garden.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ARRIVAL STATION -->
+  <div class="section">
+    <h2><span class="h2-num">03</span> Rajiv Chowk Station — Your Destination</h2>
+    <p>Rajiv Chowk is the most important interchange station in the Delhi Metro network, sitting directly beneath Connaught Place. After your direct Blue Line ride from Noida Electronic City, this is where you arrive — and depending on your onward destination, where you either exit or change to the Yellow Line.</p>
+
+    <div class="station-card">
+      <div class="sc-header end">
+        <span>⭕</span> Rajiv Chowk <span class="station-tag">Blue Line + Yellow Line Hub</span>
+      </div>
+      <div class="sc-body">
+        <div class="info-row">
+          <div class="ir-label">Station Type</div>
+          <div class="ir-val"><strong>Underground — 3-Level Hub.</strong> Fully below ground, with concourse level connecting both lines. Escalators, lifts, and stairs throughout.</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Lines Served</div>
+          <div class="ir-val">Blue Line (Line 3) + Yellow Line (Line 2). One of only a handful of dual-line interchange stations in Delhi Metro.</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">ATMs</div>
+          <div class="ir-val">PNB ATM (Concourse B/D side) · SBI ATM (Concourse A/F side)</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Food & Retail</div>
+          <div class="ir-val">Burger King, Barista, Café Coffee Day (CCD) — located near Platform 3/4 on the Blue Line level. One of the best-stocked metro food zones in Delhi.</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Health</div>
+          <div class="ir-val">Pulse Active health check-up kiosk at Concourse F-Block — blood pressure, BMI, basic diagnostics available for a small fee.</div>
+        </div>
+        <div class="info-row">
+          <div class="ir-label">Parking</div>
+          <div class="ir-val">No parking available at Rajiv Chowk. Plan to arrive by metro, auto, or cab.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">PLATFORMS</span> Blue Line Platforms at Rajiv Chowk</h2>
+
+    <div class="platform-row">
+      <div class="plat-card p1">
+        <div class="plat-label">Platform 3</div>
+        <div class="plat-dest">Toward Noida Electronic City / Vaishali</div>
+        <div class="plat-note">Trains going back toward Noida depart from here. Board here only for the return journey.</div>
+      </div>
+      <div class="plat-card p2">
+        <div class="plat-label">Platform 4</div>
+        <div class="plat-dest">Toward Dwarka Sector 21</div>
+        <div class="plat-note">Onward trains heading west toward Karol Bagh, Rajouri Garden, Dwarka depart from Platform 4.</div>
+      </div>
+    </div>
+
+    <p><strong>Yellow Line interchange:</strong> From the Blue Line concourse, descend one level (Level 3) to reach the Yellow Line platforms. Follow yellow-coloured overhead signs reading <em>Samaypur Badli</em> (north) or <em>Millennium City Centre / Gurugram</em> (south). No additional fare is charged for this interchange — it is within the paid zone.</p>
+
+    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--blue-mid);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">EXITS</span> The 8-Gate Exit Guide — Rajiv Chowk</h2>
+
+    <table class="gate-table">
+      <thead>
+        <tr><th>Gate</th><th>Leads To</th><th>Best For</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="gate-num y">Gate 1</span></td>
+          <td>Radial Road 3, Panchkuian Road, B-Block, Minto Road</td>
+          <td>B-Block offices, Bangla Sahib Gurudwara area, Minto Road</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 2</span></td>
+          <td>PVR Plaza, B & H Block, Connaught Place</td>
+          <td>PVR cinema, H-Block shops and restaurants, CP's northern arc</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 3</span></td>
+          <td>D-Block, Carnival Cinema (Odeon)</td>
+          <td>D-Block commercial area, Odeon Cinema complex</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 4</span></td>
+          <td>E-Block, Barakhamba Road, Kasturba Gandhi Marg</td>
+          <td>Office buildings on KG Marg, E-Block CP, Connaught Lane</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 5</span></td>
+          <td>Radial Road 1, Janpath Road, F-Block</td>
+          <td>Central Park entrance, F-Block restaurants, Janpath Road</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 6</span></td>
+          <td>Radial Road 1, Janpath Road, Palika Bazar, N-Block</td>
+          <td><strong>Best exit for Palika Bazaar and Janpath Market</strong> — 5-min walk</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 7</span></td>
+          <td>Radial Road 2, Baba Kharak Singh Marg, A-Block</td>
+          <td>A-Block shops, Regal Cinema area, Shankar Market direction</td>
+        </tr>
+        <tr>
+          <td><span class="gate-num y">Gate 8</span></td>
+          <td>Radial Road 3, Panchkuian Road, A-Block</td>
+          <td>A-Block offices, Panchkuian Road, DTC bus stops toward New Delhi Railway Station</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 4: COST & CARBON -->
+  <div class="section">
+    <h2><span class="h2-num">04</span> Cost & Carbon Comparison: Metro vs Other Modes</h2>
+    <p>The Noida Electronic City–Rajiv Chowk stretch covers close to 24 km. For this distance, the metro's advantage in cost, time, and environmental impact over alternatives is significant. Here's how it compares on a working day:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Mode</th>
+          <th>Est. Time</th>
+          <th>Typical Cost</th>
+          <th>Carbon Impact</th>
+          <th>Reliability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mode-name">🔵 Delhi Metro</span></td>
+          <td class="best-val">~50 mins</td>
+          <td class="best-val">₹54 (Smart Card)</td>
+          <td class="best-val">~0 kg CO₂</td>
+          <td class="best-val">Highly predictable</td>
+        </tr>
+        <tr>
+          <td><span class="mode-name">🚕 Private Cab (Ola/Uber)</span></td>
+          <td class="worst-val">75–120 min (traffic)</td>
+          <td class="worst-val">₹400–₹700+</td>
+          <td class="worst-val">~4.2 kg CO₂</td>
+          <td>Surge-dependent</td>
+        </tr>
+        <tr>
+          <td><span class="mode-name">🛺 Auto Rickshaw</span></td>
+          <td class="worst-val">90–120 min</td>
+          <td>₹300–₹400</td>
+          <td>Moderate (~1.8 kg)</td>
+          <td>Very unpredictable</td>
+        </tr>
+        <tr>
+          <td><span class="mode-name">🚌 DTC / UPSRTC Bus</span></td>
+          <td>90–150 min</td>
+          <td class="best-val">₹30–₹60</td>
+          <td>Low (shared)</td>
+          <td>Route and time-dependent</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Even on the best traffic days, private cabs rarely beat the metro on this route. The DND Flyway can shorten cab times, but peak-hour gridlock between Noida border and Connaught Place routinely pushes cab trips past 90 minutes. The metro completes the same journey in roughly half that time, <em>every day</em>.</p>
+
+    <h2 style="font-size:18px;border:none;padding:0;margin:28px 0 14px;"><span style="font-size:13px;background:var(--green);color:#fff;padding:2px 8px;border-radius:2px;margin-right:8px;font-weight:700;">FARE CHART</span> Pre-Calculated Weekly & Monthly Savings</h2>
+
+    <div class="fare-grid">
+      <div class="fare-card">
+        <div class="fc-period">Daily (1 trip)</div>
+        <div class="fc-token">Token: ₹60</div>
+        <div class="fc-smart">₹54</div>
+        <div class="fc-note">With Smart Card / DMRC App</div>
+      </div>
+      <div class="fare-card">
+        <div class="fc-period">Daily (Return)</div>
+        <div class="fc-token">Token: ₹120</div>
+        <div class="fc-smart">₹108</div>
+        <div class="fc-note">Both trips with Smart Card</div>
+      </div>
+      <div class="fare-card">
+        <div class="fc-period">Weekly (5 days return)</div>
+        <div class="fc-token">Token: ₹600</div>
+        <div class="fc-smart">₹540</div>
+        <div class="fc-note">Weekly saving: ₹60 vs token</div>
+      </div>
+      <div class="fare-card">
+        <div class="fc-period">Monthly (22 days return)</div>
+        <div class="fc-token">Token: ₹2,640</div>
+        <div class="fc-smart">₹2,376</div>
+        <div class="fc-note">Monthly saving: ₹264 vs token</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">💡 Off-Peak Bonus Saving</div>
+      <p>If you travel before 8 AM, between 12 noon–5 PM, or after 9 PM using the Smart Card or MJQRT app, you get an additional 10% off — making the effective fare just <strong>~₹48</strong> per trip. Over a month of off-peak commuting (22 days × 2 trips), that's a saving of ~₹528 compared to regular tokens.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5: GOLDEN TIPS -->
+  <div class="section">
+    <h2><span class="h2-num">05</span> Golden Tips — Commuter-Level Expertise</h2>
+    <p>These are the kind of tips that regular commuters on this route learn through experience — not from DMRC's official literature.</p>
+
+    <ul class="tips-list">
+      <li>
+        <div class="tip-icon">🎯</div>
+        <div class="tip-body">
+          <strong>Board the Front Coaches at Noida Electronic City</strong>
+          <span>When boarding at Noida Electronic City toward Rajiv Chowk, position yourself at the <strong>front of the train</strong> (the Dwarka-direction end). When you arrive at Rajiv Chowk, you'll be closest to the escalators and stairways leading toward the Yellow Line interchange and the main concourse — saving you a meaningful walk in a crowded station.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tip-icon">📶</div>
+        <div class="tip-body">
+          <strong>Network Alert — Yamuna Bank Dead Zone</strong>
+          <span>Mobile signal drops noticeably around <strong>Yamuna Bank</strong> as the elevated Noida section transitions to the underground Delhi section. If you're on a call or need to send a critical message, do it before the train leaves Noida Sector 15. Signal returns reliably by Indraprastha station.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tip-icon">🔀</div>
+        <div class="tip-body">
+          <strong>Interchange Hack for North Delhi During Rush Hour</strong>
+          <span>If Rajiv Chowk feels unbearably crowded and you need to reach north Delhi (Kashmere Gate, Civil Lines, Rohini), consider changing at <strong>Mandi House</strong> instead. Take the Violet Line from Mandi House toward Kashmere Gate — it's often faster and less congested than navigating Rajiv Chowk's Yellow Line platforms during the 8–10 AM and 5–7 PM crush.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tip-icon">⏰</div>
+        <div class="tip-body">
+          <strong>Beat the Rush — The 7:30 AM Window</strong>
+          <span>The worst congestion at Noida Electronic City platform builds between 8:15–9:30 AM. If your office allows flexible hours, catching the 7:30 AM train gives you a noticeably less crowded ride and qualifies for the off-peak 20% fare discount if you're using a Smart Card or MJQRT.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tip-icon">🚪</div>
+        <div class="tip-body">
+          <strong>Right-Side Doors Open on This Route</strong>
+          <span>On the Blue Line heading toward Dwarka from Noida Electronic City, the <strong>doors open on the right side</strong> of the train at each station. Position yourself accordingly on the platform to be near the doors when the train arrives — especially useful at busy stations like Noida Sector 18 and Barakhamba Road.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tip-icon">🅿️</div>
+        <div class="tip-body">
+          <strong>Parking at the Right End</strong>
+          <span>If you drive to Noida Electronic City and leave your vehicle, the DMRC-authorised parking on the <strong>Gate 1 (Indirapuram) side</strong> has significantly more capacity than the Gate 2/3 side. Arrive by 8 AM to secure a spot during weekdays, as it fills up fast from the IT crowd.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 6: REAL ESTATE & LIFESTYLE -->
+  <div class="section">
+    <h2><span class="h2-num">06</span> Nearby Real Estate & Lifestyle Value</h2>
+    <p>The Noida Electronic City–Rajiv Chowk Blue Line corridor has become one of the most strategically valuable commute corridors for working professionals in the NCR. Here's why it matters beyond just getting from A to B:</p>
+
+    <div class="lifestyle-grid">
+      <div class="ls-card">
+        <div class="ls-type">For Working Professionals</div>
+        <div class="ls-head">Sector 62/63 — The Optimal Base</div>
+        <p>Noida's Sector 62 and 63 remain among the top rental choices for professionals working at Connaught Place, Barakhamba, or Mandi House. The 50-minute direct metro ride — predictable, traffic-proof, and under ₹55 each way — makes this the most cost-effective NCR commute for CP employees. Rent in Sectors 62/63 runs ₹12,000–₹22,000 for a 1BHK, compared to ₹25,000–₹45,000 in central Delhi neighbourhoods near CP.</p>
+      </div>
+      <div class="ls-card">
+        <div class="ls-type">For Tourists & Visitors</div>
+        <div class="ls-head">Janpath Market in 5 Minutes</div>
+        <p>If you're visiting Delhi from the Noida side, exiting at <strong>Gate 6</strong> of Rajiv Chowk puts you at the entrance of <strong>Janpath Market</strong> in a 5-minute walk — one of Delhi's most popular open-air shopping destinations for handicrafts, fashion, and street food. Gate 5 takes you directly to the Connaught Place Central Park lawn, ideal for an evening walk or the festive events that happen there year-round.</p>
+      </div>
+      <div class="ls-card">
+        <div class="ls-type">For IT Professionals (Gate Proximity)</div>
+        <div class="ls-head">Direct Office Access from Gate 2 & 3</div>
+        <p>Workers at the dense office clusters around Logix Cyber Park, Sector 63 IT Hub, and the Gol Chakkar Sector 62 area find Gates 2 and 3 of Noida Electronic City directly adjacent to their campuses. Several major IT firms including those in the Graphics Tower and I-Thumb Tower have employees who walk from Gate 3 to their office in under 7 minutes.</p>
+      </div>
+      <div class="ls-card">
+        <div class="ls-type">For Indirapuram Residents</div>
+        <div class="ls-head">Gateway to Central Delhi</div>
+        <p>For the large residential population in Indirapuram, Vaibhav Khand, and Ahinsa Khand, the Noida Electronic City station (Gate 1 side) is the nearest metro access point. Many Indirapuram residents drive or take a shared auto to this station, park at the DMRC lot, and ride the Blue Line into Delhi — a hybrid commute that's significantly faster than taking the road all the way.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: FAQ -->
+  <div class="section">
+    <h2><span class="h2-num">07</span> Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">What is the first train from Noida Electronic City toward Rajiv Chowk?</div>
+      <div class="faq-a">The first train from Noida Electronic City toward Dwarka Sector 21 (passing through Rajiv Chowk) departs at <strong>06:00 AM</strong> on Monday to Saturday. On Sundays and public holidays, the first train may be slightly later. Always verify on the DMRC Momentum 2.0 app or the official DMRC website for the most current schedule before an early morning trip.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Which gate is best for Connaught Place Central Park at Rajiv Chowk?</div>
+      <div class="faq-a"><strong>Gate 5</strong> exits directly onto Janpath Road and faces the Connaught Place Central Park lawn — the large circular green space at the heart of CP. Gate 6 is slightly better if you're heading toward Palika Bazaar or the Janpath open-air market, which is a 5-minute walk from that exit.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How many interchanges are required from Noida Electronic City to Rajiv Chowk?</div>
+      <div class="faq-a"><strong>Zero.</strong> This is a direct, single-line journey on the Blue Line the entire way. You board at Noida Electronic City and exit at Rajiv Chowk — 22 stations later — without changing trains or lines at any point. It is one of the longest direct routes available in the Delhi Metro network.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is the exact fare from Noida Electronic City to Rajiv Chowk?</div>
+      <div class="faq-a">The standard token fare is <strong>₹60</strong>. With a DMRC Smart Card or the MJQRT on the Momentum 2.0 app, you receive a 10% discount making it <strong>₹54 per trip</strong>. During off-peak hours (before 8 AM, 12 noon–5 PM, after 9 PM on weekdays), an additional 10% applies, bringing the effective Smart Card fare down to approximately <strong>₹48</strong>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How long does the journey from Noida Electronic City to Rajiv Chowk actually take?</div>
+      <div class="faq-a">The average travel time is approximately <strong>50 minutes</strong> door-to-platform, including dwell time at each station. Pure in-motion ride time is closer to 43–45 minutes. During peak hours, you may wait slightly longer for a seat, but the train frequency (every 3–5 minutes at peak) means total journey time rarely changes. Off-peak journeys are marginally smoother due to less crowding at stops.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is there parking at Rajiv Chowk or Noida Electronic City metro stations?</div>
+      <div class="faq-a">Rajiv Chowk has <strong>no parking facility</strong> — it is an underground urban station with no dedicated vehicle area. Noida Electronic City has a <strong>large DMRC-authorised parking</strong> lot on the Gate 1 (Indirapuram) side, making it the preferred "park and ride" station for this route. Charges apply per DMRC's standard vehicle slab rates.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I use the same Smart Card or QR ticket throughout this journey?</div>
+      <div class="faq-a">Yes. Your DMRC Smart Card or MJQRT QR ticket works throughout the entire Blue Line from tap-in at Noida Electronic City to tap-out at Rajiv Chowk. The fare is automatically calculated by distance and deducted at exit. No re-tapping or recharging is needed mid-journey.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is the best alternate route if I need to go to North Delhi from this route?</div>
+      <div class="faq-a">Instead of changing at Rajiv Chowk's Yellow Line (which gets very crowded), experienced commuters recommend exiting at <strong>Mandi House</strong> (Station 18 on this route) and switching to the <strong>Violet Line</strong> toward Kashmere Gate and beyond. During peak hours, this alternative is often 10–15 minutes faster than navigating Rajiv Chowk's Yellow Line concourse.</div>
+    </div>
+  </div>
+
+  <div class="reminder" style="margin-top:48px;">
+    <span>Direct. No interchange. 22 stops. ~₹54.</span> The Noida Electronic City to Rajiv Chowk Blue Line route is one of the cleanest commutes in Delhi NCR — use it right.
+  </div>
+
+</div>
+
+<footer>
+  <p>Route data based on DMRC Blue Line operational schedule and verified station information. Fares and timings subject to revision — verify on the official DMRC Momentum 2.0 app or dmrc.co.in before travel.</p>
+  <p style="margin-top:10px;">Noida Electronic City to Rajiv Chowk Metro Route Guide · April 2026</p>
+</footer>
+
+</body>
+</html>
