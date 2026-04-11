@@ -29,6 +29,41 @@
 </div>
 
 <div class="container">
+  <section id="global-search-section" style="margin:28px 0 8px">
+    <div class="sec-eye">Route Planner</div>
+    <h2 class="sec-head" style="margin-bottom:10px">Plan this Route (Mobile Friendly)</h2>
+    <p style="color:var(--text-muted);font-size:.88rem;margin:0 0 14px">Search any two stations to open the Delhi Metro planner with exact live route details.</p>
+    <div class="sc">
+      <div class="fd">
+        <label class="fl" for="global-src-search">From</label>
+        <div class="ac-wrap">
+          <input type="text" id="global-src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station" value="Noida Electronic City">
+          <input type="hidden" id="global-src" value="noida_electronic_city_blue_line">
+          <ul class="ac-list" id="global-src-list" hidden></ul>
+        </div>
+      </div>
+
+      <div class="swap-row">
+        <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+        </button>
+      </div>
+
+      <div class="fd">
+        <label class="fl" for="global-dst-search">To</label>
+        <div class="ac-wrap">
+          <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station" value="Rajiv Chowk">
+          <input type="hidden" id="global-dst" value="rajiv_chowk_blue_line">
+          <ul class="ac-list" id="global-dst-list" hidden></ul>
+        </div>
+      </div>
+
+      <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
+    </div>
+  </section>
+</div>
+
+<div class="container">
 
   <div class="metro-stripe">
     <s style="background:#2E5FA3;flex:3;"></s>
@@ -180,7 +215,7 @@
     <p>This is a <strong>direct, no-interchange journey</strong> from start to finish on the Blue Line. Board at Noida Electronic City and stay on the same train until Rajiv Chowk — 22 stations later. Below is the complete sequence with approximate elapsed travel times from the starting station.</p>
 
     <div class="stations-wrapper">
-      <div class="sw-header">🔵 Blue Line — Toward Dwarka Sector 21 (22 Intermediate Stops)</div>
+      <div class="sw-header">🔵 Blue Line — Toward Dwarka Sector 21 (20 Intermediate Stops)</div>
       <ul class="station-list">
         <li class="terminus">
           <div class="sl-num">START</div>
@@ -192,35 +227,35 @@
         <li>
           <div class="sl-num">1</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Noida Sector 62</div>
+          <div class="sl-name">Sector 62 Noida</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~3 min</div>
         </li>
         <li>
           <div class="sl-num">2</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Noida Sector 59</div>
+          <div class="sl-name">Sector 59 Noida</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~5 min</div>
         </li>
         <li>
           <div class="sl-num">3</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Noida Sector 61</div>
+          <div class="sl-name">Sector 61 Noida</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~7 min</div>
         </li>
         <li>
           <div class="sl-num">4</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Noida Sector 52</div>
+          <div class="sl-name">Sector 52 Noida</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~10 min</div>
         </li>
         <li>
           <div class="sl-num">5</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Noida Sector 34</div>
+          <div class="sl-name">Sector 34 Noida</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~12 min</div>
         </li>
@@ -283,58 +318,51 @@
         <li>
           <div class="sl-num">14</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Mayur Vihar Phase 1</div>
+          <div class="sl-name">Mayur Vihar I</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~32 min</div>
         </li>
-        <li class="interchange-s">
+        <li>
           <div class="sl-num">15</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Akshardham</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~35 min</div>
+        </li>
+        <li class="interchange-s">
+          <div class="sl-num">16</div>
           <div class="sl-dot"><span></span></div>
           <div class="sl-name">Yamuna Bank</div>
           <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
-          <div class="sl-time">~35 min</div>
-        </li>
-        <li>
-          <div class="sl-num">16</div>
-          <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Indraprastha</div>
-          <div class="sl-tag"></div>
           <div class="sl-time">~38 min</div>
         </li>
         <li>
           <div class="sl-num">17</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Supreme Court</div>
+          <div class="sl-name">Indraprastha</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~40 min</div>
         </li>
-        <li class="interchange-s">
+        <li>
           <div class="sl-num">18</div>
+          <div class="sl-dot"><span></span></div>
+          <div class="sl-name">Supreme Court</div>
+          <div class="sl-tag"></div>
+          <div class="sl-time">~42 min</div>
+        </li>
+        <li class="interchange-s major">
+          <div class="sl-num">19</div>
           <div class="sl-dot"><span></span></div>
           <div class="sl-name">Mandi House</div>
           <div class="sl-tag"><span class="badge badge-int">INTERCHANGE</span></div>
-          <div class="sl-time">~42 min</div>
-        </li>
-        <li class="major">
-          <div class="sl-num">19</div>
-          <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Barakhamba Road</div>
-          <div class="sl-tag"></div>
           <div class="sl-time">~44 min</div>
         </li>
         <li class="major">
           <div class="sl-num">20</div>
           <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Shivaji Stadium</div>
+          <div class="sl-name">Barakhamba Road</div>
           <div class="sl-tag"></div>
           <div class="sl-time">~46 min</div>
-        </li>
-        <li>
-          <div class="sl-num">21</div>
-          <div class="sl-dot"><span></span></div>
-          <div class="sl-name">Patel Chowk</div>
-          <div class="sl-tag"></div>
-          <div class="sl-time">~48 min</div>
         </li>
         <li class="terminus interchange-s" style="background:#EFF5FF;">
           <div class="sl-num" style="font-weight:800;color:var(--blue);">END</div>
@@ -677,5 +705,6 @@
   <p style="margin-top:10px;">Noida Electronic City to Rajiv Chowk Metro Route Guide · April 2026</p>
 </footer>
 
+<script src="/js/globalSearchBar.js?v=20260410"></script>
 </body>
 </html>
