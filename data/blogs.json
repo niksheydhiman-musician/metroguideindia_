@@ -5,11 +5,7 @@
     "date": "2026-03-15",
     "author": "MetroGuideIndia",
     "summary": "Your complete guide to Namo Bharat RRTS stations, parking facilities, and last-mile connectivity options for seamless Delhi to Meerut travel.",
-    "tags": [
-      "RRTS",
-      "guide",
-      "connectivity"
-    ],
+    "tags": ["RRTS", "guide", "connectivity"],
     "content": [
       {
         "type": "h1",
@@ -156,11 +152,7 @@
     "date": "2026-03-09",
     "author": "MetroGuideIndia",
     "summary": "Everything you need to know about Namo Bharat RRTS fares — standard, premium, and Meerut Metro pricing explained.",
-    "tags": [
-      "fare",
-      "RRTS",
-      "guide"
-    ],
+    "tags": ["fare", "RRTS", "guide"],
     "content": [
       {
         "type": "h1",
@@ -180,77 +172,21 @@
       },
       {
         "type": "table",
-        "headers": [
-          "Destination",
-          "Standard",
-          "Premium"
-        ],
+        "headers": ["Destination", "Standard", "Premium"],
         "rows": [
-          [
-            "New Ashok Nagar",
-            "₹30",
-            "₹35"
-          ],
-          [
-            "Anand Vihar",
-            "₹50",
-            "₹60"
-          ],
-          [
-            "Sahibabad",
-            "₹60",
-            "₹70"
-          ],
-          [
-            "Ghaziabad",
-            "₹80",
-            "₹95"
-          ],
-          [
-            "Guldhar",
-            "₹90",
-            "₹110"
-          ],
-          [
-            "Duhai",
-            "₹100",
-            "₹120"
-          ],
-          [
-            "Murad Nagar",
-            "₹120",
-            "₹145"
-          ],
-          [
-            "Modi Nagar South",
-            "₹140",
-            "₹170"
-          ],
-          [
-            "Modi Nagar North",
-            "₹140",
-            "₹170"
-          ],
-          [
-            "Meerut South",
-            "₹160",
-            "₹190"
-          ],
-          [
-            "Shatabdi Nagar",
-            "₹180",
-            "₹215"
-          ],
-          [
-            "Begumpul",
-            "₹200",
-            "₹240"
-          ],
-          [
-            "Modipuram",
-            "₹210",
-            "₹250"
-          ]
+          ["New Ashok Nagar", "₹30", "₹35"],
+          ["Anand Vihar", "₹50", "₹60"],
+          ["Sahibabad", "₹60", "₹70"],
+          ["Ghaziabad", "₹80", "₹95"],
+          ["Guldhar", "₹90", "₹110"],
+          ["Duhai", "₹100", "₹120"],
+          ["Murad Nagar", "₹120", "₹145"],
+          ["Modi Nagar South", "₹140", "₹170"],
+          ["Modi Nagar North", "₹140", "₹170"],
+          ["Meerut South", "₹160", "₹190"],
+          ["Shatabdi Nagar", "₹180", "₹215"],
+          ["Begumpul", "₹200", "₹240"],
+          ["Modipuram", "₹210", "₹250"]
         ]
       },
       {
@@ -259,72 +195,20 @@
       },
       {
         "type": "table",
-        "headers": [
-          "Destination",
-          "Standard",
-          "Premium"
-        ],
+        "headers": ["Destination", "Standard", "Premium"],
         "rows": [
-          [
-            "Anand Vihar",
-            "₹20",
-            "₹35"
-          ],
-          [
-            "Sahibabad",
-            "₹50",
-            "₹60"
-          ],
-          [
-            "Ghaziabad",
-            "₹60",
-            "₹70"
-          ],
-          [
-            "Guldhar",
-            "₹70",
-            "₹85"
-          ],
-          [
-            "Duhai",
-            "₹80",
-            "₹95"
-          ],
-          [
-            "Murad Nagar",
-            "₹100",
-            "₹120"
-          ],
-          [
-            "Modi Nagar South",
-            "₹120",
-            "₹145"
-          ],
-          [
-            "Modi Nagar North",
-            "₹130",
-            "₹155"
-          ],
-          [
-            "Meerut South",
-            "₹150",
-            "₹180"
-          ],
-          [
-            "Shatabdi Nagar",
-            "₹160",
-            "₹190"
-          ],
-          [
-            "Begumpul",
-            "₹180",
-            "₹215"
-          ],
-          [
-            "Modipuram",
-            "₹200",
-            "₹240"
-          ]
+          ["Anand Vihar", "₹20", "₹35"],
+          ["Sahibabad", "₹50", "₹60"],
+          ["Ghaziabad", "₹60", "₹70"],
+          ["Guldhar", "₹70", "₹85"],
+          ["Duhai", "₹80", "₹95"],
+          ["Murad Nagar", "₹100", "₹120"],
+          ["Modi Nagar South", "₹120", "₹145"],
+          ["Modi Nagar North", "₹130", "₹155"],
+          ["Meerut South", "₹150", "₹180"],
+          ["Shatabdi Nagar", "₹160", "₹190"],
+          ["Begumpul", "₹180", "₹215"],
+          ["Modipuram", "₹200", "₹240"]
         ]
       },
       {
@@ -341,55 +225,19 @@
       },
       {
         "type": "table",
-        "headers": [
-          "Destination",
-          "Fare"
-        ],
+        "headers": ["Destination", "Fare"],
         "rows": [
-          [
-            "Partapur",
-            "₹20"
-          ],
-          [
-            "Rithani",
-            "₹20"
-          ],
-          [
-            "Shatabdi Nagar",
-            "₹30"
-          ],
-          [
-            "Brahampuri",
-            "₹30"
-          ],
-          [
-            "Meerut Central",
-            "₹30"
-          ],
-          [
-            "Bhaisali Bus Adda",
-            "₹40"
-          ],
-          [
-            "Begumpul",
-            "₹40"
-          ],
-          [
-            "MES Colony",
-            "₹50"
-          ],
-          [
-            "Daurli",
-            "₹50"
-          ],
-          [
-            "Meerut North",
-            "₹60"
-          ],
-          [
-            "Modipuram",
-            "₹60"
-          ]
+          ["Partapur", "₹20"],
+          ["Rithani", "₹20"],
+          ["Shatabdi Nagar", "₹30"],
+          ["Brahampuri", "₹30"],
+          ["Meerut Central", "₹30"],
+          ["Bhaisali Bus Adda", "₹40"],
+          ["Begumpul", "₹40"],
+          ["MES Colony", "₹50"],
+          ["Daurli", "₹50"],
+          ["Meerut North", "₹60"],
+          ["Modipuram", "₹60"]
         ]
       },
       {
@@ -398,55 +246,19 @@
       },
       {
         "type": "table",
-        "headers": [
-          "Destination",
-          "Fare"
-        ],
+        "headers": ["Destination", "Fare"],
         "rows": [
-          [
-            "Meerut North",
-            "₹20"
-          ],
-          [
-            "Daurli",
-            "₹20"
-          ],
-          [
-            "MES Colony",
-            "₹30"
-          ],
-          [
-            "Begumpul",
-            "₹30"
-          ],
-          [
-            "Bhaisali Bus Adda",
-            "₹40"
-          ],
-          [
-            "Meerut Central",
-            "₹50"
-          ],
-          [
-            "Brahampuri",
-            "₹50"
-          ],
-          [
-            "Shatabdi Nagar",
-            "₹50"
-          ],
-          [
-            "Rithani",
-            "₹50"
-          ],
-          [
-            "Partapur",
-            "₹60"
-          ],
-          [
-            "Meerut South",
-            "₹60"
-          ]
+          ["Meerut North", "₹20"],
+          ["Daurli", "₹20"],
+          ["MES Colony", "₹30"],
+          ["Begumpul", "₹30"],
+          ["Bhaisali Bus Adda", "₹40"],
+          ["Meerut Central", "₹50"],
+          ["Brahampuri", "₹50"],
+          ["Shatabdi Nagar", "₹50"],
+          ["Rithani", "₹50"],
+          ["Partapur", "₹60"],
+          ["Meerut South", "₹60"]
         ]
       },
       {
@@ -490,12 +302,7 @@
     "date": "2026-03-05",
     "author": "MetroGuideIndia",
     "summary": "Planning your first trip on the Namo Bharat RRTS? This complete guide covers boarding, timing, fares, and tips.",
-    "tags": [
-      "travel",
-      "RRTS",
-      "Delhi",
-      "Meerut"
-    ],
+    "tags": ["travel", "RRTS", "Delhi", "Meerut"],
     "content": [
       {
         "type": "h1",
@@ -553,11 +360,7 @@
     "date": "2026-02-28",
     "author": "MetroGuideIndia",
     "summary": "How to interchange between Namo Bharat RRTS and Meerut Metro at all four interchange stations.",
-    "tags": [
-      "Meerut Metro",
-      "interchange",
-      "guide"
-    ],
+    "tags": ["Meerut Metro", "interchange", "guide"],
     "content": [
       {
         "type": "h1",
@@ -606,6 +409,513 @@
       {
         "type": "p",
         "text": "Use the route planner on our homepage to automatically find the best interchange point for your journey. The algorithm picks the optimal station based on total travel distance."
+      }
+    ]
+  },
+  {
+    "id": "delhi-metro-smart-card-vs-qr-ticket-2026",
+    "title": "Delhi Metro Smart Card vs QR Ticket: Which Saves You More Money in 2026?",
+    "date": "2026-04-11",
+    "author": "MetroGuideIndia",
+    "summary": "Compare Delhi Metro Smart Card vs QR Ticket in 2026. Learn which option saves more money, how discounts work, and which is best for daily commuters.",
+    "tags": ["Delhi Metro", "Smart Card", "QR Ticket", "fare", "savings"],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Delhi Metro Smart Card vs QR Ticket: Which Saves You More Money in 2026?"
+      },
+      {
+        "type": "p",
+        "text": "If you commute in Delhi, your choice of metro ticket directly affects how much money you spend over a month. Delhi Metro Rail Corporation (DMRC) currently offers two smart fare options: the classic Smart Card and the newer QR-based tickets — including the Multiple Journey QR Ticket (MJQRT). Both offer discounts over standard token fares, but they are not equal when it comes to savings, convenience, and flexibility."
+      },
+      {
+        "type": "h2",
+        "text": "What Is a Delhi Metro Smart Card?"
+      },
+      {
+        "type": "p",
+        "text": "The Delhi Metro Smart Card is a reusable, prepaid travel card issued by DMRC. You purchase it at any metro station counter or Smart Card Vending Machine, load money onto it, and tap it at the entry and exit gates for every journey. It costs ₹150 at purchase (₹50 refundable security deposit + ₹100 usable balance) and can be recharged at station counters, vending machines, the DMRC app, or through UPI apps like Paytm and PhonePe. The card never expires as long as you recharge it periodically."
+      },
+      {
+        "type": "h2",
+        "text": "What Is a QR Ticket?"
+      },
+      {
+        "type": "p",
+        "text": "QR-based travel in Delhi Metro comes in two forms. The Single Journey QR Ticket is a digital token — quick to buy via WhatsApp (9650855800), Paytm, or PhonePe — but carries no fare discount. The Multiple Journey QR Ticket (MJQRT), launched September 2024, is the one that competes with the Smart Card. Available only on the DMRC Momentum 2.0 app, it costs ₹150 to activate, allows recharges from ₹50 to ₹3,000, and works entirely from your phone screen — no physical card needed."
+      },
+      {
+        "type": "h2",
+        "text": "Which Option Gives Better Savings?"
+      },
+      {
+        "type": "table",
+        "headers": ["Scenario", "Smart Card", "MJQRT (QR)"],
+        "rows": [
+          ["Peak hours (8–12 AM, 5–9 PM)", "10% off", "10% off"],
+          ["Off-peak hours", "Up to 20% off", "Up to 20% off"],
+          ["Single journey QR", "N/A", "No discount"],
+          ["Minimum balance to travel", "₹10", "₹60"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Smart Card Discount Rules"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Standard 10% discount** on every journey, any time of day — automatic, no activation needed.",
+          "**Additional 10% off-peak discount** when entering before 8 AM, between 12 noon–5 PM, or after 9 PM on weekdays and Saturdays — total 20% off.",
+          "**Minimum balance:** ₹10 to start a journey. Maintain at least ₹50 to avoid exit gate penalties.",
+          "**Recharge:** At station counters, vending machines, DMRC app, or UPI apps. Minimum recharge ₹100.",
+          "**Long-term use:** Card works indefinitely — no expiry, no annual renewal."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "QR Ticket Discount Rules"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**10% during peak hours** (8 AM–12 PM and 5–9 PM) — deducted automatically from app balance.",
+          "**20% during off-peak hours** (before 8 AM, 12 noon–5 PM, after 9 PM on weekdays) — the best saving available on Delhi Metro.",
+          "**Minimum balance of ₹60** required to initiate any journey.",
+          "**Registration required** on Momentum 2.0 app — but balance is recoverable if phone is lost.",
+          "**Single Journey QR ≠ MJQRT** — only MJQRT (via Momentum 2.0) gives discounts. WhatsApp/Paytm QR tickets give zero discount."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Cost Comparison by User Type"
+      },
+      {
+        "type": "table",
+        "headers": ["User Type", "Best Option", "Reason"],
+        "rows": [
+          ["Daily commuter (peak hours)", "Either", "Both give identical 10% discount"],
+          ["Off-peak traveller", "MJQRT", "20% off, easier to track digitally"],
+          ["Occasional commuter", "Smart Card", "Lower ₹10 minimum balance, no app needed"],
+          ["App-first / digital user", "MJQRT", "No physical card, balance linked to account"],
+          ["Tourist / one-time visitor", "Tourist Card or Single QR", "₹200/day or ₹500/3-day unlimited travel"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Convenience Comparison"
+      },
+      {
+        "type": "table",
+        "headers": ["Factor", "Smart Card", "MJQRT (QR)"],
+        "rows": [
+          ["Works without phone battery", "Yes — fully offline", "No — phone must be on"],
+          ["Lost/stolen recovery", "Balance typically lost", "Balance recoverable on new device"],
+          ["Gate entry speed", "Instant tap", "Slightly slower — open app, show QR"],
+          ["Minimum balance to travel", "₹10", "₹60"],
+          ["Setup time", "5 min at station counter", "Download app, register, verify, load money"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Money-Saving Tips for Delhi Metro Riders"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Travel during off-peak hours (before 8 AM, 12 noon–5 PM, after 9 PM) whenever possible — both options give up to 20% off.",
+          "Never use single-journey tokens or single QR tickets for regular travel — they carry no discount.",
+          "Keep balance topped up. For Smart Cards, maintain at least ₹50; for MJQRT, never dip below ₹100 if commuting daily.",
+          "Match your fare media to your travel frequency — 20+ trips per month makes the 10–20% discount a significant monthly saving.",
+          "Use the DMRC Momentum 2.0 app even if you prefer a Smart Card — it lets you recharge remotely and check journey history."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Final Verdict"
+      },
+      {
+        "type": "p",
+        "text": "For raw savings, both the Smart Card and MJQRT are neck-and-neck — each offering 10% off during peak hours and up to 20% off during off-peak travel. The real differentiator is your lifestyle and travel habits. Daily office commuters travelling peak hours can use either; prefer Smart Card for offline reliability. Off-peak travellers will find MJQRT slightly easier to track. Occasional riders should stick to the Smart Card for its lower minimum balance. Tourists are best served by the Tourist Card."
+      },
+      {
+        "type": "h2",
+        "text": "FAQs"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Is Smart Card cheaper than QR ticket?** For peak-hour travel, both give the same 10% discount. During off-peak hours, both offer up to 20% off. The single-journey QR ticket (not MJQRT) is the most expensive option — no discount at all.",
+          "**Does QR ticket give a discount?** Only the MJQRT via Momentum 2.0 app gives discounts (10–20%). Standard single-journey QR tickets bought via WhatsApp or Paytm give zero discount.",
+          "**Which is better for daily travel?** Both are equal financially at peak hours. Choose Smart Card for offline reliability; choose MJQRT if you prefer everything on your phone.",
+          "**What is the minimum balance required?** Smart Card: ₹10 to travel, minimum recharge ₹100. MJQRT: ₹60 to travel, recharges in ₹50 multiples up to ₹3,000.",
+          "**Can I use QR travel without a physical card?** Yes. MJQRT is entirely app-based — no physical card needed at any point."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Information based on DMRC official data as of April 2026. Fares and discount structures are subject to change — always verify with the official DMRC website or Momentum 2.0 app."
+      }
+    ]
+  },
+  {
+    "id": "rajiv-chowk-yellow-blue-line-interchange-guide",
+    "title": "Navigating Rajiv Chowk: How to Change Between Yellow and Blue Lines Without Getting Lost",
+    "date": "2026-04-11",
+    "author": "MetroGuideIndia",
+    "summary": "Learn how to change between Yellow and Blue Lines at Rajiv Chowk Metro Station with step-by-step directions, exit tips, and common mistakes to avoid.",
+    "tags": ["Rajiv Chowk", "Yellow Line", "Blue Line", "interchange", "Delhi Metro"],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Navigating Rajiv Chowk: How to Change Between Yellow and Blue Lines Without Getting Lost"
+      },
+      {
+        "type": "p",
+        "text": "Rajiv Chowk is not just a metro station — it is the heartbeat of the entire Delhi Metro network. Sitting right beneath Connaught Place, it connects two of the most important lines: the Yellow Line running north to south, and the Blue Line cutting across east to west. Nearly every long-distance journey through central Delhi passes through this station. This guide gives you a clear, step-by-step walkthrough for changing lines at Rajiv Chowk — whether you're coming from the Yellow Line and heading to the Blue, or the other way around."
+      },
+      {
+        "type": "h2",
+        "text": "Why Rajiv Chowk Matters"
+      },
+      {
+        "type": "p",
+        "text": "The Yellow Line (Line 2) connects Samaypur Badli in north Delhi all the way down to Millennium City Centre in Gurugram — passing through Kashmere Gate, Chandni Chowk, and Hauz Khas. The Blue Line (Line 3 and 4) runs from Dwarka Sector 21 in the west through to Noida Electronic City and Vaishali in the east. If you need to get from north Delhi to Noida, or from Gurugram to west Delhi, there is a very good chance you will change trains at Rajiv Chowk."
+      },
+      {
+        "type": "h2",
+        "text": "Understanding the Station Layout"
+      },
+      {
+        "type": "p",
+        "text": "Rajiv Chowk is an underground station with multiple levels. Both the Yellow Line and Blue Line platforms are below ground, connected by a shared concourse level where passengers can walk between the two lines without exiting the station or tapping out. When changing lines, you do not need to exit the fare-paid zone or tap your card again. Follow the signs — do not follow the crowd blindly, as many people around you may be heading toward exits, not the other platform."
+      },
+      {
+        "type": "table",
+        "headers": ["Level", "What's There"],
+        "rows": [
+          ["Street Level", "Station entrances/exits (multiple numbered exits), ticket counters, security check"],
+          ["Concourse Level", "AFC gates, fare paid zone, interchange corridor between Yellow and Blue Lines"],
+          ["Platform Level (Yellow)", "Yellow Line platforms — trains toward Samaypur Badli (north) and Millennium City Centre (south)"],
+          ["Platform Level (Blue)", "Blue Line platforms — trains toward Dwarka Sector 21 (west) and Noida/Vaishali (east)"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "How to Change From Yellow Line to Blue Line"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Step 1:** Exit the Yellow Line train at Rajiv Chowk. Move away from the platform edge and let the crowd thin slightly before walking.",
+          "**Step 2:** Take stairs, escalator, or lift up from the Yellow Line platform to the shared concourse inside the fare-paid zone.",
+          "**Step 3:** Follow blue-coloured overhead signs for the Blue Line interchange — look for destinations like Dwarka Sector 21 or Noida Electronic City / Vaishali.",
+          "**Step 4:** Descend to the Blue Line platform level. Check the digital display board to confirm the correct side — Dwarka direction or Noida/Vaishali direction.",
+          "**Step 5:** Wait for the correct train and board. No tapping out, no re-entry fee."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "How to Change From Blue Line to Yellow Line"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Step 1:** Exit the Blue Line train at Rajiv Chowk. Take a moment to read the signs before moving with the crowd.",
+          "**Step 2:** Use stairs, escalator, or lift to move up from the Blue Line platform to the shared concourse.",
+          "**Step 3:** Follow yellow-coloured overhead signs for the Yellow Line interchange — look for destinations like Samaypur Badli (north) or Millennium City Centre / Gurugram (south).",
+          "**Step 4:** Descend to the Yellow Line platform. Check the platform display board to confirm the train direction.",
+          "**Step 5:** Board the correct train. Transfer complete — no fare deducted, no re-entry needed."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Signs to Follow Inside Rajiv Chowk"
+      },
+      {
+        "type": "table",
+        "headers": ["Line", "Destination Signs to Look For"],
+        "rows": [
+          ["Yellow Line (north)", "Samaypur Badli, Jahangirpuri, Kashmere Gate, Chandni Chowk"],
+          ["Yellow Line (south)", "Hauz Khas, Millennium City Centre, Gurugram"],
+          ["Blue Line (west)", "Dwarka Sector 21, Janakpuri West, Mandi House"],
+          ["Blue Line (east)", "Yamuna Bank, Noida Electronic City, Vaishali"]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "The Blue Line splits beyond Yamuna Bank into two branches — one goes to Noida Electronic City and the other to Vaishali. Always check the train's destination board before boarding, not just the line colour."
+      },
+      {
+        "type": "h2",
+        "text": "Tips to Avoid Getting Lost"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Don't rush during peak hours (8–10 AM, 5–8 PM). Take five extra seconds to read the overhead board — it's always worth it.",
+          "Check the line colour before walking. Yellow and Blue are your anchors. Green signs mean exit — you're about to leave the station.",
+          "Exit numbers are only for leaving the station. During an interchange, ignore all exit signs and focus only on Yellow Line or Blue Line markers.",
+          "Don't blindly follow the crowd — hundreds of people are heading in different directions simultaneously. The ceiling signs are more reliable than the person next to you.",
+          "Always confirm the train direction at the platform display board before standing in the boarding zone."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Best Exits and Nearby Places"
+      },
+      {
+        "type": "table",
+        "headers": ["Exit", "Leads To", "Best For"],
+        "rows": [
+          ["Exit 1", "Connaught Place Inner Circle, Radial Road 3, B-Block", "Shopping arcades, restaurants along CP inner ring"],
+          ["Exit 4", "Central Park, Connaught Place", "Central Park lawn, open green space at the heart of CP"],
+          ["Exit 5", "Radial Road 1, Janpath Road, F-Block", "Janpath Market entrance, F-Block restaurants"],
+          ["Exit 6", "Radial Road 1, Janpath Road, Palika Bazar, N-Block", "Palika Bazaar, Janpath Market — 5-minute walk"],
+          ["Exit 7", "Radial Road 2, Baba Kharak Singh Marg, A-Block", "Regal Cinema area, Shankar Market direction"],
+          ["Exit 8", "Radial Road 3, Panchkuian Road, A-Block", "A-Block offices, DTC bus stops toward New Delhi Railway Station"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Common Mistakes to Avoid"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Wrong corridor via crowd movement:** At peak hours, the concourse feels like a river of people. Read the sign above you before committing to a direction.",
+          "**Confusing exit gates with interchange pathways:** If you walk through an AFC exit gate, your journey ends and you'll need a new ticket to re-enter.",
+          "**Boarding without checking direction:** Just because you've reached the right line doesn't mean you're on the right side. Check the platform display first.",
+          "**Assuming all Blue Line trains go the same place:** The Blue Line splits east of Yamuna Bank into Noida Electronic City and Vaishali branches. Always check the destination board.",
+          "**Navigating from memory on your first visit:** Read every overhead board you pass. It takes seconds and saves you from a 20-minute detour."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "FAQs"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Is Rajiv Chowk the interchange for Yellow and Blue Lines?** Yes. Rajiv Chowk is the primary interchange connecting Delhi Metro's Yellow Line (Line 2) and Blue Line (Line 3/4). Transfer between both lines here without paying an additional fare.",
+          "**How long does the transfer take?** Off-peak: 3–5 minutes. Peak hours (8–10 AM, 5–8 PM): 7–10 minutes due to crowd density.",
+          "**Which direction for Blue Line?** Follow blue-coloured signs mentioning Dwarka Sector 21 (west) or Noida Electronic City / Vaishali (east). Then check the platform display for the specific branch.",
+          "**Which exit is best for Connaught Place?** Exit 1 for the Inner Circle. Exit 4 for Central Park. Exit 5 for Janpath Market. Exit 6 for Palika Bazaar.",
+          "**Is Rajiv Chowk crowded during rush hour?** Yes — it is one of the busiest metro stations in India during peak hours. Travel before 8 AM or between 12 noon–5 PM for a smoother experience."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Station layout and interchange information based on DMRC network data as of April 2026. Verify exits and platform configurations on-site, as station infrastructure may be updated."
+      }
+    ]
+  },
+  {
+    "id": "noida-electronic-city-to-rajiv-chowk-metro-route",
+    "title": "Noida Electronic City to Rajiv Chowk Metro Route: Distance, Time & Fare",
+    "date": "2026-04-11",
+    "author": "MetroGuideIndia",
+    "summary": "Complete guide to the Noida Electronic City to Rajiv Chowk metro route on the Blue Line. Distance ~24 km, travel time ~50 mins, fare ₹54 (Smart Card). All 22 stations, platform info, gate guide & money-saving tips.",
+    "tags": ["Noida Electronic City", "Rajiv Chowk", "Blue Line", "Delhi Metro", "route", "fare"],
+    "content": [
+      {
+        "type": "h1",
+        "text": "Noida Electronic City to Rajiv Chowk Metro Route: Distance, Time & Fare"
+      },
+      {
+        "type": "p",
+        "text": "The Noida Electronic City to Rajiv Chowk metro route on the Delhi Metro Blue Line is one of the most-used corridors in the entire DMRC network, connecting Noida's eastern IT hub directly to the nerve centre of Delhi without a single interchange. This guide covers verified data on distance, travel time, fares, every intermediate station, platform specifics at both ends, gate-by-gate exit information at Rajiv Chowk, and insider tips that help you board the right carriage and save real minutes every day."
+      },
+      {
+        "type": "table",
+        "headers": ["Detail", "Information"],
+        "rows": [
+          ["Metro Line", "Blue Line — Direct, No Interchange"],
+          ["Distance", "~23.6 km"],
+          ["Total Stops", "22 Intermediate Stations"],
+          ["Token Fare", "₹60"],
+          ["Smart Card / App Fare", "₹54 (10% discount)"],
+          ["Off-Peak Smart Card Fare", "~₹48 (20% discount)"],
+          ["Estimated Travel Time", "~50 minutes (incl. dwell time)"],
+          ["Peak Frequency", "Every 3–5 minutes (weekday peak)"],
+          ["First Train from NEC", "06:00 AM (Mon–Sat)"],
+          ["Last Train from NEC", "10:23 PM"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Noida Electronic City Station — Your Starting Point"
+      },
+      {
+        "type": "p",
+        "text": "Noida Electronic City metro station is the eastern terminus of Delhi Metro's Blue Line (Line 3). Inaugurated on 9 March 2019, it was built to serve the dense belt of IT companies, BPO campuses, and software parks concentrated in Sectors 62 and 63 of Noida. The station is elevated, built on a steel viaduct above road level, and features two side platforms."
+      },
+      {
+        "type": "table",
+        "headers": ["Platform", "Direction", "Action"],
+        "rows": [
+          ["Platform 1", "Train terminates here — arriving from Dwarka Sector 21", "Do not board from here"],
+          ["Platform 2", "Toward Dwarka Sector 21 (via Rajiv Chowk)", "Board here for Rajiv Chowk"]
+        ]
+      },
+      {
+        "type": "h3",
+        "text": "Noida Electronic City — Gate Guide"
+      },
+      {
+        "type": "table",
+        "headers": ["Gate", "Leads To", "Best For"],
+        "rows": [
+          ["Gate 1", "Indirapuram / Ghaziabad side, NH-24 east", "Commuters from Indirapuram, Vaibhav Khand. Large DMRC parking on this side."],
+          ["Gate 2", "Sector 63, H Block — SBI, PNB, HDFC Bank, Haldiram, Ginger Hotel, Domino's", "IT park employees from Sector 63, Logix Cyber Park"],
+          ["Gate 3", "Highway Tower, I-Thumb Tower, Graphics Tower, Gol Chakkar Sector 62", "Workers in Sector 62 IT cluster — Infosys, Wipro, Tech Mahindra zone"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "All 22 Stations — Noida Electronic City to Rajiv Chowk"
+      },
+      {
+        "type": "p",
+        "text": "This is a direct, no-interchange journey on the Blue Line. Board at Noida Electronic City (Platform 2, toward Dwarka Sector 21) and stay on the same train until Rajiv Chowk — 22 stations later."
+      },
+      {
+        "type": "table",
+        "headers": ["Stop No.", "Station", "Est. Time from Start", "Notes"],
+        "rows": [
+          ["START", "Noida Electronic City", "0 min", "Terminus — Board Platform 2"],
+          ["1", "Noida Sector 62", "~3 min", "IT Hub — Logix Cyber Park nearby"],
+          ["2", "Noida Sector 59", "~5 min", ""],
+          ["3", "Noida Sector 61", "~7 min", ""],
+          ["4", "Noida Sector 52", "~10 min", ""],
+          ["5", "Noida Sector 34", "~12 min", ""],
+          ["6", "Noida City Centre", "~14 min", "Major commercial hub"],
+          ["7", "Golf Course", "~17 min", ""],
+          ["8", "Botanical Garden", "~19 min", "Major hub — signal drops after this"],
+          ["9", "Noida Sector 18", "~22 min", "Retail and commercial centre"],
+          ["10", "Noida Sector 16", "~24 min", ""],
+          ["11", "Noida Sector 15", "~26 min", ""],
+          ["12", "New Ashok Nagar", "~28 min", "RRTS interchange nearby"],
+          ["13", "Mayur Vihar Extension", "~30 min", ""],
+          ["14", "Mayur Vihar Phase 1", "~32 min", ""],
+          ["15", "Yamuna Bank", "~35 min", "Interchange — Vaishali branch splits here"],
+          ["16", "Indraprastha", "~38 min", ""],
+          ["17", "Supreme Court", "~40 min", ""],
+          ["18", "Mandi House", "~42 min", "Interchange — Violet Line"],
+          ["19", "Barakhamba Road", "~44 min", "Central Delhi offices"],
+          ["20", "Shivaji Stadium", "~46 min", ""],
+          ["21", "Patel Chowk", "~48 min", ""],
+          ["END", "Rajiv Chowk", "~50 min", "Yellow Line interchange — Connaught Place"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Rajiv Chowk Station — Your Destination"
+      },
+      {
+        "type": "p",
+        "text": "Rajiv Chowk is the most important interchange station in the Delhi Metro network, sitting directly beneath Connaught Place. It is a fully underground, 3-level hub serving both the Blue Line and Yellow Line. Facilities include PNB ATM (Concourse B/D), SBI ATM (Concourse A/F), Burger King, Barista, CCD near Platform 3/4, and a Pulse Active health kiosk at Concourse F-Block. No parking is available at Rajiv Chowk."
+      },
+      {
+        "type": "table",
+        "headers": ["Platform", "Direction"],
+        "rows": [
+          ["Platform 3", "Toward Noida Electronic City / Vaishali (return journey)"],
+          ["Platform 4", "Toward Dwarka Sector 21 (onward west Delhi travel)"]
+        ]
+      },
+      {
+        "type": "h3",
+        "text": "Rajiv Chowk — 8-Gate Exit Guide"
+      },
+      {
+        "type": "table",
+        "headers": ["Gate", "Leads To", "Best For"],
+        "rows": [
+          ["Gate 1", "Radial Road 3, Panchkuian Road, B-Block, Minto Road", "B-Block offices, Bangla Sahib Gurudwara area"],
+          ["Gate 2", "PVR Plaza, B & H Block", "PVR cinema, H-Block shops and restaurants"],
+          ["Gate 3", "D-Block, Carnival Cinema (Odeon)", "D-Block commercial area, Odeon Cinema"],
+          ["Gate 4", "E-Block, Barakhamba Road, Kasturba Gandhi Marg", "KG Marg offices, E-Block CP"],
+          ["Gate 5", "Radial Road 1, Janpath Road, F-Block", "Central Park entrance, F-Block restaurants"],
+          ["Gate 6", "Radial Road 1, Janpath Road, Palika Bazar, N-Block", "Palika Bazaar and Janpath Market — 5-minute walk"],
+          ["Gate 7", "Radial Road 2, Baba Kharak Singh Marg, A-Block", "Regal Cinema area, Shankar Market direction"],
+          ["Gate 8", "Radial Road 3, Panchkuian Road, A-Block", "A-Block offices, DTC bus stops toward New Delhi Railway Station"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Cost & Carbon Comparison"
+      },
+      {
+        "type": "table",
+        "headers": ["Mode", "Est. Time", "Typical Cost", "Carbon Impact", "Reliability"],
+        "rows": [
+          ["Delhi Metro (Blue Line)", "~50 mins", "₹54 (Smart Card)", "~0 kg CO₂", "Highly predictable"],
+          ["Private Cab (Ola/Uber)", "75–120 min (traffic)", "₹400–₹700+", "~4.2 kg CO₂", "Surge-dependent"],
+          ["Auto Rickshaw", "90–120 min", "₹300–₹400", "Moderate (~1.8 kg)", "Very unpredictable"],
+          ["DTC / UPSRTC Bus", "90–150 min", "₹30–₹60", "Low (shared)", "Route-dependent"]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Pre-Calculated Weekly & Monthly Fare Chart"
+      },
+      {
+        "type": "table",
+        "headers": ["Period", "Token Fare", "Smart Card Fare", "Saving vs Token"],
+        "rows": [
+          ["Daily (1 trip)", "₹60", "₹54", "₹6"],
+          ["Daily (return)", "₹120", "₹108", "₹12"],
+          ["Weekly (5 days return)", "₹600", "₹540", "₹60"],
+          ["Monthly (22 days return)", "₹2,640", "₹2,376", "₹264"]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Using Smart Card or MJQRT during off-peak hours (before 8 AM, 12 noon–5 PM, after 9 PM) reduces the fare further to ~₹48 per trip — saving ~₹528 per month on a 22-day commute vs standard tokens."
+      },
+      {
+        "type": "h2",
+        "text": "Golden Tips — Commuter-Level Expertise"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Board the front coaches at Noida Electronic City:** When heading toward Rajiv Chowk, position yourself at the front of the train (Dwarka-direction end). You'll be closest to the escalators and Yellow Line interchange when you arrive at Rajiv Chowk.",
+          "**Network alert — Yamuna Bank dead zone:** Mobile signal drops noticeably around Yamuna Bank as the train transitions from elevated to underground. Make calls and send messages before leaving Noida Sector 15. Signal returns by Indraprastha.",
+          "**Interchange hack for North Delhi:** If Rajiv Chowk is too crowded and you need north Delhi (Kashmere Gate, Civil Lines), exit at Mandi House (Stop 18) and take the Violet Line instead — often 10–15 minutes faster during peak hours.",
+          "**Beat the rush — the 7:30 AM window:** Worst congestion at Noida Electronic City builds between 8:15–9:30 AM. The 7:30 AM train is noticeably less crowded and qualifies for the 20% off-peak discount.",
+          "**Right-side doors open on this route:** On the Blue Line heading toward Dwarka from Noida Electronic City, doors open on the right side of the train at each station.",
+          "**Parking tip:** DMRC-authorised parking on the Gate 1 (Indirapuram) side has significantly more capacity than Gate 2/3. Arrive by 8 AM to secure a spot on weekdays."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Nearby Real Estate & Lifestyle Value"
+      },
+      {
+        "type": "p",
+        "text": "Noida's Sector 62 and 63 remain among the top rental choices for professionals working at Connaught Place or Barakhamba Road, thanks to this direct 50-minute metro connection. Rent in Sectors 62/63 runs ₹12,000–₹22,000 for a 1BHK versus ₹25,000–₹45,000 in central Delhi neighbourhoods near CP — making this corridor one of the most cost-effective commutes in the NCR. For tourists and visitors, Gate 6 at Rajiv Chowk places you at Janpath Market in a 5-minute walk, and Gate 5 opens directly to the Connaught Place Central Park lawn."
+      },
+      {
+        "type": "h2",
+        "text": "FAQs"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**What is the first train from Noida Electronic City toward Rajiv Chowk?** 06:00 AM on Monday–Saturday. Verify on the DMRC Momentum 2.0 app before an early morning trip.",
+          "**Which gate is best for Connaught Place Central Park?** Gate 5 (directly faces the Central Park lawn). Gate 6 is better for Palika Bazaar and Janpath Market.",
+          "**How many interchanges from Noida Electronic City to Rajiv Chowk?** Zero. This is a direct single-line journey on the Blue Line the entire way.",
+          "**What is the exact fare?** Token: ₹60. Smart Card/MJQRT (peak): ₹54. Smart Card/MJQRT (off-peak): ~₹48.",
+          "**How long does the journey actually take?** ~50 minutes door-to-platform including dwell time. Pure ride time is closer to 43–45 minutes.",
+          "**Is there parking at Rajiv Chowk?** No parking at Rajiv Chowk. Noida Electronic City has a large DMRC-authorised parking lot on the Gate 1 (Indirapuram) side.",
+          "**What is the best alternate route to North Delhi?** Exit at Mandi House (Stop 18) and take the Violet Line toward Kashmere Gate — often faster during peak hours than changing at Rajiv Chowk's Yellow Line."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Route data based on DMRC Blue Line operational schedule as of April 2026. Fares and timings subject to revision — verify on the official DMRC Momentum 2.0 app or dmrc.co.in before travel."
       }
     ]
   }
