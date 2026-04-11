@@ -1227,6 +1227,22 @@ function uniqueStations(stations) {
         stationList.forEach(function (station) {
           stationById[station.id] = station;
         });
+        var DEFAULT_EDGE_DISTANCE_KM = 0.2;
+        var INTERCHANGE_PENALTY_KM = 0.7;
+        var MINUTES_PER_KM = 2.2;
+        var MINUTES_PER_STOP = 0.9;
+        var MINUTES_PER_INTERCHANGE = 4;
+        var MIN_TRAVEL_TIME_MINUTES = 2;
+        var SMART_CARD_DISCOUNT_MULTIPLIER = 0.9;
+        var MIN_SMART_CARD_FARE = 10;
+        var DELHI_FARE_BRACKETS = [
+          { maxDistance: 2, fare: 10 },
+          { maxDistance: 5, fare: 20 },
+          { maxDistance: 12, fare: 30 },
+          { maxDistance: 21, fare: 40 },
+          { maxDistance: 32, fare: 50 },
+          { maxDistance: Infinity, fare: 60 }
+        ];
 
         function buildGraph(connections) {
           var graph = {};
@@ -1274,8 +1290,8 @@ function uniqueStations(stations) {
 
             (graph[current] || []).forEach(function (edge) {
               if (queue.indexOf(edge.to) === -1) return;
-              var baseDistance = edge.distance > 0 ? edge.distance : 0.2;
-              var penalty = edge.lineId === 'interchange' ? 0.7 : 0;
+              var baseDistance = edge.distance > 0 ? edge.distance : DEFAULT_EDGE_DISTANCE_KM;
+              var penalty = edge.lineId === 'interchange' ? INTERCHANGE_PENALTY_KM : 0;
               var altDistance = distanceMap[current] + baseDistance + penalty;
               if (altDistance < distanceMap[edge.to]) {
                 distanceMap[edge.to] = altDistance;
@@ -1301,12 +1317,10 @@ function uniqueStations(stations) {
         }
 
         function tokenFareForDistance(distanceKm) {
-          if (distanceKm <= 2) return 10;
-          if (distanceKm <= 5) return 20;
-          if (distanceKm <= 12) return 30;
-          if (distanceKm <= 21) return 40;
-          if (distanceKm <= 32) return 50;
-          return 60;
+          var bracket = DELHI_FARE_BRACKETS.find(function (item) {
+            return distanceKm <= item.maxDistance;
+          });
+          return bracket ? bracket.fare : DELHI_FARE_BRACKETS[DELHI_FARE_BRACKETS.length - 1].fare;
         }
 
         function calculateRoute(fromId, toId) {
@@ -1321,9 +1335,12 @@ function uniqueStations(stations) {
             return edge.lineId === 'interchange';
           }).length;
           var stops = shortest.ids.length;
-          var travelMinutes = Math.max(2, Math.round((totalDistance * 2.2) + ((stops - 1) * 0.9) + (interchanges * 4)));
+          var travelMinutes = Math.max(
+            MIN_TRAVEL_TIME_MINUTES,
+            Math.round((totalDistance * MINUTES_PER_KM) + ((stops - 1) * MINUTES_PER_STOP) + (interchanges * MINUTES_PER_INTERCHANGE))
+          );
           var tokenFare = tokenFareForDistance(totalDistance);
-          var smartFare = Math.max(10, Math.round(tokenFare * 0.9));
+          var smartFare = Math.max(MIN_SMART_CARD_FARE, Math.round(tokenFare * SMART_CARD_DISCOUNT_MULTIPLIER));
 
           return {
             ids: shortest.ids,
