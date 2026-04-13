@@ -9,20 +9,73 @@
   <meta name="description" content="Namo Bharat RRTS proposed extension from Modipuram to Haridwar and Rishikesh — full station list, travel time, real estate impact, and April 2026 news explained." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="/blog/delhi-to-haridwar-namo-bharat-rrts-proposed-route.html" />
+  <link rel="canonical" href="https://metroguideindia.com/blog/delhi-to-haridwar-namo-bharat-rrts-proposed-route.html" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Delhi to Haridwar in 2 Hours: Namo Bharat RRTS Proposed Route, Stations & Latest Updates" />
   <meta property="og:description" content="Namo Bharat RRTS extension from Meerut to Haridwar and Rishikesh — station list, travel time, April 2026 news, and real estate impact explained." />
-  <meta property="og:image" content="assets/images/blog/namo-bharat-haridwar-rrts.jpg" />
+  <meta property="og:image" content="/assets/images/blog/namo-bharat-haridwar-rrts.jpg" />
   <meta property="og:type" content="article" />
 
-  <!-- Your site CSS + blog CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/blog.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 
   <style>
     /* ── Inline additions that extend blog.css without breaking it ── */
+
+    .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 56px;position:relative;z-index:1}
+    .breadcrumbs{font-size:.78rem;color:var(--muted);margin-bottom:14px;display:flex;gap:6px;flex-wrap:wrap}
+    .breadcrumbs a{color:var(--muted);text-decoration:none}
+    .breadcrumbs a:hover{color:var(--text)}
+    .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:24px;transition:color .15s}
+    .post-back:hover{color:var(--text)}
+    .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+    .blog-body{font-size:.95rem;line-height:1.8;color:var(--text2)}
+    .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:14px;position:sticky;top:90px}
+    .sidebar-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+    .sidebar-list{display:flex;flex-direction:column;gap:10px}
+    .related-guide{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:10px 12px;text-decoration:none;color:inherit;transition:all .15s}
+    .related-guide:hover{transform:translateX(3px);border-color:rgba(192,57,43,.3)}
+    .related-guide-title{font-size:.84rem;font-weight:600;color:var(--text);line-height:1.35}
+    .related-guide-date{font-size:.72rem;color:var(--muted);margin-top:2px}
+    .interlink-box{margin-top:28px;padding:16px;border:1px solid var(--border2);border-radius:12px;background:var(--surface)}
+    .interlink-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text);margin:0 0 10px}
+    .interlink-links{display:grid;grid-template-columns:1fr;gap:8px}
+    .interlink-links a{color:var(--text);text-decoration:none;border:1px solid var(--border2);background:var(--surface2);padding:9px 11px;border-radius:8px;font-size:.88rem}
+    .interlink-links a:hover{border-color:rgba(192,57,43,.3)}
+    @media (max-width:900px){
+      .post-grid{grid-template-columns:1fr}
+      .sidebar-card{position:static}
+    }
+
+    .blog-header{margin-bottom:24px}
+    .blog-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.45rem,4vw,2.05rem);line-height:1.2;color:var(--text);margin:0 0 10px}
+    .blog-subtitle{font-size:.96rem;line-height:1.75;color:var(--text2);margin:0 0 12px}
+    .blog-meta{font-size:.8rem;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .blog-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .blog-tag{font-size:.65rem;font-weight:600;padding:3px 9px;border-radius:11px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}
+    .blog-hero{margin:0 0 20px}
+    .blog-hero img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid var(--border2)}
+    .blog-hero figcaption{font-size:.76rem;color:var(--muted);margin-top:8px;line-height:1.5}
+    .blog-content h2{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-left:12px;border-left:3px solid var(--red)}
+    .blog-content h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin:20px 0 8px}
+    .blog-content p{margin:0 0 16px;color:var(--text2);line-height:1.8}
+    .blog-content ul,.blog-content ol{margin:0 0 16px;padding-left:20px}
+    .blog-content li{margin-bottom:6px;color:var(--text2)}
+    .blog-content table{width:100%;border-collapse:collapse;font-size:.88rem;margin:16px 0}
+    .blog-content th{background:var(--surface2);color:var(--text);font-weight:600;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border2)}
+    .blog-content td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
+    .blog-content blockquote{background:var(--surface2);border-left:3px solid var(--red);padding:12px 14px;border-radius:8px;margin:18px 0}
+    .blog-content blockquote p{margin:0;color:var(--text2)}
+    .blog-footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border2)}
+    .author-box{display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:12px}
+    .author-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover}
+    .author-name{margin:0 0 3px;font-weight:700;color:var(--text)}
+    .author-bio{margin:0;font-size:.84rem;color:var(--text2);line-height:1.6}
 
     /* Quick-stats bar */
     .stats-bar {
@@ -155,13 +208,27 @@
     /* Keyword anchor (hidden, for SEO) */
     .seo-anchor { display: none; }
   </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script src="/assets/js/scripts.js"></script>
 </head>
 
-<body class="blog">
-
-  <!-- OPTIONAL: your existing site header/navbar here -->
-
-  <main class="container">
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="post-wrap">
+  <div class="breadcrumbs"><a href="/">MetroGuideIndia</a><span>›</span><a href="/blog">Blog</a><span>›</span><span>Delhi to Haridwar Namo Bharat RRTS Proposed Route</span></div>
+  <a href="/blog" class="post-back">← Back to all posts</a>
+  <div class="post-grid">
+    <div>
 
     <!-- ════════════════════════════════════
          BLOG HEADER
@@ -199,7 +266,7 @@
     ════════════════════════════════════ -->
     <figure class="blog-hero">
       <img
-        src="assets/images/blog/namo-bharat-haridwar-rrts.jpg"
+        src="/assets/images/blog/namo-bharat-haridwar-rrts.jpg"
         alt="Namo Bharat RRTS train running on an elevated corridor — the proposed extension would take this rapid rail from Modipuram, Meerut to Haridwar and Rishikesh along NH-58"
       />
       <figcaption>The Namo Bharat RRTS train on its elevated corridor. The proposed Meerut–Haridwar extension would extend this corridor northward along NH-58 to the Himalayan foothills. <em>Photo: PTI</em></figcaption>
@@ -475,14 +542,53 @@
         This is a separate but related request by the Uttarakhand government for funding to develop automatic power systems and underground electricity infrastructure in the Kumbh Mela area of Haridwar — an eco-sensitive zone. It is part of the broader infrastructure preparation for RRTS readiness in the region, and is not the total project cost.
       </p>
 
+
+
+      <div class="interlink-box">
+        <h3 class="interlink-title">More MetroGuideIndia Reading</h3>
+        <div class="interlink-links">
+          <a href="/blog/delhi-to-meerut-rrts-travel-guide.html">Delhi to Meerut by Namo Bharat RRTS — Complete Travel Guide</a>
+          <a href="/blog/delhi-meerut-rrts-stations-parking-connectivity.html">Delhi-Meerut RRTS: Complete Guide to Stations, Parking, and Last-Mile Connectivity</a>
+          <a href="/blog/complete-rrts-fare-guide-2026.html">Complete Namo Bharat RRTS Fare Guide 2026</a>
+          <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html">RRTS Parking: Complete Guide to Charges, Monthly Passes, and Station Locations</a>
+          <a href="/routes/sarai-kale-khan-to-modipuram.html">Sarai Kale Khan to Modipuram Namo Bharat Route</a>
+          <a href="/routes/meerut-south-to-modipuram.html">Meerut South to Modipuram Namo Bharat Route</a>
+        </div>
+      </div>
+
     </article>
+
+    </div>
+    <aside class="sidebar-card" aria-label="Related Guides">
+      <div class="sidebar-title">Related Guides</div>
+      <div class="sidebar-list">
+        <a class="related-guide" href="/blog/delhi-to-meerut-rrts-travel-guide.html">
+          <div class="related-guide-title">Delhi to Meerut by Namo Bharat RRTS — Complete Travel Guide</div>
+          <div class="related-guide-date">5 March 2026</div>
+        </a>
+        <a class="related-guide" href="/blog/delhi-meerut-rrts-stations-parking-connectivity.html">
+          <div class="related-guide-title">Delhi-Meerut RRTS: Complete Guide to Stations, Parking, and Last-Mile Connectivity</div>
+          <div class="related-guide-date">15 March 2026</div>
+        </a>
+        <a class="related-guide" href="/blog/complete-rrts-fare-guide-2026.html">
+          <div class="related-guide-title">Complete Namo Bharat RRTS Fare Guide 2026</div>
+          <div class="related-guide-date">9 March 2026</div>
+        </a>
+        <a class="related-guide" href="/routes/sarai-kale-khan-to-modipuram.html">
+          <div class="related-guide-title">Sarai Kale Khan to Modipuram Route Guide</div>
+          <div class="related-guide-date">Route Guide</div>
+        </a>
+      </div>
+    </aside>
+  </div>
+
 
     <!-- ════════════════════════════════════
          BLOG FOOTER / AUTHOR BOX
     ════════════════════════════════════ -->
     <footer class="blog-footer">
       <div class="author-box">
-        <img class="author-avatar" src="assets/images/authors/default.jpg" alt="MetroGuide India team author photo" />
+        <img class="author-avatar" src="/assets/images/authors/default.jpg" alt="MetroGuide India team author photo" />
         <div>
           <p class="author-name">MetroGuide India</p>
           <p class="author-bio">Writing guides about metro travel, rapid rail, and city navigation across India. All data sourced from official NCRTC, DMRC, and government announcements.</p>
@@ -490,9 +596,63 @@
       </div>
     </footer>
 
-  </main>
+</div>
 
-  <!-- OPTIONAL: your existing site footer here -->
 
+<section id="global-search-section" style="margin:28px 0 36px">
+  <div class="sec-eye">Route Planner</div>
+  <h2 class="sec-head" style="margin-bottom:10px">Plan a Route</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Search any two stations to open the route planner with the correct city dataset.</p>
+  <div class="sc">
+    <div class="fd">
+      <label class="fl" for="global-src-search">From</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
+        <input type="hidden" id="global-src">
+        <ul class="ac-list" id="global-src-list" hidden></ul>
+      </div>
+    </div>
+
+    <div class="swap-row">
+      <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+      </button>
+    </div>
+
+    <div class="fd">
+      <label class="fl" for="global-dst-search">To</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
+        <input type="hidden" id="global-dst">
+        <ul class="ac-list" id="global-dst-list" hidden></ul>
+      </div>
+    </div>
+
+    <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <p class="foot-desc">Delhi–Meerut Namo Bharat RRTS and Meerut Metro route planner.</p>
+    <div class="foot-links">
+      <a href="/">Home</a><span>·</span>
+      <a href="/blog">Blog</a><span>·</span>
+      <a href="/stations">Stations</a><span>·</span>
+      <a href="/timings">Timings</a><span>·</span>
+      <a href="/fares">Fares</a><span>·</span>
+      <a href="/about.html">About</a><span>·</span>
+      <a href="/contact.html">Contact</a><span>·</span>
+      <a href="/privacy.html">Privacy Policy</a><span>·</span>
+      <a href="/terms.html">Terms</a><span>·</span>
+      <a href="/disclaimer.html">Disclaimer</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+
+<script src="/js/globalSearchBar.js?v=20260410"></script>
 </body>
 </html>
