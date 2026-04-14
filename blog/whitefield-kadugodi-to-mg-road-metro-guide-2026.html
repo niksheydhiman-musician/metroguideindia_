@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
 
   <!-- SEO -->
   <title>Whitefield (Kadugodi) to MG Road Metro Guide 2026: Route, Fare, Timings & Local Tips</title>
@@ -14,12 +18,144 @@
   <meta property="og:description" content="Everything you need to know about the Whitefield to MG Road metro journey — direct Purple Line, 19 km, ~35 minutes, ₹70 token fare, QR ticketing, exit gates and last-mile tips." />
   <meta property="og:type" content="article" />
 
-  <!-- Site CSS + Blog CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/blog.css" />
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
 
   <style>
-    /* ── Inline additions that extend blog.css ── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 18px 56px;
+    }
+    .blog-header { margin-bottom: 24px; }
+    .blog-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      line-height: 1.2;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+    .blog-subtitle {
+      font-size: .96rem;
+      line-height: 1.75;
+      color: var(--text2);
+      margin: 0 0 14px;
+    }
+    .blog-meta {
+      font-size: .8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .blog-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .blog-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f3e8ff;
+      color: #6c2e9d;
+      border: 1px solid #e9d5ff;
+    }
+    .blog-tag a { color: inherit; }
+    .blog-hero { margin: 0 0 26px; }
+    .blog-hero img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border2);
+      display: block;
+    }
+    .blog-hero figcaption {
+      margin-top: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .blog-content {
+      font-size: .95rem;
+      line-height: 1.8;
+      color: var(--text2);
+    }
+    .blog-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin: 28px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid #7c3aed;
+    }
+    .blog-content h3 {
+      font-size: 1rem;
+      margin: 22px 0 10px;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .blog-content p { margin: 0 0 16px; color: var(--text2); }
+    .blog-content ul { margin: 0 0 16px; padding-left: 20px; }
+    .blog-content li { margin-bottom: 6px; }
+    .blog-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: .88rem;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .blog-content th {
+      background: var(--surface2);
+      color: var(--text);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border2);
+    }
+    .blog-content td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+    }
+    .blog-content blockquote {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #d97706;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 18px 0;
+    }
+    .blog-content blockquote p { margin: 0; }
+    .blog-footer { margin-top: 18px; }
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .author-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border2);
+    }
+    .author-name {
+      margin: 0 0 4px;
+      font-weight: 700;
+      color: var(--text);
+      font-size: .9rem;
+    }
+    .author-bio {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.6;
+    }
 
     /* Quick-stats bar */
     .stats-bar {
@@ -166,9 +302,20 @@
       letter-spacing: 0.04em;
     }
   </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script src="/assets/js/scripts.js"></script>
 </head>
 
 <body class="blog">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo"><div class="logo-icon">🚇</div>MetroGuideIndia</a>
+      <div class="nav-right">
+        <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
+      </div>
+    </div>
+  </nav>
 
   <main class="container">
 
@@ -177,12 +324,12 @@
     ══════════════════════════════ -->
     <header class="blog-header">
       <h1 class="blog-title">
-        Whitefield (Kadugodi) to MG Road Metro Guide (2026)
+        <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Metro Guide (2026)
         <span class="purple-badge">Purple Line</span>
       </h1>
 
       <p class="blog-subtitle">
-        Route, fare, timings, station list, exit gate secrets, and the local tips that other guides skip — everything for the Whitefield to MG Road metro journey on Namma Metro's Purple Line.
+        Route, fare, timings, station list, exit gate secrets, and the local tips that other guides skip — everything for the Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro journey on Namma Metro's Purple Line.
       </p>
 
       <div class="blog-meta">
@@ -197,7 +344,7 @@
         <span class="blog-tag">Namma Metro</span>
         <span class="blog-tag">Purple Line</span>
         <span class="blog-tag">Whitefield</span>
-        <span class="blog-tag">MG Road Bangalore</span>
+        <span class="blog-tag"><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Bangalore</span>
         <span class="blog-tag">Kadugodi Metro Station</span>
         <span class="blog-tag">Bangalore Metro 2026</span>
       </div>
@@ -208,7 +355,7 @@
     ══════════════════════════════ -->
     <figure class="blog-hero">
       <img
-        src="assets/images/blog/whitefield-mg-road-metro.jpg"
+        src="/assets/images/blog/whitefield-mg-road-metro.jpg"
         alt="Namma Metro Purple Line train at Whitefield (Kadugodi) metro station in Bangalore — the direct metro route to MG Road covering 19 km in approximately 35 minutes"
       />
       <figcaption>Namma Metro's Purple Line at Whitefield (Kadugodi) station — the eastern terminus for the direct metro journey to MG Road, Bengaluru. <em>Photo: BMRCL</em></figcaption>
@@ -221,10 +368,10 @@
 
       <!-- INTRO -->
       <p>
-        If you work out of Whitefield's IT corridor and commute to MG Road daily, you already know what Bengaluru traffic can do to your morning. The good news is that Namma Metro's Purple Line has made this one of the city's most reliable commutes. The <strong>Whitefield (Kadugodi) to MG Road metro</strong> journey covers approximately 19 km in around 34–38 minutes — without a single interchange, without traffic signals, and without the dread of Outer Ring Road gridlock.
+        If you work out of Whitefield's IT corridor and commute to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> daily, you already know what Bengaluru traffic can do to your morning. The good news is that Namma Metro's Purple Line has made this one of the city's most reliable commutes. The <strong><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro</strong> journey covers approximately 19 km in around 34–38 minutes — without a single interchange, without traffic signals, and without the dread of Outer Ring Road gridlock.
       </p>
       <p>
-        This guide is designed to be the most useful resource on the web for this specific route — not just the basic stats, but the boarding intelligence, fare hacks, exit gate strategy, and last-mile tips that make your commute genuinely faster. Whether you're searching <em>MG Road to Whitefield metro</em> or planning your first trip from <em>Kadugodi metro station</em>, this covers everything.
+        This guide is designed to be the most useful resource on the web for this specific route — not just the basic stats, but the boarding intelligence, fare hacks, exit gate strategy, and last-mile tips that make your commute genuinely faster. Whether you're searching <em><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> to Whitefield metro</em> or planning your first trip from <em>Kadugodi metro station</em>, this covers everything.
       </p>
 
       <!-- QUICK STATS -->
@@ -235,7 +382,7 @@
         </div>
         <div class="stat-cell">
           <div class="stat-label">Distance</div>
-          <div class="stat-value">~19 km<span class="sub">Whitefield to MG Road</span></div>
+          <div class="stat-value">~19 km<span class="sub">Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a></span></div>
         </div>
         <div class="stat-cell">
           <div class="stat-label">Travel Time</div>
@@ -259,22 +406,22 @@
         </div>
         <div class="stat-cell">
           <div class="stat-label">Last Train</div>
-          <div class="stat-value">10:45 PM<span class="sub">From Whitefield (Kadugodi)</span></div>
+          <div class="stat-value">10:45 PM<span class="sub">From <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a></span></div>
         </div>
       </div>
 
       <!-- ── SECTION 1: COMPLETE STATION LIST ── -->
-      <h2>Complete Station List — Whitefield to MG Road (East to West)</h2>
+      <h2>Complete Station List — Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> (East to West)</h2>
       <p>
-        The <strong>Whitefield (Kadugodi) to MG Road metro</strong> route on the Purple Line passes through 17 intermediate stops. The stations are grouped below by zone to help you identify your boarding or alighting point quickly.
+        The <strong><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro</strong> route on the Purple Line passes through 17 intermediate stops. The stations are grouped below by zone to help you identify your boarding or alighting point quickly.
       </p>
 
       <ul class="station-timeline">
         <li>
           <div class="st-dot terminus">S</div>
           <div class="st-body">
-            <div class="st-name">Whitefield (Kadugodi) — Start</div>
-            <div class="st-desc">Eastern terminus of the Purple Line. Board from <strong>Platform 2</strong> for all trains heading toward MG Road and Challaghatta. Since this is the terminal station, trains start empty here — guaranteed seating if you board at Kadugodi.</div>
+            <div class="st-name"><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> — Start</div>
+            <div class="st-desc">Eastern terminus of the Purple Line. Board from <strong>Platform 2</strong> for all trains heading toward <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> and Challaghatta. Since this is the terminal station, trains start empty here — guaranteed seating if you board at Kadugodi.</div>
           </div>
         </li>
         <li>
@@ -287,8 +434,8 @@
         <li>
           <div class="st-dot">2</div>
           <div class="st-body">
-            <div class="st-name">Pattanduru Agrahara (ITPL)</div>
-            <div class="st-desc">Serves the International Tech Park Bangalore (ITPL) — one of Whitefield's largest IT campuses. Major boarding point for tech professionals.</div>
+            <div class="st-name">Pattanduru Agrahara (<a href="/bengaluru-metro/itpl-metro-station.html">ITPL</a>)</div>
+            <div class="st-desc">Serves the International Tech Park Bangalore (<a href="/bengaluru-metro/itpl-metro-station.html">ITPL</a>) — one of Whitefield's largest IT campuses. Major boarding point for tech professionals.</div>
           </div>
         </li>
         <li>
@@ -371,8 +518,8 @@
         <li>
           <div class="st-dot">14</div>
           <div class="st-body">
-            <div class="st-name">Indiranagar</div>
-            <div class="st-desc">One of the most popular stations on the route. Serves Indiranagar — Bengaluru's trendiest neighbourhood for cafés, restaurants, pubs, and shopping. Underground station.</div>
+            <div class="st-name"><a href="/bengaluru-metro/indiranagar-metro-station.html">Indiranagar</a></div>
+            <div class="st-desc">One of the most popular stations on the route. Serves <a href="/bengaluru-metro/indiranagar-metro-station.html">Indiranagar</a> — Bengaluru's trendiest neighbourhood for cafés, restaurants, pubs, and shopping. Underground station.</div>
           </div>
         </li>
         <li>
@@ -392,20 +539,20 @@
         <li>
           <div class="st-dot dest">END</div>
           <div class="st-body">
-            <div class="st-name">MG Road — Destination</div>
-            <div class="st-desc">Underground station in the heart of Bengaluru's commercial district. Future Pink Line interchange (under construction, expected 2026). Three exit points serving Church Street, Brigade Road, and the MG Road Boulevard. See exit guide below.</div>
+            <div class="st-name"><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> — Destination</div>
+            <div class="st-desc">Underground station in the heart of Bengaluru's commercial district. Future Pink Line interchange (under construction, expected 2026). Three exit points serving Church Street, Brigade Road, and the <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Boulevard. See exit guide below.</div>
           </div>
         </li>
       </ul>
 
       <div class="note-box">
-        <strong>⭐ Guaranteed Seat Hack:</strong> Since Whitefield (Kadugodi) is the terminal station, <strong>every train starts empty here</strong>. If you board at Kadugodi, you are guaranteed a seat — a significant advantage over boarding at Hopefarm, ITPL, or Hoodi, where trains already fill up. Factor in 5–10 extra minutes for the journey to Whitefield during peak hours if you want this benefit.
+        <strong>⭐ Guaranteed Seat Hack:</strong> Since <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> is the terminal station, <strong>every train starts empty here</strong>. If you board at Kadugodi, you are guaranteed a seat — a significant advantage over boarding at Hopefarm, <a href="/bengaluru-metro/itpl-metro-station.html">ITPL</a>, or Hoodi, where trains already fill up. Factor in 5–10 extra minutes for the journey to Whitefield during peak hours if you want this benefit.
       </div>
 
       <!-- ── SECTION 2: TIMINGS ── -->
       <h2>Timings & Frequency — 2026 Update</h2>
       <p>
-        The Purple Line operates daily with the following schedule from <strong>Whitefield (Kadugodi)</strong>:
+        The Purple Line operates daily with the following schedule from <strong><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a></strong>:
       </p>
 
       <table>
@@ -441,13 +588,13 @@
       </p>
 
       <blockquote>
-        <p><strong>Buffer Tip:</strong> Add 5–10 minutes to your security check time at Whitefield (Kadugodi) during the 9:00 AM rush. The security queues at the Kadugodi station entrance can build quickly on weekday mornings. Arriving 8 minutes early is usually enough.</p>
+        <p><strong>Buffer Tip:</strong> Add 5–10 minutes to your security check time at <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> during the 9:00 AM rush. The security queues at the Kadugodi station entrance can build quickly on weekday mornings. Arriving 8 minutes early is usually enough.</p>
       </blockquote>
 
       <!-- ── SECTION 3: FARE ── -->
       <h2>Fare Structure & How to Pay Smart</h2>
       <p>
-        The <strong>Whitefield to MG Road metro fare</strong> is distance-based. Here is a full breakdown for this specific route:
+        The <strong>Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro fare</strong> is distance-based. Here is a full breakdown for this specific route:
       </p>
 
       <table>
@@ -497,7 +644,7 @@
         <li><strong>QR Ticket via Namma Metro App:</strong> Download the <a href="https://play.google.com/store/apps/details?id=in.bmrc.nammametro" target="_blank" rel="noopener noreferrer">Namma Metro app on Android</a> or <a href="https://apps.apple.com/in/app/namma-metro/id1490823023" target="_blank" rel="noopener noreferrer">iOS</a>, buy a QR ticket instantly, and scan at the AFC gate. No queuing.</li>
         <li><strong>WhatsApp QR Ticket:</strong> Message <strong>+91 97424 99911</strong> on WhatsApp, follow the prompts to book and pay, and receive a QR code instantly. Works without a separate app. <a href="https://nammametro.in/WhatsApp-Ticketing.html" target="_blank" rel="noopener noreferrer">Learn how WhatsApp ticketing works on Namma Metro →</a></li>
         <li><strong>Paytm / PhonePe:</strong> Both apps support Namma Metro QR ticketing directly from their transit sections.</li>
-        <li><strong>Daily Unlimited Pass (₹150):</strong> Worth it if you plan to take 3+ rides in a day — for example, going to MG Road, returning, and then heading out again in the evening.</li>
+        <li><strong>Daily Unlimited Pass (₹150):</strong> Worth it if you plan to take 3+ rides in a day — for example, going to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>, returning, and then heading out again in the evening.</li>
       </ul>
 
       <div class="note-box">
@@ -505,16 +652,16 @@
       </div>
 
       <!-- ── SECTION 4: WHITEFIELD STATION DEEP DIVE ── -->
-      <h2>Whitefield (Kadugodi) Station — Everything You Need to Know</h2>
+      <h2><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> Station — Everything You Need to Know</h2>
       <p>
         <strong>Kadugodi metro station</strong> is the eastern terminus of Namma Metro's Purple Line, inaugurated on 26 March 2023. It sits adjacent to the Whitefield Railway Station — a dual transport node for both suburban rail and metro commuters from the IT corridor.
       </p>
 
       <h3>Platform Intelligence</h3>
       <ul>
-        <li><strong>Platform 2:</strong> All trains toward MG Road, Indiranagar, Majestic, and Challaghatta depart from Platform 2. This is the only active departing platform.</li>
-        <li><strong>Platform 1:</strong> Arriving trains from MG Road end their journey on Platform 1. Do not attempt to board from here.</li>
-        <li>Doors open on the <strong>left side</strong> of the train as you face the direction of travel (toward MG Road).</li>
+        <li><strong>Platform 2:</strong> All trains toward <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>, <a href="/bengaluru-metro/indiranagar-metro-station.html">Indiranagar</a>, Majestic, and Challaghatta depart from Platform 2. This is the only active departing platform.</li>
+        <li><strong>Platform 1:</strong> Arriving trains from <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> end their journey on Platform 1. Do not attempt to board from here.</li>
+        <li>Doors open on the <strong>left side</strong> of the train as you face the direction of travel (toward <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>).</li>
       </ul>
 
       <h3>Facilities at Kadugodi Metro Station</h3>
@@ -534,23 +681,23 @@
       </table>
 
       <!-- ── SECTION 5: MG ROAD STATION ── -->
-      <h2>MG Road Metro Station — Arrival Guide</h2>
+      <h2><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Metro Station — Arrival Guide</h2>
       <p>
-        MG Road metro station is an underground station on the Purple Line — one of the five underground stations on the line, built using the cut-and-cover method. It sits beneath <strong>Mahatma Gandhi Road</strong>, the iconic commercial artery of central Bengaluru. The station is also a future Pink Line interchange point (under construction, expected to open in late 2026), which will make it one of the most significant nodes in the Namma Metro network.
+        <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro station is an underground station on the Purple Line — one of the five underground stations on the line, built using the cut-and-cover method. It sits beneath <strong>Mahatma Gandhi Road</strong>, the iconic commercial artery of central Bengaluru. The station is also a future Pink Line interchange point (under construction, expected to open in late 2026), which will make it one of the most significant nodes in the Namma Metro network.
       </p>
       <p>
         <em>Good news for early 2026 commuters:</em> Kamaraj Road (the approach road at Gate 3) was fully reopened in January 2026 after nearly six years of metro construction work. Access to the station from that direction is now smoother than it has been in years.
       </p>
 
-      <h3>Platform Details at MG Road</h3>
+      <h3>Platform Details at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a></h3>
       <ul>
-        <li><strong>Platform 1:</strong> Toward Whitefield (Kadugodi) — board here for the return journey.</li>
+        <li><strong>Platform 1:</strong> Toward <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> — board here for the return journey.</li>
         <li><strong>Platform 2:</strong> Toward Challaghatta — for onward travel to Majestic, Vijayanagar, and Kengeri.</li>
       </ul>
 
-      <h3>The Exit Gate Strategy — Secret Sauce for MG Road</h3>
+      <h3>The Exit Gate Strategy — Secret Sauce for <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a></h3>
       <p>
-        MG Road station has <strong>three exit points</strong>, and picking the wrong one can add a 10-minute walk to your destination. Here is exactly which gate to use:
+        <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> station has <strong>three exit points</strong>, and picking the wrong one can add a 10-minute walk to your destination. Here is exactly which gate to use:
       </p>
 
       <div class="exit-grid">
@@ -561,8 +708,8 @@
         </div>
         <div class="exit-card">
           <div class="ec-gate">Exit B</div>
-          <div class="ec-name">MG Road Boulevard</div>
-          <p>Best for: <strong>The MG Road walking boulevard, Samsung Opera House, Metro Art Center, and the main MG Road pedestrian stretch.</strong> This is the most scenic exit — walk straight out onto the tree-lined boulevard.</p>
+          <div class="ec-name"><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Boulevard</div>
+          <p>Best for: <strong>The <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> walking boulevard, Samsung Opera House, Metro Art Center, and the main <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> pedestrian stretch.</strong> This is the most scenic exit — walk straight out onto the tree-lined boulevard.</p>
         </div>
         <div class="exit-card">
           <div class="ec-gate">Exit C</div>
@@ -571,17 +718,17 @@
         </div>
       </div>
 
-      <h3>Facilities at MG Road Station</h3>
+      <h3>Facilities at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Station</h3>
       <table>
         <thead>
           <tr><th>Facility</th><th>Details</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Parking</strong></td><td>No parking at MG Road station — this is an underground urban station. Do not drive here. The entire point of taking the metro is to avoid MG Road's parking nightmare. Use the metro specifically for this.</td></tr>
+          <tr><td><strong>Parking</strong></td><td>No parking at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> station — this is an underground urban station. Do not drive here. The entire point of taking the metro is to avoid <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>'s parking nightmare. Use the metro specifically for this.</td></tr>
           <tr><td><strong>Restrooms</strong></td><td>Available on the concourse level.</td></tr>
-          <tr><td><strong>ATMs</strong></td><td>SBI ATM inside the station concourse. Multiple bank ATMs within 100 metres on MG Road itself.</td></tr>
-          <tr><td><strong>Food near MG Road Station</strong></td><td>The MG Road boulevard has small eateries and coffee kiosks at street level. Exit B puts you closest to these. For a sit-down meal, Church Street (Exit A) has dozens of options from Koshy's to The Permit Room.</td></tr>
-          <tr><td><strong>Last Mile</strong></td><td>Uber/Ola/Rapido pickup zones are designated specifically near <strong>Exit A</strong> to avoid traffic fines on MG Road. Do not call a cab and try to get picked up from the main road — use the designated pickup point.</td></tr>
+          <tr><td><strong>ATMs</strong></td><td>SBI ATM inside the station concourse. Multiple bank ATMs within 100 metres on <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> itself.</td></tr>
+          <tr><td><strong>Food near <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Station</strong></td><td>The <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> boulevard has small eateries and coffee kiosks at street level. Exit B puts you closest to these. For a sit-down meal, Church Street (Exit A) has dozens of options from Koshy's to The Permit Room.</td></tr>
+          <tr><td><strong>Last Mile</strong></td><td>Uber/Ola/Rapido pickup zones are designated specifically near <strong>Exit A</strong> to avoid traffic fines on <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>. Do not call a cab and try to get picked up from the main road — use the designated pickup point.</td></tr>
           <tr><td><strong>Accessibility</strong></td><td>Three entry/exit points all wheelchair accessible. Lifts and escalators between platform, concourse, and street levels. Emergency: Metro helpline <strong>1511</strong>.</td></tr>
         </tbody>
       </table>
@@ -593,7 +740,7 @@
         <div class="tip-card">
           <div class="tc-icon">🎯</div>
           <div class="tc-title">Board at Kadugodi for a Guaranteed Seat</div>
-          <p>Whitefield (Kadugodi) is the terminus — every train starts empty here. If you board at Hopefarm, ITPL, or Hoodi, the train is already filling up. Those 5 extra minutes to reach Kadugodi can mean the difference between a comfortable seated commute and a standing crush.</p>
+          <p><a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> is the terminus — every train starts empty here. If you board at Hopefarm, <a href="/bengaluru-metro/itpl-metro-station.html">ITPL</a>, or Hoodi, the train is already filling up. Those 5 extra minutes to reach Kadugodi can mean the difference between a comfortable seated commute and a standing crush.</p>
         </div>
         <div class="tip-card">
           <div class="tc-icon">⏱️</div>
@@ -603,7 +750,7 @@
         <div class="tip-card">
           <div class="tc-icon">👩</div>
           <div class="tc-title">Women's Coach Rule</div>
-          <p>The <strong>first coach</strong> of every Purple Line train has reserved seating for women at the front two doors heading toward MG Road. Male passengers should avoid these designated areas. This coach tends to be less crowded — female commuters can use this to their advantage at Whitefield.</p>
+          <p>The <strong>first coach</strong> of every Purple Line train has reserved seating for women at the front two doors heading toward <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>. Male passengers should avoid these designated areas. This coach tends to be less crowded — female commuters can use this to their advantage at Whitefield.</p>
         </div>
         <div class="tip-card">
           <div class="tc-icon">📱</div>
@@ -617,84 +764,84 @@
         </div>
         <div class="tip-card">
           <div class="tc-icon">🚕</div>
-          <div class="tc-title">MG Road Pickup Zone — Critical</div>
-          <p>Uber/Ola/Rapido pickups at MG Road station are only permitted at the <strong>designated zone near Exit A</strong>. Traffic police are active on MG Road and issue fines for illegal pickups on the main boulevard. Use the app to set the designated pickup point before you exit the station.</p>
+          <div class="tc-title"><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Pickup Zone — Critical</div>
+          <p>Uber/Ola/Rapido pickups at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> station are only permitted at the <strong>designated zone near Exit A</strong>. Traffic police are active on <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> and issue fines for illegal pickups on the main boulevard. Use the app to set the designated pickup point before you exit the station.</p>
         </div>
       </div>
 
       <!-- ── SECTION 7: LAST-MILE ── -->
       <h2>Last-Mile Connectivity</h2>
 
-      <h3>At Whitefield (Kadugodi)</h3>
+      <h3>At <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a></h3>
       <ul>
         <li><strong>BMTC Feeder Buses (MF prefix):</strong> MF-1, MF-2 routes connect the station to EPIP Zone, Varthur, and Hagadur. These run in sync with metro timings — look for the orange-and-white BMTC feeders at the bus bay outside Gate 1.</li>
-        <li><strong>Auto-rickshaws:</strong> Prepaid auto counter available outside the station. Shared autos run toward ITPL and Marathahalli. Negotiate firmly for unmetered autos — always insist on the meter.</li>
+        <li><strong>Auto-rickshaws:</strong> Prepaid auto counter available outside the station. Shared autos run toward <a href="/bengaluru-metro/itpl-metro-station.html">ITPL</a> and Marathahalli. Negotiate firmly for unmetered autos — always insist on the meter.</li>
         <li><strong>Ola/Uber/Rapido:</strong> Pickup zone on the approach road, Gate 1 side. Expect 3–5 minute arrival times. Surge pricing during 8:30–10 AM.</li>
         <li><strong>Whitefield Railway Station:</strong> 5-minute walk. Suburban trains connect to KSR Bengaluru (City Station), Yeshwanthpur, and Majestic via the railway route.</li>
       </ul>
 
-      <h3>At MG Road</h3>
+      <h3>At <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a></h3>
       <ul>
-        <li><strong>Designated cab pickup (Exit A):</strong> Use only the marked pickup zone near Exit A. The app will show this as the pin location for MG Road metro station.</li>
+        <li><strong>Designated cab pickup (Exit A):</strong> Use only the marked pickup zone near Exit A. The app will show this as the pin location for <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro station.</li>
         <li><strong>Rapido Bike Taxi:</strong> Fastest for short hops to Commercial Street, Shivajinagar Bus Terminal, or Residency Road. Pickup from Exit A or B depending on destination.</li>
-        <li><strong>Walking:</strong> From Exit A — Brigade Road (5 min), Church Street (2 min). From Exit B — MG Road Boulevard (immediate). From Exit C — Cubbon Park (10 min), Cauvery Emporium (3 min).</li>
-        <li><strong>BMTC Buses:</strong> Multiple routes stop on MG Road at street level — including services to Shivajinagar, KR Market, and Banashankari.</li>
+        <li><strong>Walking:</strong> From Exit A — Brigade Road (5 min), Church Street (2 min). From Exit B — <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Boulevard (immediate). From Exit C — Cubbon Park (10 min), Cauvery Emporium (3 min).</li>
+        <li><strong>BMTC Buses:</strong> Multiple routes stop on <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> at street level — including services to Shivajinagar, KR Market, and Banashankari.</li>
       </ul>
 
       <!-- ── SECTION 8: REVERSE ROUTE ── -->
-      <h2>MG Road to Whitefield Metro — The Return Journey</h2>
+      <h2><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> to Whitefield Metro — The Return Journey</h2>
       <p>
-        The <strong>MG Road to Whitefield metro</strong> return journey uses the same Purple Line — just in the opposite direction. Board from <strong>Platform 1</strong> at MG Road station toward Whitefield (Kadugodi). The journey covers the same 19 stations in the same 34–38 minutes.
+        The <strong><a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> to Whitefield metro</strong> return journey uses the same Purple Line — just in the opposite direction. Board from <strong>Platform 1</strong> at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> station toward <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a>. The journey covers the same 19 stations in the same 34–38 minutes.
       </p>
       <p>
-        Trains on the return run from MG Road toward Whitefield from as early as <strong>05:58 AM</strong>. The last train from MG Road toward Whitefield departs around <strong>11:00 PM</strong>. Check the <a href="https://nammametro.in" target="_blank" rel="noopener noreferrer">Namma Metro official website</a> or the app for the most current schedule before a late-night return.
+        Trains on the return run from <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> toward Whitefield from as early as <strong>05:58 AM</strong>. The last train from <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> toward Whitefield departs around <strong>11:00 PM</strong>. Check the <a href="https://nammametro.in" target="_blank" rel="noopener noreferrer">Namma Metro official website</a> or the app for the most current schedule before a late-night return.
       </p>
 
       <div class="note-box">
-        <strong>🌙 Late Night Tip:</strong> If you're heading back to Whitefield after a late evening on MG Road or Brigade Road, the last Purple Line train toward Kadugodi runs around 11:00 PM. Post that, your options are cabs (surge pricing likely) or the Whitefield Railway Station overnight services. Plan accordingly — missing the last metro from MG Road is genuinely inconvenient.
+        <strong>🌙 Late Night Tip:</strong> If you're heading back to Whitefield after a late evening on <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> or Brigade Road, the last Purple Line train toward Kadugodi runs around 11:00 PM. Post that, your options are cabs (surge pricing likely) or the Whitefield Railway Station overnight services. Plan accordingly — missing the last metro from <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> is genuinely inconvenient.
       </div>
 
       <!-- ── SECTION 9: ACCESSIBILITY ── -->
       <h2>Accessibility & Safety</h2>
       <ul>
-        <li><strong>Wheelchair access:</strong> Both Whitefield (Kadugodi) and MG Road stations are 100% wheelchair and stroller accessible with dedicated lifts at all entry/exit points.</li>
+        <li><strong>Wheelchair access:</strong> Both <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> and <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> stations are 100% wheelchair and stroller accessible with dedicated lifts at all entry/exit points.</li>
         <li><strong>Visual impairments:</strong> Tactile flooring guides are present throughout both stations from gate to platform.</li>
         <li><strong>Emergency helpline:</strong> <strong>1511</strong> — available 24/7. Staff are stationed at both ends at all operating hours.</li>
-        <li><strong>Women's safety:</strong> First coach reserved seating. CCTV coverage throughout all 37 Purple Line stations. BMRCL has women security officers deployed at major stations including Whitefield and MG Road.</li>
-        <li><strong>Pickpocket alert:</strong> Both Whitefield (boarding) and MG Road (alighting) are high-traffic stations. Keep your phone and wallet in a front pocket or a closed bag, especially during peak-hour crowds.</li>
+        <li><strong>Women's safety:</strong> First coach reserved seating. CCTV coverage throughout all 37 Purple Line stations. BMRCL has women security officers deployed at major stations including Whitefield and <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>.</li>
+        <li><strong>Pickpocket alert:</strong> Both Whitefield (boarding) and <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> (alighting) are high-traffic stations. Keep your phone and wallet in a front pocket or a closed bag, especially during peak-hour crowds.</li>
       </ul>
 
       <!-- ── SECTION 10: CONCLUSION / FAQ ── -->
       <h2>Frequently Asked Questions</h2>
 
-      <h3>How many stops from Whitefield to MG Road?</h3>
+      <h3>How many stops from Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>?</h3>
       <p>
-        There are <strong>17 intermediate stations</strong> between Whitefield (Kadugodi) and MG Road on the Purple Line. The journey is direct — no interchange required.
+        There are <strong>17 intermediate stations</strong> between <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> and <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> on the Purple Line. The journey is direct — no interchange required.
       </p>
 
-      <h3>What is the fare from Whitefield to MG Road metro?</h3>
+      <h3>What is the fare from Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> metro?</h3>
       <p>
         The standard token fare is <strong>₹70</strong>. With a Namma Metro Smart Card, you pay <strong>₹63</strong> (10% discount). QR tickets via the Namma Metro app or WhatsApp are also available at ₹70. The Daily Unlimited Pass at ₹150 is worth buying if you plan 3+ trips in a day.
       </p>
 
-      <h3>What is the travel time from Whitefield to MG Road?</h3>
+      <h3>What is the travel time from Whitefield to <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a>?</h3>
       <p>
         The journey takes approximately <strong>34–38 minutes</strong> depending on peak/off-peak conditions. Dwell time at 17 intermediate stops accounts for about 12 minutes of this. Add 5–10 minutes for security and platform time at Whitefield during the morning rush.
       </p>
 
-      <h3>Which platform do I board from at Whitefield (Kadugodi)?</h3>
+      <h3>Which platform do I board from at <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a>?</h3>
       <p>
-        Board from <strong>Platform 2</strong> at Whitefield (Kadugodi) for all trains heading toward MG Road and Challaghatta. Platform 1 is for arriving trains — do not board from there.
+        Board from <strong>Platform 2</strong> at <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> for all trains heading toward <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> and Challaghatta. Platform 1 is for arriving trains — do not board from there.
       </p>
 
-      <h3>Which exit at MG Road is best for Brigade Road?</h3>
+      <h3>Which exit at <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> is best for Brigade Road?</h3>
       <p>
-        Use <strong>Exit A (Church Street side)</strong> for Brigade Road, Church Street, and the pub/restaurant strip. Exit B is best for the MG Road Boulevard and Samsung Opera House. Exit C is for Kasturba Road and Cauvery Handicrafts.
+        Use <strong>Exit A (Church Street side)</strong> for Brigade Road, Church Street, and the pub/restaurant strip. Exit B is best for the <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> Boulevard and Samsung Opera House. Exit C is for Kasturba Road and Cauvery Handicrafts.
       </p>
 
       <h3>Is there parking at Kadugodi metro station?</h3>
       <p>
-        Yes — Whitefield (Kadugodi) has one of the largest parking facilities on the Purple Line. Rates are approximately <strong>₹30 for two-wheelers</strong> and <strong>₹60 for four-wheelers</strong> for the initial hours. Monthly passes are available for regular commuters. Arrive before 8:30 AM on weekdays for a guaranteed spot. MG Road has no parking — do not drive there.
+        Yes — <a href="/bengaluru-metro/whitefield-kadugodi-metro-station.html">Whitefield (Kadugodi)</a> has one of the largest parking facilities on the Purple Line. Rates are approximately <strong>₹30 for two-wheelers</strong> and <strong>₹60 for four-wheelers</strong> for the initial hours. Monthly passes are available for regular commuters. Arrive before 8:30 AM on weekdays for a guaranteed spot. <a href="/bengaluru-metro/mg-road-metro-station.html">MG Road</a> has no parking — do not drive there.
       </p>
 
       <h3>Can I use WhatsApp to buy a ticket for this route?</h3>
@@ -754,7 +901,7 @@
     ══════════════════════════════ -->
     <footer class="blog-footer">
       <div class="author-box">
-        <img class="author-avatar" src="assets/images/authors/default.jpg" alt="MetroGuide India author avatar" />
+        <img class="author-avatar" src="/assets/images/authors/default.jpg" alt="MetroGuide India author avatar" />
         <div>
           <p class="author-name">MetroGuide India</p>
           <p class="author-bio">Writing guides about metro travel, rapid rail, and city navigation across India. Data sourced from BMRCL, official Namma Metro channels, and on-ground research.</p>
@@ -763,6 +910,25 @@
     </footer>
 
   </main>
+  <footer>
+    <div class="wrap">
+      <div class="foot-logo">🚇 MetroGuideIndia</div>
+      <p class="foot-desc">MetroGuideIndia route planner for Namo Bharat, Delhi Metro, and Bengaluru Metro.</p>
+      <div class="foot-links">
+        <a href="/">Home</a><span>·</span>
+        <a href="/delhi-metro/">Delhi Metro</a><span>·</span>
+        <a href="/bengaluru-metro/">Bengaluru Metro</a><span>·</span>
+        <a href="/blog">Blog</a><span>·</span>
+        <a href="/stations">Stations</a><span>·</span>
+        <a href="/about.html">About</a><span>·</span>
+        <a href="/contact.html">Contact</a><span>·</span>
+        <a href="/privacy.html">Privacy Policy</a><span>·</span>
+        <a href="/terms.html">Terms</a><span>·</span>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+      <div class="foot-copy">© 2026 MetroGuideIndia. Independent Transit Resource. Not affiliated with NCRTC, DMRC, or BMRCL.</div>
+    </div>
+  </footer>
 
   <!-- Required scripts for route planner -->
   <script src="/js/dataLoader.js"></script>
