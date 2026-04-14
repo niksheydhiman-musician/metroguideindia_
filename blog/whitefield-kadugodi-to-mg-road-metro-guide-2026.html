@@ -301,6 +301,138 @@
       vertical-align: middle;
       letter-spacing: 0.04em;
     }
+
+    /* ── Short Route Summary Widget ──────────────────────── */
+    .rsw {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-left: 4px solid #7c3aed;
+      border-radius: 14px;
+      padding: 22px 20px 20px;
+      margin: 0 0 28px;
+      box-shadow: var(--shadow-md);
+    }
+    .rsw-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #6c2e9d;
+      background: #f3e8ff;
+      border: 1px solid #e9d5ff;
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .rsw-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7c3aed;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .rsw-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+      font-weight: 800;
+      color: #3b1fa3;
+      margin: 0 0 14px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .rsw-title .rsw-arrow {
+      color: #7c3aed;
+      margin: 0 4px;
+    }
+    .rsw-divider {
+      border: none;
+      border-top: 1px solid var(--border2);
+      margin: 0 0 14px;
+    }
+    .rsw-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-bottom: 6px;
+      font-size: .9rem;
+      color: var(--text2);
+    }
+    .rsw-stats span strong {
+      color: var(--text);
+    }
+    .rsw-line-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #f3e8ff;
+      border: 1px solid #e9d5ff;
+      color: #6c2e9d;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      vertical-align: middle;
+    }
+    .rsw-line-pill::before {
+      content: '●';
+      color: #7c3aed;
+      font-size: .7rem;
+    }
+    .rsw-station-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #5b21b6;
+      margin: 16px 0 10px;
+    }
+    .rsw-chips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (max-width: 420px) {
+      .rsw-chips { grid-template-columns: 1fr; }
+    }
+    .rsw-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      background: #f5f0ff;
+      border: 1px solid #ede0ff;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: #3b1fa3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rsw-chip-start,
+    .rsw-chip-end {
+      background: #7c3aed;
+      color: #fff;
+      border-color: #6d28d9;
+    }
+    .rsw-chip .rsw-chip-arrow {
+      color: #a37af4;
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .rsw-chip-start .rsw-chip-arrow,
+    .rsw-chip-end .rsw-chip-arrow {
+      color: rgba(255,255,255,.75);
+    }
+    .rsw-chip-end .rsw-chip-arrow {
+      display: none;
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
@@ -360,6 +492,38 @@
       />
       <figcaption>Namma Metro's Purple Line at Whitefield (Kadugodi) station — the eastern terminus for the direct metro journey to MG Road, Bengaluru. <em>Photo: BMRCL</em></figcaption>
     </figure>
+
+    <!-- ══════════════════════════════
+         SHORT ROUTE SUMMARY WIDGET
+    ══════════════════════════════ -->
+    <div class="rsw" aria-label="Short Route Summary">
+      <span class="rsw-badge">Short Route Summary</span>
+      <h2 class="rsw-title">Whitefield (Kadugodi) <span class="rsw-arrow">→</span> MG Road</h2>
+      <hr class="rsw-divider">
+      <div class="rsw-stats">
+        <span>Line: <span class="rsw-line-pill">Purple Line</span></span>
+        <span>Fare: <strong>₹30</strong> (Token) | <strong>₹27</strong> (Smart Card)</span>
+        <span>Time: <strong>~35 min</strong></span>
+        <span>Distance: <strong>~15.5 km</strong></span>
+        <span>Total Stops: <strong>13 Stations</strong></span>
+      </div>
+      <p class="rsw-station-heading">Station List</p>
+      <div class="rsw-chips">
+        <span class="rsw-chip rsw-chip-start">Whitefield (Kadugodi)<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Hopefarm Channasandra<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Pattanduru Agrahara (ITPL)<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Sri Sathya Sai Hospital<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Nallurhalli<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Kundalahalli<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Hoodi<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Garudacharpalya<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">K.R. Pura<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Baiyappanahalli<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Indiranagar<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip">Halasuru (Ulsoor)<span class="rsw-chip-arrow">→</span></span>
+        <span class="rsw-chip rsw-chip-end">MG Road<span class="rsw-chip-arrow">→</span></span>
+      </div>
+    </div>
 
     <!-- ══════════════════════════════
          BLOG CONTENT
