@@ -335,28 +335,7 @@
     <section>
       <div class="sec-eye">Latest</div>
       <h2 class="sec-head">Latest News</h2>
-      <div class="news-grid" aria-label="Latest metro blog updates">
-        <a href="/blog/delhi-to-haridwar-namo-bharat-rrts-proposed-route.html" class="news-card">
-          <div class="news-date">13 April 2026</div>
-          <h3 class="news-title">Delhi to Haridwar in 2 Hours: Namo Bharat RRTS Proposed Route</h3>
-          <p class="news-summary">Proposed Modipuram–Haridwar–Rishikesh extension route, station list, and latest April 2026 updates.</p>
-        </a>
-        <a href="/blog/delhi-metro-smart-card-vs-qr-ticket.html" class="news-card">
-          <div class="news-date">8 April 2026</div>
-          <h3 class="news-title">Delhi Metro Smart Card vs QR Ticket</h3>
-          <p class="news-summary">A practical comparison for daily riders and occasional commuters.</p>
-        </a>
-        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" class="news-card">
-          <div class="news-date">19 March 2026</div>
-          <h3 class="news-title">RRTS Parking Charges &amp; Monthly Passes</h3>
-          <p class="news-summary">Station-wise parking rates and planning tips across the NCR corridor.</p>
-        </a>
-        <a href="/blog/delhi-meerut-rrts-stations-parking-connectivity.html" class="news-card">
-          <div class="news-date">15 March 2026</div>
-          <h3 class="news-title">Delhi–Meerut RRTS Connectivity Guide</h3>
-          <p class="news-summary">Stations, parking, and last-mile options in one commuter-focused guide.</p>
-        </a>
-      </div>
+      <div id="homepage-blog-feed" class="news-grid" aria-label="Latest metro blog updates" aria-live="polite"></div>
     </section>
 
     <section class="about" aria-label="About MetroGuideIndia">
@@ -388,5 +367,7 @@
     </div>
   </footer>
 
+<script src="/js/blogBridge.js"></script>
+<script>BlogBridge.loadNewsCards('homepage-blog-feed', 4);</script>
 </body>
 </html>

@@ -14,18 +14,33 @@ display_name: MetroGuideIndia CMS
 
 collections:
   - name: blog
-    label: Blog
+    label: Blog Posts
     label_singular: Blog Post
-    folder: blog
-    format: frontmatter
-    extension: html
+    folder: data/blogs
+    format: json
+    extension: json
     create: true
     slug: "{{slug}}"
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
-      - { label: Description, name: description, widget: text }
+      - { label: Featured Image URL, name: image, widget: string, required: false, hint: "Optional: relative path like /assets/images/blog/my-post.jpg" }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Description, name: description, widget: text, hint: "Short excerpt shown in blog cards and used as meta description." }
       - { label: Body, name: body, widget: markdown }
+      - { label: "Canonical URL", name: url, widget: string, required: false, hint: "Leave blank for CMS-generated posts. Set to /blog/slug.html for legacy HTML posts." }
+
+  - name: blog_index
+    label: Blog Index (Master List)
+    files:
+      - name: index
+        label: Blog Post Order
+        file: data/blogs/index.json
+        fields:
+          - label: Slugs (ordered newest-first)
+            name: slugs
+            widget: list
+            hint: "Add each post's slug here in newest-first order. The homepage and blog page read this list."
 
   - name: stations
     label: Stations
