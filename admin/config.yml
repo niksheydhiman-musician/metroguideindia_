@@ -2,17 +2,41 @@
 
 backend:
   name: github
-  repo: user/repo
+  repo: niksheydhiman-musician/metroguideindia_
+  branch: main
 
-media_folder: /public/media
-public_folder: /media
+media_folder: assets/images/blog
+public_folder: /assets/images/blog
+
+site_url: https://metroguideindia.in
+logo_url: /assets/images/logo.png
+display_name: MetroGuideIndia CMS
 
 collections:
-  - name: posts
-    label: Posts
-    label_singular: Post
-    folder: /content/posts
+  - name: blog
+    label: Blog
+    label_singular: Blog Post
+    folder: blog
+    format: frontmatter
+    extension: html
+    create: true
+    slug: "{{slug}}"
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: Date, name: date, widget: datetime, type: date }
-      - { label: Body, name: body, widget: richtext }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Description, name: description, widget: text }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: stations
+    label: Stations
+    label_singular: Station
+    folder: delhi-metro
+    format: frontmatter
+    extension: html
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Station Name, name: station_name, widget: string }
+      - { label: Line Color, name: line_color, widget: string }
+      - { label: Exit Gates, name: exit_gates, widget: text }
+      - { label: Facilities, name: facilities, widget: text }
