@@ -46,7 +46,7 @@ collections:
     label: Stations
     label_singular: Station
     folder: delhi-metro
-    format: frontmatter
+    format: raw
     extension: html
     create: true
     slug: "{{slug}}"
