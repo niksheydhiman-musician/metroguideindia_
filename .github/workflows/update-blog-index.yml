@@ -1,0 +1,66 @@
+name: Update Blog Index
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/blogs/*.json'
+
+jobs:
+  rebuild-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate data/blogs/index.json
+        run: |
+          python3 - <<'EOF'
+          import json, os, glob
+
+          blogs_dir = 'data/blogs'
+          index_path = os.path.join(blogs_dir, 'index.json')
+
+          posts = []
+          for filepath in glob.glob(os.path.join(blogs_dir, '*.json')):
+              slug = os.path.splitext(os.path.basename(filepath))[0]
+              if slug == 'index':
+                  continue
+              try:
+                  with open(filepath, encoding='utf-8') as f:
+                      data = json.load(f)
+                  date = data.get('date', '')
+                  posts.append({'slug': slug, 'date': date})
+              except Exception as e:
+                  print(f'Warning: could not read {filepath}: {e}')
+
+          # Sort newest-first (ISO date strings sort lexicographically)
+          posts.sort(key=lambda p: p['date'], reverse=True)
+
+          slugs = [p['slug'] for p in posts]
+          with open(index_path, 'w', encoding='utf-8') as f:
+              json.dump({'slugs': slugs}, f, indent=2, ensure_ascii=False)
+              f.write('\n')
+
+          print(f'Wrote {len(slugs)} slugs to {index_path}:')
+          for s in slugs:
+              print(f'  {s}')
+          EOF
+
+      - name: Commit updated index if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/blogs/index.json
+          if git diff --cached --quiet; then
+            echo "No changes to index.json — skipping commit."
+          else
+            git commit -m "chore: auto-update blog index [skip ci]"
+            git push
+          fi
