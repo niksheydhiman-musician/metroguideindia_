@@ -305,6 +305,20 @@
     });
   }
 
+  /**
+   * Sort an array of { slug, post } items by post.date descending (newest first).
+   * Items without a parseable date are pushed to the end.
+   */
+  function sortNewestFirst(items) {
+    var withTime = items.map(function (item) {
+      var dateStr = item && item.post && item.post.date;
+      var t = dateStr ? new Date(dateStr).getTime() : NaN;
+      return { item: item, t: isNaN(t) ? -Infinity : t };
+    });
+    withTime.sort(function (a, b) { return b.t - a.t; });
+    return withTime.map(function (x) { return x.item; });
+  }
+
   function loadPost(slug) {
     return fetchJSON(BASE_URL + slug + '.json');
   }
@@ -324,8 +338,7 @@
     if (!container) return;
 
     loadSlugs().then(function (slugs) {
-      var toLoad = slugs.slice(0, limit);
-      var promises = toLoad.map(function (slug) {
+      var promises = slugs.map(function (slug) {
         return loadPost(slug).then(function (post) {
           return { slug: slug, post: post };
         }).catch(function () { return null; });
@@ -333,9 +346,10 @@
 
       return Promise.all(promises);
     }).then(function (results) {
+      var sorted = sortNewestFirst(results.filter(Boolean));
+      var toShow = sorted.slice(0, limit);
       container.innerHTML = '';
-      results.forEach(function (item) {
-        if (!item) return;
+      toShow.forEach(function (item) {
         container.appendChild(buildNewsCard(item.post, item.slug));
       });
       if (!container.children.length) {
@@ -358,17 +372,17 @@
     if (!container) return;
 
     loadSlugs().then(function (slugs) {
-      var toLoad = limit ? slugs.slice(0, limit) : slugs;
-      var promises = toLoad.map(function (slug) {
+      var promises = slugs.map(function (slug) {
         return loadPost(slug).then(function (post) {
           return { slug: slug, post: post };
         }).catch(function () { return null; });
       });
       return Promise.all(promises);
     }).then(function (results) {
+      var sorted = sortNewestFirst(results.filter(Boolean));
+      var toShow = limit ? sorted.slice(0, limit) : sorted;
       container.innerHTML = '';
-      results.forEach(function (item) {
-        if (!item) return;
+      toShow.forEach(function (item) {
         container.appendChild(buildBlogCard(item.post, item.slug));
       });
       if (!container.children.length) {
