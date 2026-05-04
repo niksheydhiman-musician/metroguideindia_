@@ -126,27 +126,27 @@
         continue;
       }
 
-      /* Table (GFM) */
-      if (/\|/.test(line) && i + 1 < lines.length && /^\|?[\s\-:]+\|/.test(lines[i + 1])) {
+      /* Table (GFM + relaxed variant without mandatory separator row) */
+      if (line.trim().startsWith('|') && i + 1 < lines.length && lines[i + 1].trim().startsWith('|')) {
         var trows = [];
-        var thead = line.split('|').filter(function (c, idx, arr) {
-          return idx > 0 && idx < arr.length - 1 || (c.trim() !== '');
-        }).map(function (c) { return c.trim(); });
-
-        /* If first char is | strip first empty */
         var rawCols = line.split('|');
         if (rawCols[0].trim() === '') rawCols.shift();
         if (rawCols[rawCols.length - 1].trim() === '') rawCols.pop();
-        thead = rawCols.map(function (c) { return c.trim(); });
+        var thead = rawCols.map(function (c) { return c.trim(); });
 
-        i += 2; /* skip header and separator */
-        while (i < lines.length && /\|/.test(lines[i])) {
+        i += 1;
+        if (i < lines.length && /^\|?[\s\-:]+\|/.test(lines[i])) {
+          i += 1; /* optional markdown separator row */
+        }
+
+        while (i < lines.length && lines[i].trim().startsWith('|')) {
           var rc2 = lines[i].split('|');
           if (rc2[0].trim() === '') rc2.shift();
           if (rc2[rc2.length - 1].trim() === '') rc2.pop();
           trows.push(rc2.map(function (c) { return c.trim(); }));
           i++;
         }
+
         var thHtml = thead.map(function (c) { return '<th>' + inlineFormat(c) + '</th>'; }).join('');
         var trHtml = trows.map(function (r) {
           return '<tr>' + r.map(function (c) { return '<td>' + inlineFormat(c) + '</td>'; }).join('') + '</tr>';
