@@ -132,14 +132,12 @@
   }
 
   resolveCmsBlogUrl(path).then(function (target) {
-    clearTimeout(revealTimer);
     if (target && !routeResolutionExpired) {
       window.location.replace(target);
       return;
     }
     revealNotFound();
   }).catch(function () {
-    clearTimeout(revealTimer);
     revealNotFound();
   }).finally(function () {
     clearTimeout(revealTimer);
@@ -195,6 +193,7 @@
     if (startIndex >= slugs.length) return Promise.resolve(null);
 
     var batch = slugs.slice(startIndex, startIndex + batchSize);
+    if (routeResolutionExpired || !batch.length) return Promise.resolve(null);
     var lookups = batch.map(function (slug) {
       if (routeResolutionExpired) return Promise.resolve(null);
       return fetchJSON('/data/blogs/' + encodeURIComponent(slug) + '.json').then(function (post) {
