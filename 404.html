@@ -98,7 +98,12 @@
   var BLOG_LOOKUP_BATCH_SIZE = 4;
   var path = window.location.pathname || '/';
   var search = window.location.search || '';
-  var revealTimer = setTimeout(revealNotFound, ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS);
+  var hasRevealedNotFound = false;
+  var routeResolutionExpired = false;
+  var revealTimer = setTimeout(function () {
+    routeResolutionExpired = true;
+    revealNotFound();
+  }, ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS);
 
   // /blog/?id=X  →  /blog/X.html
   if (path.indexOf('/blog') !== -1 && search.indexOf('id=') !== -1) {
@@ -125,7 +130,7 @@
   }
 
   resolveCmsBlogUrl(path).then(function (target) {
-    if (target) {
+    if (target && !routeResolutionExpired) {
       window.location.replace(target);
       return;
     }
@@ -137,6 +142,8 @@
   });
 
   function revealNotFound() {
+    if (hasRevealedNotFound) return;
+    hasRevealedNotFound = true;
     document.documentElement.classList.remove('route-resolving');
   }
 
@@ -179,6 +186,7 @@
   }
 
   function findPostByUrlInBatches(slugs, cleanPath, startIndex, batchSize) {
+    if (routeResolutionExpired) return Promise.resolve(null);
     if (startIndex >= slugs.length) return Promise.resolve(null);
 
     var batch = slugs.slice(startIndex, startIndex + batchSize);
@@ -191,6 +199,7 @@
     });
 
     return Promise.all(lookups).then(function (records) {
+      if (routeResolutionExpired) return null;
       for (var i = 0; i < records.length; i++) {
         if (!records[i] || !records[i].url) continue;
         if (records[i].url === cleanPath) return buildPostUrl(records[i].slug);
