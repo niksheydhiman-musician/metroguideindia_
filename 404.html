@@ -13,6 +13,15 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <link rel="stylesheet" href="/assets/css/main.css"/>
+  <style>
+    html.route-resolving main,
+    html.route-resolving footer {
+      visibility: hidden;
+    }
+  </style>
+  <script>
+    document.documentElement.classList.add('route-resolving');
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
   <script src="/assets/js/scripts.js"></script>
@@ -85,9 +94,18 @@
 
 <script>
 (function () {
-  // Handle legacy dynamic URLs — redirect to new static pages
+  var ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS = 2500;
+  var BLOG_LOOKUP_BATCH_SIZE = 4;
   var path = window.location.pathname || '/';
   var search = window.location.search || '';
+  var hasRevealedNotFound = false;
+  var routeResolutionExpired = false;
+  var routeAbortController = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  var revealTimer = setTimeout(function () {
+    routeResolutionExpired = true;
+    if (routeAbortController) routeAbortController.abort();
+    revealNotFound();
+  }, ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS);
 
   // /blog/?id=X  →  /blog/X.html
   if (path.indexOf('/blog') !== -1 && search.indexOf('id=') !== -1) {
@@ -111,6 +129,88 @@
   if (path.indexOf('/post') !== -1 && search.indexOf('id=') !== -1) {
     var id2 = new URLSearchParams(search).get('id');
     if (id2) { window.location.replace('/blog/' + encodeURIComponent(id2) + '.html'); return; }
+  }
+
+  resolveCmsBlogUrl(path).then(function (target) {
+    if (target && !routeResolutionExpired) {
+      window.location.replace(target);
+      return;
+    }
+    revealNotFound();
+  }).catch(function () {
+    revealNotFound();
+  }).finally(function () {
+    clearTimeout(revealTimer);
+  });
+
+  function revealNotFound() {
+    if (hasRevealedNotFound) return;
+    hasRevealedNotFound = true;
+    document.documentElement.classList.remove('route-resolving');
+  }
+
+  function normalizePath(p) {
+    if (!p) return '/';
+    var normalized = p;
+    if (normalized.charAt(0) !== '/') normalized = '/' + normalized;
+    normalized = normalized.replace(/\/+$/, '');
+    return normalized || '/';
+  }
+
+  function fetchJSON(url) {
+    var options = routeAbortController ? { signal: routeAbortController.signal } : undefined;
+    return fetch(url, options).then(function (r) {
+      if (!r.ok) throw new Error('Fetch failed: ' + url + ' (' + r.status + ')');
+      return r.json();
+    });
+  }
+
+  function buildPostUrl(slug) {
+    return '/post.html?id=' + encodeURIComponent(slug);
+  }
+
+  function resolveCmsBlogUrl(pathname) {
+    var cleanPath = normalizePath(pathname);
+    if (cleanPath.indexOf('/blog/') !== 0) return Promise.resolve(null);
+
+    var guessSlug = cleanPath.replace(/^\/blog\//, '').replace(/\.html$/, '');
+    return fetchJSON('/data/blogs/index.json').then(function (indexData) {
+      var slugs = Array.isArray(indexData) ? indexData : (indexData && indexData.slugs) || [];
+      if (!slugs.length) return null;
+
+      if (guessSlug && slugs.indexOf(guessSlug) !== -1) {
+        return buildPostUrl(guessSlug);
+      }
+
+      return findPostByUrlInBatches(slugs, cleanPath, 0, BLOG_LOOKUP_BATCH_SIZE);
+    }).catch(function () {
+      return null;
+    });
+  }
+
+  function findPostByUrlInBatches(slugs, cleanPath, startIndex, batchSize) {
+    if (routeResolutionExpired) return Promise.resolve(null);
+    if (startIndex >= slugs.length) return Promise.resolve(null);
+
+    var batch = slugs.slice(startIndex, startIndex + batchSize);
+    if (routeResolutionExpired || !batch.length) return Promise.resolve(null);
+    var lookups = batch.map(function (slug) {
+      if (routeResolutionExpired) return Promise.resolve(null);
+      return fetchJSON('/data/blogs/' + encodeURIComponent(slug) + '.json').then(function (post) {
+        return { slug: slug, url: post && post.url ? normalizePath(post.url) : null };
+      }).catch(function () {
+        return null;
+      });
+    });
+
+    return Promise.all(lookups).then(function (records) {
+      if (routeResolutionExpired) return null;
+      for (var i = 0; i < records.length; i++) {
+        if (!records[i] || !records[i].url) continue;
+        if (records[i].url === cleanPath) return buildPostUrl(records[i].slug);
+      }
+      return findPostByUrlInBatches(slugs, cleanPath, startIndex + batchSize, batchSize);
+    });
   }
 
   function stationToSlug(id) {
