@@ -94,10 +94,11 @@
 
 <script>
 (function () {
-  var ROUTE_RESOLUTION_TIMEOUT_MS = 2500;
+  var ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS = 2500;
+  var BLOG_LOOKUP_BATCH_SIZE = 4;
   var path = window.location.pathname || '/';
   var search = window.location.search || '';
-  var revealTimer = setTimeout(revealNotFound, ROUTE_RESOLUTION_TIMEOUT_MS);
+  var revealTimer = setTimeout(revealNotFound, ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS);
 
   // /blog/?id=X  →  /blog/X.html
   if (path.indexOf('/blog') !== -1 && search.indexOf('id=') !== -1) {
@@ -171,21 +172,30 @@
         return buildPostUrl(guessSlug);
       }
 
-      return findPostByUrl(slugs, cleanPath, 0);
+      return findPostByUrlInBatches(slugs, cleanPath, 0, BLOG_LOOKUP_BATCH_SIZE);
     }).catch(function () {
       return null;
     });
   }
 
-  function findPostByUrl(slugs, cleanPath, index) {
-    if (index >= slugs.length) return Promise.resolve(null);
-    var slug = slugs[index];
-    return fetchJSON('/data/blogs/' + encodeURIComponent(slug) + '.json').then(function (post) {
-      var postUrl = post && post.url ? normalizePath(post.url) : null;
-      if (postUrl === cleanPath) return buildPostUrl(slug);
-      return findPostByUrl(slugs, cleanPath, index + 1);
-    }).catch(function () {
-      return findPostByUrl(slugs, cleanPath, index + 1);
+  function findPostByUrlInBatches(slugs, cleanPath, startIndex, batchSize) {
+    if (startIndex >= slugs.length) return Promise.resolve(null);
+
+    var batch = slugs.slice(startIndex, startIndex + batchSize);
+    var lookups = batch.map(function (slug) {
+      return fetchJSON('/data/blogs/' + encodeURIComponent(slug) + '.json').then(function (post) {
+        return { slug: slug, url: post && post.url ? normalizePath(post.url) : null };
+      }).catch(function () {
+        return null;
+      });
+    });
+
+    return Promise.all(lookups).then(function (records) {
+      for (var i = 0; i < records.length; i++) {
+        if (!records[i] || !records[i].url) continue;
+        if (records[i].url === cleanPath) return buildPostUrl(records[i].slug);
+      }
+      return findPostByUrlInBatches(slugs, cleanPath, startIndex + batchSize, batchSize);
     });
   }
 
