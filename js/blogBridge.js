@@ -147,14 +147,12 @@
           i++;
         }
 
-        if (trows.length) {
-          var thHtml = thead.map(function (c) { return '<th>' + inlineFormat(c) + '</th>'; }).join('');
-          var trHtml = trows.map(function (r) {
-            return '<tr>' + r.map(function (c) { return '<td>' + inlineFormat(c) + '</td>'; }).join('') + '</tr>';
-          }).join('');
-          html.push('<div class="blog-table-wrap"><table class="blog-table"><thead><tr>' + thHtml + '</tr></thead><tbody>' + trHtml + '</tbody></table></div>');
-          continue;
-        }
+        var thHtml = thead.map(function (c) { return '<th>' + inlineFormat(c) + '</th>'; }).join('');
+        var trHtml = trows.map(function (r) {
+          return '<tr>' + r.map(function (c) { return '<td>' + inlineFormat(c) + '</td>'; }).join('') + '</tr>';
+        }).join('');
+        html.push('<div class="blog-table-wrap"><table class="blog-table"><thead><tr>' + thHtml + '</tr></thead><tbody>' + trHtml + '</tbody></table></div>');
+        continue;
       }
 
       /* Empty line = paragraph break */
