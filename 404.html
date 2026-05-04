@@ -100,8 +100,10 @@
   var search = window.location.search || '';
   var hasRevealedNotFound = false;
   var routeResolutionExpired = false;
+  var routeAbortController = typeof AbortController !== 'undefined' ? new AbortController() : null;
   var revealTimer = setTimeout(function () {
     routeResolutionExpired = true;
+    if (routeAbortController) routeAbortController.abort();
     revealNotFound();
   }, ROUTE_RESOLUTION_TIMEOUT_MILLISECONDS);
 
@@ -130,12 +132,14 @@
   }
 
   resolveCmsBlogUrl(path).then(function (target) {
+    clearTimeout(revealTimer);
     if (target && !routeResolutionExpired) {
       window.location.replace(target);
       return;
     }
     revealNotFound();
   }).catch(function () {
+    clearTimeout(revealTimer);
     revealNotFound();
   }).finally(function () {
     clearTimeout(revealTimer);
@@ -156,7 +160,8 @@
   }
 
   function fetchJSON(url) {
-    return fetch(url).then(function (r) {
+    var options = routeAbortController ? { signal: routeAbortController.signal } : undefined;
+    return fetch(url, options).then(function (r) {
       if (!r.ok) throw new Error('Fetch failed: ' + url + ' (' + r.status + ')');
       return r.json();
     });
@@ -191,6 +196,7 @@
 
     var batch = slugs.slice(startIndex, startIndex + batchSize);
     var lookups = batch.map(function (slug) {
+      if (routeResolutionExpired) return Promise.resolve(null);
       return fetchJSON('/data/blogs/' + encodeURIComponent(slug) + '.json').then(function (post) {
         return { slug: slug, url: post && post.url ? normalizePath(post.url) : null };
       }).catch(function () {
