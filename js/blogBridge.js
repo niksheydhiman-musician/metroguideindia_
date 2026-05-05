@@ -79,6 +79,13 @@
       return cols.map(function (c) { return c.trim(); });
     }
 
+    function isTableRowLine(s) {
+      var t = s.trim();
+      if (!t || /^[-*+]\s+/.test(t) || /^\d+\.\s+/.test(t)) return false;
+      var pipeCount = (t.match(/\|/g) || []).length;
+      return pipeCount >= 2;
+    }
+
     function isTableSeparatorLine(s) {
       var t = s.trim();
       return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(t) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(t);
@@ -149,8 +156,8 @@
       /* Table (GFM + relaxed variant without mandatory separator row) */
       if (
         i + 1 < lines.length &&
-        line.indexOf('|') !== -1 &&
-        lines[i + 1].indexOf('|') !== -1 &&
+        isTableRowLine(line) &&
+        isTableRowLine(lines[i + 1]) &&
         (line.trim().startsWith('|') || isTableSeparatorLine(lines[i + 1]))
       ) {
         var trows = [];
@@ -161,7 +168,7 @@
           i += 1; /* optional markdown separator row */
         }
 
-        while (i < lines.length && lines[i].indexOf('|') !== -1) {
+        while (i < lines.length && isTableRowLine(lines[i])) {
           trows.push(parseTableCells(lines[i]));
           i++;
         }
