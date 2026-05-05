@@ -114,6 +114,12 @@
     window.location.replace('/blog'); return;
   }
 
+  // /blog/ or /blog  →  /blog.html
+  var normBlog = path.replace(/\/+$/, '');
+  if (normBlog === '/blog') {
+    window.location.replace('/blog.html'); return;
+  }
+
   // /route?from=A&to=B  →  /routes/A-to-B.html
   if (path.indexOf('/route') !== -1 && search.indexOf('from=') !== -1) {
     var params = new URLSearchParams(search);
