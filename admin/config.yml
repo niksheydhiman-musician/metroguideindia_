@@ -30,18 +30,6 @@ collections:
       - { label: Body, name: body, widget: markdown }
       - { label: "Canonical URL", name: url, widget: string, required: false, hint: "Leave blank for CMS-generated posts. Set to /blog/slug.html for legacy HTML posts." }
 
-  - name: blog_index
-    label: Blog Index (Master List)
-    files:
-      - name: index
-        label: Blog Post Order
-        file: data/blogs/index.json
-        fields:
-          - label: Slugs (ordered newest-first)
-            name: slugs
-            widget: list
-            hint: "Add each post's slug here in newest-first order. The homepage and blog page read this list."
-
   - name: stations
     label: Stations
     label_singular: Station
