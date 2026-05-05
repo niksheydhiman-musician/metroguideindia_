@@ -64,32 +64,32 @@
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
     }
 
-    function isUnorderedListLine(s) {
-      return /^\s*[-*+]\s+/.test(s);
+    function isUnorderedListLine(line) {
+      return /^\s*[-*+]\s+/.test(line);
     }
 
-    function isOrderedListLine(s) {
-      return /^\s*\d+\.\s+/.test(s);
+    function isOrderedListLine(line) {
+      return /^\s*\d+\.\s+/.test(line);
     }
 
     function parseTableCells(row) {
       var cols = row.split('|');
       if (cols[0].trim() === '') cols.shift();
       if (cols[cols.length - 1].trim() === '') cols.pop();
-      return cols.map(function (c) { return c.trim(); });
+      return cols.map(function (cell) { return cell.trim(); });
     }
 
-    function isTableRowLine(s) {
-      var t = s.trim();
-      if (!t || isUnorderedListLine(t) || isOrderedListLine(t)) return false;
-      var pipeCount = (t.match(/\|/g) || []).length;
+    function isTableRowLine(line) {
+      var trimmedLine = line.trim();
+      if (!trimmedLine || isUnorderedListLine(trimmedLine) || isOrderedListLine(trimmedLine)) return false;
+      var pipeCount = (trimmedLine.match(/\|/g) || []).length;
       return pipeCount >= 2;
     }
 
-    function isTableSeparatorLine(s) {
-      var t = s.trim();
+    function isTableSeparatorLine(line) {
+      var trimmedLine = line.trim();
       /* Accept both "a | b" and "| a | b |" markdown separator styles. */
-      return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(t) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(t);
+      return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(trimmedLine) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(trimmedLine);
     }
 
     while (i < lines.length) {
