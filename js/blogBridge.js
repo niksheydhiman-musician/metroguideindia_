@@ -88,7 +88,11 @@
 
     function isTableSeparatorLine(line) {
       var trimmedLine = line.trim();
-      /* Accept both "a | b" and "| a | b |" markdown separator styles. */
+      /*
+       * Accept both separator styles:
+       * 1) ---|---
+       * 2) | --- | --- |
+       */
       return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(trimmedLine) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(trimmedLine);
     }
 
@@ -159,6 +163,7 @@
         i + 1 < lines.length &&
         isTableRowLine(line) &&
         isTableRowLine(lines[i + 1]) &&
+        /* First row may be pipe-led, or second row may be a separator after "a | b" headers. */
         (line.trim().startsWith('|') || isTableSeparatorLine(lines[i + 1]))
       ) {
         var trows = [];
