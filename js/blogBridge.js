@@ -81,13 +81,14 @@
 
     function isTableRowLine(s) {
       var t = s.trim();
-      if (!t || /^[-*+]\s+/.test(t) || /^\d+\.\s+/.test(t)) return false;
+      if (!t || isUnorderedListLine(t) || isOrderedListLine(t)) return false;
       var pipeCount = (t.match(/\|/g) || []).length;
       return pipeCount >= 2;
     }
 
     function isTableSeparatorLine(s) {
       var t = s.trim();
+      /* Accept both "a | b" and "| a | b |" markdown separator styles. */
       return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(t) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(t);
     }
 
