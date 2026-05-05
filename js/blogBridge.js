@@ -64,6 +64,38 @@
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
     }
 
+    function isUnorderedListLine(line) {
+      return /^\s*[-*+]\s+/.test(line);
+    }
+
+    function isOrderedListLine(line) {
+      return /^\s*\d+\.\s+/.test(line);
+    }
+
+    function parseTableCells(row) {
+      var cols = row.split('|');
+      if (cols[0].trim() === '') cols.shift();
+      if (cols[cols.length - 1].trim() === '') cols.pop();
+      return cols.map(function (cell) { return cell.trim(); });
+    }
+
+    function isTableRowLine(line) {
+      var trimmedLine = line.trim();
+      if (!trimmedLine || isUnorderedListLine(trimmedLine) || isOrderedListLine(trimmedLine)) return false;
+      var pipeCount = (trimmedLine.match(/\|/g) || []).length;
+      return pipeCount >= 2;
+    }
+
+    function isTableSeparatorLine(line) {
+      var trimmedLine = line.trim();
+      /*
+       * Accept both separator styles:
+       * 1) ---|---
+       * 2) | --- | --- |
+       */
+      return /^:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+$/.test(trimmedLine) || /^\|?\s*:?-{3,}:?(?:\s*\|\s*:?-{3,}:?)+\s*\|?$/.test(trimmedLine);
+    }
+
     while (i < lines.length) {
       var line = lines[i];
 
@@ -88,10 +120,10 @@
       }
 
       /* Unordered list */
-      if (/^[-*+]\s/.test(line)) {
+      if (isUnorderedListLine(line)) {
         var items = [];
-        while (i < lines.length && /^[-*+]\s/.test(lines[i])) {
-          items.push('<li>' + inlineFormat(lines[i].replace(/^[-*+]\s+/, '')) + '</li>');
+        while (i < lines.length && isUnorderedListLine(lines[i])) {
+          items.push('<li>' + inlineFormat(lines[i].replace(/^\s*[-*+]\s+/, '')) + '</li>');
           i++;
         }
         html.push('<ul class="blog-ul">' + items.join('') + '</ul>');
@@ -99,10 +131,10 @@
       }
 
       /* Ordered list */
-      if (/^\d+\.\s/.test(line)) {
+      if (isOrderedListLine(line)) {
         var orderedItems = [];
-        while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
-          orderedItems.push('<li>' + inlineFormat(lines[i].replace(/^\d+\.\s+/, '')) + '</li>');
+        while (i < lines.length && isOrderedListLine(lines[i])) {
+          orderedItems.push('<li>' + inlineFormat(lines[i].replace(/^\s*\d+\.\s+/, '')) + '</li>');
           i++;
         }
         html.push('<ol class="blog-ol">' + orderedItems.join('') + '</ol>');
@@ -127,23 +159,23 @@
       }
 
       /* Table (GFM + relaxed variant without mandatory separator row) */
-      if (line.trim().startsWith('|') && i + 1 < lines.length && lines[i + 1].trim().startsWith('|')) {
+      if (
+        i + 1 < lines.length &&
+        isTableRowLine(line) &&
+        isTableRowLine(lines[i + 1]) &&
+        /* First row may be pipe-led, or second row may be a separator after "a | b" headers. */
+        (line.trim().startsWith('|') || isTableSeparatorLine(lines[i + 1]))
+      ) {
         var trows = [];
-        var rawCols = line.split('|');
-        if (rawCols[0].trim() === '') rawCols.shift();
-        if (rawCols[rawCols.length - 1].trim() === '') rawCols.pop();
-        var thead = rawCols.map(function (c) { return c.trim(); });
+        var thead = parseTableCells(line);
 
         i += 1;
-        if (i < lines.length && /^\|?[\s\-:]+\|/.test(lines[i])) {
+        if (i < lines.length && isTableSeparatorLine(lines[i])) {
           i += 1; /* optional markdown separator row */
         }
 
-        while (i < lines.length && lines[i].trim().startsWith('|')) {
-          var rc2 = lines[i].split('|');
-          if (rc2[0].trim() === '') rc2.shift();
-          if (rc2[rc2.length - 1].trim() === '') rc2.pop();
-          trows.push(rc2.map(function (c) { return c.trim(); }));
+        while (i < lines.length && isTableRowLine(lines[i])) {
+          trows.push(parseTableCells(lines[i]));
           i++;
         }
 
@@ -164,8 +196,8 @@
       var para = [];
       while (i < lines.length && lines[i].trim() !== '' &&
              !/^#{1,6}\s/.test(lines[i]) &&
-             !/^[-*+]\s/.test(lines[i]) &&
-             !/^\d+\.\s/.test(lines[i]) &&
+             !isUnorderedListLine(lines[i]) &&
+             !isOrderedListLine(lines[i]) &&
              !/^```/.test(lines[i]) &&
              !/^>\s?/.test(lines[i]) &&
              !/^---+$/.test(lines[i].trim())) {
