@@ -355,6 +355,20 @@
     return fetchJSON(BASE_URL + slug + '.json');
   }
 
+  /**
+   * Load post by slug, with fallback for year-suffixed aliases.
+   * Example: my-post-title-2026 -> my-post-title (only if first fetch fails).
+   */
+  function loadPostWithAliasFallback(slug) {
+    return loadPost(slug).catch(function (err) {
+      if (/-\d{4}$/.test(slug)) {
+        var baseSlug = slug.replace(/-\d{4}$/, '');
+        return loadPost(baseSlug);
+      }
+      throw err;
+    });
+  }
+
   /* ── public API ──────────────────────────────────────────────────────── */
 
   var BlogBridge = {};
@@ -446,7 +460,7 @@
 
     container.innerHTML = '<p style="color:var(--muted,#6b7280);text-align:center;padding:40px 0">Loading…</p>';
 
-    loadPost(slug).then(function (post) {
+    loadPostWithAliasFallback(slug).then(function (post) {
       /* ── SEO: update title & meta description ── */
       document.title = post.title + ' | MetroGuideIndia';
       var metaDesc = document.querySelector('meta[name="description"]');
