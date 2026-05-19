@@ -472,6 +472,10 @@
         return '<span class="post-tag">' + t + '</span>';
       }).join('');
 
+      /* Estimate reading time (average 200 wpm) */
+      var wordCount = (post.body || '').trim().split(/\s+/).length;
+      var readMins = Math.max(1, Math.round(wordCount / 200));
+
       var imageHtml = post.image
         ? '<img src="' + post.image + '" alt="' + post.title.replace(/"/g, '&quot;') + '" style="width:100%;border-radius:12px;margin-bottom:24px;display:block;aspect-ratio:16/9;object-fit:cover">'
         : '';
@@ -481,10 +485,11 @@
           (tagsHtml ? '<div class="post-tags">' + tagsHtml + '</div>' : '') +
           '<h1 class="post-title">' + post.title + '</h1>' +
           '<div class="post-meta">' +
-            '<span>' + formatDate(post.date) + '</span>' +
+            '<span>📅 ' + formatDate(post.date) + '</span>' +
+            '<span>⏱️ ' + readMins + ' min read</span>' +
           '</div>' +
         '</div>' +
-        '<div class="post-divider"></div>' +
+        '<hr class="post-divider"/>' +
         imageHtml +
         '<div class="blog-body">' + renderBody(post.body) + '</div>';
 
