@@ -81,9 +81,10 @@
     .route-diagram{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:24px 20px;margin:24px 0;box-shadow:var(--shadow)}
     .route-diagram-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:18px;text-align:center}
     .route-hub{background:linear-gradient(135deg,var(--surface3),var(--surface2));border:2px solid var(--border2);border-radius:var(--r-sm);padding:10px 18px;text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--text);margin-bottom:4px;box-shadow:var(--shadow)}
-    .route-hub-sub{font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:12px}
+    .route-hub-sub{font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:12px;line-height:1.5}
     .route-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
     .route-split::before{content:'';position:absolute;top:-12px;left:50%;width:1px;height:12px;background:var(--border2)}
+    @media(max-width:480px){.route-split{grid-template-columns:1fr}.route-split::before{left:50%}}
     .route-branch{display:flex;flex-direction:column;align-items:center;gap:0}
     .route-branch-header{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:4px 12px;border-radius:20px;margin-bottom:8px;text-align:center}
     .route-branch.blue .route-branch-header{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
@@ -105,7 +106,7 @@
     .faq-q::after{content:'＋';font-size:1rem;color:var(--muted);flex-shrink:0;transition:transform .2s}
     .faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--red)}
     .faq-a{font-size:.9rem;color:var(--text2);line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
-    .faq-item.open .faq-a{max-height:400px;padding:14px 18px}
+    .faq-item.open .faq-a{max-height:600px;padding:14px 18px}
 
     /* ── Sidebar ─────────────────────────────────────────── */
     .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:80px;box-shadow:var(--shadow)}
@@ -121,11 +122,16 @@
 
     /* ── Quick info strip ────────────────────────────────── */
     .quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
-    @media(max-width:600px){.quick-stats{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.quick-stats{grid-template-columns:1fr}}
     .quick-stat{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px 16px;text-align:center}
     .quick-stat-val{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--red);line-height:1}
     .quick-stat-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-top:4px}
-  </style>
+
+    /* ── Mobile table polish ─────────────────────────────── */
+    @media(max-width:600px){
+      .blog-table th{padding:10px 12px;font-size:.75rem}
+      .blog-table td{padding:9px 12px;font-size:.82rem}
+    }</style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
   <script>
