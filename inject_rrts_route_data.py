@@ -27,6 +27,7 @@ class StationMeta:
     exit_gates: Any
     parking_profile: dict[str, Any]
     special_facilities: dict[str, Any]
+    parking_tariff_summary: str = ""
 
 
 def normalize_slug(value: str) -> str:
@@ -104,8 +105,9 @@ def parse_first_last_train(timings: dict[str, Any]) -> tuple[str, str]:
         if not isinstance(value, str):
             continue
         key_l = key.lower()
-        label = key.replace("_", " ").title()
-        pair = f"{label}: {value}"
+        clean_label = re.sub(r"^(first|last)(?:_train)?_?", "", key_l).strip("_")
+        label = clean_label.replace("_", " ").strip().title()
+        pair = f"{label}: {value}" if label else value
         if "first" in key_l:
             first_candidates.append(pair)
         elif "last" in key_l:
@@ -140,6 +142,8 @@ def summarize_parking(origin_station: StationMeta | None) -> str:
             caps.append(f"{normalize_label(str(key))} {value}")
         if caps:
             parts.append("Capacity: " + ", ".join(caps))
+    if origin_station.parking_tariff_summary:
+        parts.append(f"Tariff: {origin_station.parking_tariff_summary}")
     return " | ".join(parts) if parts else "Not listed"
 
 
@@ -230,9 +234,114 @@ def inject_route_summary_details(
 ) -> str:
     clean = strip_existing_summary_details(html)
     details = build_route_summary_details_html(first_train, last_train, exit_summary, parking_summary, facilities_summary)
-    pattern = r'(<div class="rc-summary">.*?</div>\s*)(<div class="rc-steps">)'
-    replacement = r"\1\n" + details + r"\n      \2"
-    return re.sub(pattern, replacement, clean, count=1, flags=re.S)
+
+    if '<div class="rc-steps">' in clean and re.search(r'<div class="route-seo-box"(?:\s|>)', clean):
+        return re.sub(
+            r'(\s*<div class="route-seo-box"(?:\s|>))',
+            "\n" + details + r"\1",
+            clean,
+            count=1,
+            flags=re.S,
+        )
+
+    if '<div class="rc-steps">' in clean and re.search(r'<div class="quick-facts"(?:\s|>)', clean):
+        return re.sub(
+            r'(\s*<div class="quick-facts"(?:\s|>))',
+            "\n" + details + r"\1",
+            clean,
+            count=1,
+            flags=re.S,
+        )
+
+    fallback_pattern = r'(<div class="rc-summary">.*?</div>\s*)(<div class="rc-steps">)'
+    fallback_replacement = r"\1\n" + details + r"\n      \2"
+    return re.sub(fallback_pattern, fallback_replacement, clean, count=1, flags=re.S)
+
+
+def format_inr(value: Any) -> str:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return ""
+    if isinstance(value, float) and value.is_integer():
+        return f"₹{int(value)}"
+    return f"₹{value:.2f}".rstrip("0").rstrip(".")
+
+
+def summarize_zone_tariff(zone_name: str, zone_data: dict[str, Any]) -> str:
+    def lane_values(four_val: str, two_val: str) -> str:
+        parts: list[str] = []
+        if four_val:
+            parts.append(f"{four_val} (4W)")
+        if two_val:
+            parts.append(f"{two_val} (2W)")
+        return ", ".join(parts)
+
+    zone = zone_name.lower()
+    if "delhi" in zone:
+        four_daily = format_inr(zone_data.get("four_wheeler_daily_inr"))
+        two_daily = format_inr(zone_data.get("two_wheeler_daily_inr"))
+        four_monthly = format_inr(zone_data.get("four_wheeler_monthly_pass_inr"))
+        two_monthly = format_inr(zone_data.get("two_wheeler_monthly_pass_inr"))
+        parts = []
+        daily = lane_values(four_daily, two_daily)
+        monthly = lane_values(four_monthly, two_monthly)
+        if daily:
+            parts.append(f"Daily {daily}")
+        if monthly:
+            parts.append(f"Monthly {monthly}")
+        return "; ".join(p for p in parts if p).strip()
+
+    if "uttar pradesh" in zone:
+        four = zone_data.get("four_wheelers") if isinstance(zone_data.get("four_wheelers"), dict) else {}
+        two = zone_data.get("two_wheelers") if isinstance(zone_data.get("two_wheelers"), dict) else {}
+        up_to_6h_four = format_inr(four.get("up_to_6_hours_inr"))
+        up_to_6h_two = format_inr(two.get("up_to_6_hours_inr"))
+        up_to_12h_four = format_inr(four.get("up_to_12_hours_inr"))
+        up_to_12h_two = format_inr(two.get("up_to_12_hours_inr"))
+        monthly_four = format_inr(four.get("monthly_pass_no_time_limit_inr"))
+        monthly_two = format_inr(two.get("monthly_pass_no_time_limit_inr"))
+        parts = []
+        upto6h = lane_values(up_to_6h_four, up_to_6h_two)
+        upto12h = lane_values(up_to_12h_four, up_to_12h_two)
+        monthly = lane_values(monthly_four, monthly_two)
+        if upto6h:
+            parts.append(f"Up to 6h {upto6h}")
+        if upto12h:
+            parts.append(f"Up to 12h {upto12h}")
+        if monthly:
+            parts.append(f"Monthly {monthly}")
+        return "; ".join(p for p in parts if p).strip()
+
+    return ""
+
+
+def extract_object_for_key(raw: str, key: str) -> dict[str, Any]:
+    key_pat = re.compile(rf'"{re.escape(key)}"\s*:\s*\{{', flags=re.I)
+    m = key_pat.search(raw)
+    if not m:
+        return {}
+    start = raw.find("{", m.start())
+    if start == -1:
+        return {}
+    depth = 0
+    end = None
+    for i in range(start, len(raw)):
+        ch = raw[i]
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                end = i
+                break
+    if end is None:
+        return {}
+    chunk = raw[start : end + 1]
+    chunk = re.sub(r":\s*,", ": [],", chunk)
+    try:
+        parsed = json.loads(chunk)
+    except json.JSONDecodeError:
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
 
 
 def extract_station_objects_from_malformed_json(raw: str) -> list[dict[str, Any]]:
@@ -279,11 +388,41 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
 
     route_map: dict[str, dict[str, Any]] = {}
     station_map: dict[str, StationMeta] = {}
+    parking_tariff_by_zone: dict[str, str] = {}
 
     try:
         data = json.loads(raw)
     except json.JSONDecodeError:
         data = None
+
+    if isinstance(data, dict):
+        tariff_structure = (
+            data.get("standard_parking_tariff_structure")
+            if isinstance(data.get("standard_parking_tariff_structure"), dict)
+            else {}
+        )
+        if tariff_structure:
+            delhi_zone = (
+                tariff_structure.get("delhi_stations_zone")
+                if isinstance(tariff_structure.get("delhi_stations_zone"), dict)
+                else {}
+            )
+            up_zone = (
+                tariff_structure.get("uttar_pradesh_stations_zone")
+                if isinstance(tariff_structure.get("uttar_pradesh_stations_zone"), dict)
+                else {}
+            )
+            if delhi_zone:
+                parking_tariff_by_zone["delhi"] = summarize_zone_tariff("delhi", delhi_zone)
+            if up_zone:
+                parking_tariff_by_zone["uttar pradesh"] = summarize_zone_tariff("uttar pradesh", up_zone)
+    else:
+        delhi_zone = extract_object_for_key(raw, "delhi_stations_zone")
+        up_zone = extract_object_for_key(raw, "uttar_pradesh_stations_zone")
+        if delhi_zone:
+            parking_tariff_by_zone["delhi"] = summarize_zone_tariff("delhi", delhi_zone)
+        if up_zone:
+            parking_tariff_by_zone["uttar pradesh"] = summarize_zone_tariff("uttar pradesh", up_zone)
 
     if isinstance(data, dict):
         if isinstance(data.get("routes"), dict):
@@ -301,6 +440,8 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                 name = (st.get("station_name") or "").strip()
                 if not name:
                     continue
+                parking_profile = st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {}
+                zone_name = str(parking_profile.get("zone") or "").strip().lower()
                 station_map[normalize_slug(name)] = StationMeta(
                     station_name=name,
                     service_type=normalize_service_type(st.get("system_type")),
@@ -308,10 +449,11 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                     if isinstance(st.get("operational_timings"), dict)
                     else {},
                     exit_gates=st.get("exit_gates"),
-                    parking_profile=st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {},
+                    parking_profile=parking_profile,
                     special_facilities=st.get("special_facilities")
                     if isinstance(st.get("special_facilities"), dict)
                     else {},
+                    parking_tariff_summary=parking_tariff_by_zone.get(zone_name, ""),
                 )
 
     if not station_map:
@@ -319,6 +461,8 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
             name = (st.get("station_name") or "").strip()
             if not name:
                 continue
+            parking_profile = st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {}
+            zone_name = str(parking_profile.get("zone") or "").strip().lower()
             station_map[normalize_slug(name)] = StationMeta(
                 station_name=name,
                 service_type=normalize_service_type(st.get("system_type")),
@@ -326,10 +470,11 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                 if isinstance(st.get("operational_timings"), dict)
                 else {},
                 exit_gates=st.get("exit_gates"),
-                parking_profile=st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {},
+                parking_profile=parking_profile,
                 special_facilities=st.get("special_facilities")
                 if isinstance(st.get("special_facilities"), dict)
                 else {},
+                parking_tariff_summary=parking_tariff_by_zone.get(zone_name, ""),
             )
 
     return route_map, station_map
