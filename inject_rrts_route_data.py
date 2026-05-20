@@ -24,6 +24,8 @@ class StationMeta:
     service_type: str
     operational_timings: dict[str, Any]
     exit_gates: Any
+    parking_profile: dict[str, Any]
+    special_facilities: dict[str, Any]
 
 
 def normalize_slug(value: str) -> str:
@@ -113,7 +115,64 @@ def parse_first_last_train(timings: dict[str, Any]) -> tuple[str, str]:
     return first, last
 
 
-def get_timing_and_exit_details(html: str, route: dict[str, Any], station_map: dict[str, StationMeta]) -> tuple[str, str, list[tuple[str, str, str]]]:
+def normalize_label(value: str) -> str:
+    return value.replace("_", " ").strip().title()
+
+
+def summarize_parking(origin_station: StationMeta | None) -> str:
+    if not origin_station or not isinstance(origin_station.parking_profile, dict) or not origin_station.parking_profile:
+        return "Not listed"
+    profile = origin_station.parking_profile
+    parts: list[str] = []
+    available = profile.get("parking_available")
+    if isinstance(available, bool):
+        parts.append("Available" if available else "Not available")
+    zone = profile.get("zone")
+    if zone:
+        parts.append(f"Zone: {zone}")
+    live = profile.get("live_capacity")
+    if isinstance(live, dict) and live:
+        caps = []
+        for key, value in live.items():
+            if value in (None, "", [], {}):
+                continue
+            caps.append(f"{normalize_label(str(key))} {value}")
+        if caps:
+            parts.append("Capacity: " + ", ".join(caps[:4]) + (", +more" if len(caps) > 4 else ""))
+    return " | ".join(parts) if parts else "Not listed"
+
+
+def list_facilities(origin_station: StationMeta | None) -> list[str]:
+    if not origin_station or not isinstance(origin_station.special_facilities, dict) or not origin_station.special_facilities:
+        return []
+    details: list[str] = []
+    for key, value in origin_station.special_facilities.items():
+        label = normalize_label(str(key))
+        if value is True:
+            details.append(label)
+        elif value in (False, None, "", [], {}):
+            continue
+        elif isinstance(value, list):
+            joined = ", ".join(str(v) for v in value if v not in (None, "", [], {}))
+            if joined:
+                details.append(f"{label}: {joined}")
+        else:
+            details.append(f"{label}: {value}")
+    return details
+
+
+def summarize_facilities(origin_station: StationMeta | None, limit: int = 5) -> str:
+    facilities = list_facilities(origin_station)
+    if not facilities:
+        return "Not listed"
+    if len(facilities) <= limit:
+        return ", ".join(facilities)
+    return ", ".join(facilities[:limit]) + f", +{len(facilities) - limit} more"
+
+
+def get_station_route_details(
+    html: str, route: dict[str, Any], station_map: dict[str, StationMeta]
+) -> tuple[str, str, list[tuple[str, str, str]], StationMeta | None]:
     fallback_stations = extract_step_stations(html)
     origin_name = fallback_stations[0] if fallback_stations else ""
     origin_meta = station_map.get(normalize_slug(origin_name)) if origin_name else None
@@ -122,7 +181,7 @@ def get_timing_and_exit_details(html: str, route: dict[str, Any], station_map: d
         route.get("timings") if isinstance(route.get("timings"), dict) else (origin_meta.operational_timings if origin_meta else {})
     )
     exits = normalize_exit_items(route, origin_meta)
-    return first_train, last_train, exits
+    return first_train, last_train, exits, origin_meta
 
 
 def summarize_exit_blueprints(exits: list[tuple[str, str, str]], limit: int = 3) -> str:
@@ -144,21 +203,27 @@ def strip_existing_summary_details(html: str) -> str:
     )
 
 
-def build_route_summary_details_html(first_train: str, last_train: str, exit_summary: str) -> str:
+def build_route_summary_details_html(
+    first_train: str, last_train: str, exit_summary: str, parking_summary: str, facilities_summary: str
+) -> str:
     return f"""
 {SUMMARY_DETAILS_START}
 <div class="rc-route-meta" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border2,#e2e8f0);display:grid;gap:8px">
   <div style="font-size:.9rem;line-height:1.45"><strong>First Train:</strong> {escape(first_train)}</div>
   <div style="font-size:.9rem;line-height:1.45"><strong>Last Train:</strong> {escape(last_train)}</div>
   <div style="font-size:.9rem;line-height:1.45"><strong>Exit Gate Blueprint:</strong> {escape(exit_summary)}</div>
+  <div style="font-size:.9rem;line-height:1.45"><strong>Parking:</strong> {escape(parking_summary)}</div>
+  <div style="font-size:.9rem;line-height:1.45"><strong>Facilities:</strong> {escape(facilities_summary)}</div>
 </div>
 {SUMMARY_DETAILS_END}
 """.strip()
 
 
-def inject_route_summary_details(html: str, first_train: str, last_train: str, exit_summary: str) -> str:
+def inject_route_summary_details(
+    html: str, first_train: str, last_train: str, exit_summary: str, parking_summary: str, facilities_summary: str
+) -> str:
     clean = strip_existing_summary_details(html)
-    details = build_route_summary_details_html(first_train, last_train, exit_summary)
+    details = build_route_summary_details_html(first_train, last_train, exit_summary, parking_summary, facilities_summary)
     pattern = r'(<div class="rc-summary">.*?</div>\s*)(<div class="rc-steps">)'
     replacement = r"\1\n" + details + r"\n      \2"
     return re.sub(pattern, replacement, clean, count=1, flags=re.S)
@@ -237,6 +302,10 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                     if isinstance(st.get("operational_timings"), dict)
                     else {},
                     exit_gates=st.get("exit_gates"),
+                    parking_profile=st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {},
+                    special_facilities=st.get("special_facilities")
+                    if isinstance(st.get("special_facilities"), dict)
+                    else {},
                 )
 
     if not station_map:
@@ -251,6 +320,10 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                 if isinstance(st.get("operational_timings"), dict)
                 else {},
                 exit_gates=st.get("exit_gates"),
+                parking_profile=st.get("parking_profile") if isinstance(st.get("parking_profile"), dict) else {},
+                special_facilities=st.get("special_facilities")
+                if isinstance(st.get("special_facilities"), dict)
+                else {},
             )
 
     return route_map, station_map
@@ -345,7 +418,9 @@ def normalize_exit_items(route: dict[str, Any], origin_station: StationMeta | No
 def build_component_html(slug: str, html: str, route: dict[str, Any], station_map: dict[str, StationMeta]) -> str:
     fallback = parse_sub_line(html)
     fallback_stations = extract_step_stations(html)
-    first_train, last_train, exits = get_timing_and_exit_details(html, route, station_map)
+    first_train, last_train, exits, origin_meta = get_station_route_details(html, route, station_map)
+    parking_summary = summarize_parking(origin_meta)
+    facilities_summary = summarize_facilities(origin_meta)
 
     timeline = normalize_timeline(route, fallback_stations, station_map)
 
@@ -420,6 +495,14 @@ def build_component_html(slug: str, html: str, route: dict[str, Any], station_ma
     </div>
   </div>
 
+  <div class="rrts-card" style="margin-bottom:12px">
+    <h2 class="rrts-title">Origin Station Amenities</h2>
+    <div class="rrts-grid">
+      <div><div class="rrts-meta-key">Parking</div><div class="rrts-meta-val">{escape(parking_summary)}</div></div>
+      <div><div class="rrts-meta-key">Facilities</div><div class="rrts-meta-val">{escape(facilities_summary)}</div></div>
+    </div>
+  </div>
+
   <div class="rrts-card">
     <h2 class="rrts-title">Exit Gate Blueprint</h2>
     <ul class="rrts-exits">{exit_items}</ul>
@@ -491,11 +574,15 @@ def run(write: bool = True) -> int:
             route=route_data,
             station_map=station_map,
         )
-        first_train, last_train, exits = get_timing_and_exit_details(original, route_data, station_map)
+        first_train, last_train, exits, origin_meta = get_station_route_details(original, route_data, station_map)
         exit_summary = summarize_exit_blueprints(exits)
+        parking_summary = summarize_parking(origin_meta)
+        facilities_summary = summarize_facilities(origin_meta)
 
         result = inject_in_main_block(original, block)
-        result = inject_route_summary_details(result, first_train, last_train, exit_summary)
+        result = inject_route_summary_details(
+            result, first_train, last_train, exit_summary, parking_summary, facilities_summary
+        )
 
         if write and result != original:
             path.write_text(result, encoding="utf-8")
