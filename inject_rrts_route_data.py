@@ -11,6 +11,7 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parent
 ROUTES_DIR = REPO_ROOT / "routes"
 ROUTE_JSON = REPO_ROOT / "data" / "rrts-routes.json"
+PARKING_BLOG_URL = "https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html"
 
 BLOCK_START = "<!-- RRTS_ROUTE_DATA_INJECT_START -->"
 BLOCK_END = "<!-- RRTS_ROUTE_DATA_INJECT_END -->"
@@ -138,7 +139,7 @@ def summarize_parking(origin_station: StationMeta | None) -> str:
                 continue
             caps.append(f"{normalize_label(str(key))} {value}")
         if caps:
-            parts.append("Capacity: " + ", ".join(caps[:4]) + (", +more" if len(caps) > 4 else ""))
+            parts.append("Capacity: " + ", ".join(caps))
     return " | ".join(parts) if parts else "Not listed"
 
 
@@ -161,11 +162,11 @@ def list_facilities(origin_station: StationMeta | None) -> list[str]:
     return details
 
 
-def summarize_facilities(origin_station: StationMeta | None, limit: int = 5) -> str:
+def summarize_facilities(origin_station: StationMeta | None, limit: int | None = None) -> str:
     facilities = list_facilities(origin_station)
     if not facilities:
         return "Not listed"
-    if len(facilities) <= limit:
+    if not limit or len(facilities) <= limit:
         return ", ".join(facilities)
     return ", ".join(facilities[:limit]) + f", +{len(facilities) - limit} more"
 
@@ -184,12 +185,12 @@ def get_station_route_details(
     return first_train, last_train, exits, origin_meta
 
 
-def summarize_exit_blueprints(exits: list[tuple[str, str, str]], limit: int = 3) -> str:
+def summarize_exit_blueprints(exits: list[tuple[str, str, str]], limit: int | None = None) -> str:
     if not exits:
         return "Not listed"
-    clipped = exits[:limit]
+    clipped = exits[:limit] if limit else exits
     text = "; ".join(f"{st} — {gate}: {landmark}" for st, gate, landmark in clipped)
-    if len(exits) > limit:
+    if limit and len(exits) > limit:
         text += f"; +{len(exits) - limit} more"
     return text
 
@@ -206,14 +207,19 @@ def strip_existing_summary_details(html: str) -> str:
 def build_route_summary_details_html(
     first_train: str, last_train: str, exit_summary: str, parking_summary: str, facilities_summary: str
 ) -> str:
+    parking_text = escape(parking_summary)
+    parking_link = (
+        f'<a href="{escape(PARKING_BLOG_URL)}" target="_blank" rel="noopener noreferrer" '
+        'style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a>'
+    )
     return f"""
 {SUMMARY_DETAILS_START}
-<div class="rc-route-meta" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border2,#e2e8f0);display:grid;gap:8px">
-  <div style="font-size:.9rem;line-height:1.45"><strong>First Train:</strong> {escape(first_train)}</div>
-  <div style="font-size:.9rem;line-height:1.45"><strong>Last Train:</strong> {escape(last_train)}</div>
-  <div style="font-size:.9rem;line-height:1.45"><strong>Exit Gate Blueprint:</strong> {escape(exit_summary)}</div>
-  <div style="font-size:.9rem;line-height:1.45"><strong>Parking:</strong> {escape(parking_summary)}</div>
-  <div style="font-size:.9rem;line-height:1.45"><strong>Facilities:</strong> {escape(facilities_summary)}</div>
+<div class="rc-route-meta" style="margin-top:12px;padding:12px 14px;border:1px solid var(--border2,#e2e8f0);border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 6px 24px rgba(2,6,23,.03);display:grid;gap:0">
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> {escape(first_train)}</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> {escape(last_train)}</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Exit Gate Blueprint:</strong> {escape(exit_summary)}</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> {parking_text}<br><span style="display:inline-block;margin-top:6px">{parking_link}</span></div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> {escape(facilities_summary)}</div>
 </div>
 {SUMMARY_DETAILS_END}
 """.strip()
@@ -568,18 +574,12 @@ def run(write: bool = True) -> int:
         original = path.read_text(encoding="utf-8")
         route_data = route_map.get(slug) or fallback_route_data_from_html(original)
 
-        block = build_component_html(
-            slug=slug,
-            html=original,
-            route=route_data,
-            station_map=station_map,
-        )
         first_train, last_train, exits, origin_meta = get_station_route_details(original, route_data, station_map)
         exit_summary = summarize_exit_blueprints(exits)
         parking_summary = summarize_parking(origin_meta)
         facilities_summary = summarize_facilities(origin_meta)
 
-        result = inject_in_main_block(original, block)
+        result = strip_existing_block(original)
         result = inject_route_summary_details(
             result, first_train, last_train, exit_summary, parking_summary, facilities_summary
         )
