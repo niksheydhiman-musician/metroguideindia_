@@ -22,7 +22,8 @@
     /* ── Layout ─────────────────────────────────────────── */
     .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
     .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:32px;align-items:start}
-    @media(max-width:900px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static!important}}
+    .post-grid > *{min-width:0}
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static!important}}
 
     /* ── Breadcrumbs ─────────────────────────────────────── */
     .breadcrumbs{font-size:.75rem;color:var(--muted);margin-bottom:14px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -41,7 +42,7 @@
     .post-divider{height:2px;background:linear-gradient(90deg,var(--red),transparent);border:none;margin:20px 0 28px;border-radius:2px}
 
     /* ── Blog body ───────────────────────────────────────── */
-    .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2)}
+    .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
     .blog-body a{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}
     .blog-body a:hover{border-bottom-color:var(--red)}
     .blog-body p{margin:0 0 18px}
