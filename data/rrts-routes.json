@@ -1,0 +1,661 @@
+{
+  "transit_network_metadata": {
+    "network_name": "Delhi-Ghaziabad-Meerut RRTS (Namo Bharat) & Meerut Metro Corridor",
+    "total_length_km": 82.15,
+    "maximum_operational_speed_kmh": 160.0,
+    "design_speed_kmh": 180.0,
+    "operating_authority": "National Capital Region Transport Corporation (NCRTC)",
+    "official_helpline": "08069651515",
+    "official_support_email": "customercare@rrts.co.in",
+    "official_mobile_application": "RRTS Connect / Namo Bharat Connect"
+  },
+  "standard_parking_tariff_structure": {
+    "delhi_stations_zone": {
+      "four_wheeler_daily_inr": 100.0,
+      "two_wheeler_daily_inr": 30.0,
+      "four_wheeler_monthly_pass_inr": 1800.0,
+      "two_wheeler_monthly_pass_inr": 500.0
+    },
+    "uttar_pradesh_stations_zone": {
+      "four_wheelers": {
+        "up_to_10_minutes_pickup_drop": 0.0,
+        "up_to_6_hours_inr": 30.0,
+        "up_to_12_hours_inr": 60.0,
+        "up_to_16_hours_inr": 80.0,
+        "beyond_16_hours_to_end_of_operations_inr": 100.0,
+        "night_charges_non_operational_hours_inr": 200.0,
+        "monthly_pass_no_time_limit_inr": 2000.0
+      },
+      "two_wheelers": {
+        "up_to_10_minutes_pickup_drop": 0.0,
+        "up_to_6_hours_inr": 10.0,
+        "up_to_12_hours_inr": 25.0,
+        "up_to_16_hours_inr": 30.0,
+        "beyond_16_hours_to_end_of_operations_inr": 30.0,
+        "night_charges_non_operational_hours_inr": 60.0,
+        "monthly_pass_no_time_limit_inr": 600.0
+      },
+      "bicycles": {
+        "up_to_10_minutes_pickup_drop": 0.0,
+        "up_to_6_hours_inr": 5.0,
+        "up_to_12_hours_inr": 5.0,
+        "up_to_16_hours_inr": 10.0,
+        "beyond_16_hours_to_end_of_operations_inr": 10.0,
+        "night_charges_non_operational_hours_inr": 20.0
+      },
+      "extra_charges": {
+        "helmet_parking_up_to_12_hours_inr": 5.0,
+        "helmet_parking_12_to_24_hours_inr": 10.0
+      }
+    }
+  },
+  "stations":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Delhi",
+        "live_capacity": { "four_wheelers": 50, "two_wheelers": 100 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "lifts_count": 9,
+        "escalators_count": 15,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928744"
+    },
+    {
+      "station_code": "A01",
+      "station_name": "New Ashok Nagar",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "East Delhi, Delhi",
+      "operational_timings": {
+        "first_train_weekday": "06:00:00 AM",
+        "first_train_sunday": "08:00:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Delhi",
+        "live_capacity": { "gate_1_four_wheelers": 20, "gate_1_two_wheelers": 97, "gate_2_two_wheelers": 187 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "lifts_count": 6,
+        "escalators_count": 10,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928711"
+    },
+    {
+      "station_code": "A02",
+      "station_name": "Anand Vihar",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "East Delhi, Delhi",
+      "operational_timings": {
+        "first_train_weekday": "06:11:00 AM",
+        "first_train_sunday": "08:11:00 AM",
+        "last_train": "10:11:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Delhi",
+        "live_capacity": { "gate_1_four_wheelers": 20, "gate_1_two_wheelers": 105 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "retail_stores":,
+        "atms":,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928706"
+    },
+    {
+      "station_code": "A03",
+      "station_name": "Sahibabad",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Sahibabad, Ghaziabad, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_weekday": "06:00:00 AM",
+        "first_train_sunday": "08:00:00 AM",
+        "last_train": "10:15:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_3_four_wheelers": 50, "gate_3_two_wheelers": 100 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928701"
+    },
+    {
+      "station_code": "A04",
+      "station_name": "Ghaziabad",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Meerut Trisection, Ghaziabad, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_weekday": "06:04:00 AM",
+        "first_train_sunday": "08:04:00 AM",
+        "last_train_towards_delhi": "10:45:00 PM",
+        "last_train_towards_meerut": "10:21:20 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_4_and_5_four_wheelers": 60, "gate_4_and_5_two_wheelers": 162 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "integrated_beverage_station": "Coca-Cola Happiness Station (Sparkling drinks, juices, rolls, desserts)",
+        "premium_lounge": false,
+        "helpdesk": true,
+        "lost_and_found_room": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928705"
+    },
+    {
+      "station_code": "A05",
+      "station_name": "Guldhar",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Delhi-Meerut Road, Ghaziabad, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "06:00:30 AM",
+        "first_train_towards_meerut": "06:14:00 AM",
+        "last_train_towards_delhi": "10:41:30 PM",
+        "last_train_towards_meerut": "10:25:20 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 628, "gate_2_two_wheelers": 250 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928706"
+    },
+    {
+      "station_code": "A06",
+      "station_name": "Duhai",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Duhai, Ghaziabad, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "05:57:00 AM",
+        "first_train_towards_meerut": "05:50:00 AM",
+        "first_train_towards_depot": "06:07:00 AM",
+        "last_train_towards_delhi": "10:38:00 PM",
+        "last_train_towards_meerut": "10:29:20 PM",
+        "last_train_towards_depot": "10:07:30 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_3_four_wheelers": 32, "gate_3_two_wheelers": 180, "gate_4_two_wheelers": 318 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928707"
+    },
+    {
+      "station_code": "A07",
+      "station_name": "Murad Nagar",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Delhi-Meerut Road, Murad Nagar, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "06:11:00 AM",
+        "first_train_towards_meerut": "05:54:30 AM",
+        "last_train_towards_delhi": "10:33:30 PM",
+        "last_train_towards_meerut": "10:33:50 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 175 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9311040541"
+    },
+    {
+      "station_code": "A08",
+      "station_name": "Modi Nagar South",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Modinagar Southern Belt, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "06:06:00 AM",
+        "first_train_towards_meerut": "05:59:30 AM",
+        "last_train_towards_delhi": "10:29:00 PM",
+        "last_train_towards_meerut": "10:38:50 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 88 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928722"
+    },
+    {
+      "station_code": "A09",
+      "station_name": "Modi Nagar North",
+      "operational_status": "Operational",
+      "system_type": "Long-Distance RRTS (Namo Bharat)",
+      "geographical_location": "Modinagar Northern Belt, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_weekday": "06:00:00 AM",
+        "first_train_sunday": "08:00:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 120 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928723"
+    },
+    {
+      "station_code": "A10",
+      "station_name": "Meerut South",
+      "operational_status": "Operational",
+      "system_type": "Dual-Service Hub (Namo Bharat & Meerut Metro)",
+      "geographical_location": "Southern City Limit, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "05:57:00 AM",
+        "first_train_towards_meerut": "06:00:00 AM",
+        "last_train_towards_delhi": "10:20:00 PM",
+        "last_train_towards_meerut": "10:47:50 PM",
+        "meerut_metro_last_train": "10:02:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_2_four_wheelers": 172, "gate_2_two_wheelers": 382 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "divyangjan_friendly": true,
+        "platform_switch": "Platform 2 connects incoming regional trains directly with Meerut Metro line"
+      },
+      "control_room_contact": "7428307121"
+    },
+    {
+      "station_code": "A11",
+      "station_name": "Partapur",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "Delhi Road, Partapur, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 50 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "waiting_rooms": true,
+        "ticket_counters": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A12",
+      "station_name": "Rithani",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "Rithani, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_2_four_wheelers": 10, "gate_2_two_wheelers": 70 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A13",
+      "station_name": "Shatabdi Nagar",
+      "operational_status": "Operational",
+      "system_type": "Dual-Service Hub (Namo Bharat & Meerut Metro)",
+      "geographical_location": "Shatabdi Nagar, NH-58 Highway, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_weekday_delhi": "06:14:30 AM",
+        "first_train_sunday_delhi": "08:14:30 AM",
+        "first_train_meerut_metro_north": "06:20:10 AM",
+        "first_train_meerut_metro_south": "06:29:20 AM",
+        "last_train_delhi": "10:14:30 PM",
+        "last_train_meerut_metro_north": "10:12:10 PM",
+        "last_train_meerut_metro_south": "10:29:20 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 300 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": true,
+        "premium_lounge_location": "Namo Bharat platforms (Meerut end ofpaid concourse)",
+        "lifts_count": 4,
+        "escalators_count": 6,
+        "divyangjan_friendly": true,
+        "platform_switch": "Platform 1 functions as local high-speed Meerut Metro interchange"
+      },
+      "control_room_contact": "9289269611"
+    },
+    {
+      "station_code": "A14",
+      "station_name": "Brahampuri",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "Brahampuri Main Road, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A15",
+      "station_name": "Meerut Central",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro Underground)",
+      "geographical_location": "NH-58, near Metro Plaza, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_south": "06:23:50 AM",
+        "first_train_towards_north": "06:25:30 AM",
+        "last_train_towards_south": "10:23:50 PM",
+        "last_train_towards_north": "10:17:30 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9211355252"
+    },
+    {
+      "station_code": "A16",
+      "station_name": "Bhaisali Bus Adda",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro Underground)",
+      "geographical_location": "Bhaisali, Meerut City, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A17",
+      "station_name": "Begumpul",
+      "operational_status": "Operational",
+      "system_type": "Dual-Service Hub (Namo Bharat & Meerut Metro Underground)",
+      "geographical_location": "Begumpul Commercial Centre, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:19:00 AM",
+        "last_train": "10:19:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_two_wheelers": 182, "gate_2_two_wheelers": 79, "gate_3_two_wheelers": 97, "gate_4_two_wheelers": 92 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": false,
+        "deepest_station_cavern": true,
+        "shared_mode_platforms": "Dual parallel tracks serving regional Namo Bharat trains & local Meerut Metro in shared platform space",
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928717"
+    },
+    {
+      "station_code": "A18",
+      "station_name": "MES Colony",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "MES Colony Road, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A19",
+      "station_name": "Daurli",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "Daurli, Meerut Road, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A20",
+      "station_name": "Meerut North",
+      "operational_status": "Operational",
+      "system_type": "Local City Service (Meerut Metro)",
+      "geographical_location": "Roorkee Road, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train": "06:06:00 AM",
+        "last_train": "10:00:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": false,
+        "zone": "Uttar Pradesh"
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "0"
+    },
+    {
+      "station_code": "A21",
+      "station_name": "Modipuram",
+      "operational_status": "Operational",
+      "system_type": "Dual-Service Hub (Namo Bharat & Meerut Metro Terminal)",
+      "geographical_location": "Modipuram Northern Boundary, Meerut, Uttar Pradesh",
+      "operational_timings": {
+        "first_train_towards_delhi": "06:01:00 AM",
+        "last_train_towards_delhi": "10:01:00 PM",
+        "meerut_metro_first_train": "06:06:00 AM",
+        "meerut_metro_last_train": "10:06:00 PM",
+        "frequency_minutes": 10.0
+      },
+      "exit_gates":,
+      "parking_profile": {
+        "parking_available": true,
+        "zone": "Uttar Pradesh",
+        "live_capacity": { "gate_1_four_wheelers": 239, "gate_1_two_wheelers": 295, "gate_2_four_wheelers": 198, "gate_2_two_wheelers": 114 }
+      },
+      "special_facilities": {
+        "washrooms": true,
+        "drinking_water": true,
+        "first_aid": true,
+        "food_stalls": true,
+        "premium_lounge": true,
+        "premium_lounge_location": "Namo Bharat platforms terminal concourse",
+        "divyangjan_friendly": true
+      },
+      "control_room_contact": "9289928721"
+    }
+  ]
+}
