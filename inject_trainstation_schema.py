@@ -72,6 +72,22 @@ def extract_canonical_url(html: str, fallback_slug: str) -> str:
     return f"https://metroguideindia.com/namo-bharat/stations/{fallback_slug}.html"
 
 
+def extract_landmarks_from_html(html: str) -> set[str]:
+    landmarks: set[str] = set()
+
+    for match in re.findall(r'<li>\s*<strong>Gate\s*[^<]*:</strong>\s*(.*?)</li>', html, flags=re.I | re.S):
+        text = re.sub(r"\s+", " ", re.sub(r"<.*?>", "", match)).strip(" .")
+        if text:
+            landmarks.add(text)
+
+    for match in re.findall(r'<span class="pr-card-to">(.*?)</span>', html, flags=re.S):
+        text = re.sub(r"\s+", " ", re.sub(r"<.*?>", "", match)).strip(" .")
+        if text:
+            landmarks.add(text)
+
+    return landmarks
+
+
 def build_trainstation_jsonld(
     path: Path,
     html: str,
@@ -80,6 +96,7 @@ def build_trainstation_jsonld(
     station_name = extract_h1_station_name(html) or (meta.name if meta else path.stem.replace("-", " ").title())
     canonical_url = extract_canonical_url(html, path.stem)
     description = extract_station_description(html)
+    page_landmarks = extract_landmarks_from_html(html)
 
     schema: dict[str, Any] = {
         "@context": "https://schema.org",
@@ -114,12 +131,14 @@ def build_trainstation_jsonld(
                     "value": ", ".join(sorted(meta.lines)),
                 }
             )
-        if meta.landmarks:
+        all_landmarks = set(meta.landmarks)
+        all_landmarks.update(page_landmarks)
+        if all_landmarks:
             additional.append(
                 {
                     "@type": "PropertyValue",
                     "name": "Nearby Landmarks",
-                    "value": "; ".join(sorted(meta.landmarks)),
+                    "value": "; ".join(sorted(all_landmarks)),
                 }
             )
         if additional:
