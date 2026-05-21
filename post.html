@@ -16,7 +16,7 @@
     /* Reading progress bar */
     #read-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}
 
-    .post-wrap{max-width:720px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
+    .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
     .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}
     .post-back:hover{color:var(--red)}
     .post-header{margin-bottom:24px}
@@ -25,6 +25,8 @@
     .post-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);color:var(--text);line-height:1.18;margin-bottom:12px}
     .post-meta{font-size:.79rem;color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap}
     .post-divider{height:2px;background:linear-gradient(90deg,var(--red),transparent);border:none;margin:20px 0 28px;border-radius:2px}
+    .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}
+    .post-grid > *{min-width:0}
 
     /* Blog content typography */
     .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
@@ -48,14 +50,31 @@
     .blog-table tbody tr:last-child td{border-bottom:none}
     .blog-table tbody tr:hover td{background:var(--surface2);transition:background .12s}
 
-    /* Related posts */
-    .related{margin-top:44px;padding-top:28px;border-top:1px solid var(--border2)}
-    .related-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:14px;color:var(--text)}
-    .related-grid{display:flex;flex-direction:column;gap:10px}
-    .related-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px 16px;cursor:pointer;transition:all .15s;text-decoration:none;display:block;color:inherit}
-    .related-card:hover{transform:translateX(4px);border-color:rgba(192,57,43,.3)}
-    .related-card-title{font-weight:600;font-size:.88rem;color:var(--text);margin-bottom:3px}
-    .related-card-date{font-size:.72rem;color:var(--muted)}
+    /* Sidebar */
+    .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}
+    .sidebar-section-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
+    .toc-list{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:4px}
+    .toc-list li a{font-size:.82rem;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px;display:block;transition:all .15s;border-left:2px solid transparent}
+    .toc-list li a:hover{color:var(--red);background:var(--red-bg);border-left-color:var(--red)}
+    .sidebar-list{display:flex;flex-direction:column;gap:9px}
+    .related-guide{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:11px 14px;text-decoration:none;color:inherit;transition:all .15s}
+    .related-guide:hover{transform:translateX(3px);border-color:rgba(192,57,43,.35);background:var(--red-bg)}
+    .related-guide-title{font-size:.83rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:3px}
+    .related-guide-date{font-size:.7rem;color:var(--muted)}
+    .sidebar-empty{margin:0;color:var(--muted);font-size:.8rem}
+
+    /* FAQ */
+    .faq-list{margin-top:10px}
+    .faq-item{border:1px solid var(--border2);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden}
+    .faq-q{font-family:'Syne',sans-serif;font-weight:600;font-size:.95rem;color:var(--text);padding:14px 18px;background:var(--surface2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;transition:background .15s;width:100%;text-align:left;border:0}
+    .faq-q:hover{background:var(--surface3)}
+    .faq-q::after{content:'+';font-size:1.1rem;color:var(--muted);flex-shrink:0;transition:transform .2s}
+    .faq-item.open .faq-q::after{content:'×';color:var(--red)}
+    .faq-a{font-size:.93rem;color:var(--text2);line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+    .faq-item.open .faq-a{max-height:900px;padding:14px 18px}
+    .faq-a .blog-p:last-child,.faq-a p:last-child{margin-bottom:0}
+
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
@@ -73,13 +92,13 @@
     <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right">
       <span class="nav-chip">Beta</span>
-      <a href="/blog.html" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
+      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
     </div>
   </div>
 </nav>
 <main>
 <div class="post-wrap">
-  <a href="/blog.html" class="post-back">← Back to all posts</a>
+  <a href="/blog" class="post-back">← Back to all posts</a>
   <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
 </div>
 

@@ -15,6 +15,52 @@
   var SITE_DOMAIN = 'https://metroguideindia.in';
   var INDEX_URL   = '/data/blogs/index.json';
   var BASE_URL    = '/data/blogs/';
+  var FAQ_SCHEMA_SCRIPT_ID = 'post-faq-schema';
+  var FAQ_HEADING_PATTERN = /\b(frequently asked questions|faqs?)\b/i;
+  var FAQ_SCHEMA_OVERRIDES = {
+    'delhi-metro-fare-calculator-how-fares-are-calculated-by-distance-in-2026': [
+      {
+        name: 'What is the minimum Delhi Metro fare in 2026?',
+        text: 'The minimum fare is ₹11 for journeys up to 2 km. This is the base fare for the shortest distance on all Delhi Metro lines.'
+      },
+      {
+        name: 'What is the maximum Delhi Metro fare in 2026?',
+        text: 'The maximum fare is ₹64 for journeys beyond 32 km. This applies to the longest commutes on the Delhi Metro network.'
+      },
+      {
+        name: 'Is Delhi Metro fare the same on all days?',
+        text: 'No. Sundays and national holidays have discounted fares that can save you ₹10–₹11 per journey compared to weekday rates. Weekday fares range from ₹11–₹64, while Sunday fares range from ₹11–₹54.'
+      },
+      {
+        name: 'How much discount do I get with a Smart Card?',
+        text: 'Smart Card users get a 10% discount on all fare slabs. For example, a ₹21 token fare becomes ₹19 with a Smart Card, and a ₹64 fare becomes ₹58.'
+      },
+      {
+        name: 'When was the last Delhi Metro fare hike?',
+        text: 'The last fare hike was on August 25, 2025, after an 8-year gap since 2017. The increase was minimal, ranging from ₹1 to ₹5 across various distance slabs.'
+      },
+      {
+        name: 'How is Delhi Metro fare calculated?',
+        text: 'Fares are calculated using a distance-based slab system where you pay a fixed rate for your distance range, not per kilometre. The system has 6 slabs: 0–2 km, 2–5 km, 5–12 km, 12–21 km, 21–32 km, and more than 32 km.'
+      },
+      {
+        name: 'Can I use the same ticket for multiple journeys?',
+        text: 'No. Token tickets (single-journey tickets) are valid for only one journey. For multiple journeys, you should use a Smart Card which can be recharged and used repeatedly.'
+      },
+      {
+        name: 'What happens if I exceed the maximum travel time?',
+        text: 'If you exceed the time limit for your distance slab (65–240 minutes depending on distance), you may need to pay additional fare at the exit station. Time starts from entry tap to exit tap.'
+      },
+      {
+        name: 'Are there any free travels on Delhi Metro?',
+        text: 'Children below 5 years travel free on Delhi Metro. No other free travel concessions are available for general passengers.'
+      },
+      {
+        name: 'How do I find the distance between two metro stations?',
+        text: 'Use the official Delhi Metro website fare calculator at delhimetrorail.com/fare, Google Maps, or apps like Delhi Metro Rail Info to find the exact distance between any two stations.'
+      }
+    ]
+  };
 
   /* ── helpers ─────────────────────────────────────────────────────────── */
 
@@ -31,6 +77,43 @@
     var d = new Date(dateStr + 'T00:00:00');
     if (isNaN(d)) return dateStr;
     return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function normalizeBlogPath(url, slug) {
+    var fallback = '/blog/' + encodeURIComponent(slug);
+    if (!url) return fallback;
+
+    var normalized = String(url).trim();
+    if (!normalized) return fallback;
+
+    var querySlug = normalized.match(/^\/post\.html\?id=([^&#]+)/i);
+    if (querySlug) return '/blog/' + decodeURIComponent(querySlug[1]);
+
+    if (/^https?:\/\//i.test(normalized)) {
+      try {
+        var asUrl = new URL(normalized);
+        normalized = asUrl.pathname + asUrl.search + asUrl.hash;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    if (!normalized.startsWith('/')) normalized = '/' + normalized;
+    normalized = normalized.replace(/\/index\.html$/i, '/');
+    normalized = normalized.replace(/\.html$/i, '');
+    normalized = normalized.replace(/\/+$/, '');
+    return normalized || fallback;
+  }
+
+  function getCurrentSlug() {
+    var params = new URLSearchParams(window.location.search);
+    var qsSlug = params.get('id');
+    if (qsSlug) return qsSlug;
+
+    var path = window.location.pathname || '';
+    var m = path.match(/^\/blog\/([^/?#]+?)(?:\.html)?\/?$/i);
+    if (m && m[1]) return decodeURIComponent(m[1]);
+    return '';
   }
 
   /** Minimal Markdown → HTML converter (CommonMark subset). */
@@ -220,6 +303,169 @@
     return mdToHtml(body);
   }
 
+  function slugify(text) {
+    return String(text || '')
+      .toLowerCase()
+      .replace(/&amp;/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .replace(/-{2,}/g, '-');
+  }
+
+  function stripHtmlToText(html) {
+    var temp = document.createElement('div');
+    temp.innerHTML = html || '';
+    return (temp.textContent || temp.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function buildFaqFromArticle(articleEl) {
+    if (!articleEl) return [];
+    var h2s = Array.prototype.slice.call(articleEl.querySelectorAll('h2.blog-h2, h2'));
+    var faqHeading = h2s.find(function (h) { return FAQ_HEADING_PATTERN.test((h.textContent || '').trim()); });
+    if (!faqHeading) return [];
+
+    var items = [];
+    var question = '';
+    var answerNodes = [];
+    var node = faqHeading.nextElementSibling;
+    var faqNodes = [];
+
+    function pushCurrent() {
+      if (!question || !answerNodes.length) return;
+      var answerHtml = answerNodes.map(function (n) { return n.outerHTML; }).join('');
+      var answerText = stripHtmlToText(answerHtml);
+      if (!answerText) return;
+      items.push({
+        question: question,
+        answerNodes: answerNodes.map(function (n) { return n.cloneNode(true); }),
+        answerText: answerText
+      });
+    }
+
+    while (node) {
+      if (node.matches('h2.blog-h2, h2')) break;
+      faqNodes.push(node);
+
+      if (node.matches('h3.blog-h3, h3')) {
+        pushCurrent();
+        question = (node.textContent || '').replace(/^\s*\d+[\).\-\s]+/, '').trim();
+        answerNodes = [];
+      } else if (question) {
+        answerNodes.push(node.cloneNode(true));
+      }
+
+      node = node.nextElementSibling;
+    }
+    pushCurrent();
+
+    if (!items.length) return [];
+
+    faqNodes.forEach(function (n) { n.remove(); });
+    var accordion = document.createElement('div');
+    accordion.className = 'faq-list';
+    items.forEach(function (faq, idx) {
+      var item = document.createElement('div');
+      item.className = 'faq-item' + (idx === 0 ? ' open' : '');
+      var btn = document.createElement('button');
+      btn.className = 'faq-q';
+      btn.type = 'button';
+      btn.setAttribute('aria-expanded', idx === 0 ? 'true' : 'false');
+      btn.textContent = faq.question;
+
+      var ans = document.createElement('div');
+      ans.className = 'faq-a';
+      faq.answerNodes.forEach(function (n) { ans.appendChild(n.cloneNode(true)); });
+
+      item.appendChild(btn);
+      item.appendChild(ans);
+      accordion.appendChild(item);
+    });
+    faqHeading.insertAdjacentElement('afterend', accordion);
+    return items;
+  }
+
+  function buildToc(articleEl, tocEl) {
+    if (!articleEl || !tocEl) return;
+    var used = {};
+    var headings = Array.prototype.slice.call(articleEl.querySelectorAll('h2.blog-h2, h2'));
+    tocEl.innerHTML = '';
+    headings.forEach(function (h, index) {
+      var text = (h.textContent || '').trim();
+      if (!text) return;
+      var base = slugify(text) || ('section-' + (index + 1));
+      var nextId = base;
+      var c = 2;
+      while (used[nextId]) {
+        nextId = base + '-' + c;
+        c += 1;
+      }
+      used[nextId] = true;
+      h.id = h.id || nextId;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = text;
+      li.appendChild(a);
+      tocEl.appendChild(li);
+    });
+
+    if (!tocEl.children.length) {
+      var emptyLi = document.createElement('li');
+      var emptyText = document.createElement('span');
+      emptyText.textContent = 'No sections found.';
+      emptyLi.appendChild(emptyText);
+      tocEl.appendChild(emptyLi);
+    }
+  }
+
+  function setFaqSchema(slug, faqItems) {
+    var old = document.getElementById(FAQ_SCHEMA_SCRIPT_ID);
+    if (old) old.remove();
+
+    var override = FAQ_SCHEMA_OVERRIDES[slug];
+    var source = Array.isArray(override) && override.length
+      ? override
+      : (faqItems || []).map(function (faq) {
+          return { name: faq.question, text: faq.answerText };
+        }).filter(function (faq) { return faq.name && faq.text; });
+
+    if (!source.length) return;
+
+    var schema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: source.map(function (faq) {
+        return {
+          '@type': 'Question',
+          name: faq.name,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.text
+          }
+        };
+      })
+    };
+
+    var script = document.createElement('script');
+    script.id = FAQ_SCHEMA_SCRIPT_ID;
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
+  function bindFaqAccordion(root) {
+    if (!root) return;
+    root.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        if (!item) return;
+        var isOpen = item.classList.contains('open');
+        item.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  }
+
   /* ── card builders ───────────────────────────────────────────────────── */
 
   /**
@@ -228,7 +474,7 @@
    * @param {string} slug
    */
   function buildNewsCard(post, slug) {
-    var href = post.url || ('/post.html?id=' + encodeURIComponent(slug));
+    var href = normalizeBlogPath(post.url, slug);
     var card = document.createElement('a');
     card.href = href;
     card.className = 'news-card';
@@ -265,7 +511,7 @@
    * @param {string} slug
    */
   function buildBlogCard(post, slug) {
-    var href = post.url || ('/post.html?id=' + encodeURIComponent(slug));
+    var href = normalizeBlogPath(post.url, slug);
     var tags = Array.isArray(post.tags) ? post.tags : [];
 
     var link = document.createElement('a');
@@ -451,7 +697,7 @@
     var container = getContainer(containerId);
     if (!container) return;
 
-    var slug = new URLSearchParams(window.location.search).get('id');
+    var slug = getCurrentSlug();
     if (!slug) {
       /* No id param — redirect to blog listing */
       window.location.replace('/blog');
@@ -475,7 +721,7 @@
 
       /* ── canonical URL ── */
       var canonical = document.querySelector('link[rel="canonical"]');
-      var canonHref = post.url || ('/post.html?id=' + encodeURIComponent(slug));
+      var canonHref = normalizeBlogPath(post.url, slug);
       if (canonical) {
         canonical.href = SITE_DOMAIN + canonHref;
       }
@@ -505,10 +751,62 @@
         '</div>' +
         '<hr class="post-divider"/>' +
         imageHtml +
-        '<div class="blog-body">' + renderBody(post.body) + '</div>';
+        '<div class="post-grid">' +
+          '<article class="blog-body" id="blog-article">' + renderBody(post.body) + '</article>' +
+          '<aside class="sidebar-card">' +
+            '<div class="sidebar-section-title">📋 Contents</div>' +
+            '<ul class="toc-list" id="post-toc"></ul>' +
+            '<div class="sidebar-section-title">🔗 Related Guides</div>' +
+            '<div class="sidebar-list" id="post-related-guides"></div>' +
+          '</aside>' +
+        '</div>';
+
+      var articleEl = container.querySelector('#blog-article');
+      var tocEl = container.querySelector('#post-toc');
+      var relatedEl = container.querySelector('#post-related-guides');
+      var faqItems = buildFaqFromArticle(articleEl);
+      buildToc(articleEl, tocEl);
+      bindFaqAccordion(container);
+      setFaqSchema(slug, faqItems);
+
+      loadSlugs().then(function (slugs) {
+        var candidates = slugs.filter(function (s) { return s !== slug; }).slice(0, 8);
+        return Promise.all(candidates.map(function (s) {
+          return loadPost(s).then(function (p) { return { slug: s, post: p }; }).catch(function () { return null; });
+        }));
+      }).then(function (related) {
+        if (!relatedEl) return;
+        var entries = related.filter(Boolean).slice(0, 4);
+        relatedEl.innerHTML = '';
+        if (!entries.length) {
+          relatedEl.innerHTML = '<p class="sidebar-empty">No related guides available.</p>';
+          return;
+        }
+
+        entries.forEach(function (item) {
+          var link = document.createElement('a');
+          link.className = 'related-guide';
+          link.href = normalizeBlogPath(item.post.url, item.slug);
+
+          var titleEl = document.createElement('div');
+          titleEl.className = 'related-guide-title';
+          titleEl.textContent = item.post.title || item.slug;
+
+          var dateEl = document.createElement('div');
+          dateEl.className = 'related-guide-date';
+          dateEl.textContent = formatDate(item.post.date);
+
+          link.appendChild(titleEl);
+          link.appendChild(dateEl);
+          relatedEl.appendChild(link);
+        });
+      }).catch(function () {
+        if (relatedEl) relatedEl.innerHTML = '<p class="sidebar-empty">Could not load related guides.</p>';
+      });
 
     }).catch(function (err) {
       console.error('[blogBridge] loadPost failed:', err);
+      setFaqSchema(slug, []);
       container.innerHTML =
         '<p style="text-align:center;padding:40px 0">Post not found. ' +
         '<a href="/blog">← Back to Blog</a></p>';
