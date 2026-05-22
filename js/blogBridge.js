@@ -613,8 +613,20 @@
       h.id = h.id || nextId;
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.href = '#' + h.id;
+      /* Use full path + hash so the link is correct regardless of <base href>.
+         The click handler also scrolls smoothly and prevents any navigation. */
+      a.href = (window.location.pathname || '') + '#' + h.id;
       a.textContent = text;
+      (function (targetId) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.history.replaceState(null, '', (window.location.pathname || '') + '#' + targetId);
+          }
+        });
+      }(h.id));
       li.appendChild(a);
       tocEl.appendChild(li);
     });
@@ -969,6 +981,13 @@
         '</div>' +
         '<hr class="post-divider"/>' +
         imageHtml +
+        '<details class="mobile-toc-block" id="mobile-toc-details">' +
+          '<summary>' +
+            '<span>📋 Contents</span>' +
+            '<span class="mobile-toc-count" id="mobile-toc-count"></span>' +
+          '</summary>' +
+          '<ul class="toc-list mobile-toc-list" id="mobile-toc"></ul>' +
+        '</details>' +
         '<div class="post-grid">' +
           '<article class="blog-body" id="blog-article">' + renderBody(post.body) + '</article>' +
           '<aside class="sidebar-card">' +
@@ -977,14 +996,42 @@
             '<div class="sidebar-section-title">🔗 Related Guides</div>' +
             '<div class="sidebar-list" id="post-related-guides"></div>' +
           '</aside>' +
+        '</div>' +
+        '<div class="mobile-related-block" id="mobile-related-block">' +
+          '<div class="mobile-related-title">🔗 Related Guides</div>' +
+          '<div class="sidebar-list" id="mobile-related-guides"></div>' +
         '</div>';
 
       var articleEl = container.querySelector('#blog-article');
       var tocEl = container.querySelector('#post-toc');
+      var mobileTocEl = container.querySelector('#mobile-toc');
+      var mobileTocCount = container.querySelector('#mobile-toc-count');
       var relatedEl = container.querySelector('#post-related-guides');
+      var mobileRelatedEl = container.querySelector('#mobile-related-guides');
       var faqItems = buildFaqFromArticle(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
+      /* Mirror TOC into the mobile collapsible block */
+      if (mobileTocEl && tocEl) {
+        mobileTocEl.innerHTML = tocEl.innerHTML;
+        /* Re-attach click handlers since innerHTML copy doesn't preserve listeners */
+        Array.prototype.slice.call(mobileTocEl.querySelectorAll('a[href]')).forEach(function (a) {
+          var hash = (a.getAttribute('href') || '').replace(/^[^#]*#/, '');
+          if (!hash) return;
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            var target = document.getElementById(hash);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.history.replaceState(null, '', (window.location.pathname || '') + '#' + hash);
+            }
+          });
+        });
+        if (mobileTocCount) {
+          var count = tocEl.children.length;
+          mobileTocCount.textContent = count ? count + ' section' + (count !== 1 ? 's' : '') : '';
+        }
+      }
       bindFaqAccordion(container);
       setFaqSchema(slug, faqItems);
 
@@ -994,11 +1041,14 @@
           return loadPost(s).then(function (p) { return { slug: s, post: p }; }).catch(function () { return null; });
         }));
       }).then(function (related) {
-        if (!relatedEl) return;
+        if (!relatedEl && !mobileRelatedEl) return;
         var entries = related.filter(Boolean).slice(0, 4);
-        relatedEl.innerHTML = '';
+        if (relatedEl) relatedEl.innerHTML = '';
+        if (mobileRelatedEl) mobileRelatedEl.innerHTML = '';
         if (!entries.length) {
-          relatedEl.innerHTML = '<p class="sidebar-empty">No related guides available.</p>';
+          var emptyMsg = '<p class="sidebar-empty">No related guides available.</p>';
+          if (relatedEl) relatedEl.innerHTML = emptyMsg;
+          if (mobileRelatedEl) mobileRelatedEl.innerHTML = emptyMsg;
           return;
         }
 
@@ -1017,10 +1067,13 @@
 
           link.appendChild(titleEl);
           link.appendChild(dateEl);
-          relatedEl.appendChild(link);
+          if (relatedEl) relatedEl.appendChild(link);
+          if (mobileRelatedEl) mobileRelatedEl.appendChild(link.cloneNode(true));
         });
       }).catch(function () {
-        if (relatedEl) relatedEl.innerHTML = '<p class="sidebar-empty">Could not load related guides.</p>';
+        var errMsg = '<p class="sidebar-empty">Could not load related guides.</p>';
+        if (relatedEl) relatedEl.innerHTML = errMsg;
+        if (mobileRelatedEl) mobileRelatedEl.innerHTML = errMsg;
       });
 
     }).catch(function (err) {
