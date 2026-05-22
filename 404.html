@@ -172,19 +172,26 @@
   }
 
   function buildPostUrl(slug) {
-    return '/post.html?id=' + encodeURIComponent(slug);
+    return '/blog/' + encodeURIComponent(slug) + '.html';
   }
 
   function resolveCmsBlogUrl(pathname) {
     var cleanPath = normalizePath(pathname);
     if (cleanPath.indexOf('/blog/') !== 0) return Promise.resolve(null);
 
-    var slugMatch = cleanPath.match(/^\/blog\/([^\/]+?)(?:\.html)?$/);
+    // If path already has .html, the static file doesn't exist — fall back to post.html renderer
+    if (/\.html$/i.test(cleanPath)) {
+      var htmlSlug = cleanPath.replace(/^\/blog\//, '').replace(/\.html$/i, '');
+      if (htmlSlug) return Promise.resolve('/post.html?id=' + encodeURIComponent(htmlSlug));
+      return Promise.resolve(null);
+    }
+
+    var slugMatch = cleanPath.match(/^\/blog\/([^\/]+?)$/);
     if (slugMatch && slugMatch[1]) {
       return Promise.resolve(buildPostUrl(decodeURIComponent(slugMatch[1])));
     }
 
-    var guessSlug = cleanPath.replace(/^\/blog\//, '').replace(/\.html$/, '');
+    var guessSlug = cleanPath.replace(/^\/blog\//, '');
     return fetchJSON('/data/blogs/index.json').then(function (indexData) {
       var slugs = Array.isArray(indexData) ? indexData : (indexData && indexData.slugs) || [];
       if (!slugs.length) return null;

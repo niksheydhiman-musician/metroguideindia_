@@ -910,16 +910,17 @@
 
   /**
    * Render a single full post into `containerId`.
-   * Reads `?id=<slug>` from the current URL.
+   * Reads `?id=<slug>` or the `/blog/<slug>` path from the current URL.
    * Also updates document.title and meta[name="description"] for SEO.
    *
-   * @param {string} containerId - id of the container element
+   * @param {string} containerId  - id of the container element
+   * @param {string} [dataSlug]   - optional explicit data slug (overrides URL detection)
    */
-  BlogBridge.loadPost = function (containerId) {
+  BlogBridge.loadPost = function (containerId, dataSlug) {
     var container = getContainer(containerId);
     if (!container) return;
 
-    var slug = getCurrentSlug();
+    var slug = dataSlug || getCurrentSlug();
     if (!slug) {
       /* No id param — redirect to blog listing */
       window.location.replace('/blog');
