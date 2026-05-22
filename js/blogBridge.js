@@ -143,6 +143,13 @@
 
     function inlineFormat(s) {
       return s
+        /* Images */
+        .replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, function (_, altText, src, title) {
+          var safeAlt = escapeHtml(altText || '');
+          var safeSrc = String(src || '').replace(/"/g, '&quot;');
+          var safeTitle = title ? ' title="' + escapeHtml(title) + '"' : '';
+          return '<img class="blog-inline-image" src="' + safeSrc + '" alt="' + safeAlt + '"' + safeTitle + ' loading="lazy" decoding="async">';
+        })
         /* Bold+italic */
         .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
         /* Bold */
@@ -467,6 +474,56 @@
     return (temp.textContent || temp.innerText || '').replace(/\s+/g, ' ').trim();
   }
 
+  function normalizeFaqQuestion(text) {
+    return String(text || '')
+      .replace(/^\s*(q[:.)\-\s]+)/i, '')
+      .replace(/^\s*\d+[\).\-\s]+/, '')
+      .trim();
+  }
+
+  function looksLikeFaqQuestion(text) {
+    var normalized = normalizeFaqQuestion(text);
+    if (!normalized) return false;
+    return /\?\s*$/.test(normalized);
+  }
+
+  function buildFaqFromPlainNodes(nodes) {
+    var items = [];
+    var question = '';
+    var answerNodes = [];
+
+    function pushCurrent() {
+      if (!question || !answerNodes.length) return;
+      var answerHtml = answerNodes.map(function (n) { return n.outerHTML; }).join('');
+      var answerText = stripHtmlToText(answerHtml);
+      if (!answerText) return;
+      items.push({
+        question: question,
+        answerNodes: answerNodes.map(function (n) { return n.cloneNode(true); }),
+        answerText: answerText
+      });
+    }
+
+    nodes.forEach(function (node) {
+      var nodeText = stripHtmlToText(node.outerHTML || '');
+      if (!nodeText) return;
+
+      if (looksLikeFaqQuestion(nodeText)) {
+        pushCurrent();
+        question = normalizeFaqQuestion(nodeText);
+        answerNodes = [];
+        return;
+      }
+
+      if (question) {
+        answerNodes.push(node.cloneNode(true));
+      }
+    });
+
+    pushCurrent();
+    return items;
+  }
+
   function buildFaqFromArticle(articleEl) {
     if (!articleEl) return [];
     var h2s = Array.prototype.slice.call(articleEl.querySelectorAll('h2.blog-h2, h2'));
@@ -506,6 +563,10 @@
       node = node.nextElementSibling;
     }
     pushCurrent();
+
+    if (!items.length) {
+      items = buildFaqFromPlainNodes(faqNodes);
+    }
 
     if (!items.length) return [];
 
