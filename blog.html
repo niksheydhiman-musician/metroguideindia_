@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="/css/styles.css"/>
   <link rel="stylesheet" href="/assets/css/main.css"/>
   <style>
+    html.blog-loading main,
+    html.blog-loading footer { visibility: hidden; }
     .blog-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
     .blog-card-link{text-decoration:none;color:inherit;display:block}
     .blog-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:20px 18px;border-left:3px solid var(--red);transition:transform .18s var(--ease),box-shadow .18s var(--ease);cursor:pointer}
@@ -24,6 +26,7 @@
     .blog-summary{font-size:.84rem;color:var(--text2);line-height:1.65}
     .blog-read{font-size:.78rem;font-weight:600;color:var(--red);margin-top:10px;display:inline-flex;align-items:center;gap:4px}
   </style>
+  <script>document.documentElement.classList.add('blog-loading');setTimeout(function(){document.documentElement.classList.remove('blog-loading');},3000);</script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
   <script src="/assets/js/scripts.js"></script>

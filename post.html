@@ -13,6 +13,11 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
+    html.blog-loading main,
+    html.blog-loading footer { visibility: hidden; }
+  </style>
+  <script>document.documentElement.classList.add('blog-loading');setTimeout(function(){document.documentElement.classList.remove('blog-loading');},3000);</script>
+  <style>
     /* Reading progress bar */
     #read-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}
 
