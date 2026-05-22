@@ -65,6 +65,11 @@
 
   /* ── helpers ─────────────────────────────────────────────────────────── */
 
+  /** Remove the blog-loading class from <html> to reveal the page. */
+  function revealPage() {
+    document.documentElement.classList.remove('blog-loading');
+  }
+
   function fetchJSON(url) {
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error('Fetch failed: ' + url + ' (' + r.status + ')');
@@ -902,9 +907,11 @@
       if (!container.children.length) {
         showError(container, 'No posts found.');
       }
+      revealPage();
     }).catch(function (err) {
       console.error('[blogBridge] loadBlogCards failed:', err);
       showError(container, 'Could not load blog posts.');
+      revealPage();
     });
   };
 
@@ -1003,6 +1010,7 @@
           '<div class="sidebar-list" id="mobile-related-guides"></div>' +
         '</div>';
 
+      revealPage();
       var articleEl = container.querySelector('#blog-article');
       var tocEl = container.querySelector('#post-toc');
       var mobileTocEl = container.querySelector('#mobile-toc');
@@ -1083,6 +1091,7 @@
       container.innerHTML =
         '<p style="text-align:center;padding:40px 0">Post not found. ' +
         '<a href="/blog">← Back to Blog</a></p>';
+      revealPage();
     });
   };
 
