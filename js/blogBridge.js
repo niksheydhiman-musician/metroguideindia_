@@ -613,8 +613,20 @@
       h.id = h.id || nextId;
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.href = '#' + h.id;
+      /* Use full path + hash so the link is correct regardless of <base href>.
+         The click handler also scrolls smoothly and prevents any navigation. */
+      a.href = (window.location.pathname || '') + '#' + h.id;
       a.textContent = text;
+      (function (targetId) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.history.replaceState(null, '', (window.location.pathname || '') + '#' + targetId);
+          }
+        });
+      }(h.id));
       li.appendChild(a);
       tocEl.appendChild(li);
     });
@@ -1002,6 +1014,19 @@
       /* Mirror TOC into the mobile collapsible block */
       if (mobileTocEl && tocEl) {
         mobileTocEl.innerHTML = tocEl.innerHTML;
+        /* Re-attach click handlers since innerHTML copy doesn't preserve listeners */
+        Array.prototype.slice.call(mobileTocEl.querySelectorAll('a[href]')).forEach(function (a) {
+          var hash = (a.getAttribute('href') || '').replace(/^[^#]*#/, '');
+          if (!hash) return;
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            var target = document.getElementById(hash);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.history.replaceState(null, '', (window.location.pathname || '') + '#' + hash);
+            }
+          });
+        });
         if (mobileTocCount) {
           var count = tocEl.children.length;
           mobileTocCount.textContent = count ? count + ' section' + (count !== 1 ? 's' : '') : '';
