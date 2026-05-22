@@ -12,11 +12,12 @@
 (function (global) {
   'use strict';
 
-  var SITE_DOMAIN = 'https://metroguideindia.in';
+  var SITE_DOMAIN = 'https://metroguideindia.com';
   var INDEX_URL   = '/data/blogs/index.json';
   var BASE_URL    = '/data/blogs/';
   var FAQ_SCHEMA_SCRIPT_ID = 'post-faq-schema';
   var FAQ_HEADING_PATTERN = /\b(frequently asked questions|faqs?)\b/i;
+  var TOURIST_MAP_HEADING_PATTERN = /\bcomplete delhi metro tourist map\b/i;
   var FAQ_SCHEMA_OVERRIDES = {
     'delhi-metro-fare-calculator-how-fares-are-calculated-by-distance-in-2026': [
       {
@@ -69,6 +70,15 @@
       if (!r.ok) throw new Error('Fetch failed: ' + url + ' (' + r.status + ')');
       return r.json();
     });
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   /** Format a YYYY-MM-DD date string to "D Month YYYY". */
@@ -133,6 +143,13 @@
 
     function inlineFormat(s) {
       return s
+        /* Images */
+        .replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, function (_, altText, src, title) {
+          var safeAlt = escapeHtml(altText || '');
+          var safeSrc = String(src || '').replace(/"/g, '&quot;');
+          var safeTitle = title ? ' title="' + escapeHtml(title) + '"' : '';
+          return '<img class="blog-inline-image" src="' + safeSrc + '" alt="' + safeAlt + '"' + safeTitle + ' loading="lazy" decoding="async">';
+        })
         /* Bold+italic */
         .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
         /* Bold */
@@ -303,6 +320,145 @@
     return mdToHtml(body);
   }
 
+  function parseTouristMapStops(rawText) {
+    if (!rawText) return { intro: '', stops: [] };
+
+    var intro = '';
+    var stops = [];
+    rawText.replace(/\r/g, '').split('\n').forEach(function (line) {
+      var trimmed = line.trim();
+      if (!trimmed || trimmed === '│' || trimmed === '▼') return;
+
+      trimmed = trimmed.replace(/^text(?=[A-Z])/, '');
+
+      var stopMatch = trimmed.match(/^(.+?)\s*\(([^)]+)\)\s*(?:—\s*(.+))?$/);
+      if (stopMatch) {
+        stops.push({
+          station: stopMatch[1].trim(),
+          lines: stopMatch[2].split(/\s*\+\s*/).map(function (lineName) {
+            return lineName.trim();
+          }).filter(Boolean),
+          highlight: (stopMatch[3] || '').trim()
+        });
+        return;
+      }
+
+      if (!stops.length && !intro) {
+        intro = trimmed;
+      }
+    });
+
+    return { intro: intro, stops: stops };
+  }
+
+  function getMetroLineTheme(lineName) {
+    var key = String(lineName || '').toLowerCase();
+    if (key.indexOf('yellow') !== -1) return 'yellow';
+    if (key.indexOf('blue') !== -1) return 'blue';
+    if (key.indexOf('violet') !== -1) return 'violet';
+    if (key.indexOf('magenta') !== -1) return 'magenta';
+    if (key.indexOf('red') !== -1) return 'red';
+    if (key.indexOf('green') !== -1) return 'green';
+    if (key.indexOf('pink') !== -1) return 'pink';
+    if (key.indexOf('grey') !== -1 || key.indexOf('gray') !== -1) return 'grey';
+    if (key.indexOf('airport') !== -1 || key.indexOf('orange') !== -1) return 'orange';
+    if (key.indexOf('purple') !== -1) return 'purple';
+    return 'default';
+  }
+
+  function renderMetroLineChips(lines) {
+    return (lines || []).map(function (lineName) {
+      return '<span class="tourist-map-line tourist-map-line--' + getMetroLineTheme(lineName) + '">' + escapeHtml(lineName) + '</span>';
+    }).join('');
+  }
+
+  function buildTouristMapWidget(parsedMap, rawText) {
+    if (!parsedMap || !parsedMap.stops || !parsedMap.stops.length) return null;
+
+    var wrapper = document.createElement('section');
+    wrapper.className = 'tourist-map-widget';
+
+    var introHtml = parsedMap.intro
+      ? '<div class="tourist-map-intro">Start from <strong>' + escapeHtml(parsedMap.intro) + '</strong> and tap each stop for the nearest highlight.</div>'
+      : '<div class="tourist-map-intro">Tap a stop to quickly scan the best nearby landmark and line interchange.</div>';
+
+    var listHtml = parsedMap.stops.map(function (stop, index) {
+      return (
+        '<button class="tourist-map-stop' + (index === 0 ? ' is-active' : '') + '" type="button" data-stop-index="' + index + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' +
+          '<span class="tourist-map-stop-index">' + String(index + 1).padStart(2, '0') + '</span>' +
+          '<span class="tourist-map-stop-copy">' +
+            '<span class="tourist-map-stop-name">' + escapeHtml(stop.station) + '</span>' +
+            '<span class="tourist-map-stop-meta">' + escapeHtml(stop.lines.join(' • ')) + '</span>' +
+          '</span>' +
+        '</button>'
+      );
+    }).join('');
+
+    wrapper.innerHTML =
+      '<div class="tourist-map-head">' +
+        '<div class="tourist-map-kicker">Delhi Metro tourist trail</div>' +
+        introHtml +
+      '</div>' +
+      '<div class="tourist-map-layout">' +
+        '<div class="tourist-map-list" role="tablist" aria-label="Delhi Metro tourist map stops">' + listHtml + '</div>' +
+        '<div class="tourist-map-detail" id="tourist-map-detail-panel"></div>' +
+      '</div>' +
+      '<details class="tourist-map-text">' +
+        '<summary>View text version</summary>' +
+        '<pre>' + escapeHtml(rawText) + '</pre>' +
+      '</details>';
+
+    var detailEl = wrapper.querySelector('.tourist-map-detail');
+    var stopButtons = Array.prototype.slice.call(wrapper.querySelectorAll('.tourist-map-stop'));
+
+    function renderStopDetail(index) {
+      var stop = parsedMap.stops[index];
+      if (!stop) return;
+
+      stopButtons.forEach(function (button, buttonIndex) {
+        var isActive = buttonIndex === index;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      detailEl.innerHTML =
+        '<div class="tourist-map-detail-card">' +
+          '<div class="tourist-map-detail-label">Stop ' + (index + 1) + ' of ' + parsedMap.stops.length + '</div>' +
+          '<h3 class="tourist-map-detail-title">' + escapeHtml(stop.station) + '</h3>' +
+          '<div class="tourist-map-detail-lines">' + renderMetroLineChips(stop.lines) + '</div>' +
+          '<p class="tourist-map-detail-copy">' + escapeHtml(stop.highlight || 'Use this stop as a transfer point on your Delhi sightseeing route.') + '</p>' +
+        '</div>';
+    }
+
+    stopButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        renderStopDetail(Number(button.getAttribute('data-stop-index')) || 0);
+      });
+    });
+
+    renderStopDetail(0);
+    return wrapper;
+  }
+
+  function enhanceTouristMap(articleEl) {
+    if (!articleEl) return;
+
+    Array.prototype.slice.call(articleEl.querySelectorAll('h2.blog-h2, h2')).forEach(function (heading) {
+      if (!TOURIST_MAP_HEADING_PATTERN.test((heading.textContent || '').trim())) return;
+
+      var node = heading.nextElementSibling;
+      while (node && !node.matches('h2.blog-h2, h2')) {
+        if (node.matches('pre')) {
+          var parsedMap = parseTouristMapStops(node.textContent || '');
+          var widget = buildTouristMapWidget(parsedMap, node.textContent || '');
+          if (widget) node.replaceWith(widget);
+          return;
+        }
+        node = node.nextElementSibling;
+      }
+    });
+  }
+
   function slugify(text) {
     return String(text || '')
       .toLowerCase()
@@ -316,6 +472,56 @@
     var temp = document.createElement('div');
     temp.innerHTML = html || '';
     return (temp.textContent || temp.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function normalizeFaqQuestion(text) {
+    return String(text || '')
+      .replace(/^\s*(q[:.)\-\s]+)/i, '')
+      .replace(/^\s*\d+[\).\-\s]+/, '')
+      .trim();
+  }
+
+  function looksLikeFaqQuestion(text) {
+    var normalized = normalizeFaqQuestion(text);
+    if (!normalized) return false;
+    return /\?\s*$/.test(normalized);
+  }
+
+  function buildFaqFromPlainNodes(nodes) {
+    var items = [];
+    var question = '';
+    var answerNodes = [];
+
+    function pushCurrent() {
+      if (!question || !answerNodes.length) return;
+      var answerHtml = answerNodes.map(function (n) { return n.outerHTML; }).join('');
+      var answerText = stripHtmlToText(answerHtml);
+      if (!answerText) return;
+      items.push({
+        question: question,
+        answerNodes: answerNodes.map(function (n) { return n.cloneNode(true); }),
+        answerText: answerText
+      });
+    }
+
+    nodes.forEach(function (node) {
+      var nodeText = stripHtmlToText(node.outerHTML || '');
+      if (!nodeText) return;
+
+      if (looksLikeFaqQuestion(nodeText)) {
+        pushCurrent();
+        question = normalizeFaqQuestion(nodeText);
+        answerNodes = [];
+        return;
+      }
+
+      if (question) {
+        answerNodes.push(node.cloneNode(true));
+      }
+    });
+
+    pushCurrent();
+    return items;
   }
 
   function buildFaqFromArticle(articleEl) {
@@ -357,6 +563,10 @@
       node = node.nextElementSibling;
     }
     pushCurrent();
+
+    if (!items.length) {
+      items = buildFaqFromPlainNodes(faqNodes);
+    }
 
     if (!items.length) return [];
 
@@ -726,6 +936,14 @@
         canonical.href = SITE_DOMAIN + canonHref;
       }
 
+      if (window.history && typeof window.history.replaceState === 'function') {
+        var nextUrl = canonHref + (window.location.hash || '');
+        var currentUrl = (window.location.pathname || '') + (window.location.search || '') + (window.location.hash || '');
+        if (nextUrl && currentUrl !== nextUrl) {
+          window.history.replaceState({ slug: slug }, '', nextUrl);
+        }
+      }
+
       /* ── render post ── */
       var tags = Array.isArray(post.tags) ? post.tags : [];
       var tagsHtml = tags.map(function (t) {
@@ -765,6 +983,7 @@
       var tocEl = container.querySelector('#post-toc');
       var relatedEl = container.querySelector('#post-related-guides');
       var faqItems = buildFaqFromArticle(articleEl);
+      enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
       bindFaqAccordion(container);
       setFaqSchema(slug, faqItems);

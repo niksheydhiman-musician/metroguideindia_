@@ -22,10 +22,43 @@ jobs:
       - name: Regenerate data/blogs/index.json
         run: |
           python3 - <<'EOF'
-          import json, os, glob
+          import glob
+          import json
+          import os
+          import re
+          from urllib.parse import parse_qs, urlparse
 
           blogs_dir = 'data/blogs'
           index_path = os.path.join(blogs_dir, 'index.json')
+
+          def normalize_blog_url(raw_url, slug):
+              fallback = f'/blog/{slug}'
+              if not raw_url:
+                  return fallback
+
+              parsed = urlparse(str(raw_url).strip())
+              path = parsed.path or ''
+              if not path and not parsed.scheme and not parsed.netloc:
+                  path = str(raw_url).strip()
+
+              if path.lower() == '/post.html':
+                  query_slug = parse_qs(parsed.query).get('id', [slug])[0]
+                  return f'/blog/{query_slug}'
+
+              if not path:
+                  return fallback
+              if not path.startswith('/'):
+                  path = '/' + path
+
+              path = re.sub(r'/index\.html$', '/', path, flags=re.IGNORECASE)
+              path = re.sub(r'\.html$', '', path, flags=re.IGNORECASE)
+              path = path.rstrip('/')
+
+              if not path or path == '/blog':
+                  return fallback
+              if not path.startswith('/blog/'):
+                  return fallback
+              return path
 
           posts = []
           for filepath in glob.glob(os.path.join(blogs_dir, '*.json')):
@@ -35,6 +68,12 @@ jobs:
               try:
                   with open(filepath, encoding='utf-8') as f:
                       data = json.load(f)
+                  normalized_url = normalize_blog_url(data.get('url'), slug)
+                  if data.get('url') != normalized_url:
+                      data['url'] = normalized_url
+                      with open(filepath, 'w', encoding='utf-8') as f:
+                          json.dump(data, f, indent=2, ensure_ascii=False)
+                          f.write('\n')
                   date = data.get('date', '')
                   posts.append({'slug': slug, 'date': date})
               except Exception as e:
@@ -57,7 +96,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/blogs/index.json
+          git add data/blogs/*.json
           if git diff --cached --quiet; then
             echo "No changes to index.json — skipping commit."
           else

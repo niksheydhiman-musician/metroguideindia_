@@ -9,7 +9,7 @@
   <base href="/"/>
   <title>Blog | MetroGuideIndia</title>
   <meta name="description" content=""/>
-  <link rel="canonical" href="https://metroguideindia.in/post.html"/>
+  <link rel="canonical" href="https://metroguideindia.com/post.html"/>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
@@ -32,6 +32,7 @@
     .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
     .blog-body a{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}
     .blog-body a:hover{border-bottom-color:var(--red)}
+    .blog-body img,.blog-inline-image{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}
     .blog-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}
     .blog-h1:first-child{display:none}
     .blog-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:var(--text);margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red);line-height:1.3}
@@ -49,6 +50,41 @@
     .blog-table td{padding:11px 16px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top}
     .blog-table tbody tr:last-child td{border-bottom:none}
     .blog-table tbody tr:hover td{background:var(--surface2);transition:background .12s}
+
+    /* Tourist map */
+    .tourist-map-widget{margin:22px 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:linear-gradient(180deg,var(--surface),var(--surface2));box-shadow:var(--shadow)}
+    .tourist-map-head{margin-bottom:16px}
+    .tourist-map-kicker{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border:1px solid rgba(192,57,43,.18);padding:5px 10px;border-radius:999px;margin-bottom:10px}
+    .tourist-map-intro{font-size:.9rem;line-height:1.65;color:var(--text2)}
+    .tourist-map-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:16px;align-items:start}
+    .tourist-map-list{display:flex;flex-direction:column;gap:10px}
+    .tourist-map-stop{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .tourist-map-stop:hover,.tourist-map-stop.is-active{border-color:rgba(192,57,43,.4);box-shadow:var(--shadow)}
+    .tourist-map-stop.is-active{background:var(--red-bg)}
+    .tourist-map-stop-index{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;border-radius:999px;background:var(--surface3);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;flex-shrink:0}
+    .tourist-map-stop-copy{display:flex;flex-direction:column;min-width:0}
+    .tourist-map-stop-name{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--text);line-height:1.25}
+    .tourist-map-stop-meta{font-size:.78rem;color:var(--muted);line-height:1.45}
+    .tourist-map-detail-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;min-height:100%}
+    .tourist-map-detail-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .tourist-map-detail-title{margin:0 0 12px;font-family:'Syne',sans-serif;font-size:1.12rem;color:var(--text)}
+    .tourist-map-detail-lines{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+    .tourist-map-line{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:.74rem;font-weight:700;border:1px solid transparent}
+    .tourist-map-line--yellow{background:#fff7d6;color:#7b5b00;border-color:#f3d877}
+    .tourist-map-line--blue{background:#dfefff;color:#0b5dbb;border-color:#9cc2ff}
+    .tourist-map-line--violet{background:#efe1ff;color:#6d28d9;border-color:#c8a4ff}
+    .tourist-map-line--magenta{background:#ffe0ef;color:#b42373;border-color:#ff9dcb}
+    .tourist-map-line--red{background:#ffe2de;color:#ba2d1c;border-color:#ffb2a9}
+    .tourist-map-line--green{background:#dff7e8;color:#157347;border-color:#9ad7b1}
+    .tourist-map-line--pink{background:#ffe4ef;color:#c23a7a;border-color:#ffbfd8}
+    .tourist-map-line--grey{background:#eceff3;color:#55606d;border-color:#cbd3dc}
+    .tourist-map-line--orange{background:#ffeadb;color:#c25a00;border-color:#ffc58f}
+    .tourist-map-line--purple{background:#ebe3ff;color:#6941c6;border-color:#c5b3ff}
+    .tourist-map-line--default{background:var(--surface3);color:var(--text);border-color:var(--border2)}
+    .tourist-map-detail-copy{margin:0;font-size:.91rem;line-height:1.72;color:var(--text2)}
+    .tourist-map-text{margin-top:14px;border-top:1px solid var(--border2);padding-top:14px}
+    .tourist-map-text summary{cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted)}
+    .tourist-map-text pre{margin:12px 0 0;padding:14px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--border2);font-size:.78rem;line-height:1.55;overflow:auto;white-space:pre-wrap}
 
     /* Sidebar */
     .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}
@@ -74,7 +110,8 @@
     .faq-item.open .faq-a{max-height:900px;padding:14px 18px}
     .faq-a .blog-p:last-child,.faq-a p:last-child{margin-bottom:0}
 
-    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static}}
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static}.tourist-map-layout{grid-template-columns:1fr}}
+    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>

@@ -8,7 +8,7 @@ backend:
 media_folder: assets/images/blog
 public_folder: /assets/images/blog
 
-site_url: https://metroguideindia.in
+site_url: https://metroguideindia.com
 logo_url: /assets/images/logo.png
 display_name: MetroGuideIndia CMS
 
@@ -28,7 +28,7 @@ collections:
       - { label: Tags, name: tags, widget: list, required: false }
       - { label: Description, name: description, widget: text, hint: "Short excerpt shown in blog cards and used as meta description." }
       - { label: Body, name: body, widget: markdown }
-      - { label: "Canonical URL", name: url, widget: string, required: false, hint: "Leave blank for CMS-generated posts. Set to /blog/slug.html for legacy HTML posts." }
+      - { label: "Canonical URL", name: url, widget: string, required: false, hint: "Leave blank for CMS-generated posts. The blog index workflow auto-normalizes it to a clean /blog/<slug> URL. Use only for a custom clean alias." }
 
   - name: stations
     label: Stations
