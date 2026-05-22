@@ -110,7 +110,21 @@
     .faq-item.open .faq-a{max-height:900px;padding:14px 18px}
     .faq-a .blog-p:last-child,.faq-a p:last-child{margin-bottom:0}
 
-    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{position:static}.tourist-map-layout{grid-template-columns:1fr}}
+    /* Mobile TOC block */
+    .mobile-toc-block{display:none;margin:0 0 22px;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+    .mobile-toc-block summary{display:flex;align-items:center;gap:9px;padding:14px 16px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);cursor:pointer;background:linear-gradient(135deg,var(--surface2),var(--surface));list-style:none;user-select:none;-webkit-tap-highlight-color:transparent;border:0;outline:0}
+    .mobile-toc-block summary::-webkit-details-marker{display:none}
+    .mobile-toc-block summary::after{content:'›';margin-left:auto;font-size:1.2rem;color:var(--muted);transition:transform .25s;line-height:1}
+    .mobile-toc-block[open] summary::after{transform:rotate(90deg)}
+    .mobile-toc-count{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--surface3);padding:2px 9px;border-radius:999px;border:1px solid var(--border2)}
+    .mobile-toc-list{padding:10px 14px 14px!important;margin:0!important;border-top:1px solid var(--border2)}
+    .mobile-toc-list li a{font-size:.85rem;padding:5px 8px}
+
+    /* Mobile Related Guides block */
+    .mobile-related-block{display:none;margin:28px 0 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+    .mobile-related-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
+
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.tourist-map-layout{grid-template-columns:1fr}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
     @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
   </style>
   <!-- Google tag (gtag.js) -->
