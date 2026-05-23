@@ -17,6 +17,26 @@ BLOCK_START = "<!-- RRTS_ROUTE_DATA_INJECT_START -->"
 BLOCK_END = "<!-- RRTS_ROUTE_DATA_INJECT_END -->"
 SUMMARY_DETAILS_START = "<!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->"
 SUMMARY_DETAILS_END = "<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->"
+RRTS_RED = "#C0392B"
+MEERUT_METRO_GREEN = "#27764A"
+DIRECT_INTERCHANGE_TEXT = "Direct (No Interchange)"
+DIRECT_RRTS_ROUTE_SLUGS = {
+    "sarai-kale-khan",
+    "new-ashok-nagar",
+    "anand-vihar",
+    "sahibabad",
+    "ghaziabad",
+    "guldhar",
+    "duhai",
+    "muradnagar",
+    "modinagar-south",
+    "modinagar-north",
+    "meerut-south",
+    "shatabdi-nagar",
+    "begumpul",
+    "modipuram",
+}
+DIRECT_RRTS_HUB_SLUGS = {"meerut-south", "shatabdi-nagar", "begumpul", "modipuram"}
 
 
 @dataclass
@@ -32,6 +52,20 @@ class StationMeta:
 
 def normalize_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9-]+", "-", value.lower()).strip("-")
+
+
+def slug_variants(value: str) -> set[str]:
+    base = normalize_slug(value)
+    variants = {base}
+    if "modi-nagar" in base:
+        variants.add(base.replace("modi-nagar", "modinagar"))
+    if "modinagar" in base:
+        variants.add(base.replace("modinagar", "modi-nagar"))
+    if "murad-nagar" in base:
+        variants.add(base.replace("murad-nagar", "muradnagar"))
+    if "muradnagar" in base:
+        variants.add(base.replace("muradnagar", "murad-nagar"))
+    return {variant for variant in variants if variant}
 
 
 def slug_to_path(slug: str) -> Path:
@@ -118,6 +152,124 @@ def extract_route_terminals(html: str, slug: str) -> tuple[str, str]:
         return origin, destination
 
     return "Origin", "Destination"
+
+
+def find_div_block_bounds(html: str, start_marker: str, start_at: int = 0) -> tuple[int, int] | None:
+    start = html.find(start_marker, start_at)
+    if start == -1:
+        return None
+
+    token_re = re.compile(r"<div\b[^>]*>|</div>", flags=re.I)
+    depth = 0
+    for match in token_re.finditer(html, start):
+        token = match.group(0)
+        if token.lower().startswith("<div"):
+            depth += 1
+        else:
+            depth -= 1
+            if depth == 0:
+                return start, match.end()
+    return None
+
+
+def replace_div_block(html: str, start_marker: str, replacement: str) -> str:
+    bounds = find_div_block_bounds(html, start_marker)
+    if not bounds:
+        return html
+    start, end = bounds
+    return html[:start] + replacement + html[end:]
+
+
+def remove_div_blocks(html: str, start_marker: str) -> str:
+    result = html
+    while True:
+        bounds = find_div_block_bounds(result, start_marker)
+        if not bounds:
+            return result
+        start, end = bounds
+        result = result[:start] + result[end:]
+
+
+def is_direct_rrts_route(slug: str) -> bool:
+    if "-to-" not in slug:
+        return False
+    origin_slug, destination_slug = slug.split("-to-", 1)
+    return (
+        origin_slug in DIRECT_RRTS_ROUTE_SLUGS
+        and destination_slug in DIRECT_RRTS_ROUTE_SLUGS
+        and (origin_slug in DIRECT_RRTS_HUB_SLUGS or destination_slug in DIRECT_RRTS_HUB_SLUGS)
+    )
+
+
+def normalize_direct_route_steps(html: str) -> str:
+    bounds = find_div_block_bounds(html, '<div class="rc-steps">')
+    if not bounds:
+        return html
+
+    start, end = bounds
+    block = html[start:end]
+    block = remove_div_blocks(block, '<div class="step step-xchange">')
+    block = block.replace(MEERUT_METRO_GREEN, RRTS_RED)
+    block = block.replace(">Meerut Metro<", ">Namo Bharat RRTS<")
+    return html[:start] + block + html[end:]
+
+
+def normalize_direct_route_copy(html: str) -> str:
+    updated = normalize_direct_route_steps(html)
+    updated = re.sub(
+        r'(<p class="rp-sub">)(.*?)( · )',
+        r"\1Namo Bharat RRTS\3",
+        updated,
+        count=1,
+        flags=re.S,
+    )
+    updated = re.sub(
+        r'(<div class="route-seo-box"[^>]*data-system=")[^"]+(")',
+        r"\1Namo Bharat RRTS\2",
+        updated,
+        count=1,
+    )
+    updated = re.sub(r"\s*<div class=\"route-seo-note\">.*?</div>\s*", "\n", updated, flags=re.S)
+
+    replacements = {
+        "Namo Bharat RRTS + Meerut Metro": "Namo Bharat RRTS",
+        "RRTS + Metro": "Namo Bharat RRTS",
+        "combined Namo Bharat RRTS route": "direct Namo Bharat RRTS route",
+        " (RRTS–Metro Interchange)": "",
+        " (Metro Interchange)": "",
+        "1 (With Interchange)": DIRECT_INTERCHANGE_TEXT,
+        "0 (Direct Route)": DIRECT_INTERCHANGE_TEXT,
+        "None (Direct)": DIRECT_INTERCHANGE_TEXT,
+        "1 interchange": DIRECT_INTERCHANGE_TEXT,
+    }
+    for old, new in replacements.items():
+        updated = updated.replace(old, new)
+
+    updated = updated.replace(
+        "before you switch to the standard Meerut Metro coach.",
+        "on this direct Namo Bharat RRTS route.",
+    )
+    updated = re.sub(
+        r'(<strong>Interchanges:</strong>\s*)[^<.]+(\.?)',
+        rf"\1{DIRECT_INTERCHANGE_TEXT}\2",
+        updated,
+        count=1,
+    )
+    updated = re.sub(
+        r'(<li>Interchanges:\s*<strong>).*?(</strong></li>)',
+        rf"\1{DIRECT_INTERCHANGE_TEXT}\2",
+        updated,
+        count=1,
+        flags=re.S,
+    )
+    updated = re.sub(
+        r'("text":\s*")Interchanges on the .*? route: .*?(")',
+        rf'\1Interchanges on this route: {DIRECT_INTERCHANGE_TEXT}.\2',
+        updated,
+        count=1,
+        flags=re.S,
+    )
+    return updated
 
 
 def build_rrts_meta(origin: str, destination: str, estimated_time: str, line: str) -> tuple[str, str]:
@@ -771,22 +923,26 @@ def run(write: bool = True) -> int:
     for path in route_pages:
         slug = path.stem
         original = path.read_text(encoding="utf-8")
-        route_data = route_map.get(slug) or fallback_route_data_from_html(original)
-        endpoints = extract_route_terminals(original, slug)
-        sub_data = parse_sub_line(original)
+        is_direct_route = is_direct_rrts_route(slug)
+        working_html = normalize_direct_route_copy(original) if is_direct_route else original
+        route_data = route_map.get(slug) or fallback_route_data_from_html(working_html)
+        endpoints = extract_route_terminals(working_html, slug)
+        sub_data = parse_sub_line(working_html)
         title, description = build_rrts_meta(
             origin=endpoints[0],
             destination=endpoints[1],
             estimated_time=str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
-            line=str(route_data.get("line") or sub_data.get("line") or "Namo Bharat RRTS"),
+            line="Namo Bharat RRTS"
+            if is_direct_route
+            else str(route_data.get("line") or sub_data.get("line") or "Namo Bharat RRTS"),
         )
 
-        first_train, last_train, exits, origin_meta = get_station_route_details(original, route_data, station_map)
+        first_train, last_train, exits, origin_meta = get_station_route_details(working_html, route_data, station_map)
         exit_summary = summarize_exit_blueprints(exits)
         parking_summary = summarize_parking(origin_meta)
         facilities_summary = summarize_facilities(origin_meta)
 
-        result = inject_meta_template(original, title, description)
+        result = inject_meta_template(working_html, title, description)
         result = strip_existing_block(result)
         result = inject_route_summary_details(
             result, first_train, last_train, exit_summary, parking_summary, facilities_summary
