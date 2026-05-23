@@ -71,16 +71,18 @@ def parse_sub_line(html: str) -> dict[str, str]:
         return {}
     sub = re.sub(r"<.*?>", "", m.group(1))
     sub = re.sub(r"\s+", " ", sub).strip()
+    parts = [segment.strip() for segment in sub.split("·") if segment.strip()]
 
     fare = ""
     est = ""
+    line = parts[0] if parts else ""
     fare_match = re.search(r"₹\s*([0-9,]+)", sub)
     if fare_match:
         fare = f"₹{fare_match.group(1)}"
     est_match = re.search(r"~\s*([0-9]+\s*min)", sub, flags=re.I)
     if est_match:
         est = est_match.group(1).replace("  ", " ").strip()
-    return {"standard_fare": fare, "estimated_time": est}
+    return {"standard_fare": fare, "estimated_time": est, "line": line}
 
 
 def parse_interchanges(html: str) -> str:
@@ -93,6 +95,58 @@ def parse_interchanges(html: str) -> str:
         if m:
             return re.sub(r"\s+", " ", m.group(1)).strip()
     return "Not listed"
+
+
+def extract_route_terminals(html: str, slug: str) -> tuple[str, str]:
+    stations = extract_step_stations(html)
+    if len(stations) >= 2:
+        return stations[0], stations[-1]
+
+    h1_match = re.search(r'<h1 class="rp-title">(.*?)</h1>', html, flags=re.S)
+    if h1_match:
+        h1_text = re.sub(r"<.*?>", "", h1_match.group(1))
+        h1_text = re.sub(r"\s+", " ", h1_text).strip()
+        if "→" in h1_text:
+            parts = [part.strip() for part in h1_text.split("→", 1)]
+            if len(parts) == 2 and parts[0] and parts[1]:
+                return parts[0], parts[1]
+
+    if "-to-" in slug:
+        origin_slug, destination_slug = slug.split("-to-", 1)
+        origin = origin_slug.replace("-", " ").title().strip()
+        destination = destination_slug.replace("-", " ").title().strip()
+        return origin, destination
+
+    return "Origin", "Destination"
+
+
+def build_rrts_meta(origin: str, destination: str, estimated_time: str, line: str) -> tuple[str, str]:
+    clean_origin = re.sub(r"\s+", " ", origin).strip() or "Origin"
+    clean_destination = re.sub(r"\s+", " ", destination).strip() or "Destination"
+    clean_time = re.sub(r"\s+", " ", estimated_time).strip() or "the expected travel time"
+    clean_line = re.sub(r"\s+", " ", line).strip() or "Namo Bharat RRTS corridor"
+
+    title = f"{clean_origin} to {clean_destination} RRTS Route: Fare, Time & Stations (Updated)"
+    description = (
+        f"Traveling from {clean_origin} to {clean_destination}? The journey takes roughly {clean_time} "
+        f"via the {clean_line}. Click for the 2026 fare chart, first/last train timings, "
+        f"and the exact exit gate map for {clean_destination} Station."
+    )
+    return title, description
+
+
+def inject_meta_template(html: str, title: str, description: str) -> str:
+    escaped_title = escape(title)
+    escaped_description = escape(description, quote=True)
+    updated = re.sub(r"<title>.*?</title>", f"<title>{escaped_title}</title>", html, count=1, flags=re.S)
+    updated = re.sub(
+        r'<meta name="description" content=".*?"\s*/?>',
+        f'<meta name="description" content="{escaped_description}"/>',
+        updated,
+        count=1,
+        flags=re.S,
+    )
+    return updated
 
 
 def parse_first_last_train(timings: dict[str, Any]) -> tuple[str, str]:
@@ -718,13 +772,22 @@ def run(write: bool = True) -> int:
         slug = path.stem
         original = path.read_text(encoding="utf-8")
         route_data = route_map.get(slug) or fallback_route_data_from_html(original)
+        endpoints = extract_route_terminals(original, slug)
+        sub_data = parse_sub_line(original)
+        title, description = build_rrts_meta(
+            origin=endpoints[0],
+            destination=endpoints[1],
+            estimated_time=str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
+            line=str(route_data.get("line") or sub_data.get("line") or "Namo Bharat RRTS"),
+        )
 
         first_train, last_train, exits, origin_meta = get_station_route_details(original, route_data, station_map)
         exit_summary = summarize_exit_blueprints(exits)
         parking_summary = summarize_parking(origin_meta)
         facilities_summary = summarize_facilities(origin_meta)
 
-        result = strip_existing_block(original)
+        result = inject_meta_template(original, title, description)
+        result = strip_existing_block(result)
         result = inject_route_summary_details(
             result, first_train, last_train, exit_summary, parking_summary, facilities_summary
         )
