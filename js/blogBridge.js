@@ -445,6 +445,102 @@
     return wrapper;
   }
 
+  /**
+   * If the article contains a fenced-code block with the Bengaluru Metro fare
+   * calculator markup, replace it with a live interactive widget.
+   */
+  function enhanceBengaluruFareCalc(articleEl) {
+    if (!articleEl) return;
+
+    var pres = Array.prototype.slice.call(articleEl.querySelectorAll('pre'));
+    pres.forEach(function (pre) {
+      var codeEl = pre.querySelector('code') || pre;
+      if ((codeEl.textContent || '').indexOf('metro-calc-container') === -1) return;
+
+      /* Inject scoped styles once */
+      if (!document.getElementById('bengaluru-fare-calc-styles')) {
+        var style = document.createElement('style');
+        style.id = 'bengaluru-fare-calc-styles';
+        style.textContent = [
+          '.metro-calc-container{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background-color:#f9f9f9;border:2px solid #008751;border-radius:10px;padding:25px;max-width:450px;margin:20px auto;box-shadow:0 4px 10px rgba(0,0,0,.1)}',
+          '.metro-calc-title{color:#008751;text-align:center;margin-top:0;font-size:1.5rem;font-weight:700;border-bottom:2px solid #9b26b6;padding-bottom:10px}',
+          '.calc-group{margin-bottom:15px}',
+          '.calc-group label{display:block;margin-bottom:5px;font-weight:600;color:#333}',
+          '.calc-group select{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:1rem;background-color:#fff}',
+          '.calc-btn{width:100%;background-color:#008751;color:#fff;border:none;padding:12px;font-size:1.1rem;font-weight:700;border-radius:5px;cursor:pointer;transition:background .3s ease}',
+          '.calc-btn:hover{background-color:#00643c}',
+          '.calc-results{margin-top:20px;background-color:#fff;border-left:5px solid #9b26b6;padding:15px;border-radius:4px;display:none}',
+          '.result-item{display:flex;justify-content:space-between;margin-bottom:8px;font-size:1rem}',
+          '.result-item:last-child{margin-bottom:0}',
+          '.result-val{font-weight:700;color:#008751}',
+          '.result-val.purple-text{color:#9b26b6}'
+        ].join('');
+        document.head.appendChild(style);
+      }
+
+      /* Build live widget */
+      var wrapper = document.createElement('div');
+      wrapper.className = 'metro-calc-container';
+      wrapper.innerHTML =
+        '<div class="metro-calc-title">Namma Metro Cost Estimator (2026)</div>' +
+        '<div class="calc-group">' +
+          '<label for="bng-distanceRange">Estimated Travel Distance:</label>' +
+          '<select id="bng-distanceRange">' +
+            '<option value="11">Short hop (0 \u2013 2 km)</option>' +
+            '<option value="21">Nearby commute (2 \u2013 4 km)</option>' +
+            '<option value="32">Quick ride (4 \u2013 6 km)</option>' +
+            '<option value="42">Moderate distance (6 \u2013 8 km)</option>' +
+            '<option value="53">Standard commute (8 \u2013 10 km)</option>' +
+            '<option value="63">Mid-long commute (10 \u2013 15 km)</option>' +
+            '<option value="74">Long distance (15 \u2013 20 km)</option>' +
+            '<option value="84">Suburban link (20 \u2013 25 km)</option>' +
+            '<option value="95">City cross / End-to-End (Above 25 km)</option>' +
+          '</select>' +
+        '</div>' +
+        '<div class="calc-group">' +
+          '<label for="bng-timeType">Time / Day of Travel:</label>' +
+          '<select id="bng-timeType">' +
+            '<option value="peak">Weekday Peak Hours (5% Card Disc.)</option>' +
+            '<option value="offpeak">Weekday Off-Peak Hours (10% Card Disc.)</option>' +
+            '<option value="sunday">Sunday / National Holiday (10% Card Disc.)</option>' +
+          '</select>' +
+        '</div>' +
+        '<button class="calc-btn" type="button" id="bng-calcBtn">Estimate Trip Cost</button>' +
+        '<div class="calc-results" id="bng-fareResults">' +
+          '<div class="result-item">' +
+            '<span>Single Journey Token Fare:</span>' +
+            '<span class="result-val" id="bng-tokenFare">\u20b90</span>' +
+          '</div>' +
+          '<div class="result-item">' +
+            '<span>Smart Card / NCMC Fare:</span>' +
+            '<span class="result-val purple-text" id="bng-cardFare">\u20b90</span>' +
+          '</div>' +
+          '<div class="result-item" style="font-size:.85rem;color:#666;margin-top:10px;font-style:italic">' +
+            '*Note: Smart card fares are rounded to the nearest rupee. Minimum gate balance required is \u20b990.' +
+          '</div>' +
+        '</div>';
+
+      /* Bind calculator logic */
+      wrapper.querySelector('#bng-calcBtn').addEventListener('click', function () {
+        var baseFare = parseFloat(wrapper.querySelector('#bng-distanceRange').value);
+        var timeType = wrapper.querySelector('#bng-timeType').value;
+        var discount = (timeType === 'offpeak' || timeType === 'sunday') ? 0.10 : 0.05;
+        var cardFare = Math.round(baseFare * (1 - discount));
+        wrapper.querySelector('#bng-tokenFare').textContent = '\u20b9' + baseFare;
+        wrapper.querySelector('#bng-cardFare').textContent = '\u20b9' + cardFare;
+        wrapper.querySelector('#bng-fareResults').style.display = 'block';
+      });
+
+      /* Remove the preceding "HTML" label paragraph if present */
+      var prev = pre.previousElementSibling;
+      if (prev && prev.tagName === 'P' && (prev.textContent || '').trim() === 'HTML') {
+        prev.remove();
+      }
+
+      pre.replaceWith(wrapper);
+    });
+  }
+
   function enhanceTouristMap(articleEl) {
     if (!articleEl) return;
 
@@ -1018,6 +1114,7 @@
       var relatedEl = container.querySelector('#post-related-guides');
       var mobileRelatedEl = container.querySelector('#mobile-related-guides');
       var faqItems = buildFaqFromArticle(articleEl);
+      enhanceBengaluruFareCalc(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
       /* Mirror TOC into the mobile collapsible block */
