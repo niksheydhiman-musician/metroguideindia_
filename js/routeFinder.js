@@ -396,9 +396,9 @@ const RouteFinder = (() => {
     bengaluru: [
       { maxKm: 2,  fare: 10 },
       { maxKm: 5,  fare: 20 },
-      { maxKm: 12, fare: 30 },
-      { maxKm: 21, fare: 40 },
-      { maxKm: 32, fare: 50 },
+      { maxKm: 10, fare: 30 },
+      { maxKm: 15, fare: 40 },
+      { maxKm: 25, fare: 50 },
       { maxKm: Infinity, fare: 60 },
     ],
   };

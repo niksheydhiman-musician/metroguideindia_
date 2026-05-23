@@ -102,7 +102,7 @@
 
 <script src="/js/dataLoader.js?v=20260314"></script>
 <script src="/js/graphBuilder.js?v=20260314"></script>
-<script src="/js/routeFinder.js?v=20260314"></script>
+<script src="/js/routeFinder.js?v=20260523"></script>
 <script src="/js/routeUI.js?v=20260314"></script>
 <script src="/js/seoGenerator.js?v=20260314"></script>
 <script src="/js/routeMetadata.js?v=20260314"></script>
@@ -277,7 +277,11 @@ DataLoader.loadAll().then(data => {
 
 /* ── Route execution (existing behavior preserved) ───────────────────────── */
 function go(src, dst) {
-  const path = RouteFinder.findRoute(GRAPH, src, dst);
+  const normalized = normalizeRRTSOverlapEndpoints(src, dst);
+  const resolvedSrc = normalized.src;
+  const resolvedDst = normalized.dst;
+
+  const path = RouteFinder.findRoute(GRAPH, resolvedSrc, resolvedDst);
   if (!path?.length) {
     showError('No route found between these stations. Please try a different combination.');
     return;
@@ -291,8 +295,8 @@ function go(src, dst) {
   RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
   document.getElementById('route-result').style.display = 'block';
 
-  const srcSt = DATA.stations.find(s => s.station_id === src);
-  const dstSt = DATA.stations.find(s => s.station_id === dst);
+  const srcSt = DATA.stations.find(s => s.station_id === resolvedSrc);
+  const dstSt = DATA.stations.find(s => s.station_id === resolvedDst);
 
   if (srcSt && dstSt) {
     // SEO — dynamic title, description, canonical
@@ -304,7 +308,7 @@ function go(src, dst) {
     const hasInterchange = path.some(p => p.line_id === 'interchange');
 
     // canonical link tag
-    const slug = stationToSlug(src) + '-to-' + stationToSlug(dst);
+    const slug = stationToSlug(resolvedSrc) + '-to-' + stationToSlug(resolvedDst);
     const routeUrl = window.location.origin + BASE_PATH + '/route/' + slug;
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
@@ -571,6 +575,37 @@ function showError(msg) {
   RouteUI.renderError('route-result', msg);
   document.getElementById('route-result').style.display = 'block';
   document.getElementById('pg-sub').textContent = 'Route not found';
+}
+
+function isMetroStationId(stationId) {
+  return /_[a-z0-9]+_metro$/.test(String(stationId || ''));
+}
+
+function toRRTSTwinId(stationId) {
+  return String(stationId || '').replace(/_[a-z0-9]+_metro$/, '_rrts');
+}
+
+function isRRTSStation(stationId) {
+  const st = STATION_MAP?.[stationId];
+  if (st) return String(st.system_id || '').toLowerCase() === 'rrts';
+  return /_rrts$/.test(String(stationId || '')) || !isMetroStationId(stationId);
+}
+
+function normalizeRRTSOverlapEndpoints(src, dst) {
+  let resolvedSrc = src;
+  let resolvedDst = dst;
+
+  if (isMetroStationId(resolvedSrc) && isRRTSStation(resolvedDst)) {
+    const srcTwin = toRRTSTwinId(resolvedSrc);
+    if (STATION_MAP?.[srcTwin]) resolvedSrc = srcTwin;
+  }
+
+  if (isMetroStationId(resolvedDst) && isRRTSStation(resolvedSrc)) {
+    const dstTwin = toRRTSTwinId(resolvedDst);
+    if (STATION_MAP?.[dstTwin]) resolvedDst = dstTwin;
+  }
+
+  return { src: resolvedSrc, dst: resolvedDst };
 }
 
 function setMeta(k, v, isProp = false) {
