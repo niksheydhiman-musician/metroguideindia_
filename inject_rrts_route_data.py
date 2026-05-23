@@ -235,6 +235,8 @@ def normalize_direct_route_copy(html: str) -> str:
         "Namo Bharat RRTS + Meerut Metro": "Namo Bharat RRTS",
         "RRTS + Metro": "Namo Bharat RRTS",
         "combined Namo Bharat RRTS route": "direct Namo Bharat RRTS route",
+        " (RRTS–Metro Interchange)": "",
+        " (Metro Interchange)": "",
         "1 (With Interchange)": DIRECT_INTERCHANGE_TEXT,
         "0 (Direct Route)": DIRECT_INTERCHANGE_TEXT,
         "None (Direct)": DIRECT_INTERCHANGE_TEXT,
