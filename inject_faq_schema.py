@@ -82,6 +82,55 @@ def inject_faq_into_head(html: str, script_tag: str) -> str:
     return clean
 
 
+def parse_route_system_label(html: str) -> str:
+    m = re.search(r'<p class="rp-sub"[^>]*>(.*?)</p>', html, flags=re.S)
+    if not m:
+        return ""
+    text = re.sub(r"<.*?>", "", m.group(1))
+    text = re.sub(r"\s+", " ", text).strip()
+    return text.split("·", 1)[0].strip()
+
+
+def parse_route_distance_km(html: str) -> float | None:
+    m = re.search(r'<p class="rp-sub"[^>]*>(.*?)</p>', html, flags=re.S)
+    if not m:
+        return None
+    text = re.sub(r"<.*?>", "", m.group(1))
+    text = re.sub(r"\s+", " ", text).strip()
+    d_match = re.search(r"([\d.]+)\s*km", text, flags=re.I)
+    if not d_match:
+        return None
+    try:
+        return float(d_match.group(1))
+    except ValueError:
+        return None
+
+
+def _round_fare_value(value: float, direction: str) -> int:
+    base = int(value / 10) * 10
+    if direction == "down":
+        return max(0, base)
+    if value == base:
+        return base
+    return base + 10
+
+
+def estimate_premium_fare_range(distance_km: float | None) -> tuple[int, int] | None:
+    if distance_km is None or distance_km <= 0:
+        return None
+    low = _round_fare_value(distance_km * 3.0, "down")
+    high = _round_fare_value(distance_km * 3.5, "up")
+    if high < low:
+        high = low
+    return low, high
+
+
+def format_fare_range(low: int, high: int) -> str:
+    if low == high:
+        return f"₹{low}"
+    return f"₹{low}–₹{high}"
+
+
 # ---------------------------------------------------------------------------
 # Station FAQ builder  (namo-bharat/stations/*.html)
 # ---------------------------------------------------------------------------
@@ -177,14 +226,22 @@ def build_rrts_route_faq(
     sub = parse_sub_line(html)
     fare = sub.get("standard_fare", "")
     est_time = sub.get("estimated_time", "")
+    system_label = parse_route_system_label(html)
+    distance_km = parse_route_distance_km(html)
+    premium_range = estimate_premium_fare_range(distance_km)
+    is_metro_only = "meerut metro" in system_label.lower() and "rrts" not in system_label.lower()
+    is_interchange = "rrts + metro" in system_label.lower()
+    system_name = (
+        "Meerut Metro"
+        if is_metro_only
+        else "Namo Bharat RRTS + Meerut Metro"
+        if is_interchange
+        else "Namo Bharat RRTS"
+    )
 
     distance = ""
-    m = re.search(r'<p class="rp-sub"[^>]*>(.*?)</p>', html, flags=re.S)
-    if m:
-        sub_text = re.sub(r"<.*?>", "", m.group(1))
-        d_match = re.search(r"([\d.]+)\s*km", sub_text, flags=re.I)
-        if d_match:
-            distance = d_match.group(1) + " km"
+    if distance_km is not None:
+        distance = f"{distance_km:g} km"
 
     interchanges = parse_interchanges(html)
 
@@ -193,34 +250,54 @@ def build_rrts_route_faq(
     if distance:
         faqs.append({
             "question": (
-                f"What is the distance from {origin} to {destination} by Namo Bharat RRTS?"
+                f"What is the distance from {origin} to {destination} by {system_name}?"
             ),
             "answer": (
-                f"The distance from {origin} to {destination} on Namo Bharat RRTS "
+                f"The distance from {origin} to {destination} on {system_name} "
                 f"is approximately {distance}."
             ),
         })
 
     if fare:
+        if is_metro_only:
+            fare_answer = (
+                f"The standard fare from {origin} to {destination} on Meerut Metro "
+                f"is approximately {fare}. Meerut Metro route pages do not list a separate premium coach fare."
+            )
+        elif is_interchange and premium_range:
+            fare_answer = (
+                f"The standard fare from {origin} to {destination} on the combined "
+                f"Namo Bharat RRTS + Meerut Metro route is approximately {fare}. "
+                f"Based on the Namo Bharat distance segment, premium coach travel usually works out to about "
+                f"{format_fare_range(*premium_range)} before you switch to the standard Meerut Metro coach."
+            )
+        elif premium_range:
+            fare_answer = (
+                f"The standard fare from {origin} to {destination} on Namo Bharat RRTS "
+                f"is approximately {fare}. Based on the route distance, premium coach fare is usually around "
+                f"{format_fare_range(*premium_range)}."
+            )
+        else:
+            fare_answer = (
+                f"The standard fare from {origin} to {destination} on {system_name} "
+                f"is approximately {fare}."
+            )
         faqs.append({
             "question": (
-                f"What is the fare from {origin} to {destination} on Namo Bharat RRTS?"
+                f"What is the fare from {origin} to {destination} on {system_name}?"
             ),
-            "answer": (
-                f"The standard fare from {origin} to {destination} on Namo Bharat RRTS "
-                f"is approximately {fare}. Premium coach fares are about 20% higher."
-            ),
+            "answer": fare_answer,
         })
 
     if est_time:
         faqs.append({
             "question": (
                 f"How long does it take to travel from {origin} to {destination} "
-                f"on Namo Bharat RRTS?"
+                f"on {system_name}?"
             ),
             "answer": (
-                f"The estimated travel time from {origin} to {destination} on Namo Bharat "
-                f"RRTS is approximately {est_time}."
+                f"The estimated travel time from {origin} to {destination} on {system_name} "
+                f"is approximately {est_time}."
             ),
         })
 
@@ -249,18 +326,18 @@ def build_rrts_route_faq(
                 f"Are there any interchanges on the {origin} to {destination} route?"
             ),
             "answer": (
-                f"Interchanges on the {origin} to {destination} Namo Bharat route: "
+                f"Interchanges on the {origin} to {destination} {system_name} route: "
                 f"{interchanges}."
             ),
         })
     else:
         faqs.append({
             "question": (
-                f"Is the {origin} to {destination} a direct route on Namo Bharat RRTS?"
+                f"Is the {origin} to {destination} a direct route on {system_name}?"
             ),
             "answer": (
                 f"Yes, the {origin} to {destination} route is a direct route on "
-                f"Namo Bharat RRTS with no interchange required."
+                f"{system_name} with no interchange required."
             ),
         })
 
