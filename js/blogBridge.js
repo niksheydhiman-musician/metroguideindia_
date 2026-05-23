@@ -462,7 +462,7 @@
         var style = document.createElement('style');
         style.id = 'bengaluru-fare-calc-styles';
         style.textContent = [
-          '.metro-calc-container{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background-color:#f9f9f9;border:2px solid #008751;border-radius:10px;padding:25px;max-width:450px;margin:20px auto;box-shadow:0 4px 10px rgba(0,0,0,.1)}',
+          '.metro-calc-container{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background-color:#f9f9f9;border:2px solid #008751;border-radius:10px;padding:25px;max-width:450px;width:100%;box-sizing:border-box;margin:20px auto;box-shadow:0 4px 10px rgba(0,0,0,.1)}',
           '.metro-calc-title{color:#008751;text-align:center;margin-top:0;font-size:1.5rem;font-weight:700;border-bottom:2px solid #9b26b6;padding-bottom:10px}',
           '.calc-group{margin-bottom:15px}',
           '.calc-group label{display:block;margin-bottom:5px;font-weight:600;color:#333}',
@@ -470,10 +470,12 @@
           '.calc-btn{width:100%;background-color:#008751;color:#fff;border:none;padding:12px;font-size:1.1rem;font-weight:700;border-radius:5px;cursor:pointer;transition:background .3s ease}',
           '.calc-btn:hover{background-color:#00643c}',
           '.calc-results{margin-top:20px;background-color:#fff;border-left:5px solid #9b26b6;padding:15px;border-radius:4px;display:none}',
-          '.result-item{display:flex;justify-content:space-between;margin-bottom:8px;font-size:1rem}',
+          '.result-item{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:1rem}',
           '.result-item:last-child{margin-bottom:0}',
           '.result-val{font-weight:700;color:#008751}',
-          '.result-val.purple-text{color:#9b26b6}'
+          '.result-val.purple-text{color:#9b26b6}',
+          '.result-item .result-val{margin-left:auto;text-align:right}',
+          '@media (max-width:480px){.metro-calc-container{padding:14px}.metro-calc-title{font-size:1.2rem}.calc-group label{font-size:.92rem}.calc-group select,.calc-btn{font-size:.95rem}.calc-btn{padding:11px}.result-item{font-size:.92rem}.result-item:last-child{font-size:.8rem!important}}'
         ].join('');
         document.head.appendChild(style);
       }
