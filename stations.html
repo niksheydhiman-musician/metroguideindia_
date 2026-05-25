@@ -245,10 +245,28 @@ function render() {
   }).join('');
 }
 
+function toSlug(name) {
+  return name.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function stationPageUrl(station) {
+  const slug = toSlug(station.station_name);
+  const sys = station.system_id;
+  if (sys === 'rrts' || sys === 'meerut_metro') return '/namo-bharat/stations/' + slug + '.html';
+  if (sys === 'delhi_metro') return '/delhi-metro/stations/' + slug + '.html';
+  if (sys === 'bengaluru_metro') return '/bengaluru-metro/stations/' + slug + '.html';
+  return '#';
+}
+
 function stationCard(station, lineName, color) {
   const LINE_BORDER_ALPHA = '66';
   const LINE_BG_ALPHA = '14';
   const hasIx = station.interchange === 'yes' || station.is_interchange === true;
+  const ctaUrl = stationPageUrl(station);
   return `
     <article class="station-card">
       <div class="station-dot" style="border-color:${color};background:${color}${COLOR_SOFT_BG_ALPHA}"></div>
@@ -259,6 +277,7 @@ function stationCard(station, lineName, color) {
           <span class="line-pill" style="color:${color};border-color:${color}${LINE_BORDER_ALPHA};background:${color}${LINE_BG_ALPHA}">${lineName}</span>
           ${hasIx ? '<span class="ix-badge">🔄 Interchange</span>' : ''}
         </div>
+        <a class="btn-station-cta" href="${ctaUrl}">Plan Your Route Now</a>
       </div>
     </article>`;
 }

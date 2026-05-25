@@ -1,5 +1,27 @@
 /* Global externalized styles for metro system pages */
 
+/* ── Station CTA button ─────────────────────────────────── */
+.btn-station-cta{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 13px;
+  background:var(--red);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:700;
+  border-radius:var(--r-sm);
+  text-decoration:none;
+  transition:background .2s,box-shadow .2s,transform .15s;
+  box-shadow:0 2px 8px var(--red-glow);
+  white-space:nowrap;
+}
+.btn-station-cta:hover{
+  background:var(--red-soft);
+  box-shadow:0 4px 14px var(--red-glow);
+  transform:translateY(-1px);
+}
+.btn-station-cta:active{transform:translateY(0)}
+
 :root[data-system="delhi-metro"]{
   --red:#cf1f2f;
   --red-soft:#e14351;
