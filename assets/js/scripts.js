@@ -13,14 +13,33 @@
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
 
-  var isStationDetail = /\/(delhi-metro|bengaluru-metro|namo-bharat|meerut-metro)\/stations\/[^/]+\.html$/i.test(path);
-  if (isStationDetail) {
-    window.gtag('config', 'G-SV6378N2ZW', { 'content_group': 'Station Pages' });
-  } else {
-    window.gtag('config', 'G-SV6378N2ZW');
+  var ga4Initialized = false;
+  var ga4InteractionEvents = ['scroll', 'mousemove', 'touchstart', 'pointerdown', 'keydown'];
+
+  function initGa4() {
+    if (ga4Initialized) return;
+    ga4Initialized = true;
+    window.gtag('js', new Date());
+
+    var isStationDetail = /\/(delhi-metro|bengaluru-metro|namo-bharat|meerut-metro)\/stations\/[^/]+\.html$/i.test(path);
+    if (isStationDetail) {
+      window.gtag('config', 'G-SV6378N2ZW', { 'content_group': 'Station Pages' });
+    } else {
+      window.gtag('config', 'G-SV6378N2ZW');
+    }
   }
+
+  function triggerGa4Init() {
+    initGa4();
+    ga4InteractionEvents.forEach(function (eventName) {
+      window.removeEventListener(eventName, triggerGa4Init);
+    });
+  }
+
+  ga4InteractionEvents.forEach(function (eventName) {
+    window.addEventListener(eventName, triggerGa4Init, { passive: true });
+  });
 })();
 
 (function () {
