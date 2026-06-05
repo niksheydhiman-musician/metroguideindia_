@@ -12,6 +12,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 ROUTES_DIR = REPO_ROOT / "routes"
 ROUTE_JSON = REPO_ROOT / "data" / "rrts-routes.json"
 PARKING_BLOG_URL = "https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html"
+SITE_ROOT_URL = "https://metroguideindia.com"
 
 BLOCK_START = "<!-- RRTS_ROUTE_DATA_INJECT_START -->"
 BLOCK_END = "<!-- RRTS_ROUTE_DATA_INJECT_END -->"
@@ -109,6 +110,7 @@ def parse_sub_line(html: str) -> dict[str, str]:
 
     fare = ""
     est = ""
+    distance = ""
     line = parts[0] if parts else ""
     fare_match = re.search(r"₹\s*([0-9,]+)", sub)
     if fare_match:
@@ -116,7 +118,10 @@ def parse_sub_line(html: str) -> dict[str, str]:
     est_match = re.search(r"~\s*([0-9]+\s*min)", sub, flags=re.I)
     if est_match:
         est = est_match.group(1).replace("  ", " ").strip()
-    return {"standard_fare": fare, "estimated_time": est, "line": line}
+    distance_match = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*km", sub, flags=re.I)
+    if distance_match:
+        distance = distance_match.group(1)
+    return {"standard_fare": fare, "estimated_time": est, "distance_km": distance, "line": line}
 
 
 def parse_interchanges(html: str) -> str:
@@ -272,11 +277,15 @@ def normalize_direct_route_copy(html: str) -> str:
     return updated
 
 
-def build_rrts_meta(origin: str, destination: str, estimated_time: str, line: str) -> tuple[str, str]:
+def build_rrts_meta(
+    origin: str, destination: str, estimated_time: str, line: str, distance_km: str, standard_fare: str
+) -> dict[str, str]:
     clean_origin = re.sub(r"\s+", " ", origin).strip() or "Origin"
     clean_destination = re.sub(r"\s+", " ", destination).strip() or "Destination"
     clean_time = re.sub(r"\s+", " ", estimated_time).strip() or "the expected travel time"
     clean_line = re.sub(r"\s+", " ", line).strip() or "Namo Bharat RRTS corridor"
+    clean_distance = re.sub(r"\s+", " ", distance_km).strip()
+    clean_fare = re.sub(r"\s+", " ", standard_fare).strip() or "the latest"
 
     title = f"{clean_origin} to {clean_destination} RRTS Route: Fare, Time & Stations (Updated)"
     description = (
@@ -284,19 +293,53 @@ def build_rrts_meta(origin: str, destination: str, estimated_time: str, line: st
         f"via the {clean_line}. Click for the 2026 fare chart, first/last train timings, "
         f"and the exact exit gate map for {clean_destination} Station."
     )
-    return title, description
+    og_title = f"{clean_origin} to {clean_destination} Route | MetroGuideIndia"
+    og_distance = f"{clean_distance} km, " if clean_distance else ""
+    og_description = f"{clean_origin} to {clean_destination}: {og_distance}~{clean_time}, {clean_fare} fare."
+    canonical = f"{SITE_ROOT_URL}/routes/{normalize_slug(clean_origin)}-to-{normalize_slug(clean_destination)}.html"
+
+    return {
+        "title": title,
+        "description": description,
+        "og_title": og_title,
+        "og_description": og_description,
+        "canonical": canonical,
+    }
 
 
-def inject_meta_template(html: str, title: str, description: str) -> str:
-    escaped_title = escape(title)
-    escaped_description = escape(description, quote=True)
-    updated = re.sub(r"<title>.*?</title>", f"<title>{escaped_title}</title>", html, count=1, flags=re.S)
-    updated = re.sub(
+def replace_or_insert_meta(html: str, pattern: str, replacement: str) -> str:
+    if re.search(pattern, html, flags=re.S):
+        return re.sub(pattern, replacement, html, count=1, flags=re.S)
+    return re.sub(r"(</head>)", replacement + "\n\\1", html, count=1, flags=re.S)
+
+
+def inject_meta_template(html: str, meta: dict[str, str]) -> str:
+    escaped_title = escape(meta["title"])
+    escaped_description = escape(meta["description"], quote=True)
+    escaped_og_title = escape(meta["og_title"], quote=True)
+    escaped_og_description = escape(meta["og_description"], quote=True)
+    escaped_canonical = escape(meta["canonical"], quote=True)
+
+    updated = replace_or_insert_meta(html, r"<title>.*?</title>", f"<title>{escaped_title}</title>")
+    updated = replace_or_insert_meta(
+        updated,
         r'<meta name="description" content=".*?"\s*/?>',
         f'<meta name="description" content="{escaped_description}"/>',
+    )
+    updated = replace_or_insert_meta(
         updated,
-        count=1,
-        flags=re.S,
+        r'<link rel="canonical" href=".*?"\s*/?>',
+        f'<link rel="canonical" href="{escaped_canonical}"/>',
+    )
+    updated = replace_or_insert_meta(
+        updated,
+        r'<meta property="og:title" content=".*?"\s*/?>',
+        f'<meta property="og:title" content="{escaped_og_title}"/>',
+    )
+    updated = replace_or_insert_meta(
+        updated,
+        r'<meta property="og:description" content=".*?"\s*/?>',
+        f'<meta property="og:description" content="{escaped_og_description}"/>',
     )
     return updated
 
@@ -928,13 +971,15 @@ def run(write: bool = True) -> int:
         route_data = route_map.get(slug) or fallback_route_data_from_html(working_html)
         endpoints = extract_route_terminals(working_html, slug)
         sub_data = parse_sub_line(working_html)
-        title, description = build_rrts_meta(
+        meta = build_rrts_meta(
             origin=endpoints[0],
             destination=endpoints[1],
             estimated_time=str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
             line="Namo Bharat RRTS"
             if is_direct_route
             else str(route_data.get("line") or sub_data.get("line") or "Namo Bharat RRTS"),
+            distance_km=str(route_data.get("distance_km") or sub_data.get("distance_km") or ""),
+            standard_fare=str(route_data.get("standard_fare") or sub_data.get("standard_fare") or ""),
         )
 
         first_train, last_train, exits, origin_meta = get_station_route_details(working_html, route_data, station_map)
@@ -942,7 +987,8 @@ def run(write: bool = True) -> int:
         parking_summary = summarize_parking(origin_meta)
         facilities_summary = summarize_facilities(origin_meta)
 
-        result = inject_meta_template(working_html, title, description)
+        meta["canonical"] = f"{SITE_ROOT_URL}/routes/{slug}.html"
+        result = inject_meta_template(working_html, meta)
         result = strip_existing_block(result)
         result = inject_route_summary_details(
             result, first_train, last_train, exit_summary, parking_summary, facilities_summary
