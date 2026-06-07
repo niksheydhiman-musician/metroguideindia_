@@ -15,6 +15,245 @@
   <title>Sahibabad Namo Bharat Station Routes: How to Travel from Sahibabad to Anywhere in Delhi-NCR | MetroGuideIndia</title>
   <meta name="description" content="Planning your journey from Sahibabad Namo Bharat? Find the best routes from Sahibabad to popular destinations in Delhi-NCR with direct route guides, interchanges, and travel tips."/>
 
+<!-- MGI_STATION_ASSETS_START -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+<style>
+  .mgi-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .mgi-sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .mgi-sec-line {
+    flex: 1;
+    height: 1px;
+    background: #E8E4DF;
+  }
+  .mgi-sec-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    white-space: nowrap;
+  }
+  .mgi-card {
+    background: #fff;
+    border: 1px solid #EDE9E3;
+    border-radius: 14px;
+    transition: transform .17s ease, border-color .17s ease;
+  }
+  .mgi-card:hover {
+    transform: translateY(-2px);
+    border-color: #C84B31;
+  }
+  .mgi-icon-wrap {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mgi-icon-wrap i { font-size: 21px; color: #C84B31; }
+  .mgi-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .mgi-b-green  { background: #EAF3DE; color: #3B6D11; }
+  .mgi-b-amber  { background: #FAEEDA; color: #854F0B; }
+  .mgi-b-red    { background: #FCEBEB; color: #A32D2D; }
+  .mgi-b-blue   { background: #E6F1FB; color: #185FA5; }
+  .mgi-b-gray   { background: #F1EFE8; color: #5F5E5A; }
+  .mgi-fac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (min-width: 480px) {
+    .mgi-fac-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+  }
+  .mgi-fac-card {
+    padding: 15px 8px 13px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+  }
+  .mgi-fac-label {
+    font-size: 11.5px; font-weight: 600;
+    color: #1A1A1A; text-align: center; line-height: 1.3;
+  }
+  .mgi-exit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .mgi-exit-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 7px; }
+  .mgi-exit-hd   { display: flex; align-items: center; gap: 9px; }
+  .mgi-exit-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-exit-icon i { font-size: 17px; color: #C84B31; }
+  .mgi-exit-name { font-size: 14px; font-weight: 700; color: #C84B31; }
+  .mgi-exit-sub  { font-size: 12px; color: #666; line-height: 1.55; }
+  .mgi-exit-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .mgi-peak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .mgi-peak-card { padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; }
+  .mgi-peak-time  { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+  .mgi-peak-lbl   { font-size: 11px; color: #888; }
+  .mgi-peak-bar   { height: 6px; border-radius: 999px; background: #EDE9E3; margin-top: 4px; overflow: hidden; }
+  .mgi-peak-fill  { height: 100%; border-radius: 999px; background: #C84B31; }
+  .mgi-peak-fill.amber { background: #BA7517; }
+  .mgi-peak-fill.green { background: #639922; }
+  .mgi-map-outer { padding: 0 1rem; }
+  .mgi-map-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .mgi-map-track {
+    display: flex; align-items: center;
+    min-width: max-content;
+    padding: 1.5rem 0.5rem;
+  }
+  .mgi-stn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .mgi-stn .dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid #C0392B; background: #fff;
+    position: relative; z-index: 2; flex-shrink: 0;
+  }
+  .mgi-stn.current .dot { background: #C0392B; }
+  .mgi-stn .sname {
+    font-size: 10.5px; font-weight: 600;
+    color: #666; text-align: center;
+    max-width: 72px; line-height: 1.3;
+  }
+  .mgi-stn.current .sname { color: #C0392B; }
+  .mgi-conn { width: 48px; height: 3px; background: #C0392B; flex-shrink: 0; margin-top: -22px; }
+  .mgi-conn.gray { background: #D3D1C7; }
+  .mgi-you {
+    font-size: 9px; font-weight: 700;
+    background: #C0392B; color: #fff;
+    padding: 1px 6px; border-radius: 999px;
+    letter-spacing: .04em;
+  }
+  .mgi-map-legend {
+    display: flex; gap: 16px;
+    padding: 0 0 12px;
+    font-size: 11px; color: #888;
+  }
+  .mgi-map-legend span { display: flex; align-items: center; gap: 5px; }
+  .mgi-dot-red  { width: 10px; height: 10px; border-radius: 50%; background: #C0392B; display: inline-block; }
+  .mgi-dot-gray { width: 10px; height: 10px; border-radius: 50%; background: #D3D1C7; display: inline-block; }
+  .mgi-safety-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .mgi-safety-card { padding: 14px 15px; display: flex; gap: 12px; align-items: flex-start; }
+  .mgi-safety-text h4 { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 3px; }
+  .mgi-safety-text p  { font-size: 12px; color: #666; line-height: 1.6; }
+  .mgi-eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .mgi-eco-card {
+    padding: 18px 12px 14px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px; text-align: center;
+  }
+  .mgi-eco-iwrap {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: #EAF3DE;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-eco-iwrap i { font-size: 21px; color: #3B6D11; }
+  .mgi-eco-num  { font-size: 22px; font-weight: 700; color: #C84B31; line-height: 1; }
+  .mgi-eco-unit { font-size: 10.5px; font-weight: 600; color: #854F0B; }
+  .mgi-eco-desc { font-size: 11px; color: #666; line-height: 1.5; }
+  .mgi-faq-wrap { padding: 0 1.1rem; }
+  .mgi-faq-item { border-bottom: 1px solid #EDE9E3; }
+  .mgi-faq-item:last-child { border-bottom: none; }
+  .mgi-faq-q {
+    width: 100%; text-align: left;
+    background: none; border: none;
+    padding: 14px 4px;
+    font-size: 13.5px; font-weight: 600;
+    color: #1A1A1A; cursor: pointer;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+    font-family: inherit;
+  }
+  .mgi-faq-q:hover { color: #C84B31; }
+  .mgi-faq-q .mgi-chev {
+    font-size: 16px; color: #888;
+    transition: transform .25s ease; flex-shrink: 0;
+  }
+  .mgi-faq-q[aria-expanded="true"] .mgi-chev {
+    transform: rotate(180deg); color: #C84B31;
+  }
+  .mgi-faq-a {
+    font-size: 12.5px; color: #555; line-height: 1.7;
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, padding .3s ease;
+    padding: 0 4px;
+  }
+  .mgi-faq-a.open { max-height: 220px; padding: 0 4px 14px; }
+  .mgi-park-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .mgi-park-card {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mgi-park-card h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #1A1A1A;
+  }
+  .mgi-park-sub {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 2px;
+  }
+  .mgi-park-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .mgi-park-table td {
+    border-top: 1px dashed #EDE9E3;
+    padding: 7px 0;
+    vertical-align: top;
+    line-height: 1.45;
+    color: #555;
+  }
+  .mgi-park-table tr:first-child td { border-top: none; }
+  .mgi-park-table td:last-child {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 700;
+    color: #1A1A1A;
+    padding-left: 10px;
+  }
+  </style>
+<!-- MGI_STATION_ASSETS_END -->
 <link rel="canonical" href="https://metroguideindia.com/namo-bharat/stations/sahibabad.html"/>
 <!-- TRAINSTATION_SCHEMA_INJECT_START -->
 <script type="application/ld+json">
@@ -24,7 +263,7 @@
   "@id": "https://metroguideindia.com/namo-bharat/stations/sahibabad.html#trainstation",
   "name": "Sahibabad",
   "url": "https://metroguideindia.com/namo-bharat/stations/sahibabad.html",
-  "description": "Sahibabad is part of the Namo Bharat RRTS / Meerut Metro corridor. Use this page to discover direct route pages and quickly plan your trip.",
+  "description": "Sahibabad is part of the Namo Bharat RRTS corridor. Use this page to discover direct route pages and quickly plan your trip.",
   "containedInPlace": {
     "@type": "City",
     "name": "Sahibabad"
@@ -43,6 +282,21 @@
       "@type": "PropertyValue",
       "name": "Nearby Landmarks",
       "value": "Meerut South; Modipuram"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Station Code",
+      "value": "A03"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "System",
+      "value": "Namo Bharat RRTS"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Station Type",
+      "value": "Elevated"
     }
   ],
   "geo": {
@@ -115,25 +369,6 @@
   </section>
   <p class="rp-sub">Namo Bharat RRTS · Station Guide</p>
 
-<!-- RRTS_STATION_DATA_INJECT_START -->
-<section class="route-seo-box" style="margin-bottom:28px">
-  <div class="route-seo-title">Station Facilities & Access</div>
-  <p class="route-seo-lead">Live station metadata sourced from the RRTS station dataset.</p>
-  <div class="route-seo-lines" style="display:grid;gap:8px">
-    <div><strong>Parking:</strong> Available | Zone: Uttar Pradesh | Capacity: Gate 3 Four Wheelers 50, Gate 3 Two Wheelers 100</div>
-    <div><strong>First Train:</strong> First Train Weekday: 06:00:00 AM | First Train Sunday: 08:00:00 AM</div>
-    <div><strong>Last Train:</strong> Last Train: 10:15:00 PM</div>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Key Facilities</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px"><li>Washrooms</li><li>Drinking Water</li><li>First Aid</li><li>Food Stalls</li><li>Divyangjan Friendly</li></ul>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Exit Gate Blueprint</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px"><li>Exit gate details are currently not listed for this station.</li></ul>
-  </div>
-</section>
-<!-- RRTS_STATION_DATA_INJECT_END -->
 
   <div class="route-seo-box" style="margin-bottom:28px">
     <div class="route-seo-title">About Sahibabad Station</div>
@@ -199,6 +434,272 @@
 
 </div>
 
+
+<!-- MGI_STATION_TEMPLATE_START -->
+<div class="mgi-sections">
+ 
+  <!-- 1. STATION AMENITIES -->
+  <section aria-label="Station amenities">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Station Amenities</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-fac-grid">
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Washrooms</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Drinking Water</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">First Aid</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Divyangjan Friendly</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-armchair" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Premium Lounge</span>
+        <span class="mgi-badge mgi-b-blue">Both Platforms</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-building-community" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Lost &amp; Found</span>
+        <span class="mgi-badge mgi-b-gray">Control Room</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 2. PARKING -->
+  <section aria-label="Parking charges">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Parking Charges</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-park-grid">
+      <div class="mgi-card mgi-park-card">
+        <h3>Four Wheeler Cars/SUV</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Four Wheeler Cars/SUV day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 50/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 80/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 90/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations</td><td>₹ 100/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Four Wheeler Cars/SUV night charges">
+          <tr><td>Night Parking (00:00 - 05:00 Hours)</td><td>₹ 200/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Monthly Charges</div>
+        <table class="mgi-park-table" aria-label="Four Wheeler Cars/SUV monthly charges">
+          <tr><td>Monthly Charges Tariff A (5:00am to 11:00pm)</td><td>₹ 2000/-</td></tr>
+          <tr><td>Monthly Charges Tariff B (24/7)</td><td>₹ 3000/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Two Wheelers</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Two Wheelers day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 20/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 30/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 40/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations</td><td>₹ 50/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Two Wheelers night charges">
+          <tr><td>Night Parking (00:00 - 05:00 Hours)</td><td>₹ 60/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Monthly Charges</div>
+        <table class="mgi-park-table" aria-label="Two Wheelers monthly charges">
+          <tr><td>Monthly Charges Tariff A (5:00am to 11:00pm)</td><td>₹ 600/-</td></tr>
+          <tr><td>Monthly Charges Tariff B (24/7)</td><td>₹ 1000/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Helmet Charges</h3>
+        <table class="mgi-park-table" aria-label="Helmet Charges">
+          <tr><td>0 up to 12 hours (per helmet)</td><td>₹ 5/-</td></tr>
+          <tr><td>Beyond 12 hours up to 24 hours (per helmet)</td><td>₹ 10/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Bicycle Charges</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Bicycle Charges day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 5/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 5/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 10/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations</td><td>₹ 10/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Bicycle Charges night charges">
+          <tr><td>Night Parking (00:00 - 05:00 Hours)</td><td>₹ 20/-</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 3. EXIT GATES -->
+  <section aria-label="Exit gates">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Exit Gates — Sahibabad Station</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-exit-grid">
+      <div class="mgi-card mgi-exit-card">
+        <div class="mgi-exit-hd">
+          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
+          <span class="mgi-exit-name">Gate 1</span>
+        </div>
+        <span class="mgi-exit-sub">Main entrance</span>
+        <div class="mgi-exit-tags">
+          <span class="mgi-badge mgi-b-green">Open</span>
+          <span class="mgi-badge mgi-b-blue">Lift</span>
+          <span class="mgi-badge mgi-b-blue">Escalator</span>
+        </div>
+      </div>
+      <div class="mgi-card mgi-exit-card">
+        <div class="mgi-exit-hd">
+          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
+          <span class="mgi-exit-name">Gate 2</span>
+        </div>
+        <span class="mgi-exit-sub">Secondary entrance</span>
+        <div class="mgi-exit-tags">
+          <span class="mgi-badge mgi-b-green">Open</span>
+          <span class="mgi-badge mgi-b-blue">Lift</span>
+          <span class="mgi-badge mgi-b-blue">Escalator</span>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 4. PEAK HOURS -->
+  <section aria-label="Peak traveling hours">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Peak Traveling Hours</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-peak-grid">
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">6:00 – 7:00 AM</span>
+        <span class="mgi-peak-lbl">Early morning</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:35%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Low crowd</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">7:00 – 9:30 AM</span>
+        <span class="mgi-peak-lbl">Morning rush</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:95%"></div></div>
+        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">9:30 AM – 4:30 PM</span>
+        <span class="mgi-peak-lbl">Off-peak midday</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:30%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Comfortable</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">4:30 – 7:00 PM</span>
+        <span class="mgi-peak-lbl">Evening rush</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:90%"></div></div>
+        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">7:00 – 9:00 PM</span>
+        <span class="mgi-peak-lbl">Post-rush taper</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill amber" style="width:55%"></div></div>
+        <span class="mgi-badge mgi-b-amber" style="width:fit-content;margin-top:4px">Moderate</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">After 9:00 PM</span>
+        <span class="mgi-peak-lbl">Late night</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:18%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Sparse</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 5. SAFETY TIPS -->
+  <section aria-label="Safety tips">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Safety Tips</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-safety-grid">
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#A32D2D"></i></div>
+        <div class="mgi-safety-text">
+          <h4>Mind the gap</h4>
+          <p>Step carefully while boarding. Stand behind the yellow line until the train fully stops.</p>
+        </div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#E6F1FB"><i class="ti ti-briefcase" aria-hidden="true" style="color:#185FA5"></i></div>
+        <div class="mgi-safety-text">
+          <h4>Watch your belongings</h4>
+          <p>Keep bags in front of you during peak hours. Report unattended luggage immediately.</p>
+        </div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-ban" aria-hidden="true" style="color:#854F0B"></i></div>
+        <div class="mgi-safety-text">
+          <h4>No eating or drinking</h4>
+          <p>Consuming food or beverages inside the train is prohibited and carries a fine.</p>
+        </div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div>
+        <div class="mgi-safety-text">
+          <h4>Priority seating</h4>
+          <p>Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers.</p>
+        </div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-phone-call" aria-hidden="true" style="color:#854F0B"></i></div>
+        <div class="mgi-safety-text">
+          <h4>Emergency helpline</h4>
+          <p>Use the Talk-Back button in the coach or call NCRTC helpline 1800-209-0200. Station Control Room available 24/7.</p>
+        </div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-camera-off" aria-hidden="true" style="color:#A32D2D"></i></div>
+        <div class="mgi-safety-text">
+          <h4>No photography</h4>
+          <p>Photography inside trains, platforms, or restricted areas is strictly prohibited.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 6. ECO IMPACT -->
+  <section aria-label="Environmental impact">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Taking Namo Bharat means</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-eco-grid">
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">8.3</span>
+        <span class="mgi-eco-unit">kg CO₂ saved</span>
+        <span class="mgi-eco-desc">vs. driving Delhi–Meerut by private car</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-flame_off" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">3.8</span>
+        <span class="mgi-eco-unit">litres fuel saved</span>
+        <span class="mgi-eco-desc">that would have burned in Delhi–Meerut traffic</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-road_off" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">~350</span>
+        <span class="mgi-eco-unit">cars off the road</span>
+        <span class="mgi-eco-desc">every Namo Bharat coach removes ~350 cars per trip</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-solar_panel" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">30%</span>
+        <span class="mgi-eco-unit">solar powered</span>
+        <span class="mgi-eco-desc">NCRTC&#x27;s energy mix includes renewable solar generation</span>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+<!-- MGI_STATION_TEMPLATE_END -->
 
 <section id="global-search-section" style="margin:28px 0 36px">
   <div class="sec-eye">Route Planner</div>
