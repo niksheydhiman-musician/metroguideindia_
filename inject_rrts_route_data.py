@@ -313,12 +313,25 @@ def replace_or_insert_meta(html: str, pattern: str, replacement: str) -> str:
     return re.sub(r"(</head>)", replacement + "\n\\1", html, count=1, flags=re.S)
 
 
+def replace_canonical_meta(html: str, canonical_url: str) -> str:
+    canonical_tag = f'<link rel="canonical" href="{escape(canonical_url, quote=True)}"/>'
+    clean = re.sub(r"\s*<link rel=\"canonical\" href=\".*?\"\s*/?>", "", html, flags=re.I)
+    if re.search(r'<meta name="description" content=".*?"\s*/?>', clean, flags=re.S):
+        return re.sub(
+            r'(<meta name="description" content=".*?"\s*/?>)',
+            r"\1\n  " + canonical_tag,
+            clean,
+            count=1,
+            flags=re.S,
+        )
+    return re.sub(r"(</head>)", "  " + canonical_tag + "\n\\1", clean, count=1, flags=re.S)
+
+
 def inject_meta_template(html: str, meta: dict[str, str]) -> str:
     escaped_title = escape(meta["title"])
     escaped_description = escape(meta["description"], quote=True)
     escaped_og_title = escape(meta["og_title"], quote=True)
     escaped_og_description = escape(meta["og_description"], quote=True)
-    escaped_canonical = escape(meta["canonical"], quote=True)
 
     updated = replace_or_insert_meta(html, r"<title>.*?</title>", f"<title>{escaped_title}</title>")
     updated = replace_or_insert_meta(
@@ -326,11 +339,7 @@ def inject_meta_template(html: str, meta: dict[str, str]) -> str:
         r'<meta name="description" content=".*?"\s*/?>',
         f'<meta name="description" content="{escaped_description}"/>',
     )
-    updated = replace_or_insert_meta(
-        updated,
-        r'<link rel="canonical" href=".*?"\s*/?>',
-        f'<link rel="canonical" href="{escaped_canonical}"/>',
-    )
+    updated = replace_canonical_meta(updated, meta["canonical"])
     updated = replace_or_insert_meta(
         updated,
         r'<meta property="og:title" content=".*?"\s*/?>',
