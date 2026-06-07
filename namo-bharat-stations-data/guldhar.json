@@ -1,0 +1,319 @@
+{
+  "name": "Guldhar",
+  "code": "A05",
+  "system": "Namo Bharat RRTS",
+  "type": "elevated",
+  "coordinates": {
+    "latitude": null,
+    "longitude": null
+  },
+  "description": "Guldhar is a station on the Delhi-Ghaziabad-Meerut Namo Bharat RRTS corridor.",
+  "facilities": {
+    "washrooms": "Available",
+    "drinking_water": "Available",
+    "first_aid": "Available",
+    "divyangjan_friendly": "Available",
+    "premium_lounge": "Both Platforms",
+    "lost_and_found": "Control Room"
+  },
+  "contact": {
+    "control_room": null
+  },
+  "gates": [
+    {
+      "number": "1",
+      "name": "Gate 1",
+      "location": "Main entrance",
+      "status": "Open",
+      "features": [
+        "Lift",
+        "Escalator"
+      ]
+    },
+    {
+      "number": "2",
+      "name": "Gate 2",
+      "location": "Secondary entrance",
+      "status": "Open",
+      "features": [
+        "Lift",
+        "Escalator"
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "number": "1",
+      "direction": "Towards Meerut RRTS",
+      "status": "Open"
+    },
+    {
+      "number": "2",
+      "direction": "Towards Delhi RRTS",
+      "status": "Open"
+    }
+  ],
+  "lifts": [
+    {
+      "id": "C1-L1",
+      "type": "Regular",
+      "status": "Open"
+    },
+    {
+      "id": "C1-L2",
+      "type": "Regular",
+      "status": "Open"
+    }
+  ],
+  "escalators": [
+    {
+      "id": "C1-E1",
+      "direction": "Bidirectional",
+      "status": "Open"
+    },
+    {
+      "id": "C1-E2",
+      "direction": "Bidirectional",
+      "status": "Open"
+    }
+  ],
+  "parking": {
+    "four_wheeler": {
+      "day_charges": [
+        {
+          "duration": "Up-to 10 minutes",
+          "price": "₹ 0/-",
+          "description": "Pick-up & Drop Off"
+        },
+        {
+          "duration": "Beyond 10 min up-to 6 Hours",
+          "price": "₹ 50/-"
+        },
+        {
+          "duration": "Beyond 6 Hours up-to 12 Hours",
+          "price": "₹ 80/-"
+        },
+        {
+          "duration": "Beyond 12 hours up to 16 hours",
+          "price": "₹ 90/-"
+        },
+        {
+          "duration": "Beyond 16 hrs. up-to operations",
+          "price": "₹ 100/-"
+        }
+      ],
+      "night_charges": [
+        {
+          "duration": "Night Parking (00:00 - 05:00 Hours)",
+          "price": "₹ 200/-"
+        }
+      ],
+      "monthly_charges": [
+        {
+          "duration": "Monthly Charges Tariff A (5:00am to 11:00pm)",
+          "price": "₹ 2000/-"
+        },
+        {
+          "duration": "Monthly Charges Tariff B (24/7)",
+          "price": "₹ 3000/-"
+        }
+      ]
+    },
+    "two_wheeler": {
+      "day_charges": [
+        {
+          "duration": "Up-to 10 minutes",
+          "price": "₹ 0/-",
+          "description": "Pick-up & Drop Off"
+        },
+        {
+          "duration": "Beyond 10 min up-to 6 Hours",
+          "price": "₹ 20/-"
+        },
+        {
+          "duration": "Beyond 6 Hours up-to 12 Hours",
+          "price": "₹ 30/-"
+        },
+        {
+          "duration": "Beyond 12 hours up to 16 hours",
+          "price": "₹ 40/-"
+        },
+        {
+          "duration": "Beyond 16 hrs. up-to operations",
+          "price": "₹ 50/-"
+        }
+      ],
+      "night_charges": [
+        {
+          "duration": "Night Parking (00:00 - 05:00 Hours)",
+          "price": "₹ 60/-"
+        }
+      ],
+      "monthly_charges": [
+        {
+          "duration": "Monthly Charges Tariff A (5:00am to 11:00pm)",
+          "price": "₹ 600/-"
+        },
+        {
+          "duration": "Monthly Charges Tariff B (24/7)",
+          "price": "₹ 1000/-"
+        }
+      ]
+    },
+    "helmet": {
+      "charges": [
+        {
+          "duration": "0 up to 12 hours (per helmet)",
+          "price": "₹ 5/-"
+        },
+        {
+          "duration": "Beyond 12 hours up to 24 hours (per helmet)",
+          "price": "₹ 10/-"
+        }
+      ]
+    },
+    "bicycle": {
+      "day_charges": [
+        {
+          "duration": "Up-to 10 minutes",
+          "price": "₹ 0/-",
+          "description": "Pick-up & Drop Off"
+        },
+        {
+          "duration": "Beyond 10 min up-to 6 Hours",
+          "price": "₹ 5/-"
+        },
+        {
+          "duration": "Beyond 6 Hours up-to 12 Hours",
+          "price": "₹ 5/-"
+        },
+        {
+          "duration": "Beyond 12 hours up to 16 hours",
+          "price": "₹ 10/-"
+        },
+        {
+          "duration": "Beyond 16 hrs. up-to operations",
+          "price": "₹ 10/-"
+        }
+      ],
+      "night_charges": [
+        {
+          "duration": "Night Parking (00:00 - 05:00 Hours)",
+          "price": "₹ 20/-"
+        }
+      ]
+    }
+  },
+  "peak_hours": [
+    {
+      "time": "6:00 – 7:00 AM",
+      "label": "Early morning",
+      "level": "Low crowd",
+      "percentage": 35
+    },
+    {
+      "time": "7:00 – 9:30 AM",
+      "label": "Morning rush",
+      "level": "Very crowded",
+      "percentage": 95
+    },
+    {
+      "time": "9:30 AM – 4:30 PM",
+      "label": "Off-peak midday",
+      "level": "Comfortable",
+      "percentage": 30
+    },
+    {
+      "time": "4:30 – 7:00 PM",
+      "label": "Evening rush",
+      "level": "Very crowded",
+      "percentage": 90
+    },
+    {
+      "time": "7:00 – 9:00 PM",
+      "label": "Post-rush taper",
+      "level": "Moderate",
+      "percentage": 55
+    },
+    {
+      "time": "After 9:00 PM",
+      "label": "Late night",
+      "level": "Sparse",
+      "percentage": 18
+    }
+  ],
+  "safety_tips": [
+    {
+      "title": "Mind the gap",
+      "description": "Step carefully while boarding. Stand behind the yellow line until the train fully stops."
+    },
+    {
+      "title": "Watch your belongings",
+      "description": "Keep bags in front of you during peak hours. Report unattended luggage immediately."
+    },
+    {
+      "title": "No eating or drinking",
+      "description": "Consuming food or beverages inside the train is prohibited and carries a fine."
+    },
+    {
+      "title": "Priority seating",
+      "description": "Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers."
+    },
+    {
+      "title": "Emergency helpline",
+      "description": "Use the Talk-Back button in the coach or call NCRTC helpline 1800-209-0200. Station Control Room available 24/7."
+    },
+    {
+      "title": "No photography",
+      "description": "Photography inside trains, platforms, or restricted areas is strictly prohibited."
+    }
+  ],
+  "eco_impact": [
+    {
+      "icon": "leaf",
+      "number": "8.3",
+      "unit": "kg CO₂ saved",
+      "description": "vs. driving Delhi–Meerut by private car"
+    },
+    {
+      "icon": "flame_off",
+      "number": "3.8",
+      "unit": "litres fuel saved",
+      "description": "that would have burned in Delhi–Meerut traffic"
+    },
+    {
+      "icon": "road_off",
+      "number": "~350",
+      "unit": "cars off the road",
+      "description": "every Namo Bharat coach removes ~350 cars per trip"
+    },
+    {
+      "icon": "solar_panel",
+      "number": "30%",
+      "unit": "solar powered",
+      "description": "NCRTC's energy mix includes renewable solar generation"
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I buy a ticket for this station?",
+      "answer": "You can purchase tickets using the Namo Bharat app, NCMC (National Common Mobility Card), UPI, or at the station counter with cash."
+    },
+    {
+      "question": "Is this station accessible for Divyangjan passengers?",
+      "answer": "Yes, Guldhar station is fully Divyangjan-friendly with ramps, elevators, and accessible facilities throughout."
+    },
+    {
+      "question": "What is the operating schedule?",
+      "answer": "Namo Bharat trains operate from 6:00 AM to 10:00 PM on weekdays and 8:00 AM to 10:00 PM on Sundays."
+    },
+    {
+      "question": "Is parking available at this station?",
+      "answer": "Yes, parking is available for four-wheelers, two-wheelers, bicycles, and helmets with reasonable daily, night, and monthly rates."
+    },
+    {
+      "question": "Are there food and beverage options?",
+      "answer": "Food stalls are available at the station, though eating inside trains is not permitted."
+    }
+  ]
+}
