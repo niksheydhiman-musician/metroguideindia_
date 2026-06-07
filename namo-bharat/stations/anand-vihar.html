@@ -12,8 +12,245 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <link rel="stylesheet" href="/assets/css/main.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <title>Anand Vihar Namo Bharat Station Routes: How to Travel from Anand Vihar to Anywhere in Delhi-NCR | MetroGuideIndia</title>
   <meta name="description" content="Planning your journey from Anand Vihar Namo Bharat? Find the best routes from Anand Vihar to popular destinations in Delhi-NCR with direct route guides, interchanges, and travel tips."/>
+  <style>
+  .mgi-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .mgi-sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .mgi-sec-line {
+    flex: 1;
+    height: 1px;
+    background: #E8E4DF;
+  }
+  .mgi-sec-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    white-space: nowrap;
+  }
+  .mgi-card {
+    background: #fff;
+    border: 1px solid #EDE9E3;
+    border-radius: 14px;
+    transition: transform .17s ease, border-color .17s ease;
+  }
+  .mgi-card:hover {
+    transform: translateY(-2px);
+    border-color: #C84B31;
+  }
+  .mgi-icon-wrap {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mgi-icon-wrap i { font-size: 21px; color: #C84B31; }
+  .mgi-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .mgi-b-green  { background: #EAF3DE; color: #3B6D11; }
+  .mgi-b-amber  { background: #FAEEDA; color: #854F0B; }
+  .mgi-b-red    { background: #FCEBEB; color: #A32D2D; }
+  .mgi-b-blue   { background: #E6F1FB; color: #185FA5; }
+  .mgi-b-gray   { background: #F1EFE8; color: #5F5E5A; }
+  .mgi-fac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (min-width: 480px) {
+    .mgi-fac-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+  }
+  .mgi-fac-card {
+    padding: 15px 8px 13px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+  }
+  .mgi-fac-label {
+    font-size: 11.5px; font-weight: 600;
+    color: #1A1A1A; text-align: center; line-height: 1.3;
+  }
+  .mgi-exit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .mgi-exit-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 7px; }
+  .mgi-exit-hd   { display: flex; align-items: center; gap: 9px; }
+  .mgi-exit-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-exit-icon i { font-size: 17px; color: #C84B31; }
+  .mgi-exit-name { font-size: 14px; font-weight: 700; color: #C84B31; }
+  .mgi-exit-sub  { font-size: 12px; color: #666; line-height: 1.55; }
+  .mgi-exit-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .mgi-peak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .mgi-peak-card { padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; }
+  .mgi-peak-time  { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+  .mgi-peak-lbl   { font-size: 11px; color: #888; }
+  .mgi-peak-bar   { height: 6px; border-radius: 999px; background: #EDE9E3; margin-top: 4px; overflow: hidden; }
+  .mgi-peak-fill  { height: 100%; border-radius: 999px; background: #C84B31; }
+  .mgi-peak-fill.amber { background: #BA7517; }
+  .mgi-peak-fill.green { background: #639922; }
+  .mgi-map-outer { padding: 0 1rem; }
+  .mgi-map-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .mgi-map-track {
+    display: flex; align-items: center;
+    min-width: max-content;
+    padding: 1.5rem 0.5rem;
+  }
+  .mgi-stn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .mgi-stn .dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid #C0392B; background: #fff;
+    position: relative; z-index: 2; flex-shrink: 0;
+  }
+  .mgi-stn.current .dot { background: #C0392B; }
+  .mgi-stn .sname {
+    font-size: 10.5px; font-weight: 600;
+    color: #666; text-align: center;
+    max-width: 72px; line-height: 1.3;
+  }
+  .mgi-stn.current .sname { color: #C0392B; }
+  .mgi-conn { width: 48px; height: 3px; background: #C0392B; flex-shrink: 0; margin-top: -22px; }
+  .mgi-conn.gray { background: #D3D1C7; }
+  .mgi-you {
+    font-size: 9px; font-weight: 700;
+    background: #C0392B; color: #fff;
+    padding: 1px 6px; border-radius: 999px;
+    letter-spacing: .04em;
+  }
+  .mgi-map-legend {
+    display: flex; gap: 16px;
+    padding: 0 0 12px;
+    font-size: 11px; color: #888;
+  }
+  .mgi-map-legend span { display: flex; align-items: center; gap: 5px; }
+  .mgi-dot-red  { width: 10px; height: 10px; border-radius: 50%; background: #C0392B; display: inline-block; }
+  .mgi-dot-gray { width: 10px; height: 10px; border-radius: 50%; background: #D3D1C7; display: inline-block; }
+  .mgi-safety-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .mgi-safety-card { padding: 14px 15px; display: flex; gap: 12px; align-items: flex-start; }
+  .mgi-safety-text h4 { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 3px; }
+  .mgi-safety-text p  { font-size: 12px; color: #666; line-height: 1.6; }
+  .mgi-eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .mgi-eco-card {
+    padding: 18px 12px 14px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px; text-align: center;
+  }
+  .mgi-eco-iwrap {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: #EAF3DE;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-eco-iwrap i { font-size: 21px; color: #3B6D11; }
+  .mgi-eco-num  { font-size: 22px; font-weight: 700; color: #C84B31; line-height: 1; }
+  .mgi-eco-unit { font-size: 10.5px; font-weight: 600; color: #854F0B; }
+  .mgi-eco-desc { font-size: 11px; color: #666; line-height: 1.5; }
+  .mgi-faq-wrap { padding: 0 1.1rem; }
+  .mgi-faq-item { border-bottom: 1px solid #EDE9E3; }
+  .mgi-faq-item:last-child { border-bottom: none; }
+  .mgi-faq-q {
+    width: 100%; text-align: left;
+    background: none; border: none;
+    padding: 14px 4px;
+    font-size: 13.5px; font-weight: 600;
+    color: #1A1A1A; cursor: pointer;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+    font-family: inherit;
+  }
+  .mgi-faq-q:hover { color: #C84B31; }
+  .mgi-faq-q .mgi-chev {
+    font-size: 16px; color: #888;
+    transition: transform .25s ease; flex-shrink: 0;
+  }
+  .mgi-faq-q[aria-expanded="true"] .mgi-chev {
+    transform: rotate(180deg); color: #C84B31;
+  }
+  .mgi-faq-a {
+    font-size: 12.5px; color: #555; line-height: 1.7;
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, padding .3s ease;
+    padding: 0 4px;
+  }
+  .mgi-faq-a.open { max-height: 220px; padding: 0 4px 14px; }
+  .mgi-park-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .mgi-park-card {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mgi-park-card h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #1A1A1A;
+  }
+  .mgi-park-sub {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 2px;
+  }
+  .mgi-park-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .mgi-park-table td {
+    border-top: 1px dashed #EDE9E3;
+    padding: 7px 0;
+    vertical-align: top;
+    line-height: 1.45;
+    color: #555;
+  }
+  .mgi-park-table tr:first-child td { border-top: none; }
+  .mgi-park-table td:last-child {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 700;
+    color: #1A1A1A;
+    padding-left: 10px;
+  }
+  </style>
 
 <link rel="canonical" href="https://metroguideindia.com/namo-bharat/stations/anand-vihar.html"/>
 <!-- TRAINSTATION_SCHEMA_INJECT_START -->
@@ -114,63 +351,6 @@
     <div class="station-route-planner" data-station-planner data-planner-placement="top"></div>
   </section>
   <p class="rp-sub">Namo Bharat RRTS · Station Guide</p>
-
-<!-- RRTS_STATION_DATA_INJECT_START -->
-<section class="route-seo-box" style="margin-bottom:28px">
-  <div class="route-seo-title">Station Facilities &amp; Access</div>
-  <p class="route-seo-lead">Live station metadata sourced from the official NCRTC station dataset.</p>
-  <div class="route-seo-lines" style="display:grid;gap:8px">
-    <div><strong>Station Type:</strong> Underground · Delhi–Meerut RRTS Corridor · Station A02</div>
-    <div><strong>Parking (4W):</strong> Up to 6 hrs ₹50 · Up to 12 hrs ₹80 · Up to 16 hrs ₹90 · Full day ₹100 · Night ₹200 · Monthly Tariff A ₹2000 · Monthly Tariff B (24/7) ₹3000</div>
-    <div><strong>Parking (2W):</strong> Same slab rates apply · Helmet &amp; bicycle parking available</div>
-    <div><strong>Station Control Room:</strong> 9289928746</div>
-    <div><strong>Next Station (Delhi):</strong> New Ashok Nagar — 7.12 km · ~5 min 30 sec</div>
-    <div><strong>Next Station (Meerut):</strong> Sahibabad — 5.7 km · ~6 min</div>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Key Facilities</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px">
-      <li>First Aid — Station Control Room</li>
-      <li>Washrooms — Inside paid concourse, near Station Control Room</li>
-      <li>Drinking Water — Inside paid concourse, near Station Control Room</li>
-      <li>Divyangjan Friendly</li>
-      <li>Premium Lounge — Available on both platforms (Meerut end)</li>
-    </ul>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Exit Gates</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px">
-      <li><strong>Gate 1 (Open)</strong> — On road going to Chaudhary Charan Singh Marg</li>
-      <li><strong>Gate 2 (Open)</strong> — On road going towards Anand Vihar Terminal Railway Station</li>
-      <li><strong>Gate 3 (Open)</strong> — Connected to FOB towards DMRC and Anand Vihar ISBT</li>
-    </ul>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Platforms</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px">
-      <li><strong>Platform 1 (Open)</strong> — Towards Meerut · Premium Lounge at Meerut end</li>
-      <li><strong>Platform 2 (Open)</strong> — Towards Delhi · Premium Lounge at Meerut end</li>
-    </ul>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Nearby Transit &amp; Landmarks</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px">
-      <li>Anand Vihar Metro Station — Blue Line &amp; Pink Line (DMRC)</li>
-      <li>Anand Vihar ISBT — Inter-State Bus Terminal (Gate 3 FOB connection)</li>
-      <li>Anand Vihar Railway Station</li>
-      <li>Pacific Mall · Vivek Vihar · Karkardooma · Shreshtha Vihar</li>
-      <li>NH-9 (Delhi–Meerut Expressway) &amp; Ghaziabad Link Road</li>
-    </ul>
-  </div>
-  <div style="margin-top:12px">
-    <h2 class="sec-head" style="font-size:1rem;margin:0 0 8px">Bus Connections</h2>
-    <ul style="margin:0;padding-left:18px;display:grid;gap:6px">
-      <li><strong>D 035</strong> — Anand Vihar ISBT to Ashok Nagar Border · Every 20 min</li>
-      <li><strong>D 039</strong> — Anand Vihar ISBT to Ashok Nagar Namo Bharat Station · Every 20 min</li>
-    </ul>
-  </div>
-</section>
-<!-- RRTS_STATION_DATA_INJECT_END -->
 
   <div class="route-seo-box" style="margin-bottom:28px">
     <div class="route-seo-title">About Anand Vihar Station</div>
@@ -279,8 +459,81 @@
       </div>
     </div>
   </section>
- 
-  <!-- 2. EXIT GATES -->
+  
+  <!-- 2. PARKING -->
+  <section aria-label="Parking charges">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Parking Charges</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-park-grid">
+      <div class="mgi-card mgi-park-card">
+        <h3>Four Wheeler Cars/SUV</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Four wheeler day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 50/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 80/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 90/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations of Namo Bharat Station</td><td>₹ 100/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Four wheeler night charges">
+          <tr><td>Night Parking: Available during non-operational hours of Namo Bharat Trains (00:00 Hours - 05:00 Hours)</td><td>₹ 200/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Monthly Charges</div>
+        <table class="mgi-park-table" aria-label="Four wheeler monthly charges">
+          <tr><td>Monthly Charges Tariff A (5:00am to 11:00pm)</td><td>₹ 2000/-</td></tr>
+          <tr><td>Monthly Charges for Tariff B: Available 24/7</td><td>₹ 3000/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Two Wheelers</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Two wheeler day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 20/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 30/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 40/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations of Namo Bharat Station</td><td>₹ 50/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Two wheeler night charges">
+          <tr><td>Night Parking: Available during non-operational hours of Namo Bharat Trains (00:00 Hours - 05:00 Hours)</td><td>₹ 60/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Monthly Charges</div>
+        <table class="mgi-park-table" aria-label="Two wheeler monthly charges">
+          <tr><td>Monthly Charges Tariff A (5:00am to 11:00pm)</td><td>₹ 600/-</td></tr>
+          <tr><td>Monthly Charges for Tariff B: Available 24/7</td><td>₹ 1000/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Helmet Charges</h3>
+        <table class="mgi-park-table" aria-label="Helmet charges">
+          <tr><td>Helmet charges for 0 up to 12 hours (per helmet)</td><td>₹ 5/-</td></tr>
+          <tr><td>Helmet charges beyond 12 hours up to 24 hours (per helmet)</td><td>₹ 10/-</td></tr>
+        </table>
+      </div>
+      <div class="mgi-card mgi-park-card">
+        <h3>Bicycle Charges</h3>
+        <div class="mgi-park-sub">Day Charges</div>
+        <table class="mgi-park-table" aria-label="Bicycle day charges">
+          <tr><td>Up-to 10 minutes only for Pick-up &amp; Drop Off</td><td>₹ 0/-</td></tr>
+          <tr><td>Beyond 10 min up-to 6 Hours</td><td>₹ 5/-</td></tr>
+          <tr><td>Beyond 6 Hours up-to 12 Hours</td><td>₹ 5/-</td></tr>
+          <tr><td>Beyond 12 hours up to 16 hours</td><td>₹ 10/-</td></tr>
+          <tr><td>Beyond 16 hrs. up-to operations of Namo Bharat Station</td><td>₹ 10/-</td></tr>
+        </table>
+        <div class="mgi-park-sub">Night Charges</div>
+        <table class="mgi-park-table" aria-label="Bicycle night charges">
+          <tr><td>Night Parking: Available during non-operational hours of Namo Bharat Trains (00:00 Hours - 05:00 Hours)</td><td>₹ 20/-</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 3. EXIT GATES -->
   <section aria-label="Exit gates">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -326,7 +579,7 @@
     </div>
   </section>
  
-  <!-- 3. PEAK HOURS -->
+  <!-- 4. PEAK HOURS -->
   <section aria-label="Peak traveling hours">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -373,7 +626,7 @@
     </div>
   </section>
  
-  <!-- 4. ROUTE MAP — Anand Vihar marked as current (YOU ARE HERE) -->
+  <!-- 5. ROUTE MAP — Anand Vihar marked as current (YOU ARE HERE) -->
   <section aria-label="Namo Bharat RRTS route map">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -507,7 +760,7 @@
     </div>
   </section>
  
-  <!-- 5. SAFETY TIPS -->
+  <!-- 6. SAFETY TIPS -->
   <section aria-label="Safety tips">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -542,7 +795,7 @@
     </div>
   </section>
  
-  <!-- 6. ECO IMPACT -->
+  <!-- 7. ECO IMPACT -->
   <section aria-label="Environmental impact">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -577,7 +830,7 @@
     </div>
   </section>
  
-  <!-- 7. FAQ — Anand Vihar specific -->
+  <!-- 8. FAQ — Anand Vihar specific -->
   <section aria-label="Frequently asked questions">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
