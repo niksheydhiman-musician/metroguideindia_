@@ -527,6 +527,8 @@ def inject_route_summary_details(
     html: str, first_train: str, last_train: str, exit_summary: str, parking_summary: str, facilities_summary: str
 ) -> str:
     clean = strip_existing_summary_details(html)
+    clean = re.sub(r"\n{3,}(\s*<div class=\"route-seo-box\")", r"\n\n\1", clean)
+    clean = re.sub(r"\n{3,}(\s*<div class=\"quick-facts\")", r"\n\n\1", clean)
     details = build_route_summary_details_html(first_train, last_train, exit_summary, parking_summary, facilities_summary)
 
     if '<div class="rc-steps">' in clean and re.search(r'<div class="route-seo-box"(?:\s|>)', clean):
