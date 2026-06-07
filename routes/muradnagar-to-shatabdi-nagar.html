@@ -60,6 +60,222 @@
 }
 </script>
 <!-- FAQ_SCHEMA_INJECT_END -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+
+  .mgi-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Section header — rule renamed from .sec-head
+     to .mgi-sec-head so it doesn't touch your existing
+     .sec-head h2 rule */
+  .mgi-sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .mgi-sec-line {
+    flex: 1;
+    height: 1px;
+    background: #E8E4DF;
+  }
+  .mgi-sec-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  /* Card — renamed from .card to .mgi-card */
+  .mgi-card {
+    background: #fff;
+    border: 1px solid #EDE9E3;
+    border-radius: 14px;
+    transition: transform .17s ease, border-color .17s ease;
+  }
+  .mgi-card:hover {
+    transform: translateY(-2px);
+    border-color: #C84B31;
+  }
+
+  .mgi-icon-wrap {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mgi-icon-wrap i { font-size: 21px; color: #C84B31; }
+
+  .mgi-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .mgi-b-green  { background: #EAF3DE; color: #3B6D11; }
+  .mgi-b-amber  { background: #FAEEDA; color: #854F0B; }
+  .mgi-b-red    { background: #FCEBEB; color: #A32D2D; }
+  .mgi-b-blue   { background: #E6F1FB; color: #185FA5; }
+  .mgi-b-gray   { background: #F1EFE8; color: #5F5E5A; }
+
+  /* ── 1. Facilities ── */
+  .mgi-fac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (min-width: 480px) {
+    .mgi-fac-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+  }
+  .mgi-fac-card {
+    padding: 15px 8px 13px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+  }
+  .mgi-fac-label {
+    font-size: 11.5px; font-weight: 600;
+    color: #1A1A1A; text-align: center; line-height: 1.3;
+  }
+
+  /* ── 2. Exit Gates ── */
+  .mgi-exit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .mgi-exit-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 7px; }
+  .mgi-exit-hd   { display: flex; align-items: center; gap: 9px; }
+  .mgi-exit-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: #FDF0EC;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-exit-icon i { font-size: 17px; color: #C84B31; }
+  .mgi-exit-name { font-size: 14px; font-weight: 700; color: #C84B31; }
+  .mgi-exit-sub  { font-size: 12px; color: #666; line-height: 1.55; }
+  .mgi-exit-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  /* ── 3. Peak Hours ── */
+  .mgi-peak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .mgi-peak-card { padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; }
+  .mgi-peak-time  { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+  .mgi-peak-lbl   { font-size: 11px; color: #888; }
+  .mgi-peak-bar   { height: 6px; border-radius: 999px; background: #EDE9E3; margin-top: 4px; overflow: hidden; }
+  .mgi-peak-fill  { height: 100%; border-radius: 999px; background: #C84B31; }
+  .mgi-peak-fill.amber { background: #BA7517; }
+  .mgi-peak-fill.green { background: #639922; }
+
+  /* ── 4. Route Map ── */
+  .mgi-map-outer { padding: 0 1rem; }
+  .mgi-map-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .mgi-map-track {
+    display: flex; align-items: center;
+    min-width: max-content;
+    padding: 1.5rem 0.5rem;
+  }
+  .mgi-stn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .mgi-stn .dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid #C0392B; background: #fff;
+    position: relative; z-index: 2; flex-shrink: 0;
+  }
+  .mgi-stn.current .dot { background: #C0392B; }
+  .mgi-stn .sname {
+    font-size: 10.5px; font-weight: 600;
+    color: #666; text-align: center;
+    max-width: 72px; line-height: 1.3;
+  }
+  .mgi-stn.current .sname { color: #C0392B; }
+  .mgi-conn { width: 48px; height: 3px; background: #C0392B; flex-shrink: 0; margin-top: -22px; }
+  .mgi-conn.gray { background: #D3D1C7; }
+  .mgi-you {
+    font-size: 9px; font-weight: 700;
+    background: #C0392B; color: #fff;
+    padding: 1px 6px; border-radius: 999px;
+    letter-spacing: .04em;
+  }
+  .mgi-map-legend {
+    display: flex; gap: 16px;
+    padding: 0 0 12px;
+    font-size: 11px; color: #888;
+  }
+  .mgi-map-legend span { display: flex; align-items: center; gap: 5px; }
+  .mgi-dot-red  { width: 10px; height: 10px; border-radius: 50%; background: #C0392B; display: inline-block; }
+  .mgi-dot-gray { width: 10px; height: 10px; border-radius: 50%; background: #D3D1C7; display: inline-block; }
+
+  /* ── 5. Safety Tips ── */
+  .mgi-safety-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .mgi-safety-card { padding: 14px 15px; display: flex; gap: 12px; align-items: flex-start; }
+  .mgi-safety-text h4 { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 3px; }
+  .mgi-safety-text p  { font-size: 12px; color: #666; line-height: 1.6; }
+
+  /* ── 6. Eco Impact ── */
+  .mgi-eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .mgi-eco-card {
+    padding: 18px 12px 14px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px; text-align: center;
+  }
+  .mgi-eco-iwrap {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: #EAF3DE;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mgi-eco-iwrap i { font-size: 21px; color: #3B6D11; }
+  .mgi-eco-num  { font-size: 22px; font-weight: 700; color: #C84B31; line-height: 1; }
+  .mgi-eco-unit { font-size: 10.5px; font-weight: 600; color: #854F0B; }
+  .mgi-eco-desc { font-size: 11px; color: #666; line-height: 1.5; }
+
+  /* ── 7. FAQ ── */
+  .mgi-faq-wrap { padding: 0 1.1rem; }
+  .mgi-faq-item { border-bottom: 1px solid #EDE9E3; }
+  .mgi-faq-item:last-child { border-bottom: none; }
+  .mgi-faq-q {
+    width: 100%; text-align: left;
+    background: none; border: none;
+    padding: 14px 4px;
+    font-size: 13.5px; font-weight: 600;
+    color: #1A1A1A; cursor: pointer;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+    font-family: inherit;
+  }
+  .mgi-faq-q:hover { color: #C84B31; }
+  .mgi-faq-q .mgi-chev {
+    font-size: 16px; color: #888;
+    transition: transform .25s ease; flex-shrink: 0;
+  }
+  .mgi-faq-q[aria-expanded="true"] .mgi-chev {
+    transform: rotate(180deg); color: #C84B31;
+  }
+  .mgi-faq-a {
+    font-size: 12.5px; color: #555; line-height: 1.7;
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, padding .3s ease;
+    padding: 0 4px;
+  }
+  .mgi-faq-a.open { max-height: 200px; padding: 0 4px 14px; }
+</style>
 </head>
 <body>
 
@@ -214,15 +430,288 @@
       </div>
 
     </div>
+<div class="mgi-sections">
+
+  <section aria-label="Station amenities">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Station Amenities</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-fac-grid">
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Washrooms</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Drinking Water</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">First Aid</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Food Stalls</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Divyangjan Friendly</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-parking-circle" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Parking</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Exit gates">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Exit Gates — Shatabdi Nagar Station</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-exit-grid">
+      <div class="mgi-card mgi-exit-card">
+        <div class="mgi-exit-hd">
+          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
+          <span class="mgi-exit-name">Gate 1</span>
+        </div>
+        <span class="mgi-exit-sub">Shatabdi Nagar, NH-58 Highway, Meerut, Uttar Pradesh</span>
+        <div class="mgi-exit-tags">
+          <span class="mgi-badge mgi-b-blue">2W parking 300</span>
+          <span class="mgi-badge mgi-b-green">Accessible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Peak traveling hours">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Peak Traveling Hours</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-peak-grid">
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">6:00 – 7:00 AM</span>
+        <span class="mgi-peak-lbl">Early morning</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:35%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Low crowd</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">7:00 – 9:30 AM</span>
+        <span class="mgi-peak-lbl">Morning rush</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:95%"></div></div>
+        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">9:30 AM – 4:30 PM</span>
+        <span class="mgi-peak-lbl">Off-peak midday</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:30%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Comfortable</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">4:30 – 7:00 PM</span>
+        <span class="mgi-peak-lbl">Evening rush</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:90%"></div></div>
+        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">7:00 – 9:00 PM</span>
+        <span class="mgi-peak-lbl">Post-rush taper</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill amber" style="width:55%"></div></div>
+        <span class="mgi-badge mgi-b-amber" style="width:fit-content;margin-top:4px">Moderate</span>
+      </div>
+      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">After 9:00 PM</span>
+        <span class="mgi-peak-lbl">Late night</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:18%"></div></div>
+        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Sparse</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Namo Bharat RRTS route map">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Route Map — Namo Bharat RRTS</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-card mgi-map-outer">
+      <div class="mgi-map-scroll">
+        <div class="mgi-map-track" role="list">
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#C0392B"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Muradnagar</span>
+          </div>
+          <div class="mgi-conn" style="background:#C0392B"></div>
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#C0392B"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Modinagar South</span>
+          </div>
+          <div class="mgi-conn" style="background:#C0392B"></div>
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#C0392B"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Modinagar North</span>
+          </div>
+          <div class="mgi-conn" style="background:#C0392B"></div>
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#C0392B"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Meerut South</span>
+          </div>
+          <div class="mgi-conn" style="background:#C0392B"></div>
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#27764A"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Partapur</span>
+          </div>
+          <div class="mgi-conn" style="background:#27764A"></div>
+          <div class="mgi-stn" role="listitem">
+                        <div class="dot" style="border-color:#27764A"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Rithani</span>
+          </div>
+          <div class="mgi-conn" style="background:#27764A"></div>
+          <div class="mgi-stn current" role="listitem">
+            <span class="mgi-you">DEST</span>
+            <div class="dot" style="border-color:#C0392B;background:#C0392B"></div>
+            <span class="sname" style="font-size:10.5px;font-weight:600;color:#C0392B;text-align:center;max-width:72px;line-height:1.3">Shatabdi Nagar</span>
+          </div>
+        </div>
+      </div>
+      <div class="mgi-map-legend">
+        <span><i class="mgi-dot-red"></i> Namo Bharat / direct stops</span>
+        <span><i class="mgi-dot-gray" style="background:#27764A"></i> Metro / destination</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Safety tips">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Safety Tips</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-safety-grid">
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#A32D2D"></i></div>
+        <div class="mgi-safety-text"><h4>Mind the gap</h4><p>Step carefully while boarding. Stand behind the yellow line until the train fully stops.</p></div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#E6F1FB"><i class="ti ti-map-pin-route" aria-hidden="true" style="color:#185FA5"></i></div>
+        <div class="mgi-safety-text"><h4>Watch platform markings</h4><p>Stand behind the yellow line and wait for coach doors to align before boarding.</p></div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-briefcase" aria-hidden="true" style="color:#854F0B"></i></div>
+        <div class="mgi-safety-text"><h4>Watch your belongings</h4><p>Keep bags in front of you during rush periods and report unattended luggage immediately.</p></div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div>
+        <div class="mgi-safety-text"><h4>Priority seating</h4><p>Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers.</p></div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-phone-call" aria-hidden="true" style="color:#854F0B"></i></div>
+        <div class="mgi-safety-text"><h4>Emergency helpline</h4><p>For any safety concern, use the Talk-Back button in the coach or call 9289269611.</p></div>
+      </div>
+      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-camera-off" aria-hidden="true" style="color:#A32D2D"></i></div>
+        <div class="mgi-safety-text"><h4>No photography</h4><p>Photography inside trains, platforms, or restricted operational areas is prohibited.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Environmental impact of this ride">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Taking this ride means</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-eco-grid">
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">3.8</span>
+        <span class="mgi-eco-unit">kg CO₂ saved</span>
+        <span class="mgi-eco-desc">vs. driving 25.4 km by private car</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-flame-off" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">1.8</span>
+        <span class="mgi-eco-unit">litres fuel saved</span>
+        <span class="mgi-eco-desc">that would otherwise burn in corridor traffic</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-trees" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">28</span>
+        <span class="mgi-eco-unit">trees&#x27; daily work</span>
+        <span class="mgi-eco-desc">CO₂ absorbed per 1,000 riders on this route daily</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-road-off" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">~160</span>
+        <span class="mgi-eco-unit">cars off the road</span>
+        <span class="mgi-eco-desc">when one full coach replaces private vehicle trips</span>
+      </div>
+      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti ti-solar-panel" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">30%</span>
+        <span class="mgi-eco-unit">solar powered</span>
+        <span class="mgi-eco-desc">NCRTC&#x27;s energy mix includes renewable solar generation</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Frequently Asked Questions</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-card mgi-faq-wrap">
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the distance from Muradnagar to Shatabdi Nagar by Namo Bharat RRTS?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">The distance from Muradnagar to Shatabdi Nagar on Namo Bharat RRTS is approximately 25.4.</div>
+      </div>
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the fare from Muradnagar to Shatabdi Nagar on Namo Bharat RRTS?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">The standard fare from Muradnagar to Shatabdi Nagar on Namo Bharat RRTS is approximately ₹70.</div>
+      </div>
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does it take to travel from Muradnagar to Shatabdi Nagar?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">The estimated travel time from Muradnagar to Shatabdi Nagar is about 30 min.</div>
+      </div>
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the first train from Muradnagar for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">The first train information for departures from Muradnagar is: Towards Delhi: 06:11:00 AM | Towards Meerut: 05:54:30 AM.</div>
+      </div>
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the last train from Muradnagar for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">The last train information for departures from Muradnagar is: Towards Delhi: 10:33:30 PM | Towards Meerut: 10:33:50 PM.</div>
+      </div>
+      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Which exit gates are useful at Shatabdi Nagar station?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">Current gate guidance for Shatabdi Nagar is: Not listed.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- end .mgi-sections -->
 <!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->
 <div class="rc-route-meta" style="margin-top:12px;padding:12px 14px;border:1px solid var(--border2,#e2e8f0);border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 6px 24px rgba(2,6,23,.03);display:grid;gap:0">
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> Not listed</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> Not listed</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> Towards Delhi: 06:11:00 AM | Towards Meerut: 05:54:30 AM</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> Towards Delhi: 10:33:30 PM | Towards Meerut: 10:33:50 PM</div>
   <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Exit Gate Blueprint:</strong> Not listed</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> Not listed<br><span style="display:inline-block;margin-top:6px"><a href="https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html" target="_blank" rel="noopener noreferrer" style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a></span></div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> Not listed</div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> Available | Zone: Uttar Pradesh | Capacity: Gate 1 Two Wheelers 175 | Tariff: Up to 6h ₹30 (4W), ₹10 (2W); Up to 12h ₹60 (4W), ₹25 (2W); Monthly ₹2000 (4W), ₹600 (2W)<br><span style="display:inline-block;margin-top:6px"><a href="https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html" target="_blank" rel="noopener noreferrer" style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a></span></div>
+  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> Washrooms, Drinking Water, First Aid, Food Stalls, Divyangjan Friendly</div>
 </div>
 <!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->
+
     <div class="route-seo-box" data-system="Namo Bharat RRTS">
       <div class="route-seo-title">Route Summary</div>
       <p class="route-seo-lead">
@@ -312,5 +801,23 @@
 </footer>
 
 <script src="/js/globalSearchBar.js?v=20260410"></script>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-mgi-faq]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var isOpen = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('[data-mgi-faq]').forEach(function (b) {
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.classList.remove('open');
+        });
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.nextElementSibling.classList.add('open');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
