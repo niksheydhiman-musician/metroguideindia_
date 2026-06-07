@@ -38,8 +38,9 @@ def normalize_site_url(raw_url: str) -> str:
     path = re.sub(r"/{2,}", "/", parts.path or "/")
     scheme = "https" if parts.scheme in {"http", "https", ""} else parts.scheme
     netloc = parts.netloc or "metroguideindia.com"
+    hostname = (parts.hostname or "metroguideindia.com").lower()
 
-    if netloc.endswith("metroguideindia.com"):
+    if hostname in {"metroguideindia.com", "www.metroguideindia.com"}:
         netloc = "metroguideindia.com"
         return urlunsplit((scheme, netloc, path, "", ""))
     return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
