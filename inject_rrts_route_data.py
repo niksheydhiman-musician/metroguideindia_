@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from html import escape
 from pathlib import Path
 from typing import Any
@@ -11,6 +12,7 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parent
 ROUTES_DIR = REPO_ROOT / "routes"
 ROUTE_JSON = REPO_ROOT / "data" / "rrts-routes.json"
+TEMPLATE_ROUTE_PATH = ROUTES_DIR / "anand-vihar-to-begumpul.html"
 PARKING_BLOG_URL = "https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html"
 SITE_ROOT_URL = "https://metroguideindia.com"
 
@@ -38,21 +40,36 @@ DIRECT_RRTS_ROUTE_SLUGS = {
     "modipuram",
 }
 DIRECT_RRTS_HUB_SLUGS = {"meerut-south", "shatabdi-nagar", "begumpul", "modipuram"}
+TABLER_ICONS_CDN = "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
 
 
 @dataclass
 class StationMeta:
     station_name: str
     service_type: str
+    geographical_location: str
     operational_timings: dict[str, Any]
     exit_gates: Any
     parking_profile: dict[str, Any]
     special_facilities: dict[str, Any]
+    control_room_contact: str = ""
     parking_tariff_summary: str = ""
+
+
+@dataclass(frozen=True)
+class MgiBlueprint:
+    tabler_link: str
+    style_block: str
+    sections_block: str
+    faq_script: str
 
 
 def normalize_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9-]+", "-", value.lower()).strip("-")
+
+
+def clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<.*?>", "", value or "", flags=re.S)).strip()
 
 
 def slug_variants(value: str) -> set[str]:
@@ -69,6 +86,14 @@ def slug_variants(value: str) -> set[str]:
     return {variant for variant in variants if variant}
 
 
+def find_station_meta(value: str, station_map: dict[str, StationMeta]) -> StationMeta | None:
+    for variant in slug_variants(value):
+        meta = station_map.get(variant)
+        if meta:
+            return meta
+    return None
+
+
 def slug_to_path(slug: str) -> Path:
     return ROUTES_DIR / f"{slug}.html"
 
@@ -82,6 +107,17 @@ def normalize_service_type(system_type: str | None) -> str:
     if "metro" in txt and "rrts" in txt:
         return "Dual-Service"
     return "RRTS"
+
+
+def normalize_line_label(raw_line: str, is_direct_route: bool) -> str:
+    line = clean_text(raw_line)
+    if is_direct_route:
+        return "Namo Bharat RRTS"
+    if not line:
+        return "Namo Bharat RRTS + Meerut Metro"
+    if line == "RRTS + Metro":
+        return "Namo Bharat RRTS + Meerut Metro"
+    return line
 
 
 def strip_existing_block(html: str) -> str:
@@ -438,7 +474,7 @@ def get_station_route_details(
 ) -> tuple[str, str, list[tuple[str, str, str]], StationMeta | None]:
     fallback_stations = extract_step_stations(html)
     origin_name = fallback_stations[0] if fallback_stations else ""
-    origin_meta = station_map.get(normalize_slug(origin_name)) if origin_name else None
+    origin_meta = find_station_meta(origin_name, station_map) if origin_name else None
 
     first_train, last_train = parse_first_last_train(
         route.get("timings") if isinstance(route.get("timings"), dict) else (origin_meta.operational_timings if origin_meta else {})
@@ -514,6 +550,452 @@ def inject_route_summary_details(
     fallback_pattern = r'(<div class="rc-summary">.*?</div>\s*)(<div class="rc-steps">)'
     fallback_replacement = r"\1\n" + details + r"\n      \2"
     return re.sub(fallback_pattern, fallback_replacement, clean, count=1, flags=re.S)
+
+
+@lru_cache(maxsize=1)
+def load_mgi_blueprint() -> MgiBlueprint:
+    html = TEMPLATE_ROUTE_PATH.read_text(encoding="utf-8")
+    tabler_match = re.search(
+        rf'(<link rel="stylesheet" href="{re.escape(TABLER_ICONS_CDN)}"\s*/?>)',
+        html,
+        flags=re.I,
+    )
+    style_match = re.search(r"(<style>\s*.*?\.mgi-sections\s*\{.*?</style>)", html, flags=re.S)
+    sections_match = re.search(r'(<div class="mgi-sections">.*?<!-- end \.mgi-sections -->)', html, flags=re.S)
+    faq_script_match = re.search(
+        r"(<script>\s*\(function \(\) \{\s*document\.querySelectorAll\('\[data-mgi-faq\]'\).*?</script>)",
+        html,
+        flags=re.S,
+    )
+    if not (tabler_match and style_match and sections_match and faq_script_match):
+        raise RuntimeError(f"Could not extract full mgi blueprint from {TEMPLATE_ROUTE_PATH}")
+    return MgiBlueprint(
+        tabler_link=tabler_match.group(1).strip(),
+        style_block=style_match.group(1).strip(),
+        sections_block=sections_match.group(1).strip(),
+        faq_script=faq_script_match.group(1).strip(),
+    )
+
+
+def strip_existing_mgi_sections(html: str) -> str:
+    return re.sub(r'\n?\s*<div class="mgi-sections">.*?<!-- end \.mgi-sections -->\s*\n?', "\n", html, flags=re.S)
+
+
+def ensure_mgi_head_assets(html: str, blueprint: MgiBlueprint) -> str:
+    clean = re.sub(
+        rf"\s*<link rel=\"stylesheet\" href=\"{re.escape(TABLER_ICONS_CDN)}\"\s*/?>\s*",
+        "\n",
+        html,
+        flags=re.I,
+    )
+    clean = re.sub(r"\s*<style>\s*.*?\.mgi-sections\s*\{.*?</style>\s*", "\n", clean, count=1, flags=re.S)
+    insertion = f"  {blueprint.tabler_link}\n  {blueprint.style_block}\n"
+    return re.sub(r"(</head>)", insertion + r"\1", clean, count=1, flags=re.S)
+
+
+def ensure_mgi_faq_script(html: str, blueprint: MgiBlueprint) -> str:
+    clean = re.sub(
+        r"\s*<script>\s*\(function \(\) \{\s*document\.querySelectorAll\('\[data-mgi-faq\]'\).*?</script>\s*",
+        "\n",
+        html,
+        count=1,
+        flags=re.S,
+    )
+    return re.sub(r"(</body>)", "\n" + blueprint.faq_script + "\n\\1", clean, count=1, flags=re.S)
+
+
+def inject_mgi_sections(html: str, block: str) -> str:
+    clean = strip_existing_mgi_sections(html)
+    for pattern in (
+        r'(\s*<!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->)',
+        r'(\s*<div class="rc-route-meta"(?:\s|>))',
+        r'(\s*<div class="route-seo-box"(?:\s|>))',
+        r'(\s*<div class="quick-facts"(?:\s|>))',
+        r'(\s*<section id="global-search-section"(?:\s|>))',
+        r"(</main>)",
+    ):
+        if re.search(pattern, clean, flags=re.S):
+            return re.sub(pattern, "\n" + block + "\n" + r"\1", clean, count=1, flags=re.S)
+    return clean.rstrip() + "\n" + block + "\n"
+
+
+def parse_distance_km(value: str) -> float:
+    match = re.search(r"([0-9]+(?:\.[0-9]+)?)", value or "")
+    return float(match.group(1)) if match else 0.0
+
+
+def parse_gate_capacity(profile: dict[str, Any]) -> list[tuple[str, list[str]]]:
+    live_capacity = profile.get("live_capacity") if isinstance(profile.get("live_capacity"), dict) else {}
+    grouped: dict[str, list[str]] = {}
+    for key, value in live_capacity.items():
+        match = re.match(r"gate_(\d+)_(four|two)_wheelers", str(key))
+        if not match or value in (None, "", [], {}):
+            continue
+        gate_name = f"Gate {match.group(1)}"
+        lane = "4W" if match.group(2) == "four" else "2W"
+        grouped.setdefault(gate_name, []).append(f"{lane} parking {value}")
+    return [(gate, grouped[gate]) for gate in sorted(grouped, key=lambda item: int(item.split()[-1]))]
+
+
+def facility_badge(value: Any) -> tuple[str, str]:
+    if value is True:
+        return ("Available", "mgi-b-green")
+    if isinstance(value, str) and value.strip():
+        return ("Available", "mgi-b-green")
+    if isinstance(value, list) and value:
+        return ("Limited", "mgi-b-amber")
+    return ("Unavailable", "mgi-b-red")
+
+
+def build_amenities_section(destination_meta: StationMeta | None) -> str:
+    facilities = destination_meta.special_facilities if destination_meta else {}
+    parking = destination_meta.parking_profile if destination_meta else {}
+    cards = [
+        ("Washrooms", "ti-gender-bigender", facilities.get("washrooms")),
+        ("Drinking Water", "ti-droplet", facilities.get("drinking_water")),
+        ("First Aid", "ti-first-aid-kit", facilities.get("first_aid")),
+        ("Food Stalls", "ti-tools-kitchen-2", facilities.get("food_stalls")),
+        ("Divyangjan Friendly", "ti-wheelchair", facilities.get("divyangjan_friendly")),
+        ("Parking", "ti-parking-circle", parking.get("parking_available")),
+    ]
+    card_html = []
+    for label, icon, value in cards:
+        badge_text, badge_class = facility_badge(value)
+        card_html.append(
+            f"""      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti {icon}" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">{escape(label)}</span>
+        <span class="mgi-badge {badge_class}">{escape(badge_text)}</span>
+      </div>"""
+        )
+    return """  <section aria-label="Station amenities">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Station Amenities</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-fac-grid">
+{cards}
+    </div>
+  </section>""".format(cards="\n".join(card_html))
+
+
+def build_exit_gates_section(destination_label: str, destination_meta: StationMeta | None) -> str:
+    gate_groups = parse_gate_capacity(destination_meta.parking_profile if destination_meta else {})
+    accessible = bool(destination_meta and destination_meta.special_facilities.get("divyangjan_friendly"))
+    location = clean_text(destination_meta.geographical_location if destination_meta else "") or f"{destination_label} station concourse"
+    if not gate_groups:
+        gate_groups = [("Gate Info", ["Official gate metrics are not published yet"])]
+
+    cards = []
+    for gate_name, tags in gate_groups:
+        tag_html = [f'          <span class="mgi-badge mgi-b-blue">{escape(tag)}</span>' for tag in tags]
+        if accessible:
+            tag_html.append('          <span class="mgi-badge mgi-b-green">Accessible</span>')
+        cards.append(
+            f"""      <div class="mgi-card mgi-exit-card">
+        <div class="mgi-exit-hd">
+          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
+          <span class="mgi-exit-name">{escape(gate_name)}</span>
+        </div>
+        <span class="mgi-exit-sub">{escape(location)}</span>
+        <div class="mgi-exit-tags">
+{chr(10).join(tag_html)}
+        </div>
+      </div>"""
+        )
+    return """  <section aria-label="Exit gates">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Exit Gates — {destination} Station</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-exit-grid">
+{cards}
+    </div>
+  </section>""".format(destination=escape(destination_label), cards="\n".join(cards))
+
+
+def build_peak_hours_section(is_direct_route: bool, estimated_time: str) -> str:
+    long_trip = parse_distance_km(estimated_time) > 50 or "6" in estimated_time
+    slots = [
+        ("6:00 – 7:00 AM", "Early morning", "35%", "green", "Low crowd"),
+        ("7:00 – 9:30 AM", "Morning rush", "95%" if is_direct_route or long_trip else "88%", "", "Very crowded"),
+        ("9:30 AM – 4:30 PM", "Off-peak midday", "30%", "green", "Comfortable"),
+        ("4:30 – 7:00 PM", "Evening rush", "90%" if is_direct_route else "84%", "", "Very crowded"),
+        ("7:00 – 9:00 PM", "Post-rush taper", "55%", "amber", "Moderate"),
+        ("After 9:00 PM", "Late night", "18%", "green", "Sparse"),
+    ]
+    cards = []
+    for time_range, label, width, fill_class, badge in slots:
+        badge_class = "mgi-b-red"
+        if badge in {"Low crowd", "Comfortable", "Sparse"}:
+            badge_class = "mgi-b-green"
+        elif badge == "Moderate":
+            badge_class = "mgi-b-amber"
+        fill_attr = f" {fill_class}" if fill_class else ""
+        cards.append(
+            f"""      <div class="mgi-card mgi-peak-card">
+        <span class="mgi-peak-time">{escape(time_range)}</span>
+        <span class="mgi-peak-lbl">{escape(label)}</span>
+        <div class="mgi-peak-bar"><div class="mgi-peak-fill{fill_attr}" style="width:{escape(width)}"></div></div>
+        <span class="mgi-badge {badge_class}" style="width:fit-content;margin-top:4px">{escape(badge)}</span>
+      </div>"""
+        )
+    return """  <section aria-label="Peak traveling hours">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Peak Traveling Hours</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-peak-grid">
+{cards}
+    </div>
+  </section>""".format(cards="\n".join(cards))
+
+
+def extract_visual_route_stations(html: str) -> list[tuple[str, bool]]:
+    bounds = find_div_block_bounds(html, '<div class="rc-steps">')
+    if not bounds:
+        return []
+    block = html[bounds[0] : bounds[1]]
+    items: list[tuple[str, bool]] = []
+    seen: set[str] = set()
+    for match in re.finditer(r'<div class="(step-name|xchange-name)">(.*?)</div>', block, flags=re.S):
+        name = clean_text(match.group(2))
+        key = normalize_slug(name)
+        if not name or key in seen:
+            continue
+        items.append((name, match.group(1) == "xchange-name"))
+        seen.add(key)
+    return items
+
+
+def station_color(meta: StationMeta | None, interchange: bool) -> str:
+    if interchange:
+        return "#BA7517"
+    if meta and meta.service_type == "Metro":
+        return MEERUT_METRO_GREEN
+    return RRTS_RED
+
+
+def build_route_map_section(
+    html: str, destination_label: str, system_label: str, station_map: dict[str, StationMeta]
+) -> str:
+    visual_stations = extract_visual_route_stations(html)
+    if not visual_stations:
+        visual_stations = [(destination_label, False)]
+    nodes = []
+    for idx, (name, interchange) in enumerate(visual_stations):
+        meta = find_station_meta(name, station_map)
+        color = station_color(meta, interchange)
+        current = idx == len(visual_stations) - 1
+        marker = '<span class="mgi-you">DEST</span>\n' if current else ""
+        dot_style = f"border-color:{color}" + (f";background:{color}" if current else "")
+        label_style = f"font-size:10.5px;font-weight:600;color:{color if current else '#666'};text-align:center;max-width:72px;line-height:1.3"
+        nodes.append(
+            f"""          <div class="mgi-stn{' current' if current else ''}" role="listitem">
+            {marker}            <div class="dot" style="{dot_style}"></div>
+            <span class="sname" style="{label_style}">{escape(name)}</span>
+          </div>"""
+        )
+        if idx < len(visual_stations) - 1:
+            nodes.append(f'          <div class="mgi-conn" style="background:{color}"></div>')
+    return """  <section aria-label="{system} route map">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Route Map — {system}</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-card mgi-map-outer">
+      <div class="mgi-map-scroll">
+        <div class="mgi-map-track" role="list">
+{nodes}
+        </div>
+      </div>
+      <div class="mgi-map-legend">
+        <span><i class="mgi-dot-red"></i> Namo Bharat / direct stops</span>
+        <span><i class="mgi-dot-gray" style="background:{metro_color}"></i> Metro / destination</span>
+      </div>
+    </div>
+  </section>""".format(
+        system=escape(system_label), nodes="\n".join(nodes), metro_color=MEERUT_METRO_GREEN
+    )
+
+
+def build_safety_section(
+    interchange_station: str | None,
+    helpline_number: str,
+) -> str:
+    transfer_title = "Follow interchange signage" if interchange_station else "Watch platform markings"
+    transfer_copy = (
+        f"At {interchange_station}, follow the marked transfer path and platform boards before changing services."
+        if interchange_station
+        else "Stand behind the yellow line and wait for coach doors to align before boarding."
+    )
+    cards = [
+        ("#FCEBEB", "ti-alert-triangle", "#A32D2D", "Mind the gap", "Step carefully while boarding. Stand behind the yellow line until the train fully stops."),
+        ("#E6F1FB", "ti-map-pin-route", "#185FA5", transfer_title, transfer_copy),
+        ("#FAEEDA", "ti-briefcase", "#854F0B", "Watch your belongings", "Keep bags in front of you during rush periods and report unattended luggage immediately."),
+        ("#EAF3DE", "ti-heart-handshake", "#3B6D11", "Priority seating", "Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers."),
+        ("#FAEEDA", "ti-phone-call", "#854F0B", "Emergency helpline", f"For any safety concern, use the Talk-Back button in the coach or call {helpline_number}."),
+        ("#FCEBEB", "ti-camera-off", "#A32D2D", "No photography", "Photography inside trains, platforms, or restricted operational areas is prohibited."),
+    ]
+    card_html = []
+    for bg, icon, color, title, body in cards:
+        card_html.append(
+            f"""      <div class="mgi-card mgi-safety-card">
+        <div class="mgi-icon-wrap" style="background:{bg}"><i class="ti {icon}" aria-hidden="true" style="color:{color}"></i></div>
+        <div class="mgi-safety-text"><h4>{escape(title)}</h4><p>{escape(body)}</p></div>
+      </div>"""
+        )
+    return """  <section aria-label="Safety tips">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Safety Tips</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-safety-grid">
+{cards}
+    </div>
+  </section>""".format(cards="\n".join(card_html))
+
+
+def build_eco_section(distance_km: str) -> str:
+    distance_value = max(parse_distance_km(distance_km), 1.0)
+    co2_saved = round(distance_value * 0.151, 1)
+    fuel_saved = round(distance_value * 0.069, 1)
+    tree_work = int(round(co2_saved * 7.5))
+    cars_removed = int(round(max(distance_value * 6.3, 45)))
+    cards = [
+        ("ti-leaf", "8.3" if distance_value == 55 else f"{co2_saved:g}", "kg CO₂ saved", f"vs. driving {distance_value:g} km by private car"),
+        ("ti-flame-off", f"{fuel_saved:g}", "litres fuel saved", "that would otherwise burn in corridor traffic"),
+        ("ti-trees", str(tree_work), "trees' daily work", "CO₂ absorbed per 1,000 riders on this route daily"),
+        ("ti-road-off", f"~{cars_removed}", "cars off the road", "when one full coach replaces private vehicle trips"),
+        ("ti-solar-panel", "30%", "solar powered", "NCRTC's energy mix includes renewable solar generation"),
+    ]
+    card_html = []
+    for icon, number, unit, desc in cards:
+        card_html.append(
+            f"""      <div class="mgi-card mgi-eco-card">
+        <div class="mgi-eco-iwrap"><i class="ti {icon}" aria-hidden="true"></i></div>
+        <span class="mgi-eco-num">{escape(number)}</span>
+        <span class="mgi-eco-unit">{escape(unit)}</span>
+        <span class="mgi-eco-desc">{escape(desc)}</span>
+      </div>"""
+        )
+    return """  <section aria-label="Environmental impact of this ride">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Taking this ride means</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-eco-grid">
+{cards}
+    </div>
+  </section>""".format(cards="\n".join(card_html))
+
+
+def build_faq_section(
+    origin_label: str,
+    destination_label: str,
+    system_label: str,
+    distance_km: str,
+    standard_fare: str,
+    estimated_time: str,
+    first_train: str,
+    last_train: str,
+    exit_gate_summary: str,
+) -> str:
+    items = [
+        (
+            f"What is the distance from {origin_label} to {destination_label} by {system_label}?",
+            f"The distance from {origin_label} to {destination_label} on {system_label} is approximately {distance_km or 'the listed corridor distance'}.",
+        ),
+        (
+            f"What is the fare from {origin_label} to {destination_label} on {system_label}?",
+            f"The standard fare from {origin_label} to {destination_label} on {system_label} is approximately {standard_fare or 'the current listed fare'}.",
+        ),
+        (
+            f"How long does it take to travel from {origin_label} to {destination_label}?",
+            f"The estimated travel time from {origin_label} to {destination_label} is about {estimated_time or 'the listed journey time'}.",
+        ),
+        (
+            f"What is the first train from {origin_label} for this route?",
+            f"The first train information for departures from {origin_label} is: {first_train}.",
+        ),
+        (
+            f"What is the last train from {origin_label} for this route?",
+            f"The last train information for departures from {origin_label} is: {last_train}.",
+        ),
+        (
+            f"Which exit gates are useful at {destination_label} station?",
+            f"Current gate guidance for {destination_label} is: {exit_gate_summary}.",
+        ),
+    ]
+    item_html = []
+    for question, answer in items:
+        item_html.append(
+            f"""      <div class="mgi-faq-item">
+        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>{escape(question)}<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
+        <div class="mgi-faq-a">{escape(answer)}</div>
+      </div>"""
+        )
+    return """  <section aria-label="Frequently asked questions">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Frequently Asked Questions</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-card mgi-faq-wrap">
+{items}
+    </div>
+  </section>""".format(items="\n".join(item_html))
+
+
+def build_mgi_sections_html(
+    slug: str,
+    html: str,
+    origin_label: str,
+    destination_label: str,
+    system_label: str,
+    distance_km: str,
+    standard_fare: str,
+    estimated_time: str,
+    first_train: str,
+    last_train: str,
+    exit_gate_summary: str,
+    destination_meta: StationMeta | None,
+    station_map: dict[str, StationMeta],
+) -> str:
+    if slug == TEMPLATE_ROUTE_PATH.stem:
+        return load_mgi_blueprint().sections_block
+    interchange_station = next((name for name, is_interchange in extract_visual_route_stations(html) if is_interchange), None)
+    helpline_number = (
+        destination_meta.control_room_contact
+        if destination_meta and destination_meta.control_room_contact and destination_meta.control_room_contact != "0"
+        else "1800-209-0200"
+    )
+    sections = [
+        build_amenities_section(destination_meta),
+        build_exit_gates_section(destination_label, destination_meta),
+        build_peak_hours_section(is_direct_rrts_route(slug), estimated_time),
+        build_route_map_section(html, destination_label, system_label, station_map),
+        build_safety_section(interchange_station, helpline_number),
+        build_eco_section(distance_km),
+        build_faq_section(
+            origin_label,
+            destination_label,
+            system_label,
+            distance_km,
+            standard_fare,
+            estimated_time,
+            first_train,
+            last_train,
+            exit_gate_summary,
+        ),
+    ]
+    return '<div class="mgi-sections">\n\n' + "\n\n".join(sections) + "\n\n</div>\n<!-- end .mgi-sections -->"
 
 
 def format_inr(value: Any) -> str:
@@ -703,6 +1185,7 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                 station_map[normalize_slug(name)] = StationMeta(
                     station_name=name,
                     service_type=normalize_service_type(st.get("system_type")),
+                    geographical_location=str(st.get("geographical_location") or "").strip(),
                     operational_timings=st.get("operational_timings")
                     if isinstance(st.get("operational_timings"), dict)
                     else {},
@@ -711,6 +1194,7 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                     special_facilities=st.get("special_facilities")
                     if isinstance(st.get("special_facilities"), dict)
                     else {},
+                    control_room_contact=str(st.get("control_room_contact") or "").strip(),
                     parking_tariff_summary=parking_tariff_by_zone.get(zone_name, ""),
                 )
 
@@ -724,6 +1208,7 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
             station_map[normalize_slug(name)] = StationMeta(
                 station_name=name,
                 service_type=normalize_service_type(st.get("system_type")),
+                geographical_location=str(st.get("geographical_location") or "").strip(),
                 operational_timings=st.get("operational_timings")
                 if isinstance(st.get("operational_timings"), dict)
                 else {},
@@ -732,6 +1217,7 @@ def load_route_payload(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str,
                 special_facilities=st.get("special_facilities")
                 if isinstance(st.get("special_facilities"), dict)
                 else {},
+                control_room_contact=str(st.get("control_room_contact") or "").strip(),
                 parking_tariff_summary=parking_tariff_by_zone.get(zone_name, ""),
             )
 
@@ -746,7 +1232,7 @@ def normalize_timeline(route: dict[str, Any], fallback_stations: list[str], stat
         for node in timeline:
             if isinstance(node, str):
                 name = node.strip()
-                meta = station_map.get(normalize_slug(name))
+                meta = find_station_meta(name, station_map)
                 item = {
                     "station_name": name,
                     "service_type": (route.get("service_type") or (meta.service_type if meta else "RRTS")),
@@ -758,7 +1244,7 @@ def normalize_timeline(route: dict[str, Any], fallback_stations: list[str], stat
                 name = str(node.get("station_name") or node.get("station") or node.get("name") or "").strip()
                 if not name:
                     continue
-                meta = station_map.get(normalize_slug(name))
+                meta = find_station_meta(name, station_map)
                 item = {
                     "station_name": name,
                     "service_type": str(node.get("service_type") or (meta.service_type if meta else route.get("service_type") or "RRTS")),
@@ -770,7 +1256,7 @@ def normalize_timeline(route: dict[str, Any], fallback_stations: list[str], stat
         return normalized
 
     for st in fallback_stations:
-        meta = station_map.get(normalize_slug(st))
+        meta = find_station_meta(st, station_map)
         interchange = ""
         if meta and meta.service_type == "Dual-Service":
             interchange = "Cross-network transfer available"
@@ -964,6 +1450,7 @@ def iter_route_pages() -> list[Path]:
 
 def run(write: bool = True) -> int:
     route_map, station_map = load_route_payload(ROUTE_JSON)
+    blueprint = load_mgi_blueprint()
 
     route_pages = iter_route_pages()
     updated = 0
@@ -980,13 +1467,12 @@ def run(write: bool = True) -> int:
         route_data = route_map.get(slug) or fallback_route_data_from_html(working_html)
         endpoints = extract_route_terminals(working_html, slug)
         sub_data = parse_sub_line(working_html)
+        line_label = normalize_line_label(str(route_data.get("line") or sub_data.get("line") or ""), is_direct_route)
         meta = build_rrts_meta(
             origin=endpoints[0],
             destination=endpoints[1],
             estimated_time=str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
-            line="Namo Bharat RRTS"
-            if is_direct_route
-            else str(route_data.get("line") or sub_data.get("line") or "Namo Bharat RRTS"),
+            line=line_label,
             distance_km=str(route_data.get("distance_km") or sub_data.get("distance_km") or ""),
             standard_fare=str(route_data.get("standard_fare") or sub_data.get("standard_fare") or ""),
         )
@@ -995,13 +1481,36 @@ def run(write: bool = True) -> int:
         exit_summary = summarize_exit_blueprints(exits)
         parking_summary = summarize_parking(origin_meta)
         facilities_summary = summarize_facilities(origin_meta)
+        destination_meta = find_station_meta(endpoints[1], station_map)
+        if not destination_meta and "-to-" in slug:
+            destination_meta = find_station_meta(slug.split("-to-", 1)[1], station_map)
 
         meta["canonical"] = f"{SITE_ROOT_URL}/routes/{slug}.html"
         result = inject_meta_template(working_html, meta)
+        result = ensure_mgi_head_assets(result, blueprint)
         result = strip_existing_block(result)
+        result = inject_mgi_sections(
+            result,
+            build_mgi_sections_html(
+                slug=slug,
+                html=working_html,
+                origin_label=endpoints[0],
+                destination_label=endpoints[1],
+                system_label=line_label,
+                distance_km=str(route_data.get("distance_km") or sub_data.get("distance_km") or ""),
+                standard_fare=str(route_data.get("standard_fare") or sub_data.get("standard_fare") or ""),
+                estimated_time=str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
+                first_train=first_train,
+                last_train=last_train,
+                exit_gate_summary=exit_summary,
+                destination_meta=destination_meta,
+                station_map=station_map,
+            ),
+        )
         result = inject_route_summary_details(
             result, first_train, last_train, exit_summary, parking_summary, facilities_summary
         )
+        result = ensure_mgi_faq_script(result, blueprint)
 
         if write and result != original:
             path.write_text(result, encoding="utf-8")
