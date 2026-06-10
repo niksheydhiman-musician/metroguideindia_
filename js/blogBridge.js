@@ -208,7 +208,10 @@
       var h = line.match(/^(#{1,6})\s+(.*)/);
       if (h) {
         var level = h[1].length;
-        html.push('<h' + level + ' class="blog-h' + level + '">' + inlineFormat(h[2]) + '</h' + level + '>');
+        var headingText = inlineFormat(h[2].trim());
+        if (headingText) {
+          html.push('<h' + level + ' class="blog-h' + level + '">' + headingText + '</h' + level + '>');
+        }
         i++; continue;
       }
 
@@ -579,7 +582,7 @@
 
   function normalizeFaqQuestion(text) {
     return String(text || '')
-      .replace(/^\s*(q[:.)\-\s]+)/i, '')
+      .replace(/^\s*(q\d*[:.)\-\s]+)/i, '')
       .replace(/^\s*\d+[\).\-\s]+/, '')
       .trim();
   }
@@ -652,12 +655,12 @@
     }
 
     while (node) {
-      if (node.matches('h2.blog-h2, h2')) break;
+      if (node.matches('h2.blog-h2, h2') && (node.textContent || '').trim()) break;
       faqNodes.push(node);
 
       if (node.matches('h3.blog-h3, h3')) {
         pushCurrent();
-        question = (node.textContent || '').replace(/^\s*\d+[\).\-\s]+/, '').trim();
+        question = normalizeFaqQuestion((node.textContent || '').trim());
         answerNodes = [];
       } else if (question) {
         answerNodes.push(node.cloneNode(true));

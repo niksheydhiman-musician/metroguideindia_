@@ -1,0 +1,260 @@
+#!/usr/bin/env python3
+"""
+generate_blog_pages.py — MetroGuideIndia
+
+Creates a static /blog/<slug>.html page for every blog JSON file in
+data/blogs/ that does not already have a corresponding HTML file.
+Each generated page uses blogBridge.js to render content dynamically.
+"""
+
+import glob
+import json
+import os
+
+BLOGS_DIR = 'data/blogs'
+BLOG_HTML_DIR = 'blog'
+
+# The HTML template for a dynamic blog page.
+# {slug}, {title}, {description} are substituted per post.
+# Double-braces {{ }} are literal braces in the output.
+HTML_TEMPLATE = """\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <base href="/"/>
+  <title>{title} | MetroGuideIndia</title>
+  <meta name="description" content="{description}"/>
+  <link rel="canonical" href="https://metroguideindia.com/blog/{slug}"/>
+  <meta property="og:title" content="{title} | MetroGuideIndia"/>
+  <meta property="og:description" content="{description}"/>
+  <meta property="og:type" content="article"/>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <style>
+    html.blog-loading main,
+    html.blog-loading footer {{ visibility: hidden; }}
+  </style>
+  <script>document.documentElement.classList.add('blog-loading');setTimeout(function(){{document.documentElement.classList.remove('blog-loading');}},3000);</script>
+  <style>
+    #read-progress{{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}}
+    .post-wrap{{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}}
+    .post-back{{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}}
+    .post-back:hover{{color:var(--red)}}
+    .post-header{{margin-bottom:24px}}
+    .post-tags{{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}}
+    .post-tag{{font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:11px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}}
+    .post-title{{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);color:var(--text);line-height:1.18;margin-bottom:12px}}
+    .post-meta{{font-size:.79rem;color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap}}
+    .post-divider{{height:2px;background:linear-gradient(90deg,var(--red),transparent);border:none;margin:20px 0 28px;border-radius:2px}}
+    .post-grid{{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}}
+    .post-grid > *{{min-width:0}}
+    .blog-body{{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}}
+    .blog-body a{{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}}
+    .blog-body a:hover{{border-bottom-color:var(--red)}}
+    .blog-body img,.blog-inline-image{{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}}
+    .blog-h1{{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}}
+    .blog-h1:first-child{{display:none}}
+    .blog-h2{{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:var(--text);margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red);line-height:1.3}}
+    .blog-h3{{font-family:'Syne',sans-serif;font-weight:600;font-size:1.02rem;color:var(--text);margin:24px 0 10px}}
+    .blog-p{{margin:0 0 18px;color:var(--text2);overflow-wrap:anywhere}}
+    .blog-note{{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start}}
+    .blog-ul{{margin:0 0 18px;padding-left:22px}}
+    .blog-ul li{{margin-bottom:7px;color:var(--text2)}}
+    .blog-ol{{margin:0 0 18px;padding-left:24px}}
+    .blog-ol li{{margin-bottom:7px;color:var(--text2)}}
+    .blog-table-wrap{{overflow-x:auto;overflow-y:hidden;margin:22px 0;border:1px solid var(--border2);border-radius:var(--r);box-shadow:var(--shadow)}}
+    .blog-table{{width:100%;border-collapse:collapse;font-size:.875rem}}
+    .blog-table thead{{background:linear-gradient(135deg,var(--surface3),var(--surface2))}}
+    .blog-table th{{color:var(--text);font-family:'Syne',sans-serif;font-weight:700;padding:13px 16px;text-align:left;border-bottom:2px solid var(--border2);white-space:nowrap;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}}
+    .blog-table td{{padding:11px 16px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top}}
+    .blog-table tbody tr:last-child td{{border-bottom:none}}
+    .blog-table tbody tr:hover td{{background:var(--surface2);transition:background .12s}}
+    .sidebar-card{{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}}
+    .sidebar-section-title{{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}}
+    .toc-list{{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:4px}}
+    .toc-list li a{{font-size:.82rem;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px;display:block;transition:all .15s;border-left:2px solid transparent}}
+    .toc-list li a:hover{{color:var(--red);background:var(--red-bg);border-left-color:var(--red)}}
+    .sidebar-list{{display:flex;flex-direction:column;gap:9px}}
+    .related-guide{{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:11px 14px;text-decoration:none;color:inherit;transition:all .15s}}
+    .related-guide:hover{{transform:translateX(3px);border-color:rgba(192,57,43,.35);background:var(--red-bg)}}
+    .related-guide-title{{font-size:.83rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:3px}}
+    .related-guide-date{{font-size:.7rem;color:var(--muted)}}
+    .sidebar-empty{{margin:0;color:var(--muted);font-size:.8rem}}
+    .faq-list{{margin-top:10px}}
+    .faq-item{{border:1px solid var(--border2);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden}}
+    .faq-q{{font-family:'Syne',sans-serif;font-weight:600;font-size:.95rem;color:var(--text);padding:14px 18px;background:var(--surface2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;transition:background .15s;width:100%;text-align:left;border:0}}
+    .faq-q:hover{{background:var(--surface3)}}
+    .faq-q::after{{content:'+';font-size:1.1rem;color:var(--muted);flex-shrink:0;transition:transform .2s}}
+    .faq-item.open .faq-q::after{{content:'\\00D7';color:var(--red)}}
+    .faq-a{{font-size:.93rem;color:var(--text2);line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}}
+    .faq-item.open .faq-a{{max-height:900px;padding:14px 18px}}
+    .faq-a .blog-p:last-child,.faq-a p:last-child{{margin-bottom:0}}
+    .mobile-toc-block{{display:none;margin:0 0 22px;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}}
+    .mobile-toc-block summary{{display:flex;align-items:center;gap:9px;padding:14px 16px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);cursor:pointer;background:linear-gradient(135deg,var(--surface2),var(--surface));list-style:none;user-select:none;-webkit-tap-highlight-color:transparent;border:0;outline:0}}
+    .mobile-toc-block summary::-webkit-details-marker{{display:none}}
+    .mobile-toc-block summary::after{{content:'\\203A';margin-left:auto;font-size:1.2rem;color:var(--muted);transition:transform .25s;line-height:1}}
+    .mobile-toc-block[open] summary::after{{transform:rotate(90deg)}}
+    .mobile-toc-count{{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--surface3);padding:2px 9px;border-radius:999px;border:1px solid var(--border2)}}
+    .mobile-toc-list{{padding:10px 14px 14px!important;margin:0!important;border-top:1px solid var(--border2)}}
+    .mobile-toc-list li a{{font-size:.85rem;padding:5px 8px}}
+    .mobile-related-block{{display:none;margin:28px 0 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}}
+    .mobile-related-title{{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}}
+    @media(max-width:1024px){{.post-grid{{grid-template-columns:1fr}}.sidebar-card{{display:none}}.mobile-toc-block{{display:block}}.mobile-related-block{{display:block}}}}
+    @media(max-width:640px){{.post-wrap{{padding:24px 14px 56px}}}}
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-SV6378N2ZW');
+  </script>
+</head>
+<body>
+<div id="read-progress"></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">&#x1F684;</div>MetroGuideIndia</a>
+    <div class="nav-right">
+      <span class="nav-chip">Beta</span>
+      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">&larr; Blog</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="post-wrap">
+  <a href="/blog" class="post-back">&larr; Back to all posts</a>
+  <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading&hellip;</p></div>
+</div>
+
+<section id="global-search-section" style="margin:28px 0 36px">
+  <div class="sec-eye">Route Planner</div>
+  <h2 class="sec-head" style="margin-bottom:10px">Plan a Route</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Search any two stations to open the route planner with the correct city dataset.</p>
+  <div class="sc">
+    <div class="fd">
+      <label class="fl" for="global-src-search">From</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-src-search" class="ac-input" placeholder="Search station&hellip;" autocomplete="off" spellcheck="false" aria-label="Source station">
+        <input type="hidden" id="global-src">
+        <ul class="ac-list" id="global-src-list" hidden></ul>
+      </div>
+    </div>
+    <div class="swap-row">
+      <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+      </button>
+    </div>
+    <div class="fd">
+      <label class="fl" for="global-dst-search">To</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station&hellip;" autocomplete="off" spellcheck="false" aria-label="Destination station">
+        <input type="hidden" id="global-dst">
+        <ul class="ac-list" id="global-dst-list" hidden></ul>
+      </div>
+    </div>
+    <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">&#x1F684; MetroGuideIndia</div>
+    <div class="foot-links">
+      <a href="/">Home</a><span>&middot;</span>
+<a href="/blog">Blog</a><span>&middot;</span>
+<a href="/stations">Stations</a><span>&middot;</span>
+<a href="/timings">Timings</a><span>&middot;</span>
+<a href="/fares">Fares</a><span>&middot;</span>
+<a href="/about.html">About</a><span>&middot;</span>
+<a href="/contact.html">Contact</a><span>&middot;</span>
+<a href="/privacy.html">Privacy Policy</a><span>&middot;</span>
+<a href="/terms.html">Terms</a><span>&middot;</span>
+<a href="/disclaimer.html">Disclaimer</a>
+    </div>
+    <div class="foot-copy">&copy; 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+  </div>
+</footer>
+<script src="/js/blogBridge.js"></script>
+<script>BlogBridge.loadPost('post-content');</script>
+
+<script>
+  (function(){{
+    var bar = document.getElementById('read-progress');
+    var content = document.getElementById('post-content');
+    if(!bar || !content) return;
+    function update(){{
+      var rect = content.getBoundingClientRect();
+      var total = content.offsetHeight - window.innerHeight;
+      var scrolled = -rect.top;
+      var pct = total > 0 ? Math.min(100, Math.max(0, scrolled / total * 100)) : 0;
+      bar.style.width = pct + '%';
+    }}
+    window.addEventListener('scroll', update, {{passive:true}});
+  }})();
+</script>
+
+<script src="/js/globalSearchBar.js?v=20260410"></script>
+</body>
+</html>
+"""
+
+
+def html_attr_escape(text):
+    """Escape text for use in an HTML attribute value."""
+    return (str(text or '')
+            .replace('&', '&amp;')
+            .replace('"', '&quot;')
+            .replace("'", '&#39;')
+            .replace('<', '&lt;')
+            .replace('>', '&gt;'))
+
+
+def main():
+    os.makedirs(BLOG_HTML_DIR, exist_ok=True)
+    created = 0
+
+    for filepath in sorted(glob.glob(os.path.join(BLOGS_DIR, '*.json'))):
+        slug = os.path.splitext(os.path.basename(filepath))[0]
+        if slug == 'index':
+            continue
+
+        html_path = os.path.join(BLOG_HTML_DIR, slug + '.html')
+        if os.path.exists(html_path):
+            continue
+
+        try:
+            with open(filepath, encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception as e:
+            print(f'Warning: could not read {filepath}: {e}')
+            continue
+
+        title = html_attr_escape(data.get('title', slug))
+        description = html_attr_escape(data.get('description', ''))
+
+        content = HTML_TEMPLATE.format(
+            slug=slug,
+            title=title,
+            description=description,
+        )
+
+        try:
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f'Created {html_path}')
+            created += 1
+        except Exception as e:
+            print(f'Warning: could not write {html_path}: {e}')
+
+    print(f'Done. Created {created} new blog HTML file(s).')
+
+
+if __name__ == '__main__':
+    main()
