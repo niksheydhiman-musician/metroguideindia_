@@ -21,7 +21,9 @@
   </style>
   <script>document.documentElement.classList.add('blog-loading');setTimeout(function(){document.documentElement.classList.remove('blog-loading');},3000);</script>
   <style>
+    /* Reading progress bar */
     #read-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}
+
     .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
     .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}
     .post-back:hover{color:var(--red)}
@@ -33,14 +35,20 @@
     .post-divider{height:2px;background:linear-gradient(90deg,var(--red),transparent);border:none;margin:20px 0 28px;border-radius:2px}
     .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}
     .post-grid > *{min-width:0}
+
+    /* Blog content typography */
     .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
+    .blog-body>*:first-child{margin-top:0}
     .blog-body a{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}
     .blog-body a:hover{border-bottom-color:var(--red)}
     .blog-body img,.blog-inline-image{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}
+    .blog-h1,.blog-h2,.blog-h3,.blog-h4,.blog-h5{scroll-margin-top:92px}
     .blog-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}
     .blog-h1:first-child{display:none}
     .blog-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:var(--text);margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red);line-height:1.3}
     .blog-h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.02rem;color:var(--text);margin:24px 0 10px}
+    .blog-h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.94rem;color:var(--text);margin:18px 0 8px;line-height:1.45}
+    .blog-h5{font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;line-height:1.45}
     .blog-p{margin:0 0 18px;color:var(--text2);overflow-wrap:anywhere}
     .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start}
     .blog-ul{margin:0 0 18px;padding-left:22px}
@@ -54,38 +62,91 @@
     .blog-table td{padding:11px 16px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top}
     .blog-table tbody tr:last-child td{border-bottom:none}
     .blog-table tbody tr:hover td{background:var(--surface2);transition:background .12s}
+    .blog-body pre{margin:18px 0;padding:12px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface2);overflow:auto;max-width:100%;-webkit-overflow-scrolling:touch;font-size:.8rem;line-height:1.5}
+    .blog-body code{overflow-wrap:anywhere}
+
+    /* Tourist map */
+    .tourist-map-widget{margin:22px 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:linear-gradient(180deg,var(--surface),var(--surface2));box-shadow:var(--shadow)}
+    .tourist-map-head{margin-bottom:16px}
+    .tourist-map-kicker{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border:1px solid rgba(192,57,43,.18);padding:5px 10px;border-radius:999px;margin-bottom:10px}
+    .tourist-map-intro{font-size:.9rem;line-height:1.65;color:var(--text2)}
+    .tourist-map-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:16px;align-items:start}
+    .tourist-map-list{display:flex;flex-direction:column;gap:10px}
+    .tourist-map-stop{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .tourist-map-stop:hover,.tourist-map-stop.is-active{border-color:rgba(192,57,43,.4);box-shadow:var(--shadow)}
+    .tourist-map-stop.is-active{background:var(--red-bg)}
+    .tourist-map-stop-index{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;border-radius:999px;background:var(--surface3);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;flex-shrink:0}
+    .tourist-map-stop-copy{display:flex;flex-direction:column;min-width:0}
+    .tourist-map-stop-name{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--text);line-height:1.25}
+    .tourist-map-stop-meta{font-size:.78rem;color:var(--muted);line-height:1.45}
+    .tourist-map-detail-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;min-height:100%}
+    .tourist-map-detail-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .tourist-map-detail-title{margin:0 0 12px;font-family:'Syne',sans-serif;font-size:1.12rem;color:var(--text)}
+    .tourist-map-detail-lines{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+    .tourist-map-line{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:.74rem;font-weight:700;border:1px solid transparent}
+    .tourist-map-line--yellow{background:#fff7d6;color:#7b5b00;border-color:#f3d877}
+    .tourist-map-line--blue{background:#dfefff;color:#0b5dbb;border-color:#9cc2ff}
+    .tourist-map-line--violet{background:#efe1ff;color:#6d28d9;border-color:#c8a4ff}
+    .tourist-map-line--magenta{background:#ffe0ef;color:#b42373;border-color:#ff9dcb}
+    .tourist-map-line--red{background:#ffe2de;color:#ba2d1c;border-color:#ffb2a9}
+    .tourist-map-line--green{background:#dff7e8;color:#157347;border-color:#9ad7b1}
+    .tourist-map-line--pink{background:#ffe4ef;color:#c23a7a;border-color:#ffbfd8}
+    .tourist-map-line--grey{background:#eceff3;color:#55606d;border-color:#cbd3dc}
+    .tourist-map-line--orange{background:#ffeadb;color:#c25a00;border-color:#ffc58f}
+    .tourist-map-line--purple{background:#ebe3ff;color:#6941c6;border-color:#c5b3ff}
+    .tourist-map-line--default{background:var(--surface3);color:var(--text);border-color:var(--border2)}
+    .tourist-map-detail-copy{margin:0;font-size:.91rem;line-height:1.72;color:var(--text2)}
+    .tourist-map-text{margin-top:14px;border-top:1px solid var(--border2);padding-top:14px}
+    .tourist-map-text summary{cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted)}
+    .tourist-map-text pre{margin:12px 0 0;padding:14px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--border2);font-size:.78rem;line-height:1.55;overflow:auto;white-space:pre-wrap}
+
+    /* Sidebar */
     .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}
     .sidebar-section-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
     .toc-list{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:4px}
+    .toc-list li{margin:0}
     .toc-list li a{font-size:.82rem;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px;display:block;transition:all .15s;border-left:2px solid transparent}
     .toc-list li a:hover{color:var(--red);background:var(--red-bg);border-left-color:var(--red)}
+    .toc-link--level-2{font-weight:600;color:var(--text)!important}
+    .toc-link--level-3{padding-left:18px!important}
+    .toc-link--level-4{padding-left:30px!important;font-size:.79rem!important}
+    .toc-link--level-5{padding-left:42px!important;font-size:.76rem!important}
     .sidebar-list{display:flex;flex-direction:column;gap:9px}
     .related-guide{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:11px 14px;text-decoration:none;color:inherit;transition:all .15s}
     .related-guide:hover{transform:translateX(3px);border-color:rgba(192,57,43,.35);background:var(--red-bg)}
     .related-guide-title{font-size:.83rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:3px}
     .related-guide-date{font-size:.7rem;color:var(--muted)}
     .sidebar-empty{margin:0;color:var(--muted);font-size:.8rem}
+
+    /* FAQ */
     .faq-list{margin-top:10px}
     .faq-item{border:1px solid var(--border2);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden}
     .faq-q{font-family:'Syne',sans-serif;font-weight:600;font-size:.95rem;color:var(--text);padding:14px 18px;background:var(--surface2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;transition:background .15s;width:100%;text-align:left;border:0}
     .faq-q:hover{background:var(--surface3)}
     .faq-q::after{content:'+';font-size:1.1rem;color:var(--muted);flex-shrink:0;transition:transform .2s}
-    .faq-item.open .faq-q::after{content:'\00D7';color:var(--red)}
+    .faq-item.open .faq-q::after{content:'×';color:var(--red)}
     .faq-a{font-size:.93rem;color:var(--text2);line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
     .faq-item.open .faq-a{max-height:900px;padding:14px 18px}
     .faq-a .blog-p:last-child,.faq-a p:last-child{margin-bottom:0}
+
+    /* Mobile TOC block */
     .mobile-toc-block{display:none;margin:0 0 22px;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
     .mobile-toc-block summary{display:flex;align-items:center;gap:9px;padding:14px 16px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);cursor:pointer;background:linear-gradient(135deg,var(--surface2),var(--surface));list-style:none;user-select:none;-webkit-tap-highlight-color:transparent;border:0;outline:0}
     .mobile-toc-block summary::-webkit-details-marker{display:none}
-    .mobile-toc-block summary::after{content:'\203A';margin-left:auto;font-size:1.2rem;color:var(--muted);transition:transform .25s;line-height:1}
+    .mobile-toc-block summary::after{content:'›';margin-left:auto;font-size:1.2rem;color:var(--muted);transition:transform .25s;line-height:1}
     .mobile-toc-block[open] summary::after{transform:rotate(90deg)}
     .mobile-toc-count{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--surface3);padding:2px 9px;border-radius:999px;border:1px solid var(--border2)}
     .mobile-toc-list{padding:10px 14px 14px!important;margin:0!important;border-top:1px solid var(--border2)}
     .mobile-toc-list li a{font-size:.85rem;padding:5px 8px}
+
+    /* Mobile Related Guides block */
     .mobile-related-block{display:none;margin:28px 0 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
     .mobile-related-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
-    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
-    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}}
+
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.tourist-map-layout{grid-template-columns:1fr}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
+    @media(max-width:768px){.post-wrap{padding:28px 16px 56px}.post-divider{margin:18px 0 24px}.mobile-toc-list .toc-link--level-4{padding-left:24px!important}.mobile-toc-list .toc-link--level-5{padding-left:34px!important}.blog-body img,.blog-inline-image{border-radius:10px}}
+    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.post-title{font-size:1.35rem;line-height:1.25}.post-meta{gap:10px;font-size:.75rem}.blog-h2{font-size:1.06rem;margin:28px 0 10px;padding-left:10px}.blog-h3{font-size:.98rem;margin:20px 0 8px}.blog-h4{font-size:.9rem}.blog-h5{font-size:.8rem}.blog-table th,.blog-table td{padding:9px 10px;font-size:.78rem}.faq-q{padding:12px 14px;font-size:.9rem}.faq-a{font-size:.9rem;line-height:1.65}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
+    @media(max-width:480px){.post-wrap{padding:20px 12px 48px}.post-back{font-size:.78rem}.post-meta span{display:inline-flex;align-items:center}.mobile-toc-block summary{padding:12px 14px;font-size:.88rem}.mobile-toc-list{padding:8px 10px 12px!important}.mobile-toc-list li a{padding:6px 8px}.mobile-toc-list .toc-link--level-3{padding-left:16px!important}.mobile-toc-list .toc-link--level-4{padding-left:22px!important}.mobile-toc-list .toc-link--level-5{padding-left:28px!important}.mobile-related-block{padding:14px}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
@@ -100,18 +161,19 @@
 <div id="read-progress"></div>
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">&#x1F684;</div>MetroGuideIndia</a>
+    <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right">
       <span class="nav-chip">Beta</span>
-      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">&larr; Blog</a>
+      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
     </div>
   </div>
 </nav>
 <main>
 <div class="post-wrap">
-  <a href="/blog" class="post-back">&larr; Back to all posts</a>
-  <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading&hellip;</p></div>
+  <a href="/blog" class="post-back">← Back to all posts</a>
+  <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
 </div>
+
 
 <section id="global-search-section" style="margin:28px 0 36px">
   <div class="sec-eye">Route Planner</div>
@@ -121,50 +183,54 @@
     <div class="fd">
       <label class="fl" for="global-src-search">From</label>
       <div class="ac-wrap">
-        <input type="text" id="global-src-search" class="ac-input" placeholder="Search station&hellip;" autocomplete="off" spellcheck="false" aria-label="Source station">
+        <input type="text" id="global-src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
         <input type="hidden" id="global-src">
         <ul class="ac-list" id="global-src-list" hidden></ul>
       </div>
     </div>
+
     <div class="swap-row">
       <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
       </button>
     </div>
+
     <div class="fd">
       <label class="fl" for="global-dst-search">To</label>
       <div class="ac-wrap">
-        <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station&hellip;" autocomplete="off" spellcheck="false" aria-label="Destination station">
+        <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
         <input type="hidden" id="global-dst">
         <ul class="ac-list" id="global-dst-list" hidden></ul>
       </div>
     </div>
+
     <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
   </div>
 </section>
 </main>
 <footer>
   <div class="wrap">
-    <div class="foot-logo">&#x1F684; MetroGuideIndia</div>
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
     <div class="foot-links">
-      <a href="/">Home</a><span>&middot;</span>
-<a href="/blog">Blog</a><span>&middot;</span>
-<a href="/stations">Stations</a><span>&middot;</span>
-<a href="/timings">Timings</a><span>&middot;</span>
-<a href="/fares">Fares</a><span>&middot;</span>
-<a href="/about.html">About</a><span>&middot;</span>
-<a href="/contact.html">Contact</a><span>&middot;</span>
-<a href="/privacy.html">Privacy Policy</a><span>&middot;</span>
-<a href="/terms.html">Terms</a><span>&middot;</span>
+      <a href="/">Home</a><span>·</span>
+<a href="/blog">Blog</a><span>·</span>
+<a href="/stations">Stations</a><span>·</span>
+<a href="/timings">Timings</a><span>·</span>
+<a href="/fares">Fares</a><span>·</span>
+<a href="/about.html">About</a><span>·</span>
+<a href="/contact.html">Contact</a><span>·</span>
+<a href="/privacy.html">Privacy Policy</a><span>·</span>
+<a href="/terms.html">Terms</a><span>·</span>
 <a href="/disclaimer.html">Disclaimer</a>
     </div>
-    <div class="foot-copy">&copy; 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
 </footer>
 <script src="/js/blogBridge.js"></script>
 <script>BlogBridge.loadPost('post-content');</script>
 
 <script>
+  /* Reading progress bar */
   (function(){
     var bar = document.getElementById('read-progress');
     var content = document.getElementById('post-content');
