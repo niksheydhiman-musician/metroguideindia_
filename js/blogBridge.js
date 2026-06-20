@@ -703,11 +703,14 @@
   function buildToc(articleEl, tocEl) {
     if (!articleEl || !tocEl) return;
     var used = {};
-    var headings = Array.prototype.slice.call(articleEl.querySelectorAll('h2.blog-h2, h2'));
+    var headingCount = 0;
+    var headings = Array.prototype.slice.call(articleEl.querySelectorAll('h2, h3, h4, h5'));
     tocEl.innerHTML = '';
     headings.forEach(function (h, index) {
       var text = (h.textContent || '').trim();
       if (!text) return;
+      var level = parseInt((h.tagName || 'H2').slice(1), 10);
+      if (!level || level < 2 || level > 5) return;
       var base = slugify(text) || ('section-' + (index + 1));
       var nextId = base;
       var c = 2;
@@ -718,7 +721,9 @@
       used[nextId] = true;
       h.id = h.id || nextId;
       var li = document.createElement('li');
+      li.className = 'toc-item toc-item--level-' + level;
       var a = document.createElement('a');
+      a.className = 'toc-link toc-link--level-' + level;
       /* Use full path + hash so the link is correct regardless of <base href>.
          The click handler also scrolls smoothly and prevents any navigation. */
       a.href = (window.location.pathname || '') + '#' + h.id;
@@ -735,9 +740,12 @@
       }(h.id));
       li.appendChild(a);
       tocEl.appendChild(li);
+      headingCount += 1;
     });
 
-    if (!tocEl.children.length) {
+    tocEl.dataset.count = String(headingCount);
+
+    if (!headingCount) {
       var emptyLi = document.createElement('li');
       var emptyText = document.createElement('span');
       emptyText.textContent = 'No sections found.';
@@ -1116,6 +1124,7 @@
       var tocEl = container.querySelector('#post-toc');
       var mobileTocEl = container.querySelector('#mobile-toc');
       var mobileTocCount = container.querySelector('#mobile-toc-count');
+      var mobileTocDetails = container.querySelector('#mobile-toc-details');
       var relatedEl = container.querySelector('#post-related-guides');
       var mobileRelatedEl = container.querySelector('#mobile-related-guides');
       var faqItems = buildFaqFromArticle(articleEl);
@@ -1135,11 +1144,12 @@
             if (target) {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
               window.history.replaceState(null, '', (window.location.pathname || '') + '#' + hash);
+              if (mobileTocDetails) mobileTocDetails.open = false;
             }
           });
         });
         if (mobileTocCount) {
-          var count = tocEl.children.length;
+          var count = parseInt(tocEl.dataset.count || '0', 10) || 0;
           mobileTocCount.textContent = count ? count + ' section' + (count !== 1 ? 's' : '') : '';
         }
       }
