@@ -10,6 +10,9 @@
   <title>Blog | MetroGuideIndia</title>
   <meta name="description" content=""/>
   <link rel="canonical" href="https://metroguideindia.com/post.html"/>
+  <meta property="og:title" content="Blog | MetroGuideIndia"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:type" content="article"/>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
@@ -35,13 +38,17 @@
 
     /* Blog content typography */
     .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
+    .blog-body>*:first-child{margin-top:0}
     .blog-body a{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}
     .blog-body a:hover{border-bottom-color:var(--red)}
     .blog-body img,.blog-inline-image{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}
+    .blog-h1,.blog-h2,.blog-h3,.blog-h4,.blog-h5{scroll-margin-top:92px}
     .blog-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}
     .blog-h1:first-child{display:none}
     .blog-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:var(--text);margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red);line-height:1.3}
     .blog-h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.02rem;color:var(--text);margin:24px 0 10px}
+    .blog-h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.94rem;color:var(--text);margin:18px 0 8px;line-height:1.45}
+    .blog-h5{font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;line-height:1.45}
     .blog-p{margin:0 0 18px;color:var(--text2);overflow-wrap:anywhere}
     .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start}
     .blog-ul{margin:0 0 18px;padding-left:22px}
@@ -97,8 +104,13 @@
     .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}
     .sidebar-section-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
     .toc-list{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:4px}
+    .toc-list li{margin:0}
     .toc-list li a{font-size:.82rem;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px;display:block;transition:all .15s;border-left:2px solid transparent}
     .toc-list li a:hover{color:var(--red);background:var(--red-bg);border-left-color:var(--red)}
+    .toc-link--level-2{font-weight:600;color:var(--text)!important}
+    .toc-link--level-3{padding-left:18px!important}
+    .toc-link--level-4{padding-left:30px!important;font-size:.79rem!important}
+    .toc-link--level-5{padding-left:42px!important;font-size:.76rem!important}
     .sidebar-list{display:flex;flex-direction:column;gap:9px}
     .related-guide{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:11px 14px;text-decoration:none;color:inherit;transition:all .15s}
     .related-guide:hover{transform:translateX(3px);border-color:rgba(192,57,43,.35);background:var(--red-bg)}
@@ -132,7 +144,9 @@
     .mobile-related-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
 
     @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.tourist-map-layout{grid-template-columns:1fr}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
-    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.post-title{font-size:1.35rem;line-height:1.25}.post-meta{gap:10px;font-size:.75rem}.blog-h2{font-size:1.06rem;margin:28px 0 10px;padding-left:10px}.blog-h3{font-size:.98rem;margin:20px 0 8px}.blog-table th,.blog-table td{padding:9px 10px;font-size:.78rem}.faq-q{padding:12px 14px;font-size:.9rem}.faq-a{font-size:.9rem;line-height:1.65}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
+    @media(max-width:768px){.post-wrap{padding:28px 16px 56px}.post-divider{margin:18px 0 24px}.mobile-toc-list .toc-link--level-4{padding-left:24px!important}.mobile-toc-list .toc-link--level-5{padding-left:34px!important}.blog-body img,.blog-inline-image{border-radius:10px}}
+    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.post-title{font-size:1.35rem;line-height:1.25}.post-meta{gap:10px;font-size:.75rem}.blog-h2{font-size:1.06rem;margin:28px 0 10px;padding-left:10px}.blog-h3{font-size:.98rem;margin:20px 0 8px}.blog-h4{font-size:.9rem}.blog-h5{font-size:.8rem}.blog-table th,.blog-table td{padding:9px 10px;font-size:.78rem}.faq-q{padding:12px 14px;font-size:.9rem}.faq-a{font-size:.9rem;line-height:1.65}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
+    @media(max-width:480px){.post-wrap{padding:20px 12px 48px}.post-back{font-size:.78rem}.post-meta span{display:inline-flex;align-items:center}.mobile-toc-block summary{padding:12px 14px;font-size:.88rem}.mobile-toc-list{padding:8px 10px 12px!important}.mobile-toc-list li a{padding:6px 8px}.mobile-toc-list .toc-link--level-3{padding-left:16px!important}.mobile-toc-list .toc-link--level-4{padding-left:22px!important}.mobile-toc-list .toc-link--level-5{padding-left:28px!important}.mobile-related-block{padding:14px}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
