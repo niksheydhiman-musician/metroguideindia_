@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+# Handles deployment for all non-blog changes (direct pushes to main that
+# don't touch data/blogs/*.json).  Blog changes are handled by the
+# "Update Blog Index" workflow, which generates HTML, updates the sitemap,
+# and then deploys pages — all within the same workflow run.
+#
+# IMPORTANT: For this workflow to work correctly and prevent the race
+# condition between the CMS commit and the auto-generated HTML commit,
+# the repository's GitHub Pages source must be set to "GitHub Actions"
+# (not "Deploy from branch").
+# Go to: Settings → Pages → Source → GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'data/blogs/*.json'   # blog JSON changes are handled by Update Blog Index
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

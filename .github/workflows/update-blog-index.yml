@@ -7,11 +7,21 @@ on:
     paths:
       - 'data/blogs/*.json'
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   rebuild-index:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
@@ -95,14 +105,86 @@ jobs:
       - name: Create missing blog HTML pages
         run: python3 generate_blog_pages.py
 
+      - name: Update sitemap.xml with new blog entries
+        run: |
+          python3 - <<'EOF'
+          import glob
+          import json
+          import os
+          import re
+
+          blogs_dir = 'data/blogs'
+          sitemap_path = 'sitemap.xml'
+          site_url = 'https://metroguideindia.com'
+
+          # Read current sitemap
+          with open(sitemap_path, encoding='utf-8') as f:
+              sitemap = f.read()
+
+          added = 0
+          for filepath in glob.glob(os.path.join(blogs_dir, '*.json')):
+              slug = os.path.splitext(os.path.basename(filepath))[0]
+              if slug == 'index':
+                  continue
+              try:
+                  with open(filepath, encoding='utf-8') as f:
+                      data = json.load(f)
+              except Exception as e:
+                  print(f'Warning: could not read {filepath}: {e}')
+                  continue
+
+              # Build the URL as it appears in the HTML file (percent-encode non-ASCII chars in slug)
+              from urllib.parse import quote
+              encoded_slug = quote(slug, safe='-._~')
+              blog_url = f'{site_url}/blog/{encoded_slug}.html'
+
+              # Check if this URL already appears in the sitemap (try both encoded and raw)
+              raw_url = f'{site_url}/blog/{slug}.html'
+              if blog_url in sitemap or raw_url in sitemap:
+                  continue
+
+              date = data.get('date', '2026-01-01')
+              # Insert new entry before the closing </urlset> tag
+              new_entry = (
+                  f'  <url>\n'
+                  f'    <loc>{blog_url}</loc>\n'
+                  f'    <lastmod>{date}</lastmod>\n'
+                  f'    <changefreq>monthly</changefreq>\n'
+                  f'    <priority>0.8</priority>\n'
+                  f'  </url>\n'
+              )
+              sitemap = sitemap.replace('</urlset>', new_entry + '</urlset>')
+              print(f'Added to sitemap: {blog_url}')
+              added += 1
+
+          if added:
+              with open(sitemap_path, 'w', encoding='utf-8') as f:
+                  f.write(sitemap)
+              print(f'Updated sitemap.xml with {added} new blog entry/entries.')
+          else:
+              print('No new blog entries to add to sitemap.')
+          EOF
+
       - name: Commit updated index if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/blogs/*.json blog/*.html
+          git add data/blogs/*.json blog/*.html sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes to commit — skipping."
           else
-            git commit -m "chore: auto-update blog index and pages [skip ci]"
+            git commit -m "chore: auto-update blog index, pages, and sitemap [skip ci]"
             git push
           fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
