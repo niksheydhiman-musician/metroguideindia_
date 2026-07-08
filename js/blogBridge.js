@@ -938,6 +938,73 @@
     return fetchJSON(BASE_URL + slug + '.json');
   }
 
+  function normalizePathForMatch(path) {
+    if (!path) return '/';
+    var normalized = String(path).trim();
+    if (!normalized) return '/';
+    if (/^https?:\/\//i.test(normalized)) {
+      try {
+        var asUrl = new URL(normalized);
+        normalized = asUrl.pathname + asUrl.search + asUrl.hash;
+      } catch (e) {
+        return '/';
+      }
+    }
+    if (!normalized.startsWith('/')) normalized = '/' + normalized;
+    normalized = normalized.replace(/\/index\.html$/i, '/');
+    normalized = normalized.replace(/\/+$/, '');
+    if (!normalized) normalized = '/';
+    try {
+      normalized = decodeURIComponent(normalized);
+    } catch (e) {}
+    return normalized;
+  }
+
+  function buildAliasPaths(slug) {
+    var paths = [];
+    var seen = {};
+    var add = function (path) {
+      var normalized = normalizePathForMatch(path);
+      if (seen[normalized]) return;
+      seen[normalized] = true;
+      paths.push(normalized);
+    };
+
+    add('/blog/' + slug + '.html');
+    add('/blog/' + slug);
+    try {
+      var decodedSlug = decodeURIComponent(slug);
+      add('/blog/' + decodedSlug + '.html');
+      add('/blog/' + decodedSlug);
+    } catch (e) {}
+
+    var currentPath = window.location.pathname || '';
+    if (currentPath.indexOf('/blog/') === 0) add(currentPath);
+
+    return paths;
+  }
+
+  function resolveAliasSlug(slug) {
+    var aliasPaths = buildAliasPaths(slug);
+    if (!aliasPaths.length) return Promise.resolve(null);
+
+    return loadSlugs().then(function (slugs) {
+      if (!slugs.length) return null;
+      return Promise.all(slugs.map(function (candidateSlug) {
+        return loadPost(candidateSlug).then(function (post) {
+          var postPath = normalizePathForMatch(normalizeBlogPath(post.url, candidateSlug));
+          return aliasPaths.indexOf(postPath) !== -1 ? candidateSlug : null;
+        }).catch(function () { return null; });
+      }));
+    }).then(function (matches) {
+      if (!matches) return null;
+      for (var i = 0; i < matches.length; i++) {
+        if (matches[i]) return matches[i];
+      }
+      return null;
+    });
+  }
+
   /**
    * Load post by slug, with fallback for year-suffixed aliases.
    * Example: my-post-title-2026 -> my-post-title (only if first fetch fails).
@@ -1047,6 +1114,18 @@
     container.innerHTML = '<p style="color:var(--muted,#6b7280);text-align:center;padding:40px 0">Loading…</p>';
 
     loadPostWithAliasFallback(slug).then(function (post) {
+      return { post: post, resolvedSlug: slug };
+    }).catch(function () {
+      if (dataSlug) throw new Error('Post not found for explicit slug: ' + dataSlug);
+      return resolveAliasSlug(slug).then(function (resolvedSlug) {
+        if (!resolvedSlug || resolvedSlug === slug) throw new Error('Post alias not found: ' + slug);
+        return loadPostWithAliasFallback(resolvedSlug).then(function (post) {
+          return { post: post, resolvedSlug: resolvedSlug };
+        });
+      });
+    }).then(function (result) {
+      var post = result.post;
+      var resolvedSlug = result.resolvedSlug;
       /* ── SEO: update title & meta description ── */
       document.title = post.title + ' | MetroGuideIndia';
       var metaDesc = document.querySelector('meta[name="description"]');
@@ -1155,10 +1234,10 @@
         }
       }
       bindFaqAccordion(container);
-      setFaqSchema(slug, faqItems);
+      setFaqSchema(resolvedSlug, faqItems);
 
       loadSlugs().then(function (slugs) {
-        var candidates = slugs.filter(function (s) { return s !== slug; }).slice(0, 8);
+        var candidates = slugs.filter(function (s) { return s !== resolvedSlug; }).slice(0, 8);
         return Promise.all(candidates.map(function (s) {
           return loadPost(s).then(function (p) { return { slug: s, post: p }; }).catch(function () { return null; });
         }));
