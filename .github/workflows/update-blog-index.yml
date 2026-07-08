@@ -42,7 +42,7 @@ jobs:
           index_path = os.path.join(blogs_dir, 'index.json')
 
           def normalize_blog_url(raw_url, slug):
-              fallback = f'/blog/{slug}'
+              fallback = f'/blog/{slug}.html'
               if not raw_url:
                   return fallback
 
@@ -53,7 +53,7 @@ jobs:
 
               if path.lower() == '/post.html':
                   query_slug = parse_qs(parsed.query).get('id', [slug])[0]
-                  return f'/blog/{query_slug}'
+                  return f'/blog/{query_slug}.html'
 
               if not path:
                   return fallback
@@ -61,13 +61,14 @@ jobs:
                   path = '/' + path
 
               path = re.sub(r'/index\.html$', '/', path, flags=re.IGNORECASE)
-              path = re.sub(r'\.html$', '', path, flags=re.IGNORECASE)
               path = path.rstrip('/')
 
               if not path or path == '/blog':
                   return fallback
               if not path.startswith('/blog/'):
                   return fallback
+              if not path.lower().endswith('.html'):
+                  path = f'{path}.html'
               return path
 
           posts = []

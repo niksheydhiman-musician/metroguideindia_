@@ -95,14 +95,14 @@
   }
 
   function normalizeBlogPath(url, slug) {
-    var fallback = '/blog/' + encodeURIComponent(slug);
+    var fallback = '/blog/' + encodeURIComponent(slug) + '.html';
     if (!url) return fallback;
 
     var normalized = String(url).trim();
     if (!normalized) return fallback;
 
     var querySlug = normalized.match(/^\/post\.html\?id=([^&#]+)/i);
-    if (querySlug) return '/blog/' + decodeURIComponent(querySlug[1]);
+    if (querySlug) return '/blog/' + decodeURIComponent(querySlug[1]) + '.html';
 
     if (/^https?:\/\//i.test(normalized)) {
       try {
@@ -115,9 +115,10 @@
 
     if (!normalized.startsWith('/')) normalized = '/' + normalized;
     normalized = normalized.replace(/\/index\.html$/i, '/');
-    normalized = normalized.replace(/\.html$/i, '');
     normalized = normalized.replace(/\/+$/, '');
-    return normalized || fallback;
+    if (!normalized) return fallback;
+    if (/^\/blog\/[^/?#]+$/i.test(normalized)) normalized += '.html';
+    return normalized;
   }
 
   function getCurrentSlug() {
