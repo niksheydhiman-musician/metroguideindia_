@@ -39,7 +39,7 @@ def replace_once(text, pattern, replacement):
 def render_post_html(template, slug, title, description):
     """Render a blog detail page from the shared post template."""
     page_title = f'{title} | MetroGuideIndia'
-    canonical = f'https://metroguideindia.com/blog/{slug}'
+    canonical = f'https://metroguideindia.com/blog/{slug}.html'
 
     rendered = template
     rendered = replace_once(rendered, r'<title>.*?</title>', f'<title>{page_title}</title>')
