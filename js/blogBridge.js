@@ -450,6 +450,245 @@
   }
 
   /**
+   * Wire up the Namo Bharat RRTS fare calculator widget injected from the
+   * blog JSON body.  Scripts embedded via innerHTML do not execute, so this
+   * function re-runs all initialisation after the article is rendered.
+   */
+  function enhanceNamoBharatFareCalc(articleEl) {
+    if (!articleEl) return;
+    var fromSel = articleEl.querySelector('#nb-fare-from');
+    var toSel   = articleEl.querySelector('#nb-fare-to');
+    if (!fromSel || !toSel) return;
+
+    var stations = [
+      'Jangpura', 'Sarai Kale Khan', 'New Ashok Nagar', 'Anand Vihar',
+      'Sahibabad', 'Ghaziabad', 'Guldhar', 'Duhai', 'Duhai Depot',
+      'Muradnagar', 'Modinagar South', 'Modinagar North', 'Meerut South',
+      'Partapur', 'Rithani', 'Shatabdi Nagar', 'Brahmpuri', 'Meerut Central',
+      'Bhaisali', 'Begumpul', 'MES Colony', 'Daurli', 'Meerut North', 'Modipuram'
+    ];
+
+    /* Approximate cumulative distance (km) from Jangpura along the corridor */
+    var km = {
+      'Jangpura': 0, 'Sarai Kale Khan': 1.5, 'New Ashok Nagar': 4.5,
+      'Anand Vihar': 7.5, 'Sahibabad': 11.5, 'Ghaziabad': 15.5,
+      'Guldhar': 19.5, 'Duhai': 24.5, 'Duhai Depot': 26.5,
+      'Muradnagar': 31.5, 'Modinagar South': 38.5, 'Modinagar North': 42.5,
+      'Meerut South': 51.5, 'Partapur': 54.0, 'Rithani': 56.5,
+      'Shatabdi Nagar': 59.5, 'Brahmpuri': 61.5, 'Meerut Central': 63.5,
+      'Bhaisali': 65.5, 'Begumpul': 67.5, 'MES Colony': 69.5,
+      'Daurli': 71.5, 'Meerut North': 74.0, 'Modipuram': 82.0
+    };
+
+    /* Distance-slab fallback [standard, premium] */
+    function slabFare(d) {
+      if (d <=  5) return [ 20,  35];
+      if (d <=  9) return [ 50,  60];
+      if (d <= 13) return [ 60,  70];
+      if (d <= 18) return [ 80,  95];
+      if (d <= 22) return [ 90, 110];
+      if (d <= 27) return [100, 120];
+      if (d <= 35) return [120, 145];
+      if (d <= 45) return [140, 170];
+      if (d <= 55) return [160, 190];
+      if (d <= 65) return [180, 215];
+      if (d <= 73) return [200, 240];
+      return [210, 250];
+    }
+
+    /* Verified NCRTC fare pairs — source: NCRTC official / meerutmetro.in Feb 2026 */
+    var fareMap = {};
+    function addFare(a, b, s, p) { fareMap[[a, b].sort().join('|')] = [s, p]; }
+
+    addFare('Sarai Kale Khan', 'New Ashok Nagar',  30,  35);
+    addFare('Sarai Kale Khan', 'Anand Vihar',      50,  60);
+    addFare('Sarai Kale Khan', 'Sahibabad',        60,  70);
+    addFare('Sarai Kale Khan', 'Ghaziabad',        80,  95);
+    addFare('Sarai Kale Khan', 'Guldhar',          90, 110);
+    addFare('Sarai Kale Khan', 'Duhai',           100, 120);
+    addFare('Sarai Kale Khan', 'Muradnagar',      120, 145);
+    addFare('Sarai Kale Khan', 'Modinagar South', 140, 170);
+    addFare('Sarai Kale Khan', 'Modinagar North', 140, 170);
+    addFare('Sarai Kale Khan', 'Meerut South',    160, 190);
+    addFare('Sarai Kale Khan', 'Shatabdi Nagar',  180, 215);
+    addFare('Sarai Kale Khan', 'Begumpul',        200, 240);
+    addFare('Sarai Kale Khan', 'Modipuram',       210, 250);
+
+    addFare('New Ashok Nagar', 'Anand Vihar',      20,  35);
+    addFare('New Ashok Nagar', 'Sahibabad',        50,  60);
+    addFare('New Ashok Nagar', 'Ghaziabad',        60,  70);
+    addFare('New Ashok Nagar', 'Guldhar',          70,  85);
+    addFare('New Ashok Nagar', 'Duhai',            80,  95);
+    addFare('New Ashok Nagar', 'Muradnagar',      100, 120);
+    addFare('New Ashok Nagar', 'Modinagar South', 120, 145);
+    addFare('New Ashok Nagar', 'Modinagar North', 130, 155);
+    addFare('New Ashok Nagar', 'Meerut South',    150, 180);
+    addFare('New Ashok Nagar', 'Shatabdi Nagar',  160, 190);
+    addFare('New Ashok Nagar', 'Begumpul',        180, 215);
+    addFare('New Ashok Nagar', 'Modipuram',       200, 240);
+
+    addFare('Anand Vihar', 'Sahibabad',       20,  35);
+    addFare('Anand Vihar', 'Ghaziabad',       30,  35);
+    addFare('Anand Vihar', 'Guldhar',         40,  50);
+    addFare('Anand Vihar', 'Duhai',           50,  60);
+    addFare('Anand Vihar', 'Muradnagar',      60,  70);
+    addFare('Anand Vihar', 'Modinagar South', 80,  95);
+    addFare('Anand Vihar', 'Modinagar North', 90, 110);
+    addFare('Anand Vihar', 'Meerut South',   110, 130);
+    addFare('Anand Vihar', 'Shatabdi Nagar', 120, 145);
+    addFare('Anand Vihar', 'Begumpul',       140, 170);
+    addFare('Anand Vihar', 'Modipuram',      160, 190);
+
+    addFare('Sahibabad', 'Ghaziabad',      20,  35);
+    addFare('Sahibabad', 'Guldhar',        30,  35);
+    addFare('Sahibabad', 'Duhai',          40,  50);
+    addFare('Sahibabad', 'Muradnagar',     50,  60);
+    addFare('Sahibabad', 'Modinagar South', 70, 85);
+    addFare('Sahibabad', 'Modinagar North', 80, 95);
+    addFare('Sahibabad', 'Meerut South',  100, 120);
+    addFare('Sahibabad', 'Shatabdi Nagar',110, 130);
+    addFare('Sahibabad', 'Begumpul',      130, 155);
+    addFare('Sahibabad', 'Modipuram',     150, 180);
+
+    addFare('Ghaziabad', 'Guldhar',          20,  35);
+    addFare('Ghaziabad', 'Duhai',            30,  35);
+    addFare('Ghaziabad', 'Muradnagar',       40,  50);
+    addFare('Ghaziabad', 'Modinagar South',  60,  70);
+    addFare('Ghaziabad', 'Modinagar North',  70,  85);
+    addFare('Ghaziabad', 'Meerut South',     90, 110);
+    addFare('Ghaziabad', 'Shatabdi Nagar',  100, 120);
+    addFare('Ghaziabad', 'Begumpul',        120, 145);
+    addFare('Ghaziabad', 'Modipuram',       140, 170);
+
+    addFare('Guldhar', 'Duhai',           20,  35);
+    addFare('Guldhar', 'Muradnagar',      30,  35);
+    addFare('Guldhar', 'Modinagar South', 50,  60);
+    addFare('Guldhar', 'Modinagar North', 60,  70);
+    addFare('Guldhar', 'Meerut South',    80,  95);
+    addFare('Guldhar', 'Shatabdi Nagar',  90, 110);
+    addFare('Guldhar', 'Begumpul',       110, 130);
+    addFare('Guldhar', 'Modipuram',      130, 155);
+
+    addFare('Duhai', 'Muradnagar',      20,  35);
+    addFare('Duhai', 'Modinagar South', 40,  50);
+    addFare('Duhai', 'Modinagar North', 50,  60);
+    addFare('Duhai', 'Meerut South',    70,  85);
+    addFare('Duhai', 'Shatabdi Nagar',  80,  95);
+    addFare('Duhai', 'Begumpul',       100, 120);
+    addFare('Duhai', 'Modipuram',      120, 145);
+
+    addFare('Muradnagar', 'Modinagar South', 20,  35);
+    addFare('Muradnagar', 'Modinagar North', 30,  35);
+    addFare('Muradnagar', 'Meerut South',    50,  60);
+    addFare('Muradnagar', 'Shatabdi Nagar',  60,  70);
+    addFare('Muradnagar', 'Begumpul',        80,  95);
+    addFare('Muradnagar', 'Modipuram',      100, 120);
+
+    addFare('Modinagar South', 'Modinagar North', 20,  35);
+    addFare('Modinagar South', 'Meerut South',    40,  50);
+    addFare('Modinagar South', 'Shatabdi Nagar',  50,  60);
+    addFare('Modinagar South', 'Begumpul',        70,  85);
+    addFare('Modinagar South', 'Modipuram',       90, 110);
+
+    addFare('Modinagar North', 'Meerut South',   20,  35);
+    addFare('Modinagar North', 'Shatabdi Nagar', 40,  50);
+    addFare('Modinagar North', 'Begumpul',       60,  70);
+    addFare('Modinagar North', 'Modipuram',      80,  95);
+
+    addFare('Meerut South', 'Shatabdi Nagar', 20, 35);
+    addFare('Meerut South', 'Begumpul',       40, 50);
+    addFare('Meerut South', 'Modipuram',      50, 60);
+
+    addFare('Shatabdi Nagar', 'Begumpul',  20, 35);
+    addFare('Shatabdi Nagar', 'Modipuram', 30, 35);
+
+    addFare('Begumpul', 'Modipuram', 20, 35);
+
+    function getFare(a, b) {
+      var k = [a, b].sort().join('|');
+      if (fareMap[k]) return fareMap[k];
+      var d = Math.abs((km[a] || 0) - (km[b] || 0));
+      return slabFare(d);
+    }
+
+    function slugify(s) {
+      return String(s).toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    }
+
+    /* Populate both dropdowns */
+    fromSel.innerHTML = '';
+    toSel.innerHTML   = '';
+    stations.forEach(function (s) {
+      var o1 = document.createElement('option');
+      o1.value = s; o1.textContent = s;
+      fromSel.appendChild(o1);
+      var o2 = document.createElement('option');
+      o2.value = s; o2.textContent = s;
+      toSel.appendChild(o2);
+    });
+    toSel.selectedIndex = 1;
+
+    var resultEl = articleEl.querySelector('#nb-fare-result');
+    var swapBtn  = articleEl.querySelector('#nb-fare-swap-btn');
+    var checkBtn = articleEl.querySelector('#nb-fare-btn');
+
+    function calculate() {
+      if (!resultEl) return;
+      var from = fromSel.value;
+      var to   = toSel.value;
+
+      if (from === to) {
+        resultEl.innerHTML = '<p class="fare-calc-empty" style="color:#C84B31">Origin and destination stations cannot be the same.</p>';
+        return;
+      }
+
+      var data  = getFare(from, to);
+      var fromI = stations.indexOf(from);
+      var toI   = stations.indexOf(to);
+      var stops = Math.abs(toI - fromI);
+      /* Route page slug: always lower-index station first */
+      var a = fromI < toI ? from : to;
+      var b = fromI < toI ? to   : from;
+      var routeUrl = '/routes/' + slugify(a) + '-to-' + slugify(b) + '.html';
+
+      resultEl.innerHTML =
+        '<p style="margin:0 0 10px"><strong>' + escapeHtml(from) + '</strong> \u2192 <strong>' + escapeHtml(to) + '</strong></p>' +
+        '<div class="fare-calc-row">' +
+          '<div class="fare-calc-pill">' +
+            '<div class="fare-calc-pill-label">Standard Coach</div>' +
+            '<div class="fare-calc-pill-value">\u20b9' + data[0] + '</div>' +
+          '</div>' +
+          '<div class="fare-calc-pill">' +
+            '<div class="fare-calc-pill-label">Premium Coach</div>' +
+            '<div class="fare-calc-pill-value">\u20b9' + data[1] + '</div>' +
+          '</div>' +
+          '<div class="fare-calc-pill">' +
+            '<div class="fare-calc-pill-label">Total Stops</div>' +
+            '<div class="fare-calc-pill-value">' + stops + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<p style="margin:12px 0 0">' +
+          '<a href="' + routeUrl + '" class="btn-find" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.85rem;padding:9px 16px">' +
+            'View Detailed Route \u2192' +
+          '</a>' +
+        '</p>' +
+        '<p style="font-size:.78rem;color:var(--muted);margin:8px 0 0">One-way fares. Verify on the Namo Bharat Connect app before travel.</p>';
+    }
+
+    if (swapBtn) {
+      swapBtn.addEventListener('click', function () {
+        var tmp = fromSel.value;
+        fromSel.value = toSel.value;
+        toSel.value   = tmp;
+        calculate();
+      });
+    }
+    if (checkBtn) checkBtn.addEventListener('click', calculate);
+    fromSel.addEventListener('change', calculate);
+    toSel.addEventListener('change',   calculate);
+  }
+
+  /**
    * If the article contains a fenced-code block with the Bengaluru Metro fare
    * calculator markup, replace it with a live interactive widget.
    */
@@ -1208,6 +1447,7 @@
       var relatedEl = container.querySelector('#post-related-guides');
       var mobileRelatedEl = container.querySelector('#mobile-related-guides');
       var faqItems = buildFaqFromArticle(articleEl);
+      enhanceNamoBharatFareCalc(articleEl);
       enhanceBengaluruFareCalc(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
