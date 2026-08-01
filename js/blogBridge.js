@@ -117,7 +117,7 @@
     normalized = normalized.replace(/\/index\.html$/i, '/');
     normalized = normalized.replace(/\/+$/, '');
     if (!normalized) return fallback;
-    if (/^\/blog\/[^/?#]+$/i.test(normalized)) normalized += '.html';
+    if (/^\/blog\/[^/?#]+$/i.test(normalized) && !/\.html$/i.test(normalized)) normalized += '.html';
     return normalized;
   }
 
