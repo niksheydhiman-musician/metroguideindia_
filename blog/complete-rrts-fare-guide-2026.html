@@ -143,6 +143,15 @@
     .mobile-related-block{display:none;margin:28px 0 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
     .mobile-related-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
 
+    /* Fare calculator section (matches Route Planner section styling) */
+    .fare-calc-result{margin-top:14px;font-size:.9rem;color:var(--text2);line-height:1.7}
+    .fare-calc-result strong{color:var(--text)}
+    .fare-calc-empty{color:var(--muted)}
+    .fare-calc-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+    .fare-calc-pill{flex:1;min-width:150px;border:1px solid var(--border2);border-radius:var(--r-sm);padding:12px 14px;background:var(--surface2)}
+    .fare-calc-pill-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+    .fare-calc-pill-value{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text)}
+
     @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.tourist-map-layout{grid-template-columns:1fr}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
     @media(max-width:768px){.post-wrap{padding:28px 16px 56px}.post-divider{margin:18px 0 24px}.mobile-toc-list .toc-link--level-4{padding-left:24px!important}.mobile-toc-list .toc-link--level-5{padding-left:34px!important}.blog-body img,.blog-inline-image{border-radius:10px}}
     @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.post-title{font-size:1.35rem;line-height:1.25}.post-meta{gap:10px;font-size:.75rem}.blog-h2{font-size:1.06rem;margin:28px 0 10px;padding-left:10px}.blog-h3{font-size:.98rem;margin:20px 0 8px}.blog-h4{font-size:.9rem}.blog-h5{font-size:.8rem}.blog-table th,.blog-table td{padding:9px 10px;font-size:.78rem}.faq-q{padding:12px 14px;font-size:.9rem}.faq-a{font-size:.9rem;line-height:1.65}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
@@ -174,6 +183,35 @@
   <div id="post-content"><p style="color:var(--muted);text-align:center;padding:40px 0">Loading…</p></div>
 </div>
 
+<!-- Fare Calculator: lives in the static shell, not in the dynamically
+     loaded post-content, so its script is guaranteed to execute on load. -->
+<section id="nb-fare-calc-section" style="max-width:1080px;margin:0 auto 36px;padding:0 18px">
+  <div class="sec-eye">Fare Calculator</div>
+  <h2 class="sec-head" style="margin-bottom:10px">Check Your Namo Bharat Fare</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Select your stations to see the Standard and Premium fare instantly.</p>
+  <div class="sc">
+    <div class="fd">
+      <label class="fl" for="nb-fare-from">From</label>
+      <select id="nb-fare-from" class="ac-input"></select>
+    </div>
+
+    <div class="swap-row">
+      <button class="swap" id="nb-fare-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+      </button>
+    </div>
+
+    <div class="fd">
+      <label class="fl" for="nb-fare-to">To</label>
+      <select id="nb-fare-to" class="ac-input"></select>
+    </div>
+
+    <button class="btn-find" id="nb-fare-btn" type="button"><span class="btn-label">Check Fare</span></button>
+  </div>
+  <div class="fare-calc-result" id="nb-fare-result">
+    <p class="fare-calc-empty">Select two stations above to see the fare.</p>
+  </div>
+</section>
 
 <section id="global-search-section" style="margin:28px 0 36px">
   <div class="sec-eye">Route Planner</div>
@@ -244,6 +282,107 @@
     }
     window.addEventListener('scroll', update, {passive:true});
   })();
+</script>
+
+<!-- Namo Bharat Fare Calculator logic.
+     Data source: NCRTC official fares via meerutmetro.in, February 2026.
+     Only verified station pairs are included below. Add new pairs only
+     once you have confirmed data from an official source, do not estimate. -->
+<script>
+(function () {
+  var stations = [
+    "Sarai Kale Khan", "New Ashok Nagar", "Anand Vihar", "Sahibabad",
+    "Ghaziabad", "Guldhar", "Duhai", "Murad Nagar", "Modi Nagar South",
+    "Modi Nagar North", "Meerut South", "Shatabdi Nagar", "Begumpul", "Modipuram"
+  ];
+
+  function key(a, b) { return [a, b].sort().join("|"); }
+
+  var fares = {};
+  function addFare(a, b, std, prem) { fares[key(a, b)] = [std, prem]; }
+
+  addFare("Sarai Kale Khan", "New Ashok Nagar", 30, 35);
+  addFare("Sarai Kale Khan", "Anand Vihar", 50, 60);
+  addFare("Sarai Kale Khan", "Sahibabad", 60, 70);
+  addFare("Sarai Kale Khan", "Ghaziabad", 80, 95);
+  addFare("Sarai Kale Khan", "Guldhar", 90, 110);
+  addFare("Sarai Kale Khan", "Duhai", 100, 120);
+  addFare("Sarai Kale Khan", "Murad Nagar", 120, 145);
+  addFare("Sarai Kale Khan", "Modi Nagar South", 140, 170);
+  addFare("Sarai Kale Khan", "Modi Nagar North", 140, 170);
+  addFare("Sarai Kale Khan", "Meerut South", 160, 190);
+  addFare("Sarai Kale Khan", "Shatabdi Nagar", 180, 215);
+  addFare("Sarai Kale Khan", "Begumpul", 200, 240);
+  addFare("Sarai Kale Khan", "Modipuram", 210, 250);
+
+  addFare("New Ashok Nagar", "Anand Vihar", 20, 35);
+  addFare("New Ashok Nagar", "Sahibabad", 50, 60);
+  addFare("New Ashok Nagar", "Ghaziabad", 60, 70);
+  addFare("New Ashok Nagar", "Guldhar", 70, 85);
+  addFare("New Ashok Nagar", "Duhai", 80, 95);
+  addFare("New Ashok Nagar", "Murad Nagar", 100, 120);
+  addFare("New Ashok Nagar", "Modi Nagar South", 120, 145);
+  addFare("New Ashok Nagar", "Modi Nagar North", 130, 155);
+  addFare("New Ashok Nagar", "Meerut South", 150, 180);
+  addFare("New Ashok Nagar", "Shatabdi Nagar", 160, 190);
+  addFare("New Ashok Nagar", "Begumpul", 180, 215);
+  addFare("New Ashok Nagar", "Modipuram", 200, 240);
+
+  // ---- Add more verified rows here as you confirm them ----
+  // addFare("Anand Vihar", "Ghaziabad", std, prem);
+
+  var fromSel = document.getElementById("nb-fare-from");
+  var toSel = document.getElementById("nb-fare-to");
+  var result = document.getElementById("nb-fare-result");
+  var swapBtn = document.getElementById("nb-fare-swap-btn");
+  var checkBtn = document.getElementById("nb-fare-btn");
+
+  if (!fromSel || !toSel || !result || !checkBtn) return;
+
+  stations.forEach(function (s) {
+    var o1 = document.createElement("option");
+    o1.value = s; o1.textContent = s;
+    fromSel.appendChild(o1);
+    var o2 = document.createElement("option");
+    o2.value = s; o2.textContent = s;
+    toSel.appendChild(o2);
+  });
+  toSel.selectedIndex = 1;
+
+  if (swapBtn) {
+    swapBtn.addEventListener("click", function () {
+      var tmp = fromSel.value;
+      fromSel.value = toSel.value;
+      toSel.value = tmp;
+    });
+  }
+
+  checkBtn.addEventListener("click", function () {
+    var from = fromSel.value;
+    var to = toSel.value;
+
+    if (from === to) {
+      result.innerHTML = '<p class="fare-calc-empty">Please select two different stations.</p>';
+      return;
+    }
+
+    var data = fares[key(from, to)];
+
+    if (data) {
+      result.innerHTML =
+        '<p><strong>' + from + '</strong> to <strong>' + to + '</strong></p>' +
+        '<div class="fare-calc-row">' +
+          '<div class="fare-calc-pill"><div class="fare-calc-pill-label">Standard Coach</div><div class="fare-calc-pill-value">Rs ' + data[0] + '</div></div>' +
+          '<div class="fare-calc-pill"><div class="fare-calc-pill-label">Premium Coach</div><div class="fare-calc-pill-value">Rs ' + data[1] + '</div></div>' +
+        '</div>';
+    } else {
+      result.innerHTML =
+        '<p class="fare-calc-empty">Exact fare for this pair is not yet in our verified data. ' +
+        'Try Sarai Kale Khan or New Ashok Nagar as your starting station for instant results, ' +
+        'or check the Namo Bharat Connect app for the current fare.</p>';
+    }
+  });
+})();
 </script>
 
 <script src="/js/globalSearchBar.js?v=20260410"></script>
