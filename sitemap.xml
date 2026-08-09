@@ -4747,7 +4747,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/blog</loc>
+    <loc>https://metroguideindia.com/blog.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -14695,7 +14695,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/fares</loc>
+    <loc>https://metroguideindia.com/fares.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -14857,7 +14857,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/route</loc>
+    <loc>https://metroguideindia.com/route.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -17791,7 +17791,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/stations</loc>
+    <loc>https://metroguideindia.com/stations.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -17803,7 +17803,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://metroguideindia.com/timings</loc>
+    <loc>https://metroguideindia.com/timings.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
