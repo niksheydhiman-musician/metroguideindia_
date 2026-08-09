@@ -263,7 +263,7 @@
           bq.push(inlineFormat(lines[i].replace(/^>\s?/, '')));
           i++;
         }
-        html.push('<blockquote class="blog-note">' + bq.join('<br>') + '</blockquote>');
+        html.push('<blockquote class="blog-note"><div class="blog-note-content">' + bq.join('<br>') + '</div></blockquote>');
         continue;
       }
 
@@ -1104,6 +1104,52 @@
     document.head.appendChild(script);
   }
 
+  function setBlogPostingSchema(post, slug) {
+    var old = document.getElementById('post-blogging-schema');
+    if (old) old.remove();
+
+    if (!post || !post.title) return;
+
+    var canonPath = normalizeBlogPath(post.url, slug);
+    var schema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      'headline': post.title,
+      'description': post.description || '',
+      'url': SITE_DOMAIN + canonPath,
+      'datePublished': post.date || '',
+      'dateModified': post.date || '',
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'MetroGuideIndia',
+        'url': SITE_DOMAIN
+      },
+      'author': {
+        '@type': 'Organization',
+        'name': 'MetroGuideIndia',
+        'url': SITE_DOMAIN
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': SITE_DOMAIN + canonPath
+      }
+    };
+
+    if (post.image) {
+      schema.image = /^https?:\/\//i.test(post.image) ? post.image : SITE_DOMAIN + post.image;
+    }
+
+    if (Array.isArray(post.tags) && post.tags.length) {
+      schema.keywords = post.tags.join(', ');
+    }
+
+    var script = document.createElement('script');
+    script.id = 'post-blogging-schema';
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
   function bindFaqAccordion(root) {
     if (!root) return;
     root.querySelectorAll('.faq-q').forEach(function (btn) {
@@ -1551,6 +1597,7 @@
       }
       bindFaqAccordion(container);
       setFaqSchema(resolvedSlug, faqItems);
+      setBlogPostingSchema(post, resolvedSlug);
 
       loadSlugs().then(function (slugs) {
         var candidates = slugs.filter(function (s) { return s !== resolvedSlug; }).slice(0, 8);
