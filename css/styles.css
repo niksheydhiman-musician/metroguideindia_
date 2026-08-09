@@ -573,6 +573,7 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
 }
 
 /* ── Blog post page ─────────────────────────────────────────────────── */
+html.blog-loading main,html.blog-loading footer{visibility:hidden}
 #read-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}
 .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
 .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}
@@ -602,6 +603,7 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
 .blog-p{margin:0 0 18px;color:var(--text2);overflow-wrap:anywhere}
 .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:block;overflow-wrap:anywhere;word-break:break-word}
 .blog-note-content{display:block;line-height:1.75}
+.pro-tip{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:13px 16px;margin:18px 0;font-size:.9rem;color:var(--text2);line-height:1.65}
 .blog-ul{margin:0 0 18px;padding-left:22px}
 .blog-ul li{margin-bottom:7px;color:var(--text2)}
 .blog-ol{margin:0 0 18px;padding-left:24px}
