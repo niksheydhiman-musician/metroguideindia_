@@ -4,6 +4,7 @@ from __future__ import annotations
 import heapq
 import json
 import re
+import difflib
 from collections import defaultdict
 from pathlib import Path
 
@@ -23,8 +24,8 @@ ROAD_END = "<!-- MGI_ROAD_COMPARE_END -->"
 
 def slugify(name: str) -> str:
     s = name.lower()
-    s = re.sub(r"[^a-z0-9\\s-]", "", s)
-    s = re.sub(r"\\s+", "-", s.strip())
+    s = re.sub(r"[^a-z0-9\s-]", "", s)
+    s = re.sub(r"\s+", "-", s.strip())
     s = re.sub(r"-+", "-", s)
     return s
 
@@ -40,6 +41,49 @@ def load_data() -> tuple[dict, dict, dict, dict]:
         name_to_ids[s["station_name"].strip().lower()].append(s["station_id"])
     line_meta = {l["line_id"]: l for l in data["lines"]}
     return data, by_id, slug_to_ids, line_meta
+
+
+ALIASES = {
+    "mg-road": "m-g-road",
+    "millennium-city-centre": "millennium-city-centre-gurugram",
+    "huda-city-centre": "millennium-city-centre-gurugram",
+    "igi-airport": "terminal-1-igi-airport",
+    "airport": "terminal-1-igi-airport",
+    "badarpur": "badarpur-border",
+    "new-delhi-railway-station": "new-delhi",
+    "noida-sector-62": "sector-62-noida",
+    "south-campus": "durgabai-deshmukh-south-campus",
+    "sarai-rohilla": "sarai",
+    "brigadier-hoshiar-singh": "brig-hoshiar-singh",
+    "iit-delhi": "iit",
+    "gtb-nagar": "guru-teg-bahadur-nagar",
+    "madhuban-chowk": "haiderpur-badli-mor",
+    "ina": "dilli-haat-ina",
+}
+
+
+def simplify_slug(s: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def resolve_slug_ids(slug: str, slug_to_ids: dict[str, list[str]]) -> list[str]:
+    if slug in slug_to_ids:
+        return slug_to_ids[slug]
+    aliased = ALIASES.get(slug)
+    if aliased and aliased in slug_to_ids:
+        return slug_to_ids[aliased]
+    target = simplify_slug(slug)
+    for k, ids in slug_to_ids.items():
+        if simplify_slug(k) == target:
+            return ids
+    for k, ids in slug_to_ids.items():
+        sk = simplify_slug(k)
+        if sk.startswith(target) or target.startswith(sk):
+            return ids
+    close = difflib.get_close_matches(slug, list(slug_to_ids.keys()), n=1, cutoff=0.82)
+    if close:
+        return slug_to_ids[close[0]]
+    return []
 
 
 def build_graph(data: dict, by_id: dict) -> dict[str, list[tuple[str, float, bool]]]:
@@ -119,29 +163,34 @@ def route_path_for_file(
     parts = stem.split("-to-")
     if len(parts) < 2:
         return []
-    origin_slug = parts[0]
-    dest_slug = "-to-".join(parts[1:])
-    starts = slug_to_ids.get(origin_slug, [])
-    ends = set(slug_to_ids.get(dest_slug, []))
-    if not starts or not ends:
-        return []
-    return shortest_path(graph, starts, ends)
+    best: list[str] = []
+    for i in range(1, len(parts)):
+        origin_slug = "-to-".join(parts[:i])
+        dest_slug = "-to-".join(parts[i:])
+        starts = resolve_slug_ids(origin_slug, slug_to_ids)
+        ends = set(resolve_slug_ids(dest_slug, slug_to_ids))
+        if not starts or not ends:
+            continue
+        path = shortest_path(graph, starts, ends)
+        if path and (not best or len(path) < len(best)):
+            best = path
+    return best
 
 
 def clean_existing_blocks(html: str) -> str:
     html = re.sub(
-        rf"{re.escape(SEQ_START)}.*?{re.escape(SEQ_END)}\\s*",
+        rf"{re.escape(SEQ_START)}.*?{re.escape(SEQ_END)}\s*",
         "",
         html,
         flags=re.S,
     )
     html = re.sub(
-        rf"{re.escape(ROAD_START)}.*?{re.escape(ROAD_END)}\\s*",
+        rf"{re.escape(ROAD_START)}.*?{re.escape(ROAD_END)}\s*",
         "",
         html,
         flags=re.S,
     )
-    html = re.sub(r'<section class="mgi-route-track"[^>]*>.*?</section>\\s*', "", html, flags=re.S)
+    html = re.sub(r'<section class="mgi-route-track"[^>]*>.*?</section>\s*', "", html, flags=re.S)
     return html
 
 
@@ -192,13 +241,44 @@ def build_station_sequence_html(path_ids: list[str], by_id: dict, line_meta: dic
     )
 
 
+def pretty_slug_name(slug: str) -> str:
+    special = {"igi": "IGI", "gtb": "GTB", "ina": "INA", "ii": "II", "iii": "III"}
+    out = []
+    for p in slug.split("-"):
+        out.append(special.get(p, p.capitalize()))
+    return " ".join(out)
+
+
+def build_fallback_station_sequence_html(origin_slug: str, dest_slug: str, interchange_hint: str) -> str:
+    origin = pretty_slug_name(origin_slug)
+    dest = pretty_slug_name(dest_slug)
+    igrid = "<tr><td colspan='3' style='padding:8px;border:1px solid #e6e8ef'>Interchange detail unavailable in route metadata.</td></tr>"
+    if re.search(r"direct|no interchange|0", interchange_hint, re.I):
+        igrid = "<tr><td colspan='3' style='padding:8px;border:1px solid #e6e8ef'>Direct route (no line change)</td></tr>"
+    return (
+        f"{SEQ_START}\n"
+        f'<section class="mgi-route-sequence-box" style="margin-top:16px;background:{CARD};border:1px solid #e6e8ef;border-radius:12px;padding:16px">'
+        f'<div style="font-size:1rem;font-weight:800;color:{BRAND};margin-bottom:10px">Full Route Station Sequence &amp; Interchange Grid</div>'
+        f'<div style="font-size:.84rem;color:var(--muted);margin-bottom:12px">Route metadata is partially available; use the planner below for exact intermediate stops.</div>'
+        f'<div style="position:relative;padding-left:14px;border-left:3px solid {BRAND};margin-bottom:14px">'
+        f'<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0"><span style="margin-top:4px;width:11px;height:11px;border-radius:50%;background:{BRAND};display:inline-block;flex-shrink:0"></span><div style="font-weight:600">{origin}</div></div>'
+        f'<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0"><span style="margin-top:4px;width:11px;height:11px;border-radius:50%;background:{BRAND};display:inline-block;flex-shrink:0"></span><div style="font-weight:600">{dest} <span style="font-size:.75rem;background:#eef2ff;color:#1a2a6c;padding:3px 8px;border-radius:999px;font-weight:700">Destination</span></div></div>'
+        f"</div>"
+        f'<div style="font-size:.88rem;font-weight:700;margin:8px 0">Interchange Grid</div>'
+        f'<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:{CARD};font-size:.82rem">'
+        f"<thead><tr style='background:#f6f8ff'><th style='padding:8px;border:1px solid #e6e8ef;text-align:left'>Station</th><th style='padding:8px;border:1px solid #e6e8ef;text-align:left'>From</th><th style='padding:8px;border:1px solid #e6e8ef;text-align:left'>To</th></tr></thead>"
+        f"<tbody>{igrid}</tbody></table></div></section>\n"
+        f"{SEQ_END}"
+    )
+
+
 def parse_metro_time_minutes(html: str) -> int | None:
-    m = re.search(r"Travel Time</div>\\s*<div[^>]*>([^<]+)</div>", html, flags=re.I | re.S)
+    m = re.search(r"Travel Time</div>\s*<div[^>]*>([^<]+)</div>", html, flags=re.I | re.S)
     if not m:
-        m = re.search(r"estimated travel time[^\\d]*(\\d+)\\s*mins?", html, flags=re.I)
+        m = re.search(r"estimated travel time[^\d]*(\d+)\s*mins?", html, flags=re.I)
     if not m:
         return None
-    mm = re.search(r"(\\d+)", m.group(1))
+    mm = re.search(r"(\d+)", m.group(1))
     return int(mm.group(1)) if mm else None
 
 
@@ -238,6 +318,11 @@ def build_road_compare_html(metro_km: float, metro_time_mins: int, interchanges:
     )
 
 
+def parse_interchange_hint(html: str) -> str:
+    m = re.search(r"Interchange</div>\s*<div[^>]*>([^<]+)</div>", html, flags=re.I | re.S)
+    return m.group(1).strip() if m else ""
+
+
 def inject_blocks(html: str, seq_html: str, road_html: str) -> str:
     html = clean_existing_blocks(html)
 
@@ -261,15 +346,24 @@ def main() -> None:
     skipped = 0
     for f in files:
         path_ids = route_path_for_file(f.stem, graph, slug_to_ids)
-        if len(path_ids) < 2:
-            skipped += 1
-            continue
         html = f.read_text(encoding="utf-8")
         metro_time_mins = parse_metro_time_minutes(html)
-        metro_km, interchanges = compute_route_stats(path_ids, graph, by_id)
-        if metro_time_mins is None:
-            metro_time_mins = int(round((metro_km / 32) * 60 + interchanges * 4))
-        seq_html = build_station_sequence_html(path_ids, by_id, line_meta)
+        interchange_hint = parse_interchange_hint(html)
+        if len(path_ids) >= 2:
+            metro_km, interchanges = compute_route_stats(path_ids, graph, by_id)
+            if metro_time_mins is None:
+                metro_time_mins = int(round((metro_km / 32) * 60 + interchanges * 4))
+            seq_html = build_station_sequence_html(path_ids, by_id, line_meta)
+        else:
+            parts = f.stem.split("-to-")
+            origin_slug = parts[0] if parts else f.stem
+            dest_slug = "-to-".join(parts[1:]) if len(parts) > 1 else f.stem
+            if metro_time_mins is None:
+                metro_time_mins = 30
+            interchanges = 0 if re.search(r"direct|no interchange|0", interchange_hint, re.I) else 1
+            metro_km = max(3.0, round(metro_time_mins * 0.55, 1))
+            seq_html = build_fallback_station_sequence_html(origin_slug, dest_slug, interchange_hint)
+            skipped += 1
         road_html = build_road_compare_html(metro_km, metro_time_mins, interchanges)
         new_html = inject_blocks(html, seq_html, road_html)
         if new_html != html:
