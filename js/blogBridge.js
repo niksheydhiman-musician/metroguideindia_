@@ -786,6 +786,81 @@
     });
   }
 
+  /**
+   * If the article contains a fenced-code block with the MAXIMUM BAGGAGE SIZE
+   * ASCII diagram, replace it with a styled visual dimension card.
+   */
+  function enhanceBaggageSizeCard(articleEl) {
+    if (!articleEl) return;
+
+    var pres = Array.prototype.slice.call(articleEl.querySelectorAll('pre'));
+    pres.forEach(function (pre) {
+      var text = (pre.textContent || '');
+      if (text.indexOf('MAXIMUM BAGGAGE SIZE') === -1) return;
+
+      if (!document.getElementById('baggage-size-card-styles')) {
+        var style = document.createElement('style');
+        style.id = 'baggage-size-card-styles';
+        style.textContent = [
+          '.baggage-card{margin:22px 0;border:1px solid var(--border2);border-radius:var(--r);background:linear-gradient(160deg,var(--surface),var(--surface2));box-shadow:var(--shadow);overflow:hidden}',
+          '.baggage-card-header{display:flex;align-items:center;gap:10px;padding:14px 20px;background:linear-gradient(90deg,var(--red-bg),transparent);border-bottom:1px solid var(--border2)}',
+          '.baggage-card-icon{font-size:1.5rem;line-height:1;flex-shrink:0}',
+          '.baggage-card-title{font-family:"Syne",sans-serif;font-weight:800;font-size:1rem;color:var(--text);letter-spacing:.03em;text-transform:uppercase}',
+          '.baggage-card-badge{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border:1px solid rgba(192,57,43,.2);padding:4px 10px;border-radius:999px}',
+          '.baggage-dims{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px}',
+          '.baggage-dim{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px 10px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface);text-align:center;transition:box-shadow .15s}',
+          '.baggage-dim:hover{box-shadow:var(--shadow)}',
+          '.baggage-dim-axis{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}',
+          '.baggage-dim-value{font-family:"Syne",sans-serif;font-size:1.35rem;font-weight:800;color:var(--red);line-height:1}',
+          '.baggage-dim-unit{font-size:.72rem;color:var(--muted)}',
+          '.baggage-dim-inches{font-size:.75rem;color:var(--text2);margin-top:2px}',
+          '.baggage-dim-icon{font-size:1.2rem;margin-bottom:2px}',
+          '.baggage-note{display:flex;align-items:center;gap:8px;margin:0 20px 18px;padding:10px 14px;background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);font-size:.86rem;color:var(--text2)}',
+          '.baggage-note-icon{flex-shrink:0;font-size:1rem}',
+          '@media(max-width:480px){.baggage-dims{grid-template-columns:1fr;gap:8px}.baggage-dim-value{font-size:1.15rem}}'
+        ].join('');
+        document.head.appendChild(style);
+      }
+
+      var card = document.createElement('div');
+      card.className = 'baggage-card';
+      card.setAttribute('role', 'region');
+      card.setAttribute('aria-label', 'Maximum Baggage Size Limits');
+      card.innerHTML =
+        '<div class="baggage-card-header">' +
+          '<div class="baggage-card-icon">🧳</div>' +
+          '<div class="baggage-card-title">Maximum Baggage Size</div>' +
+          '<div class="baggage-card-badge">📏 NCRTC Official Limits</div>' +
+        '</div>' +
+        '<div class="baggage-dims">' +
+          '<div class="baggage-dim">' +
+            '<div class="baggage-dim-icon">↔️</div>' +
+            '<div class="baggage-dim-axis">Length</div>' +
+            '<div class="baggage-dim-value">80 cm</div>' +
+            '<div class="baggage-dim-inches">31.5 inches</div>' +
+          '</div>' +
+          '<div class="baggage-dim">' +
+            '<div class="baggage-dim-icon">↕️</div>' +
+            '<div class="baggage-dim-axis">Width</div>' +
+            '<div class="baggage-dim-value">50 cm</div>' +
+            '<div class="baggage-dim-inches">19.6 inches</div>' +
+          '</div>' +
+          '<div class="baggage-dim">' +
+            '<div class="baggage-dim-icon">📐</div>' +
+            '<div class="baggage-dim-axis">Height</div>' +
+            '<div class="baggage-dim-value">30 cm</div>' +
+            '<div class="baggage-dim-inches">11.8 inches</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="baggage-note">' +
+          '<span class="baggage-note-icon">🔍</span>' +
+          '<span>Bag must easily pass through standard security X-ray scanners at all RRTS stations.</span>' +
+        '</div>';
+
+      pre.replaceWith(card);
+    });
+  }
+
   function enhanceTouristMap(articleEl) {
     if (!articleEl) return;
 
@@ -1449,6 +1524,7 @@
       var faqItems = buildFaqFromArticle(articleEl);
       enhanceNamoBharatFareCalc(articleEl);
       enhanceBengaluruFareCalc(articleEl);
+      enhanceBaggageSizeCard(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
       /* Mirror TOC into the mobile collapsible block */
