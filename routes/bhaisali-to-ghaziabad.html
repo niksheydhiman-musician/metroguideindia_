@@ -10,265 +10,60 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <link rel="stylesheet" href="/assets/css/main.css"/>
-  <title>Bhaisali to Ghaziabad RRTS Route: Fare, Time &amp; Stations (Updated)</title>
-  <meta name="description" content="Traveling from Bhaisali to Ghaziabad? The journey takes roughly 49 min via the Namo Bharat RRTS + Meerut Metro. Click for the 2026 fare chart, first/last train timings, and the exact exit gate map for Ghaziabad Station."/>
+  <title>Bhaisali to Ghaziabad Namo Bharat RRTS: Fare, Time &amp; Stations (Updated)</title>
+  <meta name="description" content="Bhaisali to Ghaziabad by Meerut Metro + Namo Bharat: 42.9 km, about 48 min, ₹120 standard fare. Change at Shatabdi Nagar. Fare comparison, pass savings, gate guide and train frequency."/>
   <link rel="canonical" href="https://metroguideindia.com/routes/bhaisali-to-ghaziabad.html"/>
   <meta property="og:title" content="Bhaisali to Ghaziabad Route | MetroGuideIndia"/>
-  <meta property="og:description" content="Bhaisali to Ghaziabad: 43.4 km, ~49 min, ₹140 fare."/>
+  <meta property="og:description" content="Bhaisali to Ghaziabad: 42.9 km, ~48 min, ₹120 standard fare."/>
   <meta property="og:type" content="website"/>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SV6378N2ZW');</script>
   <script src="/assets/js/scripts.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <style>
-
-  .mgi-sections {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Section header — rule renamed from .sec-head
-     to .mgi-sec-head so it doesn't touch your existing
-     .sec-head h2 rule */
-  .mgi-sec-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1.25rem;
-  }
-  .mgi-sec-line {
-    flex: 1;
-    height: 1px;
-    background: #E8E4DF;
-  }
-  .mgi-sec-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: #888;
-    white-space: nowrap;
-  }
-
-  /* Card — renamed from .card to .mgi-card */
-  .mgi-card {
-    background: #fff;
-    border: 1px solid #EDE9E3;
-    border-radius: 14px;
-    transition: transform .17s ease, border-color .17s ease;
-  }
-  .mgi-card:hover {
-    transform: translateY(-2px);
-    border-color: #C84B31;
-  }
-
-  .mgi-icon-wrap {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: #FDF0EC;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .mgi-icon-wrap i { font-size: 21px; color: #C84B31; }
-
-  .mgi-badge {
-    display: inline-flex; align-items: center; gap: 3px;
-    font-size: 10px; font-weight: 600;
-    padding: 2px 8px; border-radius: 999px;
-  }
-  .mgi-b-green  { background: #EAF3DE; color: #3B6D11; }
-  .mgi-b-amber  { background: #FAEEDA; color: #854F0B; }
-  .mgi-b-red    { background: #FCEBEB; color: #A32D2D; }
-  .mgi-b-blue   { background: #E6F1FB; color: #185FA5; }
-  .mgi-b-gray   { background: #F1EFE8; color: #5F5E5A; }
-
-  /* ── 1. Facilities ── */
-  .mgi-fac-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-  @media (min-width: 480px) {
-    .mgi-fac-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
-  }
-  .mgi-fac-card {
-    padding: 15px 8px 13px;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 8px;
-  }
-  .mgi-fac-label {
-    font-size: 11.5px; font-weight: 600;
-    color: #1A1A1A; text-align: center; line-height: 1.3;
-  }
-
-  /* ── 2. Exit Gates ── */
-  .mgi-exit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 10px;
-  }
-  .mgi-exit-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 7px; }
-  .mgi-exit-hd   { display: flex; align-items: center; gap: 9px; }
-  .mgi-exit-icon {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: #FDF0EC;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .mgi-exit-icon i { font-size: 17px; color: #C84B31; }
-  .mgi-exit-name { font-size: 14px; font-weight: 700; color: #C84B31; }
-  .mgi-exit-sub  { font-size: 12px; color: #666; line-height: 1.55; }
-  .mgi-exit-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-
-  /* ── 3. Peak Hours ── */
-  .mgi-peak-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 8px;
-  }
-  .mgi-peak-card { padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; }
-  .mgi-peak-time  { font-size: 13px; font-weight: 700; color: #1A1A1A; }
-  .mgi-peak-lbl   { font-size: 11px; color: #888; }
-  .mgi-peak-bar   { height: 6px; border-radius: 999px; background: #EDE9E3; margin-top: 4px; overflow: hidden; }
-  .mgi-peak-fill  { height: 100%; border-radius: 999px; background: #C84B31; }
-  .mgi-peak-fill.amber { background: #BA7517; }
-  .mgi-peak-fill.green { background: #639922; }
-
-  /* ── 4. Route Map ── */
-  .mgi-map-outer { padding: 0 1rem; }
-  .mgi-map-scroll { overflow-x: auto; padding-bottom: 4px; }
-  .mgi-map-track {
-    display: flex; align-items: center;
-    min-width: max-content;
-    padding: 1.5rem 0.5rem;
-  }
-  .mgi-stn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .mgi-stn .dot {
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 3px solid #C0392B; background: #fff;
-    position: relative; z-index: 2; flex-shrink: 0;
-  }
-  .mgi-stn.current .dot { background: #C0392B; }
-  .mgi-stn .sname {
-    font-size: 10.5px; font-weight: 600;
-    color: #666; text-align: center;
-    max-width: 72px; line-height: 1.3;
-  }
-  .mgi-stn.current .sname { color: #C0392B; }
-  .mgi-conn { width: 48px; height: 3px; background: #C0392B; flex-shrink: 0; margin-top: -22px; }
-  .mgi-conn.gray { background: #D3D1C7; }
-  .mgi-you {
-    font-size: 9px; font-weight: 700;
-    background: #C0392B; color: #fff;
-    padding: 1px 6px; border-radius: 999px;
-    letter-spacing: .04em;
-  }
-  .mgi-map-legend {
-    display: flex; gap: 16px;
-    padding: 0 0 12px;
-    font-size: 11px; color: #888;
-  }
-  .mgi-map-legend span { display: flex; align-items: center; gap: 5px; }
-  .mgi-dot-red  { width: 10px; height: 10px; border-radius: 50%; background: #C0392B; display: inline-block; }
-  .mgi-dot-gray { width: 10px; height: 10px; border-radius: 50%; background: #D3D1C7; display: inline-block; }
-
-  /* ── 5. Safety Tips ── */
-  .mgi-safety-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px;
-  }
-  .mgi-safety-card { padding: 14px 15px; display: flex; gap: 12px; align-items: flex-start; }
-  .mgi-safety-text h4 { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 3px; }
-  .mgi-safety-text p  { font-size: 12px; color: #666; line-height: 1.6; }
-
-  /* ── 6. Eco Impact ── */
-  .mgi-eco-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
-  }
-  .mgi-eco-card {
-    padding: 18px 12px 14px;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 8px; text-align: center;
-  }
-  .mgi-eco-iwrap {
-    width: 42px; height: 42px; border-radius: 10px;
-    background: #EAF3DE;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .mgi-eco-iwrap i { font-size: 21px; color: #3B6D11; }
-  .mgi-eco-num  { font-size: 22px; font-weight: 700; color: #C84B31; line-height: 1; }
-  .mgi-eco-unit { font-size: 10.5px; font-weight: 600; color: #854F0B; }
-  .mgi-eco-desc { font-size: 11px; color: #666; line-height: 1.5; }
-
-  /* ── 7. FAQ ── */
-  .mgi-faq-wrap { padding: 0 1.1rem; }
-  .mgi-faq-item { border-bottom: 1px solid #EDE9E3; }
-  .mgi-faq-item:last-child { border-bottom: none; }
-  .mgi-faq-q {
-    width: 100%; text-align: left;
-    background: none; border: none;
-    padding: 14px 4px;
-    font-size: 13.5px; font-weight: 600;
-    color: #1A1A1A; cursor: pointer;
-    display: flex; justify-content: space-between;
-    align-items: center; gap: 12px;
-    font-family: inherit;
-  }
-  .mgi-faq-q:hover { color: #C84B31; }
-  .mgi-faq-q .mgi-chev {
-    font-size: 16px; color: #888;
-    transition: transform .25s ease; flex-shrink: 0;
-  }
-  .mgi-faq-q[aria-expanded="true"] .mgi-chev {
-    transform: rotate(180deg); color: #C84B31;
-  }
-  .mgi-faq-a {
-    font-size: 12.5px; color: #555; line-height: 1.7;
-    max-height: 0; overflow: hidden;
-    transition: max-height .3s ease, padding .3s ease;
-    padding: 0 4px;
-  }
-  .mgi-faq-a.open { max-height: 200px; padding: 0 4px 14px; }
-</style>
-<!-- FAQ_SCHEMA_INJECT_START -->
+  .mgi-sections{display:flex;flex-direction:column;gap:2.5rem;margin:2rem 0}
+  .mgi-sec-head{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+  .mgi-sec-line{flex:1;height:1px;background:#E8E4DF}
+  .mgi-sec-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;white-space:nowrap}
+  .mgi-card{background:#fff;border:1px solid #EDE9E3;border-radius:14px;transition:border-color .17s ease}
+  .mgi-card:hover{border-color:#C84B31}
+  .mgi-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .mgi-b-green{background:#EAF3DE;color:#3B6D11}.mgi-b-amber{background:#FAEEDA;color:#854F0B}
+  .mgi-b-red{background:#FCEBEB;color:#A32D2D}.mgi-b-blue{background:#E6F1FB;color:#185FA5}
+  .mgi-scroll{overflow-x:auto}
+  .mgi-tbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+  .mgi-tbl th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#888;text-align:left;padding:10px 12px;background:#FDF0EC}
+  .mgi-tbl td{padding:10px 12px;border-top:1px solid #EDE9E3;color:#555;line-height:1.5;vertical-align:top}
+  .mgi-tbl td:first-child{color:#1A1A1A;font-weight:700}
+  .mgi-tbl tr.best td{background:#FDF0EC}
+  .mgi-note{font-size:12px;color:#666;line-height:1.65;margin-top:10px}
+  .mgi-sub{font-size:13px;font-weight:700;color:#C84B31;margin:16px 0 8px}
+  .mgi-faq-wrap{padding:0 1.1rem}
+  .mgi-faq-item{border-bottom:1px solid #EDE9E3}.mgi-faq-item:last-child{border-bottom:none}
+  .mgi-faq-q{width:100%;text-align:left;background:none;border:none;padding:14px 4px;font-size:13.5px;font-weight:600;color:#1A1A1A;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:inherit}
+  .mgi-faq-q:hover{color:#C84B31}
+  .mgi-faq-q .mgi-chev{font-size:16px;color:#888;transition:transform .25s ease;flex-shrink:0}
+  .mgi-faq-q[aria-expanded="true"] .mgi-chev{transform:rotate(180deg);color:#C84B31}
+  .mgi-faq-a{font-size:12.5px;color:#555;line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 4px}
+  .mgi-faq-a.open{max-height:260px;padding:0 4px 14px}
+  .related-guides-section .guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .related-guides-section .guide-card{background:#fff;border:1px solid #EDE9E3;border-radius:14px;padding:14px 15px}
+  .related-guides-section .guide-card h3{font-size:13px;font-weight:700;line-height:1.4;margin-bottom:4px}
+  .related-guides-section .guide-card a{color:#C84B31;text-decoration:none}
+  .related-guides-section .guide-card p{font-size:12px;color:#666;line-height:1.6}
+  .related-guides-section .section-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:1rem}
+  </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I carry a bicycle on the Namo Bharat RRTS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bicycles are allowed in the designated coach during non-peak hours. Folding cycles in a bag are permitted at all times. Check the Namo Bharat app for coach-specific rules before boarding."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there a luggage size limit on Namo Bharat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Luggage up to 60 cm × 45 cm × 25 cm and 15 kg is permitted. Oversized goods are not allowed. All bags are scanned at the entry gate."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What payment methods are accepted?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can pay using the Namo Bharat app, NCMC (National Common Mobility Card), UPI, or purchase a single-journey token at the station counter. Cash is accepted at the counter."
-      }
-    }
-  ]
-}
+{"@context":"https://schema.org","@graph":[
+{"@type":"TrainTrip","name":"Bhaisali to Ghaziabad (Meerut Metro + Namo Bharat RRTS)","departureStation":{"@type":"TrainStation","name":"Bhaisali Metro Station","address":"Meerut, Uttar Pradesh"},"arrivalStation":{"@type":"TrainStation","name":"Ghaziabad Namo Bharat Station","address":"Meerut Trisection, Ghaziabad, Uttar Pradesh"},"provider":{"@type":"Organization","name":"NCRTC Namo Bharat","url":"https://ncrtc.in"},"offers":{"@type":"Offer","price":"120","priceCurrency":"INR","description":"Standard coach single journey; premium ₹140"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How long does Bhaisali to Ghaziabad take?","acceptedAnswer":{"@type":"Answer","text":"About 48 minutes (42–55 minutes with waiting): roughly 7 minutes by Meerut Metro to Shatabdi Nagar, a short interchange, then about 30 minutes on Namo Bharat to Ghaziabad."}},
+{"@type":"Question","name":"What is the fare from Bhaisali to Ghaziabad?","acceptedAnswer":{"@type":"Answer","text":"₹120 in a standard coach and ₹140 in premium for the 42.9 km trip. Paying with NCMC or a Namo Bharat app QR ticket gives a 10% discount, about ₹108 standard or ₹126 premium."}},
+{"@type":"Question","name":"Where do I change trains between Bhaisali and Ghaziabad?","acceptedAnswer":{"@type":"Answer","text":"Change at Shatabdi Nagar, which has both Meerut Metro and Namo Bharat platforms. Begumpul, one metro stop the other way, is an alternative. One integrated ticket covers both."}},
+{"@type":"Question","name":"What are the first and last train timings and Sunday start?","acceptedAnswer":{"@type":"Answer","text":"The first Meerut Metro from Bhaisali toward Meerut South is about 6:21 AM and Namo Bharat runs 6:00 AM to 10:00 PM, starting at 8:00 AM on Sundays. Leave Bhaisali by about 9:30 PM to be safe."}},
+{"@type":"Question","name":"Which Ghaziabad gate is closest to Shaheed Sthal Delhi Metro?","acceptedAnswer":{"@type":"Answer","text":"Gate 3 faces Shaheed Sthal but was reported closed at last check. Use Gate 2 or Gate 5 (Meerut end) and walk about 250 m; confirm on the station signage."}}
+]}]}
 </script>
-<!-- FAQ_SCHEMA_INJECT_END -->
 </head>
 <body>
 
@@ -285,601 +80,138 @@
 <div class="wrap" style="padding-top:28px;padding-bottom:48px">
   <a href="/" class="back-link" style="display:inline-flex;align-items:center;gap:7px;margin-bottom:22px">← Plan Another Route</a>
   <h1 class="rp-title">Bhaisali → Ghaziabad</h1>
-  <p class="rp-sub">RRTS + Metro · 43.4 km · ~49 min · ₹140</p>
+  <p class="rp-sub">Meerut Metro + Namo Bharat · 42.9 km · ~48 min · ₹120</p>
 
   <div id="route-result" style="display:block">
     <div class="rc rc-visible">
       <div class="rc-summary">
-        <div class="rc-sum-item">
-          <div class="rc-val">43.4<span> km</span></div>
-          <div class="rc-lbl">Distance</div>
-        </div>
+        <div class="rc-sum-item"><div class="rc-val">42.9<span> km</span></div><div class="rc-lbl">Distance</div></div>
         <div class="rc-sep"></div>
-        <div class="rc-sum-item">
-          <div class="rc-val">₹140</div>
-          <div class="rc-lbl">Std. Fare</div>
-        </div>
+        <div class="rc-sum-item"><div class="rc-val">₹120</div><div class="rc-lbl">Std. Fare</div></div>
         <div class="rc-sep"></div>
-        <div class="rc-sum-item">
-          <div class="rc-val">49<span> min</span></div>
-          <div class="rc-lbl">Est. Time</div>
-        </div>
+        <div class="rc-sum-item"><div class="rc-val">48<span> min</span></div><div class="rc-lbl">Est. Time</div></div>
+        <div class="rc-sep"></div>
+        <div class="rc-sum-item"><div class="rc-val">~10<span> min</span></div><div class="rc-lbl">Frequency</div></div>
       </div>
 
-<div class="rc-steps">
-    <div class="step step-regular step-first">
-      <div class="rail">
-        <div class="rail-line invis"></div>
-        <div class="rail-dot dot-origin" style="--dc:#27764A">
-          <span>A</span>
+      <div class="rc-steps">
+        <div class="step step-regular step-first">
+          <div class="rail"><div class="rail-line invis"></div><div class="rail-dot dot-origin" style="--dc:#27764A"><span>A</span></div><div class="rail-line" style="background:#27764A"></div></div>
+          <div class="step-body"><div class="step-name">Bhaisali</div><div class="step-tags"><span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span><span class="city-tag">Towards Meerut South · via Meerut Central, Brahmapuri · ~7 min</span></div></div>
         </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Bhaisali</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
+        <div class="step step-xchange">
+          <div class="rail"><div class="rail-line" style="background:#27764A"></div><div class="rail-dot dot-xchange"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l-3-3 3-3M14 6l3 3-3 3M1 9h16"/></svg></div><div class="rail-line" style="background:#C0392B"></div></div>
+          <div class="xchange-card"><div class="xchange-label">🔄 Change Train</div><div class="xchange-name">Shatabdi Nagar</div><div class="xchange-meta"><span class="xchange-to" style="color:#27764A">Meerut Metro</span><span class="xchange-arrow">→</span><span class="xchange-to" style="color:#C0392B">Namo Bharat (towards Sarai Kale Khan)</span></div></div>
         </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
+        <div class="step step-regular">
+          <div class="rail"><div class="rail-line" style="background:#C0392B"></div><div class="rail-dot dot-mid" style="--dc:#C0392B"></div><div class="rail-line" style="background:#C0392B"></div></div>
+          <div class="step-body"><div class="step-name">7 stops, no further change</div><div class="step-tags"><span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span><span class="city-tag">Meerut South → Modinagar North → Modinagar South → Muradnagar → Duhai Depot → Duhai → Guldhar · ~30 min</span></div></div>
         </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Meerut Central</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
+        <div class="step step-regular step-last">
+          <div class="rail"><div class="rail-line" style="background:#C0392B"></div><div class="rail-dot dot-dest" style="--dc:#C0392B"><span>B</span></div><div class="rail-line invis"></div></div>
+          <div class="step-body"><div class="step-name">Ghaziabad</div><div class="step-tags"><span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span><span class="city-tag">Ghaziabad</span></div></div>
         </div>
       </div>
     </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
-        </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Brahmpuri</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
-        </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Shatabdi Nagar</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
-        </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Rithani</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
-        </div>
-        <div class="rail-line" style="background:#C0392B"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Partapur</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#27764A14;color:#27764A;border-color:#27764A38">Meerut Metro</span>
-          <span class="city-tag">Meerut</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#C0392B"></div>
-        <div class="rail-dot dot-mid" style="--dc:#C0392B">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Meerut South</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Meerut</span>
-        </div>
-      </div>
-    </div>
-      <div class="step step-xchange">
-        <div class="rail">
-          <div class="rail-line" style="background:#C0392B"></div>
-          <div class="rail-dot dot-xchange"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l-3-3 3-3M14 6l3 3-3 3M1 9h16"/></svg></div>
-          <div class="rail-line" style="background:#27764A"></div>
-        </div>
-        <div class="xchange-card">
-          <div class="xchange-label">🔄 Change Train</div>
-          <div class="xchange-name">Meerut South</div>
-          <div class="xchange-meta">
-            <span class="platform-tag">Platform 1</span>
-            <span class="xchange-arrow">→</span>
-            <span class="xchange-to" style="color:#27764A">Meerut Metro</span>
-          </div>
-        </div>
-      </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-mid" style="--dc:#27764A">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Modinagar North</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Modi Nagar</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-mid" style="--dc:#27764A">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Modinagar South</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Modi Nagar</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-mid" style="--dc:#27764A">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Muradnagar</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Murad Nagar</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-mid" style="--dc:#27764A">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Duhai</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Duhai</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular ">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-mid" style="--dc:#27764A">
-          
-        </div>
-        <div class="rail-line" style="background:#27764A"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Guldhar</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Guldhar</span>
-        </div>
-      </div>
-    </div>
-    <div class="step step-regular step-last">
-      <div class="rail">
-        <div class="rail-line" style="background:#27764A"></div>
-        <div class="rail-dot dot-dest" style="--dc:#C0392B">
-          <span>B</span>
-        </div>
-        <div class="rail-line invis"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-name">Ghaziabad</div>
-        <div class="step-tags">
-          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
-          <span class="city-tag">Ghaziabad</span>
-        </div>
-      </div>
-    </div>
-      </div>
 
-    </div>
 <div class="mgi-sections">
 
-  <section aria-label="Station amenities">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Station Amenities</h2>
-      <div class="mgi-sec-line"></div>
+  <section aria-label="Travel mode comparison">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Cost &amp; Time by Travel Mode</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-card mgi-scroll"><table class="mgi-tbl">
+      <tr><th>Transit Mode</th><th>Estimated Cost</th><th>Travel Time</th><th>Congestion / Reliability</th></tr>
+      <tr class="best"><td>Namo Bharat (Standard)</td><td>₹120 · ₹108 with NCMC/QR</td><td>~48 min</td><td>Fixed schedule; crowded 7–9:30 AM and 4:30–7 PM</td></tr>
+      <tr><td>Namo Bharat (Premium)</td><td>₹140 · ₹126 with NCMC/QR</td><td>~48 min</td><td>Same train, more seat room, fewer standees</td></tr>
+      <tr><td>App cab (expressway)</td><td>~₹900–1,300*</td><td>~1 hr 15 min–2 hr</td><td>Varies with NH-58 traffic and surge pricing</td></tr>
+      <tr><td>Personal two-wheeler</td><td>~₹130–180 fuel*</td><td>~1 hr 30 min–2 hr</td><td>Tiring in peak hours; parking needed at Ghaziabad</td></tr>
+    </table></div>
+    <p class="mgi-note">*Cab and two-wheeler figures are rough estimates for planning, not published tariffs. Train fares follow the published Namo Bharat / Meerut Metro fare tables.</p>
+  </section>
+
+  <section aria-label="Commuter pass savings">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Savings</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-card mgi-scroll"><table class="mgi-tbl">
+      <tr><th>Commute Pattern</th><th>Single Journey Token (₹120)</th><th>NCMC RuPay / App QR (₹108)</th><th>You Save</th></tr>
+      <tr><td>Daily round trip</td><td>₹240</td><td>₹216</td><td>₹24</td></tr>
+      <tr><td>Weekly (6 days)</td><td>₹1,440</td><td>₹1,296</td><td>₹144</td></tr>
+      <tr class="best"><td>Monthly (24 days)</td><td>₹5,760</td><td>₹5,184</td><td>₹576</td></tr>
+    </table></div>
+    <p class="mgi-note">Standard coach, calculated on the 10% NCMC / Namo Bharat app QR discount (premium: ₹6,048 a month with the discount). NCRTC has also launched NCMC Trip Passes for fixed station pairs: 1 to 40 trips, with 40-trip passes valid for 90 days. Each ₹1 spent on NCMC earns a loyalty point worth 10 paise.</p>
+  </section>
+
+  <section aria-label="Gate and landmark directory">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Gate-by-Gate Landmark &amp; Feeder Directory</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-card" style="padding:4px 0 12px">
+      <h3 class="mgi-sub" style="padding:0 12px">Bhaisali Metro Station (Meerut) <span class="mgi-badge mgi-b-blue">3 gates · Helpline 9211355253</span></h3>
+      <div class="mgi-scroll"><table class="mgi-tbl">
+        <tr><th>Gate</th><th>Connecting Road &amp; Landmarks</th><th>Feeder / Parking</th></tr>
+        <tr><td>Gate 1</td><td>Road going to Meerut side; Bhaisali bus stand area</td><td>Buses at Bhaisali bus stand</td></tr>
+        <tr><td>Gates 2 &amp; 3</td><td>Road going to Delhi side; Sadar Bazar, Thapar Nagar, Ghanta Ghar (~2 km)</td><td>Dedicated parking not confirmed; plan on drop-off</td></tr>
+      </table></div>
+      <h3 class="mgi-sub" style="padding:0 12px">Ghaziabad Namo Bharat Station <span class="mgi-badge mgi-b-blue">5 gates · Helpline 9289928705</span></h3>
+      <div class="mgi-scroll"><table class="mgi-tbl">
+        <tr><th>Gate</th><th>Connecting Road &amp; Landmarks</th><th>Feeder / Parking</th></tr>
+        <tr><td>Gate 1</td><td>Delhi end, Meerut Road, near Traffic Police Training Centre</td><td><span class="mgi-badge mgi-b-green">Open</span></td></tr>
+        <tr><td>Gate 2</td><td>Meerut end, on the road going to Meerut</td><td><span class="mgi-badge mgi-b-green">Open</span></td></tr>
+        <tr><td>Gate 3</td><td>Meerut end, towards Shaheed Sthal Metro and Mod Gol Chakkar</td><td><span class="mgi-badge mgi-b-red">Closed at last update</span></td></tr>
+        <tr><td>Gate 4</td><td>Delhi end, near Mahamaya Stadium</td><td>Parking: 60 car + 162 two-wheeler slots (shared with Gate 5)</td></tr>
+        <tr><td>Gate 5</td><td>Meerut end</td><td>Parking as above; two-wheeler ₹10 (10 min–6 hr), car ₹30; monthly ₹400 / ₹1,000</td></tr>
+      </table></div>
+      <p class="mgi-note" style="padding:0 12px">Onward from Ghaziabad: Shaheed Sthal (Delhi Metro Red Line) is about 250 m away; Ghaziabad Junction is about 3 km. City buses such as GHE-02 (Loni–Purana Bus Adda) stop nearby. Washrooms, drinking water and the help desk are inside the paid concourse.</p>
     </div>
-    <div class="mgi-fac-grid">
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Washrooms</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Drinking Water</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">First Aid</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Food Stalls</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Divyangjan Friendly</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-parking-circle" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Parking</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
+  </section>
+
+  <section aria-label="Service frequency">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Service Frequency &amp; Timings</h2><div class="mgi-sec-line"></div></div>
+    <div class="mgi-card mgi-scroll"><table class="mgi-tbl">
+      <tr><th>Period</th><th>Namo Bharat</th><th>Meerut Metro</th></tr>
+      <tr><td>Peak hours</td><td>Every ~10 min</td><td>Every ~7 min</td></tr>
+      <tr><td>Off-peak</td><td>Every 10–15 min</td><td>Every 7–10 min</td></tr>
+      <tr><td>Mon–Sat service</td><td>6:00 AM – 10:00 PM</td><td>First from Bhaisali ~6:21 AM</td></tr>
+      <tr class="best"><td>Sunday start</td><td>8:00 AM</td><td>8:00 AM onwards</td></tr>
+    </table></div>
+    <p class="mgi-note">Frequencies are approximate and change by time of day. Aim to leave Bhaisali by about 9:30 PM so you connect to the last Namo Bharat from Shatabdi Nagar. Check the Namo Bharat app for live timings.</p>
+  </section>
+
+  <section class="related-guides-section">
+    <div class="container">
+      <h2 class="section-title">Related Commuter Guides &amp; Transit Insights</h2>
+      <div class="guides-grid">
+        <article class="guide-card">
+          <h3><a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html">Namo Bharat RRTS Guide: Stations, Timings &amp; Fares</a></h3>
+          <p>Complete corridor overview, standard vs premium coach rules, luggage limits, and network ticketing.</p>
+        </article>
+        <article class="guide-card">
+          <h3><a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html">How to Reach Delhi IGI Airport via Namo Bharat &amp; Delhi Metro</a></h3>
+          <p>Fastest multimodal transfer routes via Sarai Kale Khan and Anand Vihar directly to T1, T2, and T3.</p>
+        </article>
+        <article class="guide-card">
+          <h3><a href="/blog/delhi-meerut-rrts-parking-facilities-charges.html">Namo Bharat Station Parking Charges &amp; Overnight Rules</a></h3>
+          <p>Car and two-wheeler parking rates, monthly pass tariffs, FASTag integration, and EV charging points.</p>
+        </article>
+        <article class="guide-card">
+          <h3><a href="/blog/ncmc-card-namo-bharat-recharge-rules.html">Using NCMC Cards on Namo Bharat: Discounts &amp; AFC Gate Guide</a></h3>
+          <p>How to use your RuPay card or RRTS Connect app for an instant 10% commuter discount across all gates.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section aria-label="Exit gates">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Exit Gates — Ghaziabad Station</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-exit-grid">
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate Info</span>
-        </div>
-        <span class="mgi-exit-sub">Meerut Trisection, Ghaziabad, Uttar Pradesh</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-blue">Official gate metrics are not published yet</span>
-          <span class="mgi-badge mgi-b-green">Accessible</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Peak traveling hours">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Peak Traveling Hours</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-peak-grid">
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">6:00 – 7:00 AM</span>
-        <span class="mgi-peak-lbl">Early morning</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:35%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Low crowd</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">7:00 – 9:30 AM</span>
-        <span class="mgi-peak-lbl">Morning rush</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:88%"></div></div>
-        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">9:30 AM – 4:30 PM</span>
-        <span class="mgi-peak-lbl">Off-peak midday</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:30%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Comfortable</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">4:30 – 7:00 PM</span>
-        <span class="mgi-peak-lbl">Evening rush</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:84%"></div></div>
-        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">7:00 – 9:00 PM</span>
-        <span class="mgi-peak-lbl">Post-rush taper</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill amber" style="width:55%"></div></div>
-        <span class="mgi-badge mgi-b-amber" style="width:fit-content;margin-top:4px">Moderate</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">After 9:00 PM</span>
-        <span class="mgi-peak-lbl">Late night</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:18%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Sparse</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Namo Bharat RRTS + Meerut Metro route map">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Route Map — Namo Bharat RRTS + Meerut Metro</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-card mgi-map-outer">
-      <div class="mgi-map-scroll">
-        <div class="mgi-map-track" role="list">
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Bhaisali</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#27764A"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Meerut Central</span>
-          </div>
-          <div class="mgi-conn" style="background:#27764A"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Brahmpuri</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Shatabdi Nagar</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#27764A"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Rithani</span>
-          </div>
-          <div class="mgi-conn" style="background:#27764A"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#27764A"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Partapur</span>
-          </div>
-          <div class="mgi-conn" style="background:#27764A"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Meerut South</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Modinagar North</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Modinagar South</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Muradnagar</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Duhai</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn" role="listitem">
-                        <div class="dot" style="border-color:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#666;text-align:center;max-width:72px;line-height:1.3">Guldhar</span>
-          </div>
-          <div class="mgi-conn" style="background:#C0392B"></div>
-          <div class="mgi-stn current" role="listitem">
-            <span class="mgi-you">DEST</span>
-            <div class="dot" style="border-color:#C0392B;background:#C0392B"></div>
-            <span class="sname" style="font-size:10.5px;font-weight:600;color:#C0392B;text-align:center;max-width:72px;line-height:1.3">Ghaziabad</span>
-          </div>
-        </div>
-      </div>
-      <div class="mgi-map-legend">
-        <span><i class="mgi-dot-red"></i> Namo Bharat / direct stops</span>
-        <span><i class="mgi-dot-gray" style="background:#27764A"></i> Metro / destination</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Safety tips">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Safety Tips</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-safety-grid">
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#A32D2D"></i></div>
-        <div class="mgi-safety-text"><h4>Mind the gap</h4><p>Step carefully while boarding. Stand behind the yellow line until the train fully stops.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#E6F1FB"><i class="ti ti-map-pin-route" aria-hidden="true" style="color:#185FA5"></i></div>
-        <div class="mgi-safety-text"><h4>Watch platform markings</h4><p>Stand behind the yellow line and wait for coach doors to align before boarding.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-briefcase" aria-hidden="true" style="color:#854F0B"></i></div>
-        <div class="mgi-safety-text"><h4>Watch your belongings</h4><p>Keep bags in front of you during rush periods and report unattended luggage immediately.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div>
-        <div class="mgi-safety-text"><h4>Priority seating</h4><p>Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-phone-call" aria-hidden="true" style="color:#854F0B"></i></div>
-        <div class="mgi-safety-text"><h4>Emergency helpline</h4><p>For any safety concern, use the Talk-Back button in the coach or call 9289928705.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-camera-off" aria-hidden="true" style="color:#A32D2D"></i></div>
-        <div class="mgi-safety-text"><h4>No photography</h4><p>Photography inside trains, platforms, or restricted operational areas is prohibited.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Environmental impact of this ride">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Taking this ride means</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-eco-grid">
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-leaf" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">6.6</span>
-        <span class="mgi-eco-unit">kg CO₂ saved</span>
-        <span class="mgi-eco-desc">vs. driving 43.4 km by private car</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-flame-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">3</span>
-        <span class="mgi-eco-unit">litres fuel saved</span>
-        <span class="mgi-eco-desc">that would otherwise burn in corridor traffic</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-trees" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">50</span>
-        <span class="mgi-eco-unit">trees&#x27; daily work</span>
-        <span class="mgi-eco-desc">CO₂ absorbed per 1,000 riders on this route daily</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-road-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">~273</span>
-        <span class="mgi-eco-unit">cars off the road</span>
-        <span class="mgi-eco-desc">when one full coach replaces private vehicle trips</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-solar-panel" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">30%</span>
-        <span class="mgi-eco-unit">solar powered</span>
-        <span class="mgi-eco-desc">NCRTC&#x27;s energy mix includes renewable solar generation</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Frequently asked questions">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Frequently Asked Questions</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Frequently Asked Questions</h2><div class="mgi-sec-line"></div></div>
     <div class="mgi-card mgi-faq-wrap">
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the distance from Bhaisali to Ghaziabad by Namo Bharat RRTS + Meerut Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The distance from Bhaisali to Ghaziabad on Namo Bharat RRTS + Meerut Metro is approximately 43.4.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the fare from Bhaisali to Ghaziabad on Namo Bharat RRTS + Meerut Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The standard fare from Bhaisali to Ghaziabad on Namo Bharat RRTS + Meerut Metro is approximately ₹140.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does it take to travel from Bhaisali to Ghaziabad?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The estimated travel time from Bhaisali to Ghaziabad is about 49 min.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the first train from Bhaisali for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The first train information for departures from Bhaisali is: Not listed.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the last train from Bhaisali for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The last train information for departures from Bhaisali is: Not listed.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Which exit gates are useful at Ghaziabad station?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">Current gate guidance for Ghaziabad is: Not listed.</div>
-      </div>
+      <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does Bhaisali to Ghaziabad take?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">About 48 minutes (42–55 minutes with waiting): roughly 7 minutes by Meerut Metro to Shatabdi Nagar, a short interchange, then about 30 minutes on Namo Bharat to Ghaziabad.</div></div>
+      <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the fare from Bhaisali to Ghaziabad?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">₹120 in a standard coach and ₹140 in premium for the 42.9 km trip. Paying with NCMC or a Namo Bharat app QR ticket gives a 10% discount, about ₹108 standard or ₹126 premium.</div></div>
+      <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Where do I change trains between Bhaisali and Ghaziabad?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">Change at Shatabdi Nagar, which has both Meerut Metro and Namo Bharat platforms. Begumpul, one metro stop the other way, is an alternative. One integrated ticket covers both.</div></div>
+      <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What are the first and last train timings and Sunday start?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">The first Meerut Metro from Bhaisali toward Meerut South is about 6:21 AM and Namo Bharat runs 6:00 AM to 10:00 PM, starting at 8:00 AM on Sundays. Leave Bhaisali by about 9:30 PM to be safe.</div></div>
+      <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Which Ghaziabad gate is closest to Shaheed Sthal Delhi Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">Gate 3 faces Shaheed Sthal but was reported closed at last check. Use Gate 2 or Gate 5 (Meerut end) and walk about 250 m; confirm on the station signage.</div></div>
     </div>
   </section>
 
 </div>
-<!-- end .mgi-sections -->
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->
-<div class="rc-route-meta" style="margin-top:12px;padding:12px 14px;border:1px solid var(--border2,#e2e8f0);border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 6px 24px rgba(2,6,23,.03);display:grid;gap:0">
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> Not listed</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> Not listed</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Exit Gate Blueprint:</strong> Not listed</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> Not listed<br><span style="display:inline-block;margin-top:6px"><a href="https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html" target="_blank" rel="noopener noreferrer" style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a></span></div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> Not listed</div>
-</div>
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->
 
-    <div class="route-seo-box" data-system="RRTS + Metro">
-      <div class="route-seo-title">Route Summary</div>
-      <p class="route-seo-lead">
-        Looking for Bhaisali to Ghaziabad RRTS + Metro route?
-        This 43.4 km trip takes about 49 minutes on average.
-      </p>
-      <div class="route-seo-lines">
-        <div><strong>Fare:</strong> ₹140 (Standard) | ₹130–₹160 (Premium est. on Namo Bharat leg).</div>
-              <div class="route-seo-note">⚠️ <strong>Note:</strong> Premium ticket holders must transfer to the Standard/General coach at the Meerut Metro interchange station.</div>
-        <div><strong>Time:</strong> Approx. 39–59 mins.</div>
-        <div><strong>Interchanges:</strong> 1 (With Interchange).</div>
-        <div><strong>Major Hubs:</strong> Meerut City Railway Station &amp; Shatabdi Nagar (RRTS–Metro Interchange) &amp; Meerut South (RRTS–Metro Interchange).</div>
-        <div><strong>Top Stations:</strong> Meerut Central, Brahmpuri, Shatabdi Nagar, Rithani.</div>
-        <div><strong>Ticketing:</strong> Use Namo Bharat App or NCMC. <a href="https://rrts.co.in" rel="nofollow noopener" target="_blank" style="color:#C0392B;font-weight:600">Official Website</a></div>
-      </div>
-    </div>
+  <p style="font-size:.85rem;color:var(--muted)">Fares and times are estimates compiled from published Namo Bharat and Meerut Metro information (updated October 2026). Tickets: Namo Bharat app or NCMC; see the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a> for the latest rules.</p>
   </div>
-
-  <div class="quick-facts" style="margin-top:24px">
-    <div class="quick-facts-title">Quick Facts</div>
-    <ul>
-      <li>Distance: <strong>43.4 km</strong></li>
-      <li>Travel time: <strong>~39–59 minutes</strong></li>
-      <li>Standard fare: <strong>₹140</strong> | Premium estimate on Namo Bharat leg: <strong>₹130–₹160</strong></li>
-      <li>Interchanges: <strong>1 interchange</strong></li>
-      <li>System: <strong>RRTS + Metro</strong></li>
-    </ul>
-  </div>
-
-  <div style="margin-top:24px;font-size:.85rem;color:var(--muted)">
-    <p>Fares and times are based on MetroGuideIndia's latest route data. Premium estimates apply only to the Namo Bharat portion of this trip, which works out to roughly ₹130–₹160; the Meerut Metro segment remains standard fare. For the latest information, check the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a>.</p>
-    <p style="margin-top:8px">Plan your trip: <a href="/" style="color:var(--red)">Use our route planner</a> for real-time route calculations.</p>
-  </div>
-</div>
 
 <section id="global-search-section" style="margin:28px 0 36px">
   <div class="sec-eye">Route Planner</div>
@@ -894,13 +226,11 @@
         <ul class="ac-list" id="global-src-list" hidden></ul>
       </div>
     </div>
-
     <div class="swap-row">
       <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
       </button>
     </div>
-
     <div class="fd">
       <label class="fl" for="global-dst-search">To</label>
       <div class="ac-wrap">
@@ -909,28 +239,10 @@
         <ul class="ac-list" id="global-dst-list" hidden></ul>
       </div>
     </div>
-
     <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
   </div>
 </section>
 </main>
-
-<!-- Namo Bharat Master Guide Banner -->
-<section class="mgi-guide-banner" style="margin: 3rem 0 2rem; padding: 1.5rem; background: linear-gradient(135deg, #FDF0EC 0%, #FFFFFF 100%); border: 1px solid #EDE9E3; border-left: 4px solid #C84B31; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
-  <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #C84B31; color: #FFFFFF; padding: 2px 8px; border-radius: 4px;">Essential Read</span>
-      <span style="font-size: 0.85rem; color: #666666; font-weight: 500;">Namo Bharat RRTS Network</span>
-    </div>
-    <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #1A1A1A; line-height: 1.4;">
-      Planning a journey across the Delhi–Meerut RRTS corridor?
-    </h3>
-    <p style="margin: 0; font-size: 0.9rem; color: #555555; line-height: 1.5;">
-      Read our detailed <a href="https://metroguideindia.com/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html" style="color: #C84B31; font-weight: 600; text-decoration: underline;" title="Complete Namo Bharat RRTS Travel Guide 2026">Complete Namo Bharat RRTS Travel Guide (2026)</a> for in-depth insights on system rules, premium vs standard coaches, card recharges, and full corridor maps.
-    </p>
-  </div>
-</section>
-<!-- End Namo Bharat Master Guide Banner -->
 
 <footer>
   <div class="wrap">
@@ -953,23 +265,8 @@
 </footer>
 
 <script src="/js/globalSearchBar.js?v=20260410"></script>
-
 <script>
-  (function () {
-    document.querySelectorAll('[data-mgi-faq]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var isOpen = btn.getAttribute('aria-expanded') === 'true';
-        document.querySelectorAll('[data-mgi-faq]').forEach(function (b) {
-          b.setAttribute('aria-expanded', 'false');
-          b.nextElementSibling.classList.remove('open');
-        });
-        if (!isOpen) {
-          btn.setAttribute('aria-expanded', 'true');
-          btn.nextElementSibling.classList.add('open');
-        }
-      });
-    });
-  })();
+(function(){var b=document.querySelectorAll('[data-mgi-faq]');b.forEach(function(x){x.addEventListener('click',function(){var o=x.getAttribute('aria-expanded')==='true';b.forEach(function(y){y.setAttribute('aria-expanded','false');y.nextElementSibling.classList.remove('open')});if(!o){x.setAttribute('aria-expanded','true');x.nextElementSibling.classList.add('open')}})})})();
 </script>
 </body>
 </html>
