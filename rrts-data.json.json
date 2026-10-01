@@ -1,0 +1,608 @@
+{
+  "stations": {
+    "Sarai Kale Khan": {
+      "layout": "Elevated; 3 Island platforms (6 platform faces, 4 tracks) serving 3 converging RRTS corridors",
+      "interchanges": [
+        "DMRC Pink Line (Sarai Kale Khan - Hazrat Nizamuddin Metro Station) via dedicated 280 m travelator-equipped Foot Over Bridge (FOB)",
+        "Hazrat Nizamuddin Railway Station (Northern Railway) via dedicated Foot Over Bridge equipped with travelators",
+        "Vir Haqiqat Rai Inter State Bus Terminus (Sarai Kale Khan ISBT) via direct integrated concourse connection",
+        "Delhi City Bus Interchange (19 dedicated bus parking bays)"
+      ],
+      "gates": {
+        "Gate 1": "Ring Road (Mahatma Gandhi Marg) towards Sarai Kale Khan ISBT & Meerut direction",
+        "Gate 2": "Ring Road towards Sarai Kale Khan Bus Terminal & main entry plaza",
+        "Gate 3": "Ring Road approach near ISBT entry/exit and auto bays",
+        "Gate 4": "Hazrat Nizamuddin Railway Station approach road (Delhi side)",
+        "Gate 5": "Hazrat Nizamuddin Railway Station circulating area",
+        "Gate 6": "Pedestrian connection towards DMRC Nizamuddin Metro Station and Barapullah elevated road"
+      },
+      "parking": {
+        "car_slots": 275,
+        "two_wheeler_slots": 900,
+        "rates": {
+          "up_to_6h_4w": "₹50",
+          "up_to_6h_2w": "₹20",
+          "up_to_12h_4w": "₹80",
+          "up_to_12h_2w": "₹30",
+          "monthly_4w": "₹2000 (Tariff A: 5 AM–11 PM) / ₹3000 (Tariff B: 24/7)",
+          "monthly_2w": "₹600 (Tariff A: 5 AM–11 PM) / ₹1000 (Tariff B: 24/7)"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:00 AM (Towards Modipuram/Meerut)",
+        "first_sunday": "08:00 AM (Towards Modipuram/Meerut)",
+        "last_train": "10:00 PM (Towards Modipuram/Meerut; terminal station towards Delhi)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Hazrat Nizamuddin Railway Station (approx. 250 m)",
+        "Vir Haqiqat Rai ISBT Sarai Kale Khan (approx. 100 m)",
+        "Humayun's Tomb UNESCO World Heritage Site (approx. 1.5 km)",
+        "Millennium Park / Indraprastha Park (approx. 1.2 km)",
+        "DTC Sarai Kale Khan Bus Depot & E-rickshaw feeder stands (approx. 150 m)"
+      ]
+    },
+    "New Ashok Nagar": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Modipuram, Platform 2 towards Sarai Kale Khan)",
+      "interchanges": [
+        "DMRC Blue Line (New Ashok Nagar Metro Station) via dedicated 90 m Foot Over Bridge (FOB) linking Metro concourse to RRTS mezzanine level",
+        "Dedicated pedestrian Foot Over Bridge connecting Chilla Village and Mayur Vihar Extension across the canal",
+        "Dedicated pedestrian Foot Over Bridge connecting Ancient Shiv Temple / New Ashok Nagar residential colony"
+      ],
+      "gates": {
+        "Gate 1": "Road going towards New Ashok Nagar Market side and Chilla Village",
+        "Gate 2": "Road going towards DMRC New Ashok Nagar Metro Station and Noida Link Road"
+      },
+      "parking": {
+        "car_slots": 73,
+        "two_wheeler_slots": 284,
+        "rates": {
+          "up_to_6h_4w": "₹50",
+          "up_to_6h_2w": "₹20",
+          "up_to_12h_4w": "₹80",
+          "up_to_12h_2w": "₹30",
+          "monthly_4w": "₹2000 (Tariff A: 5 AM–11 PM) / ₹3000 (Tariff B: 24/7)",
+          "monthly_2w": "₹600 (Tariff A: 5 AM–11 PM) / ₹1000 (Tariff B: 24/7)"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:05 AM (Towards Modipuram); 06:18 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:05 AM (Towards Modipuram); 08:18 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:07 PM (Towards Modipuram); 10:59 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "New Ashok Nagar DMRC Metro Station (approx. 100 m)",
+        "Mayur Vihar Extension Pocket 1 & 2 (approx. 600 m)",
+        "Ancient Shiv Temple New Ashok Nagar (approx. 300 m)",
+        "Chilla Village (approx. 400 m)",
+        "Noida Sector 1 & Sector 14 commercial border (approx. 1.2 km)",
+        "DTC Feeder Bus Stops & E-rickshaw mobility stands on Noida Link Road"
+      ]
+    },
+    "Anand Vihar": {
+      "layout": "Underground; Island platform (Platform 1 towards Modipuram, Platform 2 towards Sarai Kale Khan) situated 8 m below ground level",
+      "interchanges": [
+        "DMRC Metro Blue Line & Pink Line (Anand Vihar ISBT Interchange Metro Station) via direct underground passenger concourse",
+        "Anand Vihar Terminal Railway Station (ANVT, Northern Railway) via direct integrated pedestrian subway",
+        "Swami Vivekananda Inter State Bus Terminus (Anand Vihar ISBT, Delhi side) via direct concourse subways",
+        "Kaushambi UPSRTC Inter-State Bus Stand (UP side) via Foot Over Bridge across Chaudhary Charan Singh Marg"
+      ],
+      "gates": {
+        "Gate 1": "Chaudhary Charan Singh Marg towards Kaushambi, Ghazipur, and Delhi-UP border",
+        "Gate 2": "Circulating road towards Anand Vihar Terminal Railway Station (ANVT) & ISBT Delhi complex"
+      },
+      "parking": {
+        "car_slots": 20,
+        "two_wheeler_slots": 105,
+        "rates": {
+          "up_to_6h_4w": "₹50",
+          "up_to_6h_2w": "₹20",
+          "up_to_12h_4w": "₹80",
+          "up_to_12h_2w": "₹30",
+          "monthly_4w": "₹2000 (Tariff A: 5 AM–11 PM) / ₹3000 (Tariff B: 24/7)",
+          "monthly_2w": "₹600 (Tariff A: 5 AM–11 PM) / ₹1000 (Tariff B: 24/7)"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:11 AM (Towards Modipuram); 06:13 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:11 AM (Towards Modipuram); 08:13 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:11 PM (Towards Modipuram); 10:54 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Anand Vihar Terminal Railway Station (ANVT, approx. 150 m)",
+        "Swami Vivekananda ISBT Anand Vihar (approx. 100 m)",
+        "Kaushambi Inter-State Bus Terminal (approx. 350 m)",
+        "Pacific Mall Anand Vihar / Kaushambi (approx. 800 m)",
+        "Wave Cinemas & EDM Mall Kaushambi (approx. 1.1 km)",
+        "Dr. Hedgewar Aarogya Sansthan Hospital (approx. 1.8 km)",
+        "DTC Central Bus Bay Terminal & Multi-directional E-rickshaw staging hubs"
+      ]
+    },
+    "Sahibabad": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Meerut, Platform 2 towards Delhi)",
+      "interchanges": [
+        "UPSRTC Sahibabad Bus Depot directly connected via dedicated pedestrian Foot Over Bridge (FOB)",
+        "Sahibabad Junction Railway Station (Northern Railway) approx. 1.3 km away via feeder link",
+        "Proximity to DMRC Red Line (Shyam Park Metro Station approx. 2.5 km) and Blue Line (Vaishali Metro Station approx. 3.3 km)"
+      ],
+      "gates": {
+        "Gate 1": "Madan Mohan Malviya Marg towards Delhi end on road going to Mohan Nagar",
+        "Gate 2": "Madan Mohan Malviya Marg towards Meerut end on road going to Mohan Nagar / Industrial Area Site IV",
+        "Gate 3": "Madan Mohan Malviya Marg towards Delhi end on road going to Delhi, near Shri Digambar Jain Mandir & Vasundhara sectors"
+      },
+      "parking": {
+        "car_slots": 31,
+        "two_wheeler_slots": 100,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:16 AM (Towards Modipuram); 06:06 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:16 AM (Towards Modipuram); 08:08 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:16 PM (Towards Modipuram); 10:49 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "UPSRTC Sahibabad Bus Depot (adjacent)",
+        "Naveen Fruits and Vegetable Market / Sabzi Mandi (approx. 400 m)",
+        "Vasundhara Sectors 1–18 residential township (approx. 500 m to 1.5 km)",
+        "Sahibabad Industrial Area Site IV (approx. 800 m)",
+        "Sahibabad Railway Station (approx. 1.3 km)",
+        "Country Inn & Suites Sahibabad (approx. 1.5 km)",
+        "Feeder EV Bus routes (GHE042, GHE09, GHE072, GHE-073A) connecting Kaushambi, Mohan Nagar, Govindpuram"
+      ]
+    },
+    "Ghaziabad": {
+      "layout": "Elevated; 2 Island platforms (4 tracks / 4 platform faces; highest elevated station on corridor at ~26 m height; future junction for Khurja and Hapur branches)",
+      "interchanges": [
+        "DMRC Red Line (Shaheed Sthal / New Bus Adda Metro Station) via dedicated Foot Over Bridge / Skywalk (approx. 250 m)",
+        "Purana Bus Adda (Ghaziabad Old Bus Stand) within 300 m",
+        "Ghaziabad Junction Railway Station (Northern Railway) approx. 3 km away via designated feeder connectivity"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road (NH-58) towards Delhi end on road going to Meerut, near Traffic Police Training Centre",
+        "Gate 2": "Delhi-Meerut Road towards Meerut end on road going to Meerut",
+        "Gate 3": "Delhi-Meerut Road towards Meerut end near DMRC Shaheed Sthal Metro Station and Meerut Mod Gol Chakkar (Meerut Trisection)",
+        "Gate 4": "Towards Delhi end near Mahamaya Sports Stadium and pedestrian plaza",
+        "Gate 5": "Towards Meerut end connecting the service road, auto bays, and parking facilities"
+      },
+      "parking": {
+        "car_slots": 60,
+        "two_wheeler_slots": 162,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:10 AM (Towards Modipuram); 06:04 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:10 AM (Towards Modipuram); 08:12 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:21 PM (Towards Modipuram); 10:45 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "DMRC Shaheed Sthal (New Bus Adda) Red Line Metro Station (approx. 250 m)",
+        "Mahamaya Sports Stadium (approx. 100 m)",
+        "Meerut Trisection (Meerut Tiraha) & Hindon River Bridge (approx. 300 m)",
+        "Ghaziabad Old Bus Stand (Purana Bus Adda, approx. 350 m)",
+        "Arya Nagar, Patel Nagar, Seva Nagar & Bhim Nagar commercial colonies (within 1 km)",
+        "City feeder buses (GHE-02, GHE-03, GHE-09, GHE-042, GHE-072) & central E-rickshaw interchange"
+      ]
+    },
+    "Guldhar": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Meerut, Platform 2 towards Delhi)",
+      "interchanges": [
+        "Guldhar Railway Station (Northern Railway) approx. 1.3 km away via connecting link road",
+        "Dedicated service road drop-off bays integrating feeder buses and IPT along Delhi-Meerut Road (NH-58)"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road towards Meerut end on road going to Meerut, near Raj Kumar Goel Institute of Technology (RKGIT)",
+        "Gate 2": "Delhi-Meerut Road towards Delhi end on road going to Delhi / Raj Nagar side"
+      },
+      "parking": {
+        "car_slots": 184,
+        "two_wheeler_slots": 878,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:14 AM (Towards Modipuram); 06:00 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:14 AM (Towards Modipuram); 08:08 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:25 PM (Towards Modipuram); 10:41 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Raj Kumar Goel Institute of Technology (RKGIT, approx. 200 m)",
+        "Raj Nagar & Raj Nagar Extension residential hub (approx. 1.2 km)",
+        "Sanjay Nagar & Sector 23 residential areas (approx. 1.5 km)",
+        "Advanced Level Telecommunication Training Centre (ALTTC, approx. 1.8 km)",
+        "Guldhar Village & Guldhar Railway Station (approx. 1.3 km)",
+        "UPSRTC Highway Bus Stop & E-rickshaw feeder stands on NH-58 (Feeder route GHE042, GHE09)"
+      ]
+    },
+    "Duhai / Duhai Depot": {
+      "layout": "Duhai Station: Elevated with 2 Island platforms (3 tracks: Platform 1 towards Duhai Depot, Platform 2 towards Meerut, Platform 3 towards Delhi); Duhai Depot Station: At-grade with 2 Side platforms (Platform 1 & 2 towards Delhi/Duhai mainline)",
+      "interchanges": [
+        "Spur line direct rail interchange linking Duhai Mainline Station to Duhai Depot Station (2.13 km track connection)",
+        "Eastern Peripheral Expressway (EPE - NE II) Cloverleaf Interchange located adjacent to Duhai Station",
+        "Feeder roadway link between Duhai-Bhikanpur Road and Delhi-Meerut Highway (NH-58)"
+      ],
+      "gates": {
+        "Gate 1 (Duhai)": "Delhi-Meerut Road towards Delhi end on road going to Meerut, near Drizzling Land Water Park",
+        "Gate 2 (Duhai)": "Delhi-Meerut Road towards Meerut end on road going to Meerut, near Babu Banarasi Das Institute of Technology (BBDIT)",
+        "Gate 3 (Duhai)": "Delhi-Meerut Road towards Meerut end on road going to Delhi, near IAMR Group of Institutions",
+        "Gate 4 (Duhai)": "Delhi-Meerut Road towards Delhi end on road going to Delhi",
+        "Gate 1 (Duhai Depot)": "Towards Eastern Peripheral Expressway (EPE) service road",
+        "Gate 2 (Duhai Depot)": "Towards Eastern Peripheral Expressway (EPE) northern boundary",
+        "Gate 3 (Duhai Depot)": "Towards Duhai Depot Administrative Building, OCC, and Village Bhikanpur"
+      },
+      "parking": {
+        "car_slots": 65,
+        "two_wheeler_slots": 220,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "05:50 AM (Towards Modipuram from Duhai); 05:57 AM (Towards Delhi from Duhai); 06:00 AM (Towards Duhai from Duhai Depot)",
+        "first_sunday": "08:00 AM (Towards Modipuram from Duhai); 08:04 AM (Towards Delhi from Duhai); 08:00 AM (From Duhai Depot)",
+        "last_train": "10:29 PM (Towards Modipuram); 10:38 PM (Towards Delhi); 10:07 PM (Towards Duhai Depot); 10:00 PM (From Duhai Depot)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "NCRTC Operational Control Centre (OCC) & Train Maintenance Depot at Duhai",
+        "Drizzling Land Water & Amusement Park (approx. 400 m)",
+        "Babu Banarasi Das Institute of Technology (BBDIT, approx. 500 m)",
+        "IAMR Group of Institutions (approx. 300 m)",
+        "Eastern Peripheral Expressway (EPE) Interchange (approx. 600 m)",
+        "Bhikanpur & Morta villages (within 1 km)",
+        "Feeder bus stop on NH-58 (Route GHE042) and E-rickshaw parking stands"
+      ]
+    },
+    "Murad Nagar": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Meerut, Platform 2 towards Delhi)",
+      "interchanges": [
+        "Muradnagar UPSRTC Bus Stand integrated via station service road",
+        "Muradnagar Railway Station (Northern Railway) approx. 1.6 km away via local feeder road",
+        "Integrated road interchange with Delhi-Meerut Road (NH-58) and Gang Nahar Pipeline Road"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road (NH-58) towards Meerut end on road going to Meerut",
+        "Gate 2": "Delhi-Meerut Road (NH-58) towards Delhi end on road going to Delhi"
+      },
+      "parking": {
+        "car_slots": 70,
+        "two_wheeler_slots": 175,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "05:54 AM (Towards Modipuram); 06:11 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:00 AM (Towards Modipuram); 08:14 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:33 PM (Towards Modipuram); 10:33 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Ordnance Factory Muradnagar (OFM complex, approx. 1.6 km)",
+        "Muradnagar Railway Station (approx. 1.6 km)",
+        "Upper Ganga Canal (Gang Nahar / Chhota Haridwar Ghats, approx. 1.2 km)",
+        "KIET Group of Institutions (approx. 2 km south)",
+        "Chhotu Ram Institute of Technology (approx. 1.4 km)",
+        "Muradnagar UPSRTC Bus Stop and designated E-rickshaw feeder stands at Gate 1"
+      ]
+    },
+    "Modi Nagar South": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Meerut, Platform 2 towards Delhi)",
+      "interchanges": [
+        "Feeder connection to Modinagar Railway Station (Northern Railway) approx. 2.1 km away",
+        "Direct bus drop-off and pickup integration with UPSRTC regional buses on Delhi-Meerut Road (NH-58)"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road (NH-58) towards Meerut end on road going towards Meerut",
+        "Gate 2": "Delhi-Meerut Road (NH-58) towards Delhi end on road going towards Delhi"
+      },
+      "parking": {
+        "car_slots": 20,
+        "two_wheeler_slots": 88,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "05:59 AM (Towards Modipuram); 06:06 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:05 AM (Towards Modipuram); 08:09 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:38 PM (Towards Modipuram); 10:29 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Modi Sugar Mills & Industrial Complex (approx. 1.5 km)",
+        "Modinagar Railway Station (approx. 2.1 km)",
+        "SRM University Delhi-NCR Campus (approx. 2.8 km, major student feeder hub)",
+        "Modi Cloth Mill Colony & Govindpuri Market (approx. 800 m)",
+        "Dr. K.N. Modi University / Foundation campuses (approx. 1.8 km)",
+        "UPSRTC Highway bus stop on NH-58 and local E-rickshaw transit bay"
+      ]
+    },
+    "Modi Nagar North": {
+      "layout": "Elevated; 2 Side platforms (Platform 1 towards Meerut, Platform 2 towards Delhi)",
+      "interchanges": [
+        "Modinagar Railway Station (Northern Railway) approx. 2.0 km away via Station Road",
+        "UPSRTC local and intercity bus stops along Delhi-Meerut Highway (NH-58)"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road (NH-58) towards Meerut end on road going towards Meerut",
+        "Gate 2": "Delhi-Meerut Road (NH-58) towards Delhi end on road going towards Delhi"
+      },
+      "parking": {
+        "car_slots": 60,
+        "two_wheeler_slots": 136,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:03 AM (Towards Modipuram); 06:02 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:08 AM (Towards Modipuram); 08:05 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:42 PM (Towards Modipuram); 10:25 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min",
+        "off_peak": "15 min"
+      },
+      "nearby_landmarks": [
+        "Multanimal Modi College (MM College, approx. 1.0 km)",
+        "Modinagar Railway Station (approx. 2.0 km)",
+        "Modi Sugar Mill Complex (approx. 2.2 km)",
+        "Modinagar Main Market & Gurudwara (approx. 1.1 km)",
+        "Gyan Bharati School & Modinagar Degree College (approx. 1.5 km)",
+        "Feeder bus boarding bays and high-frequency E-rickshaw hubs at Gate 1"
+      ]
+    },
+    "Meerut South": {
+      "layout": "Elevated; 2 Island platforms (3 tracks / 3 platform faces: Platform 1 towards Meerut Metro/Modipuram, Platforms 2 & 3 towards Delhi Namo Bharat); gateway station where regional RRTS and local Meerut Metro integrate",
+      "interchanges": [
+        "Southern terminal interchange for Meerut Metro (MRTS) services operating northwards to Modipuram",
+        "Direct road interchange with Delhi-Meerut Expressway (DME - NE III) Southern Terminus and Meerut Bypass (NH-58)",
+        "Multi-modal bus staging plaza and IPT feeder terminal integrated at station ground concourse"
+      ],
+      "gates": {
+        "Gate 1": "Delhi-Meerut Road on road going towards Meerut City and Partapur",
+        "Gate 2": "Delhi-Meerut Road on road going towards Delhi and Delhi-Meerut Expressway (DME)"
+      },
+      "parking": {
+        "car_slots": 232,
+        "two_wheeler_slots": 752,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:00 AM (Towards Modipuram/Meerut Metro); 05:57 AM (Towards Delhi/Sarai Kale Khan)",
+        "first_sunday": "08:00 AM (Towards Modipuram); 08:00 AM (Towards Delhi/Sarai Kale Khan)",
+        "last_train": "10:47 PM (Towards Modipuram); 10:20 PM (Towards Delhi/Sarai Kale Khan)"
+      },
+      "headway": {
+        "peak": "10 min (RRTS) / 8 min (Meerut Metro)",
+        "off_peak": "15 min (RRTS) / 12 min (Meerut Metro)"
+      },
+      "nearby_landmarks": [
+        "Delhi-Meerut Expressway (DME) Meerut Toll Plaza & Bypass (approx. 300 m)",
+        "Partapur Industrial Area & Commercial Estate (approx. 1.2 km)",
+        "Swami Vivekanand Subharti University & Subharti Hospital (approx. 2.4 km)",
+        "Mohiuddinpur Sugar Mill & Village (approx. 1.8 km)",
+        "Meerut South Dedicated Feeder Bus Terminal & E-rickshaw mobility plaza at Gate 1 & 2"
+      ]
+    },
+    "Shatabdi Nagar": {
+      "layout": "Elevated; 2 Island platforms (4 tracks / 4 platform faces: Platform 1: Meerut MRTS towards Modipuram, Platform 2: Namo Bharat RRTS towards Meerut, Platform 3: Namo Bharat RRTS towards Delhi, Platform 4: Meerut MRTS towards Meerut South)",
+      "interchanges": [
+        "Cross-platform transfer interchange between Namo Bharat RRTS and Meerut Metro (MRTS)",
+        "Direct interchange with Delhi-Meerut Highway (NH-58 / Delhi Road) and Madhavpuram transport links",
+        "Direct feeder link to Meerut Sports Goods Industrial Cluster"
+      ],
+      "gates": {
+        "Gate 1": "Delhi Road (NH-58) towards Meerut City end on road going towards Meerut, near Shopprix Mall",
+        "Gate 2": "Delhi Road (NH-58) towards Delhi end on road going towards Delhi, near Dainik Jagran complex"
+      },
+      "parking": {
+        "car_slots": 120,
+        "two_wheeler_slots": 350,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:05 AM (RRTS towards Modipuram); 06:14 AM (RRTS towards Delhi); 06:20 AM (MRTS towards Modipuram); 06:29 AM (MRTS towards Meerut South)",
+        "first_sunday": "08:05 AM (RRTS towards Modipuram); 08:00 AM (RRTS towards Delhi)",
+        "last_train": "10:53 PM (RRTS towards Modipuram); 10:14 PM (RRTS towards Delhi); 22:12 PM (MRTS towards Modipuram); 22:29 PM (MRTS towards Meerut South)"
+      },
+      "headway": {
+        "peak": "10 min (RRTS) / 8 min (Meerut Metro)",
+        "off_peak": "15 min (RRTS) / 12 min (Meerut Metro)"
+      },
+      "nearby_landmarks": [
+        "Shopprix Mall Meerut (approx. 800 m)",
+        "Dainik Jagran Meerut Head Office & Printing Press (approx. 500 m)",
+        "Rithani & Shatabdi Nagar Industrial Clusters (approx. 600 m)",
+        "Madhavpuram Residential Colony (approx. 1.2 km)",
+        "Kalka Dental College & Hospital (approx. 1.8 km)",
+        "City bus stops along NH-58 & dedicated E-rickshaw feeder stands at Gate 1"
+      ]
+    },
+    "Begumpul": {
+      "layout": "Underground; Island platform (4 tracks across 2 underground levels serving both Namo Bharat RRTS and Meerut Metro MRTS); situated ~22 m below ground level in Meerut's central commercial district",
+      "interchanges": [
+        "Integrated underground cross-platform transfer between Namo Bharat RRTS and Meerut Metro",
+        "Direct pedestrian subway connectivity to Abu Lane high-street commercial district",
+        "Pedestrian link to Lal Kurti Market and Meerut Cantonment",
+        "Feeder connection to Bhaisali Central UPSRTC Bus Terminal (approx. 1.2 km)"
+      ],
+      "gates": {
+        "Gate 1": "Towards Abu Lane (Meerut's primary central shopping district and retail hub)",
+        "Gate 2": "Towards Lal Kurti Market & Meerut Cantonment residential/market zone",
+        "Gate 3": "Towards Zero Mile Stone (Northern side / Delhi Road junction)",
+        "Gate 4": "Towards Zero Mile Stone (Opposite side / Boundary Road and Cantt area)"
+      },
+      "parking": {
+        "car_slots": 0,
+        "two_wheeler_slots": 400,
+        "rates": {
+          "up_to_6h_4w": "₹30 (Applicable at affiliated surface lots)",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:12 AM (RRTS towards Modipuram); 06:07 AM (RRTS towards Delhi); 06:00 AM (Meerut Metro)",
+        "first_sunday": "08:12 AM (RRTS towards Modipuram); 08:00 AM (RRTS towards Delhi)",
+        "last_train": "11:00 PM (RRTS towards Modipuram); 10:07 PM (RRTS towards Delhi); 10:25 PM (Meerut Metro)"
+      },
+      "headway": {
+        "peak": "10 min (RRTS) / 8 min (Meerut Metro)",
+        "off_peak": "15 min (RRTS) / 12 min (Meerut Metro)"
+      },
+      "nearby_landmarks": [
+        "Abu Lane Commercial High Street & Bombay Bazaar (approx. 100 m)",
+        "Lal Kurti Market & Sadar Bazaar (approx. 400 m)",
+        "Zero Mile Historic Monument Meerut (approx. 150 m)",
+        "Bhaisali UPSRTC Central Bus Stand (approx. 1.2 km)",
+        "Meerut College & St. John's Senior Secondary School (approx. 1.4 km)",
+        "Extensive E-rickshaw feeder stands and auto-rickshaw bays across all 4 entry/exit gates"
+      ]
+    },
+    "Modipuram": {
+      "layout": "Elevated; 2 Island platforms (4 tracks / 4 platform faces; terminal station for both Namo Bharat RRTS and Meerut Metro MRTS; connects directly to Modipuram Depot stabling yard)",
+      "interchanges": [
+        "Northern terminal interchange connecting Namo Bharat RRTS and Meerut Metro lines",
+        "Modipuram Multi-Level Park & Ride hub for Western UP / Uttarakhand travelers arriving via NH-58",
+        "Integrated UPSRTC Regional Bus Stand and local city bus terminal in the station forecourt"
+      ],
+      "gates": {
+        "Gate 1": "Roorkee Road (NH-58) towards Meerut North & Sardar Vallabhbhai Patel University side",
+        "Gate 2": "Modipuram Bypass / NH-58 towards residential colonies and Modipuram Depot road"
+      },
+      "parking": {
+        "car_slots": 440,
+        "two_wheeler_slots": 420,
+        "rates": {
+          "up_to_6h_4w": "₹30",
+          "up_to_6h_2w": "₹10",
+          "up_to_12h_4w": "₹60",
+          "up_to_12h_2w": "₹25",
+          "monthly_4w": "₹2000",
+          "monthly_2w": "₹600"
+        },
+        "fastag_enabled": true
+      },
+      "timings": {
+        "first_weekday": "06:01 AM (Towards Delhi/Sarai Kale Khan); 06:00 AM (Meerut Metro towards Meerut South)",
+        "first_sunday": "08:00 AM (Towards Delhi/Sarai Kale Khan); 08:00 AM (Meerut Metro)",
+        "last_train": "10:01 PM (Towards Delhi/Sarai Kale Khan; terminal station towards Meerut); 10:30 PM (Meerut Metro)"
+      },
+      "headway": {
+        "peak": "10 min (RRTS) / 8 min (Meerut Metro)",
+        "off_peak": "15 min (RRTS) / 12 min (Meerut Metro)"
+      },
+      "nearby_landmarks": [
+        "Sardar Vallabhbhai Patel University of Agriculture and Technology (SVPUAT, approx. 1.5 km)",
+        "Central Potato Research Institute (CPRI Meerut, approx. 1.2 km)",
+        "Shobhit Institute of Engineering & Technology / Deemed University (approx. 2.0 km)",
+        "Modipuram Flyover & Haridwar/Dehradun Highway junction (NH-58, approx. 400 m)",
+        "Modipuram Maintenance Depot & Stabling Yard (adjacent)",
+        "Integrated UPSRTC Inter-district Bus Stand & Multi-modal E-rickshaw feeder plaza"
+      ]
+    }
+  }
+}
