@@ -16,8 +16,8 @@
   <meta property="og:title" content="Bhaisali to Ghaziabad Route | MetroGuideIndia"/>
   <meta property="og:description" content="Bhaisali to Ghaziabad: 42.9 km, ~48 min, ₹120 standard fare."/>
   <meta property="og:type" content="website"/>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SV6378N2ZW');</script>
+  
+  
   <script src="/assets/js/scripts.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <style>
@@ -53,16 +53,92 @@
   .related-guides-section .guide-card p{font-size:12px;color:#666;line-height:1.6}
   .related-guides-section .section-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:1rem}
   </style>
+
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SV6378N2ZW');
+  </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"TrainTrip","name":"Bhaisali to Ghaziabad (Meerut Metro + Namo Bharat RRTS)","departureStation":{"@type":"TrainStation","name":"Bhaisali Metro Station","address":"Meerut, Uttar Pradesh"},"arrivalStation":{"@type":"TrainStation","name":"Ghaziabad Namo Bharat Station","address":"Meerut Trisection, Ghaziabad, Uttar Pradesh"},"provider":{"@type":"Organization","name":"NCRTC Namo Bharat","url":"https://ncrtc.in"},"offers":{"@type":"Offer","price":"120","priceCurrency":"INR","description":"Standard coach single journey; premium ₹140"}},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How long does Bhaisali to Ghaziabad take?","acceptedAnswer":{"@type":"Answer","text":"About 48 minutes (42–55 minutes with waiting): roughly 7 minutes by Meerut Metro to Shatabdi Nagar, a short interchange, then about 30 minutes on Namo Bharat to Ghaziabad."}},
-{"@type":"Question","name":"What is the fare from Bhaisali to Ghaziabad?","acceptedAnswer":{"@type":"Answer","text":"₹120 in a standard coach and ₹140 in premium for the 42.9 km trip. Paying with NCMC or a Namo Bharat app QR ticket gives a 10% discount, about ₹108 standard or ₹126 premium."}},
-{"@type":"Question","name":"Where do I change trains between Bhaisali and Ghaziabad?","acceptedAnswer":{"@type":"Answer","text":"Change at Shatabdi Nagar, which has both Meerut Metro and Namo Bharat platforms. Begumpul, one metro stop the other way, is an alternative. One integrated ticket covers both."}},
-{"@type":"Question","name":"What are the first and last train timings and Sunday start?","acceptedAnswer":{"@type":"Answer","text":"The first Meerut Metro from Bhaisali toward Meerut South is about 6:21 AM and Namo Bharat runs 6:00 AM to 10:00 PM, starting at 8:00 AM on Sundays. Leave Bhaisali by about 9:30 PM to be safe."}},
-{"@type":"Question","name":"Which Ghaziabad gate is closest to Shaheed Sthal Delhi Metro?","acceptedAnswer":{"@type":"Answer","text":"Gate 3 faces Shaheed Sthal but was reported closed at last check. Use Gate 2 or Gate 5 (Meerut end) and walk about 250 m; confirm on the station signage."}}
-]}]}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TransitTrip",
+      "name": "Bhaisali to Ghaziabad transit trip",
+      "origin": {
+        "@type": "Place",
+        "name": "Bhaisali"
+      },
+      "destination": {
+        "@type": "Place",
+        "name": "Ghaziabad"
+      },
+      "departureStation": {
+        "@type": "TrainStation",
+        "name": "Bhaisali"
+      },
+      "arrivalStation": {
+        "@type": "TrainStation",
+        "name": "Ghaziabad"
+      },
+      "transitLine": "Namo Bharat RRTS + Meerut Metro",
+      "provider": {
+        "@type": "Organization",
+        "name": "National Capital Region Transport Corporation (NCRTC)",
+        "url": "https://ncrtc.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does Bhaisali to Ghaziabad take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About 48 minutes (42–55 minutes with waiting): roughly 7 minutes by Meerut Metro to Shatabdi Nagar, a short interchange, then about 30 minutes on Namo Bharat to Ghaziabad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the fare from Bhaisali to Ghaziabad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "₹120 in a standard coach and ₹140 in premium for the 42.9 km trip. Paying with NCMC or a Namo Bharat app QR ticket gives a 10% discount, about ₹108 standard or ₹126 premium."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do I change trains between Bhaisali and Ghaziabad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Change at Shatabdi Nagar, which has both Meerut Metro and Namo Bharat platforms. Begumpul, one metro stop the other way, is an alternative. One integrated ticket covers both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the first and last train timings and Sunday start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first Meerut Metro from Bhaisali toward Meerut South is about 6:21 AM and Namo Bharat runs 6:00 AM to 10:00 PM, starting at 8:00 AM on Sundays. Leave Bhaisali by about 9:30 PM to be safe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Ghaziabad gate is closest to Shaheed Sthal Delhi Metro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gate 3 faces Shaheed Sthal but was reported closed at last check. Use Gate 2 or Gate 5 (Meerut end) and walk about 250 m; confirm on the station signage."
+          }
+        }
+      ]
+    }
+  ]
+}
 </script>
 </head>
 <body>
@@ -116,50 +192,11 @@
 
 <div class="mgi-sections">
 
-  <section aria-label="Travel mode comparison">
-    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Cost &amp; Time by Travel Mode</h2><div class="mgi-sec-line"></div></div>
-    <div class="mgi-card mgi-scroll"><table class="mgi-tbl">
-      <tr><th>Transit Mode</th><th>Estimated Cost</th><th>Travel Time</th><th>Congestion / Reliability</th></tr>
-      <tr class="best"><td>Namo Bharat (Standard)</td><td>₹120 · ₹108 with NCMC/QR</td><td>~48 min</td><td>Fixed schedule; crowded 7–9:30 AM and 4:30–7 PM</td></tr>
-      <tr><td>Namo Bharat (Premium)</td><td>₹140 · ₹126 with NCMC/QR</td><td>~48 min</td><td>Same train, more seat room, fewer standees</td></tr>
-      <tr><td>App cab (expressway)</td><td>~₹900–1,300*</td><td>~1 hr 15 min–2 hr</td><td>Varies with NH-58 traffic and surge pricing</td></tr>
-      <tr><td>Personal two-wheeler</td><td>~₹130–180 fuel*</td><td>~1 hr 30 min–2 hr</td><td>Tiring in peak hours; parking needed at Ghaziabad</td></tr>
-    </table></div>
-    <p class="mgi-note">*Cab and two-wheeler figures are rough estimates for planning, not published tariffs. Train fares follow the published Namo Bharat / Meerut Metro fare tables.</p>
-  </section>
+  
 
-  <section aria-label="Commuter pass savings">
-    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Savings</h2><div class="mgi-sec-line"></div></div>
-    <div class="mgi-card mgi-scroll"><table class="mgi-tbl">
-      <tr><th>Commute Pattern</th><th>Single Journey Token (₹120)</th><th>NCMC RuPay / App QR (₹108)</th><th>You Save</th></tr>
-      <tr><td>Daily round trip</td><td>₹240</td><td>₹216</td><td>₹24</td></tr>
-      <tr><td>Weekly (6 days)</td><td>₹1,440</td><td>₹1,296</td><td>₹144</td></tr>
-      <tr class="best"><td>Monthly (24 days)</td><td>₹5,760</td><td>₹5,184</td><td>₹576</td></tr>
-    </table></div>
-    <p class="mgi-note">Standard coach, calculated on the 10% NCMC / Namo Bharat app QR discount (premium: ₹6,048 a month with the discount). NCRTC has also launched NCMC Trip Passes for fixed station pairs: 1 to 40 trips, with 40-trip passes valid for 90 days. Each ₹1 spent on NCMC earns a loyalty point worth 10 paise.</p>
-  </section>
+  
 
-  <section aria-label="Gate and landmark directory">
-    <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Gate-by-Gate Landmark &amp; Feeder Directory</h2><div class="mgi-sec-line"></div></div>
-    <div class="mgi-card" style="padding:4px 0 12px">
-      <h3 class="mgi-sub" style="padding:0 12px">Bhaisali Metro Station (Meerut) <span class="mgi-badge mgi-b-blue">3 gates · Helpline 9211355253</span></h3>
-      <div class="mgi-scroll"><table class="mgi-tbl">
-        <tr><th>Gate</th><th>Connecting Road &amp; Landmarks</th><th>Feeder / Parking</th></tr>
-        <tr><td>Gate 1</td><td>Road going to Meerut side; Bhaisali bus stand area</td><td>Buses at Bhaisali bus stand</td></tr>
-        <tr><td>Gates 2 &amp; 3</td><td>Road going to Delhi side; Sadar Bazar, Thapar Nagar, Ghanta Ghar (~2 km)</td><td>Dedicated parking not confirmed; plan on drop-off</td></tr>
-      </table></div>
-      <h3 class="mgi-sub" style="padding:0 12px">Ghaziabad Namo Bharat Station <span class="mgi-badge mgi-b-blue">5 gates · Helpline 9289928705</span></h3>
-      <div class="mgi-scroll"><table class="mgi-tbl">
-        <tr><th>Gate</th><th>Connecting Road &amp; Landmarks</th><th>Feeder / Parking</th></tr>
-        <tr><td>Gate 1</td><td>Delhi end, Meerut Road, near Traffic Police Training Centre</td><td><span class="mgi-badge mgi-b-green">Open</span></td></tr>
-        <tr><td>Gate 2</td><td>Meerut end, on the road going to Meerut</td><td><span class="mgi-badge mgi-b-green">Open</span></td></tr>
-        <tr><td>Gate 3</td><td>Meerut end, towards Shaheed Sthal Metro and Mod Gol Chakkar</td><td><span class="mgi-badge mgi-b-red">Closed at last update</span></td></tr>
-        <tr><td>Gate 4</td><td>Delhi end, near Mahamaya Stadium</td><td>Parking: 60 car + 162 two-wheeler slots (shared with Gate 5)</td></tr>
-        <tr><td>Gate 5</td><td>Meerut end</td><td>Parking as above; two-wheeler ₹10 (10 min–6 hr), car ₹30; monthly ₹400 / ₹1,000</td></tr>
-      </table></div>
-      <p class="mgi-note" style="padding:0 12px">Onward from Ghaziabad: Shaheed Sthal (Delhi Metro Red Line) is about 250 m away; Ghaziabad Junction is about 3 km. City buses such as GHE-02 (Loni–Purana Bus Adda) stop nearby. Washrooms, drinking water and the help desk are inside the paid concourse.</p>
-    </div>
-  </section>
+  
 
   <section aria-label="Service frequency">
     <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Service Frequency &amp; Timings</h2><div class="mgi-sec-line"></div></div>
@@ -173,31 +210,61 @@
     <p class="mgi-note">Frequencies are approximate and change by time of day. Aim to leave Bhaisali by about 9:30 PM so you connect to the last Namo Bharat from Shatabdi Nagar. Check the Namo Bharat app for live timings.</p>
   </section>
 
-  <section class="related-guides-section">
-    <div class="container">
-      <h2 class="section-title">Related Commuter Guides &amp; Transit Insights</h2>
-      <div class="guides-grid">
-        <article class="guide-card">
-          <h3><a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html">Namo Bharat RRTS Guide: Stations, Timings &amp; Fares</a></h3>
-          <p>Complete corridor overview, standard vs premium coach rules, luggage limits, and network ticketing.</p>
-        </article>
-        <article class="guide-card">
-          <h3><a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html">How to Reach Delhi IGI Airport via Namo Bharat &amp; Delhi Metro</a></h3>
-          <p>Fastest multimodal transfer routes via Sarai Kale Khan and Anand Vihar directly to T1, T2, and T3.</p>
-        </article>
-        <article class="guide-card">
-          <h3><a href="/blog/delhi-meerut-rrts-parking-facilities-charges.html">Namo Bharat Station Parking Charges &amp; Overnight Rules</a></h3>
-          <p>Car and two-wheeler parking rates, monthly pass tariffs, FASTag integration, and EV charging points.</p>
-        </article>
-        <article class="guide-card">
-          <h3><a href="/blog/ncmc-card-namo-bharat-recharge-rules.html">Using NCMC Cards on Namo Bharat: Discounts &amp; AFC Gate Guide</a></h3>
-          <p>How to use your RuPay card or RRTS Connect app for an instant 10% commuter discount across all gates.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="faq-section" aria-label="Frequently asked questions">
+  <section aria-label="Multimodal commute cost comparison">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Multimodal Commute Cost Comparison</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Mode of Travel</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">One-Way Cost</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Travel Time</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Congestion & Reliability</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Standard</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹120 one-way; ₹108 with eligible 10% NCMC/QR discount</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~48 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Scheduled rail; peak frequency 10–12 min (08:00–11:00 AM and 05:00–08:00 PM), off-peak about 15 min.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Premium</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">≈₹144 one-way before discount (about 20% above standard); verify fare chart</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~48 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Same corridor timetable; premium coach offers a quieter, less crowded ride.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Private app cab (Uber/Ola via Delhi–Meerut Expressway)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Live app quote plus applicable expressway toll; varies by pickup, time and surge.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable; check the app for the live route estimate.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Road congestion, incidents and surge pricing can change journey time.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Personal two-wheeler</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Fuel = route distance ÷ your vehicle&#x27;s km/L × local petrol price, plus any applicable toll.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable with road conditions and traffic.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Exposed to road congestion, weather and parking constraints.</td></tr></tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Rail fare uses the standard fare shown for this route; premium fare is an approximate 20% uplift. Cab and two-wheeler costs are variable, not operator quotations. Confirm fares and live road conditions before travel.</p>
+</section>
+<section aria-label="Commuter pass and monthly budget savings">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass & Monthly Budget Savings</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Commute Frequency</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Paper Token / Cash</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">NCMC / RRTS Connect QR (10% Off)</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Net Savings</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daily (Round Trip)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹240</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹216</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹24</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Weekly (6 Days)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,440</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,296</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹144</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Monthly (24 Workdays)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹5,760</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹5,184</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹576</td></tr></tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Estimates use the displayed one-way standard route fare (₹120) × two trips, then apply the 10% NCMC / RRTS Connect QR discount. For journeys using multiple operators, confirm each fare segment and discount eligibility in the app.</p>
+</section>
+<section aria-label="Actionable gate and landmark blueprint">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Actionable Gate & Landmark Blueprint</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Station</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Gate / Interchange</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Landmark & Access</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali Bus Stand and Delhi Road.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 2</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Sadar Bazaar feeder access.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Ghaziabad</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Meerut Road, Delhi-side approach.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Ghaziabad</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 3</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Skywalk interchange to DMRC Red Line Shaheed Sthal.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Ghaziabad</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 4</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Mahamaya Stadium and the pedestrian plaza.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Ghaziabad</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 5</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Multi-level parking, service road and auto bays.</td></tr></tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Gate assignments and access can change during operations; follow on-site wayfinding and confirm active entrances before setting out.</p>
+</section>
+<section aria-label="Related commuter guides and transit insights" style="margin-top: 1rem;">
+  <div class="mgi-sec-head">
+    <div class="mgi-sec-line"></div>
+    <h2 class="mgi-sec-title">Related Commuter Guides &amp; Transit Insights</h2>
+    <div class="mgi-sec-line"></div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-red" style="width: fit-content;">Master Guide</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat RRTS Guide 2026: Stations, Timings &amp; Fares</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Full corridor station overview, standard vs premium coach rules, smart card tap, and baggage guidelines.</p>
+    </div>
+    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-blue" style="width: fit-content;">Airport Connectivity</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html" style="color: #1A1A1A; text-decoration: none;">How to Reach Delhi IGI Airport from Meerut &amp; Ghaziabad</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Fastest multimodal connection via Sarai Kale Khan / Anand Vihar directly to IGI Airport Terminals 1, 2 &amp; 3.</p>
+    </div>
+    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-green" style="width: fit-content;">Parking Directory</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat Station Parking Charges &amp; Monthly Pass Rates</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Official hourly tariffs, two-wheeler and four-wheeler monthly passes, FASTag parking, and overnight rules.</p>
+    </div>
+    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-amber" style="width: fit-content;">Ticketing &amp; NCMC</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/how-to-book-namo-bharat-ticket-online-ncmc-card-guide.html" style="color: #1A1A1A; text-decoration: none;">NCMC Card &amp; RRTS Connect App: 10% Discount Guide</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">How to activate your bank RuPay card for transit, generate digital QR tickets, and avoid TVM lines.</p>
+    </div>
+  </div>
+</section>
+<section class="faq-section" aria-label="Frequently asked questions">
     <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Frequently Asked Questions</h2><div class="mgi-sec-line"></div></div>
     <div class="mgi-card mgi-faq-wrap">
       <div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does Bhaisali to Ghaziabad take?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">About 48 minutes (42–55 minutes with waiting): roughly 7 minutes by Meerut Metro to Shatabdi Nagar, a short interchange, then about 30 minutes on Namo Bharat to Ghaziabad.</div></div>
