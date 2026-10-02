@@ -281,47 +281,47 @@
           "name": "What is the distance from Bhaisali to Daurli by Meerut Metro?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The distance from Bhaisali to Daurli on Meerut Metro is approximately 5.5 km."
+            "text": "The listed route distance is approximately 5.5 km."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the fare from Bhaisali to Daurli on Meerut Metro?",
+          "name": "What is the standard fare from Bhaisali to Daurli?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The standard fare from Bhaisali to Daurli on Meerut Metro is approximately ₹30."
+            "text": "The listed standard fare is ₹30 one way. Check current operator fare information before travelling."
           }
         },
         {
           "@type": "Question",
-          "name": "How long does it take to travel from Bhaisali to Daurli?",
+          "name": "How long does the Bhaisali to Daurli journey take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The estimated travel time from Bhaisali to Daurli is about 9 min."
+            "text": "The estimated journey time is about 9 min."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the first train from Bhaisali for this route?",
+          "name": "How frequently do trains run from Bhaisali?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The first train information for departures from Bhaisali is: 06:00 AM (weekday/Saturday baseline); Sunday: 08:00 AM (Sunday baseline)."
+            "text": "The source lists peak headways of ~10 min and off-peak headways of ~15 min. Actual service intervals may vary; check live operator updates."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the last train from Bhaisali for this route?",
+          "name": "Where can I find the current gates at Bhaisali?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The last train information for departures from Bhaisali is: 10:00–10:30 PM (direction-dependent baseline)."
+            "text": "Gate-level information for Bhaisali is not included in rrts-data.json. Follow current station signs or ask station staff."
           }
         },
         {
           "@type": "Question",
-          "name": "Which exit gates are useful at Daurli station?",
+          "name": "Where can I find the current gates at Daurli?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Current gate guidance for Daurli is: Gate 1: Main entrance; Gate 2: Secondary entrance."
+            "text": "Gate-level information for Daurli is not included in rrts-data.json. Follow current station signs or ask station staff."
           }
         }
       ]
@@ -329,6 +329,21 @@
   ]
 }
 </script>
+<style id="route-template-shared">
+  .mgi-tbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+  .mgi-tbl th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#888;text-align:left;padding:10px 12px;background:#FDF0EC}
+  .mgi-tbl td{padding:10px 12px;border-top:1px solid #EDE9E3;color:#555;line-height:1.5;vertical-align:top}
+  .mgi-tbl td:first-child{color:#1A1A1A;font-weight:700}
+  .mgi-scroll{overflow-x:auto}
+  .mgi-dot-green{width:10px;height:10px;border-radius:50%;background:#27764A;display:inline-block}
+  .mgi-dot-red{width:10px;height:10px;border-radius:50%;background:#C0392B;display:inline-block}
+  .related-guides-section .guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .related-guides-section .guide-card{background:#fff;border:1px solid #EDE9E3;border-radius:14px;padding:14px 15px}
+  .related-guides-section .guide-card h3{font-size:13px;font-weight:700;line-height:1.4;margin:0}
+  .related-guides-section .guide-card a{color:#C84B31;text-decoration:none}
+  .related-guides-section .guide-card p{font-size:12px;color:#666;line-height:1.6;margin:0}
+  .mgi-note{font-size:12px;color:#666;line-height:1.65;margin-top:10px}
+</style>
 </head>
 <body>
 
@@ -364,7 +379,7 @@
           <div class="rc-val">9<span> min</span></div>
           <div class="rc-lbl">Est. Time</div>
         </div>
-      </div>
+      <div class="rc-sep"></div><div class="rc-sum-item"><div class="rc-val">~10<span> min</span></div><div class="rc-lbl">Frequency</div></div></div>
 
 <div class="rc-steps">
     <div class="step step-regular step-first">
@@ -434,119 +449,26 @@
       </div>
 
     </div>
+
+
+
+
+<!-- RRTS_ROUTE_SUMMARY_DETAILS -->
 <div class="mgi-sections">
-
-  <section aria-label="Station amenities">
+<section aria-label="Peak traveling hours"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Peak Traveling Hours</h2><div class="mgi-sec-line"></div></div><div class="mgi-peak-grid"><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">6:00 – 7:00 AM</span><span class="mgi-peak-lbl">Early morning</span><div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:35%"></div></div><span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Low crowd</span></div><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">7:00 – 9:30 AM</span><span class="mgi-peak-lbl">Morning rush</span><div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:95%"></div></div><span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span></div><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">9:30 AM – 4:30 PM</span><span class="mgi-peak-lbl">Off-peak midday</span><div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:30%"></div></div><span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Comfortable</span></div><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">4:30 – 7:00 PM</span><span class="mgi-peak-lbl">Evening rush</span><div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:90%"></div></div><span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span></div><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">7:00 – 9:00 PM</span><span class="mgi-peak-lbl">Post-rush taper</span><div class="mgi-peak-bar"><div class="mgi-peak-fill amber" style="width:55%"></div></div><span class="mgi-badge mgi-b-amber" style="width:fit-content;margin-top:4px">Moderate</span></div><div class="mgi-card mgi-peak-card"><span class="mgi-peak-time">After 9:00 PM</span><span class="mgi-peak-lbl">Late night</span><div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:18%"></div></div><span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Sparse</span></div></div></section>
+<section aria-label="Multimodal commute cost comparison"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Multimodal Commute Cost Comparison</h2><div class="mgi-sec-line"></div></div><div class="mgi-card mgi-scroll"><table class="mgi-tbl"><thead><tr><th>Mode of travel</th><th>One-way cost</th><th>Travel time</th><th>Congestion &amp; reliability</th></tr></thead><tbody><tr><td>Namo Bharat Standard</td><td>₹30 one-way; eligible NCMC / app QR discount may apply</td><td>~9 min</td><td>Scheduled rail; use published operator timetable.</td></tr><tr><td>Namo Bharat Premium</td><td>About ₹36 one-way (approx. 20% above standard); confirm current fare</td><td>~9 min</td><td>Same corridor service; premium coach fare and availability can vary.</td></tr><tr><td>App cab</td><td>Live app quote plus applicable tolls; varies by pickup, time and demand</td><td>Variable; check the app before travel</td><td>Road congestion and surge pricing can change cost and travel time.</td></tr><tr><td>Personal two-wheeler</td><td>Fuel cost depends on 5.5 km ÷ vehicle km/L × local fuel price, plus any toll</td><td>Variable with road conditions</td><td>Road congestion, weather and parking affect the trip.</td></tr></tbody></table></div><p class="mgi-note">Rail fares and journey times are route estimates. Cab and two-wheeler costs are variable, not operator quotations. Confirm current fares and road conditions before travel.</p></section>
+<section aria-label="Commuter pass and monthly budget savings"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Budget Savings</h2><div class="mgi-sec-line"></div></div><div class="mgi-card mgi-scroll"><table class="mgi-tbl"><thead><tr><th>Commute frequency</th><th>Token / cash</th><th>NCMC / app QR (10% discount)</th><th>Net savings</th></tr></thead><tbody><tr><td>Daily (Round Trip)</td><td>₹60</td><td>₹54</td><td>₹6</td></tr><tr><td>Weekly (6 Days)</td><td>₹360</td><td>₹324</td><td>₹36</td></tr><tr><td>Monthly (24 Days)</td><td>₹1,440</td><td>₹1,296</td><td>₹144</td></tr></tbody></table></div><p class="mgi-note">Estimates use the route’s listed one-way standard fare for each leg and apply a 10% NCMC / app QR discount. Confirm current eligibility and fare rules with the operator.</p></section>
+<section aria-label="Actionable gate and landmark blueprint">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Actionable Gate &amp; Landmark Blueprint</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card mgi-scroll"><table class="mgi-tbl"><thead><tr><th>Station</th><th>Gate &amp; connecting road</th><th>Nearby landmarks</th><th>Parking &amp; feeder status</th></tr></thead><tbody><tr><td>Bhaisali</td><td>Gate-level records for this station are not included in rrts-data.json.</td><td>Landmark records for this station are not included in rrts-data.json.</td><td>Parking and feeder details are not included in rrts-data.json.</td></tr><tr><td>Daurli</td><td>Gate-level records for this station are not included in rrts-data.json.</td><td>Landmark records for this station are not included in rrts-data.json.</td><td>Parking and feeder details are not included in rrts-data.json.</td></tr></tbody></table></div>
+  <p class="mgi-note">Gate, landmark, parking and feeder details are sourced from rrts-data.json. Follow current on-site wayfinding where operating conditions change.</p>
+</section>
+<section class="related-guides-section" aria-label="Related commuter guides and transit insights"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Related Commuter Guides &amp; Transit Insights</h2><div class="mgi-sec-line"></div></div><div class="guides-grid"><div class="mgi-card guide-card"><span class="mgi-badge mgi-b-red">Master Guide</span><h3><a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html">Namo Bharat RRTS Guide 2026: Stations, Timings &amp; Fares</a></h3><p>Full corridor station overview, standard vs premium coach rules, smart card and baggage guidance.</p></div><div class="mgi-card guide-card"><span class="mgi-badge mgi-b-blue">Airport Connectivity</span><h3><a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html">How to Reach Delhi IGI Airport from Meerut &amp; Ghaziabad</a></h3><p>Connections via Namo Bharat and onward options to IGI Airport terminals.</p></div><div class="mgi-card guide-card"><span class="mgi-badge mgi-b-green">Parking Directory</span><h3><a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html">Namo Bharat Station Parking Charges &amp; Monthly Pass Rates</a></h3><p>Station parking locations, tariffs, monthly passes and operating rules.</p></div><div class="mgi-card guide-card"><span class="mgi-badge mgi-b-amber">Ticketing &amp; NCMC</span><h3><a href="/blog/how-to-book-namo-bharat-ticket-online-ncmc-card-guide.html">NCMC Card &amp; RRTS Connect App: 10% Discount Guide</a></h3><p>Digital QR tickets, eligible discounts and NCMC payment guidance.</p></div></div></section>
+<section aria-label="Station amenities"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Station Amenities</h2><div class="mgi-sec-line"></div></div><div class="mgi-fac-grid"><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div><span class="mgi-fac-label">Washrooms</span><span class="mgi-badge mgi-b-gray">Confirm availability at the station</span></div><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div><span class="mgi-fac-label">Drinking Water</span><span class="mgi-badge mgi-b-gray">Confirm availability at the station</span></div><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div><span class="mgi-fac-label">First Aid</span><span class="mgi-badge mgi-b-gray">Confirm availability at the station</span></div><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div><span class="mgi-fac-label">Food Stalls</span><span class="mgi-badge mgi-b-gray">Confirm availability at the station</span></div><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div><span class="mgi-fac-label">Divyangjan Friendly</span><span class="mgi-badge mgi-b-gray">Confirm availability at the station</span></div><div class="mgi-card mgi-fac-card"><div class="mgi-icon-wrap"><i class="ti ti-parking-circle" aria-hidden="true"></i></div><span class="mgi-fac-label">Parking</span><span class="mgi-badge mgi-b-gray">Bhaisali: check operator information; Daurli: check operator information</span></div></div><p class="mgi-note">Facility-level availability is not supplied in rrts-data.json; confirm current amenities at the station.</p></section>
+<section aria-label="Namo Bharat RRTS route map">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Station Amenities</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-fac-grid">
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Washrooms</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Drinking Water</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">First Aid</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Food Stalls</span>
-        <span class="mgi-badge mgi-b-red">Unavailable</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Divyangjan Friendly</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-parking-circle" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Parking</span>
-        <span class="mgi-badge mgi-b-red">Unavailable</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Exit gates">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Exit Gates — Daurli Station</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-exit-grid">
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate Info</span>
-        </div>
-        <span class="mgi-exit-sub">Daurli, Meerut Road, Uttar Pradesh</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-blue">Follow the station wayfinding signs and confirm active gates with station staff.</span>
-          <span class="mgi-badge mgi-b-green">Accessible</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Peak traveling hours">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Peak Traveling Hours</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-peak-grid">
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">6:00 – 7:00 AM</span>
-        <span class="mgi-peak-lbl">Early morning</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:35%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Low crowd</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">7:00 – 9:30 AM</span>
-        <span class="mgi-peak-lbl">Morning rush</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:88%"></div></div>
-        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">9:30 AM – 4:30 PM</span>
-        <span class="mgi-peak-lbl">Off-peak midday</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:30%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Comfortable</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">4:30 – 7:00 PM</span>
-        <span class="mgi-peak-lbl">Evening rush</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill" style="width:84%"></div></div>
-        <span class="mgi-badge mgi-b-red" style="width:fit-content;margin-top:4px">Very crowded</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">7:00 – 9:00 PM</span>
-        <span class="mgi-peak-lbl">Post-rush taper</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill amber" style="width:55%"></div></div>
-        <span class="mgi-badge mgi-b-amber" style="width:fit-content;margin-top:4px">Moderate</span>
-      </div>
-      <div class="mgi-card mgi-peak-card">
-        <span class="mgi-peak-time">After 9:00 PM</span>
-        <span class="mgi-peak-lbl">Late night</span>
-        <div class="mgi-peak-bar"><div class="mgi-peak-fill green" style="width:18%"></div></div>
-        <span class="mgi-badge mgi-b-green" style="width:fit-content;margin-top:4px">Sparse</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Meerut Metro route map">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Route Map — Meerut Metro</h2>
+      <h2 class="mgi-sec-title">Route Map — Namo Bharat RRTS</h2>
       <div class="mgi-sec-line"></div>
     </div>
     <div class="mgi-card mgi-map-outer">
@@ -575,216 +497,16 @@
         </div>
       </div>
       <div class="mgi-map-legend">
-        <span><i class="mgi-dot-red"></i> Namo Bharat / direct stops</span>
-        <span><i class="mgi-dot-gray" style="background:#27764A"></i> Metro / destination</span>
+        <span><i class="mgi-dot-red"></i> Namo Bharat RRTS</span>
+        <span><i class="mgi-dot-green"></i> Meerut Metro</span>
       </div>
     </div>
   </section>
-
-  <section aria-label="Safety tips">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Safety Tips</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-safety-grid">
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#A32D2D"></i></div>
-        <div class="mgi-safety-text"><h4>Mind the gap</h4><p>Step carefully while boarding. Stand behind the yellow line until the train fully stops.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#E6F1FB"><i class="ti ti-map-pin-route" aria-hidden="true" style="color:#185FA5"></i></div>
-        <div class="mgi-safety-text"><h4>Watch platform markings</h4><p>Stand behind the yellow line and wait for coach doors to align before boarding.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-briefcase" aria-hidden="true" style="color:#854F0B"></i></div>
-        <div class="mgi-safety-text"><h4>Watch your belongings</h4><p>Keep bags in front of you during rush periods and report unattended luggage immediately.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div>
-        <div class="mgi-safety-text"><h4>Priority seating</h4><p>Seats near doors are reserved for elderly, pregnant, and Divyangjan passengers.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-phone-call" aria-hidden="true" style="color:#854F0B"></i></div>
-        <div class="mgi-safety-text"><h4>Emergency helpline</h4><p>For any safety concern, use the Talk-Back button in the coach or call 1800-209-0200.</p></div>
-      </div>
-      <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-camera-off" aria-hidden="true" style="color:#A32D2D"></i></div>
-        <div class="mgi-safety-text"><h4>No photography</h4><p>Photography inside trains, platforms, or restricted operational areas is prohibited.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Environmental impact of this ride">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Taking this ride means</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-eco-grid">
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-leaf" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">0.8</span>
-        <span class="mgi-eco-unit">kg CO₂ saved</span>
-        <span class="mgi-eco-desc">vs. driving 5.5 km by private car</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-flame-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">0.4</span>
-        <span class="mgi-eco-unit">litres fuel saved</span>
-        <span class="mgi-eco-desc">that would otherwise burn in corridor traffic</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-trees" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">6</span>
-        <span class="mgi-eco-unit">trees&#x27; daily work</span>
-        <span class="mgi-eco-desc">CO₂ absorbed per 1,000 riders on this route daily</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-road-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">~45</span>
-        <span class="mgi-eco-unit">cars off the road</span>
-        <span class="mgi-eco-desc">when one full coach replaces private vehicle trips</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-solar-panel" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">30%</span>
-        <span class="mgi-eco-unit">solar powered</span>
-        <span class="mgi-eco-desc">NCRTC&#x27;s energy mix includes renewable solar generation</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Multimodal commute cost comparison">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Multimodal Commute Cost Comparison</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Mode of Travel</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">One-Way Cost</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Travel Time</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Congestion &amp; Reliability</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Meerut Metro (standard service)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹30 one-way; ₹27 with eligible 10% NCMC/QR discount</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~9 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Scheduled rail; peak frequency 10–12 min (08:00–11:00 AM and 05:00–08:00 PM), off-peak about 15 min.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Premium (not on this route)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Not available for this local Meerut Metro station pair.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Not served on this route.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Premium coaching is a Namo Bharat service; use the local Meerut Metro timetable.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Private app cab (Uber/Ola via Delhi–Meerut Expressway)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Live app quote plus applicable expressway toll; varies by pickup, time and surge.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable; check the app for the live route estimate.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Road congestion, incidents and surge pricing can change journey time.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Personal two-wheeler</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Fuel = route distance ÷ your vehicle&#x27;s km/L × local petrol price, plus any applicable toll.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable with road conditions and traffic.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Exposed to road congestion, weather and parking constraints.</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">This station pair uses Meerut Metro only; Namo Bharat Standard and Premium are not direct options. The displayed local fare and discount estimate should be checked against current station or app rules. Cab and two-wheeler costs are variable, not operator quotations.</p>
-</section>
-<section aria-label="Commuter pass and monthly budget savings">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Budget Savings</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Commute Frequency</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Paper Token / Cash</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">NCMC / RRTS Connect QR (10% Off)</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Net Savings</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daily (Round Trip)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹60</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹54</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹6</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Weekly (6 Days)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹360</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹324</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹36</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Monthly (24 Workdays)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,440</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,296</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹144</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Estimates use the displayed one-way standard route fare (₹30) × two trips, then apply the 10% NCMC / RRTS Connect QR discount. For journeys using multiple operators, confirm each fare segment and discount eligibility in the app.</p>
-</section>
-<section aria-label="Actionable gate and landmark blueprint">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Actionable Gate &amp; Landmark Blueprint</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Station</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Gate / Interchange</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Landmark & Access</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali Bus Stand and Delhi Road.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Bhaisali</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 2</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Sadar Bazaar feeder access.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daurli</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Main entrance</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daurli</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 2</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Secondary entrance</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Gate assignments and access can change during operations; follow on-site wayfinding and confirm active entrances before setting out.</p>
-</section>
-<section aria-label="Related commuter guides and transit insights" style="margin-top: 1rem;">
-  <div class="mgi-sec-head">
-    <div class="mgi-sec-line"></div>
-    <h2 class="mgi-sec-title">Related Commuter Guides &amp; Transit Insights</h2>
-    <div class="mgi-sec-line"></div>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-red" style="width: fit-content;">Master Guide</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat RRTS Guide 2026: Stations, Timings &amp; Fares</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Full corridor station overview, standard vs premium coach rules, smart card tap, and baggage guidelines.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-blue" style="width: fit-content;">Airport Connectivity</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html" style="color: #1A1A1A; text-decoration: none;">How to Reach Delhi IGI Airport from Meerut &amp; Ghaziabad</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Fastest multimodal connection via Sarai Kale Khan / Anand Vihar directly to IGI Airport Terminals 1, 2 &amp; 3.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-green" style="width: fit-content;">Parking Directory</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat Station Parking Charges &amp; Monthly Pass Rates</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Official hourly tariffs, two-wheeler and four-wheeler monthly passes, FASTag parking, and overnight rules.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-amber" style="width: fit-content;">Ticketing &amp; NCMC</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/how-to-book-namo-bharat-ticket-online-ncmc-card-guide.html" style="color: #1A1A1A; text-decoration: none;">NCMC Card &amp; RRTS Connect App: 10% Discount Guide</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">How to activate your bank RuPay card for transit, generate digital QR tickets, and avoid TVM lines.</p>
-    </div>
-  </div>
-</section>
-<section aria-label="Frequently asked questions">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Frequently Asked Questions</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-card mgi-faq-wrap">
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the distance from Bhaisali to Daurli by Meerut Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The distance from Bhaisali to Daurli on Meerut Metro is approximately 5.5 km.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the fare from Bhaisali to Daurli on Meerut Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The standard fare from Bhaisali to Daurli on Meerut Metro is approximately ₹30.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does it take to travel from Bhaisali to Daurli?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The estimated travel time from Bhaisali to Daurli is about 9 min.</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the first train from Bhaisali for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The first train information for departures from Bhaisali is: 06:00 AM (weekday/Saturday baseline); Sunday: 08:00 AM (Sunday baseline).</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the last train from Bhaisali for this route?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">The last train information for departures from Bhaisali is: 10:00–10:30 PM (direction-dependent baseline).</div>
-      </div>
-      <div class="mgi-faq-item">
-        <button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Which exit gates are useful at Daurli station?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button>
-        <div class="mgi-faq-a">Current gate guidance for Daurli is: Gate 1: Main entrance; Gate 2: Secondary entrance.</div>
-      </div>
-    </div>
-  </section>
-
+<section aria-label="Safety tips"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Safety Tips</h2><div class="mgi-sec-line"></div></div><div class="mgi-safety-grid"><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#A32D2D"></i></div><div class="mgi-safety-text"><h4>Mind the gap</h4><p>Step carefully while boarding and wait for the train to stop before entering.</p></div></div><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#E6F1FB"><i class="ti ti-map-pin-route" aria-hidden="true" style="color:#185FA5"></i></div><div class="mgi-safety-text"><h4>Platform markings</h4><p>Follow platform arrows and floor markings; stand behind the yellow line.</p></div></div><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-briefcase" aria-hidden="true" style="color:#854F0B"></i></div><div class="mgi-safety-text"><h4>Watch belongings</h4><p>Keep bags close, especially during busy periods, and report unattended items.</p></div></div><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div><div class="mgi-safety-text"><h4>Priority seating</h4><p>Offer reserved seats to elderly, pregnant and Divyangjan passengers.</p></div></div><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-phone-call" aria-hidden="true" style="color:#854F0B"></i></div><div class="mgi-safety-text"><h4>Helpline</h4><p>Use the coach Talk-Back button or contact station staff for assistance.</p></div></div><div class="mgi-card mgi-safety-card"><div class="mgi-icon-wrap" style="background:#FCEBEB"><i class="ti ti-camera-off" aria-hidden="true" style="color:#A32D2D"></i></div><div class="mgi-safety-text"><h4>No photography</h4><p>Do not photograph restricted operational areas; follow posted station rules.</p></div></div></div></section>
+<section aria-label="Frequently asked questions"><div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Frequently Asked Questions</h2><div class="mgi-sec-line"></div></div><div class="mgi-card mgi-faq-wrap"><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the distance from Bhaisali to Daurli by Meerut Metro?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">The listed route distance is approximately 5.5 km.</div></div><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>What is the standard fare from Bhaisali to Daurli?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">The listed standard fare is ₹30 one way. Check current operator fare information before travelling.</div></div><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How long does the Bhaisali to Daurli journey take?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">The estimated journey time is about 9 min.</div></div><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>How frequently do trains run from Bhaisali?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">The source lists peak headways of ~10 min and off-peak headways of ~15 min. Actual service intervals may vary; check live operator updates.</div></div><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Where can I find the current gates at Bhaisali?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">Gate-level information for Bhaisali is not included in rrts-data.json. Follow current station signs or ask station staff.</div></div><div class="mgi-faq-item"><button class="mgi-faq-q" aria-expanded="false" data-mgi-faq>Where can I find the current gates at Daurli?<i class="ti ti-chevron-down mgi-chev" aria-hidden="true"></i></button><div class="mgi-faq-a">Gate-level information for Daurli is not included in rrts-data.json. Follow current station signs or ask station staff.</div></div></div></section>
 </div>
 <!-- end .mgi-sections -->
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->
-<div class="rc-route-meta" style="margin-top:12px;padding:12px 14px;border:1px solid var(--border2,#e2e8f0);border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 6px 24px rgba(2,6,23,.03);display:grid;gap:0">
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> 06:00 AM (weekday/Saturday baseline); Sunday: 08:00 AM (Sunday baseline)</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> 10:00–10:30 PM (direction-dependent baseline)</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Exit Gate Blueprint:</strong> Gate 1: Main entrance; Gate 2: Secondary entrance</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> Station data lists parking (four wheeler from ₹ 50/-, two wheeler from ₹ 20/-); confirm current tariffs and availability locally.<br><span style="display:inline-block;margin-top:6px"><a href="https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html" target="_blank" rel="noopener noreferrer" style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a></span></div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> Listed facilities include washrooms, drinking water, first aid, accessible facilities, premium lounge; check station signage for current availability.</div>
-</div>
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->
-
-    <div class="route-seo-box" data-system="Meerut Metro">
-      <div class="route-seo-title">Route Summary</div>
-      <p class="route-seo-lead">
-        Looking for Bhaisali to Daurli Meerut Metro route?
-        This 5.5 km trip takes about 9 minutes on average.
-      </p>
-      <div class="route-seo-lines">
-        <div><strong>Fare:</strong> ₹30 (Standard) | No premium coach on Meerut Metro.</div>
-        <div><strong>Time:</strong> Approx. 5–19 mins.</div>
-        <div><strong>Interchanges:</strong> 0 (Direct).</div>
-        <div><strong>Major Hubs:</strong> Begumpul (Metro Interchange).</div>
-        <div><strong>Top Stations:</strong> Begumpul, MES Colony.</div>
-        <div><strong>Ticketing:</strong> Use Namo Bharat App or NCMC. <a href="https://rrts.co.in" rel="nofollow noopener" target="_blank" style="color:#C0392B;font-weight:600">Official Website</a></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="quick-facts" style="margin-top:24px">
-    <div class="quick-facts-title">Quick Facts</div>
-    <ul>
-      <li>Distance: <strong>5.5 km</strong></li>
-      <li>Travel time: <strong>~5–19 minutes</strong></li>
-      <li>Standard fare: <strong>₹30</strong> | <strong>No premium coach on Meerut Metro</strong></li>
-      <li>Interchanges: <strong>0 interchanges</strong></li>
-      <li>System: <strong>Meerut Metro</strong></li>
-    </ul>
-  </div>
-
-  <div style="margin-top:24px;font-size:.85rem;color:var(--muted)">
-    <p>Fares and times are based on MetroGuideIndia's latest Meerut Metro route data. Meerut Metro route pages do not list a separate premium coach fare. For the latest information, check the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a>.</p>
-    <p style="margin-top:8px">Plan your trip: <a href="/" style="color:var(--red)">Use our route planner</a> for real-time route calculations.</p>
-  </div>
+<p class="mgi-note" style="margin:24px 0">Fares, journey times, gate access, crowd estimates, parking and feeder details can change. Station-level details on this page are drawn from rrts-data.json where provided; confirm current service information with the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a> before travel.</p>
 </div>
 
 <section id="global-search-section" style="margin:28px 0 36px">
@@ -819,6 +541,7 @@
     <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
   </div>
 </section>
+</div>
 </main>
 
 <!-- Namo Bharat Master Guide Banner -->
