@@ -83,6 +83,11 @@
   .mgi-b-red    { background: #FCEBEB; color: #A32D2D; }
   .mgi-b-blue   { background: #E6F1FB; color: #185FA5; }
   .mgi-b-gray   { background: #F1EFE8; color: #5F5E5A; }
+  .mgi-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 520px; }
+  .mgi-tbl th { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #888; text-align: left; padding: 10px 12px; background: #FDF0EC; }
+  .mgi-tbl td { padding: 10px 12px; border-top: 1px solid #EDE9E3; color: #555; line-height: 1.5; vertical-align: top; }
+  .mgi-tbl td:first-child { color: #1A1A1A; font-weight: 700; }
+  .mgi-dot-green { width: 10px; height: 10px; border-radius: 50%; background: #27764A; display: inline-block; }
 
   /* ── 1. Facilities ── */
   .mgi-fac-grid {
@@ -364,6 +369,11 @@
           <div class="rc-val">46<span> min</span></div>
           <div class="rc-lbl">Est. Time</div>
         </div>
+        <div class="rc-sep"></div>
+        <div class="rc-sum-item">
+          <div class="rc-val">10–15<span> min</span></div>
+          <div class="rc-lbl">Frequency</div>
+        </div>
       </div>
 
 <div class="rc-steps">
@@ -627,107 +637,10 @@
       </div>
 
     </div>
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->
+<!-- RRTS_ROUTE_SUMMARY_DETAILS -->
 <div class="mgi-sections">
 
-  <!-- 1. STATION AMENITIES -->
-  <section aria-label="Station amenities">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Station Amenities</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-fac-grid">
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Washrooms</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Drinking Water</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">First Aid</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Food Stalls</span>
-        <span class="mgi-badge mgi-b-amber">Limited</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Divyangjan Friendly</span>
-        <span class="mgi-badge mgi-b-green">Available</span>
-      </div>
-      <div class="mgi-card mgi-fac-card">
-        <div class="mgi-icon-wrap"><i class="ti ti-wifi" aria-hidden="true"></i></div>
-        <span class="mgi-fac-label">Wi-Fi</span>
-        <span class="mgi-badge mgi-b-red">Unavailable</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. EXIT GATES -->
-  <section aria-label="Exit gates">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Exit Gates — Begumpul Station</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-exit-grid">
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate 1</span>
-        </div>
-        <span class="mgi-exit-sub">Hapur Road,<br>Begumpul Bus Stand</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-blue">Lift</span>
-          <span class="mgi-badge mgi-b-gray">Escalator</span>
-          <span class="mgi-badge mgi-b-green">Accessible</span>
-        </div>
-      </div>
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate 2</span>
-        </div>
-        <span class="mgi-exit-sub">Western Periphery Road,<br>Meerut City Link</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-blue">Lift</span>
-          <span class="mgi-badge mgi-b-green">Accessible</span>
-        </div>
-      </div>
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate 3</span>
-        </div>
-        <span class="mgi-exit-sub">Shastri Nagar Side,<br>Auto Stand</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-gray">Stairs only</span>
-        </div>
-      </div>
-      <div class="mgi-card mgi-exit-card">
-        <div class="mgi-exit-hd">
-          <div class="mgi-exit-icon"><i class="ti ti-door-exit" aria-hidden="true"></i></div>
-          <span class="mgi-exit-name">Gate 4</span>
-        </div>
-        <span class="mgi-exit-sub">Gandhi Ashram Road,<br>Parking Area</span>
-        <div class="mgi-exit-tags">
-          <span class="mgi-badge mgi-b-gray">Escalator</span>
-          <span class="mgi-badge mgi-b-green">Accessible</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. PEAK HOURS -->
-  <section aria-label="Peak traveling hours">
+<section aria-label="Peak traveling hours">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
       <h2 class="mgi-sec-title">Peak Traveling Hours</h2>
@@ -773,12 +686,110 @@
     </div>
   </section>
 
-  <!-- 4. ROUTE MAP
-       The stations below mirror your actual
-       Anand Vihar → Begumpul route exactly.
-       The destination (Begumpul) is marked
-       as "current" since this is the arrival page. -->
-  <section aria-label="Namo Bharat RRTS route map">
+<section aria-label="Multimodal commute cost comparison">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Multimodal Commute Cost Comparison</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card mgi-scroll" style="overflow-x:auto;padding:0"><table class="mgi-tbl"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Mode of Travel</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">One-Way Cost</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Travel Time</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Congestion &amp; Reliability</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Standard</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹160 one-way; ₹144 with eligible 10% NCMC/QR discount</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~46 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Scheduled rail; peak frequency 10–12 min (08:00–11:00 AM and 05:00–08:00 PM), off-peak about 15 min.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Premium</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">≈₹192 one-way before discount (about 20% above standard); verify fare chart</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~46 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Same corridor timetable; premium coach offers a quieter, less crowded ride.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Private app cab (Uber/Ola via Delhi–Meerut Expressway)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Live app quote plus applicable expressway toll; varies by pickup, time and surge.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable; check the app for the live route estimate.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Road congestion, incidents and surge pricing can change journey time.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Personal two-wheeler</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Fuel = route distance ÷ your vehicle&#x27;s km/L × local petrol price, plus any applicable toll.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable with road conditions and traffic.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Exposed to road congestion, weather and parking constraints.</td></tr></tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Rail fare uses the standard fare shown for this route; premium fare is an approximate 20% uplift. Cab and two-wheeler costs are variable, not operator quotations. Confirm fares and live road conditions before travel.</p>
+</section>
+
+<section aria-label="Commuter pass and monthly budget savings">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Budget Savings</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card mgi-scroll" style="overflow-x:auto;padding:0"><table class="mgi-tbl"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Commute Frequency</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Paper Token / Cash</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">NCMC / RRTS Connect QR (10% Off)</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Net Savings</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daily (Round Trip)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹320</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹288</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹32</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Weekly (6 Days)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,920</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,728</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹192</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Monthly (24 Workdays)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹7,680</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹6,912</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹768</td></tr></tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Estimates use the displayed one-way standard route fare (₹160) × two trips, then apply the 10% NCMC / RRTS Connect QR discount. For journeys using multiple operators, confirm each fare segment and discount eligibility in the app.</p>
+</section>
+
+<section aria-label="Actionable gate and landmark blueprint">
+  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Actionable Gate &amp; Landmark Blueprint</h2><div class="mgi-sec-line"></div></div>
+  <div class="mgi-card mgi-scroll" style="overflow-x:auto;padding:0"><table class="mgi-tbl"><thead><tr><th>Station</th><th>Gate</th><th>Connecting road &amp; landmark</th><th>Parking / feeder status</th></tr></thead><tbody>
+<tr><td>Anand Vihar</td><td>Gate 1</td><td>Chaudhary Charan Singh Marg; Kaushambi, Ghazipur and Delhi–UP border approach.</td><td>Parking profile: 20 four-wheelers and 105 two-wheelers; autos and ride-hail pickup nearby.</td></tr>
+<tr><td>Anand Vihar</td><td>Gate 2</td><td>Circulating road to Anand Vihar Terminal Railway Station (ANVT) and the ISBT complex.</td><td>Railway, ISBT, bus and auto connections; no gate-specific parking count listed.</td></tr>
+<tr><td>Begumpul</td><td>Gate 1</td><td>Hapur Road and Begumpul Bus Stand.</td><td>182 two-wheeler spaces in station parking profile; bus and auto feeder access.</td></tr>
+<tr><td>Begumpul</td><td>Gate 2</td><td>Western Periphery Road and Meerut City Link.</td><td>79 two-wheeler spaces in station parking profile; local auto/e-rickshaw feeder access.</td></tr>
+<tr><td>Begumpul</td><td>Gate 3</td><td>Shastri Nagar side and auto stand.</td><td>97 two-wheeler spaces in station parking profile; auto feeder access.</td></tr>
+<tr><td>Begumpul</td><td>Gate 4</td><td>Gandhi Ashram Road and station parking area.</td><td>92 two-wheeler spaces in station parking profile; parking and auto feeder access.</td></tr>
+</tbody></table></div>
+  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Gate assignments and access can change during operations; follow on-site wayfinding and confirm active entrances before setting out.</p>
+</section>
+
+<section class="related-guides-section" aria-label="Related commuter guides and transit insights" style="margin-top: 1rem;">
+  <div class="mgi-sec-head">
+    <div class="mgi-sec-line"></div>
+    <h2 class="mgi-sec-title">Related Commuter Guides &amp; Transit Insights</h2>
+    <div class="mgi-sec-line"></div>
+  </div>
+  <div class="guides-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+    <div class="mgi-card guide-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-red" style="width: fit-content;">Master Guide</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat RRTS Guide 2026: Stations, Timings &amp; Fares</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Full corridor station overview, standard vs premium coach rules, smart card tap, and baggage guidelines.</p>
+    </div>
+    <div class="mgi-card guide-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-blue" style="width: fit-content;">Airport Connectivity</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html" style="color: #1A1A1A; text-decoration: none;">How to Reach Delhi IGI Airport from Meerut &amp; Ghaziabad</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Fastest multimodal connection via Sarai Kale Khan / Anand Vihar directly to IGI Airport Terminals 1, 2 &amp; 3.</p>
+    </div>
+    <div class="mgi-card guide-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-green" style="width: fit-content;">Parking Directory</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat Station Parking Charges &amp; Monthly Pass Rates</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Official hourly tariffs, two-wheeler and four-wheeler monthly passes, FASTag parking, and overnight rules.</p>
+    </div>
+    <div class="mgi-card guide-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span class="mgi-badge mgi-b-amber" style="width: fit-content;">Ticketing &amp; NCMC</span>
+      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
+        <a href="/blog/how-to-book-namo-bharat-ticket-online-ncmc-card-guide.html" style="color: #1A1A1A; text-decoration: none;">NCMC Card &amp; RRTS Connect App: 10% Discount Guide</a>
+      </h3>
+      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">How to activate your bank RuPay card for transit, generate digital QR tickets, and avoid TVM lines.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Station amenities">
+    <div class="mgi-sec-head">
+      <div class="mgi-sec-line"></div>
+      <h2 class="mgi-sec-title">Station Amenities</h2>
+      <div class="mgi-sec-line"></div>
+    </div>
+    <div class="mgi-fac-grid">
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-gender-bigender" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Washrooms</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Drinking Water</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">First Aid</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Food Stalls</span>
+        <span class="mgi-badge mgi-b-amber">Limited</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-wheelchair" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Divyangjan Friendly</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+      <div class="mgi-card mgi-fac-card">
+        <div class="mgi-icon-wrap"><i class="ti ti-parking-circle" aria-hidden="true"></i></div>
+        <span class="mgi-fac-label">Parking</span>
+        <span class="mgi-badge mgi-b-green">Available</span>
+      </div>
+    </div>
+  </section>
+
+<section aria-label="Namo Bharat RRTS route map">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
       <h2 class="mgi-sec-title">Route Map — Namo Bharat RRTS</h2>
@@ -868,19 +879,19 @@
             <span class="mgi-you">DEST</span>
             <div class="dot" style="border-color:#C0392B;background:#C0392B"></div>
             <span class="sname" style="font-size:10.5px;font-weight:600;color:#C0392B;text-align:center;max-width:72px;line-height:1.3">Begumpul</span>
+            <span class="mgi-badge mgi-b-green"><i class="mgi-dot-green" aria-hidden="true"></i> Meerut Metro</span>
           </div>
 
         </div>
       </div>
       <div class="mgi-map-legend">
-        <span><i class="mgi-dot-red"></i> Route stations</span>
-        <span><i class="mgi-dot-gray"></i> Destination</span>
+        <span><i class="mgi-dot-red"></i> Namo Bharat RRTS</span>
+        <span><i class="mgi-dot-green"></i> Meerut Metro at Begumpul</span>
       </div>
     </div>
   </section>
 
-  <!-- 5. SAFETY TIPS -->
-  <section aria-label="Safety tips">
+<section aria-label="Safety tips">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
       <h2 class="mgi-sec-title">Safety Tips</h2>
@@ -896,8 +907,8 @@
         <div class="mgi-safety-text"><h4>Watch your belongings</h4><p>Keep bags in front of you during peak hours. Report unattended luggage immediately.</p></div>
       </div>
       <div class="mgi-card mgi-safety-card">
-        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-ban" aria-hidden="true" style="color:#854F0B"></i></div>
-        <div class="mgi-safety-text"><h4>No eating or drinking</h4><p>Consuming food or beverages inside the train is prohibited and carries a fine.</p></div>
+        <div class="mgi-icon-wrap" style="background:#FAEEDA"><i class="ti ti-map-pin-route" aria-hidden="true" style="color:#854F0B"></i></div>
+        <div class="mgi-safety-text"><h4>Platform markings</h4><p>Follow platform arrows and floor markings, and stand behind the yellow line while waiting to board.</p></div>
       </div>
       <div class="mgi-card mgi-safety-card">
         <div class="mgi-icon-wrap" style="background:#EAF3DE"><i class="ti ti-heart-handshake" aria-hidden="true" style="color:#3B6D11"></i></div>
@@ -914,100 +925,6 @@
     </div>
   </section>
 
-  <!-- 6. ECO IMPACT -->
-  <section aria-label="Environmental impact of this ride">
-    <div class="mgi-sec-head">
-      <div class="mgi-sec-line"></div>
-      <h2 class="mgi-sec-title">Taking this ride means</h2>
-      <div class="mgi-sec-line"></div>
-    </div>
-    <div class="mgi-eco-grid">
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-leaf" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">8.3</span>
-        <span class="mgi-eco-unit">kg CO₂ saved</span>
-        <span class="mgi-eco-desc">vs. driving 55 km by private car</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-flame-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">3.8</span>
-        <span class="mgi-eco-unit">litres fuel saved</span>
-        <span class="mgi-eco-desc">that would have burned in Delhi–Meerut traffic</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-trees" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">62</span>
-        <span class="mgi-eco-unit">trees' daily work</span>
-        <span class="mgi-eco-desc">CO₂ absorbed per 1,000 riders on this route daily</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-road-off" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">~350</span>
-        <span class="mgi-eco-unit">cars off the road</span>
-        <span class="mgi-eco-desc">every Namo Bharat coach removes ~350 cars per trip</span>
-      </div>
-      <div class="mgi-card mgi-eco-card">
-        <div class="mgi-eco-iwrap"><i class="ti ti-solar-panel" aria-hidden="true"></i></div>
-        <span class="mgi-eco-num">30%</span>
-        <span class="mgi-eco-unit">solar powered</span>
-        <span class="mgi-eco-desc">NCRTC's energy mix includes renewable solar generation</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. FAQ -->
-  <section aria-label="Multimodal commute cost comparison">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Multimodal Commute Cost Comparison</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Mode of Travel</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">One-Way Cost</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Travel Time</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Congestion &amp; Reliability</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Standard</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹160 one-way; ₹144 with eligible 10% NCMC/QR discount</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~46 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Scheduled rail; peak frequency 10–12 min (08:00–11:00 AM and 05:00–08:00 PM), off-peak about 15 min.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Namo Bharat Premium</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">≈₹192 one-way before discount (about 20% above standard); verify fare chart</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">~46 min</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Same corridor timetable; premium coach offers a quieter, less crowded ride.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Private app cab (Uber/Ola via Delhi–Meerut Expressway)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Live app quote plus applicable expressway toll; varies by pickup, time and surge.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable; check the app for the live route estimate.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Road congestion, incidents and surge pricing can change journey time.</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Personal two-wheeler</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Fuel = route distance ÷ your vehicle&#x27;s km/L × local petrol price, plus any applicable toll.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Variable with road conditions and traffic.</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Exposed to road congestion, weather and parking constraints.</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Rail fare uses the standard fare shown for this route; premium fare is an approximate 20% uplift. Cab and two-wheeler costs are variable, not operator quotations. Confirm fares and live road conditions before travel.</p>
-</section>
-<section aria-label="Commuter pass and monthly budget savings">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Commuter Pass &amp; Monthly Budget Savings</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Commute Frequency</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Paper Token / Cash</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">NCMC / RRTS Connect QR (10% Off)</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Net Savings</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Daily (Round Trip)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹320</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹288</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹32</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Weekly (6 Days)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,920</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹1,728</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹192</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Monthly (24 Workdays)</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹7,680</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹6,912</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">₹768</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Estimates use the displayed one-way standard route fare (₹160) × two trips, then apply the 10% NCMC / RRTS Connect QR discount. For journeys using multiple operators, confirm each fare segment and discount eligibility in the app.</p>
-</section>
-<section aria-label="Actionable gate and landmark blueprint">
-  <div class="mgi-sec-head"><div class="mgi-sec-line"></div><h2 class="mgi-sec-title">Actionable Gate &amp; Landmark Blueprint</h2><div class="mgi-sec-line"></div></div>
-  <div class="mgi-card" style="overflow-x:auto;padding:0"><table style="width:100%;min-width:680px;border-collapse:collapse"><thead><tr style="background:#FDF0EC"><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Station</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Gate / Interchange</th><th style="padding:10px 12px;text-align:left;color:#1A1A1A;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #EDE9E3;">Landmark & Access</th></tr></thead><tbody><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Anand Vihar</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Chaudhary Charan Singh Marg towards Kaushambi, Ghazipur, and Delhi-UP border</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Anand Vihar</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 2</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Circulating road towards Anand Vihar Terminal Railway Station (ANVT) &amp; ISBT Delhi complex</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Begumpul</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 1</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Towards Abu Lane (Meerut&#x27;s primary central shopping district and retail hub)</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Begumpul</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 2</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Towards Lal Kurti Market &amp; Meerut Cantonment residential/market zone</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Begumpul</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 3</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Towards Zero Mile Stone (Northern side / Delhi Road junction)</td></tr><tr><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Begumpul</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Gate 4</td><td style="padding:10px 12px;text-align:left;color:#666;font-size:12px;line-height:1.5;border-bottom:1px solid #EDE9E3;vertical-align:top;">Towards Zero Mile Stone (Opposite side / Boundary Road and Cantt area)</td></tr></tbody></table></div>
-  <p style="font-size:12px;color:#666;line-height:1.65;margin:8px 2px 0">Gate assignments and access can change during operations; follow on-site wayfinding and confirm active entrances before setting out.</p>
-</section>
-<section aria-label="Related commuter guides and transit insights" style="margin-top: 1rem;">
-  <div class="mgi-sec-head">
-    <div class="mgi-sec-line"></div>
-    <h2 class="mgi-sec-title">Related Commuter Guides &amp; Transit Insights</h2>
-    <div class="mgi-sec-line"></div>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-red" style="width: fit-content;">Master Guide</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/namo-bharat-rrts-guide-2026-routes-stations-timings-fare-complete-travel-guide.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat RRTS Guide 2026: Stations, Timings &amp; Fares</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Full corridor station overview, standard vs premium coach rules, smart card tap, and baggage guidelines.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-blue" style="width: fit-content;">Airport Connectivity</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/how-to-reach-delhi-igi-airport-from-meerut-ghaziabad-namo-bharat-rrts.html" style="color: #1A1A1A; text-decoration: none;">How to Reach Delhi IGI Airport from Meerut &amp; Ghaziabad</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Fastest multimodal connection via Sarai Kale Khan / Anand Vihar directly to IGI Airport Terminals 1, 2 &amp; 3.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-green" style="width: fit-content;">Parking Directory</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/rrts-parking-charges-monthly-pass-station-locations.html" style="color: #1A1A1A; text-decoration: none;">Namo Bharat Station Parking Charges &amp; Monthly Pass Rates</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">Official hourly tariffs, two-wheeler and four-wheeler monthly passes, FASTag parking, and overnight rules.</p>
-    </div>
-    <div class="mgi-card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-      <span class="mgi-badge mgi-b-amber" style="width: fit-content;">Ticketing &amp; NCMC</span>
-      <h3 style="font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4;">
-        <a href="/blog/how-to-book-namo-bharat-ticket-online-ncmc-card-guide.html" style="color: #1A1A1A; text-decoration: none;">NCMC Card &amp; RRTS Connect App: 10% Discount Guide</a>
-      </h3>
-      <p style="font-size: 12px; color: #666; margin: 0; line-height: 1.5;">How to activate your bank RuPay card for transit, generate digital QR tickets, and avoid TVM lines.</p>
-    </div>
-  </div>
-</section>
 <section aria-label="Frequently asked questions">
     <div class="mgi-sec-head">
       <div class="mgi-sec-line"></div>
@@ -1044,48 +961,13 @@
 
 </div>
 <!-- end .mgi-sections -->
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_START -->
-<div class="rc-route-meta" style="margin-top:12px;padding:12px 14px;border:1px solid var(--border2,#e2e8f0);border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 6px 24px rgba(2,6,23,.03);display:grid;gap:0">
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">First Train:</strong> Weekday: 06:11:00 AM | Sunday: 08:11:00 AM</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Last Train:</strong> 10:11:00 PM</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Exit Gate Blueprint:</strong> Gate 1: Towards Abu Lane (Meerut's primary central shopping district and retail hub); Gate 2: Towards Lal Kurti Market & Meerut Cantonment residential/market zone; Gate 3: Towards Zero Mile Stone (Northern side / Delhi Road junction); Gate 4: Towards Zero Mile Stone (Opposite side / Boundary Road and Cantt area)</div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5;border-bottom:1px dashed var(--border2,#e2e8f0)"><strong style="font-size:1.02rem">Parking:</strong> Available | Zone: Delhi | Capacity: Gate 1 Four Wheelers 20, Gate 1 Two Wheelers 105 | Tariff: Daily ₹100 (4W), ₹30 (2W); Monthly ₹1800 (4W), ₹500 (2W)<br><span style="display:inline-block;margin-top:6px"><a href="https://metroguideindia.com/blog/rrts-parking-charges-monthly-pass-station-locations.html" target="_blank" rel="noopener noreferrer" style="color:#B42318;font-weight:700;text-decoration:none">Read parking charges, passes & station locations ↗</a></span></div>
-  <div style="padding:10px 2px;font-size:.95rem;line-height:1.5"><strong style="font-size:1.02rem">Facilities:</strong> Washrooms, Drinking Water, First Aid, Food Stalls, Divyangjan Friendly</div>
-</div>
-<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->
 
-    <div class="route-seo-box" data-system="Namo Bharat RRTS">
-      <div class="route-seo-title">Route Summary</div>
-      <p class="route-seo-lead">
-        Looking for Anand Vihar to Begumpul Namo Bharat RRTS route?
-        This 56 km trip takes about 46 minutes on average.
-      </p>
-      <div class="route-seo-lines">
-        <div><strong>Fare:</strong> ₹160 (Standard) | ₹170–₹210 (Premium est.).</div>
-<div><strong>Time:</strong> Approx. 46-56 mins.</div>
-        <div><strong>Interchanges:</strong> Direct (No Interchange).</div>
-        <div><strong>Major Hubs:</strong> Ghaziabad Railway Station & Red Line Metro &amp; Meerut South &amp; Shatabdi Nagar.</div>
-        <div><strong>Top Stations:</strong> Sahibabad, Ghaziabad, Guldhar, Duhai.</div>
-        <div><strong>Ticketing:</strong> Use Namo Bharat App or NCMC. <a href="https://rrts.co.in" rel="nofollow noopener" target="_blank" style="color:#C0392B;font-weight:600">Official Website</a></div>
-      </div>
-    </div>
+    
   </div>
 
-  <div class="quick-facts" style="margin-top:24px">
-    <div class="quick-facts-title">Quick Facts</div>
-    <ul>
-      <li>Distance: <strong>55 km</strong></li>
-      <li>Travel time: <strong>~50 minutes</strong></li>
-      <li>Standard fare: <strong>₹160</strong> | Premium estimate: <strong>₹170–₹210</strong></li>
-      <li>Interchanges: <strong>Direct (No Interchange)</strong></li>
-      <li>System: <strong>Namo Bharat RRTS</strong></li>
-    </ul>
-  </div>
+  
 
-  <div style="margin-top:24px;font-size:.85rem;color:var(--muted)">
-    <p>Fares and times are based on MetroGuideIndia's latest route data. Premium estimates use about ₹3–₹3.5 per km, which works out to roughly ₹170–₹210 for this route. For the latest information, check the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a>.</p>
-    <p style="margin-top:8px">Plan your trip: <a href="/" style="color:var(--red)">Use our route planner</a> for real-time route calculations.</p>
-  </div>
+  <p style="margin-top:24px;font-size:.85rem;color:var(--muted)">Fares, journey times, crowd estimates, gate access and parking details are indicative and may change. Confirm current service information with the <a href="https://ncrtc.in" rel="noopener noreferrer" style="color:var(--red)">official NCRTC website</a> before travel.</p>
 </div>
 
 <section id="global-search-section" style="margin:28px 0 36px">
