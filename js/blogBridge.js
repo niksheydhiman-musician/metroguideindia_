@@ -795,11 +795,25 @@
       var source = codeEl.textContent || '';
       if (source.indexOf('METROGUIDEINDIA TRANSIT FLOW COMPONENT') === -1) return;
 
-      var template = document.createElement('template');
-      template.innerHTML = source;
-      var styleEl = template.content.querySelector('style');
-      var flowEl = template.content.querySelector('.mgi-flow-container');
-      if (!styleEl || !flowEl || template.content.querySelector('script')) return;
+      var parsed = new DOMParser().parseFromString(source, 'text/html');
+      var styleEl = parsed.querySelector('style');
+      var flowEl = parsed.querySelector('.mgi-flow-container');
+      if (!styleEl || !flowEl || parsed.querySelector('script')) return;
+
+      var unsafeCss = /url\s*\(|@import|expression\s*\(|-moz-binding/i;
+      if (styleEl.children.length || unsafeCss.test(styleEl.textContent || '')) return;
+
+      var allowedTags = { DIV: true, SPAN: true, P: true, STRONG: true };
+      var safeFlow = Array.prototype.every.call(flowEl.querySelectorAll('*'), function (el) {
+        if (!allowedTags[el.tagName]) return false;
+        return Array.prototype.every.call(el.attributes, function (attr) {
+          if (attr.name !== 'class' && attr.name !== 'style') return false;
+          return attr.name !== 'style' || !unsafeCss.test(attr.value);
+        });
+      });
+      if (!safeFlow || Array.prototype.some.call(flowEl.attributes, function (attr) {
+        return attr.name !== 'class' && attr.name !== 'style';
+      })) return;
 
       if (!document.getElementById('mgi-transit-flow-styles')) {
         var style = document.createElement('style');
@@ -808,7 +822,7 @@
         document.head.appendChild(style);
       }
 
-      pre.replaceWith(flowEl);
+      pre.replaceWith(document.importNode(flowEl, true));
     });
   }
 
