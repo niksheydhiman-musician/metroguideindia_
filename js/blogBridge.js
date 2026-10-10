@@ -786,6 +786,32 @@
     });
   }
 
+  function enhanceTransitFlow(articleEl) {
+    if (!articleEl) return;
+
+    var pres = Array.prototype.slice.call(articleEl.querySelectorAll('pre'));
+    pres.forEach(function (pre) {
+      var codeEl = pre.querySelector('code') || pre;
+      var source = codeEl.textContent || '';
+      if (source.indexOf('METROGUIDEINDIA TRANSIT FLOW COMPONENT') === -1) return;
+
+      var template = document.createElement('template');
+      template.innerHTML = source;
+      var styleEl = template.content.querySelector('style');
+      var flowEl = template.content.querySelector('.mgi-flow-container');
+      if (!styleEl || !flowEl || template.content.querySelector('script')) return;
+
+      if (!document.getElementById('mgi-transit-flow-styles')) {
+        var style = document.createElement('style');
+        style.id = 'mgi-transit-flow-styles';
+        style.textContent = styleEl.textContent || '';
+        document.head.appendChild(style);
+      }
+
+      pre.replaceWith(flowEl);
+    });
+  }
+
   /**
    * If the article contains a fenced-code block with the MAXIMUM BAGGAGE SIZE
    * ASCII diagram, replace it with a styled visual dimension card.
@@ -1524,6 +1550,7 @@
       var faqItems = buildFaqFromArticle(articleEl);
       enhanceNamoBharatFareCalc(articleEl);
       enhanceBengaluruFareCalc(articleEl);
+      enhanceTransitFlow(articleEl);
       enhanceBaggageSizeCard(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
