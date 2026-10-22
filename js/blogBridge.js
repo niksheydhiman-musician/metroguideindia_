@@ -786,6 +786,83 @@
     });
   }
 
+  function enhanceTransitFlow(articleEl) {
+    if (!articleEl) return;
+
+    var pres = Array.prototype.slice.call(articleEl.querySelectorAll('pre'));
+    pres.forEach(function (pre) {
+      var codeEl = pre.querySelector('code') || pre;
+      var flow;
+      try {
+        flow = JSON.parse(codeEl.textContent || '');
+      } catch (error) {
+        return;
+      }
+      if (!flow || flow.component !== 'transit-flow' ||
+          typeof flow.title !== 'string' || typeof flow.badge !== 'string' ||
+          !Array.isArray(flow.stops) || flow.stops.length < 2 ||
+          !Array.isArray(flow.transfers) || flow.transfers.length !== flow.stops.length - 1) return;
+
+      var tones = {
+        rrts: '#C0392B',
+        pink: '#D91B5C',
+        yellow: '#F5A623',
+        rapid: '#004B87',
+        destination: '#27764A'
+      };
+      var tagTones = {
+        rrts: 'tag-rrts',
+        pink: 'tag-pink',
+        yellow: 'tag-yellow',
+        rapid: 'tag-rapid',
+        destination: 'tag-dest'
+      };
+      var validStops = flow.stops.every(function (stop) {
+        return stop && typeof stop.name === 'string' && typeof stop.tag === 'string' &&
+          typeof stop.description === 'string' && Object.prototype.hasOwnProperty.call(tones, stop.tone);
+      });
+      if (!validStops || !flow.transfers.every(function (transfer) { return typeof transfer === 'string'; })) return;
+
+      function makeElement(tag, className, text) {
+        var el = document.createElement(tag);
+        el.className = className;
+        if (typeof text === 'string') el.textContent = text;
+        return el;
+      }
+
+      var container = makeElement('div', 'mgi-flow-container');
+      var header = makeElement('div', 'mgi-flow-header');
+      var title = makeElement('div', 'mgi-flow-title');
+      title.appendChild(makeElement('span', '', flow.title));
+      header.appendChild(title);
+      header.appendChild(makeElement('span', 'mgi-flow-badge', flow.badge));
+      container.appendChild(header);
+
+      var timeline = makeElement('div', 'mgi-flow-timeline');
+      flow.stops.forEach(function (stop, index) {
+        var node = makeElement('div', 'mgi-flow-node');
+        node.style.setProperty('--dot-color', tones[stop.tone]);
+        if (stop.tone === 'destination') node.classList.add('mgi-flow-node--destination');
+        node.appendChild(makeElement('div', 'mgi-flow-bullet'));
+
+        var stationTitle = makeElement('div', 'mgi-stn-title');
+        stationTitle.appendChild(makeElement('span', '', stop.name));
+        stationTitle.appendChild(makeElement('span', 'mgi-tag ' + tagTones[stop.tone], stop.tag));
+        node.appendChild(stationTitle);
+        node.appendChild(makeElement('p', 'mgi-stn-sub', stop.description));
+        timeline.appendChild(node);
+
+        if (index < flow.transfers.length) {
+          var transfer = makeElement('div', 'mgi-flow-transfer');
+          transfer.appendChild(makeElement('span', '', flow.transfers[index]));
+          timeline.appendChild(transfer);
+        }
+      });
+      container.appendChild(timeline);
+      pre.replaceWith(container);
+    });
+  }
+
   /**
    * If the article contains a fenced-code block with the MAXIMUM BAGGAGE SIZE
    * ASCII diagram, replace it with a styled visual dimension card.
@@ -1524,6 +1601,7 @@
       var faqItems = buildFaqFromArticle(articleEl);
       enhanceNamoBharatFareCalc(articleEl);
       enhanceBengaluruFareCalc(articleEl);
+      enhanceTransitFlow(articleEl);
       enhanceBaggageSizeCard(articleEl);
       enhanceTouristMap(articleEl);
       buildToc(articleEl, tocEl);
