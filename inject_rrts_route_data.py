@@ -9,6 +9,8 @@ from html import escape
 from pathlib import Path
 from typing import Any
 
+from seo_metadata import apply_route_seo
+
 REPO_ROOT = Path(__file__).resolve().parent
 ROUTES_DIR = REPO_ROOT / "routes"
 ROUTE_JSON = REPO_ROOT / "data" / "rrts-routes.json"
@@ -1749,6 +1751,7 @@ def run(write: bool = True) -> int:
 
         meta["canonical"] = f"{SITE_ROOT_URL}/routes/{slug}.html"
         result = inject_meta_template(working_html, meta)
+        result = apply_route_seo(result, slug)
         result = ensure_mgi_head_assets(result, blueprint)
         result = strip_existing_block(result)
         result = strip_legacy_summary_blocks(result)
