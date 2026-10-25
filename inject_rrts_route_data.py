@@ -23,23 +23,33 @@ SUMMARY_DETAILS_END = "<!-- RRTS_ROUTE_SUMMARY_DETAILS_END -->"
 RRTS_RED = "#C0392B"
 MEERUT_METRO_GREEN = "#27764A"
 DIRECT_INTERCHANGE_TEXT = "Direct (No Interchange)"
-DIRECT_RRTS_ROUTE_SLUGS = {
-    "sarai-kale-khan",
-    "new-ashok-nagar",
-    "anand-vihar",
-    "sahibabad",
-    "ghaziabad",
-    "guldhar",
-    "duhai",
-    "muradnagar",
-    "modinagar-south",
-    "modinagar-north",
-    "meerut-south",
-    "shatabdi-nagar",
-    "begumpul",
-    "modipuram",
+MAIN_RRTS_STATIONS = [
+    ("sarai-kale-khan", "Sarai Kale Khan"),
+    ("new-ashok-nagar", "New Ashok Nagar"),
+    ("anand-vihar", "Anand Vihar"),
+    ("sahibabad", "Sahibabad"),
+    ("ghaziabad", "Ghaziabad"),
+    ("guldhar", "Guldhar"),
+    ("duhai", "Duhai"),
+    ("muradnagar", "Muradnagar"),
+    ("modinagar-south", "Modinagar South"),
+    ("modinagar-north", "Modinagar North"),
+    ("meerut-south", "Meerut South"),
+    ("shatabdi-nagar", "Shatabdi Nagar"),
+    ("begumpul", "Begumpul"),
+    ("modipuram", "Modipuram"),
+]
+MEERUT_METRO_ONLY_STATIONS = {
+    "partapur",
+    "rithani",
+    "brahmpuri",
+    "meerut-central",
+    "bhaisali",
+    "mes-colony",
+    "daurli",
+    "meerut-north",
 }
-DIRECT_RRTS_HUB_SLUGS = {"meerut-south", "shatabdi-nagar", "begumpul", "modipuram"}
+COMMUTE_CALCULATOR_SCRIPT = "<script src='/js/commute-calculator.js' defer></script>"
 TABLER_ICONS_CDN = "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
 
 
@@ -235,28 +245,107 @@ def is_direct_rrts_route(slug: str) -> bool:
     if "-to-" not in slug:
         return False
     origin_slug, destination_slug = slug.split("-to-", 1)
-    return (
-        origin_slug in DIRECT_RRTS_ROUTE_SLUGS
-        and destination_slug in DIRECT_RRTS_ROUTE_SLUGS
-        and (origin_slug in DIRECT_RRTS_HUB_SLUGS or destination_slug in DIRECT_RRTS_HUB_SLUGS)
-    )
+    aliases = {"modi-nagar-north": "modinagar-north", "modi-nagar-south": "modinagar-south"}
+    origin_slug = aliases.get(origin_slug, origin_slug)
+    destination_slug = aliases.get(destination_slug, destination_slug)
+    rrts_slugs = {station_slug for station_slug, _ in MAIN_RRTS_STATIONS}
+    return origin_slug in rrts_slugs and destination_slug in rrts_slugs
 
 
-def normalize_direct_route_steps(html: str) -> str:
+def build_direct_route_step(station_name: str, is_origin: bool, is_destination: bool) -> str:
+    dot_class = "dot-origin" if is_origin else "dot-dest" if is_destination else "dot-mid"
+    marker = "A" if is_origin else "B" if is_destination else ""
+    first_line = "invis" if is_origin else ""
+    last_line = "invis" if is_destination else ""
+    step_classes = "step step-regular"
+    if is_origin:
+        step_classes += " step-first"
+    if is_destination:
+        step_classes += " step-last"
+    return f"""    <div class="{step_classes}">
+      <div class="rail">
+        <div class="rail-line {first_line}" style="background:#C0392B"></div>
+        <div class="rail-dot {dot_class}" style="--dc:#C0392B">{f"<span>{marker}</span>" if marker else ""}</div>
+        <div class="rail-line {last_line}" style="background:#C0392B"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-name">{escape(station_name)}</div>
+        <div class="step-tags">
+          <span class="line-tag" style="background:#C0392B14;color:#C0392B;border-color:#C0392B38">Namo Bharat RRTS</span>
+          <span class="city-tag">Meerut</span>
+        </div>
+      </div>
+    </div>"""
+
+
+def normalize_direct_route_steps(html: str, slug: str) -> str:
     bounds = find_div_block_bounds(html, '<div class="rc-steps">')
-    if not bounds:
+    if not bounds or "-to-" not in slug:
         return html
 
-    start, end = bounds
-    block = html[start:end]
-    block = remove_div_blocks(block, '<div class="step step-xchange">')
-    block = block.replace(MEERUT_METRO_GREEN, RRTS_RED)
-    block = block.replace(">Meerut Metro<", ">Namo Bharat RRTS<")
-    return html[:start] + block + html[end:]
+    origin_slug, destination_slug = slug.split("-to-", 1)
+    aliases = {"modi-nagar-north": "modinagar-north", "modi-nagar-south": "modinagar-south"}
+    origin_slug = aliases.get(origin_slug, origin_slug)
+    destination_slug = aliases.get(destination_slug, destination_slug)
+    station_slugs = [station_slug for station_slug, _ in MAIN_RRTS_STATIONS]
+    start = station_slugs.index(origin_slug)
+    end = station_slugs.index(destination_slug)
+    direction = 1 if start <= end else -1
+    route_stations = MAIN_RRTS_STATIONS[start : end + 1] if direction == 1 else list(reversed(MAIN_RRTS_STATIONS[end : start + 1]))
+
+    block_start, block_end = bounds
+    block = html[block_start:block_end]
+    step_blocks: dict[str, str] = {}
+    step_start_re = re.compile(r'<div class="step(?:\s[^"]*)?">')
+    step_bounds_list: list[tuple[int, int]] = []
+    for match in step_start_re.finditer(block):
+        step_bounds = find_div_block_bounds(block, match.group(0), match.start())
+        if not step_bounds:
+            continue
+        step_bounds_list.append(step_bounds)
+        step_html = block[step_bounds[0]:step_bounds[1]]
+        name_match = re.search(r'<div class="step-name">(.*?)</div>', step_html, flags=re.S)
+        if name_match:
+            step_blocks[normalize_slug(clean_text(name_match.group(1)))] = step_html
+
+    normalized_steps = []
+    for index, (station_slug, station_name) in enumerate(route_stations):
+        step_html = step_blocks.get(station_slug)
+        if step_html is None:
+            step_html = build_direct_route_step(
+                station_name, index == 0, index == len(route_stations) - 1
+            )
+        else:
+            class_match = re.search(r'<div class="(step(?:\s[^"]*)?)">', step_html)
+            if class_match:
+                classes = [cls for cls in class_match.group(1).split() if cls not in {"step-first", "step-last"}]
+                if index == 0:
+                    classes.append("step-first")
+                if index == len(route_stations) - 1:
+                    classes.append("step-last")
+                step_html = step_html[:class_match.start(1)] + " ".join(classes) + step_html[class_match.end(1):]
+            dot_class = "dot-origin" if index == 0 else "dot-dest" if index == len(route_stations) - 1 else "dot-mid"
+            step_html = re.sub(
+                r'(<div class="rail-dot )[^"]+(")',
+                rf"\1{dot_class}\2",
+                step_html,
+                count=1,
+            )
+            step_html = step_html.replace(MEERUT_METRO_GREEN, RRTS_RED)
+            step_html = step_html.replace(">Meerut Metro<", ">Namo Bharat RRTS<")
+        normalized_steps.append(step_html)
+
+    if step_bounds_list:
+        prefix = block[:step_bounds_list[0][0]].rstrip()
+        suffix = block[step_bounds_list[-1][1]:].lstrip()
+        rebuilt = prefix + "\n" + "\n".join(normalized_steps) + "\n" + suffix
+    else:
+        rebuilt = '<div class="rc-steps">\n' + "\n".join(normalized_steps) + "\n</div>"
+    return html[:block_start] + rebuilt + html[block_end:]
 
 
-def normalize_direct_route_copy(html: str) -> str:
-    updated = normalize_direct_route_steps(html)
+def normalize_direct_route_copy(html: str, slug: str) -> str:
+    updated = normalize_direct_route_steps(html, slug)
     updated = re.sub(
         r'(<p class="rp-sub">)(.*?)( · )',
         r"\1Namo Bharat RRTS\3",
@@ -387,6 +476,86 @@ def inject_meta_template(html: str, meta: dict[str, str]) -> str:
         f'<meta property="og:description" content="{escaped_og_description}"/>',
     )
     return updated
+
+
+def remove_schema_types(value: Any) -> Any:
+    if isinstance(value, list):
+        return [cleaned for item in value if (cleaned := remove_schema_types(item)) is not None]
+    if not isinstance(value, dict):
+        return value
+
+    schema_type = value.get("@type")
+    if schema_type == "FAQPage" or schema_type == "BreadcrumbList":
+        return None
+
+    cleaned = {key: remove_schema_types(item) for key, item in value.items()}
+    if "@graph" in cleaned and not cleaned["@graph"]:
+        return None
+    return cleaned
+
+
+def inject_route_schema(
+    html: str,
+    origin_label: str,
+    destination_label: str,
+    slug: str,
+    faq_items: list[tuple[str, str]],
+) -> str:
+    def clean_existing_schema(match: re.Match[str]) -> str:
+        content = match.group(1)
+        try:
+            schema = json.loads(content)
+        except json.JSONDecodeError:
+            if '"FAQPage"' in content or '"BreadcrumbList"' in content:
+                return ""
+            return match.group(0)
+        cleaned = remove_schema_types(schema)
+        if cleaned is None:
+            return ""
+        return match.group(0).replace(content, json.dumps(cleaned, ensure_ascii=False, indent=2))
+
+    clean = re.sub(
+        r'<script\b(?=[^>]*type=["\']application/ld\+json["\'])[^>]*>(.*?)</script>',
+        clean_existing_schema,
+        html,
+        flags=re.I | re.S,
+    )
+    route_url = f"{SITE_ROOT_URL}/routes/{slug}.html"
+    schema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_ROOT_URL}/"},
+                    {"@type": "ListItem", "position": 2, "name": "Routes", "item": f"{SITE_ROOT_URL}/routes/"},
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": f"{origin_label} to {destination_label}",
+                        "item": route_url,
+                    },
+                ],
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": question,
+                        "acceptedAnswer": {"@type": "Answer", "text": answer},
+                    }
+                    for question, answer in faq_items
+                ],
+            },
+        ],
+    }
+    schema_script = (
+        '  <script type="application/ld+json">\n'
+        + json.dumps(schema, ensure_ascii=False, indent=2)
+        + "\n  </script>\n"
+    )
+    return re.sub(r"(</head>)", schema_script + r"\1", clean, count=1, flags=re.I)
 
 
 def parse_first_last_train(timings: dict[str, Any]) -> tuple[str, str]:
@@ -583,6 +752,41 @@ def strip_existing_mgi_sections(html: str) -> str:
     return re.sub(r'\n?\s*<div class="mgi-sections">.*?<!-- end \.mgi-sections -->\s*\n?', "\n", html, flags=re.S)
 
 
+def strip_legacy_summary_blocks(html: str) -> str:
+    clean = strip_existing_summary_details(html)
+    for marker in (
+        '<div class="rc-route-meta"',
+        '<div class="route-seo-box"',
+        '<div class="quick-facts"',
+    ):
+        clean = remove_div_blocks(clean, marker)
+    clean = re.sub(r"<!-- RRTS_ROUTE_SUMMARY_DETAILS -->", "", clean)
+    return clean
+
+
+def clean_visible_data_source_mentions(html: str) -> str:
+    clean = re.sub(
+        r"Facility-level availability is not supplied in rrts-data\.json;",
+        "Facility-level availability can vary;",
+        html,
+        flags=re.I,
+    )
+    clean = re.sub(
+        r"details are not included in rrts-data\.json\.",
+        "details are not currently published.",
+        clean,
+        flags=re.I,
+    )
+    clean = re.sub(
+        r"are sourced from rrts-data\.json\.",
+        "may change.",
+        clean,
+        flags=re.I,
+    )
+    clean = re.sub(r"rrts-data\.json", "station information", clean, flags=re.I)
+    return re.sub(r"(?m)[ \t]+$", "", clean)
+
+
 def ensure_mgi_head_assets(html: str, blueprint: MgiBlueprint) -> str:
     clean = re.sub(
         rf"\s*<link rel=\"stylesheet\" href=\"{re.escape(TABLER_ICONS_CDN)}\"\s*/?>\s*",
@@ -646,7 +850,9 @@ def facility_badge(value: Any) -> tuple[str, str]:
         return ("Available", "mgi-b-green")
     if isinstance(value, list) and value:
         return ("Limited", "mgi-b-amber")
-    return ("Unavailable", "mgi-b-red")
+    if value is False or value == []:
+        return ("Unavailable", "mgi-b-red")
+    return ("Check on arrival", "mgi-b-gray")
 
 
 def build_amenities_section(destination_meta: StationMeta | None) -> str:
@@ -679,6 +885,7 @@ def build_amenities_section(destination_meta: StationMeta | None) -> str:
     <div class="mgi-fac-grid">
 {cards}
     </div>
+    <p class="mgi-note">Amenities and accessibility features can vary by station; check current facilities on arrival.</p>
   </section>""".format(cards="\n".join(card_html))
 
 
@@ -687,7 +894,7 @@ def build_exit_gates_section(destination_label: str, destination_meta: StationMe
     accessible = bool(destination_meta and destination_meta.special_facilities.get("divyangjan_friendly"))
     location = clean_text(destination_meta.geographical_location if destination_meta else "") or f"{destination_label} station concourse"
     if not gate_groups:
-        gate_groups = [("Gate Info", ["Official gate metrics are not published yet"])]
+        gate_groups = [("Gate Info", ["Follow station signs or ask staff for current gate access information"])]
 
     cards = []
     for gate_name, tags in gate_groups:
@@ -909,32 +1116,17 @@ def build_faq_section(
     last_train: str,
     exit_gate_summary: str,
 ) -> str:
-    items = [
-        (
-            f"What is the distance from {origin_label} to {destination_label} by {system_label}?",
-            f"The distance from {origin_label} to {destination_label} on {system_label} is approximately {distance_km or 'the listed corridor distance'}.",
-        ),
-        (
-            f"What is the fare from {origin_label} to {destination_label} on {system_label}?",
-            f"The standard fare from {origin_label} to {destination_label} on {system_label} is approximately {standard_fare or 'the current listed fare'}.",
-        ),
-        (
-            f"How long does it take to travel from {origin_label} to {destination_label}?",
-            f"The estimated travel time from {origin_label} to {destination_label} is about {estimated_time or 'the listed journey time'}.",
-        ),
-        (
-            f"What is the first train from {origin_label} for this route?",
-            f"The first train information for departures from {origin_label} is: {first_train}.",
-        ),
-        (
-            f"What is the last train from {origin_label} for this route?",
-            f"The last train information for departures from {origin_label} is: {last_train}.",
-        ),
-        (
-            f"Which exit gates are useful at {destination_label} station?",
-            f"Current gate guidance for {destination_label} is: {exit_gate_summary}.",
-        ),
-    ]
+    items = build_faq_items(
+        origin_label,
+        destination_label,
+        system_label,
+        distance_km,
+        standard_fare,
+        estimated_time,
+        first_train,
+        last_train,
+        exit_gate_summary,
+    )
     item_html = []
     for question, answer in items:
         item_html.append(
@@ -955,6 +1147,63 @@ def build_faq_section(
   </section>""".format(items="\n".join(item_html))
 
 
+def build_faq_items(
+    origin_label: str,
+    destination_label: str,
+    system_label: str,
+    distance_km: str,
+    standard_fare: str,
+    estimated_time: str,
+    first_train: str,
+    last_train: str,
+    exit_gate_summary: str,
+) -> list[tuple[str, str]]:
+    def commuter_value(value: str, fallback: str) -> str:
+        clean = re.sub(r"\s+", " ", value or "").strip()
+        if clean.lower() in {"", "not listed", "not available", "n/a", "none"}:
+            return fallback
+        return clean
+
+    distance = commuter_value(distance_km, "the published corridor distance")
+    fare = commuter_value(standard_fare, "the current operator fare")
+    journey_time = commuter_value(estimated_time, "the current journey estimate")
+    first_departure = commuter_value(
+        first_train, "Check station departure boards or official updates for current first-train timings."
+    )
+    last_departure = commuter_value(
+        last_train, "Check station departure boards or official updates for current last-train timings."
+    )
+    gate_guidance = commuter_value(
+        exit_gate_summary, "Follow station signs or ask staff for current exit guidance."
+    )
+    return [
+        (
+            f"What is the distance from {origin_label} to {destination_label} by {system_label}?",
+            f"The distance from {origin_label} to {destination_label} on {system_label} is approximately {distance}.",
+        ),
+        (
+            f"What is the fare from {origin_label} to {destination_label} on {system_label}?",
+            f"The standard fare from {origin_label} to {destination_label} on {system_label} is approximately {fare}.",
+        ),
+        (
+            f"How long does it take to travel from {origin_label} to {destination_label}?",
+            f"The estimated travel time from {origin_label} to {destination_label} is about {journey_time}.",
+        ),
+        (
+            f"What is the first train from {origin_label} for this route?",
+            f"The first train information for departures from {origin_label} is: {first_departure}",
+        ),
+        (
+            f"What is the last train from {origin_label} for this route?",
+            f"The last train information for departures from {origin_label} is: {last_departure}",
+        ),
+        (
+            f"Which exit gates are useful at {destination_label} station?",
+            f"Current gate guidance for {destination_label} is: {gate_guidance}",
+        ),
+    ]
+
+
 def build_mgi_sections_html(
     slug: str,
     html: str,
@@ -970,8 +1219,6 @@ def build_mgi_sections_html(
     destination_meta: StationMeta | None,
     station_map: dict[str, StationMeta],
 ) -> str:
-    if slug == TEMPLATE_ROUTE_PATH.stem:
-        return load_mgi_blueprint().sections_block
     interchange_station = next((name for name, is_interchange in extract_visual_route_stations(html) if is_interchange), None)
     helpline_number = (
         destination_meta.control_room_contact
@@ -979,9 +1226,10 @@ def build_mgi_sections_html(
         else "1800-209-0200"
     )
     sections = [
+        build_peak_hours_section(is_direct_rrts_route(slug), estimated_time),
+        f"  <div id='mgi-commute-calculator' data-from='{escape(slug.split('-to-', 1)[0], quote=True)}' data-to='{escape(slug.split('-to-', 1)[1], quote=True)}'></div>\n  {COMMUTE_CALCULATOR_SCRIPT}",
         build_amenities_section(destination_meta),
         build_exit_gates_section(destination_label, destination_meta),
-        build_peak_hours_section(is_direct_rrts_route(slug), estimated_time),
         build_route_map_section(html, destination_label, system_label, station_map),
         build_safety_section(interchange_station, helpline_number),
         build_eco_section(distance_km),
@@ -1446,6 +1694,16 @@ def fallback_route_data_from_html(html: str) -> dict[str, Any]:
     }
 
 
+def is_redirect_route_page(html: str) -> bool:
+    return bool(
+        re.search(
+            r'<meta\s+http-equiv=["\']refresh["\'][^>]*url=/routes/[^"\']+',
+            html,
+            flags=re.I,
+        )
+    )
+
+
 def iter_route_pages() -> list[Path]:
     return sorted(ROUTES_DIR.glob("*.html"))
 
@@ -1464,8 +1722,10 @@ def run(write: bool = True) -> int:
     for path in route_pages:
         slug = path.stem
         original = path.read_text(encoding="utf-8")
+        if is_redirect_route_page(original):
+            continue
         is_direct_route = is_direct_rrts_route(slug)
-        working_html = normalize_direct_route_copy(original) if is_direct_route else original
+        working_html = normalize_direct_route_copy(original, slug) if is_direct_route else original
         route_data = route_map.get(slug) or fallback_route_data_from_html(working_html)
         endpoints = extract_route_terminals(working_html, slug)
         sub_data = parse_sub_line(working_html)
@@ -1491,6 +1751,7 @@ def run(write: bool = True) -> int:
         result = inject_meta_template(working_html, meta)
         result = ensure_mgi_head_assets(result, blueprint)
         result = strip_existing_block(result)
+        result = strip_legacy_summary_blocks(result)
         result = inject_mgi_sections(
             result,
             build_mgi_sections_html(
@@ -1509,13 +1770,24 @@ def run(write: bool = True) -> int:
                 station_map=station_map,
             ),
         )
-        result = inject_route_summary_details(
-            result, first_train, last_train, exit_summary, parking_summary, facilities_summary
+        faq_items = build_faq_items(
+            endpoints[0],
+            endpoints[1],
+            line_label,
+            str(route_data.get("distance_km") or sub_data.get("distance_km") or ""),
+            str(route_data.get("standard_fare") or sub_data.get("standard_fare") or ""),
+            str(route_data.get("estimated_time") or sub_data.get("estimated_time") or ""),
+            first_train,
+            last_train,
+            exit_summary,
         )
+        result = inject_route_schema(result, endpoints[0], endpoints[1], slug, faq_items)
         result = ensure_mgi_faq_script(result, blueprint)
+        result = clean_visible_data_source_mentions(result)
 
-        if write and result != original:
-            path.write_text(result, encoding="utf-8")
+        if result != original:
+            if write:
+                path.write_text(result, encoding="utf-8")
             updated += 1
 
     print(f"[inject] pages updated: {updated}")
