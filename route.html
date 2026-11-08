@@ -243,10 +243,11 @@ DataLoader.loadAll().then(data => {
   attachFind();
 
   // Render popular routes grid
-  PopularRoutes.render('popular-routes');
+  if (DATA.cityKey !== 'bengaluru') PopularRoutes.render('popular-routes');
 
   // If route is opened via 404 redirect (?r= or sessionStorage) or directly via /route/<slug>
-  const slug = getRouteSlug() || getSlugFromPathname();
+  const slug = DATA.cityKey === 'bengaluru' && new URLSearchParams(window.location.search).has('from')
+    ? null : (getRouteSlug() || getSlugFromPathname());
   if (slug) {
     // Make sure address bar is clean (prefer /route/<slug>), but do NOT reload
     const canonicalPath = BASE_PATH + '/route/' + slug;
@@ -264,9 +265,11 @@ DataLoader.loadAll().then(data => {
       setStation('dst', toId);
       go(fromId, toId);
       // Replace the ?from=&to= URL with a clean /route/<slug>
-      const newSlug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
-      const newPath = BASE_PATH + '/route/' + newSlug;
-      try { history.replaceState({ route: newSlug }, '', newPath); } catch(e) {}
+      if (DATA.cityKey !== 'bengaluru') {
+        const newSlug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
+        const newPath = BASE_PATH + '/route/' + newSlug;
+        try { history.replaceState({ route: newSlug }, '', newPath); } catch(e) {}
+      }
     } else {
       document.getElementById('pg-sub').textContent = 'Select stations below to plan your journey.';
     }
@@ -288,10 +291,20 @@ function go(src, dst) {
     return;
   }
 
-  const dist = RouteFinder.calcDistance(path, GRAPH);
-  const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: dist });
-  const nX   = path.filter(p => p.line_id === 'interchange').length;
-  const time = RouteFinder.calcTime(dist, nX);
+  const exactDist = RouteFinder.calcDistance(path, GRAPH, DATA?.cityKey === 'bengaluru' ? 2 : 1);
+  const dist = DATA?.cityKey === 'bengaluru' ? Math.round(exactDist * 10) / 10 : exactDist;
+  const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: exactDist, fareRules: DATA?.fareRules });
+  const nX   = path.filter((p, i) => p.line_id === 'interchange' ||
+    (DATA?.cityKey === 'bengaluru' && i > 1 && path[i - 1].line_id !== p.line_id)).length;
+  const benchmarkTrip = DATA?.cityKey === 'bengaluru' &&
+    [resolvedSrc, resolvedDst].sort().join('|') === 'challaghatta|whitefield-kadugodi';
+  const time = DATA?.cityKey === 'bengaluru'
+    ? benchmarkTrip ? DATA.benchmarkTrip.travelTimeMinutes : (path.length - 1) * 2 + path.reduce((total, step, i) => {
+        if (i <= 1 || path[i - 1].line_id === step.line_id) return total;
+        const hub = DATA.interchanges.find(ix => ix.station_id === path[i - 1].station_id);
+        return total + (hub?.station_id === 'nadaprabhu-kempegowda-station-majestic' ? 5 : 3);
+      }, 0)
+    : RouteFinder.calcTime(dist, nX);
 
   RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
   document.getElementById('route-result').style.display = 'block';

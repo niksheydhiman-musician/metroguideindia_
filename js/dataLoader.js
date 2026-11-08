@@ -9,6 +9,33 @@ const DataLoader = (() => {
   ];
 
   function normalize(payload, cityKey) {
+    if (cityKey === 'bengaluru' && Array.isArray(payload.operationalLines)) {
+      return {
+        cityKey,
+        systems: [{ system_id: 'bengaluru_metro', system_name: payload.metadata.networkName }],
+        lines: payload.operationalLines.map(line => ({
+          line_id: line.lineId, line_name: line.lineName, color: line.hexCode,
+        })),
+        stations: payload.stations.map(station => ({
+          station_id: station.id, station_name: station.name, city: 'Bengaluru',
+          system_id: 'bengaluru_metro', line_id: station.lines[0],
+          interchange: station.isInterchange ? 'yes' : 'no',
+        })),
+        connections: Object.entries(payload.interstationDistances).flatMap(([line, edges]) =>
+          edges.map(edge => ({
+            from_station: edge.fromStationId, to_station: edge.toStationId,
+            line_id: line, distance_km: edge.distanceKm,
+          }))
+        ),
+        interchanges: payload.interchangeHubs.map(hub => ({
+          station_id: hub.stationId, change_platform: hub.description,
+          instructions: `Allow about ${hub.transferTimeMinutes} minutes`,
+        })),
+        fareRules: payload.fareRules,
+        benchmarkTrip: payload.metadata.whitefieldToChallaghattaTrip,
+        landmarks: [],
+      };
+    }
     return {
       cityKey: payload.city_key || cityKey || 'rrts',
       systems: payload.systems || [],
@@ -58,6 +85,7 @@ const DataLoader = (() => {
       const payload = await resp.json();
       return normalize(payload, city.cityKey);
     } catch (err) {
+      if (city.cityKey === 'bengaluru') throw err;
       // Backward-compatibility for existing pages still relying on split JSON files.
       return loadLegacySplitFiles(city.cityKey);
     }

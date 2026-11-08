@@ -344,12 +344,11 @@ const TIMINGS = [
 ];
 const JOURNEYS = [
   { group: 'Daily Commutes', color: '#6c2e9d', icon: '🚇', routes: [
-    { from: 'nadaprabhu_kempegowda_station_majestic_purple_line', to: 'whitefield_purple_line', fromName: 'Majestic', toName: 'Whitefield' },
-    { from: 'indiranagar_purple_line', to: 'jayanagar_green_line', fromName: 'Indiranagar', toName: 'Jayanagar' }
+    { from: 'nadaprabhu-kempegowda-station-majestic', to: 'whitefield-kadugodi', fromName: 'Majestic', toName: 'Whitefield' },
+    { from: 'indiranagar', to: 'jayanagar', fromName: 'Indiranagar', toName: 'Jayanagar' }
   ]},
   { group: 'Interchange Trips', color: '#1b8f3b', icon: '🔄', routes: [
-    { from: 'kengeri_purple_line', to: 'nagawara_green_line', fromName: 'Kengeri', toName: 'Nagawara' },
-    { from: 'silk_institute_green_line', to: 'indiranagar_purple_line', fromName: 'Silk Institute', toName: 'Indiranagar' }
+    { from: 'silk-institute', to: 'indiranagar', fromName: 'Silk Institute', toName: 'Indiranagar' }
   ]},
   { group: 'Popular Journeys', color: '#6c2e9d', icon: '📍', routes: [
     { fromName: 'Challaghatta', toName: 'Whitefield', href: '/bengaluru-metro/routes/challaghatta-to-whitefield.html', meta: '37.2 km · ₹50' },
@@ -506,7 +505,7 @@ function buildTopJourneys() {
       <div class="pr-grid">
         ${group.routes.map(r => {
           const href = r.href ? (r.href.startsWith('/') ? r.href : `/${r.href.replace(/^\/+/, '')}`) : '#';
-          const metaLeft = r.href ? (r.meta || 'View Route') : 'Auto-fill';
+          const metaLeft = r.href ? 'View Route' : 'Auto-fill';
           const metaRight = r.href ? 'Full Guide' : 'Find route';
           const dataAttrs = r.from ? `data-from="${r.from}" data-to="${r.to}"` : '';
           return `<a href="${href}" class="pr-card" style="--gc:${group.color}" ${dataAttrs}>
@@ -604,15 +603,7 @@ function onFind() {
   const dst = document.getElementById('dst').value;
   if (!src || !dst || src === dst) return;
 
-  const path = RouteFinder.findRoute(GRAPH, src, dst);
-  if (!path || !path.length) return;
-  const dist = RouteFinder.calcDistance(path, GRAPH);
-  const fare = RouteFinder.calcFare(path, { cityKey: DATA?.cityKey, distance: dist });
-  const nX = path.filter(p => p.line_id === 'interchange').length;
-  const time = RouteFinder.calcTime(dist, nX);
-  RouteUI.renderRoute('route-result', path, DATA.stations, DATA.interchanges, dist, fare, time, DATA.lines, DATA.cityKey);
-  document.getElementById('route-result').style.display = 'block';
-  setTimeout(() => document.getElementById('route-result').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+  window.location.assign('/route.html?' + new URLSearchParams({ city: 'bengaluru', from: src, to: dst }));
 }
   }, { once: true });
 })();

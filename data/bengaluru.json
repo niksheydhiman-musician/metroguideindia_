@@ -13,23 +13,21 @@
     "gauge": "Standard Gauge (1435 mm)",
     "electrification": "750 V DC Third Rail",
     "minFare": 10,
-    "singleLineMaxFare": 60,
-    "benchmarkMaxFare": 85,
-    "fareRange": "₹10 to ₹85",
-    "qrDiscountPercentage": 5,
-    "qrDiscountPolicy": "Flat 5% discount on all single journey token fares across WhatsApp, Namma Metro App, and digital channels",
+    "benchmarkMaxFare": 90,
+    "fareRange": "₹10 to ₹90",
+    "qrDiscountPolicy": "Smart Card and WhatsApp QR: 5% off at peak; 10% off during 05:00–08:00, 11:00–16:30 and 20:00–23:00, and all day Sunday.",
     "whitefieldToChallaghattaTrip": {
       "origin": "Whitefield (Kadugodi)",
       "destination": "Challaghatta",
       "corridor": "Purple Line Direct Corridor",
-      "distanceKm": 43.49,
+      "distanceKm": 43.95,
       "stationsCount": 37,
       "interchangesCount": 0,
       "travelTimeMinutes": 75,
-      "tokenFare": 60,
-      "qrFareFlat5Percent": 57.0,
-      "smartCardVarshikFare": 57.0,
-      "fareRule": "BMRCL single-line maximum fare cap is ₹60 (₹57 after flat 5% QR / Smart Card discount). Benchmark ₹85 fare applies strictly to multi-corridor cross-network trips."
+      "tokenFare": 85,
+      "fareRule": "Distance-based token fare with a ₹90 network maximum; Smart Card and WhatsApp QR discounts depend on travel time.",
+      "smartCardPeakFare": 80.75,
+      "smartCardOffPeakFare": 76.5
     },
     "currency": "INR (₹)",
     "lastUpdated": "November 2026",
@@ -38,7 +36,7 @@
     "whatsAppBooking": {
       "phone": "+91 8105556677",
       "deepLink": "https://wa.me/918105556677?text=Hi",
-      "discount": "Flat 5% off standard token fare"
+      "discount": "Smart Card and WhatsApp QR: 5% off at peak; 10% off during 05:00–08:00, 11:00–16:30 and 20:00–23:00, and all day Sunday."
     }
   },
   "stationMappings": {
@@ -1707,163 +1705,204 @@
   ],
   "fareRules": {
     "minFare": 10,
-    "singleLineMaxCap": 60,
-    "benchmarkMaxFare": 85,
-    "qrDiscountPercentage": 5,
-    "qrDiscountPolicy": "Flat 5% discount on all single journey token fares",
+    "benchmarkMaxFare": 90,
+    "qrDiscountPolicy": "Smart Card and WhatsApp QR: 5% off at peak; 10% off during 05:00–08:00, 11:00–16:30 and 20:00–23:00, and all day Sunday.",
     "distanceSlabs": [
       {
         "slabIndex": 1,
-        "distanceKm": "0.0 to 2.0 km",
+        "distanceKm": "0 to 2 km",
+        "maxDistanceKm": 2,
         "tokenFare": 10,
-        "qrFareFlat5Percent": 9.5,
-        "smartCardVarshik": 9.5
+        "smartCardQrPeakFare": 9.5,
+        "smartCardQrOffPeakFare": 9.0
       },
       {
         "slabIndex": 2,
-        "distanceKm": "2.1 to 4.0 km",
+        "distanceKm": "2 to 4 km",
+        "maxDistanceKm": 4,
         "tokenFare": 15,
-        "qrFareFlat5Percent": 14.25,
-        "smartCardVarshik": 14.25
+        "smartCardQrPeakFare": 14.25,
+        "smartCardQrOffPeakFare": 13.5
       },
       {
         "slabIndex": 3,
-        "distanceKm": "4.1 to 6.0 km",
+        "distanceKm": "4 to 6 km",
+        "maxDistanceKm": 6,
         "tokenFare": 20,
-        "qrFareFlat5Percent": 19.0,
-        "smartCardVarshik": 19.0
+        "smartCardQrPeakFare": 19.0,
+        "smartCardQrOffPeakFare": 18.0
       },
       {
         "slabIndex": 4,
-        "distanceKm": "6.1 to 8.0 km",
+        "distanceKm": "6 to 8 km",
+        "maxDistanceKm": 8,
         "tokenFare": 25,
-        "qrFareFlat5Percent": 23.75,
-        "smartCardVarshik": 23.75
+        "smartCardQrPeakFare": 23.75,
+        "smartCardQrOffPeakFare": 22.5
       },
       {
         "slabIndex": 5,
-        "distanceKm": "8.1 to 10.0 km",
+        "distanceKm": "8 to 10 km",
+        "maxDistanceKm": 10,
         "tokenFare": 30,
-        "qrFareFlat5Percent": 28.5,
-        "smartCardVarshik": 28.5
+        "smartCardQrPeakFare": 28.5,
+        "smartCardQrOffPeakFare": 27.0
       },
       {
         "slabIndex": 6,
-        "distanceKm": "10.1 to 12.0 km",
+        "distanceKm": "10 to 12 km",
+        "maxDistanceKm": 12,
         "tokenFare": 35,
-        "qrFareFlat5Percent": 33.25,
-        "smartCardVarshik": 33.25
+        "smartCardQrPeakFare": 33.25,
+        "smartCardQrOffPeakFare": 31.5
       },
       {
         "slabIndex": 7,
-        "distanceKm": "12.1 to 15.0 km",
+        "distanceKm": "12 to 15 km",
+        "maxDistanceKm": 15,
         "tokenFare": 40,
-        "qrFareFlat5Percent": 38.0,
-        "smartCardVarshik": 38.0
+        "smartCardQrPeakFare": 38.0,
+        "smartCardQrOffPeakFare": 36.0
       },
       {
         "slabIndex": 8,
-        "distanceKm": "15.1 to 18.0 km",
+        "distanceKm": "15 to 18 km",
+        "maxDistanceKm": 18,
         "tokenFare": 45,
-        "qrFareFlat5Percent": 42.75,
-        "smartCardVarshik": 42.75
+        "smartCardQrPeakFare": 42.75,
+        "smartCardQrOffPeakFare": 40.5
       },
       {
         "slabIndex": 9,
-        "distanceKm": "18.1 to 21.0 km",
+        "distanceKm": "18 to 21 km",
+        "maxDistanceKm": 21,
         "tokenFare": 50,
-        "qrFareFlat5Percent": 47.5,
-        "smartCardVarshik": 47.5
+        "smartCardQrPeakFare": 47.5,
+        "smartCardQrOffPeakFare": 45.0
       },
       {
         "slabIndex": 10,
-        "distanceKm": "21.1 to 24.0 km",
+        "distanceKm": "21 to 24 km",
+        "maxDistanceKm": 24,
         "tokenFare": 55,
-        "qrFareFlat5Percent": 52.25,
-        "smartCardVarshik": 52.25
+        "smartCardQrPeakFare": 52.25,
+        "smartCardQrOffPeakFare": 49.5
       },
       {
         "slabIndex": 11,
-        "distanceKm": "24.1 to 27.0 km",
+        "distanceKm": "24 to 27 km",
+        "maxDistanceKm": 27,
         "tokenFare": 60,
-        "qrFareFlat5Percent": 57.0,
-        "smartCardVarshik": 57.0,
-        "note": "Maximum cap for all direct single-line journeys (including Whitefield ⇄ Challaghatta)"
+        "smartCardQrPeakFare": 57.0,
+        "smartCardQrOffPeakFare": 54.0
       },
       {
         "slabIndex": 12,
-        "distanceKm": "27.1 to 30.0 km",
+        "distanceKm": "27 to 30 km",
+        "maxDistanceKm": 30,
         "tokenFare": 65,
-        "qrFareFlat5Percent": 61.75,
-        "smartCardVarshik": 61.75
+        "smartCardQrPeakFare": 61.75,
+        "smartCardQrOffPeakFare": 58.5
       },
       {
         "slabIndex": 13,
-        "distanceKm": "30.1 to 34.0 km",
+        "distanceKm": "30 to 33 km",
+        "maxDistanceKm": 33,
         "tokenFare": 70,
-        "qrFareFlat5Percent": 66.5,
-        "smartCardVarshik": 66.5
+        "smartCardQrPeakFare": 66.5,
+        "smartCardQrOffPeakFare": 63.0
       },
       {
         "slabIndex": 14,
-        "distanceKm": "34.1 to 38.0 km",
+        "distanceKm": "33 to 37 km",
+        "maxDistanceKm": 37,
         "tokenFare": 75,
-        "qrFareFlat5Percent": 71.25,
-        "smartCardVarshik": 71.25
+        "smartCardQrPeakFare": 71.25,
+        "smartCardQrOffPeakFare": 67.5
       },
       {
         "slabIndex": 15,
-        "distanceKm": "38.1 to 42.0 km",
+        "distanceKm": "37 to 42 km",
+        "maxDistanceKm": 42,
         "tokenFare": 80,
-        "qrFareFlat5Percent": 76.0,
-        "smartCardVarshik": 76.0
+        "smartCardQrPeakFare": 76.0,
+        "smartCardQrOffPeakFare": 72.0
       },
       {
         "slabIndex": 16,
-        "distanceKm": "42.1 km & above",
+        "distanceKm": "42 to 46 km",
+        "maxDistanceKm": 46,
         "tokenFare": 85,
-        "qrFareFlat5Percent": 80.75,
-        "smartCardVarshik": 80.75,
-        "note": "Benchmark maximum fare for longest cross-corridor journeys"
+        "smartCardQrPeakFare": 80.75,
+        "smartCardQrOffPeakFare": 76.5
+      },
+      {
+        "slabIndex": 17,
+        "distanceKm": "Above 46 km",
+        "maxDistanceKm": null,
+        "tokenFare": 90,
+        "smartCardQrPeakFare": 85.5,
+        "smartCardQrOffPeakFare": 81.0
       }
     ],
     "keyRouteFareBenchmarks": [
       {
         "route": "Whitefield (Kadugodi) ⇄ Challaghatta",
         "type": "Single-line Purple Corridor End-to-End",
-        "distanceKm": 43.49,
-        "tokenFare": 60,
-        "qrFareFlat5Percent": 57.0
+        "distanceKm": 43.95,
+        "tokenFare": 85,
+        "smartCardQrPeakFare": 80.75,
+        "smartCardQrOffPeakFare": 76.5
       },
       {
         "route": "Madavara (BIEC) ⇄ Silk Institute",
         "type": "Single-line Green Corridor End-to-End",
-        "distanceKm": 33.46,
-        "tokenFare": 60,
-        "qrFareFlat5Percent": 57.0
+        "distanceKm": 36.2,
+        "tokenFare": 75,
+        "smartCardQrPeakFare": 71.25,
+        "smartCardQrOffPeakFare": 67.5
       },
       {
         "route": "Rashtreeya Vidyalaya Road ⇄ Bommasandra",
         "type": "Single-line Yellow Corridor End-to-End",
-        "distanceKm": 19.15,
+        "distanceKm": 18.8,
         "tokenFare": 50,
-        "qrFareFlat5Percent": 47.5
+        "smartCardQrPeakFare": 47.5,
+        "smartCardQrOffPeakFare": 45.0
       },
       {
         "route": "Whitefield ⇄ Electronic City",
         "type": "Cross-network Purple ⇄ Green ⇄ Yellow (2 Interchanges)",
-        "distanceKm": 41.2,
-        "tokenFare": 80,
-        "qrFareFlat5Percent": 76.0
+        "distanceKm": 48.25,
+        "tokenFare": 90,
+        "smartCardQrPeakFare": 85.5,
+        "smartCardQrOffPeakFare": 81.0
       },
       {
         "route": "Madavara (BIEC) ⇄ Delta Electronics Bommasandra",
         "type": "Cross-network Longest Trip Green ⇄ Yellow (1 Interchange)",
-        "distanceKm": 52.6,
+        "distanceKm": 45.5,
         "tokenFare": 85,
-        "qrFareFlat5Percent": 80.75
+        "smartCardQrPeakFare": 80.75,
+        "smartCardQrOffPeakFare": 76.5
       }
-    ]
+    ],
+    "discounts": {
+      "peak": {
+        "percentage": 5
+      },
+      "offPeak": {
+        "percentage": 10,
+        "hours": [
+          "05:00–08:00",
+          "11:00–16:30",
+          "20:00–23:00"
+        ],
+        "allDay": [
+          "Sunday"
+        ]
+      }
+    }
   },
   "parkingTariff": {
     "bicycle": {
