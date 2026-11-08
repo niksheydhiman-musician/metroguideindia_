@@ -1,5 +1,100 @@
 /* Global externalized styles for metro system pages */
 
+/* Bengaluru route pages: keep wide content in its own scroll container. */
+@media (max-width:600px){
+  html:has(> body > main.mgi-wrap), body:has(> main.mgi-wrap){
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+  .mgi-wrap, .mgi-wrap *, .mgi-wrap *::before, .mgi-wrap *::after{
+    box-sizing:border-box;
+  }
+  main.mgi-wrap{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .mgi-wrap h1{
+    font-size:1.45rem;
+    line-height:1.25;
+    overflow-wrap:anywhere;
+  }
+  .mgi-wrap .mgi-sub{font-size:.82rem;line-height:1.4;overflow-wrap:anywhere}
+  .mgi-wrap .rc-summary{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:space-between;
+  }
+  .mgi-wrap .rc-summary > div, .mgi-wrap .rc-sum-item{
+    flex:1 1 calc(50% - 8px);
+    min-width:0;
+    padding:12px 14px;
+    text-align:center;
+    overflow-wrap:anywhere;
+  }
+  .mgi-wrap .rc-sep{display:none}
+  .mgi-wrap .rc-steps{max-width:100%;min-width:0}
+  .mgi-wrap .rc-step, .mgi-wrap .rc-more, .mgi-wrap .step-body{
+    min-width:0;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+  .mgi-wrap .step-body{flex:1}
+  .mgi-wrap .step-name{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+  .mgi-wrap .step-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+  .mgi-wrap .step-tags span{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+  .mgi-wrap details.rc-more .rc-list{columns:1;max-width:100%;overflow-wrap:anywhere}
+  .mgi-wrap .mgi-card{max-width:100%;min-width:0}
+  .mgi-wrap .mgi-map-outer, .mgi-wrap .mgi-map-scroll, .mgi-wrap .mgi-scroll{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .mgi-wrap .mgi-map-outer, .mgi-wrap .mgi-map-scroll{touch-action:pan-x}
+  .mgi-wrap .mgi-map-track{display:flex;align-items:center;min-width:max-content}
+  .mgi-wrap .mgi-map .s{flex:0 0 100px;overflow-wrap:anywhere;line-height:1.25}
+  .mgi-wrap .mgi-stn .sname{font-size:10px;max-width:68px;line-height:1.25;overflow-wrap:anywhere}
+  .mgi-wrap .mgi-tbl{width:100%;min-width:480px}
+  .mgi-wrap .mgi-tbl th, .mgi-wrap .mgi-tbl td{padding:8px 10px;font-size:11.5px}
+  .mgi-wrap .mgi-peak-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .mgi-wrap .mgi-fac-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .mgi-wrap .mgi-fac-grid > div, .mgi-wrap .mgi-fac-card{padding:10px 4px 8px}
+  .mgi-wrap .mgi-peak-grid > div, .mgi-wrap .mgi-fac-grid > div,
+  .mgi-wrap .mgi-safety-grid > div, .mgi-wrap .mgi-gates > div{
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+  .mgi-wrap .mgi-safety-grid, .mgi-wrap .related-guides-grid,
+  .mgi-wrap .related-guides-section .guides-grid, .mgi-wrap .mgi-gates{
+    grid-template-columns:minmax(0,1fr);
+    gap:8px;
+  }
+  .mgi-wrap details > summary{min-height:44px;cursor:pointer}
+  .mgi-wrap .mgi-faq-wrap summary, .mgi-wrap .mgi-faq-q{
+    font-size:12.5px;
+    line-height:1.4;
+    overflow-wrap:anywhere;
+  }
+  .mgi-wrap .mgi-faq-wrap p, .mgi-wrap .mgi-faq-a{font-size:12px;overflow-wrap:anywhere}
+}
+@media (max-width:480px){
+  .mgi-wrap .rc-steps .mgi-btn{
+    display:block;
+    width:100%;
+    min-height:44px;
+    text-align:center;
+    overflow-wrap:anywhere;
+  }
+}
+
 /* ── Station CTA button ─────────────────────────────────── */
 .btn-station-cta{
   display:inline-block;
