@@ -76,6 +76,15 @@ class BengaluruRouteTests(unittest.TestCase):
                 text = path.read_text(encoding="utf-8")
                 self.assertNotRegex(text, r"(?i)not listed|—|TBD")
                 self.assertEqual(text, gen.render(path))
+                self.assertIn('<link rel="stylesheet" href="/assets/css/main.css">', text)
+                self.assertEqual(
+                    len(re.findall(r'<table class="mgi-tbl"', text)),
+                    len(re.findall(r'<div class="mgi-scroll">\s*<table class="mgi-tbl"', text)),
+                )
+                self.assertEqual(
+                    text.count('<div class="mgi-map"'),
+                    text.count('<div class="mgi-map-outer"><div class="mgi-map"'),
+                )
                 parser = PageParser()
                 parser.feed(text)
                 self.assertFalse(parser.errors)
