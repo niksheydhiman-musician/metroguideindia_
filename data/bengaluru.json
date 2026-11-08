@@ -1,4 +1,5 @@
 {
+  "$schema": "https://metroguideindia.com/schemas/metro-data-hub.json",
   "metadata": {
     "networkName": "Namma Metro (Bengaluru Metro)",
     "kannadaNetworkName": "ನಮ್ಮ ಮೆಟ್ರೋ (ಬೆಂಗಳೂರು ಮೆಟ್ರೋ)",
@@ -11,7 +12,11 @@
     "operationalNetworkLengthKm": 96.15,
     "gauge": "Standard Gauge (1435 mm)",
     "electrification": "750 V DC Third Rail",
-    "fareRange": "₹10 to ₹90",
+    "minFare": 10,
+    "benchmarkMaxFare": 85,
+    "fareRange": "₹10 to ₹85",
+    "qrDiscountPercentage": 5,
+    "qrDiscountPolicy": "Flat 5% discount on all single journey token fares",
     "currency": "INR (₹)",
     "lastUpdated": "November 2026",
     "officialWebsite": "https://www.bmrc.co.in",
@@ -19,7 +24,38 @@
     "whatsAppBooking": {
       "phone": "+91 8105556677",
       "deepLink": "https://wa.me/918105556677?text=Hi",
-      "discount": "5% off standard token fare"
+      "discount": "Flat 5% off standard token fare"
+    }
+  },
+  "networkRoutingRules": {
+    "purpleToYellowTwoInterchangesRule": {
+      "appliesTo": "Any journey between Purple Line (Whitefield to Challaghatta) and Yellow Line (RV Road to Bommasandra)",
+      "requiresTwoInterchanges": true,
+      "explanation": "Because the Purple and Yellow Lines do not cross directly, all Purple-to-Yellow journeys require TWO interchanges via the central Green Line corridor.",
+      "standardRoutingStepByStep": [
+        {
+          "step": 1,
+          "action": "Board train on Purple Line towards Nadaprabhu Kempegowda Station, Majestic."
+        },
+        {
+          "step": 2,
+          "interchangeHub": "Nadaprabhu Kempegowda Station, Majestic",
+          "action": "INTERCHANGE 1: Alight at Majestic. Transfer from Purple Line underground concourse to Green Line Platform 4 (Southbound towards Silk Institute). Transfer time: ~5 minutes."
+        },
+        {
+          "step": 3,
+          "action": "Ride Green Line train for 7 stations south (Chickpete → KR Market → National College → Lalbagh → South End Circle → Jayanagar → RV Road)."
+        },
+        {
+          "step": 4,
+          "interchangeHub": "Rashtreeya Vidyalaya Road (RV Road)",
+          "action": "INTERCHANGE 2: Alight at RV Road. Transfer across the concourse to Yellow Line Platform 3 (Southbound towards Delta Electronics Bommasandra). Transfer time: ~3 minutes."
+        },
+        {
+          "step": 5,
+          "action": "Ride Yellow Line train directly to your destination station (BTM Layout, Central Silk Board, Electronic City, Bommasandra)."
+        }
+      ]
     }
   },
   "operationalLines": [
@@ -62,7 +98,7 @@
         "seetharamapalaya",
         "hoodi",
         "garudacharpalya",
-        "singayyanapalya",
+        "singayyanapalya-mahadevapura",
         "krishnarajapura-kr-puram",
         "benniganahalli",
         "baiyappanahalli",
@@ -213,7 +249,7 @@
       ],
       "platforms": 4,
       "transferTimeMinutes": 5,
-      "description": "Multi-level underground interchange connecting East-West (Purple) and North-South (Green) corridors. Direct underground subways to KSR Bengaluru City Railway Station (SBC) and Majestic Bus Terminus."
+      "description": "Multi-level underground interchange connecting East-West and North-South corridors with direct underground pedestrian subways to KSR Bengaluru City Railway Station (SBC) and Majestic Bus Terminus."
     },
     {
       "id": "rv-road",
@@ -225,139 +261,137 @@
       ],
       "platforms": 4,
       "transferTimeMinutes": 3,
-      "description": "Cross-platform concourse interchange connecting Green Line (Jayanagar/Banashankari) to Yellow Line (BTM/Silk Board/Electronic City/Bommasandra)."
+      "description": "Cross-platform concourse interchange connecting Green Line (Jayanagar/Banashankari/Kanakapura Road) to Yellow Line (BTM/Silk Board/Electronic City/Bommasandra)."
     }
   ],
   "fareRules": {
     "minFare": 10,
-    "maxFare": 90,
+    "maxBenchmarkFare": 85,
+    "qrDiscountPercentage": 5,
     "distanceSlabs": [
       {
         "slabIndex": 1,
-        "distanceKm": "0 to 2 km",
+        "distanceKm": "0.0 to 2.0 km",
         "tokenFare": 10,
-        "smartCardPeak": 9.5,
-        "smartCardOffPeak": 9.0
+        "qrFareFlat5Percent": 9.5,
+        "smartCardVarshik": 9.5
       },
       {
         "slabIndex": 2,
-        "distanceKm": "2 to 4 km",
+        "distanceKm": "2.1 to 4.0 km",
         "tokenFare": 15,
-        "smartCardPeak": 14.25,
-        "smartCardOffPeak": 13.5
+        "qrFareFlat5Percent": 14.25,
+        "smartCardVarshik": 14.25
       },
       {
         "slabIndex": 3,
-        "distanceKm": "4 to 6 km",
+        "distanceKm": "4.1 to 6.0 km",
         "tokenFare": 20,
-        "smartCardPeak": 19.0,
-        "smartCardOffPeak": 18.0
+        "qrFareFlat5Percent": 19.0,
+        "smartCardVarshik": 19.0
       },
       {
         "slabIndex": 4,
-        "distanceKm": "6 to 8 km",
+        "distanceKm": "6.1 to 8.0 km",
         "tokenFare": 25,
-        "smartCardPeak": 23.75,
-        "smartCardOffPeak": 22.5
+        "qrFareFlat5Percent": 23.75,
+        "smartCardVarshik": 23.75
       },
       {
         "slabIndex": 5,
-        "distanceKm": "8 to 10 km",
+        "distanceKm": "8.1 to 10.0 km",
         "tokenFare": 30,
-        "smartCardPeak": 28.5,
-        "smartCardOffPeak": 27.0
+        "qrFareFlat5Percent": 28.5,
+        "smartCardVarshik": 28.5
       },
       {
         "slabIndex": 6,
-        "distanceKm": "10 to 12 km",
+        "distanceKm": "10.1 to 12.0 km",
         "tokenFare": 35,
-        "smartCardPeak": 33.25,
-        "smartCardOffPeak": 31.5
+        "qrFareFlat5Percent": 33.25,
+        "smartCardVarshik": 33.25
       },
       {
         "slabIndex": 7,
-        "distanceKm": "12 to 15 km",
+        "distanceKm": "12.1 to 15.0 km",
         "tokenFare": 40,
-        "smartCardPeak": 38.0,
-        "smartCardOffPeak": 36.0
+        "qrFareFlat5Percent": 38.0,
+        "smartCardVarshik": 38.0
       },
       {
         "slabIndex": 8,
-        "distanceKm": "15 to 18 km",
+        "distanceKm": "15.1 to 18.0 km",
         "tokenFare": 45,
-        "smartCardPeak": 42.75,
-        "smartCardOffPeak": 40.5
+        "qrFareFlat5Percent": 42.75,
+        "smartCardVarshik": 42.75
       },
       {
         "slabIndex": 9,
-        "distanceKm": "18 to 21 km",
+        "distanceKm": "18.1 to 21.0 km",
         "tokenFare": 50,
-        "smartCardPeak": 47.5,
-        "smartCardOffPeak": 45.0
+        "qrFareFlat5Percent": 47.5,
+        "smartCardVarshik": 47.5
       },
       {
         "slabIndex": 10,
-        "distanceKm": "21 to 24 km",
+        "distanceKm": "21.1 to 24.0 km",
         "tokenFare": 55,
-        "smartCardPeak": 52.25,
-        "smartCardOffPeak": 49.5
+        "qrFareFlat5Percent": 52.25,
+        "smartCardVarshik": 52.25
       },
       {
         "slabIndex": 11,
-        "distanceKm": "24 to 27 km",
+        "distanceKm": "24.1 to 27.0 km",
         "tokenFare": 60,
-        "smartCardPeak": 57.0,
-        "smartCardOffPeak": 54.0
+        "qrFareFlat5Percent": 57.0,
+        "smartCardVarshik": 57.0
       },
       {
         "slabIndex": 12,
-        "distanceKm": "27 to 30 km",
+        "distanceKm": "27.1 to 30.0 km",
         "tokenFare": 65,
-        "smartCardPeak": 61.75,
-        "smartCardOffPeak": 58.5
+        "qrFareFlat5Percent": 61.75,
+        "smartCardVarshik": 61.75
       },
       {
         "slabIndex": 13,
-        "distanceKm": "30 to 33 km",
+        "distanceKm": "30.1 to 34.0 km",
         "tokenFare": 70,
-        "smartCardPeak": 66.5,
-        "smartCardOffPeak": 63.0
+        "qrFareFlat5Percent": 66.5,
+        "smartCardVarshik": 66.5
       },
       {
         "slabIndex": 14,
-        "distanceKm": "33 to 37 km",
+        "distanceKm": "34.1 to 38.0 km",
         "tokenFare": 75,
-        "smartCardPeak": 71.25,
-        "smartCardOffPeak": 67.5
+        "qrFareFlat5Percent": 71.25,
+        "smartCardVarshik": 71.25
       },
       {
         "slabIndex": 15,
-        "distanceKm": "37 to 42 km",
+        "distanceKm": "38.1 to 42.0 km",
         "tokenFare": 80,
-        "smartCardPeak": 76.0,
-        "smartCardOffPeak": 72.0
+        "qrFareFlat5Percent": 76.0,
+        "smartCardVarshik": 76.0
       },
       {
         "slabIndex": 16,
-        "distanceKm": "42 to 46 km",
+        "distanceKm": "42.1 km and above (Benchmark Maximum)",
         "tokenFare": 85,
-        "smartCardPeak": 80.75,
-        "smartCardOffPeak": 76.5
-      },
-      {
-        "slabIndex": 17,
-        "distanceKm": "46 km & above",
-        "tokenFare": 90,
-        "smartCardPeak": 85.5,
-        "smartCardOffPeak": 81.0
+        "qrFareFlat5Percent": 80.75,
+        "smartCardVarshik": 80.75
       }
     ],
     "discounts": {
-      "smartCardVarshik": {
-        "peak": "5% discount on standard token fare",
-        "offPeak": "10% discount during off-peak hours (05:00-08:00, 11:00-16:30, 20:00-23:00) and all day Sunday & Gazetted Holidays"
+      "qrTickets": {
+        "percentage": 5,
+        "policy": "Flat 5% discount on standard token fare across WhatsApp, Namma Metro App, and UPI ticketing",
+        "exampleCalculation": "₹85 benchmark token fare costs ₹80.75 via QR ticket"
       },
-      "qrTickets": "5% flat discount via WhatsApp (+91 8105556677), Namma Metro App, Paytm, and TumMoc",
+      "smartCardVarshikNCMC": {
+        "discount": "5% peak / 10% off-peak & Sundays",
+        "description": "Varshik Smart Card / RuPay National Common Mobility Card"
+      },
       "oneDayPass": {
         "fare": 100,
         "description": "Unlimited travel for 1 operational day across all lines"
@@ -371,7 +405,7 @@
   },
   "parkingTariff": {
     "bicycle": {
-      "rate": "Free at all BMRCL designated cycle stands"
+      "hourlyRate": "Free at all BMRCL designated cycle stands"
     },
     "twoWheeler": {
       "first4Hours": 15,
@@ -409,19 +443,42 @@
       "name": "Whitefield (Kadugodi)",
       "kannadaName": "ವೈಟ್‌ಫೀಲ್ಡ್ (ಕಾಡುಗೋಡಿ)",
       "code": "WHTF",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 1
       },
+      "interstationDistanceKm": 0.0,
+      "distanceFromTerminalKm": {
+        "PURPLE": 0.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
-      "interchangeWith": [
-        "INDIAN_RAILWAYS"
+      "interchangeWith": [],
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Terminus (Trains arrive & reverse)",
+          "doorOpening": "Right"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
       ],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Whitefield Railway Station",
@@ -432,11 +489,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Kadugodi Bus Stand & Whitefield Railway Station FOB"
+          "direction": "Whitefield Railway Station & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Whitefield Main Road & Channasandra"
+          "direction": "Kadugodi Bus Stand & Bus Feeder Point"
         }
       ]
     },
@@ -445,17 +502,42 @@
       "name": "Hopefarm Channasandra",
       "kannadaName": "ಹೋಪ್‌ಫಾರ್ಮ್ ಚನ್ನಸಂದ್ರ",
       "code": "HPFM",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 2
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 1.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Hope Farm Signal",
@@ -465,11 +547,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Channasandra Main Road"
+          "direction": "Hope Farm Signal & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hope Farm Junction & ITPL Road"
+          "direction": "MVJ College of Engineering & Bus Feeder Point"
         }
       ]
     },
@@ -478,17 +560,42 @@
       "name": "Kadugodi Tree Park",
       "kannadaName": "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್",
       "code": "KDTP",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 3
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 2.3
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 100,
+        "fourWheelerCapacity": 15,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": false,
       "landmarks": [
         "Kadugodi Tree Park",
@@ -498,11 +605,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Tree Park Entrance"
+          "direction": "Kadugodi Tree Park & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Whitefield Main Road"
+          "direction": "Forest Nursery & Bus Feeder Point"
         }
       ]
     },
@@ -511,17 +618,42 @@
       "name": "Pattanduru Agrahara",
       "kannadaName": "ಪಟ್ಟಂದೂರು ಅಗ್ರಹಾರ",
       "code": "PTAG",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 4
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "PURPLE": 3.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "ITPL Back Gate",
@@ -531,11 +663,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "ITPL Back Gate"
+          "direction": "ITPL Back Gate & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Pattanduru Agrahara Village Road"
+          "direction": "Prestige Shantiniketan & Bus Feeder Point"
         }
       ]
     },
@@ -544,17 +676,42 @@
       "name": "Sri Sathya Sai Hospital",
       "kannadaName": "ಶ್ರೀ ಸತ್ಯ ಸಾಯಿ ಆಸ್ಪತ್ರೆ",
       "code": "SSSH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 5
       },
+      "interstationDistanceKm": 1.0,
+      "distanceFromTerminalKm": {
+        "PURPLE": 4.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Sri Sathya Sai Super Speciality Hospital",
@@ -564,11 +721,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Satya Sai Hospital Entrance"
+          "direction": "Sri Sathya Sai Super Speciality Hospital & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "ITPL Main Gate & Park Square Mall"
+          "direction": "International Tech Park Bangalore (ITPL) & Bus Feeder Point"
         }
       ]
     },
@@ -577,17 +734,42 @@
       "name": "Nallurhalli",
       "kannadaName": "ನಲ್ಲೂರುಹಳ್ಳಿ",
       "code": "NLHL",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 6
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 5.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Nallurhalli Lake",
@@ -597,11 +779,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Nallurhalli Main Road"
+          "direction": "Nallurhalli Lake & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Siddhapura Link Road"
+          "direction": "Sigma Soft Tech Park & Bus Feeder Point"
         }
       ]
     },
@@ -610,17 +792,42 @@
       "name": "Kundalahalli",
       "kannadaName": "ಕುಂದಲಹಳ್ಳಿ",
       "code": "KNDH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 7
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 6.9
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 150,
+        "fourWheelerCapacity": 20,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Kundalahalli Gate",
@@ -631,11 +838,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Brookefield & ITPL Main Road"
+          "direction": "Kundalahalli Gate & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Kundalahalli Village & Varthur Road"
+          "direction": "SAP Labs & Bus Feeder Point"
         }
       ]
     },
@@ -644,17 +851,42 @@
       "name": "Seetharamapalaya",
       "kannadaName": "ಸೀತಾರಾಮಪಾಳ್ಯ",
       "code": "STRH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 8
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "PURPLE": 8.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "EPIP Zone",
@@ -664,11 +896,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "EPIP Industrial Area"
+          "direction": "EPIP Zone & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Seetharamapalaya Main Road"
+          "direction": "TCS Pioneer & Bus Feeder Point"
         }
       ]
     },
@@ -677,17 +909,42 @@
       "name": "Hoodi",
       "kannadaName": "ಹೂಡಿ",
       "code": "HODI",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 9
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 9.4
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 120,
+        "fourWheelerCapacity": 20,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Hoodi Junction",
@@ -698,11 +955,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Mahadevapura Side"
+          "direction": "Hoodi Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "ITPL Main Road Side"
+          "direction": "ABB India & Bus Feeder Point"
         }
       ]
     },
@@ -711,17 +968,42 @@
       "name": "Garudacharpalya",
       "kannadaName": "ಗರುಡಾಚಾರ್‌ಪಾಳ್ಯ",
       "code": "GDCP",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 10
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 10.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Decathlon Whitefield",
@@ -731,44 +1013,74 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Decathlon & ITPL Road"
+          "direction": "Decathlon Whitefield & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Garudacharpalya Village"
+          "direction": "Brigade Metropolis & Bus Feeder Point"
         }
       ]
     },
     {
-      "id": "singayyanapalya",
-      "name": "Singayyanapalya",
-      "kannadaName": "ಸಿಂಗಯ್ಯನಪಾಳ್ಯ",
-      "code": "SYNP",
+      "id": "singayyanapalya-mahadevapura",
+      "name": "Singayyanapalya (Mahadevapura)",
+      "kannadaName": "ಸಿಂಗಯ್ಯನಪಾಳ್ಯ (ಮಹಾದೇವಪುರ)",
+      "code": "MDVP",
+      "aliases": [
+        "Mahadevapura",
+        "Singayyanapalya",
+        "MDVP"
+      ],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 11
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 11.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 200,
+        "fourWheelerCapacity": 30,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Phoenix Marketcity Bangalore",
         "VR Bengaluru Mall",
-        "Singayyanapalya Lake"
+        "Mahadevapura Police Station",
+        "HPCL Campus"
       ],
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Phoenix Marketcity & VR Bengaluru"
+          "direction": "Phoenix Marketcity Bangalore & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mahadevapura Police Station & Lake"
+          "direction": "VR Bengaluru Mall & Bus Feeder Point"
         }
       ]
     },
@@ -777,11 +1089,16 @@
       "name": "Krishnarajapura (K.R. Puram)",
       "kannadaName": "ಕೃಷ್ಣರಾಜಪುರ (ಕೆ.ಆರ್. ಪುರಂ)",
       "code": "KRP",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 12
+      },
+      "interstationDistanceKm": 1.75,
+      "distanceFromTerminalKm": {
+        "PURPLE": 13.55
       },
       "layout": "Elevated",
       "isInterchange": true,
@@ -789,8 +1106,28 @@
         "BLUE (Upcoming Airport Line)",
         "INDIAN_RAILWAYS"
       ],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 350,
+        "fourWheelerCapacity": 60,
+        "bicycleCapacity": 40,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "K.R. Puram Railway Station (KJM)",
@@ -800,11 +1137,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Foot Over Bridge to K.R. Puram Railway Station"
+          "direction": "K.R. Puram Railway Station (KJM) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Outer Ring Road (ORR) towards Marathahalli / Bellandur"
+          "direction": "Tin Factory Junction & Bus Feeder Point"
         }
       ]
     },
@@ -813,17 +1150,42 @@
       "name": "Benniganahalli",
       "kannadaName": "ಬೆನ್ನಿಗಾನಹಳ್ಳಿ",
       "code": "BNGH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 13
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "PURPLE": 14.85
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Tin Factory",
@@ -833,11 +1195,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Tin Factory Bus Stop"
+          "direction": "Tin Factory & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Kasturi Nagar Link Road"
+          "direction": "Benniganahalli Flyover & Bus Feeder Point"
         }
       ]
     },
@@ -846,19 +1208,44 @@
       "name": "Baiyappanahalli",
       "kannadaName": "ಬೈಯ್ಯಪ್ಪನಹಳ್ಳಿ",
       "code": "BYPH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 14
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 16.05
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [
         "INDIAN_RAILWAYS"
       ],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 600,
+        "fourWheelerCapacity": 120,
+        "bicycleCapacity": 50,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Sir M. Visvesvaraya Terminal (SMVT) Bengaluru",
@@ -868,11 +1255,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Old Madras Road Bus Stop & Concourse"
+          "direction": "Sir M. Visvesvaraya Terminal (SMVT) Bengaluru & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Auto Stand & Feeder Bus to SMVT Railway Terminal"
+          "direction": "Baiyappanahalli Metro Depot & Bus Feeder Point"
         }
       ]
     },
@@ -881,17 +1268,42 @@
       "name": "Swami Vivekananda Road",
       "kannadaName": "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ರಸ್ತೆ",
       "code": "SVRD",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 15
       },
+      "interstationDistanceKm": 1.4,
+      "distanceFromTerminalKm": {
+        "PURPLE": 17.45
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 400,
+        "fourWheelerCapacity": 80,
+        "bicycleCapacity": 40,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Old Madras Road",
@@ -901,11 +1313,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Old Madras Road (North)"
+          "direction": "Old Madras Road & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Indiranagar 1st Stage"
+          "direction": "BMTC Indiranagar Depot & Bus Feeder Point"
         }
       ]
     },
@@ -914,17 +1326,42 @@
       "name": "Indiranagar",
       "kannadaName": "ಇಂದಿರಾನಗರ",
       "code": "IDRN",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 16
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 18.55
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "100 Feet Road",
@@ -935,11 +1372,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "100 Feet Road & CMH Road Junction"
+          "direction": "100 Feet Road & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "CMH Hospital & BDA Complex"
+          "direction": "CMH Road & Bus Feeder Point"
         }
       ]
     },
@@ -948,17 +1385,42 @@
       "name": "Halasuru",
       "kannadaName": "ಹಲಸೂರು",
       "code": "HLSR",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 17
       },
+      "interstationDistanceKm": 1.4,
+      "distanceFromTerminalKm": {
+        "PURPLE": 19.95
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Ulsoor Lake",
@@ -968,11 +1430,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Ulsoor Lake Road"
+          "direction": "Ulsoor Lake & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Old Madras Road & Halasuru Market"
+          "direction": "Someshwara Temple & Bus Feeder Point"
         }
       ]
     },
@@ -981,17 +1443,42 @@
       "name": "Trinity",
       "kannadaName": "ಟ್ರಿನಿಟಿ",
       "code": "TRTY",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 18
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 21.05
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Trinity Circle",
@@ -1002,11 +1489,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "MG Road & Trinity Circle"
+          "direction": "Trinity Circle & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hosur Road & Victoria Layout"
+          "direction": "Taj MG Road & Bus Feeder Point"
         }
       ]
     },
@@ -1015,19 +1502,44 @@
       "name": "Mahatma Gandhi Road (MG Road)",
       "kannadaName": "ಮಹಾತ್ಮ ಗಾಂಧಿ ರಸ್ತೆ (ಎಂ.ಜಿ. ರಸ್ತೆ)",
       "code": "MGRD",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 19
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 22.25
+      },
       "layout": "Elevated",
       "isInterchange": true,
       "interchangeWith": [
         "PINK (Upcoming)"
       ],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Brigade Road",
@@ -1038,11 +1550,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Brigade Road & Church Street"
+          "direction": "Brigade Road & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "MG Road Boulevard & Anil Kumble Circle"
+          "direction": "Church Street & Bus Feeder Point"
         }
       ]
     },
@@ -1051,17 +1563,42 @@
       "name": "Cubbon Park (Sri Chamarajendra Park)",
       "kannadaName": "ಕಬ್ಬನ್ ಪಾರ್ಕ್ (ಶ್ರೀ ಚಾಮರಾಜೇಂದ್ರ ಪಾರ್ಕ್)",
       "code": "CBPK",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 20
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 23.35
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Cubbon Park",
@@ -1072,11 +1609,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Chinnaswamy Stadium & Queen Road"
+          "direction": "Cubbon Park & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Cubbon Park & High Court"
+          "direction": "M. Chinnaswamy Cricket Stadium & Bus Feeder Point"
         }
       ]
     },
@@ -1085,17 +1622,42 @@
       "name": "Dr. B.R. Ambedkar Station, Vidhana Soudha",
       "kannadaName": "ಡಾ. ಬಿ.ಆರ್. ಅಂಬೇಡ್ಕರ್ ನಿಲ್ದಾಣ, ವಿಧಾನ ಸೌಧ",
       "code": "VDSN",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 21
       },
+      "interstationDistanceKm": 0.9,
+      "distanceFromTerminalKm": {
+        "PURPLE": 24.25
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 0,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": false,
       "landmarks": [
         "Vidhana Soudha",
@@ -1106,11 +1668,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Vidhana Soudha Main Entrance"
+          "direction": "Vidhana Soudha & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Vikas Soudha & MS Building"
+          "direction": "Vikas Soudha & Bus Feeder Point"
         }
       ]
     },
@@ -1119,17 +1681,42 @@
       "name": "Sir M. Visvesvaraya Station, Central College",
       "kannadaName": "ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ ನಿಲ್ದಾಣ, ಸೆಂಟ್ರಲ್ ಕಾಲೇಜು",
       "code": "SMVC",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 22
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 25.35
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Bengaluru City University (Central College)",
@@ -1140,11 +1727,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Central College Campus"
+          "direction": "Bengaluru City University (Central College) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "K.R. Circle & District Court"
+          "direction": "District Registrar Office & Bus Feeder Point"
         }
       ]
     },
@@ -1153,6 +1740,7 @@
       "name": "Nadaprabhu Kempegowda Station, Majestic",
       "kannadaName": "ನಾದಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ, ಮೆಜೆಸ್ಟಿಕ್",
       "code": "MJC",
+      "aliases": [],
       "lines": [
         "PURPLE",
         "GREEN"
@@ -1161,15 +1749,51 @@
         "PURPLE": 23,
         "GREEN": 17
       },
-      "layout": "Underground (Multi-level Interchange)",
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 26.45,
+        "GREEN": 18.7
+      },
+      "layout": "Underground",
       "isInterchange": true,
       "interchangeWith": [
         "GREEN",
-        "PURPLE",
         "INDIAN_RAILWAYS"
       ],
-      "platforms": 4,
-      "parkingAvailable": false,
+      "platformsCount": 4,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 3,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 4,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 50,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "KSR Bengaluru City Railway Station (SBC)",
@@ -1180,15 +1804,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "KSRTC Intercity Bus Terminus"
+          "direction": "KSR Bengaluru City Railway Station (SBC) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "BMTC City Bus Terminus"
-        },
-        {
-          "gate": "Gate 3",
-          "direction": "Subway link to KSR Bengaluru City Railway Station"
+          "direction": "Kempegowda Bus Station (Majestic KSRTC/BMTC) & Bus Feeder Point"
         }
       ]
     },
@@ -1197,19 +1817,44 @@
       "name": "City Railway Station (KSR Bengaluru)",
       "kannadaName": "ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ ರೈಲು ನಿಲ್ದಾಣ",
       "code": "SBC",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 24
       },
+      "interstationDistanceKm": 0.9,
+      "distanceFromTerminalKm": {
+        "PURPLE": 27.35
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [
         "INDIAN_RAILWAYS"
       ],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Krantivira Sangolli Rayanna (KSR) Railway Station Main Entrance",
@@ -1219,11 +1864,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skywalk to KSR Bengaluru Railway Station Platforms"
+          "direction": "Krantivira Sangolli Rayanna (KSR) Railway Station Main Entrance & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Okalipuram Main Road"
+          "direction": "Okalipuram & Bus Feeder Point"
         }
       ]
     },
@@ -1232,17 +1877,42 @@
       "name": "Magadi Road",
       "kannadaName": "ಮಾಗಡಿ ರಸ್ತೆ",
       "code": "MDRD",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 25
       },
+      "interstationDistanceKm": 1.8,
+      "distanceFromTerminalKm": {
+        "PURPLE": 29.15
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Magadi Road Tollgate",
@@ -1252,11 +1922,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Magadi Main Road (East)"
+          "direction": "Magadi Road Tollgate & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Magadi Main Road (West)"
+          "direction": "Cholourpalya & Bus Feeder Point"
         }
       ]
     },
@@ -1265,17 +1935,42 @@
       "name": "Sri Balagangadharanatha Swamiji Station, Hosahalli",
       "kannadaName": "ಶ್ರೀ ಬಾಲಗಂಗಾಧರನಾಥ ಸ್ವಾಮೀಜಿ ನಿಲ್ದಾಣ, ಹೊಸಹಳ್ಳಿ",
       "code": "HSHL",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 26
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 30.25
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Hosahalli Main Road",
@@ -1285,11 +1980,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Hosahalli Bus Stand"
+          "direction": "Hosahalli Main Road & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Towards Vijayanagar"
+          "direction": "Vijayanagar Club & Bus Feeder Point"
         }
       ]
     },
@@ -1298,17 +1993,42 @@
       "name": "Vijayanagar",
       "kannadaName": "ವಿಜಯನಗರ",
       "code": "VJNR",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 27
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 31.45
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Vijayanagar TTMC Bus Station",
@@ -1319,11 +2039,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Vijayanagar TTMC Bus Stand"
+          "direction": "Vijayanagar TTMC Bus Station & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Chord Road & Maruti Mandir"
+          "direction": "Maruti Mandir & Bus Feeder Point"
         }
       ]
     },
@@ -1332,17 +2052,42 @@
       "name": "Attiguppe",
       "kannadaName": "ಅತ್ತಿಗುಪ್ಪೆ",
       "code": "ATGP",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 28
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 32.65
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Attiguppe Junction",
@@ -1352,11 +2097,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Chandra Layout Link"
+          "direction": "Attiguppe Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Chord Road & Deepanjalinagar"
+          "direction": "Chandra Layout & Bus Feeder Point"
         }
       ]
     },
@@ -1365,17 +2110,42 @@
       "name": "Deepanjali Nagar",
       "kannadaName": "ದೀಪಾಂಜಲಿ ನಗರ",
       "code": "DPNJ",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 29
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "PURPLE": 33.95
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Mysore Road Flyover",
@@ -1385,11 +2155,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Deepanjali Nagar Market"
+          "direction": "Mysore Road Flyover & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mysore Road towards Satellite Bus Stand"
+          "direction": "Avalahalli BDA Park & Bus Feeder Point"
         }
       ]
     },
@@ -1398,17 +2168,42 @@
       "name": "Mysuru Road",
       "kannadaName": "ಮೈಸೂರು ರಸ್ತೆ",
       "code": "MYRD",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 30
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 35.15
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 500,
+        "fourWheelerCapacity": 100,
+        "bicycleCapacity": 40,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Satellite Bus Terminal (KSRTC Mysore Road)",
@@ -1418,11 +2213,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Mysore Road Satellite Bus Station Foot Over Bridge"
+          "direction": "Satellite Bus Terminal (KSRTC Mysore Road) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Towards Nayandahalli"
+          "direction": "Gopalan Legacy Mall & Bus Feeder Point"
         }
       ]
     },
@@ -1431,17 +2226,42 @@
       "name": "Pantharapalya - Nayandahalli",
       "kannadaName": "ಪಂತರಪಾಳ್ಯ - ನಾಯಂಡಹಳ್ಳಿ",
       "code": "NYDH",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 31
       },
+      "interstationDistanceKm": 1.4,
+      "distanceFromTerminalKm": {
+        "PURPLE": 36.55
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Nayandahalli Junction",
@@ -1451,11 +2271,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Ring Road Junction towards Banashankari"
+          "direction": "Nayandahalli Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mysuru Road towards Kengeri"
+          "direction": "Outer Ring Road (ORR) South & Bus Feeder Point"
         }
       ]
     },
@@ -1464,17 +2284,42 @@
       "name": "Rajarajeshwari Nagar",
       "kannadaName": "ರಾಜರಾಜೇಶ್ವರಿ ನಗರ",
       "code": "RRNR",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 32
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 37.75
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "RR Nagar Arch",
@@ -1484,11 +2329,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "RR Nagar Arch & Mysore Road"
+          "direction": "RR Nagar Arch & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Gopalan Arcade Mall"
+          "direction": "Global Village Tech Park & Bus Feeder Point"
         }
       ]
     },
@@ -1497,17 +2342,42 @@
       "name": "Jnanabharathi",
       "kannadaName": "ಜ್ಞಾನಭಾರತಿ",
       "code": "JNBR",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 33
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "PURPLE": 39.05
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 300,
+        "fourWheelerCapacity": 50,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Bangalore University (Jnanabharathi Campus)",
@@ -1517,11 +2387,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Bangalore University Main Campus Gate"
+          "direction": "Bangalore University (Jnanabharathi Campus) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mysore Road (RVCE Side)"
+          "direction": "National Law School of India (NLSIU) & Bus Feeder Point"
         }
       ]
     },
@@ -1530,17 +2400,42 @@
       "name": "Pattanagere",
       "kannadaName": "ಪಟ್ಟಣಗೆರೆ",
       "code": "PTGR",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 34
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 40.15
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Rajarajeshwari Medical College",
@@ -1550,11 +2445,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Mysore Road North Side"
+          "direction": "Rajarajeshwari Medical College & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Pattanagere Residential Area"
+          "direction": "BGS Hospital Link & Bus Feeder Point"
         }
       ]
     },
@@ -1563,17 +2458,42 @@
       "name": "Kengeri Bus Terminal",
       "kannadaName": "ಕೆಂಗೇರಿ ಬಸ್ ಟರ್ಮಿನಲ್",
       "code": "KGT",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 35
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "PURPLE": 41.35
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 350,
+        "fourWheelerCapacity": 60,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Kengeri TTMC Bus Terminal",
@@ -1583,11 +2503,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skywalk to Kengeri TTMC"
+          "direction": "Kengeri TTMC Bus Terminal & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mysore Road towards Bidadi"
+          "direction": "Kengeri Satellite Town & Bus Feeder Point"
         }
       ]
     },
@@ -1596,17 +2516,44 @@
       "name": "Kengeri",
       "kannadaName": "ಕೆಂಗೇರಿ",
       "code": "KGRI",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 36
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "PURPLE": 42.45
+      },
       "layout": "Elevated",
       "isInterchange": false,
-      "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "interchangeWith": [
+        "INDIAN_RAILWAYS"
+      ],
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Towards Challaghatta [Westbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Kengeri Railway Station",
@@ -1616,11 +2563,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Kengeri Railway Station Entrance"
+          "direction": "Kengeri Railway Station & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Kengeri Police Station & Market"
+          "direction": "Kengeri Market & Bus Feeder Point"
         }
       ]
     },
@@ -1629,17 +2576,42 @@
       "name": "Challaghatta",
       "kannadaName": "ಚಲ್ಲಘಟ್ಟ",
       "code": "CHGT",
+      "aliases": [],
       "lines": [
         "PURPLE"
       ],
       "lineSequence": {
         "PURPLE": 37
       },
+      "interstationDistanceKm": 1.5,
+      "distanceFromTerminalKm": {
+        "PURPLE": 43.95
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "PURPLE",
+          "direction": "Towards Whitefield (Kadugodi) [Eastbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "PURPLE",
+          "direction": "Terminus (Trains arrive & reverse)",
+          "doorOpening": "Right"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 400,
+        "fourWheelerCapacity": 80,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Challaghatta Metro Depot",
@@ -1649,11 +2621,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Expressway Service Road"
+          "direction": "Challaghatta Metro Depot & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Kumbalgodu & Challaghatta Depot"
+          "direction": "Rajarajeswari Dental College & Bus Feeder Point"
         }
       ]
     },
@@ -1662,17 +2634,42 @@
       "name": "Madavara (BIEC)",
       "kannadaName": "ಮಾದಾವರ (ಬಿ.ಐ.ಇ.ಸಿ)",
       "code": "MDVR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 1
       },
+      "interstationDistanceKm": 0.0,
+      "distanceFromTerminalKm": {
+        "GREEN": 0.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Terminus (Arrivals)",
+          "doorOpening": "Right"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 400,
+        "fourWheelerCapacity": 70,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Bangalore International Exhibition Centre (BIEC)",
@@ -1683,11 +2680,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "BIEC Exhibition Ground Entrance"
+          "direction": "Bangalore International Exhibition Centre (BIEC) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Tumkur Road Service Road (towards Nelamangala)"
+          "direction": "Tumkur Road (NH-48) & Bus Feeder Point"
         }
       ]
     },
@@ -1696,17 +2693,42 @@
       "name": "Chikkabidarakallu",
       "kannadaName": "ಚಿಕ್ಕಬಿದರಕಲ್ಲು",
       "code": "CKBD",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 2
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "GREEN": 1.3
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Jindal Naturecure Institute",
@@ -1716,11 +2738,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Jindal Naturecure Side"
+          "direction": "Jindal Naturecure Institute & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Tumkur Road East Side"
+          "direction": "Tumkur Road & Bus Feeder Point"
         }
       ]
     },
@@ -1729,17 +2751,42 @@
       "name": "Manjunath Nagar",
       "kannadaName": "ಮಂಜುನಾಥ ನಗರ",
       "code": "MJNR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 3
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 2.4
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Manjunath Nagar",
@@ -1749,11 +2796,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Bagalakunte Main Road"
+          "direction": "Manjunath Nagar & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Manjunath Nagar Residential Layout"
+          "direction": "Bagalakunte & Bus Feeder Point"
         }
       ]
     },
@@ -1762,17 +2809,42 @@
       "name": "Nagasandra",
       "kannadaName": "ನಾಗಸಂದ್ರ",
       "code": "NGSD",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 4
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 3.5
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 450,
+        "fourWheelerCapacity": 80,
+        "bicycleCapacity": 35,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "IKEA Nagasandra",
@@ -1782,11 +2854,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "IKEA Store Walkway & Tumkur Road West"
+          "direction": "IKEA Nagasandra & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Nagasandra Bus Stop & Service Road"
+          "direction": "Tumkur Road & Bus Feeder Point"
         }
       ]
     },
@@ -1795,17 +2867,42 @@
       "name": "Dasarahalli",
       "kannadaName": "ದಾಸರಹಳ್ಳಿ",
       "code": "DSRH",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 5
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 4.7
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Dasarahalli BMTC Bus Stand",
@@ -1815,11 +2912,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Hesaraghatta Cross Road"
+          "direction": "Dasarahalli BMTC Bus Stand & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Dasarahalli Market & Police Station"
+          "direction": "Hesaraghatta Main Road Junction & Bus Feeder Point"
         }
       ]
     },
@@ -1828,17 +2925,42 @@
       "name": "Jalahalli",
       "kannadaName": "ಜಾಲಹಳ್ಳಿ",
       "code": "JLHL",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 6
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 5.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 200,
+        "fourWheelerCapacity": 30,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Jalahalli Cross",
@@ -1848,11 +2970,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Jalahalli Cross & Peenya 1st Stage"
+          "direction": "Jalahalli Cross & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Tumkur Road towards Yeshwanthpur"
+          "direction": "Air Force Technical College (AFTC) & Bus Feeder Point"
         }
       ]
     },
@@ -1861,17 +2983,42 @@
       "name": "Peenya Industry",
       "kannadaName": "ಪೀಣ್ಯ ಇಂಡಸ್ಟ್ರಿ",
       "code": "PYID",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 7
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 6.9
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Peenya Industrial Estate (Asia's Largest Industrial Hub)",
@@ -1881,11 +3028,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Peenya Industrial Estate 1st Stage"
+          "direction": "Peenya Industrial Estate (Asia's Largest Industrial Hub) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Tumkur Main Road"
+          "direction": "1st Stage Peenya & Bus Feeder Point"
         }
       ]
     },
@@ -1894,17 +3041,42 @@
       "name": "Peenya",
       "kannadaName": "ಪೀಣ್ಯ",
       "code": "PYNA",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 8
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 8.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Peenya Metro Depot",
@@ -1914,11 +3086,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Peenya 2nd Stage & Metro Depot Road"
+          "direction": "Peenya Metro Depot & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Outer Ring Road Peenya Link"
+          "direction": "Peenya 2nd Stage & Bus Feeder Point"
         }
       ]
     },
@@ -1927,17 +3099,42 @@
       "name": "Goraguntepalya",
       "kannadaName": "ಗೊರಗುಂಟೆಪಾಳ್ಯ",
       "code": "GGPL",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 9
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 9.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Goraguntepalya Junction",
@@ -1948,11 +3145,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Taj Yeshwantpur & ORR towards Hebbal"
+          "direction": "Goraguntepalya Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Goraguntepalya Bus Stop"
+          "direction": "Taj Yeshwantpur & Bus Feeder Point"
         }
       ]
     },
@@ -1961,19 +3158,44 @@
       "name": "Yeshwanthpur",
       "kannadaName": "ಯಶವಂತಪುರ",
       "code": "YWPR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 10
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "GREEN": 10.5
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [
         "INDIAN_RAILWAYS"
       ],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 350,
+        "fourWheelerCapacity": 60,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Yesvantpur Junction Railway Station (YPR)",
@@ -1983,11 +3205,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skywalk to Yesvantpur Railway Station Platform 6"
+          "direction": "Yesvantpur Junction Railway Station (YPR) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Tumkur Road & Yeshwanthpur Market"
+          "direction": "Yeshwanthpur APMC Market & Bus Feeder Point"
         }
       ]
     },
@@ -1996,17 +3218,42 @@
       "name": "Sandal Soap Factory",
       "kannadaName": "ಸ್ಯಾಂಡಲ್ ಸೋಪ್ ಫ್ಯಾಕ್ಟರಿ",
       "code": "SSPF",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 11
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 11.7
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Karnataka Soaps and Detergents Limited (Mysore Sandal Soap)",
@@ -2016,11 +3263,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Mysore Sandal Soap Factory Gate"
+          "direction": "Karnataka Soaps and Detergents Limited (Mysore Sandal Soap) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Brigade Gateway & WTC Footbridge"
+          "direction": "Orion Mall vicinity & Bus Feeder Point"
         }
       ]
     },
@@ -2029,17 +3276,42 @@
       "name": "Mahalakshmi",
       "kannadaName": "ಮಹಾಲಕ್ಷ್ಮಿ",
       "code": "MHLK",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 12
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 12.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Mahalakshmi Layout",
@@ -2049,11 +3321,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "ISKCON Temple Shuttle Bay"
+          "direction": "Mahalakshmi Layout & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Mahalakshmi Layout Swimming Pool"
+          "direction": "ISKCON Bangalore Sri Radha Krishna Temple & Bus Feeder Point"
         }
       ]
     },
@@ -2062,17 +3334,42 @@
       "name": "Rajajinagar",
       "kannadaName": "ರಾಜಾಜಿನಗರ",
       "code": "RJNR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 13
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 14.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Rajajinagar 1st Block",
@@ -2082,11 +3379,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "ESI Hospital & Dr. Rajkumar Road"
+          "direction": "Rajajinagar 1st Block & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Rajajinagar 1st Block Residential Layout"
+          "direction": "ESI Hospital Rajajinagar & Bus Feeder Point"
         }
       ]
     },
@@ -2095,17 +3392,42 @@
       "name": "Mahakavi Kuvempu Road",
       "kannadaName": "ಮಹಾಕವಿ ಕುವೆಂಪು ರಸ್ತೆ",
       "code": "MKVR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 14
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 15.1
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Malleshwaram 8th Cross Link",
@@ -2115,11 +3437,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Navrang Circle & Rajajinagar 2nd Stage"
+          "direction": "Malleshwaram 8th Cross Link & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Malleshwaram West Side"
+          "direction": "Navrang Theatre Circle & Bus Feeder Point"
         }
       ]
     },
@@ -2128,17 +3450,42 @@
       "name": "Srirampura",
       "kannadaName": "ಶ್ರೀರಾಮಪುರ",
       "code": "SPRA",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 15
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "GREEN": 16.4
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Srirampura Market",
@@ -2148,11 +3495,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Srirampura Market Road"
+          "direction": "Srirampura Market & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Gayatrinagar Link"
+          "direction": "Harishchandra Ghat Road & Bus Feeder Point"
         }
       ]
     },
@@ -2161,17 +3508,42 @@
       "name": "Mantri Square Sampige Road",
       "kannadaName": "ಮಂತ್ರಿ ಸ್ಕ್ವೇರ್ ಸಂಪಿಗೆ ರಸ್ತೆ",
       "code": "MSSR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 16
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 17.5
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 180,
+        "fourWheelerCapacity": 87,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Mantri Square Mall",
@@ -2181,11 +3553,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skybridge into Mantri Square Mall (Level 1)"
+          "direction": "Mantri Square Mall & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Sampige Road & Malleshwaram Shopping Street"
+          "direction": "Sampige Road Malleshwaram & Bus Feeder Point"
         }
       ]
     },
@@ -2194,17 +3566,42 @@
       "name": "Chickpete",
       "kannadaName": "ಚಿಕ್ಕಪೇಟೆ",
       "code": "CKPT",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 18
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 19.9
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 10,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": false,
       "landmarks": [
         "Chickpete Saree Wholesale Market",
@@ -2214,11 +3611,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "BVK Iyengar Road"
+          "direction": "Chickpete Saree Wholesale Market & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Avenue Road & Chickpete Main Market"
+          "direction": "BVK Iyengar Road & Bus Feeder Point"
         }
       ]
     },
@@ -2227,17 +3624,42 @@
       "name": "Krishna Rajendra Market (KR Market)",
       "kannadaName": "ಕೃಷ್ಣ ರಾಜೇಂದ್ರ ಮಾರುಕಟ್ಟೆ (ಕೆ.ಆರ್. ಮಾರ್ಕೆಟ್)",
       "code": "KRMK",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 19
       },
+      "interstationDistanceKm": 1.0,
+      "distanceFromTerminalKm": {
+        "GREEN": 20.9
+      },
       "layout": "Underground",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "KR Market Flower Market",
@@ -2248,11 +3670,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Victoria Hospital & Fort High School"
+          "direction": "KR Market Flower Market & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "KR Market Flower Bazaar & Kalasipalya Bus Stand"
+          "direction": "Bangalore Fort & Bus Feeder Point"
         }
       ]
     },
@@ -2261,17 +3683,42 @@
       "name": "National College",
       "kannadaName": "ನ್ಯಾಷನಲ್ ಕಾಲೇಜು",
       "code": "NCLC",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 20
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "GREEN": 22.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "National College Basavanagudi",
@@ -2282,11 +3729,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "National College Grounds & Pampa Mahakavi Road"
+          "direction": "National College Basavanagudi & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Basavanagudi Bull Temple & DVG Road"
+          "direction": "Basavanagudi Bull Temple & Bus Feeder Point"
         }
       ]
     },
@@ -2295,17 +3742,42 @@
       "name": "Lalbagh Botanical Garden",
       "kannadaName": "ಲಾಲ್‌ಬಾಗ್ ಬೊಟಾನಿಕಲ್ ಗಾರ್ಡನ್",
       "code": "LBG",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 21
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 23.4
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Lalbagh Botanical Garden (West Gate)",
@@ -2316,11 +3788,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Lalbagh West Gate Entrance"
+          "direction": "Lalbagh Botanical Garden (West Gate) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "KR Road & Mavalli"
+          "direction": "Lalbagh Glass House & Bus Feeder Point"
         }
       ]
     },
@@ -2329,17 +3801,42 @@
       "name": "South End Circle",
       "kannadaName": "ಸೌತ್ ಎಂಡ್ ಸರ್ಕಲ್",
       "code": "SEC",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 22
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 24.5
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "South End Circle",
@@ -2350,11 +3847,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "South End Circle & RV Road"
+          "direction": "South End Circle & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Jayanagar 1st & 2nd Block"
+          "direction": "Surana College & Bus Feeder Point"
         }
       ]
     },
@@ -2363,17 +3860,42 @@
       "name": "Jayanagar",
       "kannadaName": "ಜಯನಗರ",
       "code": "JYNR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 23
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 25.7
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Jayanagar 4th Block Complex",
@@ -2383,11 +3905,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Jayanagar 4th Block BDA Shopping Complex"
+          "direction": "Jayanagar 4th Block Complex & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "3rd Block & Cool Joint Circle"
+          "direction": "Jayanagar Shopping District & Bus Feeder Point"
         }
       ]
     },
@@ -2396,6 +3918,7 @@
       "name": "Rashtreeya Vidyalaya Road (RV Road)",
       "kannadaName": "ರಾಷ್ಟ್ರೀಯ ವಿದ್ಯಾಲಯ ರಸ್ತೆ",
       "code": "RVRD",
+      "aliases": [],
       "lines": [
         "GREEN",
         "YELLOW"
@@ -2404,14 +3927,50 @@
         "GREEN": 24,
         "YELLOW": 1
       },
-      "layout": "Elevated (Multi-level Interchange)",
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 26.8,
+        "YELLOW": 0.0
+      },
+      "layout": "Elevated",
       "isInterchange": true,
       "interchangeWith": [
-        "YELLOW",
-        "GREEN"
+        "YELLOW"
       ],
-      "platforms": 4,
-      "parkingAvailable": true,
+      "platformsCount": 4,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 3,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 4,
+          "line": "YELLOW",
+          "direction": "Yellow Line Termination / Reversal Track",
+          "doorOpening": "Right"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "NMKRV College for Women",
@@ -2422,11 +3981,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Green Line Concourse & Jayanagar 5th Block"
+          "direction": "NMKRV College for Women & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Yellow Line Concourse towards BTM & Electronic City"
+          "direction": "Jayanagar 5th Block & Bus Feeder Point"
         }
       ]
     },
@@ -2435,17 +3994,42 @@
       "name": "Banashankari",
       "kannadaName": "ಬನಶಂಕರಿ",
       "code": "BSNK",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 25
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "GREEN": 28.1
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Banashankari Amma Temple",
@@ -2455,11 +4039,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Banashankari Temple & Kanakapura Road"
+          "direction": "Banashankari Amma Temple & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Direct Skybridge to Banashankari TTMC"
+          "direction": "Banashankari TTMC Bus Stand & Bus Feeder Point"
         }
       ]
     },
@@ -2468,17 +4052,42 @@
       "name": "Jaya Prakash Nagar (JP Nagar)",
       "kannadaName": "ಜಯಪ್ರಕಾಶ ನಗರ (ಜೆ.ಪಿ. ನಗರ)",
       "code": "JPNR",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 26
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 29.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Sarakki Market",
@@ -2488,11 +4097,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Sarakki Lake & Kanakapura Road"
+          "direction": "Sarakki Market & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "JP Nagar 2nd Phase & ORR"
+          "direction": "JP Nagar 2nd & 3rd Phase & Bus Feeder Point"
         }
       ]
     },
@@ -2501,17 +4110,42 @@
       "name": "Yelachenahalli",
       "kannadaName": "ಯಲಚೇನಹಳ್ಳಿ",
       "code": "YCHH",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 27
       },
+      "interstationDistanceKm": 1.4,
+      "distanceFromTerminalKm": {
+        "GREEN": 30.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 300,
+        "fourWheelerCapacity": 50,
+        "bicycleCapacity": 25,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Yelachenahalli Junction",
@@ -2521,11 +4155,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Metro Cash & Carry Side"
+          "direction": "Yelachenahalli Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Kumaraswamy Layout Feeder Road"
+          "direction": "Metro Cash & Carry Kanakapura Road & Bus Feeder Point"
         }
       ]
     },
@@ -2534,17 +4168,42 @@
       "name": "Konanakunte Cross",
       "kannadaName": "ಕೋಣನಕುಂಟೆ ಕ್ರಾಸ್",
       "code": "KNKC",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 28
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 31.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Forum South Bangalore Mall (Prestige Falcon City)",
@@ -2554,11 +4213,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skywalk to Forum South Mall"
+          "direction": "Forum South Bangalore Mall (Prestige Falcon City) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Konanakunte Village Road"
+          "direction": "Konanakunte Cross Signal & Bus Feeder Point"
         }
       ]
     },
@@ -2567,17 +4226,42 @@
       "name": "Doddakallasandra",
       "kannadaName": "ದೊಡ್ಡಕಲ್ಲಸಂದ್ರ",
       "code": "DDKS",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 29
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 32.9
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Doddakallasandra Lake",
@@ -2587,11 +4271,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Doddakallasandra Industrial Area"
+          "direction": "Doddakallasandra Lake & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Gubbalala Residential Layouts"
+          "direction": "Gubbalala Gate & Bus Feeder Point"
         }
       ]
     },
@@ -2600,17 +4284,42 @@
       "name": "Vajarahalli",
       "kannadaName": "ವಾಜರಹಳ್ಳಿ",
       "code": "VJHL",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 30
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "GREEN": 34.1
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Vajarahalli Lake",
@@ -2620,11 +4329,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "KSIT Campus Gate"
+          "direction": "Vajarahalli Lake & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Vajarahalli Village Road"
+          "direction": "KSIT College of Engineering & Bus Feeder Point"
         }
       ]
     },
@@ -2633,17 +4342,42 @@
       "name": "Thalaghattapura",
       "kannadaName": "ತಲಘಟ್ಟಪುರ",
       "code": "TGTP",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 31
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 35.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Towards Silk Institute [Southbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Thalaghattapura Police Station",
@@ -2653,11 +4387,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Thalaghattapura Police Station"
+          "direction": "Thalaghattapura Police Station & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "NICE Road Connector Road"
+          "direction": "NICE Ring Road Toll Plaza & Bus Feeder Point"
         }
       ]
     },
@@ -2666,17 +4400,42 @@
       "name": "Silk Institute",
       "kannadaName": "ರೇಷ್ಮೆ ಸಂಸ್ಥೆ (ಸಿಲ್ಕ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್)",
       "code": "SKIT",
+      "aliases": [],
       "lines": [
         "GREEN"
       ],
       "lineSequence": {
         "GREEN": 32
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "GREEN": 36.3
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "GREEN",
+          "direction": "Towards Madavara (BIEC) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "GREEN",
+          "direction": "Terminus (Arrivals)",
+          "doorOpening": "Right"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 350,
+        "fourWheelerCapacity": 60,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Central Silk Board Institute",
@@ -2686,11 +4445,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Silk Institute Gate & Bus Stop"
+          "direction": "Central Silk Board Institute & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Anjanapura Depot & Art of Living Shuttle Bay"
+          "direction": "Anjanapura Metro Depot & Bus Feeder Point"
         }
       ]
     },
@@ -2699,17 +4458,42 @@
       "name": "Ragigudda",
       "kannadaName": "ರಾಗಿಗುಡ್ಡ",
       "code": "RGGD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 2
       },
+      "interstationDistanceKm": 1.5,
+      "distanceFromTerminalKm": {
+        "YELLOW": 1.5
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Ragigudda Sri Prasanna Anjaneya Swamy Temple",
@@ -2719,11 +4503,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Ragigudda Temple Main Gate"
+          "direction": "Ragigudda Sri Prasanna Anjaneya Swamy Temple & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Jayanagar 9th Block Shopping Street"
+          "direction": "Jayanagar 9th Block & Bus Feeder Point"
         }
       ]
     },
@@ -2732,19 +4516,44 @@
       "name": "Jayadeva Hospital",
       "kannadaName": "ಜಯದೇವ ಆಸ್ಪತ್ರೆ",
       "code": "JDVH",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 3
       },
-      "layout": "Elevated (Multi-level Interchange)",
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "YELLOW": 2.8
+      },
+      "layout": "Elevated",
       "isInterchange": true,
       "interchangeWith": [
         "PINK (Upcoming)"
       ],
-      "platforms": 4,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Sri Jayadeva Institute of Cardiovascular Sciences and Research",
@@ -2754,11 +4563,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Footbridge into Jayadeva Hospital Complex"
+          "direction": "Sri Jayadeva Institute of Cardiovascular Sciences and Research & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Bannerghatta Main Road & BTM Layout"
+          "direction": "Bannerghatta Road Junction & Bus Feeder Point"
         }
       ]
     },
@@ -2767,17 +4576,42 @@
       "name": "BTM Layout",
       "kannadaName": "ಬಿ.ಟಿ.ಎಂ. ಬಡಾವಣೆ",
       "code": "BTML",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 4
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 4.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "BTM 2nd Stage",
@@ -2787,11 +4621,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Udupi Garden & 16th Main BTM"
+          "direction": "BTM 2nd Stage & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Madiwala Lake View Road"
+          "direction": "Udupi Garden Signal & Bus Feeder Point"
         }
       ]
     },
@@ -2800,19 +4634,44 @@
       "name": "Central Silk Board",
       "kannadaName": "ಕೇಂದ್ರ ರೇಷ್ಮೆ ಮಂಡಳಿ (ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ್ ಬೋರ್ಡ್)",
       "code": "CSKB",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 5
       },
-      "layout": "Elevated (Integrated Flyover Hub)",
+      "interstationDistanceKm": 1.4,
+      "distanceFromTerminalKm": {
+        "YELLOW": 5.4
+      },
+      "layout": "Elevated",
       "isInterchange": true,
       "interchangeWith": [
         "BLUE (Upcoming Airport Line)"
       ],
-      "platforms": 4,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 400,
+        "fourWheelerCapacity": 80,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Central Silk Board Junction",
@@ -2823,11 +4682,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Silk Board Bus Terminus & Hosur Road (Southbound)"
+          "direction": "Central Silk Board Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "HSR Layout Sector 5 & Ring Road"
+          "direction": "Madiwala Checkpost & Bus Feeder Point"
         }
       ]
     },
@@ -2836,17 +4695,42 @@
       "name": "Bommanahalli",
       "kannadaName": "ಬೊಮ್ಮನಹಳ್ಳಿ",
       "code": "BMNH",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 6
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 6.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Bommanahalli Junction",
@@ -2857,11 +4741,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Begur Main Road & Oxford College"
+          "direction": "Bommanahalli Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hosur Main Road"
+          "direction": "Begur Main Road & Bus Feeder Point"
         }
       ]
     },
@@ -2870,17 +4754,42 @@
       "name": "Hongasandra",
       "kannadaName": "ಹೊಂಗಸಂದ್ರ",
       "code": "HGSD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 7
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "YELLOW": 7.7
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Garvebhavipalya Junction",
@@ -2890,11 +4799,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Garvebhavipalya Industrial Area"
+          "direction": "Garvebhavipalya Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hongasandra Village"
+          "direction": "Hongasandra Lake & Bus Feeder Point"
         }
       ]
     },
@@ -2903,17 +4812,42 @@
       "name": "Kudlu Gate",
       "kannadaName": "ಕೂಡ್ಲು ಗೇಟ್",
       "code": "KDLG",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 8
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 8.9
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Kudlu Gate Junction",
@@ -2924,11 +4858,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Harlur Road towards Sarjapur Road"
+          "direction": "Kudlu Gate Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hosur Road Service Road"
+          "direction": "Harlur Road Link & Bus Feeder Point"
         }
       ]
     },
@@ -2937,17 +4871,42 @@
       "name": "Singasandra",
       "kannadaName": "ಸಿಂಗಸಂದ್ರ",
       "code": "SGSD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 9
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "YELLOW": 10.2
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Singasandra Lake",
@@ -2957,11 +4916,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Singasandra Main Road"
+          "direction": "Singasandra Lake & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Parappana Agrahara Central Jail Road"
+          "direction": "Parappana Agrahara Link Road & Bus Feeder Point"
         }
       ]
     },
@@ -2970,17 +4929,42 @@
       "name": "Hosa Road",
       "kannadaName": "ಹೊಸ ರಸ್ತೆ",
       "code": "HSRD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 10
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 11.4
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Hosa Road Junction",
@@ -2991,11 +4975,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Hosa Road towards Sarjapur"
+          "direction": "Hosa Road Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hosur Road (Bangalore direction)"
+          "direction": "Chikkanagamangala Link & Bus Feeder Point"
         }
       ]
     },
@@ -3004,17 +4988,42 @@
       "name": "Beratena Agrahara",
       "kannadaName": "ಬೆರಟೇನ ಅಗ್ರಹಾರ",
       "code": "BTAG",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 11
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 12.6
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Electronic City Toll Gate (Toll Plaza 1)",
@@ -3024,11 +5033,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Elevated Tollway Plaza 1"
+          "direction": "Electronic City Toll Gate (Toll Plaza 1) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Beratena Agrahara Village Road"
+          "direction": "Prathiksha Hospital & Bus Feeder Point"
         }
       ]
     },
@@ -3037,17 +5046,42 @@
       "name": "Electronic City",
       "kannadaName": "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ",
       "code": "ELCT",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 12
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "YELLOW": 13.7
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 350,
+        "fourWheelerCapacity": 60,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Electronic City Phase 1",
@@ -3059,11 +5093,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Electronic City Phase 1 Main Gate (Wipro, TCS, HP)"
+          "direction": "Electronic City Phase 1 & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hosur Highway towards Attibele"
+          "direction": "Wipro Technologies Campus & Bus Feeder Point"
         }
       ]
     },
@@ -3072,17 +5106,42 @@
       "name": "Infosys Foundation Konappana Agrahara",
       "kannadaName": "ಇನ್ಫೋಸಿಸ್ ಫೌಂಡೇಶನ್ ಕೋನಪ್ಪನ ಅಗ್ರಹಾರ",
       "code": "KPAG",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 13
       },
+      "interstationDistanceKm": 1.1,
+      "distanceFromTerminalKm": {
+        "YELLOW": 14.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 200,
+        "fourWheelerCapacity": 30,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Infosys Main Global Headquarters (Gate 1 & Gate 6)",
@@ -3092,11 +5151,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct FOB into Infosys Electronic City Campus"
+          "direction": "Infosys Main Global Headquarters (Gate 1 & Gate 6) & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Konappana Agrahara Village & Service Road"
+          "direction": "Hewlett Packard Enterprise (HPE) & Bus Feeder Point"
         }
       ]
     },
@@ -3105,17 +5164,42 @@
       "name": "Huskur Road",
       "kannadaName": "ಹುಸ್ಕೂರು ರಸ್ತೆ",
       "code": "HKRD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 14
       },
+      "interstationDistanceKm": 1.2,
+      "distanceFromTerminalKm": {
+        "YELLOW": 16.0
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": false,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": false,
+        "twoWheelerCapacity": 0,
+        "fourWheelerCapacity": 0,
+        "bicycleCapacity": 15,
+        "evChargingSlots": 0
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Huskur Road Junction",
@@ -3125,11 +5209,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Electronic City Phase 2 East Gate"
+          "direction": "Huskur Road Junction & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Huskur Fruit & Vegetable Market Road"
+          "direction": "Electronic City Phase 2 Entrance & Bus Feeder Point"
         }
       ]
     },
@@ -3138,17 +5222,42 @@
       "name": "Biocon Hebbagodi",
       "kannadaName": "ಬಯೋಕಾನ್ ಹೆಬ್ಬಗೋಡಿ",
       "code": "HBG",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 15
       },
+      "interstationDistanceKm": 1.3,
+      "distanceFromTerminalKm": {
+        "YELLOW": 17.3
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Delta Electronics Bommasandra [Southbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 250,
+        "fourWheelerCapacity": 40,
+        "bicycleCapacity": 20,
+        "evChargingSlots": 2
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Biocon Park",
@@ -3159,11 +5268,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Direct Skybridge to Biocon Park Entrance"
+          "direction": "Biocon Park & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Hebbagodi Bus Stand & Feeder to Narayana Health City"
+          "direction": "Syngene International & Bus Feeder Point"
         }
       ]
     },
@@ -3172,17 +5281,42 @@
       "name": "Delta Electronics Bommasandra",
       "kannadaName": "ಡೆಲ್ಟಾ ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್ ಬೊಮ್ಮಸಂದ್ರ",
       "code": "BMSD",
+      "aliases": [],
       "lines": [
         "YELLOW"
       ],
       "lineSequence": {
         "YELLOW": 16
       },
+      "interstationDistanceKm": 1.5,
+      "distanceFromTerminalKm": {
+        "YELLOW": 18.8
+      },
       "layout": "Elevated",
       "isInterchange": false,
       "interchangeWith": [],
-      "platforms": 2,
-      "parkingAvailable": true,
+      "platformsCount": 2,
+      "directionalPlatforms": [
+        {
+          "platformNumber": 1,
+          "line": "YELLOW",
+          "direction": "Towards Rashtreeya Vidyalaya Road (RV Road) [Northbound]",
+          "doorOpening": "Left"
+        },
+        {
+          "platformNumber": 2,
+          "line": "YELLOW",
+          "direction": "Terminus (Arrivals)",
+          "doorOpening": "Right"
+        }
+      ],
+      "parking": {
+        "available": true,
+        "twoWheelerCapacity": 400,
+        "fourWheelerCapacity": 70,
+        "bicycleCapacity": 30,
+        "evChargingSlots": 4
+      },
       "feederBusAvailable": true,
       "landmarks": [
         "Bommasandra Industrial Area",
@@ -3193,11 +5327,11 @@
       "gates": [
         {
           "gate": "Gate 1",
-          "direction": "Bommasandra Industrial Area 1st & 2nd Phase"
+          "direction": "Bommasandra Industrial Area & Main Entrance"
         },
         {
           "gate": "Gate 2",
-          "direction": "Narayana Health City Hospital Shuttle Gate & Hosur Highway"
+          "direction": "Delta Electronics Factory & Bus Feeder Point"
         }
       ]
     }
