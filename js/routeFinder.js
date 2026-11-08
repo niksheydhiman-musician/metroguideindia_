@@ -168,7 +168,7 @@ const RouteFinder = (() => {
   }
 
   /* ── Distance (km, ignoring interchange edges) ──────────────────────────── */
-  function calcDistance(path, graph) {
+  function calcDistance(path, graph, decimalPlaces = 1) {
     let total = 0;
     for (let i = 0; i < path.length - 1; i++) {
       const from = path[i].station_id, to = path[i + 1].station_id;
@@ -181,7 +181,8 @@ const RouteFinder = (() => {
       );
       if (edge && edge.line_id !== 'interchange') total += edge.distance_km;
     }
-    return Math.round(total * 10) / 10;
+    const scale = 10 ** decimalPlaces;
+    return Math.round(total * scale) / scale;
   }
 
 /* ── Fare table (NCRTC official, Standard Coach, March 2026) ─────────────── */
@@ -393,14 +394,6 @@ const RouteFinder = (() => {
       { maxKm: 32, fare: 54 },
       { maxKm: Infinity, fare: 64 },
     ],
-    bengaluru: [
-      { maxKm: 2,  fare: 10 },
-      { maxKm: 5,  fare: 20 },
-      { maxKm: 10, fare: 30 },
-      { maxKm: 15, fare: 40 },
-      { maxKm: 25, fare: 50 },
-      { maxKm: Infinity, fare: 60 },
-    ],
   };
 
   function fareFromDistanceSlab(distance, cityKey) {
@@ -415,6 +408,15 @@ const RouteFinder = (() => {
   function calcFare(path, options = {}) {
     if (!path || path.length < 2) return 20;
     const cityKey = String(options.cityKey || 'rrts').toLowerCase();
+    if (cityKey === 'bengaluru') {
+      const rules = options.fareRules;
+      if (!rules || !Array.isArray(rules.distanceSlabs) || !Number.isFinite(options.distance)) {
+        throw new Error('Bengaluru fare rules and distance are required');
+      }
+      const slab = rules.distanceSlabs.find(s => s.maxDistanceKm === null || options.distance <= s.maxDistanceKm);
+      if (!slab) throw new Error('No Bengaluru fare slab for this distance');
+      return slab.tokenFare;
+    }
     const slabFare = fareFromDistanceSlab(options.distance, cityKey);
     if (slabFare !== null) return slabFare;
 

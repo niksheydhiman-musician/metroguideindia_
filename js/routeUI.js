@@ -82,7 +82,8 @@ const RouteUI = (() => {
     }
 
     // Count interchange steps for time
-    const nX = path.filter(p => p.line_id === 'interchange').length;
+    const nX = path.filter((p, i) => p.line_id === 'interchange' ||
+      (cityKey === 'bengaluru' && i > 1 && path[i - 1].line_id !== p.line_id)).length;
 
     el.innerHTML = `
       <div class="rc" id="rc-inner">
@@ -103,7 +104,11 @@ const RouteUI = (() => {
           </div>
         </div>
         <div class="rc-steps">
-          ${path.map((step, i) => renderStep(step, i, path, stName, stCity, ixMap)).join('')}
+          ${path.map((step, i) => {
+            const change = cityKey === 'bengaluru' && i > 1 && path[i - 1].line_id !== step.line_id;
+            const transfer = change ? renderStep({ station_id: path[i - 1].station_id, line_id: 'interchange' }, i - 1, path, stName, stCity, ixMap) : '';
+            return transfer + renderStep(step, i, path, stName, stCity, ixMap);
+          }).join('')}
         </div>
       </div>
       ${(() => {

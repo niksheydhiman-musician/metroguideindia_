@@ -193,7 +193,9 @@
       const payloadCity = String((payload && payload.cityKey) || '').toLowerCase();
       const city = payloadCity || detectCityKey() || 'rrts';
       const slug = stationToSlug(fromId) + '-to-' + stationToSlug(toId);
-      const target = '/route.html?city=' + encodeURIComponent(city) + '&r=' + encodeURIComponent(slug) + '&from=' + encodeURIComponent(fromId) + '&to=' + encodeURIComponent(toId);
+      const target = '/route.html?city=' + encodeURIComponent(city) +
+        (city === 'bengaluru' ? '' : '&r=' + encodeURIComponent(slug)) +
+        '&from=' + encodeURIComponent(fromId) + '&to=' + encodeURIComponent(toId);
       window.location.assign(target);
     }
 
@@ -220,9 +222,13 @@
       try {
         await loadScriptOnce('/js/dataLoader.js');
       } catch (error) {
+        console.error('Unable to load the route planner:', error);
+        container.insertAdjacentHTML('beforeend', '<p role="alert">The route planner could not load. Please refresh the page.</p>');
         return;
       }
       if (!window.DataLoader || typeof window.DataLoader.loadAll !== 'function') {
+        console.error('Route planner data loader is unavailable.');
+        container.insertAdjacentHTML('beforeend', '<p role="alert">The route planner could not load. Please refresh the page.</p>');
         return;
       }
     }
@@ -231,7 +237,8 @@
       const payload = await window.DataLoader.loadAll();
       init(container, payload || {});
     } catch (error) {
-      // No-op fallback: keep UI visible even if data load fails.
+      console.error('Unable to initialize the route planner:', error);
+      container.insertAdjacentHTML('beforeend', '<p role="alert">The route planner could not load. Please refresh the page.</p>');
     }
   }
 

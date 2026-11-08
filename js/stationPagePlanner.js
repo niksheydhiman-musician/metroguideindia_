@@ -153,8 +153,9 @@
     const path = routeFinder.findRoute(graph, fromStation.station_id, toStation.station_id);
     if (!path || !path.length) return false;
 
-    const distance = routeFinder.calcDistance(path, graph);
-    const fare = routeFinder.calcFare(path, { cityKey: context.cityKey, distance });
+    const exactDistance = routeFinder.calcDistance(path, graph, context.cityKey === 'bengaluru' ? 2 : 1);
+    const distance = context.cityKey === 'bengaluru' ? Math.round(exactDistance * 10) / 10 : exactDistance;
+    const fare = routeFinder.calcFare(path, { cityKey: context.cityKey, distance: exactDistance, fareRules: payload.fareRules });
     const interchanges = path.filter((step) => step.line_id === 'interchange').length;
     const time = routeFinder.calcTime(distance, interchanges);
     const resultEl = ensureInlineResultContainer(anchorEl);
