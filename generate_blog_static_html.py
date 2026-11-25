@@ -2,7 +2,7 @@
 """
 generate_blog_static_html.py — MetroGuideIndia
 
-Generates real static .html files for each blog post in /data/blogs/*.json.
+The command-line entry point delegates to the shared rich blog generator.
 
 Each generated file includes:
   • Markdown-to-HTML rendering (matching blogBridge.js logic)
@@ -419,4 +419,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    from generate_blog_rich_html import main as generate_rich_pages
+    generate_rich_pages()

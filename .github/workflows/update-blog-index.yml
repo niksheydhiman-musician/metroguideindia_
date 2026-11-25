@@ -103,11 +103,10 @@ jobs:
               print(f'  {s}')
           EOF
 
-      - name: Create missing blog HTML pages
-        run: python3 generate_blog_pages.py
-
       - name: Generate static blog HTML files from CMS JSON (Rich Template)
-        run: python3 generate_blog_rich_html.py
+        run: |
+          python3 generate_blog_rich_html.py
+          python3 update_legacy_blog.py
 
       - name: Update sitemap.xml with new blog entries
         run: |

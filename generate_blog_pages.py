@@ -2,8 +2,7 @@
 """
 generate_blog_pages.py — MetroGuideIndia
 
-Refreshes every static /blog/<slug>.html page from data/blogs/*.json by
-customizing the shared post.html template with post-specific metadata.
+The command-line entry point delegates to the shared rich blog generator.
 """
 
 from __future__ import annotations
@@ -130,4 +129,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    from generate_blog_rich_html import main as generate_rich_pages
+    generate_rich_pages()
