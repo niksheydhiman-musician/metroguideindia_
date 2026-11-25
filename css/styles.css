@@ -571,3 +571,16 @@ footer{border-top:1px solid var(--border2);padding:28px 0 22px;text-align:center
   .rc-val{font-size:1.05rem}
   .pr-grid{grid-template-columns:1fr}
 }
+
+/* Blog content: keep links and tables readable in both static and CMS views. */
+.blog-body{min-width:0;overflow-wrap:anywhere}
+.blog-body a[href]{color:#C0392B;text-decoration:underline;text-underline-offset:.15em}
+.blog-body a[href]:hover,.blog-body a[href]:focus-visible{color:#8f2a20}
+.blog-body h2,.blog-body h3{scroll-margin-top:92px}
+.blog-body table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-collapse:collapse}
+.blog-body th,.blog-body td{border:1px solid #E8E4DF;padding:10px 12px;text-align:left;vertical-align:top}
+.blog-body th{background:#FDF0EC;color:#1A1A1A}
+.blog-body img{max-width:100%;height:auto}
+.blog-toc-list a[href]{color:#C0392B;text-decoration:underline;text-underline-offset:.15em}
+.blog-related-card .blog-related-title{color:#C0392B;text-decoration:underline;text-underline-offset:.15em}
+.blog-related .blog-related-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}

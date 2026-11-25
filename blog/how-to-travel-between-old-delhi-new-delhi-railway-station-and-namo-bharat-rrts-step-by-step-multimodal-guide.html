@@ -10,59 +10,139 @@
   <base href="/"/>
   <title>How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide | MetroGuideIndia</title>
   <meta name="description" content="If you are arriving in Delhi by train and your next destination is Ghaziabad, Modinagar, or Meerut, you do not necessarily need to book a cab or wait in road traffic."/>
-  <meta name="article:published_time" content="2026-09-26"/>
-  <meta name="article:author" content="MetroGuideIndia"/>
   <link rel="canonical" href="https://metroguideindia.com/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html"/>
   <meta property="og:title" content="How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide | MetroGuideIndia"/>
   <meta property="og:description" content="If you are arriving in Delhi by train and your next destination is Ghaziabad, Modinagar, or Meerut, you do not necessarily need to book a cab or wait in road traffic."/>
   <meta property="og:type" content="article"/>
-  <meta property="og:url" content="https://metroguideindia.com/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html"/>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
-    .post-wrap{max-width:1200px;margin:0 auto;padding:32px 18px 64px 18px}
-    .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:start}
-    @media(max-width:980px){.post-grid{grid-template-columns:1fr;gap:28px}}
-    .blog-toc{position:sticky;top:100px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:16px;font-size:.85rem;max-height:60vh;overflow-y:auto}
-    .blog-toc-header{font-weight:700;font-size:.8rem;color:var(--text);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
-    .blog-toc-list{list-style:none;margin:0;padding:0}
-    .blog-toc-list li{margin:0;padding:0}
-    .blog-toc-h2 a{display:block;padding:6px 0;color:var(--text2);text-decoration:none;border-left:2px solid transparent;padding-left:8px;transition:all .15s}
-    .blog-toc-h2 a:hover,.blog-toc-h2 a:focus{color:var(--red);border-left-color:var(--red)}
-    .blog-toc-h3{margin-left:12px;margin-top:4px}
-    .blog-toc-h3 a{display:block;padding:4px 0;color:var(--muted);font-size:.8rem;text-decoration:none;border-left:2px solid transparent;padding-left:8px;transition:all .15s}
-    .blog-toc-h3 a:hover,.blog-toc-h3 a:focus{color:var(--red);border-left-color:var(--red)}
-    .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2)}
-    .blog-h1{font-size:1.55rem;margin:32px 0 12px}
-    .blog-h2{font-size:1.18rem;margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red)}
-    .blog-h3{font-size:1.02rem;margin:24px 0 10px}
-    .blog-p{margin:0 0 18px}
-    .blog-p a{color:var(--red);border-bottom:1px dotted rgba(192,57,43,.4)}
-    .blog-p a:hover{border-bottom-color:var(--red)}
-    .blog-ul,.blog-ol{margin:0 0 18px;padding-left:22px}
-    .blog-ul li,.blog-ol li{margin-bottom:7px;color:var(--text2)}
-    .blog-table-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border2);border-radius:var(--r);box-shadow:var(--shadow)}
+    /* Reading progress bar */
+    #read-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--green));z-index:9999;transition:width .1s linear}
+
+    .post-wrap{max-width:1080px;margin:0 auto;padding:32px 18px 64px;position:relative;z-index:1}
+    .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}
+    .post-back:hover{color:var(--red)}
+    .post-header{margin-bottom:24px}
+    .post-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+    .post-tag{font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:11px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}
+    .post-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);color:var(--text);line-height:1.18;margin-bottom:12px}
+    .post-meta{font-size:.79rem;color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .post-divider{height:2px;background:linear-gradient(90deg,var(--red),transparent);border:none;margin:20px 0 28px;border-radius:2px}
+    .post-grid{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}
+    .post-grid > *{min-width:0}
+
+    /* Blog content typography */
+    .blog-body{font-size:.96rem;line-height:1.85;color:var(--text2);overflow-wrap:anywhere;word-break:break-word}
+    .blog-body>*:first-child{margin-top:0}
+    .blog-body a{color:var(--red);text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4);transition:border-color .15s}
+    .blog-body a:hover{border-bottom-color:var(--red)}
+    .blog-body img,.blog-inline-image{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}
+    .blog-h1,.blog-h2,.blog-h3,.blog-h4,.blog-h5{scroll-margin-top:92px}
+    .blog-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:1.55rem;color:var(--text);margin:32px 0 12px;line-height:1.2}
+    .blog-h1:first-child{display:none}
+    .blog-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:var(--text);margin:36px 0 12px;padding-left:14px;border-left:3px solid var(--red);line-height:1.3}
+    .blog-h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.02rem;color:var(--text);margin:24px 0 10px}
+    .blog-h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.94rem;color:var(--text);margin:18px 0 8px;line-height:1.45}
+    .blog-h5{font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;line-height:1.45}
+    .blog-p{margin:0 0 18px;color:var(--text2);overflow-wrap:anywhere}
+    .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start}
+    .blog-ul{margin:0 0 18px;padding-left:22px}
+    .blog-ul li{margin-bottom:7px;color:var(--text2)}
+    .blog-ol{margin:0 0 18px;padding-left:24px}
+    .blog-ol li{margin-bottom:7px;color:var(--text2)}
+    .blog-table-wrap{overflow-x:auto;overflow-y:hidden;margin:22px 0;border:1px solid var(--border2);border-radius:var(--r);box-shadow:var(--shadow)}
     .blog-table{width:100%;border-collapse:collapse;font-size:.875rem}
     .blog-table thead{background:linear-gradient(135deg,var(--surface3),var(--surface2))}
     .blog-table th{color:var(--text);font-family:'Syne',sans-serif;font-weight:700;padding:13px 16px;text-align:left;border-bottom:2px solid var(--border2);white-space:nowrap;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
     .blog-table td{padding:11px 16px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top}
+    .blog-table tbody tr:last-child td{border-bottom:none}
     .blog-table tbody tr:hover td{background:var(--surface2);transition:background .12s}
-    .blog-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:14px 18px;margin:22px 0;font-size:.9rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start}
-    .blog-note-icon{flex-shrink:0}
-    .blog-inline-image{display:block;max-width:100%;height:auto;margin:16px auto;border-radius:12px;border:1px solid var(--border2);box-shadow:var(--shadow);background:var(--surface);object-fit:cover}
-    .blog-related{margin:48px 0 0;padding-top:32px;border-top:2px solid var(--border2)}
-    .blog-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
-    .blog-related-card{display:flex;flex-direction:column;padding:16px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);text-decoration:none;color:inherit;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
-    .blog-related-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-    .blog-related-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);margin:0 0 8px}
-    .blog-related-desc{font-size:.85rem;color:var(--text2);margin:0 0 10px;flex-grow:1}
-    .blog-related-date{font-size:.75rem;color:var(--muted)}
-    .post-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);margin-bottom:12px}
-    .post-meta{font-size:.79rem;color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
-    .post-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-    .post-tag{font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:11px;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2)}
-    .post-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:20px;cursor:pointer;transition:color .15s;text-decoration:none}
-    .post-back:hover{color:var(--red)}
+    .blog-body pre{margin:18px 0;padding:12px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface2);overflow:auto;max-width:100%;-webkit-overflow-scrolling:touch;font-size:.8rem;line-height:1.5}
+    .blog-body code{overflow-wrap:anywhere}
+
+    /* Tourist map */
+    .tourist-map-widget{margin:22px 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:linear-gradient(180deg,var(--surface),var(--surface2));box-shadow:var(--shadow)}
+    .tourist-map-head{margin-bottom:16px}
+    .tourist-map-kicker{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border:1px solid rgba(192,57,43,.18);padding:5px 10px;border-radius:999px;margin-bottom:10px}
+    .tourist-map-intro{font-size:.9rem;line-height:1.65;color:var(--text2)}
+    .tourist-map-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:16px;align-items:start}
+    .tourist-map-list{display:flex;flex-direction:column;gap:10px}
+    .tourist-map-stop{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--surface);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .tourist-map-stop:hover,.tourist-map-stop.is-active{border-color:rgba(192,57,43,.4);box-shadow:var(--shadow)}
+    .tourist-map-stop.is-active{background:var(--red-bg)}
+    .tourist-map-stop-index{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;border-radius:999px;background:var(--surface3);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;flex-shrink:0}
+    .tourist-map-stop-copy{display:flex;flex-direction:column;min-width:0}
+    .tourist-map-stop-name{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--text);line-height:1.25}
+    .tourist-map-stop-meta{font-size:.78rem;color:var(--muted);line-height:1.45}
+    .tourist-map-detail-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;min-height:100%}
+    .tourist-map-detail-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .tourist-map-detail-title{margin:0 0 12px;font-family:'Syne',sans-serif;font-size:1.12rem;color:var(--text)}
+    .tourist-map-detail-lines{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+    .tourist-map-line{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:.74rem;font-weight:700;border:1px solid transparent}
+    .tourist-map-line--yellow{background:#fff7d6;color:#7b5b00;border-color:#f3d877}
+    .tourist-map-line--blue{background:#dfefff;color:#0b5dbb;border-color:#9cc2ff}
+    .tourist-map-line--violet{background:#efe1ff;color:#6d28d9;border-color:#c8a4ff}
+    .tourist-map-line--magenta{background:#ffe0ef;color:#b42373;border-color:#ff9dcb}
+    .tourist-map-line--red{background:#ffe2de;color:#ba2d1c;border-color:#ffb2a9}
+    .tourist-map-line--green{background:#dff7e8;color:#157347;border-color:#9ad7b1}
+    .tourist-map-line--pink{background:#ffe4ef;color:#c23a7a;border-color:#ffbfd8}
+    .tourist-map-line--grey{background:#eceff3;color:#55606d;border-color:#cbd3dc}
+    .tourist-map-line--orange{background:#ffeadb;color:#c25a00;border-color:#ffc58f}
+    .tourist-map-line--purple{background:#ebe3ff;color:#6941c6;border-color:#c5b3ff}
+    .tourist-map-line--default{background:var(--surface3);color:var(--text);border-color:var(--border2)}
+    .tourist-map-detail-copy{margin:0;font-size:.91rem;line-height:1.72;color:var(--text2)}
+    .tourist-map-text{margin-top:14px;border-top:1px solid var(--border2);padding-top:14px}
+    .tourist-map-text summary{cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted)}
+    .tourist-map-text pre{margin:12px 0 0;padding:14px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--border2);font-size:.78rem;line-height:1.55;overflow:auto;white-space:pre-wrap}
+
+    /* Sidebar */
+    .sidebar-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px;position:sticky;top:82px;box-shadow:var(--shadow)}
+    .sidebar-section-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
+    .toc-list{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:4px}
+    .toc-list li{margin:0}
+    .toc-list li a{font-size:.82rem;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px;display:block;transition:all .15s;border-left:2px solid transparent}
+    .toc-list li a:hover{color:var(--red);background:var(--red-bg);border-left-color:var(--red)}
+    .toc-link--level-2{font-weight:600;color:var(--text)!important}
+    .toc-link--level-3{padding-left:18px!important}
+    .toc-link--level-4{padding-left:30px!important;font-size:.79rem!important}
+    .toc-link--level-5{padding-left:42px!important;font-size:.76rem!important}
+    .sidebar-list{display:flex;flex-direction:column;gap:9px}
+    .related-guide{display:block;border:1px solid var(--border2);background:var(--surface2);border-radius:var(--r-sm);padding:11px 14px;text-decoration:none;color:inherit;transition:all .15s}
+    .related-guide:hover{transform:translateX(3px);border-color:rgba(192,57,43,.35);background:var(--red-bg)}
+    .related-guide-title{font-size:.83rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:3px}
+    .related-guide-date{font-size:.7rem;color:var(--muted)}
+    .sidebar-empty{margin:0;color:var(--muted);font-size:.8rem}
+
+    /* FAQ */
+    .faq-list{margin-top:10px}
+    .faq-item{border:1px solid var(--border2);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden}
+    .faq-q{font-family:'Syne',sans-serif;font-weight:600;font-size:.95rem;color:var(--text);padding:14px 18px;background:var(--surface2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;transition:background .15s;width:100%;text-align:left;border:0}
+    .faq-q:hover{background:var(--surface3)}
+    .faq-q::after{content:'+';font-size:1.1rem;color:var(--muted);flex-shrink:0;transition:transform .2s}
+    .faq-item.open .faq-q::after{content:'×';color:var(--red)}
+    .faq-a{font-size:.93rem;color:var(--text2);line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+    .faq-item.open .faq-a{max-height:900px;padding:14px 18px}
+    .faq-a .blog-p:last-child,.faq-a p:last-child{margin-bottom:0}
+
+    /* Mobile TOC block */
+    .mobile-toc-block{display:none;margin:0 0 22px;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+    .mobile-toc-block summary{display:flex;align-items:center;gap:9px;padding:14px 16px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);cursor:pointer;background:linear-gradient(135deg,var(--surface2),var(--surface));list-style:none;user-select:none;-webkit-tap-highlight-color:transparent;border:0;outline:0}
+    .mobile-toc-block summary::-webkit-details-marker{display:none}
+    .mobile-toc-block summary::after{content:'›';margin-left:auto;font-size:1.2rem;color:var(--muted);transition:transform .25s;line-height:1}
+    .mobile-toc-block[open] summary::after{transform:rotate(90deg)}
+    .mobile-toc-count{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--surface3);padding:2px 9px;border-radius:999px;border:1px solid var(--border2)}
+    .mobile-toc-list{padding:10px 14px 14px!important;margin:0!important;border-top:1px solid var(--border2)}
+    .mobile-toc-list li a{font-size:.85rem;padding:5px 8px}
+
+    /* Mobile Related Guides block */
+    .mobile-related-block{display:none;margin:28px 0 0;padding:18px;border:1px solid var(--border2);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+    .mobile-related-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin:0 0 12px;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--border2)}
+
+    @media(max-width:1024px){.post-grid{grid-template-columns:1fr}.sidebar-card{display:none}.tourist-map-layout{grid-template-columns:1fr}.mobile-toc-block{display:block}.mobile-related-block{display:block}}
+    @media(max-width:768px){.post-wrap{padding:28px 16px 56px}.post-divider{margin:18px 0 24px}.mobile-toc-list .toc-link--level-4{padding-left:24px!important}.mobile-toc-list .toc-link--level-5{padding-left:34px!important}.blog-body img,.blog-inline-image{border-radius:10px}}
+    @media(max-width:640px){.post-wrap{padding:24px 14px 56px}.post-title{font-size:1.35rem;line-height:1.25}.post-meta{gap:10px;font-size:.75rem}.blog-h2{font-size:1.06rem;margin:28px 0 10px;padding-left:10px}.blog-h3{font-size:.98rem;margin:20px 0 8px}.blog-h4{font-size:.9rem}.blog-h5{font-size:.8rem}.blog-table th,.blog-table td{padding:9px 10px;font-size:.78rem}.faq-q{padding:12px 14px;font-size:.9rem}.faq-a{font-size:.9rem;line-height:1.65}.tourist-map-widget{padding:14px}.tourist-map-stop{padding:11px 12px}.tourist-map-stop-index{min-width:34px;height:34px;font-size:.76rem}.tourist-map-detail-card{padding:14px}}
+    @media(max-width:480px){.post-wrap{padding:20px 12px 48px}.post-back{font-size:.78rem}.post-meta span{display:inline-flex;align-items:center}.mobile-toc-block summary{padding:12px 14px;font-size:.88rem}.mobile-toc-list{padding:8px 10px 12px!important}.mobile-toc-list li a{padding:6px 8px}.mobile-toc-list .toc-link--level-3{padding-left:16px!important}.mobile-toc-list .toc-link--level-4{padding-left:22px!important}.mobile-toc-list .toc-link--level-5{padding-left:28px!important}.mobile-related-block{padding:14px}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV6378N2ZW"></script>
@@ -72,424 +152,342 @@
   gtag('js', new Date());
   gtag('config', 'G-SV6378N2ZW');
   </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide",
-  "description": "If you are arriving in Delhi by train and your next destination is Ghaziabad, Modinagar, or Meerut, you do not necessarily need to book a cab or wait in road traffic.",
-  "image": "",
-  "datePublished": "2026-09-26",
-  "dateModified": "2026-09-26",
-  "author": {
-    "@type": "Organization",
-    "name": "MetroGuideIndia"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://metroguideindia.com/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html"
-  }
-}
-</script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I reach Namo Bharat from New Delhi Railway Station?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The easiest approach is to use Delhi Metro first. For Sarai Kale Khan, take the Yellow Line from New Delhi to Dilli Haat-INA, change to the Pink Line and continue to Sarai Kale Khan-Nizamuddin. From there, follow the signs for the Namo Bharat station."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which Namo Bharat station is closest to New Delhi Railway Station?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "There is no single answer based only on geographical distance because the practical journey depends on the metro connection. Sarai Kale Khan is a major Delhi-side Namo Bharat station and has strong multimodal integration with Delhi Metro and other transport systems."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I go from Old Delhi Railway Station to Namo Bharat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. From Old Delhi Railway Station, reach Chandni Chowk Metro Station and use the Yellow Line to connect with the Pink Line or another appropriate interchange depending on whether you are travelling to Sarai Kale Khan or Anand Vihar."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Sarai Kale Khan Namo Bharat operational?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The New Ashok Nagar–Sarai Kale Khan section opened in February 2026, completing the Delhi–Ghaziabad–Meerut corridor with the remaining Meerut section."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Anand Vihar Namo Bharat connected to Delhi Metro?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. NCRTC states that Anand Vihar Namo Bharat station is situated near Anand Vihar Delhi Metro station and provides connectivity with the surrounding railway and ISBT facilities."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much time should I keep for security?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "There is no fixed publicly guaranteed clearance time. As a practical planning buffer, allow around 10–15 minutes for each security/entry stage, with additional time during busy periods or when travelling with large luggage."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I carry luggage on Namo Bharat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Passengers should follow the applicable railway/metro safety and carriage rules. Certain dangerous, inflammable, explosive, corrosive and prohibited items are not permitted on Namo Bharat premises."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I choose Sarai Kale Khan or Anand Vihar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both are useful Delhi-side Namo Bharat stations. Sarai Kale Khan is the Delhi terminus and a major multimodal hub, while Anand Vihar is integrated with the Delhi Metro, railway station and ISBT. Your best option depends on your starting point, metro connection and final destination."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I travel directly from Delhi to Meerut by Namo Bharat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The Delhi–Ghaziabad–Meerut Namo Bharat corridor is fully operational, connecting the Delhi end with the Meerut section through Ghaziabad and Modinagar."
-      }
-    }
-  ]
-}
-</script>
+<link rel="stylesheet" href="/css/blog.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide", "description": "If you are arriving in Delhi by train and your next destination is Ghaziabad, Modinagar, or Meerut, you do not necessarily need to book a cab or wait in road traffic.", "datePublished": "2026-09-26", "author": {"@type": "Organization", "name": "MetroGuideIndia"}, "mainEntityOfPage": "https://metroguideindia.com/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I reach Namo Bharat from New Delhi Railway Station?", "acceptedAnswer": {"@type": "Answer", "text": "The easiest approach is to use Delhi Metro first. For Sarai Kale Khan, take the Yellow Line from New Delhi to Dilli Haat-INA, change to the Pink Line and continue to Sarai Kale Khan-Nizamuddin. From there, follow the signs for the Namo Bharat station."}}, {"@type": "Question", "name": "Which Namo Bharat station is closest to New Delhi Railway Station?", "acceptedAnswer": {"@type": "Answer", "text": "There is no single answer based only on geographical distance because the practical journey depends on the metro connection. Sarai Kale Khan is a major Delhi-side Namo Bharat station and has strong multimodal integration with Delhi Metro and other transport systems."}}, {"@type": "Question", "name": "Can I go from Old Delhi Railway Station to Namo Bharat?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. From Old Delhi Railway Station, reach Chandni Chowk Metro Station and use the Yellow Line to connect with the Pink Line or another appropriate interchange depending on whether you are travelling to Sarai Kale Khan or Anand Vihar."}}, {"@type": "Question", "name": "Is Sarai Kale Khan Namo Bharat operational?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The New Ashok Nagar–Sarai Kale Khan section opened in February 2026, completing the Delhi–Ghaziabad–Meerut corridor with the remaining Meerut section."}}, {"@type": "Question", "name": "Is Anand Vihar Namo Bharat connected to Delhi Metro?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. NCRTC states that Anand Vihar Namo Bharat station is situated near Anand Vihar Delhi Metro station and provides connectivity with the surrounding railway and ISBT facilities."}}, {"@type": "Question", "name": "How much time should I keep for security?", "acceptedAnswer": {"@type": "Answer", "text": "There is no fixed publicly guaranteed clearance time. As a practical planning buffer, allow around 10–15 minutes for each security/entry stage, with additional time during busy periods or when travelling with large luggage."}}, {"@type": "Question", "name": "Can I carry luggage on Namo Bharat?", "acceptedAnswer": {"@type": "Answer", "text": "Passengers should follow the applicable railway/metro safety and carriage rules. Certain dangerous, inflammable, explosive, corrosive and prohibited items are not permitted on Namo Bharat premises."}}, {"@type": "Question", "name": "Should I choose Sarai Kale Khan or Anand Vihar?", "acceptedAnswer": {"@type": "Answer", "text": "Both are useful Delhi-side Namo Bharat stations. Sarai Kale Khan is the Delhi terminus and a major multimodal hub, while Anand Vihar is integrated with the Delhi Metro, railway station and ISBT. Your best option depends on your starting point, metro connection and final destination."}}, {"@type": "Question", "name": "Can I travel directly from Delhi to Meerut by Namo Bharat?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Delhi–Ghaziabad–Meerut Namo Bharat corridor is fully operational, connecting the Delhi end with the Meerut section through Ghaziabad and Modinagar."}}]}</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="logo"><div class="logo-icon">🚄</div>MetroGuideIndia</a>
     <div class="nav-right">
       <span class="nav-chip">Beta</span>
-      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2)">← Blog</a>
+      <a href="/blog" style="font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)">← Blog</a>
     </div>
   </div>
 </nav>
 <main>
 <div class="post-wrap">
-  <a href="/blog" class="post-back">← Back to blog</a>
-  <div class="post-grid">
-    <article class="blog-article">
-      <div class="post-header">
-        <div class="post-tags"><span class="post-tag">old delhi</span><span class="post-tag">new delhi</span><span class="post-tag">delhi to meerut</span><span class="post-tag">namo bharat rrts</span></div>
-        <h1 class="post-title">How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide</h1>
-        <div class="post-meta">
-          <span>MetroGuideIndia</span>
-          <span>2026-09-26</span>
-          <span>18 min read</span>
-        </div>
-      </div>
-      <div class="blog-body">
-        <p class="blog-p">If you are arriving in Delhi by train and your next destination is <strong>Ghaziabad, Modinagar, or Meerut</strong>, you do not necessarily need to book a cab or wait in road traffic.</p>
-<p class="blog-p">Delhi's public transport network now makes it possible to combine <strong>Indian Railways,</strong> <a href="https://metroguideindia.com/delhi-metro/"><strong>Delhi Metro</strong></a> <strong>and</strong> <a href="https://metroguideindia.com/namo-bharat/"><strong>Namo Bharat RRTS</strong></a> in one journey.</p>
-<p class="blog-p">The important part is knowing <strong>which Delhi Metro interchange to use</strong>, because the best route from New Delhi Railway Station is not necessarily the same for every Namo Bharat station.</p>
-<p class="blog-p">For passengers arriving at <strong>New Delhi Railway Station (NDLS)</strong>, the two most useful Namo Bharat boarding points are generally <strong>Sarai Kale Khan</strong> and <strong>Anand Vihar</strong>. Sarai Kale Khan is particularly important because it is the Delhi-end station of the Delhi-Ghaziabad-Meerut Namo Bharat corridor. Anand Vihar is another major multimodal hub with connections to Delhi Metro, Indian Railways and the ISBT. NCRTC describes these stations as part of its multimodal integration network.</p>
-<p class="blog-p">This guide explains exactly how to travel from <strong>New Delhi Railway Station and Old Delhi Railway Station to Namo Bharat RRTS</strong>, which metro line to take, where to change, how much time to keep for security and baggage checks, and which option makes the most sense for your destination.</p>
-<h2 class="blog-h2" id="quick-answer-which-namo-bharat-station-should-you-use">Quick Answer: Which Namo Bharat Station Should You Use?</h2>
-<p class="blog-p">If you are coming from an outstation train, use this simple rule:</p>
-<div class="blog-table-wrap"><table class="blog-table"><thead><tr><th>Your destination</th><th>Recommended Namo Bharat boarding station</th></tr></thead><tbody>
-<tr><td>Ghaziabad</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Sahibabad</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Guldhar</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Duhai</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Murad Nagar</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Modi Nagar South</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Modi Nagar North</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Meerut South</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Shatabdi Nagar</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Begumpul</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-<tr><td>Modipuram</td><td>Sarai Kale Khan or Anand Vihar</td></tr>
-</tbody></table></div>
-<p class="blog-p">The Namo Bharat corridor currently runs from <strong>Sarai Kale Khan in Delhi through Ghaziabad and onward to Modipuram in Meerut</strong>, with the complete corridor operational since February 2026.</p>
-<p class="blog-p">For most passengers arriving at <strong>New Delhi Railway Station</strong>, <strong>Sarai Kale Khan is particularly useful because it is directly connected with Delhi Metro's Pink Line and is designed as a major multimodal hub near Hazrat Nizamuddin railway station and Vir Haqiqat Rai ISBT.</strong></p>
-<p class="blog-p">New Delhi Railway Station is served by the <strong>Yellow Line of Delhi Metro</strong>, which makes the station a convenient starting point for reaching the Namo Bharat network.</p>
-<p class="blog-p">There are two practical ways to approach the Namo Bharat network:</p>
-<h3 class="blog-h3" id="route-a-new-delhi-ina-sarai-kale-khan">Route A: New Delhi → INA → Sarai Kale Khan</h3>
-<p class="blog-p">This is particularly useful when <a href="https://metroguideindia.com/namo-bharat/stations/sarai-kale-khan.html"><strong>Sarai Kale Khan</strong></a> is your preferred Namo Bharat boarding station.</p>
-<h3 class="blog-h3" id="route-b-new-delhi-kashmere-gatecentral-interchange-anand-vihar">Route B: New Delhi → Kashmere Gate/central interchange → Anand Vihar</h3>
-<p class="blog-p">This can be useful when <strong>Anand Vihar</strong> is more convenient for your destination or when you specifically want to board from the Anand Vihar Namo Bharat station.</p>
-<p class="blog-p">However, route planning can change depending on the operating status of metro corridors, platform access and interchange conditions. Always follow the destination boards inside the station.</p>
-<p class="blog-p">For many outstation passengers, this is the most straightforward multimodal connection.</p>
-<h3 class="blog-h3" id="step-1-exit-your-train-at-new-delhi-railway-station">Step 1: Exit your train at New Delhi Railway Station</h3>
-<p class="blog-p">After getting down at <strong>NDLS</strong>, follow signs for <strong>Delhi Metro</strong>.</p>
-<p class="blog-p">New Delhi Metro station is connected with the railway station complex. If you have heavy luggage, do not rush directly toward the first metro gate you see. Follow the signs carefully and use lifts or escalators where available.</p>
-<p class="blog-p">Keep your train luggage with you throughout the transfer.</p>
-<h3 class="blog-h3" id="step-2-enter-new-delhi-metro-station">Step 2: Enter New Delhi Metro Station</h3>
-<p class="blog-p">At New Delhi Metro, board the <strong>Yellow Line</strong>.</p>
-<p class="blog-p">Your destination is <strong>Dilli Haat-INA</strong>.</p>
-<p class="blog-p">Check the electronic display before boarding because the Yellow Line operates in both directions.</p>
-<p class="blog-p">The Yellow Line connects New Delhi with several major parts of Delhi and includes stations such as Rajiv Chowk, Central Secretariat and Dilli Haat-INA.</p>
-<h3 class="blog-h3" id="step-3-get-down-at-dilli-haat-ina">Step 3: Get down at Dilli Haat-INA</h3>
-<p class="blog-p">Exit the Yellow Line at <strong>Dilli Haat-INA</strong>.</p>
-<p class="blog-p">This is your interchange point.</p>
-<p class="blog-p">Dilli Haat-INA is served by both the <strong>Yellow Line and Pink Line</strong>, allowing you to continue toward Sarai Kale Khan.</p>
-<h3 class="blog-h3" id="step-4-change-to-the-pink-line">Step 4: Change to the Pink Line</h3>
-<p class="blog-p">Follow the signs for the <strong>Pink Line</strong>.</p>
-<p class="blog-p">For Sarai Kale Khan, check the direction displayed on the platform before boarding. Your train should be travelling toward the section of the Pink Line that includes <strong>Sarai Kale Khan-Nizamuddin</strong>.</p>
-<p class="blog-p">Do not rely only on the colour of the train or platform. Look for the station name displayed on the electronic board.</p>
-<h3 class="blog-h3" id="step-5-travel-to-sarai-kale-khan-nizamuddin">Step 5: Travel to Sarai Kale Khan-Nizamuddin</h3>
-<p class="blog-p">The Pink Line route from Dilli Haat-INA toward Sarai Kale Khan passes through:</p>
-<ul class="blog-ul"><li>South Extension</li><li>Lajpat Nagar</li><li>Vinobapuri</li><li>Ashram</li><li>Sarai Kale Khan-Nizamuddin</li></ul>
-<p class="blog-p">Sarai Kale Khan-Nizamuddin is an established Delhi Metro station on the Pink Line and forms part of the wider Sarai Kale Khan multimodal transport hub.</p>
-<h3 class="blog-h3" id="step-6-follow-signs-for-namo-bharat">Step 6: Follow signs for Namo Bharat</h3>
-<p class="blog-p">After reaching Sarai Kale Khan-Nizamuddin Metro station, follow signs toward the <strong>Namo Bharat/RRTS station</strong>.</p>
-<p class="blog-p">The important advantage here is that Sarai Kale Khan was planned as a major multimodal interchange connecting Delhi Metro, Indian Railways, bus services and Namo Bharat.</p>
-<h3 class="blog-h3" id="step-7-complete-namo-bharat-entry-and-security">Step 7: Complete Namo Bharat entry and security</h3>
-<p class="blog-p">Before reaching the platform, you will need to complete the required entry and security process.</p>
-<p class="blog-p">Keep your:</p>
-<ul class="blog-ul"><li>Namo Bharat ticket or QR ticket</li><li>Phone</li><li>Wallet</li><li>ID if required</li><li>Bags</li></ul>
-<p class="blog-p">easily accessible.</p>
-<p class="blog-p">Once through the entry process, follow signs for the <strong>Meerut direction</strong> if you are travelling toward Ghaziabad, Modinagar or Meerut.</p>
-<p class="blog-p">Anand Vihar is another major Namo Bharat interchange.</p>
-<p class="blog-p">The station is located close to <strong>Anand Vihar Metro, Anand Vihar Railway Station and Anand Vihar ISBT</strong>, making it particularly useful for passengers travelling through East Delhi or connecting with the wider Anand Vihar transport hub. NCRTC lists the station as being connected with both the Blue and Pink Metro Lines.</p>
-<p class="blog-p">The important thing to understand is that <strong>Anand Vihar Namo Bharat and Anand Vihar Metro are not the same station</strong>, although they are integrated through pedestrian connections.</p>
-<h3 class="blog-h3" id="step-1-start-at-new-delhi-metro">Step 1: Start at New Delhi Metro</h3>
-<p class="blog-p">From New Delhi Railway Station, enter <strong>New Delhi Metro Station</strong> and board the Yellow Line.</p>
-<h3 class="blog-h3" id="step-2-choose-your-interchange-carefully">Step 2: Choose your interchange carefully</h3>
-<p class="blog-p">For Anand Vihar, route planners can show different combinations depending on the exact destination and current network configuration.</p>
-<p class="blog-p">A common practical approach is to use the <strong>Yellow Line toward Kashmere Gate</strong>, then continue through the Red/Pink Line network toward Anand Vihar.</p>
-<p class="blog-p">Because Anand Vihar is served by multiple metro lines, do not assume that every train marked "Anand Vihar" will take you directly to the Namo Bharat station.</p>
-<h3 class="blog-h3" id="step-3-reach-anand-vihar-metro">Step 3: Reach Anand Vihar Metro</h3>
-<p class="blog-p">Once you arrive at the Anand Vihar Metro complex, follow signs toward:</p>
-<p class="blog-p"><strong>Anand Vihar Railway Station / ISBT / Namo Bharat</strong></p>
-<p class="blog-p">NCRTC specifically states that the Namo Bharat station is situated near Anand Vihar Delhi Metro, Anand Vihar ISBT and Anand Vihar Railway Station.</p>
-<h3 class="blog-h3" id="step-4-use-the-connecting-pedestrian-route">Step 4: Use the connecting pedestrian route</h3>
-<p class="blog-p">Anand Vihar is designed as a multimodal hub, so the transfer involves walking through the integrated station area.</p>
-<p class="blog-p">If you have a large suitcase, allow additional time for walking, lifts, escalators and crowd movement.</p>
-<h3 class="blog-h3" id="step-5-enter-namo-bharat">Step 5: Enter Namo Bharat</h3>
-<p class="blog-p">Once you reach the Namo Bharat station entrance, complete security screening and ticket validation.</p>
-<p class="blog-p">Then follow the platform signage toward <strong>Meerut</strong>.</p>
-<p class="blog-p">Passengers arriving at <strong>Old Delhi Railway Station (DLI)</strong> have a slightly different starting point.</p>
-<p class="blog-p">Old Delhi Railway Station is near <strong>Chandni Chowk Metro Station on the Yellow Line</strong>.</p>
-<p class="blog-p">This makes the Yellow Line the key connection between Old Delhi and the wider Delhi Metro network.</p>
-<h2 class="blog-h2" id="step-by-step-route-from-old-delhi-to-namo-bharat">Step-by-step route from Old Delhi to Namo Bharat</h2>
-<h3 class="blog-h3" id="step-1-exit-old-delhi-railway-station">Step 1: Exit Old Delhi Railway Station</h3>
-<p class="blog-p">After arriving at DLI, follow signs toward <strong>Chandni Chowk Metro Station</strong>.</p>
-<p class="blog-p">The metro station is outside the railway station area, so allow walking time, especially if you are carrying luggage.</p>
-<h3 class="blog-h3" id="step-2-enter-chandni-chowk-metro-station">Step 2: Enter Chandni Chowk Metro Station</h3>
-<p class="blog-p">Board the <strong>Yellow Line</strong>.</p>
-<p class="blog-p">From Chandni Chowk, you can travel toward central Delhi and connect to the Pink Line depending on whether you are travelling to Sarai Kale Khan or Anand Vihar.</p>
-<h3 class="blog-h3" id="step-3-for-sarai-kale-khan">Step 3: For Sarai Kale Khan</h3>
-<p class="blog-p">A practical route is:</p>
-<p class="blog-p"><strong>Chandni Chowk → Dilli Haat-INA → Pink Line → Sarai Kale Khan-Nizamuddin</strong></p>
-<p class="blog-p">You stay on the Yellow Line until Dilli Haat-INA, then change to the Pink Line.</p>
-<h3 class="blog-h3" id="step-4-for-anand-vihar">Step 4: For Anand Vihar</h3>
-<p class="blog-p">The Anand Vihar journey requires more careful interchange planning.</p>
-<p class="blog-p">Because Anand Vihar is connected to several Delhi Metro lines, check the current station display and route planner before starting the journey.</p>
-<p class="blog-p">For a traveller with heavy luggage, the objective should not simply be to find the route with the fewest stations. You should also consider:</p>
-<ul class="blog-ul"><li>Number of interchanges</li><li>Walking distance</li><li>Availability of escalators/lifts</li><li>Crowd levels</li><li>Your arrival time</li><li>Namo Bharat departure time</li></ul>
-<p class="blog-p">Sarai Kale Khan is more than just another station.</p>
-<p class="blog-p">It is the <strong>Delhi-end station of the Delhi-Ghaziabad-Meerut Namo Bharat corridor</strong> and is positioned as a major multimodal transport hub.</p>
-<p class="blog-p">NCRTC says the station is located close to:</p>
-<ul class="blog-ul"><li>Delhi Metro</li><li>Hazrat Nizamuddin Railway Station</li><li>Vir Haqiqat Rai ISBT</li></ul>
-<p class="blog-p">It is also planned as a convergence point for multiple future Namo Bharat corridors.</p>
-<p class="blog-p">This makes Sarai Kale Khan especially relevant to outstation passengers.</p>
-<p class="blog-p">For example, someone arriving in Delhi by train at NDLS can use Delhi Metro to reach Sarai Kale Khan and then continue toward:</p>
-<p class="blog-p"><strong>Sahibabad → Ghaziabad → Guldhar → Duhai → Murad Nagar → Modi Nagar → Meerut</strong></p>
-<p class="blog-p">without having to travel through the city by road.</p>
-<p class="blog-p">Both stations can connect you to the Namo Bharat corridor, so the choice depends largely on your starting point and final destination.</p>
-<div class="blog-table-wrap"><table class="blog-table"><thead><tr><th>Factor</th><th>Sarai Kale Khan</th><th>Anand Vihar</th></tr></thead><tbody>
-<tr><td>Delhi-end Namo Bharat station</td><td>Yes</td><td>No</td></tr>
-<tr><td>Delhi Metro connection</td><td>Pink Line</td><td>Blue/Pink Line area</td></tr>
-<tr><td>Railway connectivity</td><td>Hazrat Nizamuddin nearby</td><td>Anand Vihar Railway Station nearby</td></tr>
-<tr><td>ISBT connectivity</td><td>Vir Haqiqat Rai ISBT</td><td>Anand Vihar ISBT</td></tr>
-<tr><td>Useful for Ghaziabad</td><td>Yes</td><td>Yes</td></tr>
-<tr><td>Useful for Meerut</td><td>Yes</td><td>Yes</td></tr>
-<tr><td>Best for NDLS passengers</td><td>Often convenient</td><td>Can also be convenient</td></tr>
-<tr><td>Major advantage</td><td>Direct multimodal hub</td><td>Major East Delhi transport hub</td></tr>
-</tbody></table></div>
-<p class="blog-p">The Namo Bharat station at Anand Vihar is underground and is directly integrated with the surrounding transport network.</p>
-<p class="blog-p">This is one of the most important questions for passengers connecting from a long-distance train.</p>
-<p class="blog-p">There is <strong>no single officially guaranteed "security clearance time"</strong> for every Delhi Metro or Namo Bharat station. The actual time can change based on:</p>
-<ul class="blog-ul"><li>Passenger volume</li><li>Time of day</li><li>Weekend/weekday</li><li>Festivals</li><li>Large events in Delhi</li><li>Number of security lanes open</li><li>Size and type of baggage</li><li>Any additional screening required</li></ul>
-<p class="blog-p">Therefore, do not plan your journey assuming that security will always take exactly five minutes.</p>
-<h2 class="blog-h2" id="a-practical-buffer-for-outstation-passengers">A practical buffer for outstation passengers</h2>
-<p class="blog-p">For planning purposes, consider keeping approximately:</p>
-<p class="blog-p"><strong>10–15 minutes for Delhi Metro entry/security</strong></p>
-<p class="blog-p">and</p>
-<p class="blog-p"><strong>10–15 minutes for Namo Bharat entry/security</strong></p>
-<p class="blog-p">as a reasonable planning buffer.</p>
-<p class="blog-p">This is a <strong>travel-planning recommendation, not an official security-processing guarantee</strong>.</p>
-<p class="blog-p">If you have:</p>
-<ul class="blog-ul"><li>A large suitcase</li><li>Multiple bags</li><li>Children</li><li>Elderly passengers</li><li>A tight train connection</li><li>Peak-hour travel</li></ul>
-<p class="blog-p">keep additional time.</p>
-<h3 class="blog-h3" id="the-safest-rule">The safest rule</h3>
-<p class="blog-p">If your Namo Bharat train is important and you have just arrived from another city, try to reach the Namo Bharat station <strong>at least 20–30 minutes before the train you intend to board</strong>.</p>
-<p class="blog-p">That gives you time for:</p>
-<ol class="blog-ol"><li>Walking from the metro/railway interchange</li><li>Finding the correct entrance</li><li>Security screening</li><li>Ticket/QR validation</li><li>Using the washroom if required</li><li>Finding the correct platform</li><li>Boarding without rushing</li></ol>
-<p class="blog-p">NCRTC provides official journey-planning, train-tracking and station-facility tools through its Namo Bharat platform, so passengers should check current service information before starting the final leg.</p>
-<p class="blog-p">If you are arriving from another city, your luggage is likely to be the biggest difference between a normal metro journey and a multimodal journey.</p>
-<p class="blog-p">Delhi Metro and Namo Bharat both involve security screening, and large luggage can make interchanges slower.</p>
-<h3 class="blog-h3" id="before-leaving-the-railway-station">Before leaving the railway station</h3>
-<p class="blog-p">Keep your luggage organised.</p>
-<p class="blog-p">Put frequently required items such as your:</p>
-<ul class="blog-ul"><li>Phone</li><li>Wallet</li><li>Ticket</li><li>ID</li><li>Charger</li></ul>
-<p class="blog-p">in an easily accessible pocket.</p>
-<p class="blog-p">Do not bury your Namo Bharat ticket or phone inside your largest suitcase.</p>
-<h3 class="blog-h3" id="at-the-metro-station">At the metro station</h3>
-<p class="blog-p">Allow extra time for:</p>
-<ul class="blog-ul"><li>Security screening</li><li>Luggage scanning</li><li>Escalators</li><li>Platform changes</li></ul>
-<h3 class="blog-h3" id="at-the-namo-bharat-station">At the Namo Bharat station</h3>
-<p class="blog-p">Keep your QR ticket ready before reaching the entry gates.</p>
-<p class="blog-p">Namo Bharat uses digital ticketing options, and NCRTC's official platform provides ticket-booking and journey-planning functionality.</p>
-<p class="blog-p">This is where multimodal planning becomes important.</p>
-<p class="blog-p">Suppose your train is scheduled to reach New Delhi at 5:30 PM but arrives at 6:00 PM.</p>
-<p class="blog-p">Do not assume you will reach the Namo Bharat platform at exactly 6:30 PM.</p>
-<p class="blog-p">Your actual transfer time includes:</p>
-<p class="blog-p"><strong>Train arrival → railway platform → station exit → metro entry → security → metro journey → interchange → walking → Namo Bharat security → platform</strong></p>
-<p class="blog-p">This is why a 20-minute theoretical connection can become 40–60 minutes in real-world conditions.</p>
-<p class="blog-p">If your railway train is delayed, check the current Namo Bharat service before committing to the connection.</p>
-<p class="blog-p">NCRTC provides live-oriented journey tools including train tracking and route planning through its official platform.</p>
-<p class="blog-p">If your final destination is Ghaziabad, you can board Namo Bharat from either of the Delhi-side stations depending on your route.</p>
-<p class="blog-p">The corridor includes:</p>
-<p class="blog-p"><strong>Sarai Kale Khan → New Ashok Nagar → Anand Vihar → Sahibabad → Ghaziabad → Guldhar → Duhai → Murad Nagar → Modi Nagar South → Modi Nagar North → Meerut South → Shatabdi Nagar → Begumpul → Modipuram</strong></p>
-<p class="blog-p">The complete Delhi-Ghaziabad-Meerut corridor covers approximately <strong>82.15 km</strong>.</p>
-<p class="blog-p">For passengers going specifically to Ghaziabad, it is useful to compare <strong>Sarai Kale Khan, New Ashok Nagar and Anand Vihar</strong> before boarding rather than automatically choosing the first Namo Bharat station they find.</p>
-<p class="blog-p">Modinagar passengers have two important Namo Bharat stations:</p>
-<ul class="blog-ul"><li>Modi Nagar South</li><li>Modi Nagar North</li></ul>
-<p class="blog-p">Both are on the Delhi-Ghaziabad-Meerut corridor.</p>
-<p class="blog-p">If you are travelling from New Delhi or Old Delhi, you can first reach a Delhi-side Namo Bharat station and then continue toward Modinagar.</p>
-<p class="blog-p">For a first-time passenger, Sarai Kale Khan is easy to understand because it is the Delhi terminus of the corridor.</p>
-<p class="blog-p">However, Anand Vihar may make more sense depending on where you are coming from and the particular metro connection available at the time of travel.</p>
-<p class="blog-p">For Meerut passengers, Namo Bharat provides a direct regional connection from Delhi through Ghaziabad and onward to the Meerut section.</p>
-<p class="blog-p">The full corridor became operational in February 2026. The Namo Bharat system is designed for regional travel between major urban centres, while the shared Meerut infrastructure also supports local Meerut Metro services.</p>
-<p class="blog-p">If you are travelling all the way to Meerut, consider reaching the Namo Bharat station earlier rather than trying to make a very tight connection after your railway journey.</p>
-<p class="blog-p">For passengers with extremely heavy luggage, a cab can sometimes be simpler because it removes the need to change between transport systems.</p>
-<p class="blog-p">However, road travel between Delhi and Ghaziabad or Meerut can be affected by traffic.</p>
-<p class="blog-p">The multimodal route has a different advantage:</p>
-<p class="blog-p"><strong>Railway → Metro → Namo Bharat</strong></p>
-<p class="blog-p">This allows you to use the rapid-transit network for the longer regional portion of the journey.</p>
-<p class="blog-p">The best choice depends on:</p>
-<ul class="blog-ul"><li>Number of passengers</li><li>Amount of luggage</li><li>Arrival time</li><li>Budget</li><li>Mobility requirements</li><li>Final destination</li><li>Namo Bharat operating schedule</li></ul>
-<p class="blog-p">For solo passengers or travellers comfortable with public transport, the multimodal option can be particularly useful.</p>
-<p class="blog-p">Before leaving your railway station, make sure you have:</p>
-<h3 class="blog-h3" id="before-boarding-delhi-metro">Before boarding Delhi Metro</h3>
-<ul class="blog-ul"><li>Railway luggage securely packed</li><li>Phone charged</li><li>Metro ticket/payment ready</li><li>Namo Bharat destination confirmed</li><li>Correct interchange identified</li></ul>
-<h3 class="blog-h3" id="during-the-metro-journey">During the Metro journey</h3>
-<ul class="blog-ul"><li>Check the train direction</li><li>Follow interchange signs</li><li>Do not rely only on memory</li><li>Keep luggage close</li><li>Allow extra time for walking</li></ul>
-<h3 class="blog-h3" id="before-namo-bharat-boarding">Before Namo Bharat boarding</h3>
-<ul class="blog-ul"><li>Namo Bharat ticket/QR ready</li><li>Security screening completed</li><li>Correct platform confirmed</li><li>Train direction checked</li><li>Destination station confirmed</li></ul>
-<p class="blog-p">For passengers arriving at <strong>New Delhi Railway Station</strong>, remember these two combinations:</p>
-<h3 class="blog-h3" id="for-sarai-kale-khan">For Sarai Kale Khan</h3>
-<p class="blog-p"><strong>New Delhi Railway Station</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>New Delhi Metro</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Yellow Line</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Dilli Haat-INA</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Pink Line</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Sarai Kale Khan-Nizamuddin</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Sarai Kale Khan Namo Bharat</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Ghaziabad / Modinagar / Meerut</strong></p>
-<h3 class="blog-h3" id="for-anand-vihar">For Anand Vihar</h3>
-<p class="blog-p"><strong>New Delhi Railway Station</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>New Delhi Metro</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Delhi Metro interchange</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Anand Vihar Metro</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Integrated pedestrian connection</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Anand Vihar Namo Bharat</strong></p>
-<p class="blog-p">↓</p>
-<p class="blog-p"><strong>Ghaziabad / Modinagar / Meerut</strong></p>
-<p class="blog-p">The exact metro interchange can vary based on the destination and current network operations, so check the station's route information before boarding.</p>
-<h4 class="blog-h4" id="how-do-i-reach-namo-bharat-from-new-delhi-railway-station">How do I reach Namo Bharat from New Delhi Railway Station?</h4>
-<p class="blog-p">The easiest approach is to use Delhi Metro first. For Sarai Kale Khan, take the Yellow Line from New Delhi to Dilli Haat-INA, change to the Pink Line and continue to Sarai Kale Khan-Nizamuddin. From there, follow the signs for the Namo Bharat station.</p>
-<h4 class="blog-h4" id="which-namo-bharat-station-is-closest-to-new-delhi-railway-station">Which Namo Bharat station is closest to New Delhi Railway Station?</h4>
-<p class="blog-p">There is no single answer based only on geographical distance because the practical journey depends on the metro connection. <strong>Sarai Kale Khan</strong> is a major Delhi-side Namo Bharat station and has strong multimodal integration with Delhi Metro and other transport systems.</p>
-<h4 class="blog-h4" id="can-i-go-from-old-delhi-railway-station-to-namo-bharat">Can I go from Old Delhi Railway Station to Namo Bharat?</h4>
-<p class="blog-p">Yes. From Old Delhi Railway Station, reach Chandni Chowk Metro Station and use the Yellow Line to connect with the Pink Line or another appropriate interchange depending on whether you are travelling to Sarai Kale Khan or Anand Vihar.</p>
-<h4 class="blog-h4" id="is-sarai-kale-khan-namo-bharat-operational">Is Sarai Kale Khan Namo Bharat operational?</h4>
-<p class="blog-p">Yes. The New Ashok Nagar–Sarai Kale Khan section opened in February 2026, completing the Delhi–Ghaziabad–Meerut corridor with the remaining Meerut section.</p>
-<h4 class="blog-h4" id="is-anand-vihar-namo-bharat-connected-to-delhi-metro">Is Anand Vihar Namo Bharat connected to Delhi Metro?</h4>
-<p class="blog-p">Yes. NCRTC states that Anand Vihar Namo Bharat station is situated near Anand Vihar Delhi Metro station and provides connectivity with the surrounding railway and ISBT facilities.</p>
-<h4 class="blog-h4" id="how-much-time-should-i-keep-for-security">How much time should I keep for security?</h4>
-<p class="blog-p">There is no fixed publicly guaranteed clearance time. As a practical planning buffer, allow around <strong>10–15 minutes for each security/entry stage</strong>, with additional time during busy periods or when travelling with large luggage.</p>
-<h4 class="blog-h4" id="can-i-carry-luggage-on-namo-bharat">Can I carry luggage on Namo Bharat?</h4>
-<p class="blog-p">Passengers should follow the applicable railway/metro safety and carriage rules. Certain dangerous, inflammable, explosive, corrosive and prohibited items are not permitted on Namo Bharat premises.</p>
-<h4 class="blog-h4" id="should-i-choose-sarai-kale-khan-or-anand-vihar">Should I choose Sarai Kale Khan or Anand Vihar?</h4>
-<p class="blog-p">Both are useful Delhi-side Namo Bharat stations. Sarai Kale Khan is the Delhi terminus and a major multimodal hub, while Anand Vihar is integrated with the Delhi Metro, railway station and ISBT. Your best option depends on your starting point, metro connection and final destination.</p>
-<h4 class="blog-h4" id="can-i-travel-directly-from-delhi-to-meerut-by-namo-bharat">Can I travel directly from Delhi to Meerut by Namo Bharat?</h4>
-<p class="blog-p">Yes. The Delhi–Ghaziabad–Meerut Namo Bharat corridor is fully operational, connecting the Delhi end with the Meerut section through Ghaziabad and Modinagar.</p>
-<p class="blog-p">For an outstation passenger arriving at <strong>New Delhi Railway Station or Old Delhi Railway Station</strong>, the key is to think of the journey as <strong>one multimodal trip rather than three separate journeys</strong>.</p>
-<p class="blog-p">Your journey can be:</p>
-<p class="blog-p"><strong>Indian Railways → Delhi Metro → Namo Bharat RRTS</strong></p>
-<p class="blog-p">If you are heading toward Ghaziabad, Modinagar or Meerut, <strong>Sarai Kale Khan and Anand Vihar are the two important Delhi-side Namo Bharat options to consider</strong>.</p>
-<p class="blog-p">For Sarai Kale Khan, the simple connection to remember is:</p>
-<p class="blog-p"><strong>New Delhi → Yellow Line → Dilli Haat-INA → Pink Line → Sarai Kale Khan-Nizamuddin → Namo Bharat.</strong></p>
-<p class="blog-p">If you are using Anand Vihar, allow additional time for the interchange and the walk between the metro and Namo Bharat facilities.</p>
-<p class="blog-p">Most importantly, do not schedule your journey based only on the train-to-train travel time. Add a buffer for <strong>railway station exit, metro security, interchange walking, luggage handling, Namo Bharat security and platform access</strong>.</p>
-<p class="blog-p">With that buffer built into your itinerary, the journey from an outstation train to Delhi's regional rapid-transit network becomes much easier to manage.</p>
-      </div>
-      
-    </article>
-    <nav class="blog-toc" aria-label="Table of contents">
-<div class="blog-toc-header">On this page</div>
-<ul class="blog-toc-list">
-<li class="blog-toc-h2"><a href="#quick-answer-which-namo-bharat-station-should-you-use">Quick Answer: Which Namo Bharat Station Should You Use?</a></li>
-<li class="blog-toc-h3"><a href="#route-a-new-delhi-ina-sarai-kale-khan">Route A: New Delhi → INA → Sarai Kale Khan</a></li>
-<li class="blog-toc-h3"><a href="#route-b-new-delhi-kashmere-gatecentral-interchange-anand-vihar">Route B: New Delhi → Kashmere Gate/central interchange → Anand Vihar</a></li>
-<li class="blog-toc-h3"><a href="#step-1-exit-your-train-at-new-delhi-railway-station">Step 1: Exit your train at New Delhi Railway Station</a></li>
-<li class="blog-toc-h3"><a href="#step-2-enter-new-delhi-metro-station">Step 2: Enter New Delhi Metro Station</a></li>
-<li class="blog-toc-h3"><a href="#step-3-get-down-at-dilli-haat-ina">Step 3: Get down at Dilli Haat-INA</a></li>
-<li class="blog-toc-h3"><a href="#step-4-change-to-the-pink-line">Step 4: Change to the Pink Line</a></li>
-<li class="blog-toc-h3"><a href="#step-5-travel-to-sarai-kale-khan-nizamuddin">Step 5: Travel to Sarai Kale Khan-Nizamuddin</a></li>
-<li class="blog-toc-h3"><a href="#step-6-follow-signs-for-namo-bharat">Step 6: Follow signs for Namo Bharat</a></li>
-<li class="blog-toc-h3"><a href="#step-7-complete-namo-bharat-entry-and-security">Step 7: Complete Namo Bharat entry and security</a></li>
-<li class="blog-toc-h3"><a href="#step-1-start-at-new-delhi-metro">Step 1: Start at New Delhi Metro</a></li>
-<li class="blog-toc-h3"><a href="#step-2-choose-your-interchange-carefully">Step 2: Choose your interchange carefully</a></li>
-<li class="blog-toc-h3"><a href="#step-3-reach-anand-vihar-metro">Step 3: Reach Anand Vihar Metro</a></li>
-<li class="blog-toc-h3"><a href="#step-4-use-the-connecting-pedestrian-route">Step 4: Use the connecting pedestrian route</a></li>
-<li class="blog-toc-h3"><a href="#step-5-enter-namo-bharat">Step 5: Enter Namo Bharat</a></li>
-<li class="blog-toc-h2"><a href="#step-by-step-route-from-old-delhi-to-namo-bharat">Step-by-step route from Old Delhi to Namo Bharat</a></li>
-<li class="blog-toc-h3"><a href="#step-1-exit-old-delhi-railway-station">Step 1: Exit Old Delhi Railway Station</a></li>
-<li class="blog-toc-h3"><a href="#step-2-enter-chandni-chowk-metro-station">Step 2: Enter Chandni Chowk Metro Station</a></li>
-<li class="blog-toc-h3"><a href="#step-3-for-sarai-kale-khan">Step 3: For Sarai Kale Khan</a></li>
-<li class="blog-toc-h3"><a href="#step-4-for-anand-vihar">Step 4: For Anand Vihar</a></li>
-<li class="blog-toc-h2"><a href="#a-practical-buffer-for-outstation-passengers">A practical buffer for outstation passengers</a></li>
-<li class="blog-toc-h3"><a href="#the-safest-rule">The safest rule</a></li>
-<li class="blog-toc-h3"><a href="#before-leaving-the-railway-station">Before leaving the railway station</a></li>
-<li class="blog-toc-h3"><a href="#at-the-metro-station">At the metro station</a></li>
-<li class="blog-toc-h3"><a href="#at-the-namo-bharat-station">At the Namo Bharat station</a></li>
-<li class="blog-toc-h3"><a href="#before-boarding-delhi-metro">Before boarding Delhi Metro</a></li>
-<li class="blog-toc-h3"><a href="#during-the-metro-journey">During the Metro journey</a></li>
-<li class="blog-toc-h3"><a href="#before-namo-bharat-boarding">Before Namo Bharat boarding</a></li>
-<li class="blog-toc-h3"><a href="#for-sarai-kale-khan">For Sarai Kale Khan</a></li>
-<li class="blog-toc-h3"><a href="#for-anand-vihar">For Anand Vihar</a></li>
-</ul>
-</nav>
-  </div>
+  <a href="/blog" class="post-back">← Back to all posts</a>
+  <div id="post-content"><header class="post-header"><div class="post-tags"><span class="post-tag">old delhi</span><span class="post-tag">new delhi</span><span class="post-tag">delhi to meerut</span><span class="post-tag">namo bharat rrts</span></div><h1 class="post-title">How to Travel Between Old Delhi / New Delhi Railway Station and Namo Bharat RRTS: Step-by-Step Multimodal Guide</h1><div class="post-meta"><span>MetroGuideIndia</span><span>2026-09-26</span><span>18 min read</span></div></header><hr class="post-divider"><div class="post-grid"><div class="blog-article"><article class="blog-body" id="blog-article"><p>If you are arriving in Delhi by train and your next destination is <strong>Ghaziabad, Modinagar, or Meerut</strong>, you do not necessarily need to book a cab or wait in road traffic.</p>
+<p>Delhi's public transport network now makes it possible to combine <strong>Indian Railways,</strong> <a href="https://metroguideindia.com/delhi-metro/"><strong>Delhi Metro</strong></a> <strong>and</strong> <a href="https://metroguideindia.com/namo-bharat/"><strong>Namo Bharat RRTS</strong></a> in one journey.</p>
+<p>The important part is knowing <strong>which Delhi Metro interchange to use</strong>, because the best route from New Delhi Railway Station is not necessarily the same for every Namo Bharat station.</p>
+<p>For passengers arriving at <strong>New Delhi Railway Station (NDLS)</strong>, the two most useful Namo Bharat boarding points are generally <strong>Sarai Kale Khan</strong> and <strong>Anand Vihar</strong>. Sarai Kale Khan is particularly important because it is the Delhi-end station of the Delhi-Ghaziabad-Meerut Namo Bharat corridor. Anand Vihar is another major multimodal hub with connections to Delhi Metro, Indian Railways and the ISBT. NCRTC describes these stations as part of its multimodal integration network.</p>
+<p>This guide explains exactly how to travel from <strong>New Delhi Railway Station and Old Delhi Railway Station to Namo Bharat RRTS</strong>, which metro line to take, where to change, how much time to keep for security and baggage checks, and which option makes the most sense for your destination.</p>
+<h2 id="quick-answer-which-namo-bharat-station-should-you-use">Quick Answer: Which Namo Bharat Station Should You Use?</h2>
+<p>If you are coming from an outstation train, use this simple rule:</p>
+<div class="mgi-scroll blog-table-wrap"><table><thead><tr><th>Your destination</th><th>Recommended Namo Bharat boarding station</th></tr></thead><tbody><tr><td>Ghaziabad</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Sahibabad</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Guldhar</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Duhai</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Murad Nagar</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Modi Nagar South</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Modi Nagar North</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Meerut South</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Shatabdi Nagar</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Begumpul</td><td>Sarai Kale Khan or Anand Vihar</td></tr><tr><td>Modipuram</td><td>Sarai Kale Khan or Anand Vihar</td></tr></tbody></table></div>
+<p>The Namo Bharat corridor currently runs from <strong>Sarai Kale Khan in Delhi through Ghaziabad and onward to Modipuram in Meerut</strong>, with the complete corridor operational since February 2026.</p>
+<p>For most passengers arriving at <strong>New Delhi Railway Station</strong>, <strong>Sarai Kale Khan is particularly useful because it is directly connected with Delhi Metro's Pink Line and is designed as a major multimodal hub near Hazrat Nizamuddin railway station and Vir Haqiqat Rai ISBT.</strong></p>
+<h2 id="1-new-delhi-railway-station-to-namo-bharat-rrts">1. New Delhi Railway Station to Namo Bharat RRTS</h2>
+<p>New Delhi Railway Station is served by the <strong>Yellow Line of Delhi Metro</strong>, which makes the station a convenient starting point for reaching the Namo Bharat network.</p>
+<p>There are two practical ways to approach the Namo Bharat network:</p>
+<h3 id="route-a-new-delhi-ina-sarai-kale-khan">Route A: New Delhi → INA → Sarai Kale Khan</h3>
+<p>This is particularly useful when <a href="https://metroguideindia.com/namo-bharat/stations/sarai-kale-khan.html"><strong>Sarai Kale Khan</strong></a> is your preferred Namo Bharat boarding station.</p>
+<h3 id="route-b-new-delhi-kashmere-gatecentral-interchange-anand-vihar">Route B: New Delhi → Kashmere Gate/central interchange → Anand Vihar</h3>
+<p>This can be useful when <strong>Anand Vihar</strong> is more convenient for your destination or when you specifically want to board from the Anand Vihar Namo Bharat station.</p>
+<p>However, route planning can change depending on the operating status of metro corridors, platform access and interchange conditions. Always follow the destination boards inside the station.</p>
+<h2 id="2-step-by-step-new-delhi-railway-station-to-sarai-kale-khan-namo-bharat">2. Step-by-Step: New Delhi Railway Station to Sarai Kale Khan Namo Bharat</h2>
+<p>For many outstation passengers, this is the most straightforward multimodal connection.</p>
+<h3 id="step-1-exit-your-train-at-new-delhi-railway-station">Step 1: Exit your train at New Delhi Railway Station</h3>
+<p>After getting down at <strong>NDLS</strong>, follow signs for <strong>Delhi Metro</strong>.</p>
+<p>New Delhi Metro station is connected with the railway station complex. If you have heavy luggage, do not rush directly toward the first metro gate you see. Follow the signs carefully and use lifts or escalators where available.</p>
+<p>Keep your train luggage with you throughout the transfer.</p>
+<h3 id="step-2-enter-new-delhi-metro-station">Step 2: Enter New Delhi Metro Station</h3>
+<p>At New Delhi Metro, board the <strong>Yellow Line</strong>.</p>
+<p>Your destination is <strong>Dilli Haat-INA</strong>.</p>
+<p>Check the electronic display before boarding because the Yellow Line operates in both directions.</p>
+<p>The Yellow Line connects New Delhi with several major parts of Delhi and includes stations such as Rajiv Chowk, Central Secretariat and Dilli Haat-INA.</p>
+<h3 id="step-3-get-down-at-dilli-haat-ina">Step 3: Get down at Dilli Haat-INA</h3>
+<p>Exit the Yellow Line at <strong>Dilli Haat-INA</strong>.</p>
+<p>This is your interchange point.</p>
+<p>Dilli Haat-INA is served by both the <strong>Yellow Line and Pink Line</strong>, allowing you to continue toward Sarai Kale Khan.</p>
+<h3 id="step-4-change-to-the-pink-line">Step 4: Change to the Pink Line</h3>
+<p>Follow the signs for the <strong>Pink Line</strong>.</p>
+<p>For Sarai Kale Khan, check the direction displayed on the platform before boarding. Your train should be travelling toward the section of the Pink Line that includes <strong>Sarai Kale Khan-Nizamuddin</strong>.</p>
+<p>Do not rely only on the colour of the train or platform. Look for the station name displayed on the electronic board.</p>
+<h3 id="step-5-travel-to-sarai-kale-khan-nizamuddin">Step 5: Travel to Sarai Kale Khan-Nizamuddin</h3>
+<p>The Pink Line route from Dilli Haat-INA toward Sarai Kale Khan passes through:</p>
+<ul><li>South Extension</li><li>Lajpat Nagar</li><li>Vinobapuri</li><li>Ashram</li><li>Sarai Kale Khan-Nizamuddin</li></ul>
+<p>Sarai Kale Khan-Nizamuddin is an established Delhi Metro station on the Pink Line and forms part of the wider Sarai Kale Khan multimodal transport hub.</p>
+<h3 id="step-6-follow-signs-for-namo-bharat">Step 6: Follow signs for Namo Bharat</h3>
+<p>After reaching Sarai Kale Khan-Nizamuddin Metro station, follow signs toward the <strong>Namo Bharat/RRTS station</strong>.</p>
+<p>The important advantage here is that Sarai Kale Khan was planned as a major multimodal interchange connecting Delhi Metro, Indian Railways, bus services and Namo Bharat.</p>
+<h3 id="step-7-complete-namo-bharat-entry-and-security">Step 7: Complete Namo Bharat entry and security</h3>
+<p>Before reaching the platform, you will need to complete the required entry and security process.</p>
+<p>Keep your:</p>
+<ul><li>Namo Bharat ticket or QR ticket</li><li>Phone</li><li>Wallet</li><li>ID if required</li><li>Bags</li></ul>
+<p>easily accessible.</p>
+<p>Once through the entry process, follow signs for the <strong>Meerut direction</strong> if you are travelling toward Ghaziabad, Modinagar or Meerut.</p>
+<h2 id="3-new-delhi-railway-station-to-anand-vihar-namo-bharat">3. New Delhi Railway Station to Anand Vihar Namo Bharat</h2>
+<p>Anand Vihar is another major Namo Bharat interchange.</p>
+<p>The station is located close to <strong>Anand Vihar Metro, Anand Vihar Railway Station and Anand Vihar ISBT</strong>, making it particularly useful for passengers travelling through East Delhi or connecting with the wider Anand Vihar transport hub. NCRTC lists the station as being connected with both the Blue and Pink Metro Lines.</p>
+<p>The important thing to understand is that <strong>Anand Vihar Namo Bharat and Anand Vihar Metro are not the same station</strong>, although they are integrated through pedestrian connections.</p>
+<h3 id="step-1-start-at-new-delhi-metro">Step 1: Start at New Delhi Metro</h3>
+<p>From New Delhi Railway Station, enter <strong>New Delhi Metro Station</strong> and board the Yellow Line.</p>
+<h3 id="step-2-choose-your-interchange-carefully">Step 2: Choose your interchange carefully</h3>
+<p>For Anand Vihar, route planners can show different combinations depending on the exact destination and current network configuration.</p>
+<p>A common practical approach is to use the <strong>Yellow Line toward Kashmere Gate</strong>, then continue through the Red/Pink Line network toward Anand Vihar.</p>
+<p>Because Anand Vihar is served by multiple metro lines, do not assume that every train marked "Anand Vihar" will take you directly to the Namo Bharat station.</p>
+<h3 id="step-3-reach-anand-vihar-metro">Step 3: Reach Anand Vihar Metro</h3>
+<p>Once you arrive at the Anand Vihar Metro complex, follow signs toward:</p>
+<p><strong>Anand Vihar Railway Station / ISBT / Namo Bharat</strong></p>
+<p>NCRTC specifically states that the Namo Bharat station is situated near Anand Vihar Delhi Metro, Anand Vihar ISBT and Anand Vihar Railway Station.</p>
+<h3 id="step-4-use-the-connecting-pedestrian-route">Step 4: Use the connecting pedestrian route</h3>
+<p>Anand Vihar is designed as a multimodal hub, so the transfer involves walking through the integrated station area.</p>
+<p>If you have a large suitcase, allow additional time for walking, lifts, escalators and crowd movement.</p>
+<h3 id="step-5-enter-namo-bharat">Step 5: Enter Namo Bharat</h3>
+<p>Once you reach the Namo Bharat station entrance, complete security screening and ticket validation.</p>
+<p>Then follow the platform signage toward <strong>Meerut</strong>.</p>
+<h2 id="4-old-delhi-railway-station-to-namo-bharat">4. Old Delhi Railway Station to Namo Bharat</h2>
+<p>Passengers arriving at <strong>Old Delhi Railway Station (DLI)</strong> have a slightly different starting point.</p>
+<p>Old Delhi Railway Station is near <strong>Chandni Chowk Metro Station on the Yellow Line</strong>.</p>
+<p>This makes the Yellow Line the key connection between Old Delhi and the wider Delhi Metro network.</p>
+<h2 id="step-by-step-route-from-old-delhi-to-namo-bharat">Step-by-step route from Old Delhi to Namo Bharat</h2>
+<h3 id="step-1-exit-old-delhi-railway-station">Step 1: Exit Old Delhi Railway Station</h3>
+<p>After arriving at DLI, follow signs toward <strong>Chandni Chowk Metro Station</strong>.</p>
+<p>The metro station is outside the railway station area, so allow walking time, especially if you are carrying luggage.</p>
+<h3 id="step-2-enter-chandni-chowk-metro-station">Step 2: Enter Chandni Chowk Metro Station</h3>
+<p>Board the <strong>Yellow Line</strong>.</p>
+<p>From Chandni Chowk, you can travel toward central Delhi and connect to the Pink Line depending on whether you are travelling to Sarai Kale Khan or Anand Vihar.</p>
+<h3 id="step-3-for-sarai-kale-khan">Step 3: For Sarai Kale Khan</h3>
+<p>A practical route is:</p>
+<p><strong>Chandni Chowk → Dilli Haat-INA → Pink Line → Sarai Kale Khan-Nizamuddin</strong></p>
+<p>You stay on the Yellow Line until Dilli Haat-INA, then change to the Pink Line.</p>
+<h3 id="step-4-for-anand-vihar">Step 4: For Anand Vihar</h3>
+<p>The Anand Vihar journey requires more careful interchange planning.</p>
+<p>Because Anand Vihar is connected to several Delhi Metro lines, check the current station display and route planner before starting the journey.</p>
+<p>For a traveller with heavy luggage, the objective should not simply be to find the route with the fewest stations. You should also consider:</p>
+<ul><li>Number of interchanges</li><li>Walking distance</li><li>Availability of escalators/lifts</li><li>Crowd levels</li><li>Your arrival time</li><li>Namo Bharat departure time</li></ul>
+<h2 id="5-why-sarai-kale-khan-is-important-for-namo-bharat-passengers">5. Why Sarai Kale Khan Is Important for Namo Bharat Passengers</h2>
+<p>Sarai Kale Khan is more than just another station.</p>
+<p>It is the <strong>Delhi-end station of the Delhi-Ghaziabad-Meerut Namo Bharat corridor</strong> and is positioned as a major multimodal transport hub.</p>
+<p>NCRTC says the station is located close to:</p>
+<ul><li>Delhi Metro</li><li>Hazrat Nizamuddin Railway Station</li><li>Vir Haqiqat Rai ISBT</li></ul>
+<p>It is also planned as a convergence point for multiple future Namo Bharat corridors.</p>
+<p>This makes Sarai Kale Khan especially relevant to outstation passengers.</p>
+<p>For example, someone arriving in Delhi by train at NDLS can use Delhi Metro to reach Sarai Kale Khan and then continue toward:</p>
+<p><strong>Sahibabad → Ghaziabad → Guldhar → Duhai → Murad Nagar → Modi Nagar → Meerut</strong></p>
+<p>without having to travel through the city by road.</p>
+<h2 id="6-sarai-kale-khan-vs-anand-vihar-which-should-you-use">6. Sarai Kale Khan vs Anand Vihar: Which Should You Use?</h2>
+<p>Both stations can connect you to the Namo Bharat corridor, so the choice depends largely on your starting point and final destination.</p>
+<div class="mgi-scroll blog-table-wrap"><table><thead><tr><th>Factor</th><th>Sarai Kale Khan</th><th>Anand Vihar</th></tr></thead><tbody><tr><td>Delhi-end Namo Bharat station</td><td>Yes</td><td>No</td></tr><tr><td>Delhi Metro connection</td><td>Pink Line</td><td>Blue/Pink Line area</td></tr><tr><td>Railway connectivity</td><td>Hazrat Nizamuddin nearby</td><td>Anand Vihar Railway Station nearby</td></tr><tr><td>ISBT connectivity</td><td>Vir Haqiqat Rai ISBT</td><td>Anand Vihar ISBT</td></tr><tr><td>Useful for Ghaziabad</td><td>Yes</td><td>Yes</td></tr><tr><td>Useful for Meerut</td><td>Yes</td><td>Yes</td></tr><tr><td>Best for NDLS passengers</td><td>Often convenient</td><td>Can also be convenient</td></tr><tr><td>Major advantage</td><td>Direct multimodal hub</td><td>Major East Delhi transport hub</td></tr></tbody></table></div>
+<p>The Namo Bharat station at Anand Vihar is underground and is directly integrated with the surrounding transport network.</p>
+<h2 id="7-how-much-time-should-you-keep-for-baggage-and-security">7. How Much Time Should You Keep for Baggage and Security?</h2>
+<p>This is one of the most important questions for passengers connecting from a long-distance train.</p>
+<p>There is <strong>no single officially guaranteed "security clearance time"</strong> for every Delhi Metro or Namo Bharat station. The actual time can change based on:</p>
+<ul><li>Passenger volume</li><li>Time of day</li><li>Weekend/weekday</li><li>Festivals</li><li>Large events in Delhi</li><li>Number of security lanes open</li><li>Size and type of baggage</li><li>Any additional screening required</li></ul>
+<p>Therefore, do not plan your journey assuming that security will always take exactly five minutes.</p>
+<h2 id="a-practical-buffer-for-outstation-passengers">A practical buffer for outstation passengers</h2>
+<p>For planning purposes, consider keeping approximately:</p>
+<p><strong>10–15 minutes for Delhi Metro entry/security</strong></p>
+<p>and</p>
+<p><strong>10–15 minutes for Namo Bharat entry/security</strong></p>
+<p>as a reasonable planning buffer.</p>
+<p>This is a <strong>travel-planning recommendation, not an official security-processing guarantee</strong>.</p>
+<p>If you have:</p>
+<ul><li>A large suitcase</li><li>Multiple bags</li><li>Children</li><li>Elderly passengers</li><li>A tight train connection</li><li>Peak-hour travel</li></ul>
+<p>keep additional time.</p>
+<h3 id="the-safest-rule">The safest rule</h3>
+<p>If your Namo Bharat train is important and you have just arrived from another city, try to reach the Namo Bharat station <strong>at least 20–30 minutes before the train you intend to board</strong>.</p>
+<p>That gives you time for:</p>
+<ol><li>Walking from the metro/railway interchange</li><li>Finding the correct entrance</li><li>Security screening</li><li>Ticket/QR validation</li><li>Using the washroom if required</li><li>Finding the correct platform</li><li>Boarding without rushing</li></ol>
+<p>NCRTC provides official journey-planning, train-tracking and station-facility tools through its Namo Bharat platform, so passengers should check current service information before starting the final leg.</p>
+<h2 id="8-what-about-large-luggage">8. What About Large Luggage?</h2>
+<p>If you are arriving from another city, your luggage is likely to be the biggest difference between a normal metro journey and a multimodal journey.</p>
+<p>Delhi Metro and Namo Bharat both involve security screening, and large luggage can make interchanges slower.</p>
+<h3 id="before-leaving-the-railway-station">Before leaving the railway station</h3>
+<p>Keep your luggage organised.</p>
+<p>Put frequently required items such as your:</p>
+<ul><li>Phone</li><li>Wallet</li><li>Ticket</li><li>ID</li><li>Charger</li></ul>
+<p>in an easily accessible pocket.</p>
+<p>Do not bury your Namo Bharat ticket or phone inside your largest suitcase.</p>
+<h3 id="at-the-metro-station">At the metro station</h3>
+<p>Allow extra time for:</p>
+<ul><li>Security screening</li><li>Luggage scanning</li><li>Escalators</li><li>Platform changes</li></ul>
+<h3 id="at-the-namo-bharat-station">At the Namo Bharat station</h3>
+<p>Keep your QR ticket ready before reaching the entry gates.</p>
+<p>Namo Bharat uses digital ticketing options, and NCRTC's official platform provides ticket-booking and journey-planning functionality.</p>
+<h2 id="9-what-should-you-do-if-your-train-arrives-late">9. What Should You Do If Your Train Arrives Late?</h2>
+<p>This is where multimodal planning becomes important.</p>
+<p>Suppose your train is scheduled to reach New Delhi at 5:30 PM but arrives at 6:00 PM.</p>
+<p>Do not assume you will reach the Namo Bharat platform at exactly 6:30 PM.</p>
+<p>Your actual transfer time includes:</p>
+<p><strong>Train arrival → railway platform → station exit → metro entry → security → metro journey → interchange → walking → Namo Bharat security → platform</strong></p>
+<p>This is why a 20-minute theoretical connection can become 40–60 minutes in real-world conditions.</p>
+<p>If your railway train is delayed, check the current Namo Bharat service before committing to the connection.</p>
+<p>NCRTC provides live-oriented journey tools including train tracking and route planning through its official platform.</p>
+<h2 id="10-travelling-to-ghaziabad-by-namo-bharat">10. Travelling to Ghaziabad by Namo Bharat</h2>
+<p>If your final destination is Ghaziabad, you can board Namo Bharat from either of the Delhi-side stations depending on your route.</p>
+<p>The corridor includes:</p>
+<p><strong>Sarai Kale Khan → New Ashok Nagar → Anand Vihar → Sahibabad → Ghaziabad → Guldhar → Duhai → Murad Nagar → Modi Nagar South → Modi Nagar North → Meerut South → Shatabdi Nagar → Begumpul → Modipuram</strong></p>
+<p>The complete Delhi-Ghaziabad-Meerut corridor covers approximately <strong>82.15 km</strong>.</p>
+<p>For passengers going specifically to Ghaziabad, it is useful to compare <strong>Sarai Kale Khan, New Ashok Nagar and Anand Vihar</strong> before boarding rather than automatically choosing the first Namo Bharat station they find.</p>
+<h2 id="11-travelling-to-modinagar-by-namo-bharat">11. Travelling to Modinagar by Namo Bharat</h2>
+<p>Modinagar passengers have two important Namo Bharat stations:</p>
+<ul><li>Modi Nagar South</li><li>Modi Nagar North</li></ul>
+<p>Both are on the Delhi-Ghaziabad-Meerut corridor.</p>
+<p>If you are travelling from New Delhi or Old Delhi, you can first reach a Delhi-side Namo Bharat station and then continue toward Modinagar.</p>
+<p>For a first-time passenger, Sarai Kale Khan is easy to understand because it is the Delhi terminus of the corridor.</p>
+<p>However, Anand Vihar may make more sense depending on where you are coming from and the particular metro connection available at the time of travel.</p>
+<h2 id="12-travelling-to-meerut-by-namo-bharat">12. Travelling to Meerut by Namo Bharat</h2>
+<p>For Meerut passengers, Namo Bharat provides a direct regional connection from Delhi through Ghaziabad and onward to the Meerut section.</p>
+<p>The full corridor became operational in February 2026. The Namo Bharat system is designed for regional travel between major urban centres, while the shared Meerut infrastructure also supports local Meerut Metro services.</p>
+<p>If you are travelling all the way to Meerut, consider reaching the Namo Bharat station earlier rather than trying to make a very tight connection after your railway journey.</p>
+<h2 id="13-should-you-take-a-cab-instead">13. Should You Take a Cab Instead?</h2>
+<p>For passengers with extremely heavy luggage, a cab can sometimes be simpler because it removes the need to change between transport systems.</p>
+<p>However, road travel between Delhi and Ghaziabad or Meerut can be affected by traffic.</p>
+<p>The multimodal route has a different advantage:</p>
+<p><strong>Railway → Metro → Namo Bharat</strong></p>
+<p>This allows you to use the rapid-transit network for the longer regional portion of the journey.</p>
+<p>The best choice depends on:</p>
+<ul><li>Number of passengers</li><li>Amount of luggage</li><li>Arrival time</li><li>Budget</li><li>Mobility requirements</li><li>Final destination</li><li>Namo Bharat operating schedule</li></ul>
+<p>For solo passengers or travellers comfortable with public transport, the multimodal option can be particularly useful.</p>
+<h2 id="14-first-time-traveller-checklist">14. First-Time Traveller Checklist</h2>
+<p>Before leaving your railway station, make sure you have:</p>
+<h3 id="before-boarding-delhi-metro">Before boarding Delhi Metro</h3>
+<ul><li>Railway luggage securely packed</li><li>Phone charged</li><li>Metro ticket/payment ready</li><li>Namo Bharat destination confirmed</li><li>Correct interchange identified</li></ul>
+<h3 id="during-the-metro-journey">During the Metro journey</h3>
+<ul><li>Check the train direction</li><li>Follow interchange signs</li><li>Do not rely only on memory</li><li>Keep luggage close</li><li>Allow extra time for walking</li></ul>
+<h3 id="before-namo-bharat-boarding">Before Namo Bharat boarding</h3>
+<ul><li>Namo Bharat ticket/QR ready</li><li>Security screening completed</li><li>Correct platform confirmed</li><li>Train direction checked</li><li>Destination station confirmed</li></ul>
+<h2 id="15-the-simple-route-map-to-remember">15. The Simple Route Map to Remember</h2>
+<p>For passengers arriving at <strong>New Delhi Railway Station</strong>, remember these two combinations:</p>
+<h3 id="for-sarai-kale-khan">For Sarai Kale Khan</h3>
+<p><strong>New Delhi Railway Station</strong></p>
+<p>↓</p>
+<p><strong>New Delhi Metro</strong></p>
+<p>↓</p>
+<p><strong>Yellow Line</strong></p>
+<p>↓</p>
+<p><strong>Dilli Haat-INA</strong></p>
+<p>↓</p>
+<p><strong>Pink Line</strong></p>
+<p>↓</p>
+<p><strong>Sarai Kale Khan-Nizamuddin</strong></p>
+<p>↓</p>
+<p><strong>Sarai Kale Khan Namo Bharat</strong></p>
+<p>↓</p>
+<p><strong>Ghaziabad / Modinagar / Meerut</strong></p>
+<h3 id="for-anand-vihar">For Anand Vihar</h3>
+<p><strong>New Delhi Railway Station</strong></p>
+<p>↓</p>
+<p><strong>New Delhi Metro</strong></p>
+<p>↓</p>
+<p><strong>Delhi Metro interchange</strong></p>
+<p>↓</p>
+<p><strong>Anand Vihar Metro</strong></p>
+<p>↓</p>
+<p><strong>Integrated pedestrian connection</strong></p>
+<p>↓</p>
+<p><strong>Anand Vihar Namo Bharat</strong></p>
+<p>↓</p>
+<p><strong>Ghaziabad / Modinagar / Meerut</strong></p>
+<p>The exact metro interchange can vary based on the destination and current network operations, so check the station's route information before boarding.</p>
+<h2 id="16-frequently-asked-questions">16. Frequently Asked Questions</h2>
+<h3 id="how-do-i-reach-namo-bharat-from-new-delhi-railway-station">How do I reach Namo Bharat from New Delhi Railway Station?</h3>
+<p>The easiest approach is to use Delhi Metro first. For Sarai Kale Khan, take the Yellow Line from New Delhi to Dilli Haat-INA, change to the Pink Line and continue to Sarai Kale Khan-Nizamuddin. From there, follow the signs for the Namo Bharat station.</p>
+<h3 id="which-namo-bharat-station-is-closest-to-new-delhi-railway-station">Which Namo Bharat station is closest to New Delhi Railway Station?</h3>
+<p>There is no single answer based only on geographical distance because the practical journey depends on the metro connection. <strong>Sarai Kale Khan</strong> is a major Delhi-side Namo Bharat station and has strong multimodal integration with Delhi Metro and other transport systems.</p>
+<h3 id="can-i-go-from-old-delhi-railway-station-to-namo-bharat">Can I go from Old Delhi Railway Station to Namo Bharat?</h3>
+<p>Yes. From Old Delhi Railway Station, reach Chandni Chowk Metro Station and use the Yellow Line to connect with the Pink Line or another appropriate interchange depending on whether you are travelling to Sarai Kale Khan or Anand Vihar.</p>
+<h3 id="is-sarai-kale-khan-namo-bharat-operational">Is Sarai Kale Khan Namo Bharat operational?</h3>
+<p>Yes. The New Ashok Nagar–Sarai Kale Khan section opened in February 2026, completing the Delhi–Ghaziabad–Meerut corridor with the remaining Meerut section.</p>
+<h3 id="is-anand-vihar-namo-bharat-connected-to-delhi-metro">Is Anand Vihar Namo Bharat connected to Delhi Metro?</h3>
+<p>Yes. NCRTC states that Anand Vihar Namo Bharat station is situated near Anand Vihar Delhi Metro station and provides connectivity with the surrounding railway and ISBT facilities.</p>
+<h3 id="how-much-time-should-i-keep-for-security">How much time should I keep for security?</h3>
+<p>There is no fixed publicly guaranteed clearance time. As a practical planning buffer, allow around <strong>10–15 minutes for each security/entry stage</strong>, with additional time during busy periods or when travelling with large luggage.</p>
+<h3 id="can-i-carry-luggage-on-namo-bharat">Can I carry luggage on Namo Bharat?</h3>
+<p>Passengers should follow the applicable railway/metro safety and carriage rules. Certain dangerous, inflammable, explosive, corrosive and prohibited items are not permitted on Namo Bharat premises.</p>
+<h3 id="should-i-choose-sarai-kale-khan-or-anand-vihar">Should I choose Sarai Kale Khan or Anand Vihar?</h3>
+<p>Both are useful Delhi-side Namo Bharat stations. Sarai Kale Khan is the Delhi terminus and a major multimodal hub, while Anand Vihar is integrated with the Delhi Metro, railway station and ISBT. Your best option depends on your starting point, metro connection and final destination.</p>
+<h3 id="can-i-travel-directly-from-delhi-to-meerut-by-namo-bharat">Can I travel directly from Delhi to Meerut by Namo Bharat?</h3>
+<p>Yes. The Delhi–Ghaziabad–Meerut Namo Bharat corridor is fully operational, connecting the Delhi end with the Meerut section through Ghaziabad and Modinagar.</p>
+<h2 id="final-takeaway">Final Takeaway</h2>
+<p>For an outstation passenger arriving at <strong>New Delhi Railway Station or Old Delhi Railway Station</strong>, the key is to think of the journey as <strong>one multimodal trip rather than three separate journeys</strong>.</p>
+<p>Your journey can be:</p>
+<p><strong>Indian Railways → Delhi Metro → Namo Bharat RRTS</strong></p>
+<p>If you are heading toward Ghaziabad, Modinagar or Meerut, <strong>Sarai Kale Khan and Anand Vihar are the two important Delhi-side Namo Bharat options to consider</strong>.</p>
+<p>For Sarai Kale Khan, the simple connection to remember is:</p>
+<p><strong>New Delhi → Yellow Line → Dilli Haat-INA → Pink Line → Sarai Kale Khan-Nizamuddin → Namo Bharat.</strong></p>
+<p>If you are using Anand Vihar, allow additional time for the interchange and the walk between the metro and Namo Bharat facilities.</p>
+<p>Most importantly, do not schedule your journey based only on the train-to-train travel time. Add a buffer for <strong>railway station exit, metro security, interchange walking, luggage handling, Namo Bharat security and platform access</strong>.</p>
+<p>With that buffer built into your itinerary, the journey from an outstation train to Delhi's regional rapid-transit network becomes much easier to manage.</p></article><section class="blog-related" aria-labelledby="related-heading"><h2 id="related-heading">Related Commuter Guides &amp; Transit Insights</h2><div class="blog-related-grid"><a class="blog-related-card" href="/blog/anand-vihar-to-meerut-metro-route-fare-timings-and-complete-guide-2026-1.html"><h3 class="blog-related-title">Anand Vihar to Meerut Metro: Route, Fare, Timings and Complete Guide (2026)</h3><p>Anand Vihar to Meerut Metro route in 35-50 minutes. Check Namo Bharat fare, timings, fast trains, station-wise routes and bus or train options.</p></a><a class="blog-related-card" href="/blog/meerut-ghaziabad-to-cyber-city-udyog-vihar-gurugram-daily-commute-guide-via-rrts-metro.html"><h3 class="blog-related-title">Meerut &amp; Ghaziabad to Cyber City &amp; Udyog Vihar (Gurugram): Daily Commute Guide via RRTS &amp; Metro</h3><p>Driving from Meerut or Ghaziabad to Gurugram along the Delhi-Meerut Expressway, Sarai Kale Khan, and NH-48 has become a daily traffic ordeal.</p></a><a class="blog-related-card" href="/blog/sarai-kale-khan-rrts-to-hazrat-nizamuddin-railway-station-walking-map-skywalk-luggage-transit-guide.html"><h3 class="blog-related-title">Sarai Kale Khan RRTS to Hazrat Nizamuddin Railway Station: Walking Map, Skywalk &amp; Luggage Transit Guide</h3><p>Check out our special guide for interchange from Sarai Kale Khan RRTS to Hazrat Nizamuddin Railway Station to have a safe and comfortable journey.</p></a></div></section></div><nav class="blog-toc" aria-label="Table of contents"><div class="blog-toc-header">On this page</div><ul class="blog-toc-list"><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#quick-answer-which-namo-bharat-station-should-you-use">Quick Answer: Which Namo Bharat Station Should You Use?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#1-new-delhi-railway-station-to-namo-bharat-rrts">1. New Delhi Railway Station to Namo Bharat RRTS</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#route-a-new-delhi-ina-sarai-kale-khan">Route A: New Delhi → INA → Sarai Kale Khan</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#route-b-new-delhi-kashmere-gatecentral-interchange-anand-vihar">Route B: New Delhi → Kashmere Gate/central interchange → Anand Vihar</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#2-step-by-step-new-delhi-railway-station-to-sarai-kale-khan-namo-bharat">2. Step-by-Step: New Delhi Railway Station to Sarai Kale Khan Namo Bharat</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-1-exit-your-train-at-new-delhi-railway-station">Step 1: Exit your train at New Delhi Railway Station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-2-enter-new-delhi-metro-station">Step 2: Enter New Delhi Metro Station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-3-get-down-at-dilli-haat-ina">Step 3: Get down at Dilli Haat-INA</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-4-change-to-the-pink-line">Step 4: Change to the Pink Line</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-5-travel-to-sarai-kale-khan-nizamuddin">Step 5: Travel to Sarai Kale Khan-Nizamuddin</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-6-follow-signs-for-namo-bharat">Step 6: Follow signs for Namo Bharat</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-7-complete-namo-bharat-entry-and-security">Step 7: Complete Namo Bharat entry and security</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#3-new-delhi-railway-station-to-anand-vihar-namo-bharat">3. New Delhi Railway Station to Anand Vihar Namo Bharat</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-1-start-at-new-delhi-metro">Step 1: Start at New Delhi Metro</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-2-choose-your-interchange-carefully">Step 2: Choose your interchange carefully</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-3-reach-anand-vihar-metro">Step 3: Reach Anand Vihar Metro</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-4-use-the-connecting-pedestrian-route">Step 4: Use the connecting pedestrian route</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-5-enter-namo-bharat">Step 5: Enter Namo Bharat</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#4-old-delhi-railway-station-to-namo-bharat">4. Old Delhi Railway Station to Namo Bharat</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-by-step-route-from-old-delhi-to-namo-bharat">Step-by-step route from Old Delhi to Namo Bharat</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-1-exit-old-delhi-railway-station">Step 1: Exit Old Delhi Railway Station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-2-enter-chandni-chowk-metro-station">Step 2: Enter Chandni Chowk Metro Station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-3-for-sarai-kale-khan">Step 3: For Sarai Kale Khan</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#step-4-for-anand-vihar">Step 4: For Anand Vihar</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#5-why-sarai-kale-khan-is-important-for-namo-bharat-passengers">5. Why Sarai Kale Khan Is Important for Namo Bharat Passengers</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#6-sarai-kale-khan-vs-anand-vihar-which-should-you-use">6. Sarai Kale Khan vs Anand Vihar: Which Should You Use?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#7-how-much-time-should-you-keep-for-baggage-and-security">7. How Much Time Should You Keep for Baggage and Security?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#a-practical-buffer-for-outstation-passengers">A practical buffer for outstation passengers</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#the-safest-rule">The safest rule</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#8-what-about-large-luggage">8. What About Large Luggage?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#before-leaving-the-railway-station">Before leaving the railway station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#at-the-metro-station">At the metro station</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#at-the-namo-bharat-station">At the Namo Bharat station</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#9-what-should-you-do-if-your-train-arrives-late">9. What Should You Do If Your Train Arrives Late?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#10-travelling-to-ghaziabad-by-namo-bharat">10. Travelling to Ghaziabad by Namo Bharat</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#11-travelling-to-modinagar-by-namo-bharat">11. Travelling to Modinagar by Namo Bharat</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#12-travelling-to-meerut-by-namo-bharat">12. Travelling to Meerut by Namo Bharat</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#13-should-you-take-a-cab-instead">13. Should You Take a Cab Instead?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#14-first-time-traveller-checklist">14. First-Time Traveller Checklist</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#before-boarding-delhi-metro">Before boarding Delhi Metro</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#during-the-metro-journey">During the Metro journey</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#before-namo-bharat-boarding">Before Namo Bharat boarding</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#15-the-simple-route-map-to-remember">15. The Simple Route Map to Remember</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#for-sarai-kale-khan">For Sarai Kale Khan</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#for-anand-vihar">For Anand Vihar</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#16-frequently-asked-questions">16. Frequently Asked Questions</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#how-do-i-reach-namo-bharat-from-new-delhi-railway-station">How do I reach Namo Bharat from New Delhi Railway Station?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#which-namo-bharat-station-is-closest-to-new-delhi-railway-station">Which Namo Bharat station is closest to New Delhi Railway Station?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#can-i-go-from-old-delhi-railway-station-to-namo-bharat">Can I go from Old Delhi Railway Station to Namo Bharat?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#is-sarai-kale-khan-namo-bharat-operational">Is Sarai Kale Khan Namo Bharat operational?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#is-anand-vihar-namo-bharat-connected-to-delhi-metro">Is Anand Vihar Namo Bharat connected to Delhi Metro?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#how-much-time-should-i-keep-for-security">How much time should I keep for security?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#can-i-carry-luggage-on-namo-bharat">Can I carry luggage on Namo Bharat?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#should-i-choose-sarai-kale-khan-or-anand-vihar">Should I choose Sarai Kale Khan or Anand Vihar?</a></li><li class="blog-toc-h3"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#can-i-travel-directly-from-delhi-to-meerut-by-namo-bharat">Can I travel directly from Delhi to Meerut by Namo Bharat?</a></li><li class="blog-toc-h2"><a href="/blog/how-to-travel-between-old-delhi-new-delhi-railway-station-and-namo-bharat-rrts-step-by-step-multimodal-guide.html#final-takeaway">Final Takeaway</a></li></ul></nav></div></div>
 </div>
+
+
+<section id="global-search-section" style="margin:28px 0 36px">
+  <div class="sec-eye">Route Planner</div>
+  <h2 class="sec-head" style="margin-bottom:10px">Plan a Route</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">Search any two stations to open the route planner with the correct city dataset.</p>
+  <div class="sc">
+    <div class="fd">
+      <label class="fl" for="global-src-search">From</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-src-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Source station">
+        <input type="hidden" id="global-src">
+        <ul class="ac-list" id="global-src-list" hidden></ul>
+      </div>
+    </div>
+
+    <div class="swap-row">
+      <button class="swap" id="global-swap-btn" title="Swap stations" aria-label="Swap stations" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 16l-4-4 4-4M17 8l4 4-4 4M3 12h18"/></svg>
+      </button>
+    </div>
+
+    <div class="fd">
+      <label class="fl" for="global-dst-search">To</label>
+      <div class="ac-wrap">
+        <input type="text" id="global-dst-search" class="ac-input" placeholder="Search station…" autocomplete="off" spellcheck="false" aria-label="Destination station">
+        <input type="hidden" id="global-dst">
+        <ul class="ac-list" id="global-dst-list" hidden></ul>
+      </div>
+    </div>
+
+    <button class="btn-find" id="global-find-btn" type="button"><span class="btn-label">Find Route</span></button>
+  </div>
+</section>
 </main>
 <footer>
-  <div class="wrap" style="text-align:center;padding:20px;color:var(--muted);font-size:.85rem">
-    <div>© 2026 MetroGuideIndia. Not affiliated with any transit agency.</div>
+  <div class="wrap">
+    <div class="foot-logo">🚄 MetroGuideIndia</div>
+    <div class="foot-links">
+      <a href="/">Home</a><span>·</span>
+<a href="/blog">Blog</a><span>·</span>
+<a href="/stations">Stations</a><span>·</span>
+<a href="/timings">Timings</a><span>·</span>
+<a href="/fares">Fares</a><span>·</span>
+<a href="/about.html">About</a><span>·</span>
+<a href="/contact.html">Contact</a><span>·</span>
+<a href="/privacy.html">Privacy Policy</a><span>·</span>
+<a href="/terms.html">Terms</a><span>·</span>
+<a href="/disclaimer.html">Disclaimer</a>
+    </div>
+    <div class="foot-copy">© 2026 MetroGuideIndia. Not affiliated with NCRTC.</div>
   </div>
 </footer>
+<script src="/js/blogBridge.js"></script>
+<script>BlogBridge.enhanceArticle(document.getElementById("blog-article"));</script>
+
+<script>
+  /* Reading progress bar */
+  (function(){
+    var bar = document.getElementById('read-progress');
+    var content = document.getElementById('post-content');
+    if(!bar || !content) return;
+    function update(){
+      var rect = content.getBoundingClientRect();
+      var total = content.offsetHeight - window.innerHeight;
+      var scrolled = -rect.top;
+      var pct = total > 0 ? Math.min(100, Math.max(0, scrolled / total * 100)) : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', update, {passive:true});
+  })();
+</script>
+
+<script src="/js/globalSearchBar.js?v=20260410"></script>
 </body>
 </html>

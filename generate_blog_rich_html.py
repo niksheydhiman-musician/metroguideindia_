@@ -2,14 +2,9 @@
 """
 generate_blog_rich_html.py — MetroGuideIndia
 
-Enhanced blog static HTML generator with:
-  • Table of Contents (auto-generated from h2/h3)
-  • Styled rich elements (tables, HTML components, code blocks)
-  • Related guides section
-  • FAQ accordion with matching FAQPage schema
-  • Proper semantic HTML and accessibility
-  • Full GA4 and AdSense integration
-  • Canonical URLs and open graph tags
+Builds CMS posts and their existing aliases using blog_template.py,
+blog_content.py, blog_faq.py and the site's post.html template.
+FAQ schema is derived from the rendered article, not a separate override.
 
 Run:
     python3 generate_blog_rich_html.py
@@ -24,6 +19,9 @@ from pathlib import Path
 from datetime import datetime
 import xml.etree.ElementTree as ET
 from urllib.parse import quote
+from urllib.parse import unquote, urlparse
+
+from blog_template import render as render_shared_post
 
 BLOGS_DIR = Path('data/blogs')
 BLOG_HTML_DIR = Path('blog')
@@ -339,7 +337,7 @@ def build_article_schema(post: dict, slug: str) -> str:
     
     return f'<script type="application/ld+json">\n{json.dumps(schema, ensure_ascii=False, indent=2)}\n</script>'
 
-def build_toc_html(toc: list[tuple[int, str, str]]) -> str:
+def build_toc_html(toc: list[tuple[int, str, str]], slug: str) -> str:
     """Build table of contents HTML."""
     if not toc:
         return ''
@@ -348,9 +346,10 @@ def build_toc_html(toc: list[tuple[int, str, str]]) -> str:
     html.append('<div class="blog-toc-header">On this page</div>')
     html.append('<ul class="blog-toc-list">')
     
-    for level, text, slug in toc:
+    for level, text, anchor in toc:
         indent = 'blog-toc-h2' if level == 2 else 'blog-toc-h3'
-        html.append(f'<li class="{indent}"><a href="#{slug}">{text}</a></li>')
+        page = quote(slug, safe='-._~')
+        html.append(f'<li class="{indent}"><a href="/blog/{page}.html#{escape_html(anchor)}">{escape_html(text)}</a></li>')
     
     html.append('</ul>')
     html.append('</nav>')
@@ -445,7 +444,7 @@ def render_post_html(slug: str, post: dict) -> str:
     article_schema = build_article_schema(post, slug)
     
     # Generate TOC
-    toc_html = build_toc_html(toc)
+    toc_html = build_toc_html(toc, slug)
     
     # Get related guides
     related = get_related_guides(tags, slug)
@@ -578,43 +577,40 @@ def render_post_html(slug: str, post: dict) -> str:
     return html
 
 def main():
-    """Generate static HTML for all blog posts."""
+    """Generate static pages and their existing aliases from CMS data."""
     if not BLOGS_DIR.exists():
-        print(f'Error: {BLOGS_DIR} does not exist')
-        return
-    
+        raise SystemExit(f'Error: {BLOGS_DIR} does not exist')
     BLOG_HTML_DIR.mkdir(exist_ok=True)
-    
-    generated = 0
-    errors = []
-    
-    for filepath in BLOGS_DIR.glob('*.json'):
-        slug = filepath.stem
-        if slug == 'index':
-            continue
-        
-        try:
-            with open(filepath, encoding='utf-8') as f:
-                post = json.load(f)
-            
-            html = render_post_html(slug, post)
-            
-            output_file = BLOG_HTML_DIR / f'{slug}.html'
-            with open(output_file, 'w', encoding='utf-8') as f:
-                f.write(html)
-            
-            print(f'✓ Generated {slug}.html')
-            generated += 1
-        
-        except Exception as e:
-            errors.append(f'{slug}: {e}')
-            print(f'✗ Error processing {slug}: {e}')
-    
-    print(f'\nGenerated {generated} blog posts.')
-    if errors:
-        print(f'\nErrors encountered:')
-        for err in errors:
-            print(f'  - {err}')
+    posts = {}
+    for filepath in sorted(BLOGS_DIR.glob('*.json')):
+        if filepath.stem != 'index':
+            posts[filepath.stem] = json.loads(filepath.read_text(encoding='utf-8'))
+    aliases = {
+        'anand-vihar-to-meerut-metro-route-fare-timings-and-complete-guide-2026':
+            'anand-vihar-to-meerut-metro-route-fare-timings-and-complete-guide-2026-1',
+        'the-ultimate-anand-vihar-to-ghaziabad-transit-guide-distance-metro-routes-and-commuter-hacks-2026':
+            'the-ultimate-anand-vihar-to-ghaziabad-transit-guide-distance-metro-routes-and-commuter-hacks',
+    }
+    canonicals = {}
+    for slug, post in posts.items():
+        path = unquote(urlparse(str(post.get('url') or '')).path)
+        match = re.fullmatch(r'/blog/([^/]+)\.html', path)
+        canonical = match.group(1) if match else slug
+        canonicals[slug] = canonical
+        if canonical != slug:
+            if canonical in posts or canonical in aliases and aliases[canonical] != slug:
+                raise ValueError(f'Conflicting blog alias: {canonical}')
+            aliases[canonical] = slug
+    rendered = {}
+    for slug, post in posts.items():
+        rendered[slug] = render_shared_post(slug, post, posts, canonicals[slug])
+    for alias, source in aliases.items():
+        if source in posts:
+            canonical = alias if alias == 'anand-vihar-to-meerut-metro-route-fare-timings-and-complete-guide-2026' else canonicals[source]
+            rendered[alias] = render_shared_post(alias, posts[source], posts, canonical, source)
+    for slug, content in rendered.items():
+        (BLOG_HTML_DIR / f'{slug}.html').write_text(content, encoding='utf-8')
+    print(f'Generated {len(rendered)} static blog pages.')
 
 if __name__ == '__main__':
     main()

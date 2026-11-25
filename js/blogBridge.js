@@ -18,50 +18,6 @@
   var FAQ_SCHEMA_SCRIPT_ID = 'post-faq-schema';
   var FAQ_HEADING_PATTERN = /\b(frequently asked questions|faqs?)\b/i;
   var TOURIST_MAP_HEADING_PATTERN = /\bcomplete delhi metro tourist map\b/i;
-  var FAQ_SCHEMA_OVERRIDES = {
-    'delhi-metro-fare-calculator-how-fares-are-calculated-by-distance-in-2026': [
-      {
-        name: 'What is the minimum Delhi Metro fare in 2026?',
-        text: 'The minimum fare is ₹11 for journeys up to 2 km. This is the base fare for the shortest distance on all Delhi Metro lines.'
-      },
-      {
-        name: 'What is the maximum Delhi Metro fare in 2026?',
-        text: 'The maximum fare is ₹64 for journeys beyond 32 km. This applies to the longest commutes on the Delhi Metro network.'
-      },
-      {
-        name: 'Is Delhi Metro fare the same on all days?',
-        text: 'No. Sundays and national holidays have discounted fares that can save you ₹10–₹11 per journey compared to weekday rates. Weekday fares range from ₹11–₹64, while Sunday fares range from ₹11–₹54.'
-      },
-      {
-        name: 'How much discount do I get with a Smart Card?',
-        text: 'Smart Card users get a 10% discount on all fare slabs. For example, a ₹21 token fare becomes ₹19 with a Smart Card, and a ₹64 fare becomes ₹58.'
-      },
-      {
-        name: 'When was the last Delhi Metro fare hike?',
-        text: 'The last fare hike was on August 25, 2025, after an 8-year gap since 2017. The increase was minimal, ranging from ₹1 to ₹5 across various distance slabs.'
-      },
-      {
-        name: 'How is Delhi Metro fare calculated?',
-        text: 'Fares are calculated using a distance-based slab system where you pay a fixed rate for your distance range, not per kilometre. The system has 6 slabs: 0–2 km, 2–5 km, 5–12 km, 12–21 km, 21–32 km, and more than 32 km.'
-      },
-      {
-        name: 'Can I use the same ticket for multiple journeys?',
-        text: 'No. Token tickets (single-journey tickets) are valid for only one journey. For multiple journeys, you should use a Smart Card which can be recharged and used repeatedly.'
-      },
-      {
-        name: 'What happens if I exceed the maximum travel time?',
-        text: 'If you exceed the time limit for your distance slab (65–240 minutes depending on distance), you may need to pay additional fare at the exit station. Time starts from entry tap to exit tap.'
-      },
-      {
-        name: 'Are there any free travels on Delhi Metro?',
-        text: 'Children below 5 years travel free on Delhi Metro. No other free travel concessions are available for general passengers.'
-      },
-      {
-        name: 'How do I find the distance between two metro stations?',
-        text: 'Use the official Delhi Metro website fare calculator at delhimetrorail.com/fare, Google Maps, or apps like Delhi Metro Rail Info to find the exact distance between any two stations.'
-      }
-    ]
-  };
 
   /* ── helpers ─────────────────────────────────────────────────────────── */
 
@@ -946,9 +902,10 @@
 
       var node = heading.nextElementSibling;
       while (node && !node.matches('h2.blog-h2, h2')) {
-        if (node.matches('pre')) {
-          var parsedMap = parseTouristMapStops(node.textContent || '');
-          var widget = buildTouristMapWidget(parsedMap, node.textContent || '');
+        var pre = node.matches('pre') ? node : node.querySelector('pre');
+        if (pre) {
+          var parsedMap = parseTouristMapStops(pre.textContent || '');
+          var widget = buildTouristMapWidget(parsedMap, pre.textContent || '');
           if (widget) node.replaceWith(widget);
           return;
         }
@@ -1150,10 +1107,7 @@
     var old = document.getElementById(FAQ_SCHEMA_SCRIPT_ID);
     if (old) old.remove();
 
-    var override = FAQ_SCHEMA_OVERRIDES[slug];
-    var source = Array.isArray(override) && override.length
-      ? override
-      : (faqItems || []).map(function (faq) {
+    var source = (faqItems || []).map(function (faq) {
           return { name: faq.question, text: faq.answerText };
         }).filter(function (faq) { return faq.name && faq.text; });
 
@@ -1413,6 +1367,31 @@
   /* ── public API ──────────────────────────────────────────────────────── */
 
   var BlogBridge = {};
+
+  BlogBridge.enhanceArticle = function (article) {
+    enhanceNamoBharatFareCalc(article);
+    enhanceBengaluruFareCalc(article);
+    enhanceTransitFlow(article);
+    enhanceBaggageSizeCard(article);
+    enhanceTouristMap(article);
+  };
+
+  BlogBridge.openStaticPost = function (containerId) {
+    var container = getContainer(containerId);
+    var slug = getCurrentSlug();
+    if (!container) return;
+    if (!slug) {
+      window.location.replace('/blog');
+      return;
+    }
+    loadPostWithAliasFallback(slug).then(function (post) {
+      window.location.replace(normalizeBlogPath(post.url, slug) + (window.location.hash || ''));
+    }).catch(function (error) {
+      console.error('[blogBridge] Could not open static post:', error);
+      container.innerHTML = '<p>Post not found. <a href="/blog">Back to blog</a></p>';
+      revealPage();
+    });
+  };
 
   /**
    * Render homepage news-cards into `containerId`.
