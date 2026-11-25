@@ -106,6 +106,9 @@ jobs:
       - name: Create missing blog HTML pages
         run: python3 generate_blog_pages.py
 
+      - name: Generate static blog HTML files from CMS JSON
+        run: python3 generate_blog_static_html.py
+
       - name: Update sitemap.xml with new blog entries
         run: |
           python3 - <<'EOF'
